@@ -28,7 +28,7 @@
     </div>
     <div id="cardOwnerId" class="transfer-new-card-owner-container" hidden>
       <p class="transfer-new-card-owner-title">{window.languages.ViewPayTransferNewCardOwnerTitle}</p>
-      <p class="transfer-new-card-owner-info">{parent.cardOwner}</p>
+      <p class="transfer-new-card-owner-info">{cardOwner}</p>
     </div>
   </div>
   <button if="{showBottomButton}"
@@ -59,6 +59,7 @@
     scope.processingImage = '';
     scope.searchCardNumber = '';
     scope.showBottomButton = false;
+    scope.cardOwner = '';
 
     //Card number input handler
     cardBlurAndChange = function () {
@@ -165,8 +166,8 @@
           if (result[0][0].error === 0) {
             try {
               if (result[1] && result[1][0]) {
-                scope.parent.cardOwner = result[1][0].card_owner;
-                if (scope.parent.cardOwner)
+                scope.cardOwner = result[1][0].card_owner;
+                if (scope.cardOwner)
                   cardOwnerId.style.display = 'block';
               }
               scope.update()
@@ -249,7 +250,7 @@
         scope.showBottomButton = false;
         cardSuggestions.style.display = 'block';
         cardOwnerId.style.display = 'none';
-        scope.parent.cardOwner = '';
+        scope.cardOwner = '';
       }
       scope.parent.update();
     };
@@ -372,7 +373,7 @@
             return;
           }
 
-          if (checkOfCode && !statusOfBankToP2P) {
+          if (!statusOfBankToP2P) {
             cardInputId.blur();
             scope.errorNote = 'Карта "' + nameOfBank + '" банка временно недоступна для перевода средств';
             window.common.alert.show("componentAlertId", {
@@ -388,7 +389,7 @@
 
           params = {
             transferType: 'card',
-            cardNumber: cardInputId.value.replace(/\s/g, ''),
+            cardNumber: cardInputId.value,
             cardOwner: scope.cardOwner,
             taxPercent: percentOfBank,
             minLimit: minOfBank,

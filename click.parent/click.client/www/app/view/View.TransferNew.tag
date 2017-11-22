@@ -122,7 +122,6 @@
     scope.showComponent = false;
     scope.allBankList = [];
     scope.activatedType = '';
-    scope.cardOwner = '';
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-transfer-new') {
       history.arrayOfHistory.push(
         {
@@ -136,23 +135,41 @@
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
     }
-    if (JSON.parse(localStorage.getItem('click_client_loginInfo')))
-      var tax = JSON.parse(localStorage.getItem('click_client_loginInfo')).p2p_comission;
-    else
-      var tax = 0;
 
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
     scope.on('mount', function () {
-      if (opts)
-        console.log('opts on mount new transfers', opts);
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).transfer) {
         componentTourId.style.display = "block";
         scope.tourClosed = false;
         if (device.platform !== 'BrowserStand')
           StatusBar.backgroundColorByHexString("#004663");
       }
-      showTransferByContact();
+      if (opts && JSON.stringify(opts) !== '{}') {
+        if (opts.transferType && opts.transferType === 'contact'){
+          showTransferByContact();
+          contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(opts.phoneNumber.substr(3, opts.phoneNumber.length));
+          contactPhoneBlurAndChange();
+        }
+        if (opts.transferType && opts.transferType === 'card'){
+          showTransferByCard();
+          cardInputId.value = opts.cardNumber;
+          cardBlurAndChange();
+        }
+      }
+      else {
+        showTransferByContact();
+      }
+
+      if (localStorage.getItem('click_client_countCard')) {
+        scope.countCard = JSON.parse(localStorage.getItem('click_client_countCard'));
+        if (scope.countCard < 3){
+          between.style.display = 'none';
+          card.style.width = '50%';
+          contact.style.width = '50%';
+          console.log('small amount of cards');
+        }
+      }
     });
     {
       //Choose transfer type
@@ -455,7 +472,7 @@
     }
 
     //Tour processing
-    focusFieldAfterTourClosed = function () {
+    scope.focusFieldAfterTourClosed = focusFieldAfterTourClosed = function () {
       scope.tourClosed = true;
       setTimeout(function () {
         contactPhoneNumberId.autofocus;

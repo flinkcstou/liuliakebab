@@ -54,6 +54,7 @@
     scope.searchNumber = '';
     scope.phoneSuggestionsArray = [];
     scope.showBottomButton = false;
+    scope.phoneNumberForSubmit = '';
 
     //Find contacts after page is loaded
     findContacts = function () {
@@ -103,8 +104,6 @@
         contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(inputVerification.telVerification(contactPhoneNumberId.value));
         onPaste = false;
       }
-      scope.contactMode = true;
-      scope.cardMode = false;
       checkPhoneNumberLength();
       scope.update();
     };
@@ -257,21 +256,21 @@
       event.stopPropagation();
 
       transferContactTouchStartX = event.changedTouches[0].pageX;
-      transferCardTouchStartY = event.changedTouches[0].pageY;
+      transferContactTouchStartY = event.changedTouches[0].pageY;
     };
     onTouchEndOfNextContact = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      transferCardTouchEndX = event.changedTouches[0].pageX;
-      transferCardTouchEndY = event.changedTouches[0].pageY;
+      transferContactTouchEndX = event.changedTouches[0].pageX;
+      transferContactTouchEndY = event.changedTouches[0].pageY;
 
-      if (Math.abs(transferContactTouchStartX - transferCardTouchEndX) <= 20
-        && Math.abs(transferCardTouchStartY - transferCardTouchEndY) <= 20) {
-
+      if (Math.abs(transferContactTouchStartX - transferContactTouchEndX) <= 20
+        && Math.abs(transferContactTouchStartY - transferContactTouchEndY) <= 20) {
+        scope.phoneNumberForSubmit = window.languages.CodeOfCountry + inputVerification.spaceDeleter(contactPhoneNumberId.value);
         params = {
           transferType: 'contact',
-          phoneNumber: cardInputId.value.replace(/\s/g, ''),
+          phoneNumber: scope.phoneNumberForSubmit,
           taxPercent: taxPercent
         };
         riotTags.innerHTML = "<view-transfer-submit>";

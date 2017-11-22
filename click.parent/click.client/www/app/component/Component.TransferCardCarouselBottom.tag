@@ -38,6 +38,9 @@
       document.getElementById(scope.carouselidBottom).style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
       document.getElementById(scope.carouselidBottom).style.transform = "translate3d(" + (-scope.cardNumberBottom * 404) * widthK + 'px' + ", 0, 0)";
       document.getElementById(scope.carouselidBottom).style.webkitTransform = "translate3d(" + (-scope.cardNumberBottom * 404) * widthK + 'px' + ", 0, 0)";
+      if (scope.parent.cardChangedBottom){
+        scope.parent.cardChangedBottom(scope.cardNumberBottom);
+      }
     });
 
     startTouchCarouselTransferBottom = function () {
@@ -50,7 +53,7 @@
       event.preventDefault();
       event.stopPropagation();
       carouselTouchEndX = event.changedTouches[0].pageX;
-      if (Math.abs(carouselTouchStartX - carouselTouchEndX) > 20) {
+      if (Math.abs(carouselTouchStartX - carouselTouchEndX) > 0) {
         changePositionCardCarouselTransferBottom(id.childNodes[1].id);
       }
     };
@@ -101,6 +104,11 @@
         document.getElementById(id).style.transform = "translate3d(" + (-scope.cardNumberBottom * 404) * widthK + 'px' + ", 0, 0)";
         document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.cardNumberBottom * 404) * widthK + 'px' + ", 0, 0)";
       }
+
+      if (scope.parent.cardChangedBottom){
+        scope.parent.cardChangedBottom(scope.cardNumberBottom);
+      }
+
       scope.update();
     };
 

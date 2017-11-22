@@ -93,7 +93,7 @@
       fromRegistration = false;
       fromPayOrTransfer = false;
     }
-    else if (opts[0] == 'view-pay-confirm' || opts[0] == 'view-transfer-stepfour') {
+    else if (opts[0] == 'view-pay-confirm' || opts[0] == 'view-transfer-submit') {
       scope.nowCheckPinTitle = window.languages.ViewPinCodeConfirmPayTransferLabel;
       scope.backbuttoncheck = true;
       fromSettings = false;
@@ -348,6 +348,7 @@
 
               if (fromPayOrTransfer) {
                 sessionStorage.setItem('payTransferConfirmed', true);
+                onBackParams.opts = opts[1];
                 onBackKeyDown();
               } else {
                 scope.checkPin = true;

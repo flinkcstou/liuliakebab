@@ -21,7 +21,7 @@
     var scope = this;
     var carouselTouchStartX, carouselTouchEndX
     scope.carouselidTop = opts.carouselid;
-    scope.parent.cardNumberTop = 1;
+    scope.cardNumberTop = 1;
     scope.leftTop = 0;
     scope.deltaTop = 0;
     if (localStorage.getItem('click_client_cards')) {
@@ -36,13 +36,16 @@
     scope.on("mount", function () {
       document.getElementById(scope.carouselidTop).style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
       document.getElementById(scope.carouselidTop).style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-      document.getElementById(scope.carouselidTop).style.transform = "translate3d(" + (-scope.parent.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
-      document.getElementById(scope.carouselidTop).style.webkitTransform = "translate3d(" + (-scope.parent.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
+      document.getElementById(scope.carouselidTop).style.transform = "translate3d(" + (-scope.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
+      document.getElementById(scope.carouselidTop).style.webkitTransform = "translate3d(" + (-scope.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
+      if (scope.parent.cardChangedTop){
+        scope.parent.cardChangedTop(scope.cardNumberTop);
+      }
     });
 
     startTouchCarouselTransferTop = function () {
       carouselTouchStartX = event.changedTouches[0].pageX;
-      scope.leftTop = -((404 * scope.parent.cardNumberTop) * widthK) - carouselTouchStartX;
+      scope.leftTop = -((404 * scope.cardNumberTop) * widthK) - carouselTouchStartX;
       scope.deltaTop = scope.leftTop;
     };
 
@@ -50,7 +53,7 @@
       event.preventDefault();
       event.stopPropagation();
       carouselTouchEndX = event.changedTouches[0].pageX;
-      if (Math.abs(carouselTouchStartX - carouselTouchEndX) > 20) {
+      if (Math.abs(carouselTouchStartX - carouselTouchEndX) > 0) {
         changePositionCardCarouselTransferTop(id.childNodes[1].id);
       }
     };
@@ -70,37 +73,42 @@
         event.preventDefault();
         event.stopPropagation();
       }
-      if (carouselTouchEndX < carouselTouchStartX && scope.parent.cardNumberTop < scope.count - 1) {
-        ++scope.parent.cardNumberTop;
+      if (carouselTouchEndX < carouselTouchStartX && scope.cardNumberTop < scope.count - 1) {
+        ++scope.cardNumberTop;
         document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        document.getElementById(id).style.transform = "translate3d(" + (-scope.parent.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
-        document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.parent.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
+        document.getElementById(id).style.transform = "translate3d(" + (-scope.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
+        document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
 
       }
 
-      if (carouselTouchEndX < carouselTouchStartX && scope.parent.cardNumberTop >= scope.count - 1) {
+      if (carouselTouchEndX < carouselTouchStartX && scope.cardNumberTop >= scope.count - 1) {
         document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        document.getElementById(id).style.transform = "translate3d(" + (-scope.parent.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
-        document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.parent.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
+        document.getElementById(id).style.transform = "translate3d(" + (-scope.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
+        document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
 
       }
 
-      if (carouselTouchEndX > carouselTouchStartX && scope.parent.cardNumberTop > 1) {
-        --scope.parent.cardNumberTop;
+      if (carouselTouchEndX > carouselTouchStartX && scope.cardNumberTop > 1) {
+        --scope.cardNumberTop;
         document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        document.getElementById(id).style.transform = "translate3d(" + (-scope.parent.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
-        document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.parent.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
+        document.getElementById(id).style.transform = "translate3d(" + (-scope.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
+        document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
       }
 
-      if (carouselTouchEndX > carouselTouchStartX && scope.parent.cardNumberTop === 1) {
+      if (carouselTouchEndX > carouselTouchStartX && scope.cardNumberTop === 1) {
         document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        document.getElementById(id).style.transform = "translate3d(" + (-scope.parent.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
-        document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.parent.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
+        document.getElementById(id).style.transform = "translate3d(" + (-scope.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
+        document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
       }
+
+      if (scope.parent.cardChangedTop){
+        scope.parent.cardChangedTop(scope.cardNumberTop);
+      }
+
       scope.update();
     };
 

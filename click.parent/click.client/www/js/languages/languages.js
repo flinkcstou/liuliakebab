@@ -168,9 +168,10 @@ var RU_LANGUAGES =
   "ViewPayTransferNewTitle": "ПЕРЕВОД СРЕДСТВ",
   "ViewPayTransferNewContactTextField": "Номер телефона друга:",
   "ViewPayTransferNewContinue": "ПРОДОЛЖИТЬ",
+  "ViewPayTransferNewSubmitTransfer": "ПОДТВЕРДИТЬ ПЕРЕВОД",
   "ViewPayTransferNewCardOwnerTitle": "ФИО:",
   "ViewPayTransferNewSubmitRecieverLabel": "Получатель:",
-  "ViewPayTransferNewSubmitTitle": "Получатель:",
+  "ViewPayTransferNewSubmitTitle": "ПОДТВЕРЖДЕНИЕ ПЕРЕВОДА",
 
 
   "ViewTransferTwoTax": "Комиссия: ",
@@ -198,6 +199,8 @@ var RU_LANGUAGES =
   "ViewTransferFourTransferInformation": "Перевод с карты: ",
 
   "ComponentCodeConfirmTitle": "ЗАЩИТНЫЙ КОД",
+  "ComponentCodeConfirmMessageText": "Передайте код получателю для завершения перевода",
+  "ComponentCodeConfirmOk": "OK",
 
   "ComponentSuccessMessage": "Перевод прошел успешно!",
   "ComponentSuccessMessageForPay": "Оплата проведена успешно!",

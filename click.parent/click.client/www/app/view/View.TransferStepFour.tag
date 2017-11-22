@@ -378,6 +378,8 @@
       if (!objectForTransfer.transactionId)
         objectForTransfer.transactionId = parseInt(Date.now() / 1000);
 
+      console.log("scope on p2p.payment", scope);
+
       initResultComponent();
 
       console.log("TRANSACTION_ID", objectForTransfer.transactionId);
@@ -387,10 +389,10 @@
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber,
-          account_id: scope.objectCardForTransfer.card_id,
-          receiver_data: scope.objectTypeForTransfer.name.replace(/\s/g, ''),
-          amount: parseInt(scope.objectSumForTransfer.sum),
-          type: scope.objectTypeForTransfer.type,
+          account_id: scope.objectCardForTransfer.card_id, //6125929
+          receiver_data: scope.objectTypeForTransfer.name.replace(/\s/g, ''),//998977441334 //8600 1309 1671 6543
+          amount: parseInt(scope.objectSumForTransfer.sum),//5000
+          type: scope.objectTypeForTransfer.type,//2 //1
           transaction_id: objectForTransfer.transactionId
 //                                card_number: cardNumberForTransfer.replace(/\s/g, ''),
         },

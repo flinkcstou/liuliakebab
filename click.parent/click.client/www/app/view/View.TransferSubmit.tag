@@ -15,7 +15,7 @@
     <div class="transfer-new-submit-receiver-container">
       <p class="transfer-new-submit-receiver-label">
         {window.languages.ViewPayTransferNewSubmitRecieverLabel}
-        {receiver}
+        {receiverTitle}
       </p>
     </div>
     <div class="transfer-new-between-amount-field">
@@ -30,7 +30,12 @@
              onblur="amountOnBlur()"
              onkeyup="amountKeyUp()"
              oninput="amountKeyUp()">
-      <p if="{showPlaceHolderError && maxLimit && minLimit}" id="placeHolderSumId" class="transfer-new-between-input-commission">{placeHolderText}</p>
+      <p if="{showPlaceHolderError && maxLimit && minLimit}"
+         id="placeHolderSumId"
+         style="color: red;"
+         class="transfer-new-between-input-commission">
+        {placeHolderText}
+      </p>
       <p if="{!showPlaceHolderError && !modeOfApp.offlineMode}" class="transfer-new-between-input-commission">
         {window.languages.ViewTransferTwoTax} {tax}
         {window.languages.Currency}</p>
@@ -48,12 +53,32 @@
 
     <button if="{showBottomButton}"
             id="bottomButtonId"
-            class="transfer-new-button-container"
-            ontouchstart="onTouchStartOfNext()"
-            ontouchend="onTouchEndOfNext()">
-      {buttonText}
+            class="transfer-new-submit-button-container"
+            ontouchstart="onTouchStartOfSubmit()"
+            ontouchend="onTouchEndOfSubmit()">
+      <div id="bottomButtonIcon"
+           class="transfer-new-submit-button-icon">
+      </div>
+      <p class="transfer-new-submit-button-text">
+        {window.languages.ViewPayTransferNewSubmitTransfer}
+      </p>
     </button>
   </div>
+  <code-confirm id="blockCodeConfirmId" class="code-confirm">
+    <div class="code-confirm-title-container">
+      <p class="code-confirm-title-name">{window.languages.ComponentCodeConfirmTitle}</p>
+      <div class="code-confirm-cancel-icon" role="button" aria-label="{window.languages.Close}"
+           ontouchend="closeSecretCodePage()"></div>
+    </div>
+    <div class="code-confirm-code-container">
+      <input readonly value="{secretCode}" class="code-confirm-code-text"/>
+      <p class="code-confirm-message-text">{window.languages.ComponentCodeConfirmMessageText}</p>
+
+      <button class="code-confirm-button-enter" ontouchend="closeSecretCodePage()">
+        {window.languages.ComponentCodeConfirmOk}
+      </button>
+    </div>
+  </code-confirm>
 
   <div hidden="{!showComponent}" id="componentBankListId" class="component-bank-list">
     <div class="page-title" style="border: none;">
@@ -103,25 +128,34 @@
   <script>
 
     var scope = this;
-    scope.titleName = window.languages.ViewPayTransferNewTitle;
-    scope.buttonText = window.languages.ViewPayTransferNewContinue;
+    var transferSubmitTouchStartX,
+      transferSubmitTouchStartY,
+      transferSubmitTouchEndX,
+      transferSubmitTouchEndY;
     scope.clickPinError = false;
     scope.showComponent = false;
     scope.allBankList = [];
+    scope.cardsarray = [];
+    scope.chosenCard;
     scope.showBottomButton = false;
     scope.receiver = '';
-    scope.maxLimit;
-    scope.minLimit;
+    scope.receiverTitle = '';
+    scope.transferType = '';
+    scope.maxLimit = 99999999999;
+    scope.minLimit = 5000;
+    scope.sumForTransfer = 0;
     scope.tax = 0;
     scope.taxPercent = 0;
-    scope.cardNumberTop = 0;
     scope.maskOne = /[0-9]/g;
     scope.maskTwo = /[0-9' ']/g;
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-transfer-card-submit') {
+    scope.stepAmount = 3;
+    var counter = 0;
+
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-transfer-submit') {
       console.log("opts on saving history", opts);
       history.arrayOfHistory.push(
         {
-          "view": 'view-transfer-card-submit',
+          "view": 'view-transfer-submit',
           "params": opts,
         }
       );
@@ -132,20 +166,33 @@
       scope.allBankList = JSON.parse(localStorage.getItem("click_client_p2p_all_bank_list"));
     }
 
+    if (localStorage.getItem('click_client_cards')) {
+      scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
+    }
+
+    if (localStorage.getItem('settings_block_payAndTransfer'))
+      scope.payTransferBlocked = JSON.parse(localStorage.getItem('settings_block_payAndTransfer'));
+
+
     scope.on('mount', function () {
       console.log("opts on mount cardSubmit", opts);
-      if (opts){
-        if (opts.transferType === 'contact'){
-          scope.receiver = opts.phoneNumber;
-          scope.taxPercent = opts.taxPercent;
-        }
-        if (opts.transferType === 'card'){
-          scope.receiver = opts.cardOwner;
+      if (opts) {
+        if (opts.transferType === 'card') {
+          scope.receiver = opts.cardNumber;
+          scope.receiverTitle = opts.cardOwner;
           scope.taxPercent = opts.taxPercent;
           scope.maxLimit = opts.maxLimit;
           scope.minLimit = opts.minLimit;
+          scope.transferType = 1;
+        }
+        if (opts.transferType === 'contact') {
+          scope.receiver = opts.phoneNumber;
+          scope.receiverTitle = opts.phoneNumber;
+          scope.taxPercent = opts.taxPercent;
+          scope.transferType = 2;
         }
       }
+      scope.update();
     });
     {
       amountMouseUp = function () {
@@ -185,7 +232,7 @@
         }
 
         if (event.keyCode === 8) {
-          sumForTransfer = sumForTransfer.substring(0, sumForTransfer.length - 1);
+          scope.sumForTransfer = scope.sumForTransfer.substring(0, scope.sumForTransfer.length - 1);
         }
 
         if (submitAmountId.value.match(scope.maskTwo) !== null && submitAmountId.value.match(scope.maskTwo).length !== null) {
@@ -194,10 +241,10 @@
           submitAmountId.selectionStart = submitAmountId.value.match(scope.maskTwo).length;
           submitAmountId.selectionEnd = submitAmountId.value.match(scope.maskTwo).length;
 
-          sumForTransfer = submitAmountId.value.substring(0, submitAmountId.value.match(scope.maskTwo).length);
-          sumForTransfer = sumForTransfer.replace(new RegExp(' ', 'g'), '');
+          scope.sumForTransfer = submitAmountId.value.substring(0, submitAmountId.value.match(scope.maskTwo).length);
+          scope.sumForTransfer = scope.sumForTransfer.replace(new RegExp(' ', 'g'), '');
 
-          submitAmountId.value = window.amountTransform(sumForTransfer.toString());
+          submitAmountId.value = window.amountTransform(scope.sumForTransfer.toString());
           submitAmountId.selectionStart = submitAmountId.value.match(scope.maskTwo).length;
           submitAmountId.selectionEnd = submitAmountId.value.match(scope.maskTwo).length;
 
@@ -206,29 +253,320 @@
           submitAmountId.selectionEnd = 0;
         }
 
-        if (sumForTransfer)
-          scope.tax = sumForTransfer * scope.taxPercent / 100;
+        if (scope.sumForTransfer)
+          scope.tax = scope.sumForTransfer * scope.taxPercent / 100;
         else {
           scope.tax = 0
         }
 
         scope.showPlaceHolderError = false;
 
-        if (scope.cardNumberTop !== 0){
+        scope.showBottomButton = true;
 
-        }
-
-        if (sumForTransfer > scope.maxLimit) {
-          scope.placeHolderText = 'Максимальная сумма ' + window.amountTransform(scope.maxLimit)
+        if (scope.sumForTransfer > scope.maxLimit) {
+          scope.placeHolderText = 'Максимальная сумма ' + window.amountTransform(scope.maxLimit);
           scope.showPlaceHolderError = true;
+          scope.showBottomButton = false;
         }
-        if (sumForTransfer < scope.minLimit) {
-          scope.placeHolderText = "Минимальная сумма " + window.amountTransform(scope.minLimit)
+        if (scope.sumForTransfer < scope.minLimit) {
+          scope.placeHolderText = "Минимальная сумма " + window.amountTransform(scope.minLimit);
           scope.showPlaceHolderError = true;
+          scope.showBottomButton = false;
         }
         scope.update()
       };
 
+      scope.cardChangedTop = cardChangedTop = function (cardNumber) {
+        for (var i in scope.cardsarray) {
+          if (scope.cardsarray[i].countCard === cardNumber) {
+            scope.chosenCard = scope.cardsarray[i];
+            console.log(scope.chosenCard);
+          }
+        }
+      };
+
+      onTouchStartOfSubmit = function () {
+        event.preventDefault();
+        event.stopPropagation();
+
+        transferSubmitTouchStartX = event.changedTouches[0].pageX;
+        transferSubmitTouchStartY = event.changedTouches[0].pageY;
+      };
+
+      onTouchEndOfSubmit = function () {
+        event.preventDefault();
+        event.stopPropagation();
+
+        transferSubmitTouchEndX = event.changedTouches[0].pageX;
+        transferSubmitTouchEndY = event.changedTouches[0].pageY;
+
+        if (Math.abs(transferSubmitTouchStartX - transferSubmitTouchEndX) <= 20
+          && Math.abs(transferSubmitTouchStartY - transferSubmitTouchEndY) <= 20) {
+          if (modeOfApp.demoVersion) {
+            scope.errorNote = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              errorcode: scope.errorCode,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+            });
+            scope.update();
+            return;
+          }
+          if (scope.chosenCard && scope.chosenCard.salaryOriginal < scope.sumForTransfer) {
+            scope.clickPinError = false;
+            scope.errorNote = "На выбранной карте недостаточно средств";
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote
+            });
+            scope.update();
+            return;
+          }
+          if (scope.payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) !== true) {
+            optsForPinCode = {
+              fromPinCode: true,
+              receiver: scope.receiver,
+              receiverTitle: scope.receiverTitle,
+              taxPercent: scope.taxPercent,
+              maxLimit: scope.maxLimit,
+              minLimit: scope.minLimit,
+              transferType: scope.transferType,
+              sumForTransfer: scope.sumForTransfer,
+              chosenCard: scope.chosenCard,
+            };
+            riotTags.innerHTML = "<view-pin-code>";
+            riot.mount('view-pin-code', ['view-transfer-submit', optsForPinCode]);
+            return
+          }
+
+          transfer();
+        }
+      };
+
+      //send request to API
+      transfer = function () {
+
+        var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+        var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+        scope.transactionId = parseInt(Date.now() / 1000);
+
+        initResultComponent();
+        window.api.call({
+          method: 'p2p.payment',
+          input: {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            account_id: scope.chosenCard.card_id,
+            receiver_data: scope.receiver.replace(/\s/g, ''),
+            amount: parseInt(scope.sumForTransfer),
+            type: scope.transferType,
+            transaction_id: scope.transactionId
+          },
+
+          scope: this,
+
+          onSuccess: function (result) {
+            if (result[0][0].error === 0) {
+              if (result[1])
+                if (result[1][0]) {
+                  if (result[1][0].secret_code && scope.transferType === 2) {
+
+                    answerFromServer = true;
+
+                    closeResultComponent();
+
+                    blockCodeConfirmId.style.display = 'block';
+                    scope.secretCode = result[1][0].secret_code;
+                    window.updateBalanceGlobalFunction();
+                    scope.update();
+                  }
+                  if (result[1][0].secret_code === 0) {
+                    setTimeout(function () {
+                      checkTransferStatus(result[1][0].payment_id);
+                    }, 2000);
+                  }
+                }
+            }
+            else {
+              updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', result[0][0].error_note)
+            }
+          },
+
+          onFail: function (api_status, api_status_message, data) {
+            updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          }
+        });
+
+        setTimeout(function () {
+          if (!answerFromServer) {
+            window.api.forceClose();
+            updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
+            return;
+          }
+        }, 30000)
+      };
+
+      checkTransferStatus = function (payment_id) {
+        var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+        var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+        window.api.call({
+          method: 'get.payment',
+          input: {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            payment_id: payment_id
+          },
+          scope: this,
+          onSuccess: function (result) {
+            if (result[0][0].error === 0 && result[1][0]) {
+              if (result[1][0].state === -1) {
+                answerFromServer = true;
+
+                window.languages.tempText = JSON.stringify(result[1][0].error);
+                scope.errorMessageFromTransfer = result[1][0].error;
+                updateResultComponent(true, scope.stepAmount, null, 'unsuccess', result[1][0].error);
+              } else if (result[1][0].state === 2) {
+                answerFromServer = true;
+                window.updateBalanceGlobalFunction();
+                updateResultComponent(true, scope.stepAmount, null, 'success', window.languages.ComponentSuccessMessage);
+                if (scope.transferType === 1)
+                  transferFindCards(scope.receiver, scope.receiverTitle);
+              } else if (result[1][0].state === 1) {
+                counter++;
+
+                if (counter < 5) {
+                  setTimeout(function () {
+                    checkTransferStatus(result[1][0].payment_id);
+                  }, 2000);
+                } else {
+                  answerFromServer = true;
+                  updateResultComponent(true, scope.stepAmount, null, 'waiting', window.languages.ComponentInProcessingPartOne);
+                }
+              }
+              window.api.spinnerOn = false;
+            }
+            else {
+              answerFromServer = true;
+              updateResultComponent(true, scope.stepAmount, null, 'unsuccess', result[0][0].error);
+            }
+          },
+
+          onFail: function (api_status, api_status_message, data) {
+            answerFromServer = true;
+            updateResultComponent(true, scope.stepAmount, null, 'unsuccess', api_status_message);
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          }
+        });
+      };
+
+      transferFindCards = function (saveCard, saveCardOwner) {
+        console.log('SAVE CARD', saveCard);
+
+        var transferCards = [];
+        var codeOfBank = saveCard.replace(/\s/g, '').substring(3, 6);
+        var card = {};
+        card.image = '';
+        card.name = '';
+        card.cardNumber = '';
+        card.owner = {};
+        if (saveCardOwner)
+          card.owner.firstName = saveCardOwner;
+        card.owner.secondName = '';
+        var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'));
+        if (JSON.parse(localStorage.getItem('p2pTransferCards'))) {
+          transferCards = JSON.parse(localStorage.getItem('p2pTransferCards'));
+          for (var j = 0; j < transferCards.length; j++) {
+            if (transferCards[j].cardNumber === saveCard) {
+              transferCards.splice(j, 1);
+              localStorage.setItem('p2pTransferCards', JSON.stringify(transferCards));
+            }
+          }
+        }
+
+        for (var i = 0; i < bankList.length; i++) {
+          if (codeOfBank === bankList[i].code) {
+            if (JSON.parse(localStorage.getItem('p2pTransferCards'))) {
+              transferCards = JSON.parse(localStorage.getItem('p2pTransferCards'));
+              card.image = bankList[i].image;
+              card.name = bankList[i].name;
+              card.cardNumber = saveCard;
+              transferCards.unshift(card);
+              localStorage.setItem('p2pTransferCards', JSON.stringify(transferCards));
+            }
+            else {
+              card.image = bankList[i].image;
+              card.name = bankList[i].name;
+              card.cardNumber = saveCard;
+              transferCards.unshift(card);
+              localStorage.setItem('p2pTransferCards', JSON.stringify(transferCards));
+            }
+          }
+        }
+      };
+
+      updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
+        console.log("OPEN RESULT COMPONENT");
+        scope.stepAmount = stepAmount;
+        scope.viewPage = viewPage;
+        scope.resultText = text;
+
+        if (showResult) {
+          window.common.alert.updateView("componentResultId", {
+            parent: scope,
+            resulttext: scope.resultText,
+            viewpage: scope.viewPage,
+            step_amount: scope.stepAmount
+          });
+        } else {
+          window.common.alert.hide("componentResultId");
+        }
+        updateIcon(status, null, null, text, stepAmount, scope.viewPage);
+      };
+
+      closeResultComponent = function () {
+        window.common.alert.hide("componentResultId");
+        scope.update();
+      };
+
+      initResultComponent = function () {
+        window.common.alert.updateView("componentResultId", {
+          parent: scope
+        });
+        scope.update();
+      };
+
+      closeSecretCodePage = function () {
+        blockCodeConfirmId.style.display = 'none';
+        window.common.alert.show("componentInProcessingId", {
+          parent: scope,
+          operationmessagepartone: window.languages.ComponentInProcessingPartOneForTransfer,
+          operationmessageparttwo: window.languages.ComponentInProcessingPartTwoForTransfer,
+          step_amount: 2,
+        });
+      };
+
+      if (scope.payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) === true) {
+        console.log("payTransferConfirmed", opts);
+        if (opts.fromPinCode === true){
+          console.log('fromPinCode');
+          scope.receiver = opts.receiver;
+          scope.receiverTitle = opts.receiverTitle;
+          scope.taxPercent = opts.taxPercent;
+          scope.maxLimit = opts.maxLimit;
+          scope.minLimit = opts.minLimit;
+          scope.transferType = opts.transferType;
+          scope.sumForTransfer = opts.sumForTransfer;
+          scope.chosenCard = opts.chosenCard;
+
+          transfer();
+        }
+        sessionStorage.setItem('payTransferConfirmed', null);
+      }
     }
 
     //Info about banks

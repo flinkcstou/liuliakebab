@@ -5749,10 +5749,12 @@ var css = {
 
   transferNewMenuLabelContact: ".transfer-new-menu-label-contact" +
   "{" +
-  "margin-left: 16%;" +
+  "position: relative;" +
+  "margin-left: auto;" +
   "margin-right: auto;" +
-  "margin-top: 5%;" +
-  "width: 75%;" +
+  "left: 4%;" +
+  "margin-top:" + 12 * widthK + "px;" +
+  "width:" + 180 * widthK + "px;" +
   "text-align: center;" +
   "word-wrap: break-word;" +
   "}",
@@ -5761,17 +5763,20 @@ var css = {
   "{" +
   "margin-left: auto;" +
   "margin-right: auto;" +
-  "margin-top: 7%;" +
-  "width: 45%;" +
+  "margin-top:" + 14 * widthK + "px;" +
+  "width:" + 108 * widthK + "px;" +
   "text-align: center;" +
   "word-wrap: break-word;" +
   "}",
 
   transferNewMenuLabelBetween: ".transfer-new-menu-label-between" +
   "{" +
+  "position: relative;" +
   "margin-left: auto;" +
-  "margin-right: 8%;" +
-  "margin-top: 0%;" +
+  "margin-right: auto;" +
+  "right: 5%;" +
+  "margin-top:" + 10 * widthK + "px;" +
+  "width:" + 175 * widthK + "px;" +
   "text-align: center;" +
   "word-wrap: break-word;" +
   "}",
@@ -5809,38 +5814,48 @@ var css = {
   transferNewMenuContactIcon: ".transfer-new-menu-contact-icon" +
   "{" +
   "position: relative;" +
-  "height: 33%;" +
-  "left: 3.5%;" +
-  "margin-top: 5%;" +
+  "height:" + 51 * widthK + "px;" +
+  "width:" + 62 * widthK + "px;" +
+  "left: 3%;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "margin-top:" + 12 * widthK + "px;" +
   "background: transparent;" +
   "background-image: url('resources/icons/ViewTransfer/touser2.png');" +
   "background-repeat: no-repeat;" +
-  "background-size: 25%;" +
+  "background-size:" + 61 * widthK + "px;" +
   "background-position: center;" +
   "}",
 
   transferNewMenuCardIcon: ".transfer-new-menu-card-icon" +
   "{" +
   "position: relative;" +
-  "height: 27%;" +
-  "margin-top: 7%;" +
+  "height:" + 43 * widthK + "px;" +
+  "width:" + 61 * widthK + "px;" +
+  "margin-top:" + 18 * widthK + "px;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
   "background: transparent;" +
   "background-image: url('resources/icons/ViewTransfer/tofriend2.png');" +
   "background-repeat: no-repeat;" +
-  "background-size: 25%;" +
+  "background-size:" + 58 * widthK + "px;" +
   "background-position: center;" +
   "}",
 
   transferNewMenuBetweenIcon: ".transfer-new-menu-between-icon" +
   "{" +
   "position: relative;" +
-  "height: 46%;" +
-  "right: 4%;" +
-  "margin-top: 1%;" +
+  "height:" + 53 * widthK + "px;" +
+  "width:" + 52 * widthK + "px;" +
+  "right: 5%;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "right: 5%;" +
+  "margin-top:" + 12 * widthK + "px;" +
   "background: transparent;" +
   "background-image: url('resources/icons/ViewTransfer/toown2.png');" +
   "background-repeat: no-repeat;" +
-  "background-size: 21%;" +
+  "background-size:" + 50 * widthK + "px;" +
   "background-position: center;" +
   "}",
 
@@ -5857,6 +5872,44 @@ var css = {
   "bottom: 0;" +
   "color: #ffffff;" +
   "display: block;" +
+  "}",
+
+  transferNewSubmitButtonContainer: ".transfer-new-submit-button-container" +
+  "{" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #9ACF65;" +
+  "bottom: 0;" +
+  "color: #ffffff;" +
+  "display: block;" +
+  "}",
+
+  transferNewSubmitButtonIcon: ".transfer-new-submit-button-icon" +
+  "{" +
+  "height: " + 22 * widthK + "px;" +
+  "width: " + 32 * widthK + "px;" +
+  "float: left;" +
+  "position: relative;" +
+  "margin-left: 14%;" +
+  "margin-top: " + 32 * widthK + "px;" +
+  "background-repeat: no-repeat;" +
+  "background-size: cover;" +
+  "background-position: center;" +
+  "background-repeat: no-repeat;" +
+  "background-image: url('resources/icons/ViewTransfer/check_mark_submit.png');" +
+  "}",
+
+  transferNewSubmitButtonText: ".transfer-new-submit-button-text" +
+  "{" +
+  "float: left;" +
+  "position: relative;" +
+  "margin-left: 6.8%;" +
+  "margin-top: " + 20 * widthK + "px;" +
   "}",
 
   transferNewContactNumberInputPart: ".transfer-new-contact-number-input-part" +
@@ -5946,18 +5999,6 @@ var css = {
   "color: #515151;" +
   "}",
 
-  transferNewCardOwnerInfo: ".transfer-new-card-owner-info " +
-  "{" +
-  "position: absolute;" +
-  "top: 43%;" +
-  "left: 6%;" +
-  "font-size:" + 30 * widthK + "px;" +
-  "color: #c1c1c1;" +
-  "margin: 0;" +
-  "text-align: center;" +
-  "color: #626062;" +
-  "}",
-
   transferNewCardOwnerContainer: ".transfer-new-card-owner-container " +
   "{" +
   "position: absolute;" +
@@ -6031,7 +6072,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "left:" + 320 * widthK + "px;" +
+  "left:" + 315 * widthK + "px;" +
   "color: gray;" +
   "font-size:" + 24 * widthK + "px;" +
   "top: 40%;" +
@@ -6235,7 +6276,7 @@ var css = {
   transferNewSubmitReceiverLabel: ".transfer-new-submit-receiver-label" +
   "{" +
   "margin: 0;" +
-  "padding-top:" + 20 * widthK + "px;" +
+  "padding-top:" + 24 * widthK + "px;" +
   "padding-left:" + 28 * widthK + "px;" +
   "color: gray;" +
   "font-size:" + 32 * widthK + "px;" +
