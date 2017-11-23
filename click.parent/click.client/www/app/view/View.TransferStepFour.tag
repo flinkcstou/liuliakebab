@@ -528,7 +528,7 @@
         parent: scope,
         operationmessagepartone: window.languages.ComponentInProcessingPartOneForTransfer,
         operationmessageparttwo: window.languages.ComponentInProcessingPartTwoForTransfer,
-        step_amount: 3,
+        step_amount: 3
       });
     };
 

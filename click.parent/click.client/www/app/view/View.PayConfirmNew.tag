@@ -835,6 +835,7 @@
                   step_amount: scope.stepAmount
                 });
 
+
               }
               else {
                 scope.errorMessageFromPayment = result[0][0].error_note;

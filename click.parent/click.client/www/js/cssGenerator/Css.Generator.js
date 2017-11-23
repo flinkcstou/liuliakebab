@@ -7467,7 +7467,7 @@ var css = {
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "margin-right: auto;" +
-  "top:" + 610 * widthK + "px;" +
+  "top:" + 400 * widthK + "px;" +
   "left:" + -10 * widthK + "px;" +
   "font-size:" + 36 * widthK + "px;" +
   "}",
@@ -7482,7 +7482,7 @@ var css = {
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "margin-right: auto;" +
-  "top:" + 610 * widthK + "px;" +
+  "top:" + 400 * widthK + "px;" +
   "left:" + -10 * widthK + "px;" +
   "font-size:" + 36 * widthK + "px;" +
   "}",
@@ -7497,7 +7497,7 @@ var css = {
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "margin-right: auto;" +
-  "top:" + 610 * widthK + "px;" +
+  "top:" + 400 * widthK + "px;" +
   "left: 0;" +
   "font-size:" + 36 * widthK + "px;" +
   "}",
@@ -7556,10 +7556,7 @@ var css = {
   "opacity: 0.95;" +
   "height: 100%;" +
   "width: 100%;" +
-  //"background-color: #353340;" +
-  //"background-image: url(resources/icons/transparent.png);" +
   "z-index: 999999999;" +
-  // "display: none;" +
   "background-color: rgba(255,255,255,0.95);" +
   "}",
 
@@ -7567,15 +7564,18 @@ var css = {
   "{" +
   "position: relative;" +
   "color: black;" +
-  "width:" + 300 * widthK + "px;" +
+  "width:" + 340 * widthK + "px;" +
+  "height:" + 390 * widthK + "px;" +
   "text-align: center;" +
   "margin-left: auto;" +
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "margin-right: auto;" +
-  "top:" + 610 * widthK + "px;" +
+  "top:" + 280 * widthK + "px;" +
   "left:" + -10 * widthK + "px;" +
   "font-size:" + 36 * widthK + "px;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
   "}",
 
   successNextButtonInnerContainer: ".success-next-button-inner-container" +
@@ -7720,15 +7720,18 @@ var css = {
   unsuccessOperationSuccessMessage: ".unsuccess-operation-success-message" +
   "{" +
   "position: relative;" +
-  "color: white;" +
-  "width:" + 380 * widthK + "px;" +
+  "color: #ff3c5e;" +
+  "width:" + 640 * widthK + "px;" +
+  "height:" + 435 * widthK + "px;" +
+  "font-size:" + 30 * widthK + "px;" +
   "text-align: center;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
   "margin-top: 0;" +
   "margin-bottom: 0;" +
-  "top:" + 585 * widthK + "px;" +
-  "font-size:" + 38 * widthK + "px;" +
+  "top:" + 340 * widthK + "px;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
   "}",
 
   unsuccessNextButtonInnerContainer: ".unsuccess-next-button-inner-container" +
@@ -7760,26 +7763,13 @@ var css = {
   "vertical-align: middle;" +
   "}",
 
-  unsuccessOperationSuccessMessagePartThree: ".unsuccess-operation-success-message-part-three" +
-  "{" +
-  "position: relative;" +
-  "color: #ff3c5e;" +
-  "width:" + 640 * widthK + "px;" +
-  "font-size:" + 30 * widthK + "px;" +
-  "text-align: center;" +
-  "margin-left: auto;" +
-  "margin-right: auto;" +
-  "margin-top: 0;" +
-  "margin-bottom: 0;" +
-  "top:" + 725 * widthK + "px;" +
-  "}",
 
   unsuccessUnsuccessIcon: ".unsuccess-unsuccess-icon" +
   "{" +
   "position: relative;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
-  "top:" + 165 * widthK + "px;" +
+  "top:" + 250 * widthK + "px;" +
   "width:" + 270 * widthK + "px;" +
   "height:" + 250 * widthK + "px;" +
   // "left:" + 243 * widthK + "px;" +
@@ -12493,6 +12483,8 @@ var css = {
   "top:" + 250 * widthK + "px" + "!important;" +
   "font-size:" + 36 * widthK + "px;" +
   "opacity: 0;" +
+  "height: 300px;" +
+  "overflow: hidden;" +
   "}",
 
   componentResultMessageStart: ".component-result-message-start " +
