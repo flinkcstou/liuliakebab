@@ -54,6 +54,7 @@
     <button if="{showBottomButton}"
             id="bottomButtonId"
             class="transfer-new-submit-button-container"
+            style="bottom: {window.bottomButtonBottom};"
             ontouchstart="onTouchStartOfSubmit()"
             ontouchend="onTouchEndOfSubmit()">
       <div id="bottomButtonIcon"
@@ -195,6 +196,10 @@
           scope.transferType = 2;
         }
       }
+      setTimeout(function () {
+        submitAmountId.autofocus = true;
+        submitAmountId.focus();
+      }, 0);
       scope.update();
     });
     {

@@ -226,19 +226,19 @@
         console.log('Keyboard height is: ' + e.keyboardHeight);
         try {
           bottomButtonBottom = e.keyboardHeight + "px";
+          scope.update();
         } catch (error) {
           console.error(error);
         }
-        scope.update();
       }
       function keyboardHideHandler(e){
         console.log('Keyboard hidden');
         try {
           bottomButtonBottom = "0px";
+          scope.update();
         } catch (error) {
           console.error(error);
         }
-        scope.update();
       }
     }, false);
   }
