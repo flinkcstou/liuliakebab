@@ -6095,10 +6095,10 @@ var css = {
   "position: relative;" +
   "left: 10%;" +
   "width: 79.5%;" +
-  "height:" + 120 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
   "border-bottom:" + 3 * widthK + "px solid #01cfff;" +
   "color: white;" +
-  "padding-top:" + 25 * widthK + "px;" +
+  "padding-top:" + 20 * widthK + "px;" +
   "}",
 
   transferNewBetweenTextField: ".transfer-new-between-text-field" +
@@ -6127,13 +6127,13 @@ var css = {
   "color: gray;" +
   "text-align: right;" +
   "font-size:" + 32 * widthK + "px;" +
-  "margin-top:" + 33 * widthK + "px;" +
+  "margin-top:" + 23 * widthK + "px;" +
   "}",
 
   transferNewCardCarousel: ".transfer-new-card-carousel " +
   "{" +
   "position: relative;" +
-  "height:" + 235 * widthK + "px;" +
+  "height:" + 210 * widthK + "px;" +
   "width: 100%;" +
   "display: inline-block;" +
   "background: transparent;" +
@@ -6145,8 +6145,8 @@ var css = {
   "{" +
   "background-image: url(resources/icons/cards/all.png);" +
   "-webkit-appearance: none;" +
-  "height:" + 222 * widthK + "px;" +
-  "width:" + 393 * widthK + "px;" +
+  "height:" + 200 * widthK + "px;" +
+  "width:" + 353 * widthK + "px;" +
   "position: absolute;" +
   "top:" + 7 * widthK + "px;" +
   "-webkit-border-radius:" + 14 * widthK + "px;" +
@@ -6159,22 +6159,22 @@ var css = {
   transferNewCardFrom: ".transfer-new-card-from " +
   "{" +
   "position: relative;" +
-  "margin-top:" + 59 * widthK + "px;" +
-  "margin-left: 10%" +
+  "margin-top:" + 50 * widthK + "px;" +
+  "margin-left:" + 97 * widthK + "px;" +
   "}",
 
   transferNewCardTo: ".transfer-new-card-to " +
   "{" +
   "position: relative;" +
-  "margin-top:" + 17 * widthK + "px;" +
-  "margin-left: 10%" +
+  "margin-top:" + 0 * widthK + "px;" +
+  "margin-left:" + 97 * widthK + "px;" +
   "}",
 
   transferNewCardBalansCurrencyContainer: ".transfer-new-card-balance-currency-container " +
   "{" +
   "position: absolute;" +
   "width:" + 366 * widthK + "px;" +
-  "top:" + 116 * widthK + "px;" +
+  "top:" + 110 * widthK + "px;" +
   "left:" + 27 * widthK + "px;" +
   "display: inline-block;" +
   "margin: 0;" +
@@ -6207,7 +6207,7 @@ var css = {
   transferNewCardSalaryTitle: ".transfer-new-card-salary-title " +
   "{" +
   "position: absolute;" +
-  "top:" + 93 * widthK + "px;" +
+  "top:" + 80 * widthK + "px;" +
   "left:" + 27 * widthK + "px;" +
   "background-size: contain;" +
   "font-size:" + 23 * widthK + "px;" +
@@ -6221,7 +6221,7 @@ var css = {
   transferNewCardNumber: ".transfer-new-card-number " +
   "{" +
   "position: absolute;" +
-  "top:" + 181 * widthK + "px;" +
+  "top:" + 163 * widthK + "px;" +
   "width:" + 384 * widthK + "px;" +
   "height:" + 40 * widthK + "px;" +
   "font-size:" + 23 * widthK + "px;" +
@@ -6266,10 +6266,9 @@ var css = {
   "{" +
   "position: relative;" +
   "background-image: url('resources/icons/ViewTransfer/between_cards_arrow.png');" +
-  "margin-top:" + 20 * widthK + "px;" +
   "margin-left:" + 336 * widthK + "px;" +
-  "width:" + 49 * widthK + "px;" +
-  "height:" + 53 * widthK + "px;" +
+  "width:" + 46 * widthK + "px;" +
+  "height:" + 49 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-size: cover;" +
   "background-position: center;" +

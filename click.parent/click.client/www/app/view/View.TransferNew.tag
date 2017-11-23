@@ -15,7 +15,7 @@
     <div id="menuContainerId" class="transfer-new-menu-container">
       <div id="contact" class="transfer-new-menu-item"
            ontouchend="transferTypeTouchEnd(this.id)"
-           ontouchstart="transferTypeTouchStart()"
+           ontouchstart="transferTypeTouchStart(this.id)"
            activated="false">
         <div id="contactIconId"
              class="transfer-new-menu-contact-icon">
@@ -25,7 +25,7 @@
       </div>
       <div id="card" class="transfer-new-menu-item"
            ontouchend="transferTypeTouchEnd(this.id)"
-           ontouchstart="transferTypeTouchStart()"
+           ontouchstart="transferTypeTouchStart(this.id)"
            activated="false">
         <div id="cardIconId" class="transfer-new-menu-card-icon">
         </div>
@@ -34,7 +34,7 @@
       </div>
       <div id="between" class="transfer-new-menu-item"
            ontouchend="transferTypeTouchEnd(this.id)"
-           ontouchstart="transferTypeTouchStart()"
+           ontouchstart="transferTypeTouchStart(this.id)"
            activated="false">
         <div id="betweenIconId" class="transfer-new-menu-between-icon">
         </div>
@@ -173,9 +173,11 @@
     });
     {
       //Choose transfer type
-      transferTypeTouchStart = function () {
+      transferTypeTouchStart = function (id) {
         event.preventDefault();
         event.stopPropagation();
+
+        document.getElementById(id).style.webkitTransform = 'scale(0.7)';
 
         transferTouchStartX = event.changedTouches[0].pageX;
         transferTouchStartY = event.changedTouches[0].pageY;
@@ -183,6 +185,8 @@
       transferTypeTouchEnd = function (id) {
         event.preventDefault();
         event.stopPropagation();
+
+        document.getElementById(id).style.webkitTransform = 'scale(1)';
 
         transferTouchEndX = event.changedTouches[0].pageX;
         transferTouchEndY = event.changedTouches[0].pageY;

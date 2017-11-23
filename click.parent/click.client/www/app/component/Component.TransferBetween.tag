@@ -28,8 +28,7 @@
     <component-transfer-card-carousel-top
       carouselid="1"
       style="position: relative;
-      right:{16 * widthK}px;
-      top:{16 * widthK}px">
+      right:{16 * widthK}px;">
     </component-transfer-card-carousel-top>
   </div>
 
@@ -42,8 +41,7 @@
     <component-transfer-card-carousel-bottom
       carouselid="2"
       style="position: relative;
-      right:{16 * widthK}px;
-      top:{11 * widthK}px">
+      right:{16 * widthK}px;">
     </component-transfer-card-carousel-bottom>
   </div>
   <button if="{showBottomButton}"
