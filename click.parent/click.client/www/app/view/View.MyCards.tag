@@ -597,8 +597,8 @@
 
         console.log('CARD CHOSEN ', JSON.parse(localStorage.getItem('click_client_cards')))
         if (scope.card.access == 2) {
-          riotTags.innerHTML = "<view-transfer>";
-          riot.mount('view-transfer');
+          riotTags.innerHTML = "<view-transfer-new>";
+          riot.mount('view-transfer-new');
 
           scope.unmount()
         }
