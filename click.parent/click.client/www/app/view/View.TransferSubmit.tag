@@ -180,6 +180,9 @@
         if (opts.transferType === 'card') {
           scope.receiver = opts.cardNumber;
           scope.receiverTitle = opts.cardOwner;
+          if (scope.receiverTitle.length > 17) {
+            scope.receiverTitle = scope.receiverTitle.substr(0, 17) + '...';
+          }
           scope.taxPercent = opts.taxPercent;
           scope.maxLimit = opts.maxLimit;
           scope.minLimit = opts.minLimit;

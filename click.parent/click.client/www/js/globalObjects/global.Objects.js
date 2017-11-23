@@ -274,6 +274,8 @@ window.fingerPrint = {};
 window.fingerPrint.check = false;
 window.fingerPrint.fingerPrintInitialize = false;
 
+window.bottomButtomBottom = 0;
+
 window.representDotedDate = function (left, middle, right) {
 
   return dateAddZero(left) + "." + dateAddZero(middle) + "." + dateAddZero(right);

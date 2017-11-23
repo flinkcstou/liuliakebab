@@ -49,6 +49,7 @@
   <button if="{showBottomButton}"
           id="bottomButtonId"
           class="transfer-new-submit-button-container"
+          style="bottom: {window.bottomButtonBottom};"
           ontouchstart="onTouchStartOfSubmit()"
           ontouchend="onTouchEndOfSubmit()">
     <div id="bottomButtonIcon"
@@ -80,6 +81,7 @@
     scope.showBottomButton = false;
     scope.statusOfBankToP2PTop = false;
     scope.statusOfBankToP2PBottom = false;
+    var counter = 0;
 
     if (localStorage.getItem('click_client_cards')) {
       scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
@@ -322,7 +324,10 @@
           if (result[0][0].error === 0) {
             if (result[1])
               if (result[1][0]) {
-                console.log('Result from api on p2p.account', result);
+                answerFromServer = true;
+                setTimeout(function () {
+                  checkTransferStatus(result[1][0].payment_id);
+                }, 2000);
               }
           }
           else {
@@ -339,7 +344,6 @@
 
       setTimeout(function () {
         if (!answerFromServer) {
-          window.api.forceClose();
           updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
           return;
         }
@@ -369,8 +373,6 @@
               answerFromServer = true;
               window.updateBalanceGlobalFunction();
               updateResultComponent(true, scope.stepAmount, null, 'success', window.languages.ComponentSuccessMessage);
-              if (scope.transferType === 1)
-                transferFindCards(scope.receiver, scope.receiverTitle);
             } else if (result[1][0].state === 1) {
               counter++;
 

@@ -234,6 +234,10 @@
           contactIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/touser1.png)';
           contact.setAttribute('activated', true);
           scope.activatedType = 'contact';
+          setTimeout(function () {
+            contactPhoneNumberId.autofocus = true;
+            contactPhoneNumberId.focus();
+          }, 0);
           scope.update();
         }
       };
@@ -248,6 +252,10 @@
           cardIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/tofriend1.png)';
           card.setAttribute('activated', true);
           scope.activatedType = 'card';
+          setTimeout(function () {
+            cardInputId.autofocus = true;
+            cardInputId.focus();
+          }, 0);
           scope.update();
         }
       };
@@ -261,6 +269,10 @@
           betweenIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/toown1.png)';
           between.setAttribute('activated', true);
           scope.activatedType = 'between';
+          setTimeout(function () {
+            betweenAmountId.autofocus = true;
+            betweenAmountId.focus();
+          }, 0);
           scope.update();
         }
       };
@@ -475,7 +487,7 @@
     scope.focusFieldAfterTourClosed = focusFieldAfterTourClosed = function () {
       scope.tourClosed = true;
       setTimeout(function () {
-        contactPhoneNumberId.autofocus;
+        contactPhoneNumberId.autofocus = true;
         contactPhoneNumberId.focus();
       }, 0)
     };
