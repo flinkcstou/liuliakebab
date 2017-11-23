@@ -50,6 +50,7 @@
                       countcard="{i.countCard}"
                       name="{i.name}" salary="{i.salary}" currency="{i.currency}"
                       numberpartone="{i.numberPartOne}"
+                      numbermiddletwo="{i.numberMiddleTwo}"
                       numberparttwo="{i.numberPartTwo}"
                       bankname="{i.bankName}" url="{i.url}"
                       background="{(i.card_background_url)?(i.card_background_url):('resources/icons/cards/all.png')}"
@@ -224,6 +225,7 @@
 
         scope.cardsarray = {};
         var numberOfCardPartOne;
+        var numberOfCardMiddleTwo;
         var numberOfCardPartTwo;
         var typeOfCard;
 
@@ -241,7 +243,9 @@
             defaultAccount = false;
 
           numberOfCardPartOne = getAccountsCards[i].accno.substring(0, 4);
+          numberOfCardMiddleTwo = getAccountsCards[i].accno.substring(5, 7);
           numberOfCardPartTwo = getAccountsCards[i].accno.substring(getAccountsCards[i].accno.length - 4, getAccountsCards[i].accno.length);
+          console.log('getAccountsCards:', getAccountsCards[i]);
 
 
           card = {
@@ -257,6 +261,7 @@
             countCard: getAccountsCards[i].countCard,
             currency: getAccountsCards[i].currency_name.trim(),
             numberPartOne: numberOfCardPartOne,
+            numberMiddleTwo: numberOfCardMiddleTwo,
             numberPartTwo: numberOfCardPartTwo,
             url: getAccountsCards[i].image_url,
             card_background_url: getAccountsCards[i].card_background_url,

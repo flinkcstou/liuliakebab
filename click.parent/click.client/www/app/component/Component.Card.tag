@@ -17,7 +17,8 @@
 
   <div class="card-number">
     <div class="card-number-part-one">{opts.numberpartone}</div>
-    <p class="number-stars" if="{opts.numberpartone && opts.numberparttwo}">**** ****</p>
+    <div class="card-number-middle-two">{opts.numbermiddletwo}</div>
+    <p class="number-stars" if="{opts.numberpartone && opts.numberparttwo}">** ****</p>
     <div class="card-number-part-two">{opts.numberparttwo}</div>
   </div>
 

@@ -16,7 +16,8 @@
 
   <div class="transfer-new-card-number">
     <div class="transfer-new-card-number-part-one">{opts.numberpartone}</div>
-    <p class="transfer-new-number-stars" if="{opts.numberpartone && opts.numberparttwo}">**** ****</p>
+    <div class="transfer-new-card-number-middle-two">{opts.numbermiddletwo}</div>
+    <p class="transfer-new-number-stars" if="{opts.numberpartone && opts.numberparttwo}">** ****</p>
     <div class="transfer-new-card-number-part-two">{opts.numberparttwo}</div>
   </div>
 

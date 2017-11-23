@@ -313,7 +313,7 @@
             scope.update();
             return;
           }
-          if (scope.chosenCard && scope.chosenCard.salaryOriginal < scope.sumForTransfer) {
+          if (scope.chosenCard && parseInt(scope.chosenCard.salaryOriginal) < (parseInt(scope.sumForTransfer) + scope.tax)) {
             scope.clickPinError = false;
             scope.errorNote = "На выбранной карте недостаточно средств";
             window.common.alert.show("componentAlertId", {
@@ -364,19 +364,14 @@
             type: scope.transferType,
             transaction_id: scope.transactionId
           },
-
           scope: this,
-
           onSuccess: function (result) {
             if (result[0][0].error === 0) {
               if (result[1])
                 if (result[1][0]) {
                   if (result[1][0].secret_code && scope.transferType === 2) {
-
                     answerFromServer = true;
-
                     closeResultComponent();
-
                     blockCodeConfirmId.style.display = 'block';
                     scope.secretCode = result[1][0].secret_code;
                     window.updateBalanceGlobalFunction();

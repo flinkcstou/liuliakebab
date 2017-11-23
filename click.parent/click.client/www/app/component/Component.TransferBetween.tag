@@ -40,8 +40,8 @@
        class="transfer-new-card-to">
     <p class="transfer-new-between-from-text-field">{window.languages.ViewPayTransferBetweenCardsTo}</p>
     <component-transfer-card-carousel-bottom
-    carouselid="2"
-    style="position: relative;
+      carouselid="2"
+      style="position: relative;
       right:{16 * widthK}px;
       top:{11 * widthK}px">
     </component-transfer-card-carousel-bottom>
@@ -59,196 +59,377 @@
     </p>
   </button>
   <script>
-  var scope = this;
-  scope.clickPinError = false;
-  scope.showComponent = false;
-  scope.cardNumberTop = 0;
-  scope.cardNumberBottom = 0;
-  scope.chosenCard;
-  scope.maxLimit = 99999999999;
-  scope.minLimit = 5000;
-  scope.stepAmount = 3;
-  scope.tax = 0;
-  scope.taxPercent = 0;
-  scope.maskOne = /[0-9]/g;
-  scope.maskTwo = /[0-9' ']/g;
-  scope.showBottomButton = false;
+    var scope = this;
+    var transferBetweenTouchStartX,
+      transferBetweenTouchStartY,
+      transferBetweenTouchEndX,
+      transferBetweenTouchEndY;
+    scope.clickPinError = false;
+    scope.showComponent = false;
+    scope.cardNumberTop = 0;
+    scope.cardNumberBottom = 0;
+    scope.chosenCard;
+    scope.maxLimit = 99999999999;
+    scope.minLimit = 5000;
+    scope.stepAmount = 3;
+    scope.tax = 0;
+    scope.taxPercent = 0;
+    scope.sumForTransfer = 0;
+    scope.maskOne = /[0-9]/g;
+    scope.maskTwo = /[0-9' ']/g;
+    scope.showBottomButton = false;
+    scope.statusOfBankToP2PTop = false;
+    scope.statusOfBankToP2PBottom = false;
 
-  if (JSON.parse(localStorage.getItem("click_client_p2p_all_bank_list"))) {
-    scope.allBankList = JSON.parse(localStorage.getItem("click_client_p2p_all_bank_list"));
-  }
-
-  if (localStorage.getItem('click_client_cards')) {
-    scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
-  }
-
-  amountMouseUp = function () {
-    event.preventDefault()
-    event.stopPropagation()
-    if (betweenAmountId.value.match(scope.maskOne) !== null
-      && betweenAmountId.value.match(scope.maskOne).length !== null) {
-      betweenAmountId.selectionStart = betweenAmountId.value.match(scope.maskTwo).length;
-      betweenAmountId.selectionEnd = betweenAmountId.value.match(scope.maskTwo).length;
-    } else {
-      betweenAmountId.selectionStart = 0;
-      betweenAmountId.selectionEnd = 0;
-    }
-  };
-
-  amountOnBlur = function () {
-    event.preventDefault();
-    event.stopPropagation();
-
-    if (betweenAmountId.value.length === 0) {
-      betweenAmountId.value = 0;
-    }
-  };
-
-  amountFocus = function () {
-    event.preventDefault();
-    event.stopPropagation();
-    if (betweenAmountId.value.length === 1 && betweenAmountId.value[0] === 0) {
-      betweenAmountId.value = '';
-    }
-  };
-
-  amountKeyUp = function () {
-    if (betweenAmountId.value.length === 1) {
-      betweenAmountId.value = window.amountTransform(betweenAmountId.value.toString());
+    if (localStorage.getItem('click_client_cards')) {
+      scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
     }
 
-    if (event.keyCode === 8) {
-      scope.sumForTransfer = scope.sumForTransfer.substring(0, scope.sumForTransfer.length - 1);
-    }
-
-    if (betweenAmountId.value.match(scope.maskTwo) !== null && betweenAmountId.value.match(scope.maskTwo).length !== null) {
-
-      betweenAmountId.value = betweenAmountId.value.substring(0, event.target.value.match(scope.maskTwo).length);
-      betweenAmountId.selectionStart = betweenAmountId.value.match(scope.maskTwo).length;
-      betweenAmountId.selectionEnd = betweenAmountId.value.match(scope.maskTwo).length;
-
-      scope.sumForTransfer = betweenAmountId.value.substring(0, betweenAmountId.value.match(scope.maskTwo).length);
-      scope.sumForTransfer = scope.sumForTransfer.replace(new RegExp(' ', 'g'), '');
-
-      betweenAmountId.value = window.amountTransform(scope.sumForTransfer.toString());
-      betweenAmountId.selectionStart = betweenAmountId.value.match(scope.maskTwo).length;
-      betweenAmountId.selectionEnd = betweenAmountId.value.match(scope.maskTwo).length;
-
-    } else {
-      betweenAmountId.selectionStart = 0;
-      betweenAmountId.selectionEnd = 0;
-    }
-
-    if (scope.sumForTransfer)
-      scope.tax = scope.sumForTransfer * scope.taxPercent / 100;
-    else {
-      scope.tax = 0
-    }
-
-    scope.showPlaceHolderError = false;
-
-    scope.showBottomButton = true;
-
-    if (scope.sumForTransfer > scope.maxLimit) {
-      scope.placeHolderText = 'Максимальная сумма ' + window.amountTransform(scope.maxLimit);
-      scope.showPlaceHolderError = true;
-      scope.showBottomButton = false;
-    }
-    if (scope.sumForTransfer < scope.minLimit) {
-      scope.placeHolderText = "Минимальная сумма " + window.amountTransform(scope.minLimit);
-      scope.showPlaceHolderError = true;
-      scope.showBottomButton = false;
-    }
-    scope.update()
-  };
-
-  scope.cardChangedTop = cardChangedTop = function (cardNumber) {
-    for (var i in scope.cardsarray) {
-      if (scope.cardsarray[i].countCard === cardNumber) {
-        scope.chosenCardTop = scope.cardsarray[i];
+    amountMouseUp = function () {
+      event.preventDefault()
+      event.stopPropagation()
+      if (betweenAmountId.value.match(scope.maskOne) !== null
+        && betweenAmountId.value.match(scope.maskOne).length !== null) {
+        betweenAmountId.selectionStart = betweenAmountId.value.match(scope.maskTwo).length;
+        betweenAmountId.selectionEnd = betweenAmountId.value.match(scope.maskTwo).length;
+      } else {
+        betweenAmountId.selectionStart = 0;
+        betweenAmountId.selectionEnd = 0;
       }
-    }
-  };
+    };
 
-  scope.cardChangedBottom = cardChangedBottom = function (cardNumber) {
-    for (var i in scope.cardsarray) {
-      if (scope.cardsarray[i].countCard === cardNumber) {
-        scope.chosenCardBottom = scope.cardsarray[i];
+    amountOnBlur = function () {
+      event.preventDefault();
+      event.stopPropagation();
 
-        var codeOfBank = cardInputId.value.replace(/\s/g, '').substring(3, 6);
-        var checkOfCode = false;
-        var statusOfBankToP2P = false;
-        var nameOfBank = '';
-
-        var bankList = JSON.parse(localStorage.getItem('click_client_p2p_all_bank_list'));
-        var percentOfBank = 0;
-        var minOfBank = 0;
-        var maxOfBank = 0;
-//        if (bankList) {
-//          for (var i = 0; i < bankList.length; i++) {
-//            if (codeOfBank === bankList[i].code) {
-//              checkOfCode = true;
-//              nameOfBank = bankList[i].bank_name;
-//              if (bankList[i].p2p_status === 1) {
-//                statusOfBankToP2P = true
-//              }
-//              minOfBank = bankList[i].p2p_min_limit;
-//              maxOfBank = bankList[i].p2p_max_limit;
-//              percentOfBank = bankList[i].p2p_percent;
-//              break;
-//            }
-//            else {
-//              checkOfCode = false;
-//            }
-//          }
-//        }
-//        else {
-//          cardInputId.blur();
-//          scope.errorNote = 'Подождите, данные для обработки информации еще не прогрузились';
-//
-//          window.common.alert.show("componentAlertId", {
-//            parent: scope,
-//            clickpinerror: scope.clickPinError,
-//            errornote: scope.errorNote,
-//            pathtosettings: scope.pathToSettings,
-//            permissionerror: scope.permissionError,
-//          });
-//
-//          scope.update();
-//          return;
-//        }
-//        if (!checkOfCode) {
-//          cardInputId.blur();
-//          scope.errorNote = 'Неверный номер карты';
-//
-//          window.common.alert.show("componentAlertId", {
-//            parent: scope,
-//            clickpinerror: scope.clickPinError,
-//            errornote: scope.errorNote,
-//            pathtosettings: scope.pathToSettings,
-//            permissionerror: scope.permissionError,
-//          });
-//          scope.update();
-//          return;
-//        }
-//
-//        if (!statusOfBankToP2P) {
-//          cardInputId.blur();
-//          scope.errorNote = 'Карта "' + nameOfBank + '" банка временно недоступна для перевода средств';
-//          window.common.alert.show("componentAlertId", {
-//            parent: scope,
-//            clickpinerror: scope.clickPinError,
-//            errornote: scope.errorNote,
-//            pathtosettings: scope.pathToSettings,
-//            permissionerror: scope.permissionError,
-//          });
-//          scope.update();
-//          return;
-//        }
+      if (betweenAmountId.value.length === 0) {
+        betweenAmountId.value = 0;
       }
-    }
-  };
+    };
 
+    amountFocus = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      if (betweenAmountId.value.length === 1 && betweenAmountId.value[0] === 0) {
+        betweenAmountId.value = '';
+      }
+    };
+
+    amountKeyUp = function () {
+      if (betweenAmountId.value.length === 1) {
+        betweenAmountId.value = window.amountTransform(betweenAmountId.value.toString());
+      }
+
+      if (event.keyCode === 8) {
+        scope.sumForTransfer = scope.sumForTransfer.substring(0, scope.sumForTransfer.length - 1);
+      }
+
+      if (betweenAmountId.value.match(scope.maskTwo) !== null && betweenAmountId.value.match(scope.maskTwo).length !== null) {
+
+        betweenAmountId.value = betweenAmountId.value.substring(0, event.target.value.match(scope.maskTwo).length);
+        betweenAmountId.selectionStart = betweenAmountId.value.match(scope.maskTwo).length;
+        betweenAmountId.selectionEnd = betweenAmountId.value.match(scope.maskTwo).length;
+
+        scope.sumForTransfer = betweenAmountId.value.substring(0, betweenAmountId.value.match(scope.maskTwo).length);
+        scope.sumForTransfer = scope.sumForTransfer.replace(new RegExp(' ', 'g'), '');
+
+        betweenAmountId.value = window.amountTransform(scope.sumForTransfer.toString());
+        betweenAmountId.selectionStart = betweenAmountId.value.match(scope.maskTwo).length;
+        betweenAmountId.selectionEnd = betweenAmountId.value.match(scope.maskTwo).length;
+
+      } else {
+        betweenAmountId.selectionStart = 0;
+        betweenAmountId.selectionEnd = 0;
+      }
+
+      if (scope.sumForTransfer)
+        scope.tax = scope.sumForTransfer * scope.taxPercent / 100;
+      else {
+        scope.tax = 0
+      }
+
+      scope.showPlaceHolderError = false;
+      scope.showBottomButton = true;
+
+      if (scope.sumForTransfer > scope.maxLimit) {
+        scope.placeHolderText = 'Максимальная сумма ' + window.amountTransform(scope.maxLimit);
+        scope.showPlaceHolderError = true;
+        scope.showBottomButton = false;
+      }
+      if (scope.sumForTransfer < scope.minLimit) {
+        scope.placeHolderText = "Минимальная сумма " + window.amountTransform(scope.minLimit);
+        scope.showPlaceHolderError = true;
+        scope.showBottomButton = false;
+      }
+      scope.update();
+    };
+
+    scope.cardChangedTop = cardChangedTop = function (cardNumber) {
+      for (var i in scope.cardsarray) {
+        if (scope.cardsarray[i].countCard === cardNumber) {
+          scope.chosenCardTop = scope.cardsarray[i];
+
+          var codeOfBankTop = scope.chosenCardTop.numberPartOne.substring(3, 4) + scope.chosenCardTop.numberMiddleTwo;
+          for (var i = 0; i < scope.parent.allBankList.length; i++) {
+            if (codeOfBankTop === scope.parent.allBankList[i].code) {
+              if (scope.parent.allBankList[i].p2p_status === 1) {
+                scope.statusOfBankToP2PTop = true;
+              }
+              scope.nameOfBankTop = scope.parent.allBankList[i].bank_name;
+              break;
+            }
+          }
+          if (scope.sumForTransfer)
+            scope.tax = scope.sumForTransfer * scope.taxPercent / 100;
+          else {
+            scope.tax = 0
+          }
+        }
+      }
+      scope.update();
+    };
+
+    scope.cardChangedBottom = cardChangedBottom = function (cardNumber) {
+      for (var i in scope.cardsarray) {
+        if (scope.cardsarray[i].countCard === cardNumber) {
+          scope.chosenCardBottom = scope.cardsarray[i];
+
+          var codeOfBankBottom = scope.chosenCardBottom.numberPartOne.substring(3, 4) + scope.chosenCardBottom.numberMiddleTwo;
+          for (var i = 0; i < scope.parent.allBankList.length; i++) {
+            if (codeOfBankBottom === scope.parent.allBankList[i].code) {
+              if (scope.parent.allBankList[i].p2p_status === 1) {
+                scope.statusOfBankToP2PBottom = true;
+              }
+              scope.minLimit = scope.parent.allBankList[i].p2p_min_limit;
+              scope.maxLimit = scope.parent.allBankList[i].p2p_max_limit;
+              scope.taxPercent = scope.parent.allBankList[i].p2p_percent;
+              scope.nameOfBankBottom = scope.parent.allBankList[i].bank_name;
+              break;
+            }
+          }
+          console.log(scope.minLimit, scope.maxLimit, scope.sumForTransfer);
+          scope.showPlaceHolderError = false;
+          scope.showBottomButton = true;
+          if (scope.sumForTransfer)
+            scope.tax = scope.sumForTransfer * scope.taxPercent / 100;
+          else {
+            scope.tax = 0
+          }
+          if (scope.sumForTransfer > scope.maxLimit) {
+            scope.placeHolderText = 'Максимальная сумма ' + window.amountTransform(scope.maxLimit);
+            scope.showPlaceHolderError = true;
+            scope.showBottomButton = false;
+          }
+          if (scope.sumForTransfer < scope.minLimit) {
+            scope.placeHolderText = "Минимальная сумма " + window.amountTransform(scope.minLimit);
+            scope.showPlaceHolderError = true;
+            scope.showBottomButton = false;
+          }
+
+        }
+      }
+      scope.update();
+    };
+
+    onTouchStartOfSubmit = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      transferBetweenTouchStartX = event.changedTouches[0].pageX;
+      transferBetweenTouchStartY = event.changedTouches[0].pageY;
+    };
+
+    onTouchEndOfSubmit = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      transferBetweenTouchEndX = event.changedTouches[0].pageX;
+      transferBetweenTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(transferBetweenTouchStartX - transferBetweenTouchEndX) <= 20
+        && Math.abs(transferBetweenTouchStartY - transferBetweenTouchEndY) <= 20) {
+        if (modeOfApp.demoVersion) {
+          scope.errorNote = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errorcode: scope.errorCode,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+          });
+          scope.update();
+          return;
+        }
+        if (scope.chosenCardTop && parseInt(scope.chosenCardTop.salaryOriginal) < (parseInt(scope.sumForTransfer) + scope.tax)) {
+          scope.clickPinError = false;
+          scope.errorNote = "На выбранной карте недостаточно средств";
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote
+          });
+          scope.update();
+          return;
+        }
+        if (!scope.statusOfBankToP2PTop) {
+          betweenAmountId.blur();
+          scope.errorNote = 'Карта "' + scope.nameOfBankTop + '" банка временно недоступна для перевода средств';
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+            pathtosettings: scope.pathToSettings,
+            permissionerror: scope.permissionError,
+          });
+          scope.update();
+          return;
+        }
+        if (!scope.statusOfBankToP2PBottom) {
+          betweenAmountId.blur();
+          scope.errorNote = 'Карта "' + scope.nameOfBankBottom + '" банка временно недоступна для перевода средств';
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+            pathtosettings: scope.pathToSettings,
+            permissionerror: scope.permissionError,
+          });
+          scope.update();
+          return;
+        }
+        transferBetween();
+      }
+    };
+
+    transferBetween  = function () {
+
+      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+      scope.transactionId = parseInt(Date.now() / 1000);
+
+      initResultComponent();
+      window.api.call({
+        method: 'p2p.account',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          account_id_from: scope.chosenCardTop.card_id,
+          account_id_to: scope.chosenCardBottom.card_id,
+          amount: parseInt(scope.sumForTransfer),
+          transaction_id: scope.transactionId
+        },
+        scope: this,
+        onSuccess: function (result) {
+          if (result[0][0].error === 0) {
+            if (result[1])
+              if (result[1][0]) {
+                console.log('Result from api on p2p.account', result);
+              }
+          }
+          else {
+            updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', result[0][0].error_note)
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+
+      setTimeout(function () {
+        if (!answerFromServer) {
+          window.api.forceClose();
+          updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
+          return;
+        }
+      }, 30000)
+    };
+
+    checkTransferStatus = function (payment_id) {
+      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+      window.api.call({
+        method: 'get.payment',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          payment_id: payment_id
+        },
+        scope: this,
+        onSuccess: function (result) {
+          if (result[0][0].error === 0 && result[1][0]) {
+            if (result[1][0].state === -1) {
+              answerFromServer = true;
+
+              window.languages.tempText = JSON.stringify(result[1][0].error);
+              scope.errorMessageFromTransfer = result[1][0].error;
+              updateResultComponent(true, scope.stepAmount, null, 'unsuccess', result[1][0].error);
+            } else if (result[1][0].state === 2) {
+              answerFromServer = true;
+              window.updateBalanceGlobalFunction();
+              updateResultComponent(true, scope.stepAmount, null, 'success', window.languages.ComponentSuccessMessage);
+              if (scope.transferType === 1)
+                transferFindCards(scope.receiver, scope.receiverTitle);
+            } else if (result[1][0].state === 1) {
+              counter++;
+
+              if (counter < 5) {
+                setTimeout(function () {
+                  checkTransferStatus(result[1][0].payment_id);
+                }, 2000);
+              } else {
+                answerFromServer = true;
+                updateResultComponent(true, scope.stepAmount, null, 'waiting', window.languages.ComponentInProcessingPartOne);
+              }
+            }
+            window.api.spinnerOn = false;
+          }
+          else {
+            answerFromServer = true;
+            updateResultComponent(true, scope.stepAmount, null, 'unsuccess', result[0][0].error);
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          answerFromServer = true;
+          updateResultComponent(true, scope.stepAmount, null, 'unsuccess', api_status_message);
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+    };
+
+    updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
+      console.log("OPEN RESULT COMPONENT");
+      scope.stepAmount = stepAmount;
+      scope.viewPage = viewPage;
+      scope.resultText = text;
+
+      if (showResult) {
+        window.common.alert.updateView("componentResultId", {
+          parent: scope,
+          resulttext: scope.resultText,
+          viewpage: scope.viewPage,
+          step_amount: scope.stepAmount
+        });
+      } else {
+        window.common.alert.hide("componentResultId");
+      }
+      updateIcon(status, null, null, text, stepAmount, scope.viewPage);
+    };
+
+    closeResultComponent = function () {
+      window.common.alert.hide("componentResultId");
+      scope.update();
+    };
+
+    initResultComponent = function () {
+      window.common.alert.updateView("componentResultId", {
+        parent: scope
+      });
+      scope.update();
+    };
 
 
   </script>

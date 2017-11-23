@@ -8,6 +8,7 @@
                       countcard="{i.countCard}"
                       name="{i.name}" salary="{i.salary}" currency="{i.currency}"
                       numberpartone="{i.numberPartOne}"
+                      numbermiddletwo="{i.numberMiddleTwo}"
                       numberparttwo="{i.numberPartTwo}"
                       bankname="{i.bankName}" url="{i.url}"
                       background="{(i.card_background_url)?(i.card_background_url):('resources/icons/cards/all.png')}"

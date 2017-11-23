@@ -1933,6 +1933,13 @@ var css = {
   // "font-weight: bold;" +
   "}",
 
+  cardNumberMiddleTwo: ".card-number-middle-two " +
+  "{" +
+  "position: absolute;" +
+  "left:" + 107 * widthK + "px;" +
+  // "font-weight: bold;" +
+  "}",
+
   cardNumberPartTwo: ".card-number-part-two " +
   "{" +
   "position: absolute;" +
@@ -1944,7 +1951,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "left:" + 108 * widthK + "px;" +
+  "left:" + 147 * widthK + "px;" +
   // "top: -" + 8 * widthK + "px;" +
   // "letter-spacing:" + -10 * widthK + "px;" +
   "font-size:" + 26 * widthK + "px;" +
@@ -6166,7 +6173,7 @@ var css = {
   transferNewCardBalansCurrencyContainer: ".transfer-new-card-balance-currency-container " +
   "{" +
   "position: absolute;" +
-  "width:" + 500 * widthK + "px;" +
+  "width:" + 366 * widthK + "px;" +
   "top:" + 116 * widthK + "px;" +
   "left:" + 27 * widthK + "px;" +
   "display: inline-block;" +
@@ -6204,7 +6211,7 @@ var css = {
   "left:" + 27 * widthK + "px;" +
   "background-size: contain;" +
   "font-size:" + 23 * widthK + "px;" +
-  "height: 10%;" +
+  "height:" + 24 * widthK + "px;" +
   "width: 90%;" +
   "white-space: nowrap;" +
   "text-overflow: ellipsis;" +
@@ -6228,11 +6235,17 @@ var css = {
   "left: 0px;" +
   "}",
 
+  transferNewCardNumberMiddleTwo: ".transfer-new-card-number-middle-two " +
+  "{" +
+  "position: absolute;" +
+  "left:" + 76 * widthK + "px;" +
+  "}",
+
   transferNewNumberStars: ".transfer-new-number-stars " +
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "left:" + 76 * widthK + "px;" +
+  "left:" + 110 * widthK + "px;" +
   "font-size:" + 23 * widthK + "px;" +
   "}",
 
