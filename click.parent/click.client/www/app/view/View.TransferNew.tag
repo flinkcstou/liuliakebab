@@ -301,6 +301,11 @@
       };
 
       openBanksListPageTouchEnd = function () {
+
+        cardInputId.blur();
+        contactPhoneNumberId.blur();
+        betweenAmountId.blur();
+
         event.preventDefault();
         event.stopPropagation();
 

@@ -26,7 +26,8 @@
 
         <div class="mycardlist-card-number">
           <div class="mycardlist-card-number-part-one">{i.numberPartOne}</div>
-          <p class="mycardlist-number-stars">**** ****</p>
+          <div class="mycardlist-card-number-middle-two">{i.numberMiddleTwo}</div>
+          <p class="mycardlist-number-stars">** ****</p>
           <div class="mycardlist-card-number-part-two">{i.numberPartTwo}</div>
         </div>
       </div>

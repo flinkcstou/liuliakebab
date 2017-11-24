@@ -5484,6 +5484,13 @@ var css = {
   // "font-weight: bold;" +
   "}",
 
+  myCardListcardNumberMiddleTwo: ".mycardlist-card-number-middle-two " +
+  "{" +
+  "position: absolute;" +
+  "left: 19%;" +
+  // "font-weight: bold;" +
+  "}",
+
   myCardListcardNumberPartTwo: ".mycardlist-card-number-part-two " +
   "{" +
   "position: absolute;" +
@@ -5495,7 +5502,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "left: 19%;" +
+  "left: 27%;" +
   // "letter-spacing:" + -8 * widthK + "px;" +
   "font-size:" + 18 * widthK + "px;" +
   "}",

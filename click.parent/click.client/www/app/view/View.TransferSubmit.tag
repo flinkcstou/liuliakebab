@@ -36,7 +36,7 @@
          class="transfer-new-between-input-commission">
         {placeHolderText}
       </p>
-      <p if="{!showPlaceHolderError && !modeOfApp.offlineMode}" class="transfer-new-between-input-commission">
+      <p if="{!showPlaceHolderError && !modeOfApp.offlineMode  && showCommission}" class="transfer-new-between-input-commission">
         {window.languages.ViewTransferTwoTax} {tax}
         {window.languages.Currency}</p>
     </div>
@@ -150,6 +150,8 @@
     scope.maskOne = /[0-9]/g;
     scope.maskTwo = /[0-9' ']/g;
     scope.stepAmount = 3;
+    scope.showPlaceHolderError = false;
+    scope.showCommission = false;
     var counter = 0;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-transfer-submit') {
@@ -200,6 +202,7 @@
         submitAmountId.autofocus = true;
         submitAmountId.focus();
       }, 0);
+      console.log(scope);
       scope.update();
     });
     {
@@ -221,20 +224,22 @@
         event.stopPropagation();
 
         if (submitAmountId.value.length === 0) {
-          submitAmountIdValueId.value = 0;
+          submitAmountId.value = 0;
+          scope.placeHolderText = "Минимальная сумма " + window.amountTransform(scope.minLimit);
+          scope.showPlaceHolderError = true;
+          scope.update();
         }
       };
 
       amountFocus = function () {
         event.preventDefault();
         event.stopPropagation();
-        if (submitAmountId.value.length === 1 && submitAmountId.value[0] === 0) {
+        if (submitAmountId.value.length === 1 && submitAmountId.value[0] === '0') {
           submitAmountId.value = '';
         }
       };
 
       amountKeyUp = function () {
-        console.log(scope);
         if (submitAmountId.value.length === 1) {
           submitAmountId.value = window.amountTransform(submitAmountId.value.toString());
         }
@@ -261,15 +266,17 @@
           submitAmountId.selectionEnd = 0;
         }
 
-        if (scope.sumForTransfer)
+        if (scope.sumForTransfer) {
           scope.tax = scope.sumForTransfer * scope.taxPercent / 100;
+          scope.showCommission = true;
+        }
         else {
           scope.tax = 0
         }
 
         scope.showPlaceHolderError = false;
-
         scope.showBottomButton = true;
+        console.log(scope);
 
         if (scope.sumForTransfer > scope.maxLimit) {
           scope.placeHolderText = 'Максимальная сумма ' + window.amountTransform(scope.maxLimit);
@@ -288,7 +295,6 @@
         for (var i in scope.cardsarray) {
           if (scope.cardsarray[i].countCard === cardNumber) {
             scope.chosenCard = scope.cardsarray[i];
-            console.log(scope.chosenCard);
           }
         }
       };
@@ -310,6 +316,7 @@
 
         if (Math.abs(transferSubmitTouchStartX - transferSubmitTouchEndX) <= 20
           && Math.abs(transferSubmitTouchStartY - transferSubmitTouchEndY) <= 20) {
+          submitAmountId.blur();
           if (modeOfApp.demoVersion) {
             scope.errorNote = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
             window.common.alert.show("componentAlertId", {
@@ -591,6 +598,9 @@
       };
 
       openBanksListPageTouchEnd = function () {
+
+        submitAmountId.blur();
+
         event.preventDefault();
         event.stopPropagation();
 

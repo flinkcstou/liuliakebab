@@ -17,7 +17,7 @@
        class="transfer-new-between-input-commission">
       {placeHolderText}
     </p>
-    <p if="{!showPlaceHolderError && !modeOfApp.offlineMode}" class="transfer-new-between-input-commission">
+    <p if="{!showPlaceHolderError && !modeOfApp.offlineMode && showCommission}" class="transfer-new-between-input-commission">
       {window.languages.ViewTransferTwoTax} {tax}
       {window.languages.Currency}</p>
   </div>
@@ -79,6 +79,8 @@
     scope.showBottomButton = false;
     scope.statusOfBankToP2PTop = false;
     scope.statusOfBankToP2PBottom = false;
+    scope.showPlaceHolderError = false;
+    scope.showCommission = false;
     var counter = 0;
 
     if (localStorage.getItem('click_client_cards')) {
@@ -110,7 +112,7 @@
     amountFocus = function () {
       event.preventDefault();
       event.stopPropagation();
-      if (betweenAmountId.value.length === 1 && betweenAmountId.value[0] === 0) {
+      if (betweenAmountId.value.length === 1 && betweenAmountId.value[0] === '0') {
         betweenAmountId.value = '';
       }
     };
@@ -142,8 +144,10 @@
         betweenAmountId.selectionEnd = 0;
       }
 
-      if (scope.sumForTransfer)
+      if (scope.sumForTransfer) {
         scope.tax = scope.sumForTransfer * scope.taxPercent / 100;
+        scope.showCommission = true;
+      }
       else {
         scope.tax = 0
       }
@@ -161,6 +165,7 @@
         scope.showPlaceHolderError = true;
         scope.showBottomButton = false;
       }
+      console.log(scope);
       scope.update();
     };
 
@@ -207,25 +212,24 @@
               break;
             }
           }
-          console.log(scope.minLimit, scope.maxLimit, scope.sumForTransfer);
-          scope.showPlaceHolderError = false;
+
           scope.showBottomButton = true;
-          if (scope.sumForTransfer)
+          if (scope.sumForTransfer) {
             scope.tax = scope.sumForTransfer * scope.taxPercent / 100;
+            if (scope.sumForTransfer > scope.maxLimit) {
+              scope.placeHolderText = 'Максимальная сумма ' + window.amountTransform(scope.maxLimit);
+              scope.showPlaceHolderError = true;
+              scope.showBottomButton = false;
+            }
+            if (scope.sumForTransfer < scope.minLimit) {
+              scope.placeHolderText = "Минимальная сумма " + window.amountTransform(scope.minLimit);
+              scope.showPlaceHolderError = true;
+              scope.showBottomButton = false;
+            }
+          }
           else {
             scope.tax = 0
           }
-          if (scope.sumForTransfer > scope.maxLimit) {
-            scope.placeHolderText = 'Максимальная сумма ' + window.amountTransform(scope.maxLimit);
-            scope.showPlaceHolderError = true;
-            scope.showBottomButton = false;
-          }
-          if (scope.sumForTransfer < scope.minLimit) {
-            scope.placeHolderText = "Минимальная сумма " + window.amountTransform(scope.minLimit);
-            scope.showPlaceHolderError = true;
-            scope.showBottomButton = false;
-          }
-
         }
       }
       scope.update();
@@ -248,6 +252,7 @@
 
       if (Math.abs(transferBetweenTouchStartX - transferBetweenTouchEndX) <= 20
         && Math.abs(transferBetweenTouchStartY - transferBetweenTouchEndY) <= 20) {
+        betweenAmountId.blur();
         if (modeOfApp.demoVersion) {
           scope.errorNote = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
           window.common.alert.show("componentAlertId", {
@@ -271,7 +276,6 @@
           return;
         }
         if (!scope.statusOfBankToP2PTop) {
-          betweenAmountId.blur();
           scope.errorNote = 'Карта "' + scope.nameOfBankTop + '" банка временно недоступна для перевода средств';
           window.common.alert.show("componentAlertId", {
             parent: scope,
@@ -284,7 +288,6 @@
           return;
         }
         if (!scope.statusOfBankToP2PBottom) {
-          betweenAmountId.blur();
           scope.errorNote = 'Карта "' + scope.nameOfBankBottom + '" банка временно недоступна для перевода средств';
           window.common.alert.show("componentAlertId", {
             parent: scope,
