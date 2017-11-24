@@ -1160,11 +1160,7 @@ window.fingerPrintTurnOn = function (firstEnter) {
               password: "currentUser",
               token: "currentUser",
               locale: "ru",
-              disableBackup: true,
-//              userAuthRequired: false,
-              dialogHint: "Повторите попытку",
-              dialogTitle: "Сканирование для CLICK"
-
+              disableBackup: true
             }; // See config object for required parameters
 
             if (localStorage.getItem("settings_finger_print") !== null) {
