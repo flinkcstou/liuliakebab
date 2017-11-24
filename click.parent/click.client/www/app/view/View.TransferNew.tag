@@ -139,13 +139,6 @@
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
     scope.on('mount', function () {
-      if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).transfer) {
-        contactPhoneNumberId.blur();
-        componentTourId.style.display = "block";
-        scope.tourClosed = false;
-        if (device.platform !== 'BrowserStand')
-          StatusBar.backgroundColorByHexString("#004663");
-      }
       if (opts && JSON.stringify(opts) !== '{}') {
         if (opts.transferType && opts.transferType === 'contact'){
           showTransferByContact();
@@ -160,6 +153,13 @@
       }
       else {
         showTransferByContact();
+      }
+      if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).transfer) {
+        contactPhoneNumberId.blur();
+        componentTourId.style.display = "block";
+        scope.tourClosed = false;
+        if (device.platform !== 'BrowserStand')
+          StatusBar.backgroundColorByHexString("#004663");
       }
 
       if (localStorage.getItem('click_client_countCard')) {

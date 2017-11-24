@@ -5915,7 +5915,6 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: cover;" +
   "background-position: center;" +
-  "background-repeat: no-repeat;" +
   "background-image: url('resources/icons/ViewTransfer/check_mark_submit.png');" +
   "}",
 
