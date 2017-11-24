@@ -224,18 +224,18 @@
 
       function keyboardShowHandler(e){
         console.log('Keyboard height is: ' + e.keyboardHeight);
+        window.bottomButtomBottom = e.keyboardHeight + "px";
         try {
-          bottomButtonBottom = e.keyboardHeight + "px";
-          scope.update();
+          bottomButtonId.style.bottom = e.keyboardHeight + "px";
         } catch (error) {
           console.error(error);
         }
       }
       function keyboardHideHandler(e){
         console.log('Keyboard hidden');
+        window.bottomButtomBottom = "0px";
         try {
-          bottomButtonBottom = "0px";
-          scope.update();
+          bottomButtonId.style.bottom = "0";
         } catch (error) {
           console.error(error);
         }
