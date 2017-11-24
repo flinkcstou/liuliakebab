@@ -74,6 +74,8 @@
 
     var backStartY, backStartX, backEndY, backEndX;
 
+    console.log("OPTS in ServicePinCards", opts)
+
     scope.onTouchStartOfBack = onTouchStartOfBack = function () {
       event.stopPropagation();
 
@@ -177,7 +179,9 @@
         console.log(cardSumFromPinCards, opts.amountText)
         var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
         scope.update()
-        if (cardSumFromPinCards && cardSumFromPinCards < parseInt(opts.amountText) && opts.mode != 'ADDAUTOPAY') {
+        var sumEnough = opts.cost ? (cardSumFromPinCards < parseInt(opts.amountText) * opts.cost) : (cardSumFromPinCards < parseInt(opts.amountText));
+        console.log("sunEnough=", sumEnough)
+        if (cardSumFromPinCards && sumEnough && opts.mode != 'ADDAUTOPAY') {
           console.log(cardSumFromPinCards, opts.amountText)
           scope.clickPinError = false;
           scope.errorNote = "На выбранной карте недостаточно средств";
