@@ -1170,7 +1170,7 @@ window.fingerPrintTurnOn = function (firstEnter) {
             if (localStorage.getItem("settings_finger_print") !== null) {
               if (JSON.parse(localStorage.getItem("settings_finger_print")) === true && localStorage.getItem('click_client_pin')) {
 
-                FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
+                FingerprintAuth.start(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
               }
               else {
 
