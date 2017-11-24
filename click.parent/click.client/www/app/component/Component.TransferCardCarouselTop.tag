@@ -37,8 +37,8 @@
     scope.on("mount", function () {
       document.getElementById(scope.carouselidTop).style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
       document.getElementById(scope.carouselidTop).style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-      document.getElementById(scope.carouselidTop).style.transform = "translate3d(" + (-scope.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
-      document.getElementById(scope.carouselidTop).style.webkitTransform = "translate3d(" + (-scope.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
+      document.getElementById(scope.carouselidTop).style.transform = "translate3d(" + (-scope.cardNumberTop * 404) * heightK + 'px' + ", 0, 0)";
+      document.getElementById(scope.carouselidTop).style.webkitTransform = "translate3d(" + (-scope.cardNumberTop * 404) * heightK + 'px' + ", 0, 0)";
       if (scope.parent.cardChangedTop){
         scope.parent.cardChangedTop(scope.cardNumberTop);
       }
@@ -46,7 +46,7 @@
 
     startTouchCarouselTransferTop = function () {
       carouselTouchStartX = event.changedTouches[0].pageX;
-      scope.leftTop = -((404 * scope.cardNumberTop) * widthK) - carouselTouchStartX;
+      scope.leftTop = -((404 * scope.cardNumberTop) * heightK) - carouselTouchStartX;
       scope.deltaTop = scope.leftTop;
     };
 
@@ -78,16 +78,16 @@
         ++scope.cardNumberTop;
         document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        document.getElementById(id).style.transform = "translate3d(" + (-scope.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
-        document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
+        document.getElementById(id).style.transform = "translate3d(" + (-scope.cardNumberTop * 404) * heightK + 'px' + ", 0, 0)";
+        document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.cardNumberTop * 404) * heightK + 'px' + ", 0, 0)";
 
       }
 
       if (carouselTouchEndX < carouselTouchStartX && scope.cardNumberTop >= scope.count - 1) {
         document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        document.getElementById(id).style.transform = "translate3d(" + (-scope.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
-        document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
+        document.getElementById(id).style.transform = "translate3d(" + (-scope.cardNumberTop * 404) * heightK + 'px' + ", 0, 0)";
+        document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.cardNumberTop * 404) * heightK + 'px' + ", 0, 0)";
 
       }
 
@@ -95,15 +95,15 @@
         --scope.cardNumberTop;
         document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        document.getElementById(id).style.transform = "translate3d(" + (-scope.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
-        document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
+        document.getElementById(id).style.transform = "translate3d(" + (-scope.cardNumberTop * 404) * heightK + 'px' + ", 0, 0)";
+        document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.cardNumberTop * 404) * heightK + 'px' + ", 0, 0)";
       }
 
       if (carouselTouchEndX > carouselTouchStartX && scope.cardNumberTop === 1) {
         document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        document.getElementById(id).style.transform = "translate3d(" + (-scope.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
-        document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.cardNumberTop * 404) * widthK + 'px' + ", 0, 0)";
+        document.getElementById(id).style.transform = "translate3d(" + (-scope.cardNumberTop * 404) * heightK + 'px' + ", 0, 0)";
+        document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.cardNumberTop * 404) * heightK + 'px' + ", 0, 0)";
       }
 
       if (scope.parent.cardChangedTop){

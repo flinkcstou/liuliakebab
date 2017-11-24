@@ -28,7 +28,7 @@
     <component-transfer-card-carousel-top
       carouselid="1"
       style="position: relative;
-      right:{16 * widthK}px;">
+      top:{11 * heightK}px">
     </component-transfer-card-carousel-top>
   </div>
 
@@ -41,7 +41,7 @@
     <component-transfer-card-carousel-bottom
       carouselid="2"
       style="position: relative;
-      right:{16 * widthK}px;">
+      top:{11 * heightK}px">
     </component-transfer-card-carousel-bottom>
   </div>
   <button if="{showBottomButton}"
@@ -213,8 +213,8 @@
             }
           }
 
-          scope.showBottomButton = true;
           if (scope.sumForTransfer) {
+            scope.showBottomButton = true;
             scope.tax = scope.sumForTransfer * scope.taxPercent / 100;
             if (scope.sumForTransfer > scope.maxLimit) {
               scope.placeHolderText = 'Максимальная сумма ' + window.amountTransform(scope.maxLimit);

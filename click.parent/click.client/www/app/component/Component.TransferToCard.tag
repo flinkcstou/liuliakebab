@@ -4,14 +4,17 @@
     <div id="bankIconId" class="transfer-new-card-bankIcon" style="background-image: url({bankImage});"></div>
     <div id="processingIconId" class="transfer-new-card-processingIcon"
          style="background-image: url({processingImage});"></div>
-    <input id="cardInputId"
-           class="transfer-new-card-number-input"
-           type="tel"
-           onpaste="onPasteTrigger()"
-           oninput="cardBlurAndChange()"
-           onchange="cardBlurAndChange()"
-           onkeydown="cardOnKeyDown(this)"
-           onkeyup="searchCard()"/>
+    <div id="cardInputContainer" class="transfer-new-card-number-input-container">
+      <input id="cardInputId"
+             class="transfer-new-card-number-input"
+             type="tel"
+             onpaste="onPasteTrigger()"
+             oninput="cardBlurAndChange()"
+             onchange="cardBlurAndChange()"
+             onkeydown="cardOnKeyDown(this)"
+             onkeyup="searchCard()"/>
+    </div>
+
     <div id="cardSuggestions" class="transfer-new-card-suggestions-container">
       <div each="{i in cardSuggestionsArray}"
            class="transfer-new-card-found-container"
@@ -245,13 +248,30 @@
       if (cardInputId.value.replace(/\s/g, '').length === 16) {
         scope.showBottomButton = true;
         cardSuggestions.style.display = 'none';
+        cardContainer.style.background = '';
+        cardInputContainer.style.border = '';
+        cardInputContainer.style.top = '';
         cardOwnerFunction();
-      }
-      else {
+      } else {
         scope.showBottomButton = false;
         cardSuggestions.style.display = 'block';
+        cardContainer.style.background = 'linear-gradient(to top, white, transparent), ' +
+          'url(resources/icons/ViewTransfer/transfer_card.png)';
+        cardContainer.style.background += '-webkit-linear-gradient(bottom, white, transparent), ' +
+          'url(resources/icons/ViewTransfer/transfer_card.png)';
+        cardContainer.style.backgroundSize = 'cover';
+        cardContainer.style.backgroundRepeat = 'no-repeat';
+        cardContainer.style.backgroundPosition= 'center';
+        cardInputContainer.style.top = '' + 133 * widthK + 'px';
+        cardInputContainer.style.border = '' + 3 * widthK + 'px solid #F0F1F4';
         cardOwnerId.style.display = 'none';
         scope.cardOwner = '';
+      }
+      if ((scope.cardSuggestionsArray && scope.cardSuggestionsArray < 1) || cardInputId.value.length === 0){
+        cardSuggestions.style.display = 'none';
+        cardContainer.style.background = '';
+        cardInputContainer.style.border = '';
+        cardInputContainer.style.top = '';
       }
       scope.parent.update();
     };

@@ -140,6 +140,7 @@
 
     scope.on('mount', function () {
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).transfer) {
+        contactPhoneNumberId.blur();
         componentTourId.style.display = "block";
         scope.tourClosed = false;
         if (device.platform !== 'BrowserStand')
