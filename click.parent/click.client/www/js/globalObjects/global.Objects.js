@@ -1140,6 +1140,28 @@ window.getAccount = function (checkSessionKey, firstEnter) {
   }
 };
 
+window.fingerPrintTurnOff = function () {
+  console.log("G.O. fingerprint turn off");
+  if (device.platform == 'Android') {
+    if (localStorage.getItem('settings_finger_print') !== null && JSON.parse(localStorage.getItem("settings_finger_print")) === true && window.fingerPrint.fingerPrintInitialize && window.fingerPrint.check) {
+
+
+      function stopSuccess(result) {
+        console.log("FingerprintAuth stopped: " + JSON.stringify(result));
+
+      }
+
+      function stopError(message) {
+        console.log("stopError: " + message);
+
+      }
+
+      FingerprintAuth.stop(stopSuccess, stopError);
+
+    }
+  }
+}
+
 
 window.fingerPrintTurnOn = function (firstEnter) {
   console.log("G.O. fingerprint, firstEnter=", firstEnter);
