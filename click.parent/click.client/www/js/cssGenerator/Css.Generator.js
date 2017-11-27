@@ -5874,8 +5874,8 @@ var css = {
 
   transferNewButtonContainer: ".transfer-new-button-container" +
   "{" +
-  "height: " + 87 * heightK + "px;" +
-  "font-size: " + 38 * heightK + "px;" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
@@ -5890,7 +5890,7 @@ var css = {
 
   transferNewSubmitButtonContainer: ".transfer-new-submit-button-container" +
   "{" +
-  "height: " + 87 * heightK + "px;" +
+  "height: " + 87 * widthK + "px;" +
   "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
@@ -5906,9 +5906,9 @@ var css = {
 
   transferNewSubmitButtonIcon: ".transfer-new-submit-button-icon" +
   "{" +
-  "height: " + 22 * heightK + "px;" +
-  "width: " + 32 * heightK + "px;" +
-  "top: " + 32.5 * heightK + "px;" +
+  "height: " + 22 * widthK + "px;" +
+  "width: " + 32 * widthK + "px;" +
+  "top: " + 32.5 * widthK + "px;" +
   // "float: left;" +
   "position: absolute;" +
   "margin-left:" + 99 * widthK + "px;" +
@@ -5923,7 +5923,7 @@ var css = {
   // "float: left;" +
   "position: absolute;" +
   "margin-left:" + 183 * widthK + "px;" +
-  "margin-top:" + (87 * heightK - 38 * widthK) / 2 + "px;" +
+  "margin-top:" + 24 * widthK + "px;" +
   "top: 0;" +
   "}",
 

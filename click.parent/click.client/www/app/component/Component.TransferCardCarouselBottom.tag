@@ -22,7 +22,7 @@
     var scope = this;
     var carouselTouchStartX, carouselTouchEndX;
     scope.carouselidBottom = opts.carouselid;
-    scope.cardNumberBottom = opts.cardnumber;
+    scope.cardNumberBottom = parseInt(opts.cardnumber);
     scope.leftBottom = 0;
     scope.deltaBottom = 0;
     if (localStorage.getItem('click_client_cards')) {
