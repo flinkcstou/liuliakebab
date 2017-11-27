@@ -521,6 +521,7 @@
         scope.pageNumberOptional++;
         paymentListUpdate();
       }
+
 //      var position = reportBodyContainerId.scrollTop;
 //      console.log('POSITION', position)
 //      console.log('HEight', reportBodyContainerId.style.height)
@@ -1100,6 +1101,7 @@
       reportBodyContainerStartY = event.changedTouches[0].pageY;
       reportBodyContainerStartX = event.changedTouches[0].pageX;
       reportBodyTimeStart = event.timeStamp.toFixed(0);
+      console.log("touch start", reportBodyContainerStartY)
     }
 
     reportsBodyContainerTouchEnd = function () {
@@ -1109,12 +1111,19 @@
       reportBodyContainerEndY = event.changedTouches[0].pageY;
       reportBodyContainerEndX = event.changedTouches[0].pageX;
       reportBodyTimeEnd = event.timeStamp.toFixed(0);
+      console.log("touch end out", reportBodyContainerEndY)
 
-      if (Math.abs(reportBodyContainerStartY - reportBodyContainerEndY) <= 100 && (Math.abs(reportBodyContainerStartX - reportBodyContainerEndX) > 20) && reportBodyTimeEnd - reportBodyTimeStart < 500) {
+      if (Math.abs(reportBodyContainerStartY - reportBodyContainerEndY) <= 100 && (Math.abs(reportBodyContainerStartX - reportBodyContainerEndX) > 20) && (reportBodyTimeEnd - reportBodyTimeStart) < 500) {
         mCarouselTouchEndX = reportBodyContainerEndX
         mCarouselTouchStartX = reportBodyContainerStartX
+        console.log("touch end inner", reportBodyContainerEndY)
         monthChanged = true
         changePositionReport()
+      } else if (reportBodyContainerEndY > reportBodyContainerStartY && (reportBodyContainerEndY - reportBodyContainerStartY) >= 250 && reportBodyContainerId.scrollTop == 0) {
+//        console.log("update page")
+//        console.log("scrollTop=", reportBodyContainerId.scrollTop)
+//        paymentListUpdate();
+
       }
 
     }
