@@ -199,7 +199,7 @@
         }
       }
       setTimeout(function () {
-        submitAmountId.autofocus = true;
+        submitAmountId.autofocus;
         submitAmountId.focus();
       }, 0);
       console.log(scope);

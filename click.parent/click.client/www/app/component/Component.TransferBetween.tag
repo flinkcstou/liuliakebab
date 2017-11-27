@@ -40,6 +40,7 @@
     <p class="transfer-new-between-from-text-field">{window.languages.ViewPayTransferBetweenCardsTo}</p>
     <component-transfer-card-carousel-bottom
       carouselid="2"
+      cardnumber="2"
       style="position: relative;
       top:{11 * heightK}px">
     </component-transfer-card-carousel-bottom>

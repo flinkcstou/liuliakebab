@@ -155,7 +155,11 @@
         showTransferByContact();
       }
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).transfer) {
-        contactPhoneNumberId.blur();
+        setTimeout(function () {
+          cardInputId.blur();
+          contactPhoneNumberId.blur();
+          betweenAmountId.blur();
+        }, 1);
         componentTourId.style.display = "block";
         scope.tourClosed = false;
         if (device.platform !== 'BrowserStand')
@@ -240,7 +244,7 @@
           contact.setAttribute('activated', true);
           scope.activatedType = 'contact';
           setTimeout(function () {
-            contactPhoneNumberId.autofocus = true;
+            contactPhoneNumberId.autofocus;
             contactPhoneNumberId.focus();
           }, 0);
           scope.update();
@@ -258,7 +262,7 @@
           card.setAttribute('activated', true);
           scope.activatedType = 'card';
           setTimeout(function () {
-            cardInputId.autofocus = true;
+            cardInputId.autofocus;
             cardInputId.focus();
           }, 0);
           scope.update();
@@ -275,7 +279,7 @@
           between.setAttribute('activated', true);
           scope.activatedType = 'between';
           setTimeout(function () {
-            betweenAmountId.autofocus = true;
+            betweenAmountId.autofocus;
             betweenAmountId.focus();
           }, 0);
           scope.update();
@@ -497,9 +501,9 @@
     scope.focusFieldAfterTourClosed = focusFieldAfterTourClosed = function () {
       scope.tourClosed = true;
       setTimeout(function () {
-        contactPhoneNumberId.autofocus = true;
+        contactPhoneNumberId.autofocus;
         contactPhoneNumberId.focus();
-      }, 0)
+      }, 0);
     };
 
   </script>
