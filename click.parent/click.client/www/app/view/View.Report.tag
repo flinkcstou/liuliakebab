@@ -530,13 +530,14 @@
     scope.paymentListUpdate = paymentListUpdate = function (from) {
 
       if (from == 'fromGraph' || from == 'fromFilter') {
+        console.log("111")
         scope.pageNumberOptional = 1;
         scope.paymentsMap = {};
         scope.paymentDates = [];
         scope.paymentsList = []
       }
       if (scope.monthNotStartedYet) {
-
+        console.log("222")
         scope.paymentsMap = {};
         scope.paymentDates = [];
         scope.paymentsList = [];
@@ -547,6 +548,7 @@
       }
       else {
         if (monthChanged) {
+          console.log("333")
           scope.pageNumberOptional = 1;
           scope.paymentsMap = {};
           scope.paymentDates = [];
@@ -1122,6 +1124,11 @@
       } else if (reportBodyContainerEndY > reportBodyContainerStartY && (reportBodyContainerEndY - reportBodyContainerStartY) >= 250 && reportBodyContainerId.scrollTop == 0) {
 //        console.log("update page")
 //        console.log("scrollTop=", reportBodyContainerId.scrollTop)
+//        scope.pageNumberOptional = 1;
+//        scope.paymentsMap = {};
+//        scope.paymentDates = [];
+//        scope.paymentsList = []
+//        monthChanged = false;
 //        paymentListUpdate();
 
       }
