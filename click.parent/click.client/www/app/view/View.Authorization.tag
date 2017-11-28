@@ -577,7 +577,10 @@
             enteredPin = '';
             if (!scope.firstEnter)
               updateEnteredPin();
-            else inputPinFocus();
+            else {
+              firstPinInputId.value = "";
+              inputPinFocus();
+            }
             return
           }
         },
