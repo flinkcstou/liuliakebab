@@ -303,7 +303,7 @@ window.amountTransform = function (amount) {
     return amount
   }
   if (amount.length == 1 && amount == 0) {
-    return '';
+    return amount.toString();
   }
 
   amount = amount.replace(new RegExp('[^0-9.]', 'g'), '');

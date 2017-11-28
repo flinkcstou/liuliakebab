@@ -11648,7 +11648,8 @@ window.fakedSocket.register("history.chart.data", function (input) {
   if (input.parameters.date_start) {
 
     if (error) {
-      return [[{"method": input.method, "success": 1, "error": -4, "error_note": 'Отсутсуют данные о месяце '}]];
+      console.log("ASD")
+      // return [[{"method": input.method, "success": 1, "error": -4, "error_note": 'Отсутсуют данные о месяце '}]];
     }
   }
 
