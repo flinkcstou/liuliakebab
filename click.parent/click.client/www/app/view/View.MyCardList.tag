@@ -304,46 +304,45 @@
 
     var goToCardTouchStartX, goToCardTouchStartY, goToCardTouchEndX, goToCardTouchEndY;
     goToCardPageTouchStart = function (id) {
-//      event.preventDefault();
-//      event.stopPropagation();
 
       goToCardTouchStartX = event.changedTouches[0].pageX
       goToCardTouchStartY = event.changedTouches[0].pageY
 
-      document.getElementById(id).style.webkitTransform = 'scale(0.9)'
-
     }
 
     goToCardPageTouchEnd = function (cardId, id) {
-      if (modeOfApp.offlineMode) return
-//      event.preventDefault();
-//      event.stopPropagation();
-
-      document.getElementById(id).style.webkitTransform = 'scale(1)'
+      if (modeOfApp.offlineMode) return;
 
       goToCardTouchEndX = event.changedTouches[0].pageX
       goToCardTouchEndY = event.changedTouches[0].pageY
 
       if (Math.abs(goToCardTouchStartX - goToCardTouchEndX) <= 20 && Math.abs(goToCardTouchStartY - goToCardTouchEndY) <= 20) {
 
-        console.log('cardId', cardId);
-        for (var i in scope.cardsArray) {
-          if (scope.cardsArray[i] == scope.cardsArray[cardId]) {
-            scope.cardsArray[cardId].chosenCard = true;
-            console.log('scope.cardsArray[cardId]', scope.cardsArray[cardId])
-            console.log('scope.cardsArray[i]', scope.cardsArray[i])
-            localStorage.setItem('cardNumber', scope.cardsArray[cardId].countCard);
+        document.getElementById(id).style.webkitTransform = 'scale(0.9)';
+
+        setTimeout(function () {
+
+          document.getElementById(id).style.webkitTransform = 'scale(1)';
+
+          console.log('cardId', cardId);
+          for (var i in scope.cardsArray) {
+            if (scope.cardsArray[i] == scope.cardsArray[cardId]) {
+              scope.cardsArray[cardId].chosenCard = true;
+              console.log('scope.cardsArray[cardId]', scope.cardsArray[cardId])
+              console.log('scope.cardsArray[i]', scope.cardsArray[i])
+              localStorage.setItem('cardNumber', scope.cardsArray[cardId].countCard);
+            }
+            else
+              scope.cardsArray[cardId].chosenCard = false;
           }
-          else
-            scope.cardsArray[cardId].chosenCard = false;
-        }
 
-        scope.update();
+          scope.update();
 
-        riotTags.innerHTML = "<view-my-cards>";
-        riot.mount('view-my-cards', [cardId]);
+          riotTags.innerHTML = "<view-my-cards>";
+          riot.mount('view-my-cards', [cardId]);
 
-        scope.unmount()
+          scope.unmount()
+        }, 50)
       }
     }
 
