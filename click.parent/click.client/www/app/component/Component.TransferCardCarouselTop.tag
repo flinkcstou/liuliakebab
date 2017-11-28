@@ -25,14 +25,16 @@
     scope.cardNumberTop = 1;
     scope.leftTop = 0;
     scope.deltaTop = 0;
-    if (localStorage.getItem('click_client_cards')) {
-      scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
-      scope.update();
-    }
 
     scope.count = localStorage.getItem('click_client_countCard');
     if (!scope.count)
       scope.count = 1;
+
+    if (localStorage.getItem('click_client_cards')) {
+      scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
+      checkCardPermissionTop();
+      scope.update();
+    }
 
     scope.on("mount", function () {
       document.getElementById(scope.carouselidTop).style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
@@ -111,6 +113,25 @@
       }
 
       scope.update();
+    };
+
+    function checkCardPermissionTop() {
+      for (var i in scope.cardsarray) {
+        scope.cardsarray[i].permission = opts.usefor === "p2p" && scope.cardsarray[i].p2p_allowed == 1;
+        if (opts.usefor === "payment" && scope.cardsarray[i].payment_allowed == 1) {
+          scope.cardsarray[i].permission = true;
+        }
+        if (opts.usefor === "all") {
+          scope.cardsarray[i].permission = true;
+        }
+
+        if (scope.cardsarray[i].permission === false) {
+          console.log("Cardsarray in permission check function:", scope.cardsarray[i]);
+          scope.count--;
+          delete scope.cardsarray[i];
+          console.log(scope.cardsarray, scope.count);
+        }
+      }
     };
 
   </script>

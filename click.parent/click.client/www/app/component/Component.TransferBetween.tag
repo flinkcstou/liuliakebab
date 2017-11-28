@@ -27,6 +27,7 @@
     <p class="transfer-new-between-from-text-field">{window.languages.ViewPayTransferBetweenCardsFrom}</p>
     <component-transfer-card-carousel-top
       carouselid="1"
+      usefor="p2p"
       style="position: relative;
       top:{11 * heightK}px">
     </component-transfer-card-carousel-top>
@@ -41,6 +42,7 @@
     <component-transfer-card-carousel-bottom
       carouselid="2"
       cardnumber="2"
+      usefor="p2p"
       style="position: relative;
       top:{11 * heightK}px">
     </component-transfer-card-carousel-bottom>
