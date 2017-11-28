@@ -7013,6 +7013,7 @@ var css = {
   "left:" + -10 * widthK + "px;" +
   "font-size:" + 36 * widthK + "px;" +
   "overflow-y: scroll;" +
+  "word-wrap: break-word;" +
   "}",
 
   successNextButtonInnerContainer: ".success-next-button-inner-container" +
@@ -7168,6 +7169,7 @@ var css = {
   "margin-bottom: 0;" +
   "top:" + 340 * widthK + "px;" +
   "overflow-y: scroll;" +
+  "word-wrap: break-word;" +
   "}",
 
   unsuccessNextButtonInnerContainer: ".unsuccess-next-button-inner-container" +
@@ -11923,6 +11925,7 @@ var css = {
   "opacity: 0;" +
   "height: " + 240 * heightK + "px;" +
   "overflow-y: scroll;" +
+
   "}",
 
   componentResultMessageStart: ".component-result-message-start " +
