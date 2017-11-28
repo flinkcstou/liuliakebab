@@ -304,8 +304,8 @@
 
     var goToCardTouchStartX, goToCardTouchStartY, goToCardTouchEndX, goToCardTouchEndY;
     goToCardPageTouchStart = function (id) {
-      event.preventDefault();
-      event.stopPropagation();
+//      event.preventDefault();
+//      event.stopPropagation();
 
       goToCardTouchStartX = event.changedTouches[0].pageX
       goToCardTouchStartY = event.changedTouches[0].pageY
@@ -316,8 +316,8 @@
 
     goToCardPageTouchEnd = function (cardId, id) {
       if (modeOfApp.offlineMode) return
-      event.preventDefault();
-      event.stopPropagation();
+//      event.preventDefault();
+//      event.stopPropagation();
 
       document.getElementById(id).style.webkitTransform = 'scale(1)'
 

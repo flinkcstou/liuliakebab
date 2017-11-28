@@ -78,7 +78,7 @@
         scope.addFirstCardBool = true;
         viewMainPage.addFirstCardBool = true;
         localStorage.removeItem('click_client_cards');
-        scope.parent.update();
+//        scope.parent.update();
       } else {
 
         for (var i in scope.cardsarray) {
@@ -192,10 +192,10 @@
           scope.addFirstCardBool = true;
           viewMainPage.addFirstCardBool = true;
           localStorage.removeItem('click_client_cards');
-          scope.parent.update();
+//          scope.parent.update();
         } else {
           viewMainPage.addFirstCardBool = false;
-          scope.parent.update();
+//          scope.parent.update();
         }
         var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'))
       }
@@ -293,8 +293,8 @@
       }
 
 
-      scope.parent.update();
-      scope.update(scope.cardsarray);
+//      scope.parent.update();
+//      scope.update(scope.cardsarray);
 
       scope.update();
 

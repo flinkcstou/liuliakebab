@@ -5338,6 +5338,7 @@ var css = {
   "position: absolute;" +
   "background-color: transparent;" +
   "width: 100%;" +
+  "height: 92%;" +
   "top: 8%;" +
   "bottom: 0;" +
   "overflow-y:scroll;" +
