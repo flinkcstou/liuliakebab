@@ -7003,7 +7003,7 @@ var css = {
   "position: relative;" +
   "color: black;" +
   "width:" + 340 * widthK + "px;" +
-  "height:" + 390 * widthK + "px;" +
+  "height:" + 380 * heightK + "px;" +
   "text-align: center;" +
   "margin-left: auto;" +
   "margin-top: 0;" +
@@ -7159,7 +7159,7 @@ var css = {
   "position: relative;" +
   "color: #ff3c5e;" +
   "width:" + 640 * widthK + "px;" +
-  "height:" + 435 * widthK + "px;" +
+  "height:" + 380 * heightK + "px;" +
   "font-size:" + 30 * widthK + "px;" +
   "text-align: center;" +
   "margin-left: auto;" +
@@ -11921,7 +11921,7 @@ var css = {
   "top:" + 250 * widthK + "px" + "!important;" +
   "font-size:" + 36 * widthK + "px;" +
   "opacity: 0;" +
-  "height: 300px;" +
+  "height: " + 240 * heightK + "px;" +
   "overflow-y: scroll;" +
   "}",
 

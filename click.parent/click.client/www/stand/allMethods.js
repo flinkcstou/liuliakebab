@@ -12663,7 +12663,7 @@ window.fakedSocket.register("autopay.add.by.event", function (input) {
     {
       "method": input.method,
       "success": 1,
-      "error": 5,
+      "error": 0,
       "error_note": "cdcvdc"
     }
   ]];
