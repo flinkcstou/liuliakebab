@@ -126,8 +126,8 @@
         }
 
         if (scope.cardsarray[i].permission === false) {
-          console.log("Cardsarray in permission check function:", scope.cardsarray[i]);
           scope.count--;
+          scope.cardNumberTop = -1;
           delete scope.cardsarray[i];
           console.log(scope.cardsarray, scope.count);
         }

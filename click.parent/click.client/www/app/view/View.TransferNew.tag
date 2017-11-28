@@ -175,6 +175,21 @@
           console.log('small amount of cards');
         }
       }
+      if (localStorage.getItem('click_client_cards')) {
+        scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
+        var p2pAllowedCardsCount = 0;
+        for (var i in scope.cardsarray) {
+          if (scope.cardsarray[i].p2p_allowed == 1)
+            p2pAllowedCardsCount++;
+        }
+        console.log('p2p allowed cards number', p2pAllowedCardsCount);
+        if (p2pAllowedCardsCount === 0){
+          between.style.display = 'none';
+          card.style.width = '50%';
+          contact.style.width = '50%';
+          console.log('small amount of cards with p2p permission');
+        }
+      }
     });
     {
       //Choose transfer type

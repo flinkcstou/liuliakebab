@@ -6131,6 +6131,16 @@ var css = {
   "font-size:" + 32 * widthK + "px;" +
   "}",
 
+  transferNewSubmitNoCards: ".transfer-new-submit-no-cards" +
+  "{" +
+  "margin: 0;" +
+  "margin-top:" + 85 * widthK + "px;" +
+  "color: gray;" +
+  "text-align: center;" +
+  "word-break: break-word;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "}",
+
   transferNewBetweenAmountInput: ".transfer-new-between-amount-input" +
   "{" +
   "border: none;" +

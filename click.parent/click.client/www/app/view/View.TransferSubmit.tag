@@ -43,8 +43,11 @@
     <div id="cardFromId"
          class="transfer-new-card-from">
       <p class="transfer-new-between-from-text-field">{window.languages.ViewPayTransferBetweenCardsFrom}</p>
+      <p if="{noCards}" class="transfer-new-submit-no-cards">{window.languages.ViewTransferSubmitNoCards}</p>
       <component-transfer-card-carousel-top
+        if="{!noCards}"
         carouselid="1"
+        usefor="p2p"
         style="position: relative;
         right:{16 * widthK}px;
         top:{16 * widthK}px">
@@ -152,6 +155,7 @@
     scope.stepAmount = 3;
     scope.showPlaceHolderError = false;
     scope.showCommission = false;
+    scope.noCards = false;
     var counter = 0;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-transfer-submit') {
@@ -288,6 +292,9 @@
           scope.showPlaceHolderError = true;
           scope.showBottomButton = false;
         }
+        if (scope.noCards){
+          scope.showBottomButton = false;
+        }
         scope.update()
       };
 
@@ -297,6 +304,11 @@
             scope.chosenCard = scope.cardsarray[i];
           }
         }
+        if (scope.chosenCard === undefined){
+          scope.noCards = true;
+        }
+        scope.update();
+        console.log("Chosen card on submit",scope.chosenCard);
       };
 
       onTouchStartOfSubmit = function () {
@@ -331,6 +343,17 @@
           if (scope.chosenCard && parseInt(scope.chosenCard.salaryOriginal) < (parseInt(scope.sumForTransfer) + scope.tax)) {
             scope.clickPinError = false;
             scope.errorNote = "На выбранной карте недостаточно средств";
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote
+            });
+            scope.update();
+            return;
+          }
+          if (scope.chosenCard === undefined) {
+            scope.clickPinError = false;
+            scope.errorNote = "Выберите карту списания";
             window.common.alert.show("componentAlertId", {
               parent: scope,
               clickpinerror: scope.clickPinError,

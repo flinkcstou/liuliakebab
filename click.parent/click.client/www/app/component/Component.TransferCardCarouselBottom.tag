@@ -127,7 +127,6 @@
         }
 
         if (scope.cardsarray[i].permission === false) {
-          console.log("Cardsarray in permission check function:", scope.cardsarray[i]);
           scope.count--;
           if (scope.count < 3)
             scope.cardNumberBottom = 1;

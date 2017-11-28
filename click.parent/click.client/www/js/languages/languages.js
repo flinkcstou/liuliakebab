@@ -182,6 +182,7 @@ var RU_LANGUAGES =
   "ViewTransferThreeTitle": "ПЕРЕВОД НА",
   "ViewTransferThreeMenuTitle": "ПЕРЕВЕСТИ С КАРТЫ",
   "ViewTransferThreeNext": "Далее",
+  "ViewTransferSubmitNoCards": "Нет карт доступных для переводов",
 
   "ViewTransferFourTitle": "ПЕРЕВОД НА",
   "ViewTransferFourEnterPhone": "Номер телефона получателя:",
