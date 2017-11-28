@@ -64,13 +64,9 @@
 
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
   <script>
     var scope = this;
 
-    scope.showError = false;
     this.titleName = window.languages.ViewSecuritySettingsTitle;
 
     if (localStorage.getItem('click_client_loginInfo'))
@@ -191,13 +187,25 @@
           if (result[0][0].error == 0) {
             scope.clickPinError = false;
             scope.errorNote = ("Изменена видимость номера");
-            scope.showError = true;
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+            });
+
             scope.update();
           }
           else {
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
-            scope.showError = true;
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+            });
+
             scope.update();
           }
 
@@ -302,10 +310,16 @@
 
       if (!fingerPrintEnrolled && localStorage.getItem("settings_finger_print_enrolled") != null && device.platform == 'Android') {
         if (JSON.parse(localStorage.getItem("settings_finger_print_enrolled")) === false) {
-          scope.showError = true;
-          scope.errorNote = 'Опция не включена на устройстве!'
-          scope.clickPinError = false
-          scope.update()
+          scope.errorNote = 'Опция не включена на устройстве!';
+          scope.clickPinError = false;
+
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+          });
+
+          scope.update();
           return
         }
       }

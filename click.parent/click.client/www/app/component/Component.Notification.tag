@@ -2,7 +2,8 @@
                         class="component-notification {component-notification-show: show, component-notification-set-transition: setTransition}">
 
   <div style="display: none" class="component-notification-icon"></div>
-  <p id="pushNotificationText" class="component-notification-text"></p>
+  <p id="pushNotificationText" class="component-notification-text">
+    {notificationText}</p>
 
   <div class="component-notification-buttons-container">
     <p class="component-notification-button-cancel" ontouchend="onTouchEndNotificationDecline()"
@@ -22,20 +23,42 @@
     scope.notificationAction = "";
 
     var numberOfMessage = 0;
-    var notificationText = "";
+    //    var notificationText = "";
 
     setTimeout(function () {
 
       scope.setTransition = true;
-      pushNotificationText.innerHTML = "";
+//      pushNotificationText.innerHTML = "";
       scope.update();
     }, 1000);
 
-    if (device.platform != 'BrowserStand') {
+    if (device.platform !== 'BrowserStand') {
       window.FirebasePlugin.onNotificationOpen(function (notification) {
 
+//        alert("onNotification open input object " + JSON.stringify(notification));
+
+        if (notification.message) {
+          try {
+            scope.notificationNew = JSON.parse(notification.message);
+            scope.notificationNew.tap = notification.tap;
+            scope.notificationNew.body = scope.notificationNew.body ? scope.notificationNew.body : scope.notificationNew.text;
+//            alert("New notification=" + JSON.stringify(scope.notificationNew));
+          } catch (e) {
+//            alert("message parsing error " + e)
+//            alert("message = " + JSON.stringify(notification))
+          }
+          console.log("New notification=", scope.notificationNew);
+
+
+        }
+
         if (!scope.show) {
-          sessionStorage.setItem("push_notification_real", JSON.stringify(notification));
+          if (scope.notificationNew) {
+            sessionStorage.setItem("push_notification_real", JSON.stringify(scope.notificationNew));
+          } else {
+            sessionStorage.setItem("push_notification_real", JSON.stringify(notification));
+          }
+          console.log("push object after saving into sessionStorage", JSON.parse(sessionStorage.getItem("push_notification_real")));
         }
         else {
           return
@@ -44,13 +67,22 @@
         console.log("PUSH NOTIFICATION OBJECT", notification);
         ++numberOfMessage;
 
-        if (device.platform == "iOS") {
+        console.log("numberOfMessage", numberOfMessage);
 
-          notificationText = JSON.parse(sessionStorage.getItem("push_notification_real")).notification.body;
+        if (device.platform === "iOS") {
+
+          try {
+            var temp = JSON.parse(sessionStorage.getItem("push_notification_real"));
+            notificationText = temp.notification ? temp.notification.body : (temp.aps ? temp.aps.alert : "");
+          } catch (e) {
+//            alert("error " + e)
+          }
+
         } else {
 
           notificationText = JSON.parse(sessionStorage.getItem("push_notification_real")).body;
         }
+//        alert("Notification text 78" + notificationText);
         scope.notificationAction = JSON.parse(sessionStorage.getItem("push_notification_real")).action;
         scope.notificationElementId = JSON.parse(sessionStorage.getItem("push_notification_real")).notify_id;
 
@@ -61,7 +93,7 @@
 
           var background_notification = {};
 
-          if (scope.notificationAction == "invoice") {
+          if (scope.notificationAction === "invoice") {
 
             background_notification.action = "getInvoiceFunction";
             background_notification.params = scope.notificationElementId;
@@ -69,7 +101,7 @@
             sessionStorage.setItem("push_notification", JSON.stringify(background_notification));
           }
 
-          if (scope.notificationAction == "card.add") {
+          if (scope.notificationAction === "card.add") {
 
 
             background_notification.action = "refreshCardCarousel";
@@ -78,7 +110,7 @@
             sessionStorage.setItem("push_notification", JSON.stringify(background_notification));
           }
 
-          if (scope.notificationAction == "payment") {
+          if (scope.notificationAction === "payment") {
 
             background_notification.action = "getPaymentList";
             background_notification.params = scope.notificationElementId;
@@ -86,7 +118,7 @@
             sessionStorage.setItem("push_notification", JSON.stringify(background_notification));
           }
 
-          if (scope.notificationAction == "news") {
+          if (scope.notificationAction === "news") {
 
 //            window.News.newsCounter++;
 //            riot.update();
@@ -98,9 +130,9 @@
 
             window.News.newsCounter = 0;
 
-            sessionStorage.setItem("push_news", true)
+            sessionStorage.setItem("push_news", true);
 
-            console.log('running news')
+            console.log('running news');
 
             riotTags.innerHTML = "<view-main-page>";
             riot.mount("view-main-page", {view: "news"});
@@ -114,10 +146,23 @@
         else {
 
           scope.show = true;
+          if (device.platform === "iOS") {
+            try {
+              var temp = JSON.parse(sessionStorage.getItem("push_notification_real"));
+              notificationText = temp.notification ? temp.notification.body : (temp.aps ? temp.aps.alert : "");
+//              notificationText = temp.aps.alert;
+            } catch (e) {
+//              alert("error " + e)
+            }
+          } else {
+
+            notificationText = JSON.parse(sessionStorage.getItem("push_notification_real")).body;
+          }
           scope.notificationText = JSON.stringify(notificationText);
-          pushNotificationText.innerHTML = JSON.stringify(notificationText);
+//          pushNotificationText.innerHTML = JSON.stringify(notificationText);
 
           console.log('NOTIFICATION TEXT', scope.notificationText)
+//          alert('NOTIFICATION TEXT 153' + scope.notificationText)
 
           numberOfMessage = 0;
 

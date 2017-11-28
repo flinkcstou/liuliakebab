@@ -66,6 +66,7 @@ var RU_LANGUAGES =
     "ViewMyCardReports": "Отчеты по карте",
     "ViewMyCardBlock": "Удалить карту",
     "ViewMyCardLastOperations": "Последние операции",
+    "ViewMyCardSuccessDelete": "Карта успешно удалена",
 
     "ViewServicePageEnterLabel": "Далее",
     "ViewServicePageChooseCityLabel": "Выберите город",
@@ -101,6 +102,11 @@ var RU_LANGUAGES =
 
   "ComponentReportFilterTodayText": "сегодня",
   "ComponentReportFilterYesterdayText": "вчера",
+
+  "ComponentResultPleaseWait": "Пожалуйста подождите...",
+  "ComponentResultOk": "Закрыть",
+  "ComponentResultClose": "Закрыть",
+  "ComponentResultQRSuccess": "Оплата QR прошла успешно",
 
   "ViewAmountCalculatorNameTitle": "КАЛЬКУЛЯТОР ВАЛЮТ",
   "ViewAmountCalculatorTextOne": "Введите сумму в USD",
@@ -143,6 +149,19 @@ var RU_LANGUAGES =
   "ViewPayTransferNext": "Далее",
   "ViewPayTransferTitle": "ПЕРЕВОДЫ",
   "ViewPayTransferCardOwnerTitle": "Владелец:",
+  "ViewPayTransferAccessToContacts": "Для быстрого поиска в адресной книге, необходимо разрешить приложению доступ к контактам на Вашем устройстве",
+  "ViewPayTransferAccessToContactsSettings": "Перейти в настройки",
+  "ViewPayTransferByCardNumber": "ПО НОМЕРУ КАРТЫ",
+  "ViewPayTransferByPhoneNumber": "ПО НОМЕРУ ТЕЛЕФОНА",
+  "ViewPayTransferBetweenCards": "МЕЖДУ СВОИМИ КАРТАМИ",
+  "ViewPayTransferBetweenCardsTitle": "ПЕРЕВОД МЕЖДУ КАРТАМИ",
+  "ViewPayTransferBetweenCardsFrom": "Карта списания:",
+  "ViewPayTransferBetweenCardsTo": "Карта пополнения:",
+  "ViewPayTransferHistory": "ИСТОРИЯ ПЕРЕВОДОВ",
+  "ViewPayTransferByCardNumberTitle": "ПЕРЕВОД НА КАРТУ",
+  "ViewPayTransferByPhoneNumberTitle": "ПЕРЕВОД НА НОМЕР",
+  "ViewPayTransferHistoryTitle": "ИСТОРИЯ ПЕРЕВОДОВ",
+  "ViewPayTransferNewCardTextField": "Введите номер карты получателя:",
 
 
   "ViewTransferTwoTax": "Комиссия: ",
@@ -180,8 +199,15 @@ var RU_LANGUAGES =
   "ComponentSuccessMessageForRemovingFromFavorites": "Платёж успешно удален из избранных",
 
   "ComponentInProcessingPartOne": "Перевод передан на обработку.",
+  "ComponentInProcessingPartOneForTransfer": "Перевод отправлен",
+  "ComponentInProcessingPartTwoForTransfer": "и ожидает подтверждения получателя",
+  "ComponentInProcessingForTransfer": "Перевод отправлен и ожидает подтверждения получателя",
+
   "ComponentInProcessingPartOneForPay": "Оплата передана на обработку.",
   "ComponentInProcessingPartTwo": "Ждите СМС с результатом!",
+  "ComponentInProcessingPayment": "Оплата передана на обработку. Ждите СМС с результатом!",
+
+  "ComponentInProcessingPartTwoForTransfer": "и ожидает подтверждения получателя",
 
   "ComponentUnsuccessMessagePart1": 'Извините,',
   "ComponentUnsuccessMessagePart2": 'что-то пошло не так.',
@@ -276,9 +302,9 @@ var RU_LANGUAGES =
   "ViewAboutSettingsRateUsTitle": "Оцените нас в Google Play",
 
   "ViewSettingsAboutProgramTitleName": "О ПРОГРАММЕ",
-  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 5.0.7",
+  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 5.7",
   "ViewSettingsAboutProgramVersionTitleNamePartOneClick": "CLICK Uzbekistan",
-  "ViewSettingsAboutProgramVersionTitleNamePartTwo": "02 октября, 2017",
+  "ViewSettingsAboutProgramVersionTitleNamePartTwo": "21 ноября, 2017",
   "ViewSettingsAboutProgramUserAgreementTitleName": "Пользовательское соглашение",
   "ViewSettingsAboutProgramRankTitleName": "Оцените нас в Google Play",
 
@@ -293,6 +319,9 @@ var RU_LANGUAGES =
   "ViewSettingsGeneralDeletePhotoTitle": "Удалить фото",
   "ViewSettingsGeneralGenderMaleTitle": "Муж",
   "ViewSettingsGeneralGenderFemaleTitle": "Жен",
+  "ViewSettingsGeneralSuccessSave": "Изменения сохранены",
+  "ViewSettingsGeneralConfirmPhotoDelete": "Подтвердите удаление фото",
+  "ViewSettingsGeneralLanguageRussian": "Русский",
 
   "ViewSettingsUserAgreementTitle": "ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ",
 
@@ -397,6 +426,7 @@ var RU_LANGUAGES =
   "ViewReportServiceStatus": "Статус:",
   "ViewReportServicePaymentNumber": "Номер платежа:",
   "ViewReportServicePaymentDate": "Дата:",
+  "ViewReportServiceCommissionCurrency": "сум",
 
   "ViewReportsFilterAllAccountsText": "Все карты и счета",
 
@@ -526,6 +556,7 @@ var RU_LANGUAGES =
   "ComponentToolbarAriaLabelOpenSideMenu": "Открыть боковое меню",
   "ComponentToolbarAriaLabelOpenBalanceInfo": "Информация об общем балансе всех Ваших карт и история платежей",
   "ComponentToolbarAriaLabelOpenNews": "Открыть новости",
+  "ComponentToolbarTitle": "ОТЧЕТЫ",
 
   "ComponentKeyboardAriaLabelDeleteSym": "Удалить последний символ",
 
@@ -555,7 +586,19 @@ var RU_LANGUAGES =
   "ComponentGeneratedQrUpperInfoText": "Ваш  электронный билет (QR-код):",
 
 
-  "ComponentCardCarouselAddFirstCardtext": "Добавьте первую карту"
+  "ComponentCardCarouselAddFirstCardtext": "Добавьте свою первую карту в CLICK",
+
+  "ViewNewsDetails": "Подробнее",
+  "ViewNewsFollowLink": "ПЕРЕЙТИ",
+
+  "WaitingTimeExpiredText": "Время ожидания истекло",
+
+  "ViewDefaultAccountTitle": "ОСНОВНАЯ КАРТА",
+  "ViewDefaultAccountSubTitle": "Выберите основную карту",
+  "ViewDefaultAccountChooseButtonText": "Выбрать",
+
+
+  "ViewDefaultAccountSuccessText": "Основная карта установлена успешно"
 
 
 };

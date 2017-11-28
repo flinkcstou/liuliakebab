@@ -33,7 +33,7 @@
       </div>
 
       <div class="account-detail-cards-container">
-        <component-pincards></component-pincards>
+        <component-pincards useFor="payment"></component-pincards>
         <div class="account-detail-buttons-container">
           <p class="account-detail-button-accept">{window.languages.ViewAccountDetailTitlePay}</p>
           <p class="account-detail-button-cancel">{window.languages.ViewAccountDetailTitleDecline}</p>

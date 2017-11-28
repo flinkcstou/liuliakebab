@@ -18,7 +18,7 @@
     <div class="pincard-payfrom-container">
       <p class="pincard-payfrom-field">{window.languages.ViewServicePinCardPayFromField}</p></div>
 
-    <component-pincards clean="{!friendHelpBool}"></component-pincards>
+    <component-pincards clean="{!friendHelpBool}" useFor="payment"></component-pincards>
     <div class="pincard-bottom-container">
 
       <div class="pincard-friend-help-container" if="{!friendHelpBool && opts.mode!='ADDAUTOPAY'}"
@@ -56,11 +56,6 @@
     </div>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
-
   <component-tour view="friendhelp"></component-tour>
 
   <script>
@@ -68,7 +63,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-pincards-new') {
       history.arrayOfHistory.push(
         {
-          "view"  : 'view-service-pincards-new',
+          "view": 'view-service-pincards-new',
           "params": opts
         }
       );
@@ -76,9 +71,10 @@
     }
 
     var scope = this;
-    scope.showError = false;
 
     var backStartY, backStartX, backEndY, backEndX;
+
+    console.log("OPTS in ServicePinCards", opts)
 
     scope.onTouchStartOfBack = onTouchStartOfBack = function () {
       event.stopPropagation();
@@ -183,11 +179,18 @@
         console.log(cardSumFromPinCards, opts.amountText)
         var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
         scope.update()
-        if (cardSumFromPinCards && cardSumFromPinCards < parseInt(opts.amountText) && opts.mode != 'ADDAUTOPAY') {
+        var sumEnough = opts.cost ? (cardSumFromPinCards < parseInt(opts.amountText) * opts.cost) : (cardSumFromPinCards < parseInt(opts.amountText));
+        console.log("sunEnough=", sumEnough)
+        if (cardSumFromPinCards && sumEnough && opts.mode != 'ADDAUTOPAY') {
           console.log(cardSumFromPinCards, opts.amountText)
           scope.clickPinError = false;
           scope.errorNote = "На выбранной карте недостаточно средств";
-          scope.showError = true;
+
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+          });
           riot.update();
           return;
         }
@@ -222,7 +225,13 @@
         if (!scope.checked) {
           scope.clickPinError = false;
           scope.errorNote = "Выберите карту для оплаты";
-          scope.showError = true;
+
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+          });
+
           scope.update();
           return;
         }
@@ -234,9 +243,15 @@
       if (modeOfApp.demoVersion) {
         var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
-        scope.confirmShowBool = true;
         scope.confirmNote = question;
         scope.confirmType = 'local';
+
+        window.common.alert.show("componentConfirmId", {
+          "confirmnote": scope.confirmNote,
+          "confirmtype": scope.confirmType,
+          parent: scope,
+        });
+
         scope.result = function (bool) {
           if (bool) {
             localStorage.clear();

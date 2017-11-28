@@ -77,27 +77,9 @@
       </button>
     </div>
   </code-confirm>
-  <component-success id="componentSuccessId"
-                     operationmessage="{window.languages.ComponentSuccessMessage}"
-                     viewpage="view-transfer" step_amount="{3}"></component-success>
-  <component-unsuccess id="componentUnsuccessId" step_amount="{3}"
-                       operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
-                       operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
-                       operationmessagepartthree="{errorMessageFromTransfer}"
-  ></component-unsuccess>
-
-  <component-in-processing id="componentInProcessingId"
-                           operationmessagepartone="{window.languages.ComponentInProcessingPartOne}"
-                           operationmessageparttwo="{window.languages.ComponentInProcessingPartTwo}"
-                           step_amount="{3}"></component-in-processing>
-
-  <component-alert if="{showError}" clickpinerror="{clickPinError}" errorcode="{errorCode}"
-                   errornote="{errorNote}"></component-alert>
-
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
 
   <script>
+
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-stepfour') {
       history.arrayOfHistory.push(
         {
@@ -111,8 +93,10 @@
     var scope = this;
     scope.backbuttoncheck = true;
     scope.rightbuttoncheck = false;
-    scope.showError = false;
     scope.errorCode = 0;
+    scope.stepAmount = 3;
+
+    var pageToReturnIfError = 'view-main-page';
 
     console.log("TRANSFER STEP FOUR OPTS", opts)
     scope.tax = opts[1];
@@ -127,7 +111,6 @@
       scope.phoneType = false;
       scope.plus = '+';
     }
-
 
     scope.objectSumForTransfer = opts[0][1];
     scope.objectComment = opts[0][2];
@@ -162,12 +145,6 @@
 
     console.log("CONFIRMED=", sessionStorage.getItem('payTransferConfirmed'))
     console.log("BLOCKED=", payTransferBlocked)
-
-    if (payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) === true) {
-      console.log("payTransferConfirmed=", sessionStorage.getItem('payTransferConfirmed'))
-      transfer();
-      sessionStorage.setItem('payTransferConfirmed', null);
-    }
 
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 
@@ -218,9 +195,7 @@
                 searchedIndex = phone.indexOf(searchNumber);
                 if (searchedIndex != -1) {
                   checkInBottomContacts = true;
-//                  console.log('CHECK', transferContacts[i])
                   transferContacts.splice(i, 1);
-//                  console.log('TRANSFER CONTACTS', transferContacts)
                   localStorage.setItem('transferContacts', JSON.stringify(transferContacts));
                   break;
                 }
@@ -231,7 +206,6 @@
         }
 
       transferContacts = JSON.parse(localStorage.getItem('transferContacts'));
-//      console.log('searchNumber', searchNumber)
 
       var options = new ContactFindOptions();
       options.filter = '';
@@ -247,7 +221,6 @@
           if (contacts[i].phoneNumbers != null)
             if (contacts[i].phoneNumbers[0] != null)
               if (contacts[i].phoneNumbers[0].value != null) {
-//                console.log('contacts[i].phoneNumbers[0].value', contacts[i].phoneNumbers[0].value)
                 digits = contacts[i].phoneNumbers[0].value.match(maskOne)
                 for (var k in digits) {
                   phone += digits[k]
@@ -259,8 +232,6 @@
                   return;
                 }
               }
-
-
         }
       }
 
@@ -283,16 +254,13 @@
         card.owner.firstName = opts[2];
       card.owner.secondName = '';
       var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'))
-//      console.log('CODE OF BANK', codeOfBank)
       if (JSON.parse(localStorage.getItem('p2pTransferCards'))) {
         transferCards = JSON.parse(localStorage.getItem('p2pTransferCards'));
         for (var j = 0; j < transferCards.length; j++) {
-
           if (transferCards[j].cardNumber == saveCard) {
             transferCards.splice(j, 1);
             localStorage.setItem('p2pTransferCards', JSON.stringify(transferCards));
           }
-
         }
       }
 
@@ -300,33 +268,67 @@
         if (codeOfBank == bankList[i].code) {
           if (JSON.parse(localStorage.getItem('p2pTransferCards'))) {
             transferCards = JSON.parse(localStorage.getItem('p2pTransferCards'));
-            card.image = bankList[i].image
-            card.name = bankList[i].name
+            card.image = bankList[i].image;
+            card.name = bankList[i].name;
             card.cardNumber = saveCard;
-            transferCards.unshift(card)
-
+            transferCards.unshift(card);
             localStorage.setItem('p2pTransferCards', JSON.stringify(transferCards));
           }
           else {
-            card.image = bankList[i].image
-            card.name = bankList[i].name
+            card.image = bankList[i].image;
+            card.name = bankList[i].name;
             card.cardNumber = saveCard;
-            transferCards.unshift(card)
+            transferCards.unshift(card);
             localStorage.setItem('p2pTransferCards', JSON.stringify(transferCards));
-
           }
-
         }
       }
 
-      viewTransfer.phoneNumber = 0
-      viewTransfer.cardNumber = 0
-      viewTransfer.cardNumber = 0
+      viewTransfer.phoneNumber = 0;
+      viewTransfer.cardNumber = 0;
+      viewTransfer.cardNumber = 0;
       viewTransferStepTwo.sum = 0;
       viewTransferStepTwo.sumWithoutSpace = 0;
     }
 
     var transferStepTouchStartX, transferStepTouchStartY, transferStepTouchEndX, transferStepTouchEndY;
+
+
+    updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
+      console.log("OPEN RESULT COMPONENT");
+
+//      scope.showResult = showResult;
+      scope.stepAmount = stepAmount;
+
+      scope.viewPage = viewPage;
+      scope.resultText = text;
+
+      if (showResult) {
+
+        window.common.alert.updateView("componentResultId", {
+          parent: scope,
+          resulttext: scope.resultText,
+          viewpage: scope.viewPage,
+          step_amount: scope.stepAmount
+        });
+      } else {
+
+        window.common.alert.hide("componentResultId");
+      }
+      updateIcon(status, null, null, text, stepAmount, scope.viewPage);
+    };
+
+    closeResultComponent = function () {
+      window.common.alert.hide("componentResultId");
+      scope.update();
+    };
+
+    initResultComponent = function () {
+      window.common.alert.updateView("componentResultId", {
+        parent: scope,
+      });
+      scope.update();
+    };
 
     transferStepTouchStart = function () {
       event.preventDefault();
@@ -348,39 +350,22 @@
       if (Math.abs(transferStepTouchStartX - transferStepTouchEndX) <= 20 && Math.abs(transferStepTouchStartY - transferStepTouchEndY) <= 20) {
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-          scope.showError = true;
           scope.errorNote = question;
-
-//        confirm(question)
-//        scope.confirmShowBool = true;
-//        scope.confirmNote = question;
-//        scope.confirmType = 'local';
-//        scope.result = function (bool) {
-//          if (bool) {
-//            localStorage.clear();
-//            window.location = 'index.html'
-//            scope.unmount()
-//            return
-//          }
-//          else{
-//            scope.confirmShowBool = false;
-//            return
-//          }
-//        };
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errorcode: scope.errorCode,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+          });
           scope.update();
-
           return
         }
-
         if (payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) != true) {
           riotTags.innerHTML = "<view-pin-code>";
           riot.mount('view-pin-code', ['view-transfer-stepfour']);
           return
         }
-
         transfer();
-
-
       }
     }
 
@@ -393,22 +378,12 @@
       if (!objectForTransfer.transactionId)
         objectForTransfer.transactionId = parseInt(Date.now() / 1000);
 
-      if (device.platform != 'BrowserStand') {
-        var options = {dimBackground: true};
+      initResultComponent();
 
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Spinner start in transfer");
-        }, function () {
-          console.log("Spinner stop in transfer");
-        });
-      }
-
-
-      console.log("TRANSACTION_ID", objectForTransfer.transactionId)
+      console.log("TRANSACTION_ID", objectForTransfer.transactionId);
 
       window.api.call({
         method: 'p2p.payment',
-        stopSpinner: true,
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber,
@@ -434,10 +409,7 @@
 
                   answerFromServer = true;
 
-                  if (device.platform != 'BrowserStand') {
-                    console.log("Spinner Stop Transfer Step Four 432");
-                    SpinnerPlugin.activityStop();
-                  }
+                  closeResultComponent();
 
                   blockCodeConfirmId.style.display = 'block';
                   this.secretCode = result[1][0].secret_code;
@@ -447,44 +419,25 @@
                   viewTransferStepTwo.sum = 0;
                   viewTransferStepTwo.sumWithoutSpace = 0;
                   window.updateBalanceGlobalFunction();
-
                   scope.update();
-
                 }
                 if (result[1][0].secret_code == 0) {
-
-//                  if (device.platform != 'BrowserStand') {
-//                    var options = {dimBackground: true};
-//
-//                    SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-//                      console.log("Started");
-//                    }, function () {
-//                      console.log("closed");
-//                    });
-//                  }
-
                   setTimeout(function () {
                     checkTransferStatus(result[1][0].payment_id);
                   }, 2000);
-
                 }
               }
-
           }
           else {
-
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Transfer Step Four 471");
-              SpinnerPlugin.activityStop();
-            }
-            scope.errorMessageFromTransfer = result[0][0].error_note
-            componentUnsuccessId.style.display = 'block';
-            scope.update();
+//            scope.errorMessageFromTransfer = result[0][0].error_note
+//            componentUnsuccessId.style.display = 'block';
+            updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', result[0][0].error_note)
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
-          componentUnsuccessId.style.display = 'block';
+          updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
+//          componentUnsuccessId.style.display = 'block';
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -492,15 +445,9 @@
 
       setTimeout(function () {
         if (!answerFromServer) {
-          if (device.platform != 'BrowserStand') {
-              console.log("Spinner stop in transfer step four by timeout");
-              SpinnerPlugin.activityStop();
-          }
           window.api.forceClose();
-          scope.showError = true;
-          scope.errorNote = "Время ожидания истекло";
-          scope.errorCode = 1;
-          scope.update();
+//          scope.showError = true;
+          updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
           return
         }
       }, 30000)
@@ -517,7 +464,6 @@
 
       window.api.call({
         method: 'get.payment',
-        stopSpinner: false,
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber,
@@ -531,73 +477,43 @@
           console.log("GET PAYMENT RESULT", result);
 
           if (result[0][0].error == 0 && result[1][0]) {
-
-
             if (result[1][0].state == -1) {
               answerFromServer = true;
 
               window.languages.tempText = JSON.stringify(result[1][0].error);
               scope.errorMessageFromTransfer = result[1][0].error;
-              if (device.platform != 'BrowserStand') {
-                console.log("Spinner Stop Transfer Step Four 524");
-                SpinnerPlugin.activityStop();
-              }
-              componentUnsuccessId.style.display = 'block';
-              riot.update()
-
+              updateResultComponent(true, scope.stepAmount, null, 'unsuccess', result[1][0].error);
 
             } else if (result[1][0].state == 2) {
               answerFromServer = true;
 
-              if (device.platform != 'BrowserStand') {
-                console.log("Spinner Stop Transfer Step Four 534");
-                SpinnerPlugin.activityStop();
-              }
-
               window.updateBalanceGlobalFunction();
-              componentSuccessId.style.display = 'block';
+              updateResultComponent(true, scope.stepAmount, null, 'success', window.languages.ComponentSuccessMessage);
               transferFindCards(scope.objectTypeForTransfer.name);
-
-
             } else if (result[1][0].state == 1) {
-
               console.log("COUNTER COUNTER+1", counter, counter + 1);
               counter++;
 
               if (counter < 5) {
-
                 setTimeout(function () {
                   checkTransferStatus(result[1][0].payment_id);
                 }, 2000);
-
               } else {
                 answerFromServer = true;
-
-                if (device.platform != 'BrowserStand') {
-                  console.log("Spinner Stop Transfer Step Four 557");
-                  SpinnerPlugin.activityStop();
-                }
-
-                componentInProcessingId.style.display = 'block';
+                updateResultComponent(true, scope.stepAmount, null, 'waiting', window.languages.ComponentInProcessingPartOne);
               }
-
             }
             window.api.spinnerOn = false;
-
           }
           else {
             answerFromServer = true;
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop Transfer Step Four 570");
-              SpinnerPlugin.activityStop();
-            }
-            componentUnsuccessId.style.display = 'block';
+            updateResultComponent(true, scope.stepAmount, null, 'unsuccess', result[0][0].error);
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
-          componentUnsuccessId.style.display = 'block';
+          updateResultComponent(true, scope.stepAmount, null, 'unsuccess', api_status_message);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -606,7 +522,19 @@
 
     closeSecretCodePage = function () {
       blockCodeConfirmId.style.display = 'none';
-      componentInProcessingId.style.display = 'block';
+      window.common.alert.show("componentInProcessingId", {
+        parent: scope,
+        operationmessagepartone: window.languages.ComponentInProcessingPartOneForTransfer,
+        operationmessageparttwo: window.languages.ComponentInProcessingPartTwoForTransfer,
+        step_amount: 3
+      });
+    };
+
+    if (payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) === true) {
+      console.log("payTransferConfirmed=", sessionStorage.getItem('payTransferConfirmed'))
+      transfer();
+      sessionStorage.setItem('payTransferConfirmed', null);
     }
+
   </script>
 </view-transfer-stepfour>

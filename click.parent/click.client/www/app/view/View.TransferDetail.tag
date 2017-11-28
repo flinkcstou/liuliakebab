@@ -76,11 +76,8 @@
     </div>
   </code-confirm>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
-
   <script>
+
     var scope = this,
       touchStartDeclineX,
       touchEndDeclineX,
@@ -97,7 +94,6 @@
 
     scope.titleName = window.languages.ViewTransferDetailTitle;
     scope.showConfirmPanel = false;
-    scope.showError = false;
     scope.showComponent = false;
 
     console.log('WWWWWWWWWW')
@@ -170,9 +166,15 @@
 
         if (!secret_key) {
 
-          scope.showError = true;
           scope.errorNote = window.languages.ViewTransferDetailCodeNotEntered;
           scope.clickPinError = false;
+
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+          });
+
           scope.update();
 
           return;
@@ -303,7 +305,13 @@
             else {
               scope.clickPinError = false;
               scope.errorNote = result[0][0].error_note;
-              scope.showError = true;
+
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote,
+              });
+
               scope.update();
             }
           },

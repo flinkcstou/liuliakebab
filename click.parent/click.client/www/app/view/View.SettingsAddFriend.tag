@@ -26,7 +26,7 @@
         <div id="namePhoneFieldId" class="settings-add-friend-name-phone-field">
           <p class="settings-add-friend-contact-text-field"></p>
           <p class="settings-add-friend-contact-number-first-part"></p>
-          <input maxlength="20" id="contactNameId" ontouchend="namePhoneFieldTouchEnd()" autofocus="true"
+          <input maxlength="20" id="contactNameId" ontouchend="namePhoneFieldTouchEnd()"
                  class="settings-add-friend-name-number-input-part"
                  type="text"/>
         </div>
@@ -61,19 +61,16 @@
 
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
   <script>
+
     var scope = this;
-    scope.showError = false;
     scope.numberLength = 10;
     this.titleName = window.languages.ViewSettingsAddFriendTitleName;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-add-friend') {
       history.arrayOfHistory.push(
         {
-          "view"  : 'view-add-friend',
+          "view": 'view-add-friend',
           "params": opts
         }
       );
@@ -82,8 +79,10 @@
 
     this.on('mount', function () {
 
-      namePhoneFieldId.style.borderBottom = "" + 3 * widthK + "px solid #01cfff"
-      contactPhoneFieldId.style.borderBottom = "" + 3 * widthK + "px solid #cbcbcb"
+      namePhoneFieldId.style.borderBottom = "" + 3 * widthK + "px solid #cbcbcb";
+      contactPhoneFieldId.style.borderBottom = "" + 3 * widthK + "px solid #01cfff";
+      contactPhoneNumberId.focus();
+      contactPhoneNumberId.autofocus;
       if (contactPhoneNumberId.value.length != scope.numberLength) {
         nextButtonId.style.display = 'none'
       }
@@ -195,14 +194,20 @@
         console.log('CONTACTINFO', contactInfo)
         setTimeout(function () {
           var phoneNumber
-          if (device.platform == 'iOS') {
+          if (device.platform === 'iOS') {
             phoneNumber = contactInfo.phoneNr;
             contactNameId.value = contactInfo.displayName
+            if (contactNameId.value.length > 20){
+              contactNameId.value = contactNameId.value.substring(0, 21) + "...";
+            }
           }
 
-          if (device.platform == 'Android') {
+          if (device.platform === 'Android') {
             phoneNumber = contactInfo.nameFormated
             contactNameId.value = contactInfo.displayName
+            if (contactNameId.value.length > 20){
+              contactNameId.value = contactNameId.value.substring(0, 21) + "...";
+            }
           }
 
           var phone = inputVerification.telVerification(phoneNumber);
@@ -254,7 +259,13 @@
       function error(message) {
         scope.clickPinError = false;
         scope.errorNote = 'Failed because: ' + message;
-        scope.showError = true;
+
+        window.common.alert.show("componentAlertId", {
+          parent: scope,
+          clickpinerror: scope.clickPinError,
+          errornote: scope.errorNote,
+        });
+
         scope.update();
       }
     }
@@ -600,6 +611,7 @@
         object.name = contactNameId.value.toString();
         object.number = window.languages.CodeOfCountry + inputVerification.spaceDeleter(contactPhoneNumberId.value);
         object.firstLetterOfName = '';
+        object.id = object.number + Math.floor((Math.random() * 1000) + 1);
 
         var index = -1;
         arrayOfContacts.filter(function (wordOfFunction) {

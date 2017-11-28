@@ -32,7 +32,7 @@
            ontouchend="goToInvoiceHistoryDetailTouchEnd(this.title, this.id)"
            ontouchstart="goToInvoiceHistoryDetailTouchStart(this.id)">
         <div
-          class="invoice-list-invoice-sum-holder {invoice-list-invoice-is-p2p: invoice.is_p2p == 1 && toUser, invoice-list-invoice-is-not-p2p: invoice.is_p2p == 0 || !toUser}">
+            class="invoice-list-invoice-sum-holder {invoice-list-invoice-is-p2p: invoice.is_p2p == 1 && toUser, invoice-list-invoice-is-not-p2p: invoice.is_p2p == 0 || !toUser}">
           <mark class="invoice-list-invoice-sum-sym">сум</mark>
           <p class="invoice-list-invoice-sum">{invoice.amount}</p>
         </div>
@@ -74,9 +74,6 @@
   <view-payment-detail hidden="{!showComponentPayment || !showComponent}"></view-payment-detail>
   <view-invoice-history-detail hidden="{!showComponentHistory || !showComponent}"></view-invoice-history-detail>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
   <component-tour view="invoice"></component-tour>
 
   <script>
@@ -90,7 +87,6 @@
 
     componentMenu.check = false;
 
-    scope.showError = false;
     scope.invoiceList = [];
     scope.titleName = languages.ViewInvoiceListTitle;
     if (opts.toUser)
@@ -218,9 +214,12 @@
             }
           }
           else {
-            scope.clickPinError = false;
-            scope.errorNote = result[0][0].error_note;
-            scope.showError = true;
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: false,
+              errornote: result[0][0].error_note
+            });
             scope.update();
           }
         },
@@ -229,8 +228,8 @@
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
-      });
-      if (!checkAnswerToUser && window.isConnected) {
+      }, 10000);
+      if (!checkAnswerToUser) {
         console.log("wwww to user")
         setTimeout(function () {
           if (!checkAnswerToUser) {
@@ -239,11 +238,14 @@
               console.log("Spinner Stop View Invoice List 238");
               SpinnerPlugin.activityStop();
             }
-            scope.clickPinError = false;
-            scope.showError = true;
-            scope.errorNote = "Сервис временно недоступен";
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: false,
+              errornote: "Сервис временно недоступен"
+            });
+
             scope.update();
-            window.isConnected = false;
             return
           }
         }, 10000);
@@ -318,9 +320,11 @@
             }
           }
           else {
-            scope.clickPinError = false;
-            scope.errorNote = result[0][0].error_note;
-            scope.showError = true;
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: false,
+              errornote: result[0][0].error_note
+            });
             scope.update();
           }
         },
@@ -329,9 +333,9 @@
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
-      });
+      }, 10000);
 
-      if (!checkAnswerFromUser && window.isConnected) {
+      if (!checkAnswerFromUser) {
         console.log("wwww from user")
         setTimeout(function () {
           if (!checkAnswerFromUser) {
@@ -340,11 +344,13 @@
               console.log("Spinner Stop View Invoice List 339");
               SpinnerPlugin.activityStop();
             }
-            scope.clickPinError = false;
-            scope.showError = true;
-            scope.errorNote = "Сервис временно недоступен";
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: false,
+              errornote: "Сервис временно недоступен"
+            });
             scope.update();
-            window.isConnected = false;
             return
           }
         }, 10000);

@@ -49,12 +49,8 @@
     </div>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
   <script>
     var scope = this;
-    scope.showError = false;
 
     scope.suggestionOne = {};
     scope.suggestionOne.photo = '';
@@ -86,7 +82,7 @@
         arrayOfConnectedSuggestion = scope.categoryList.concat(scope.serviceList);
       if (device.platform != 'BrowserStand')
         StatusBar.backgroundColorByHexString("#353340");
-    }
+    };
 
     searchCancelEnd = function () {
       event.preventDefault();
@@ -96,7 +92,7 @@
         StatusBar.backgroundColorByHexString("#007AE2");
       scope.searchWord = '';
       Keyboard.hide();
-    }
+    };
 
     var arrayOfContacts = [];
 
@@ -117,13 +113,16 @@
       }
 
       function error(message) {
-        scope.clickPinError = false;
-        scope.errorNote = 'Failed because: ' + message;
-        scope.showError = true;
+
+        window.common.alert.show("componentAlertId", {
+          parent: scope,
+          clickpinerror: false,
+          errornote: 'Failed because: ' + message
+        });
         scope.update();
 //        alert('Failed because: ' + message);
       }
-    }
+    };
     if (device.platform != 'BrowserStand')
       findContacts();
 
@@ -183,7 +182,7 @@
             else
               scope.suggestionTwo.photo = '';
 
-            scope.update(scope.suggestionTwo)
+            scope.update(scope.suggestionTwo);
 
             firstSuggestionBlockId.style.display = 'block';
             secondSuggestionBlockId.style.display = 'block';
@@ -206,7 +205,7 @@
             else
               scope.suggestionThree.photo = '';
 
-            scope.update(scope.suggestionThree)
+            scope.update(scope.suggestionThree);
 
             firstSuggestionBlockId.style.display = 'block';
             secondSuggestionBlockId.style.display = 'block';
@@ -249,7 +248,7 @@
           fourthSuggestionBlockId.style.display = 'none';
         }
       });
-    }
+    };
 
     firstSuggestionBlock = function () {
       event.preventDefault();
@@ -265,7 +264,7 @@
       scope.update(scope.parent.defaultNumber);
 
       //contactPhoneNumberId.value = scope.suggestionOne.phoneNumber.substring(3, scope.suggestionOne.phoneNumber.length).replace(/\s/g, '');
-    }
+    };
 
     secondSuggestionBlock = function () {
       event.preventDefault();

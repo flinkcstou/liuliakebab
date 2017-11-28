@@ -21,19 +21,15 @@
     <div class="card-number-part-two">{opts.numberparttwo}</div>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
   <script>
     modeOfApp.offlineMode.balance = false;
 
     var scope = this;
-    scope.showError = false;
 
     if (!opts.background) {
-      console.log('QWEQ')
-      opts.background = 'background-image: url(resources/icons/cards/all.png)'
-      console.log('opts.background', opts.background)
+      console.log('QWEQ');
+      opts.background = 'background-image: url(resources/icons/cards/all.png)';
+      console.log('opts.background', opts.background);
       scope.update()
     }
 
@@ -45,11 +41,11 @@
     cardTouchStart = function (id) {
 
       //document.getElementById(id).style.webkitTransform = 'scale(0.8)'
-    }
+    };
 
     cardTouchEnd = function (id) {
 //      document.getElementById(id).style.webkitTransform = 'scale(1)'
-    }
+    };
 
     offlineBalanceTrueTouchStart = function () {
       event.stopPropagation();
@@ -62,9 +58,15 @@
           "*880*2%23",
           function (err) {
             if (err == "empty") {
+
               scope.clickPinError = false;
               scope.errorNote = "Unknown phone number";
-              scope.showError = true;
+
+              window.common.alert.show("componentAlertId", {
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote,
+                parent: scope
+              });
               scope.update();
             }
             else console.log("Dialer Error:" + err);
@@ -74,12 +76,12 @@
         );
         return
       }
-    }
+    };
 
     offlineBalanceTrueTouchEnd = function () {
       event.stopPropagation();
       event.preventDefault();
-    }
+    };
     offlineBalanceTrueTouchMove = function () {
       event.stopPropagation();
       event.preventDefault();

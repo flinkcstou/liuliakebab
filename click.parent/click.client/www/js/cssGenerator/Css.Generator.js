@@ -43,6 +43,15 @@ var css = {
   "font-style: normal;" +
   "}",
 
+  OcrAStdRegular: "@font-face " +
+  "{" +
+  "font-family: 'OCRAStd';" +
+  "src: url('resources/font/OCRAStd/OCRAStd.otf');" +
+  "format: ('opentype');" +
+  "font-weight: normal;" +
+  "font-style: normal;" +
+  "}",
+
 
   // riotTagsMainContainer: ".riot-tags-main-container " +
   // "{" +
@@ -65,11 +74,11 @@ var css = {
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
   "touch-action: manipulation;" +
-  //"background-image: url(resources/from-user.png);" +
-  //"opacity: 0.6;" +
-  //"background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  //"background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  //"background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
+  // "background-image: url('resources/addcarddraft.png');" +
+  // "opacity: 0.6;" +
+  // "background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
+  // "background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
+  // "background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
   "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
   "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
   "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
@@ -80,6 +89,7 @@ var css = {
   "-webkit-user-select: text; " +
   "-webkit-touch-callout: none; " +
   "-webkit-user-drag: none; " +
+  "-webkit-tap-highlight-color: rgba(0, 0, 0, 0); " +
   "text-decoration:none;" +
   "color:inherit;" +
   "font-size:" + 32 * widthK + "px;" +
@@ -220,6 +230,25 @@ var css = {
   "overflow: hidden;" +
   "bottom: 0;" +
   "}",
+
+  // //ALERTS
+  // componentAlertBlockId: "#alertComponentBlockId display: none;}",
+  //
+  // componentAlertId: "#componentAlertId {display: none;}",
+  //
+  // componentConfirmId: "#componentConfirmId {display: none;}",
+  //
+  // componentInProcessId: "#componentInProcessingId {display: none;}",
+  //
+  // componentResultId: "#componentResultId {display: none;}",
+  //
+  // componentSuccessId: "#componentSuccessId {display: none;}",
+  //
+  // componentUnsuccessId: "#componentUnsuccessId {display: none;}",
+  //
+  // componentGenQRId: "#componentGeneratedQrId {display: none;}",
+  //
+  // //ALERTS
 
   //VIEW INVOICE LIST
 
@@ -1350,17 +1379,29 @@ var css = {
   "width:" + 105 * widthK + "px;" +
   "height:" + 105 * widthK + "px;" +
   // "left:" + 272 * widthK + "px;" +
-  "bottom:" + 10 * widthK + "px;" +
+  "bottom:" + 22 * widthK + "px;" +
   "border-radius:" + 100 * widthK + "px;" +
   "background-color: white;" +
   "border:" + 8 * widthK + "px solid #00a8f1;" +
   "background-image: url(resources/icons/bank-operations/circleReport.png);" +
   "background-repeat: no-repeat;" +
-  "background-size: 90%;" +
-  "background-position: center;" +
+  "background-size: 75%;" +
+  "background-position-x: 50%;" +
+  "background-position-y: 50%;" +
   "-webkit-box-shadow: 0px 10px 5px -7px rgba(0,0,0,0.45);" +
   "-moz-box-shadow: 0px 10px 5px -7px rgba(0,0,0,0.45);" +
   "box-shadow: 0px 10px 5px -7px rgba(0,0,0,0.45);" +
+  "}",
+
+  toolbarCircleContainerTitle: ".toolbar-circle-container-title " +
+  "{" +
+  "position: relative;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "width:" + 117 * widthK + "px;" +
+  "bottom:" + 17 * widthK + "px;" +
+  "color: white;" +
+  "font-size:" + 30 * widthK + "px;" +
   "}",
 
   menuButton: ".menu-button " +
@@ -1434,7 +1475,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "bottom:" + 429 * heightK + "px;" +
-  "top:" + 545 * widthK + "px;" +
+  "top:" + 564 * widthK + "px;" +
   "width: 100%;" +
   "}",
 
@@ -1502,7 +1543,7 @@ var css = {
   "width:" + 720 * widthK + "px;" +
   "height: 60%;" +
   // "bottom:" + 85 * heightK + "px;" +
-  "top:" + 30 * heightK + "px;" +
+  "top:" + 55 * heightK + "px;" +
   // "top: 15%;" +
   "}",
 
@@ -1534,7 +1575,7 @@ var css = {
   "right:" + 27 * widthK + "px;" +
   "border-bottom: 1px solid #4ae3ff;" +
   "text-align: center;" +
-  "top:" + 440 * widthK + "px;" +
+  "top:" + 473 * widthK + "px;" +
   "height:" + 100 * heightK + "px;" +
   "}",
 
@@ -1625,7 +1666,7 @@ var css = {
   "height:" + 290 * widthK + "px;" +
   "width: 100%;" +
   "display: inline-block;" +
-  "top:" + 140 * widthK + "px;" +
+  "top:" + 182 * widthK + "px;" +
   "background: transparent;" +
   "transition: 1s;" +
   "-webkit-transform: scale(1);" +
@@ -1877,11 +1918,11 @@ var css = {
   "top:" + 242 * widthK + "px;" +
   "width:" + 384 * widthK + "px;" +
   "height:" + 40 * widthK + "px;" +
-  "font-size:" + 32 * widthK + "px;" +
-  "text-shadow: white -1px -1px 0.4px, black 0.0px 1px 0.2px, white -1px -1px 0.4px, black 0.0px 1px 0.4px;" +
-  "-webkit-text-shadow: white -1px -1px 0.4px, black 0.0px 1px 0.2px, white -1px -1px 0.4px, black 0.0px 1px 0.4px;" +
-  "color: transparent;" +
-  "font-family: Orator;" +
+  "font-size:" + 26 * widthK + "px;" +
+  // "text-shadow: white -1px -1px 0.4px, black 0.0px 1px 0.2px, white -1px -1px 0.4px, black 0.0px 1px 0.4px;" +
+  // "-webkit-text-shadow: white -1px -1px 0.4px, black 0.0px 1px 0.2px, white -1px -1px 0.4px, black 0.0px 1px 0.4px;" +
+  // "color: transparent;" +
+  "font-family: 'OCRAStd';" +
   "left:" + 20 * widthK + "px;" +
   "}",
 
@@ -1889,25 +1930,25 @@ var css = {
   "{" +
   "position: absolute;" +
   "left: 0px;" +
-  "font-weight: bold;" +
+  // "font-weight: bold;" +
   "}",
 
   cardNumberPartTwo: ".card-number-part-two " +
   "{" +
   "position: absolute;" +
   "left:" + 304 * widthK + "px;" +
-  "font-weight: bold;" +
+  // "font-weight: bold;" +
   "}",
 
   numberStars: ".number-stars " +
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "left:" + 90 * widthK + "px;" +
-  "top:" + 2 * widthK + "px;" +
-  "letter-spacing:" + -10 * widthK + "px;" +
-  "font-size:" + 52 * widthK + "px;" +
-  "word-spacing:" + -8 * widthK + "px;" +
+  "left:" + 108 * widthK + "px;" +
+  // "top: -" + 8 * widthK + "px;" +
+  // "letter-spacing:" + -10 * widthK + "px;" +
+  "font-size:" + 26 * widthK + "px;" +
+  // "word-spacing:" + -8 * widthK + "px;" +
   "}",
 
   //SERVICE CAROUSEL COMPONENT
@@ -1916,7 +1957,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "top:" + 805 * heightK + "px;" +
+  "top:" + 850 * heightK + "px;" +
   "bottom:" + 90 * widthK + "px;" +
   "background: transparent;" +
   "}",
@@ -1950,7 +1991,7 @@ var css = {
   "position: absolute;" +
   "height: 55%;" +
   "width: 100%;" +
-  "bottom: 15%;" +
+  "bottom: 23%;" +
   "left:" + 25 * widthK + "px;" +
   "}",
 
@@ -2013,7 +2054,7 @@ var css = {
   serviceLabels: ".service-labels " +
   "{" +
   "position: absolute;" +
-  "bottom:0;" +
+  "bottom:" + 12 * widthK + "px;" +
   "font-size:" + 25 * widthK + "px;" +
   "color: grey;" +
   "width: 100%;" +
@@ -2658,7 +2699,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "top:" + -22 * widthK + "px;" +
+  "top:" + -64 * widthK + "px;" +
   "}",
 
   myCardsButtonContainer: ".my-cards-button-container " +
@@ -3892,7 +3933,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 60%;" +
   "background-position: center;" +
-  "top: 27%;" +
+  "top: 25%;" +
   "right: -2%;" +
   "}",
 
@@ -3953,7 +3994,7 @@ var css = {
   "{" +
   "float: left;" +
   "position: relative;" +
-  "top: 30%;" +
+  "top: 25%;" +
   "font-size: " + 54 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
@@ -4001,7 +4042,7 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top: 30%;" +
+  "top: 25%;" +
   "padding: 0;" +
   "margin: 0;" +
   "margin-left: 3%;" +
@@ -5297,6 +5338,7 @@ var css = {
   "position: absolute;" +
   "background-color: transparent;" +
   "width: 100%;" +
+  "height: 92%;" +
   "top: 8%;" +
   "bottom: 0;" +
   "overflow-y:scroll;" +
@@ -5421,10 +5463,11 @@ var css = {
   "position: absolute;" +
   "top: 80%;" +
   "width:100%;" +
-  "font-size:" + 21 * widthK + "px;" +
-  "text-shadow: white -1px -1px 0.4px, black 0.0px 1px 0.2px, white -1px -1px 0.4px, black 0.0px 1px 0.4px;" +
-  "-webkit-text-shadow: white -1px -1px 0.4px, black 0.0px 1px 0.2px, white -1px -1px 0.4px, black 0.0px 1px 0.4px;font-family: Orator;" +
-  "color: transparent;" +
+  "font-size:" + 18 * widthK + "px;" +
+  // "text-shadow: white -1px -1px 0.4px, black 0.0px 1px 0.2px, white -1px -1px 0.4px, black 0.0px 1px 0.4px;" +
+  // "-webkit-text-shadow: white -1px -1px 0.4px, black 0.0px 1px 0.2px, white -1px -1px 0.4px, black 0.0px 1px 0.4px;" +
+  "font-family: 'OCRAStd';" +
+  // "color: transparent;" +
   "left:5%" +
   "}",
 
@@ -5432,26 +5475,144 @@ var css = {
   "{" +
   "position: absolute;" +
   "left: 0px;" +
-  "font-weight: bold;" +
+  // "font-weight: bold;" +
   "}",
 
   myCardListcardNumberPartTwo: ".mycardlist-card-number-part-two " +
   "{" +
   "position: absolute;" +
   "left:58%;" +
-  "font-weight: bold;" +
+  // "font-weight: bold;" +
   "}",
 
   myCardListnumberStars: ".mycardlist-number-stars " +
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "left: 18%;" +
-  "letter-spacing:" + -8 * widthK + "px;" +
-  "font-size:" + 36 * widthK + "px;" +
+  "left: 19%;" +
+  // "letter-spacing:" + -8 * widthK + "px;" +
+  "font-size:" + 18 * widthK + "px;" +
   "}",
 
   //VIEW TRANSFER
+
+  transferBlockContainer: ".transfer-block-container" +
+  "{" +
+  "position: relative;" +
+  "min-height:" + 100 * widthK + "px; " +
+  "width: 100%;" +
+  "padding-top: 1%;" +
+  "border-bottom:" + 1 + "px solid gainsboro;" +
+  "background-color: transparent;" +
+  "}",
+
+  transferCategoryIcon: ".transfer-category-icon" +
+  "{" +
+  "position: relative;" +
+  "width: 13%;" +
+  "height:" + 95 * widthK + "px; " +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "float: left;" +
+  "left: 3%;" +
+  "background-size: 50%;" +
+  "}",
+
+  transferCategoryNameField: ".transfer-category-name-field" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "top: " + 31 * widthK + "px; " +
+  "left: 6%;" +
+  "text-align: left;" +
+  "font-size:" + 29 * widthK + "px; " +
+  "color: gray;" +
+  "}",
+
+  transferIconTick: ".transfer-icon-tick " +
+  "{" +
+  "position: relative;" +
+  "left: 91%;" +
+  "background-size: contain;" +
+  "background-image: url(resources/icons/ViewService/right.png);" +
+  "background-repeat: no-repeat;" +
+  "width:" + 19 * widthK + "px;" +
+  "height:" + 18 * widthK + "px;" +
+  "top:" + 9 * widthK + "px;" +
+  "}",
+
+  transferBetweenCardsTitle: ".transfer-between-cards-title" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "}",
+
+  transferBetweenCardsComission: ".transfer-between-cards-commission" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "right:" + 6 * widthK + "px;" +
+  "bottom: -" + 52 * widthK + "px;" +
+  "}",
+
+  transferBetweenCardsSumContainer: ".transfer-between-cards-sum-container" +
+  "{" +
+  "position: relative;" +
+  "left: 10%;" +
+  "width: 79.5%;" +
+  "height:" + 130 * widthK + "px;" +
+  "border-bottom:" + 3 * widthK + "px solid #01cfff;" +
+  "color: white;" +
+  "top:" + 52 * widthK + "px;" +
+  "}",
+
+  transferBetweenCardsCardsContainer: ".transfer-between-cards-cards-container" +
+  "{" +
+  "position: relative;" +
+  "left: 10%;" +
+  "width: 79.5%;" +
+  "height:" + 130 * widthK + "px;" +
+  "color: white;" +
+  "top:" + 52 * widthK + "px;" +
+  "}",
+
+  transferBetweenCardsFromContainer: ".transfer-between-cards-from-to-container" +
+  "{" +
+  "position: relative;" +
+  "width: 79.5%;" +
+  "height:" + 130 * widthK + "px;" +
+  "color: white;" +
+  "top:" + 52 * widthK + "px;" +
+  "}",
+
+  transferBetweenCardsSumInput: ".transfer-between-cards-sum-input" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: relative;" +
+  "top:" + 10 * widthK + "px;" +
+  "padding: 0;" +
+  "margin: 0;" +
+  "font-size:" + 55 * widthK + "px;" +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
+  "}",
+
+  transferBetweenCardsArrowDown: ".transfer-between-cards-arrow-down" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "margin: auto;" +
+  "height:" + 32 * widthK + "px;" +
+  "width:" + 30 * widthK + "px;" +
+  "background-image: url('resources/icons/ViewTransfer/banks_limit_receipt.png');" +
+  "}",
 
   transferBodyContainer: ".transfer-body-container" +
   "{" +
@@ -5588,6 +5749,14 @@ var css = {
   "background-color: transparent;" +
   "}",
 
+  transferNewContactBodyContainer: ".transfer-new-contact-body-container" +
+  "{" +
+  "position: absolute;" +
+  "height: 50%;" +
+  "width: 100%;" +
+  "background-color: transparent;" +
+  "}",
+
   transferContactPhoneField: ".transfer-contact-phone-field" +
   "{" +
   "position: absolute;" +
@@ -5606,6 +5775,33 @@ var css = {
   "color: gray;" +
   "font-size:" + 24 * widthK + "px;" +
   "top: -9%;" +
+  "}",
+
+  transferContactAccess: ".transfer-contact-access-text" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "top: -9%;" +
+  "}",
+
+  transferContactAccessSettings: ".transfer-contact-access-text-settings" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "color: #01cfff;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "top: -9%;" +
+  "}",
+
+  transferContactAccessContainer: ".transfer-contact-access-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 79.5%;" +
+  "height:" + 120 * widthK + "px;" +
+  "left: 10%;" +
+  "top:" + 165 * widthK + "px;" +
   "}",
 
   transferContactPhoneIcon: ".transfer-contact-phone-icon" +
@@ -5716,7 +5912,6 @@ var css = {
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "}",
-
 
   transferContactFoundPhoto: ".transfer-contact-found-photo" +
   "{" +
@@ -6695,7 +6890,8 @@ var css = {
   "width: 100%;" +
   //"background-color: #353340;" +
   //"background-image: url(resources/icons/transparent.png);" +
-  "display: none;" +
+  // "display: none;" +
+  "z-index: 999999999;" +
   "background-color: rgba(255,255,255,0.95);" +
   "}",
 
@@ -6709,7 +6905,7 @@ var css = {
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "margin-right: auto;" +
-  "top:" + 610 * widthK + "px;" +
+  "top:" + 400 * widthK + "px;" +
   "left:" + -10 * widthK + "px;" +
   "font-size:" + 36 * widthK + "px;" +
   "}",
@@ -6724,8 +6920,23 @@ var css = {
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "margin-right: auto;" +
-  "top:" + 610 * widthK + "px;" +
+  "top:" + 400 * widthK + "px;" +
   "left:" + -10 * widthK + "px;" +
+  "font-size:" + 36 * widthK + "px;" +
+  "}",
+
+  InProcessingOperationSuccessMessagePartTwoForTransfer: ".in-processing-operation-success-message-part-two-for-transfer" +
+  "{" +
+  "position: relative;" +
+  "color: black;" +
+  "width: 100%;" +
+  "text-align: center;" +
+  "margin-left: auto;" +
+  "margin-top: 0;" +
+  "margin-bottom: 0;" +
+  "margin-right: auto;" +
+  "top:" + 400 * widthK + "px;" +
+  "left: 0;" +
   "font-size:" + 36 * widthK + "px;" +
   "}",
 
@@ -6783,9 +6994,7 @@ var css = {
   "opacity: 0.95;" +
   "height: 100%;" +
   "width: 100%;" +
-  //"background-color: #353340;" +
-  //"background-image: url(resources/icons/transparent.png);" +
-  "display: none;" +
+  "z-index: 999999999;" +
   "background-color: rgba(255,255,255,0.95);" +
   "}",
 
@@ -6793,15 +7002,18 @@ var css = {
   "{" +
   "position: relative;" +
   "color: black;" +
-  "width:" + 300 * widthK + "px;" +
+  "width:" + 340 * widthK + "px;" +
+  "height:" + 390 * widthK + "px;" +
   "text-align: center;" +
   "margin-left: auto;" +
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "margin-right: auto;" +
-  "top:" + 610 * widthK + "px;" +
+  "top:" + 280 * widthK + "px;" +
   "left:" + -10 * widthK + "px;" +
   "font-size:" + 36 * widthK + "px;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
   "}",
 
   successNextButtonInnerContainer: ".success-next-button-inner-container" +
@@ -6939,21 +7151,25 @@ var css = {
   "height: 100%;" +
   "width: 100%;" +
   "background-color: #353340;" +
-  "display: none;" +
+  // "display: none;" +
+  "z-index: 999999999;" +
   "}",
 
   unsuccessOperationSuccessMessage: ".unsuccess-operation-success-message" +
   "{" +
   "position: relative;" +
-  "color: white;" +
-  "width:" + 380 * widthK + "px;" +
+  "color: #ff3c5e;" +
+  "width:" + 640 * widthK + "px;" +
+  "height:" + 435 * widthK + "px;" +
+  "font-size:" + 30 * widthK + "px;" +
   "text-align: center;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
   "margin-top: 0;" +
   "margin-bottom: 0;" +
-  "top:" + 585 * widthK + "px;" +
-  "font-size:" + 38 * widthK + "px;" +
+  "top:" + 340 * widthK + "px;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
   "}",
 
   unsuccessNextButtonInnerContainer: ".unsuccess-next-button-inner-container" +
@@ -6985,26 +7201,13 @@ var css = {
   "vertical-align: middle;" +
   "}",
 
-  unsuccessOperationSuccessMessagePartThree: ".unsuccess-operation-success-message-part-three" +
-  "{" +
-  "position: relative;" +
-  "color: #ff3c5e;" +
-  "width:" + 640 * widthK + "px;" +
-  "font-size:" + 30 * widthK + "px;" +
-  "text-align: center;" +
-  "margin-left: auto;" +
-  "margin-right: auto;" +
-  "margin-top: 0;" +
-  "margin-bottom: 0;" +
-  "top:" + 725 * widthK + "px;" +
-  "}",
 
   unsuccessUnsuccessIcon: ".unsuccess-unsuccess-icon" +
   "{" +
   "position: relative;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
-  "top:" + 165 * widthK + "px;" +
+  "top:" + 250 * widthK + "px;" +
   "width:" + 270 * widthK + "px;" +
   "height:" + 250 * widthK + "px;" +
   // "left:" + 243 * widthK + "px;" +
@@ -7023,7 +7226,8 @@ var css = {
   "width: 100%;" +
   //"background-color: #353340;" +
   //"background-image: url(resources/icons/transparent.png);" +
-  "display: none;" +
+  // "display: none;" +
+  "z-index: 999999999;" +
   "background-color: rgba(255,255,255,0.95);" +
   "}",
 
@@ -7672,6 +7876,7 @@ var css = {
   "background-color: white; " +
   "overflow-y: auto; " +
   "overflow-x: hidden; " +
+  "-webkit-overflow-scrolling: touch; " +
   "}",
 
   settingsPageTitle: ".settings-page-title " +
@@ -10047,27 +10252,29 @@ var css = {
   "width:" + 320 * widthK + "px;" +
   "position: absolute;" +
   "top:" + 7 * widthK + "px;" +
-  "left:" + 730 * widthK + "px;" +
+  "left:" + 735 * widthK + "px;" +
   "}",
 
   addCardCarouselIcon: ".add-card-carousel-icon" +
   "{" +
-  "background-image: url(resources/icons/cards/all.png);" +
+  "background-image: url(resources/icons/cards/addCard/add_first_card.png);" +
   "height:" + 150 * widthK + "px;" +
   "width:" + 230 * widthK + "px;" +
   "position: absolute;" +
   "top:15%;" +
-  "left:15%;" +
-  "background-size: cover;" +
+  "left:17%;" +
+  "background-size: 85%;" +
+  "background-position-y: 45%;" +
+  "background-repeat: no-repeat;" +
   "}",
 
   addCardCarouselText: ".add-card-carousel-text" +
   "{" +
   "width:100%;" +
   "position: absolute;" +
-  "top:75%;" +
-  // "left:20%;" +
-  "font-size: " + 30 * widthK + "px;" +
+  "top:70%;" +
+  "text-align: center;" +
+  "font-size: " + 28 * widthK + "px;" +
   "color: white;" +
   "}",
 
@@ -10109,13 +10316,10 @@ var css = {
   "background-color: white;" +
   "perspective: 1000px;" +
   "transition: 0.6s;" +
+  "-webkit-transition: 0.6s;" +
   "transform-style: preserve-3d;" +
+  "-webkit-transform-style: preserve-3d;" +
   "}",
-
-  // componentBankListCardFlipperHover: ".component-banklist-card-flipper:hover" +
-  // "{" +
-  // "transform: rotateY(-180deg);" +
-  // "}",
 
   componentBankListCardBack: ".component-banklist-card-back" +
   "{" +
@@ -10128,7 +10332,9 @@ var css = {
   // "left: " + 48 * widthK + "px;" +
   "background-color: white;" +
   "backface-visibility: hidden;" +
+  "-webkit-backface-visibility: hidden;" +
   "transform: rotateY(180deg);" +
+  "-webkit-transform: rotateY(180deg);" +
   "}",
 
   componentBankListCardFront: ".component-banklist-card-front" +
@@ -10142,8 +10348,10 @@ var css = {
   // "left: " + 48 * widthK + "px;" +
   "background-color: white;" +
   "backface-visibility: hidden;" +
+  "-webkit-backface-visibility: hidden;" +
   "z-index: 2;" +
   "transform: rotateY(0deg);" +
+  "-webkit-transform: rotateY(0deg);" +
   "}",
 
 
@@ -10321,12 +10529,13 @@ var css = {
   "width: 90%;" +
   "}",
 
-  componentBankListPunlicOfferContainer: ".component-banklist-public-offer-container" +
+  componentBankListPublicOfferContainer: ".component-banklist-public-offer-container" +
   "{" +
-  "position: absolute;" +
-  "bottom: 0%;" +
+  "position: relative;" +
+  "top: " + 253 * widthK + "px;" +
   "background-color: #09b1ff;" +
-  "width: 100%;" +
+  "margin: auto;" +
+  "width: " + 301 * widthK + "px;" +
   "height: " + 45 * widthK + "px;" +
   "font-weight: bold;" +
   "text-decoration: none;" +
@@ -10334,7 +10543,7 @@ var css = {
   "color: white;" +
   "}",
 
-  componentBankListPunlicOfferLink: ".component-banklist-public-offer-link" +
+  componentBankListPublicOfferLink: ".component-banklist-public-offer-link" +
   "{" +
   "position: absolute;" +
   "top: 30%;" +
@@ -10523,14 +10732,17 @@ var css = {
   "position: relative;" +
   //"top:" + 177 * heightK + "px;" +
   "top:" + 100 * heightK + "px;" +
-  "width:" + 600 * widthK + "px;" +
-  "height:" + 320 * heightK + "px;" +
+  "width:" + 515 * widthK + "px;" +
+  "height:" + 285 * heightK + "px;" +
   "border:" + 1 + "px solid #e7e7e7;" +
   //"border:" + 3 * heightK + "px solid #e7e7e7;" +
   "background-color: white;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
   "border-radius:" + 10 * heightK + "px;" +
+  "background-image: url(resources/icons/cards/addCard/new_card.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: cover;" +
   "}",
 
 
@@ -10593,7 +10805,7 @@ var css = {
   "text-align: center;" +
   "color: #757389;" +
   "font-size:" + 24 * widthK + "px;" +
-  "top: 1%;" +
+  "top: 2%;" +
   "left: 8%;" +
   "}",
 
@@ -10605,8 +10817,8 @@ var css = {
   "background-color: white;" +
   "border:" + 1 + "px solid #e7e7e7;" +
   //"border:" + 3 * heightK + "px solid #e7e7e7;" +
-  "width:" + 520 * widthK + "px;" +
-  "height:" + 60 * widthK + "px;" +
+  "width:" + 460 * widthK + "px;" +
+  "height:" + 55 * widthK + "px;" +
   //"height: 19%;" +
   "left: 6%;" +
   "top: 26%;" +
@@ -10615,21 +10827,22 @@ var css = {
   addCardCardNumberBox: ".add-card-card-number-box " +
   "{" +
   "position: absolute;" +
-  "width:" + 470 * widthK + "px;" +
+  "width:" + 420 * widthK + "px;" +
   "height: 100%;" +
   "top: 0%;" +
   "padding: 0;" +
   "background-color: transparent;" +
   "border: none;" +
   "outline: none;" +
-  "font-size:" + 38 * widthK + "px;" +
+  "font-size:" + 25 * widthK + "px;" +
+  "font-family: 'OCRAStd';" +
   //"letter-spacing:1px;" +
   "word-spacing:" + 25 * widthK + "px;" +
   "}",
 
   addCardCardNumberBoxOne: ".add-card-card-number-box-one " +
   "{" +
-  "left:" + 30 * widthK + "px;" +
+  "left:" + 21 * widthK + "px;" +
   "}",
 
   addCardCardText: ".add-card-card-text " +
@@ -10638,14 +10851,14 @@ var css = {
   "margin: 0;" +
   "background-size: contain;" +
   "color: #757389;" +
-  "font-size:" + 27 * widthK + "px;" +
+  "font-size:" + 23 * widthK + "px;" +
   "}",
 
   addCardCardTextDate: ".add-card-card-text-date " +
   "{" +
   "left: 6%;" +
   "width: 200%;" +
-  "bottom: 36%;" +
+  "top: 58%;" +
   "}",
 
   addCardCardTextPin: ".add-card-card-text-pin " +
@@ -10663,27 +10876,25 @@ var css = {
   "background-color: white;" +
   //"border:" + 3 * heightK + "px solid #e7e7e7;" +
   "border:" + 1 + "px solid #e7e7e7;" +
-  "width: 27%;" +
+  "width: 24%;" +
   //"height: 18%;" +
-  "height:" + 60 * widthK + "px;" +
+  "height:" + 55 * widthK + "px;" +
   "left: 6%;" +
-  "bottom: 11%;" +
+  "top: 71%;" +
   "}",
 
   addCardCardDateBox: ".add-card-card-date-box " +
   "{" +
   "position: absolute;" +
-  "width:" + 125 * widthK + "px;" +
-  "left:" + 30 * widthK + "px;" +
-  //"left: 17%;" +
-  // "height: 60%;" +
+  "width:" + 95 * widthK + "px;" +
+  "left:" + 17 * widthK + "px;" +
   "top: 20%;" +
   "padding: 0;" +
   "background-color: transparent;" +
   "outline: none;" +
   "border: none;" +
-  "font-size:" + 38 * widthK + "px;" +
-  //"letter-spacing:1px;" +
+  "font-size:" + 25 * widthK + "px;" +
+  "font-family: 'OCRAStd';" +
   "}",
 
   addCardCardPin: ".add-card-card-pin " +
@@ -11555,6 +11766,21 @@ var css = {
   "font-size:" + 36 * widthK + "px;" +
   "}",
 
+  componentAlertMessageSettings: ".component-alert-message-settings" +
+  "{" +
+  "position: relative;" +
+  "color: #1d1d1f;" +
+  "width:" + 600 * widthK + "px;" +
+  "text-align: center;" +
+  "margin-left: auto;" +
+  "margin-top: 0;" +
+  "margin-bottom: 0;" +
+  "margin-right: auto;" +
+  "top:" + 380 * widthK + "px;" +
+  // "left:" + -10 * widthK + "px;" +
+  "font-size:" + 36 * widthK + "px;" +
+  "}",
+
   componentAlertClickPinErrorContainer: ".component-alert-clickpin-error-container" +
   "{" +
   "position: relative;" +
@@ -11668,6 +11894,184 @@ var css = {
   "font-size: " + 38 * widthK + "px;" +
   "color: #ffffff;" +
   "}",
+
+
+  //COMPONENT RESULT
+
+  //  Component Alert
+  componentResult: ".component-result " +
+  "{" +
+  "position: absolute;" +
+  //"opacity: 0.92;" +
+  "height: 100%;" +
+  "top: 0;" +
+  "width: 100%;" +
+  //"background-color: white;" +
+  "background-image: url(resources/icons/transparent.png);" +
+  "z-index: 9999999;" +
+  "}",
+
+  componentResultMessage: ".component-result-message" +
+  "{" +
+  "position: relative;" +
+  "color: #757389;" +
+  "width:" + 500 * widthK + "px;" +
+  "margin: auto;" +
+  "text-align: center;" +
+  "top:" + 250 * widthK + "px" + "!important;" +
+  "font-size:" + 36 * widthK + "px;" +
+  "opacity: 0;" +
+  "height: 300px;" +
+  "overflow: hidden;" +
+  "}",
+
+  componentResultMessageStart: ".component-result-message-start " +
+  "{" +
+  "-webkit-transition: 0.7s;" +
+  "-webkit-transition-delay: 0.8s;" +
+  "transition: 0.7s;" +
+  "transition-delay: 0.8s;" +
+  "top:" + 214 * widthK + "px" + "!important;" +
+  "opacity: 1 !important;" +
+  "}",
+
+  componentResultMessageStop: ".component-result-message-stop " +
+  "{" +
+  "-webkit-transition: 0.7s;" +
+  "transition: 0.7s;" +
+  "top:" + 226 * widthK + "px" + "!important;" +
+  "opacity: 0 !important;" +
+  "}",
+
+  componentResultWait: ".component-result-wait " +
+  "{" +
+  "position: relative;" +
+  "margin: auto;" +
+  "top:" + 250 * widthK + "px;" +
+  "text-align: center;" +
+  "color: #757389;" +
+  "font-size:" + 36 * widthK + "px;" +
+  "-webkit-animation-name: componentResultWaitStartWebKitAnimation;" +
+  "-webkit-animation-duration: 0.7s;" +
+  "animation-name: componentResultWaitStartAnimation;" +
+  "animation-duration: 0.7s;" +
+  "}",
+
+  componentResultWaitStop: ".component-result-wait-stop " +
+  "{" +
+  "-webkit-transition: 0.7s;" +
+  "transition: 0.7s;" +
+  "top:" + 262 * widthK + "px" + "!important;" +
+  "opacity: 0 !important;" +
+  "}",
+
+  componentResultWaitStart: ".component-result-wait-start " +
+  "{" +
+  "-webkit-transition: 0.7s;" +
+  "-webkit-transition-delay: 0.8s;" +
+  "transition: 0.7s;" +
+  "transition-delay: 0.8s;" +
+  "top:" + 250 * widthK + "px" + "!important;" +
+  "opacity: 1 !important;" +
+  "}",
+
+  componentResultWaitStartWebKitAnimation: "@-webkit-keyframes componentResultWaitStartWebKitAnimation " +
+  "{" +
+  "from {" +
+  "opacity: 0;" +
+  "top:" + 262 * widthK + "px;" +
+  "}" +
+  "to {" +
+  "opacity: 1;" +
+  "top:" + 250 * widthK + "px;" +
+  "}" +
+  "}",
+
+  componentResultWaitStartAnimation: "@keyframes componentResultWaitStartAnimation " +
+  "{" +
+  "from {" +
+  "opacity: 0;" +
+  "top:" + 262 * widthK + "px;" +
+  "}" +
+  "to {" +
+  "opacity: 1;" +
+  "top:" + 250 * widthK + "px;" +
+  "}" +
+  "}",
+
+  componentResultButtonInnerContainer: ".component-result-button-inner-container" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "height: " + 74 * widthK + "px;" +
+  "left: 28%;" +
+  "width: 44%;" +
+  "background-color: #01B8FE;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "bottom: 10%;" +
+  "font-size: " + 32 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "color: #ffffff;" +
+  "opacity: 0;" +
+  "}",
+
+  componentResultButtonSuccess: ".component-result-button-success" +
+  "{" +
+  "background-color: #8FD032 !important;" +
+  "}",
+
+  componentResultButtonUnsuccess: ".component-result-button-unsuccess" +
+  "{" +
+  "background-color: #EB2A48 !important;" +
+  "}",
+
+  componentResultButtonWaiting: ".component-result-button-waiting" +
+  "{" +
+  "background-color: #F8AE22 !important;" +
+  "}",
+
+  componentResultButtonStart: ".component-result-button-start" +
+  "{" +
+  "-webkit-transition: 0.7s;" +
+  "-webkit-transition-delay: 1s;" +
+  "transition: 0.7s;" +
+  "transition-delay: 1s;" +
+  "opacity: 1 !important;" +
+  "}",
+
+  componentResultButtonStop: ".component-result-button-stop" +
+  "{" +
+  "-webkit-transition: 0.7s;" +
+  "transition: 0.7s;" +
+  "opacity: 0 !important;" +
+  "}",
+
+  componentResultButtonLabel: ".component-result-button-label" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "font-size:" + 38 * widthK + "px;" +
+  "color: #ffffff;" +
+  "text-align: center;" +
+  "display: table-cell;" +
+  "vertical-align: middle;" +
+  "}",
+
+  componentResultIcon: ".component-result-icon" +
+  "{" +
+  "position: relative;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "top:" + 200 * widthK + "px;" +
+  "width:" + 400 * widthK + "px;" +
+  "height:" + 400 * widthK + "px;" +
+  "background-image: url(resources/icons/icon/alert_icon.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: 115%;" +
+  "background-position-x: center;" +
+  "}",
+
 
   //VIEW TRUSTED DEVICES
   trustedDevicesTitle: ".trusted-devices-title " +
@@ -12573,7 +12977,31 @@ var css = {
 
   reportServiceInfoInputAmount: ".report-service-info-input-amount" +
   "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "left: 4%;" +
+  "top: 45%;" +
+  "font-size: " + 28 * widthK + "px; " +
+  "text-overflow: ellipsis;" +
+  "width: " + 625 * widthK + "px;" +
+  "max-height: " + 80 * widthK + "px;" +
+  "overflow: hidden;" +
   "color: #ff6d65;" +
+  "}",
+
+  reportServiceInfoInputAmountWithTax: ".report-service-info-input-amount-with-tax" +
+  "{" +
+  "top: 35%;" +
+  "}",
+
+  reportServiceTaxField: ".report-service-tax-field" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "color: darkgray;" +
+  "font-size: " + 24 * widthK + "px; " +
+  "left: 4%;" +
+  "top: 63%;" +
   "}",
 
   reportServiceField: ".report-service-field" +
@@ -12585,6 +13013,11 @@ var css = {
   "border-bottom:  " + 1 + "px solid lightgray;" +
   "color: white;" +
   //"top: 23%;" +
+  "}",
+
+  reportServiceAmountField: ".report-service-amount-field" +
+  "{" +
+  "height: 28%;" +
   "}",
 
   reportServiceLastField: ".report-service-last-field" +
@@ -12975,7 +13408,23 @@ var css = {
   "width: 100%;" +
   "margin: 0 auto 3% auto;" +
   "padding-bottom: 0;" +
-  "height:" + 330 * widthK + "px;" +
+  "height:" + 360 * widthK + "px;" +
+  //"contain: content;" +
+  "background-image: url('resources/icons/ViewNews/news.png');" +
+  "background-repeat: no-repeat;" +
+  "background-position-y: bottom;" +
+  "background-size: 100%;" +
+  "background-color: white;" +
+  "border-bottom-right-radius:" + 70 * widthK + "px;" +
+  "}",
+
+  viewNewsBlockWithLink: ".view-news-block-with-link" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "margin: 0 auto 3% auto;" +
+  "padding-bottom: 0;" +
+  "height:" + 415 * widthK + "px;" +
   //"contain: content;" +
   "background-image: url('resources/icons/ViewNews/news.png');" +
   "background-repeat: no-repeat;" +
@@ -13041,7 +13490,8 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 100%;" +
-  "contain: content;" +
+  // "contain: content;" +
+  "margin-bottom: 7%;" +
   "}",
 
   viewNewsBlockText: ".view-news-block-text " +
@@ -13101,7 +13551,7 @@ var css = {
   "margin: 0;  " +
   "left: 30%;  " +
   "margin-top:" + 35 * widthK + "px; " +
-  "margin-bottom:" + 52 * widthK + "px; " +
+  "margin-bottom:" + 35 * widthK + "px; " +
   "width: 30%;  " +
   "height: 17%;  " +
   "float: left;  " +
@@ -13139,6 +13589,42 @@ var css = {
   "position: relative;" +
   "height: 10%;  " +
   "width: 100%;  " +
+  "}",
+
+  viewNewsFollowLinkContainer: ".view-news-follow-link-container" +
+  "{" +
+  "position: relative;" +
+  "margin-top: " + 25 * widthK + "px;" +
+  "left: 6%;" +
+  "background-color: #09b1ff;" +
+  "width: 44%;" +
+  "height: " + 60 * widthK + "px;" +
+  "text-decoration: none;" +
+  "font-size:" + 25 * widthK + "px;" +
+  "border-radius:" + 5 * widthK + "px;" +
+  "color: white;" +
+  "}",
+
+  viewNewsFollowLinkText: ".view-news-follow-link-text" +
+  "{" +
+  "position: absolute;" +
+  "top: 27%;" +
+  "float: left;" +
+  "left: 22%;" +
+  "}",
+
+  viewNewsFollowLinkArrow: ".view-news-follow-link-arrow" +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "height:" + 17 * widthK + "px;" +
+  "width:" + 17 * widthK + "px;" +
+  "top: 38%;" +
+  "float: right;" +
+  "right: 14%;" +
+  "background-image: url('resources/icons/ViewTransfer/banks_offerta.png');" +
   "}",
 
 
@@ -13607,7 +14093,7 @@ var css = {
 
   autopayEventNumberField: ".autopay-event-number-field" +
   "{" +
-  "height:" + 90 * widthK + "px;" +
+  "height: 10%" +
   "top: 11%;" +
   "}",
 
@@ -13640,7 +14126,7 @@ var css = {
   "{" +
   "position: relative;" +
   "height:" + 80 * widthK + "px; " +
-  "width: fit-content;" +
+  "width: 30.5%;" +
   //"left: 4%;" +
   "top: 15%;" +
   "margin-right: " + 32 * widthK + "px; " +
@@ -13649,12 +14135,25 @@ var css = {
   "float: left;" +
   "}",
 
+  autopayEventStepDropdownIcon: ".autopay-event-step-dropdown-icon" +
+  "{" +
+  "position: absolute;" +
+  "background-image: url('resources/icons/ViewService/dropdown_icon.png');" +
+  "width: 22%;" +
+  "height: 36%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 65%;" +
+  "background-position: center;" +
+  "top: 35%;" +
+  "left: 92%;" +
+  "}",
+
   autopayEventStepText: ".autopay-event-step-text" +
   "{" +
   "position: relative;" +
   "display: inline-block;" +
   "background-size: contain;" +
-  "top: -" + 15 * widthK + "px; " +
+  "top: 18%;" +
   "left: 1%;" +
   "text-align: left;" +
   "font-size:" + 45 * widthK + "px; " +
@@ -14637,6 +15136,21 @@ var css = {
   "margin: 0;" +
   "color: #fffaf9;" +
   "}",
+
+  defaultAccountTitle: ".default-account-title" +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size: " + 38 * widthK + "px; " +
+  "left: 25%;" +
+  "top: 56%;" +
+  "margin: 0;" +
+  "color: #fffaf9;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "width: 60%;" +
+  "}"
 
 }
 

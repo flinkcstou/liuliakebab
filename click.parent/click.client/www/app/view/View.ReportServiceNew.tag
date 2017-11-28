@@ -28,10 +28,17 @@
           <p class="report-service-text-field">{(opts.parameter_name) ? (opts.parameter_name) : ("")}</p>
           <p class="report-service-phone-input">{(opts.cntrg_info_param2) ? (opts.cntrg_info_param2) : ("")}</p>
         </div>
-        <div class="report-service-field">
+        <div
+          class="report-service-field {report-service-amount-field:opts.comission_amount && opts.comission_amount!=0 }">
           <p class="report-service-text-field">{window.languages.ViewReportServiceAmountOfPay}</p>
-          <p class="report-service-info-input report-service-info-input-amount">-
+          <p
+            class="report-service-info-input-amount {report-service-info-input-amount-with-tax: opts.comission_amount && opts.comission_amount!=0}">
+            -
             {(opts.amount) ? (amountTransform(opts.amount.toString())) : ("")} сум</p>
+          <p if="{opts.comission_amount && opts.comission_amount!=0}" class="report-service-tax-field">
+            {window.languages.ViewTransferFourTax}
+            {opts.comission_amount}
+            {window.languages.ViewReportServiceCommissionCurrency}</p>
         </div>
         <div class="report-service-field">
           <p class="report-service-text-field">{window.languages.ViewReportServicePayWithCard}</p>
@@ -86,20 +93,8 @@
     </div>
   </div>
 
-  <component-success id="componentSuccessId"
-                     operationmessage="{operationMessage}"
-                     viewpage="{undefined}" step_amount="{0}" close_action="{goToBack}"></component-success>
-
-
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
-  <component-generated-qr id="componentGeneratedQrId" qr_image="{opts.qr_image}" qr_header="{opts.qr_header}"
-                          qr_footer="{opts.qr_footer}"
-                          viewpage="{undefined}"
-                          step_amount="{0}"></component-generated-qr>
-
   <script>
+
     console.log("OPTS in ReportService New=", opts);
     var scope = this,
       goToSupportTouchStartX,
@@ -203,9 +198,9 @@
 
 //        console.log("serviceMap=", servicesMap);
 //        console.log("servicesParamsMapOne =", servicesParamsMapOne);
-        console.log("scope.opts.service_id=", scope.opts.service_id);
-        console.log("scope.opts.payment_id=", scope.opts.payment_id);
-        console.log("scope.service=", servicesMap[scope.opts.service_id][0]);
+//        console.log("scope.opts.service_id=", scope.opts.service_id);
+//        console.log("scope.opts.payment_id=", scope.opts.payment_id);
+//        console.log("scope.service=", servicesMap[scope.opts.service_id][0]);
 
         newFavorite.formtype = servicesMap[scope.opts.service_id][0].form_type;
         newFavorite.firstFieldId = servicesMap[scope.opts.service_id][0].service_parameters;
@@ -225,16 +220,13 @@
         newFavorite.chosenPrefixName = scope.opts.chosenPrefixName;
 
 
-        console.log("ADD TO FAVORITES INPUT", newFavorite);
-
+        favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
         favoritePaymentsList = (favoritePaymentsList) ? (favoritePaymentsList) : ([]);
+        favoritePaymentsListForApi = JSON.parse(localStorage.getItem('favoritePaymentsListForApi'));
         favoritePaymentsListForApi = (favoritePaymentsListForApi) ? (favoritePaymentsListForApi) : ([]);
-
-        console.log("ID for favorite", Math.floor((Math.random() * 1000000) + 1))
         var id = Math.floor((Math.random() * 1000000) + 1);
         scope.opts.favoriteId = id;
 
-        console.log("Chosen Service =", servicesMap[scope.opts.service_id][0]);
 
         var newItem = {
           "params": newFavorite,
@@ -266,13 +258,17 @@
 
             if (result[0][0].error == 0) {
 
-              console.log("SUCCESSFULLY ADDED")
 
             }
             else {
-              scope.showError = true;
               scope.errorNote = result[0][0].error_note
               scope.update();
+
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote,
+              });
               console.log(result[0][0].error_note);
             }
           },
@@ -283,12 +279,10 @@
           }
         });
 
-        console.log("favoritePaymentsList=", favoritePaymentsList);
 
         localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
         localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(favoritePaymentsListForApi));
         scope.operationMessage = window.languages.ComponentSuccessMessageForAddingToFavorites;
-        console.log("operationMesssage=", scope.operationMessage);
         scope.update(scope.operationMessage);
 
         //componentSuccessId.style.display = 'block';
@@ -306,11 +300,9 @@
 
         var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
         var favoritePaymentsListForApi = JSON.parse(localStorage.getItem('favoritePaymentsListForApi'));
-        console.log(favoritePaymentsList);
         for (var i in favoritePaymentsList)
           if (favoritePaymentsList[i].id == scope.opts.favoriteId) {
             favoritePaymentsList.splice(i, 1);
-            console.log(favoritePaymentsList);
             scope.isInFavorites = false;
             scope.update(scope.isInFavorites);
 
@@ -334,14 +326,16 @@
 
                 if (result[0][0].error == 0) {
 
-                  console.log("SUCCESSFULLY deleted")
-
                 }
                 else {
                   scope.clickPinError = false;
-                  scope.showError = true;
                   scope.errorNote = result[0][0].error_note
                   scope.update();
+                  window.common.alert.show("componentAlertId", {
+                    parent: scope,
+                    clickpinerror: scope.clickPinError,
+                    errornote: scope.errorNote,
+                  });
                   console.log(result[0][0].error_note);
                 }
               },
@@ -360,7 +354,6 @@
 
 
         scope.operationMessage = window.languages.ComponentSuccessMessageForRemovingFromFavorites;
-        console.log("operationMesssage ", scope.operationMessage);
         scope.update(scope.operationMessage);
         //componentSuccessId.style.display = 'block';
       }
@@ -430,7 +423,14 @@
           scope.update();
 //        scope.unmount()
         } else {
-          componentGeneratedQrId.style.display = 'block';
+          window.common.alert.show("componentGeneratedQrId", {
+            parent: scope,
+            qr_image: opts.qr_image,
+            qr_header: opts.qr_header,
+            qr_footer: opts.qr_footer,
+            viewpage: undefined,
+            step_amount: 0
+          });
           qrFooterTextId.innerHTML = scope.opts.qr_footer;
         }
       }

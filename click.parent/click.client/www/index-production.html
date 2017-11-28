@@ -39,10 +39,9 @@
 
 <body id="bodyId">
 <div id="indexNotificationBlockId"></div>
-<div id="alertComponentBlockId" style="opacity: 0;"></div>
 
-<div id="riotTags">
-</div>
+<div id="alertTags"></div>
+<div id="riotTags"></div>
 
 <script>
 
@@ -185,23 +184,32 @@
 
       if (device.platform === 'Android')
         permissionAccess();
+      else if (device.platform === 'iOS') {
+        window.FirebasePlugin.grantPermission();
+      }
+
 
       var GENERATOR = document.createElement('script');
       GENERATOR.src = 'js/cssGenerator/Css.Generator.js';
       document.head.appendChild(GENERATOR);
 
-
       firstMount.firstStep = function () {
+        console.log("component notification mounted");
         scope.indexNotificationBlockId.innerHTML = "<component-notification>";
         riot.mount('component-notification');
 
-        if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true && JSON.parse(localStorage.getItem('click_client_registered')) === true) {
-          scope.riotTags.innerHTML = "<view-authorization>";
-          riot.mount('view-authorization')
-        }
-        else {
-          scope.riotTags.innerHTML = "<view-registration-device>";
-          riot.mount('view-registration-device');
+        if (JSON.parse(sessionStorage.getItem("push_news")) !== true) {
+
+          if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true && JSON.parse(localStorage.getItem('click_client_registered')) === true) {
+            console.log("authorization mounted");
+            scope.riotTags.innerHTML = "<view-authorization>";
+            riot.mount('view-authorization');
+          }
+          else {
+            console.log("registration-device mounted");
+            scope.riotTags.innerHTML = "<view-registration-device>";
+            riot.mount('view-registration-device');
+          }
         }
       };
 
@@ -274,7 +282,9 @@
     }
     setTimeout(function () {
       localStorage.setItem('onResume', true);
+      console.log("onResume set true");
       if (JSON.parse(localStorage.getItem('settings_block')) === true) {
+        console.log("authorization mount onPause, block true");
         riotTags.innerHTML = "<view-authorization>";
         riot.mount('view-authorization');
 
@@ -289,12 +299,17 @@
 
     console.log('balance')
 
+    if (modeOfApp.onlineMode && window.isConnected) {
+      console.log('HIDE CONFIRM')
+      window.common.alert.hide("componentConfirmId");
+    }
+
     if (!checkFirstStarting && localStorage.getItem('click_client_token') && localStorage.getItem('click_client_loginInfo')) {
       var nowMinutes = new Date().getMinutes();
       console.log("BEFORE MINUTES", waitingMinutes);
       console.log("NOW MINUTES", nowMinutes);
 
-      if (Math.abs(parseInt(waitingMinutes) - parseInt(nowMinutes)) > 5) {
+      if ((Math.abs(parseInt(waitingMinutes) - parseInt(nowMinutes)) > 5)) {
         console.log("5 minutes >");
         console.log("SESSION_BROKEN = TRUE");
         localStorage.setItem('session_broken', true)
@@ -352,21 +367,13 @@
 
 
   function showAlertComponent(outerErrorNote) {
-    setTimeout(function () {
-      alertComponentBlockId.style.opacity = 1;
-    }, 500);
 
-    alertComponentBlockId.innerHTML = "<component-alert>";
-    riot.mount('component-alert', {"errornote": outerErrorNote});
+    window.common.alert.show("componentAlertId", {"errornote": outerErrorNote});
   }
 
   function showConfirmComponent(outerConfirmNote, confirmType) {
-    setTimeout(function () {
-      alertComponentBlockId.style.opacity = 1;
-    }, 500);
 
-    alertComponentBlockId.innerHTML = "<component-confirm>";
-    riot.mount('component-confirm', {
+    window.common.alert.show("componentConfirmId", {
       "confirmnote": outerConfirmNote,
       "confirmtype": confirmType
     });

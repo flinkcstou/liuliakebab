@@ -32,14 +32,10 @@
 
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
   <component-tour view="autopaymethod"></component-tour>
 
   <script>
     var scope = this;
-    scope.showError = false;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-autopay-method-new') {
       history.arrayOfHistory.push(

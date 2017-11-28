@@ -39,6 +39,12 @@
              ontouchstart="pickContactFromNativeTouchStart()"
              ontouchend="pickContactFromNativeTouchEnd()"></div>
       </div>
+      <div if="{!accessToContacts}" class="transfer-contact-access-container">
+        <p class="transfer-contact-access-text">{window.languages.ViewPayTransferAccessToContacts}</p>
+        <p class="transfer-contact-access-text-settings"
+           ontouchstart="goToSettingsStart()"
+           ontouchend="goToSettingsEnd()">{window.languages.ViewPayTransferAccessToContactsSettings}</p>
+      </div>
       <div id="firstSuggestionBlockId" class="transfer-contact-found-container-one"
            ontouchend="firstSuggestionBlockTouchEnd()" ontouchstart="firstSuggestionBlockTouchStart()">
         <div class="transfer-contact-found-photo" style="background-image: url({suggestionOne.photo})">
@@ -195,43 +201,40 @@
         </div>
 
         <div class="component-banklist-card-back">
-        <div class="component-banklist-bank-logo" style="background-image: url({i.image});"></div>
+          <div class="component-banklist-bank-logo" style="background-image: url({i.image});"></div>
 
-        <div class="component-banklist-bank-rotate"></div>
+          <div class="component-banklist-bank-rotate"></div>
 
-        <div class="component-banklist-bank-limit-container">
-          <div class="component-banklist-bank-limit-receipt-container">
-            <div class="component-banklist-bank-arrow-down"></div>
-            <div class="component-banklist-bank-limit-currency-receipt">
-              {i.p2p_receipt_max_limit_text}
+          <div class="component-banklist-bank-limit-container">
+            <div class="component-banklist-bank-limit-receipt-container">
+              <div class="component-banklist-bank-arrow-down"></div>
+              <div class="component-banklist-bank-limit-currency-receipt">
+                {i.p2p_receipt_max_limit_text}
+              </div>
+              <div class="component-banklist-bank-limit-receipt">{window.languages.ViewBankListReceiveLimitText}</div>
             </div>
-            <div class="component-banklist-bank-limit-receipt">{window.languages.ViewBankListReceiveLimitText}</div>
-          </div>
 
-          <div class="component-banklist-bank-limit-transfer-container">
-            <div class="component-banklist-bank-arrow-up"></div>
-            <div class="component-banklist-bank-limit-currency-transfer">
-              {i.p2p_max_limit_text}
+            <div class="component-banklist-bank-limit-transfer-container">
+              <div class="component-banklist-bank-arrow-up"></div>
+              <div class="component-banklist-bank-limit-currency-transfer">
+                {i.p2p_max_limit_text}
+              </div>
+              <div class="component-banklist-bank-limit-transfer">{window.languages.ViewBankListTransferLimitText}</div>
             </div>
-            <div class="component-banklist-bank-limit-transfer">{window.languages.ViewBankListTransferLimitText}</div>
           </div>
-        </div>
-          <div hidden="{!i.public_offer}" class="component-banklist-public-offer-container" ontouchend="openPublicOffer(&quot;{i.public_offer}&quot;)" id="{i.code}">
+          <div hidden="{!i.public_offer}" class="component-banklist-public-offer-container"
+               ontouchend="openPublicOffer(&quot;{i.public_offer}&quot;)" id="{i.code}">
             <div class="component-banklist-public-offer-link">{window.languages.ViewBankListPublicOfferText}</div>
             <div class="component-banklist-public-offer-arrow"></div>
           </div>
-      </div>
+        </div>
 
       </div>
     </div>
   </div>
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
 
   <component-tour view="transfer" focusfield="{true}"></component-tour>
+
   <script>
 
     viewTransfer.check = true;
@@ -239,6 +242,7 @@
     var scope = this;
     scope.numberLength = 10;
     scope.tourClosed = true;
+    scope.clickPinError = false;
     this.on('mount', function () {
 
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).transfer) {
@@ -339,22 +343,17 @@
 
     })
 
-    focusFieldAfterTourClosed = function () {
+    scope.focusFieldAfterTourClosed = focusFieldAfterTourClosed = function () {
 
       scope.tourClosed = true;
 
       console.log("focusing fields", scope.tourClosed)
 
 
-      if (device.platform == 'iOS') {
+      setTimeout(function () {
         contactPhoneNumberId.autofocus;
         contactPhoneNumberId.focus();
-      }
-      else {
-        setTimeout(function () {
-          contactPhoneNumberId.focus();
-        }, 0)
-      }
+      }, 0)
 
     }
 
@@ -435,9 +434,18 @@
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
-          scope.showError = true;
+
           scope.errorNote = question;
           scope.confirmType = 'local';
+
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+            pathtosettings: scope.pathToSettings,
+            permissionerror: scope.permissionError,
+          });
+
           scope.update();
 
           return
@@ -472,19 +480,11 @@
               if (result[0][0].error == 0) {
                 var bankListAvailable = [];
                 for (var i in result[1]) {
-//                  result[1][i].amount = result[1][i].p2p_max_limit.toString();
-//                  console.log('result[1][i]', result[1][i])
-//
-//                  result[1][i].amount = window.amountTransform(result[1][i].amount);
-//                  result[1][i].p2p_receipt_max_limit_transform = window.amountTransform(result[1][i].p2p_receipt_max_limit);
-//                  result[1][i].p2p_max_limit_transform = window.amountTransform(result[1][i].p2p_max_limit);
 
                   if (result[1][i].p2p_status == 1)
                     bankListAvailable.push(result[1][i]);
-
-//              console.log("!!!!!", result[1][i].p2p_max_limit);
                 }
-//            console.log("result of P2P BANK LIST ", result[1]);
+
                 if (localStorage.getItem('click_client_p2p_all_bank_list') != JSON.stringify(result[1])) {
                   localStorage.setItem('click_client_p2p_bank_list', JSON.stringify(bankListAvailable));
                   localStorage.setItem('click_client_p2p_all_bank_list', JSON.stringify(result[1]));
@@ -492,9 +492,16 @@
 
               }
               else {
-                scope.clickPinError = false;
                 scope.errorNote = result[0][0].error_note;
-                scope.showError = true;
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: scope.clickPinError,
+                  errornote: scope.errorNote,
+                  pathtosettings: scope.pathToSettings,
+                  permissionerror: scope.permissionError,
+                });
+
                 scope.update();
               }
             },
@@ -538,41 +545,45 @@
     var flipCardTouchStartX, flipCardTouchStartY, flipCardTouchEndX, flipCardTouchEndY, pointerInOffer = false;
 
     flipCardTouchStart = function () {
-        flipCardTouchStartX = event.changedTouches[0].pageX
-        flipCardTouchStartY = event.changedTouches[0].pageY
+      flipCardTouchStartX = event.changedTouches[0].pageX
+      flipCardTouchStartY = event.changedTouches[0].pageY
     }
 
     flipCardTouchEnd = function (object) {
-        flipCardTouchEndX = event.changedTouches[0].pageX
-        flipCardTouchEndY = event.changedTouches[0].pageY
+      flipCardTouchEndX = event.changedTouches[0].pageX
+      flipCardTouchEndY = event.changedTouches[0].pageY
 
-        var publicOfferContainer = object.getElementsByClassName("component-banklist-public-offer-container")[0];
-        var publicOfferId = publicOfferContainer.id;
-        var publicOfferRect = document.getElementById(publicOfferId).getBoundingClientRect();
-        var publicOfferHidden = publicOfferContainer.hidden;
+      var publicOfferContainer = object.getElementsByClassName("component-banklist-public-offer-container")[0];
+      var publicOfferId = publicOfferContainer.id;
+      var publicOfferRect = document.getElementById(publicOfferId).getBoundingClientRect();
+      var publicOfferHidden = publicOfferContainer.hidden;
 
-        if (Math.abs(flipCardTouchStartX - flipCardTouchEndX) <= 20 &&
-                Math.abs(flipCardTouchStartY - flipCardTouchEndY) <= 20 && !pointerInOffer){
+      if (Math.abs(flipCardTouchStartX - flipCardTouchEndX) <= 20 &&
+        Math.abs(flipCardTouchStartY - flipCardTouchEndY) <= 20 && !pointerInOffer) {
 
-                var rotated = object.style.transform;
-                if (rotated == "rotateY(-180deg)") {
-                    if (!publicOfferHidden) {
-                        if (publicOfferRect.top > flipCardTouchEndY)
-                            object.style.transform = "rotateY(0deg)";
-                    }
-                    else
-                    {
-                        object.style.transform = "rotateY(0deg)";
-                    }
-                }
-                else
-                    object.style.transform = "rotateY(-180deg)";
+        var rotated = object.style.transform;
+        if (rotated == "rotateY(-180deg)") {
+          if (!publicOfferHidden) {
+            if (publicOfferRect.top > flipCardTouchEndY) {
+              object.style.transform = "rotateY(0deg)";
+              object.style.webkitTransform = "rotateY(0deg)";
+            }
+          }
+          else {
+            object.style.transform = "rotateY(0deg)";
+            object.style.webkitTransform = "rotateY(0deg)";
+          }
         }
+        else {
+          object.style.transform = "rotateY(-180deg)";
+          object.style.webkitTransform = "rotateY(-180deg)";
+        }
+      }
     }
 
     openPublicOffer = function (LinkToPublicOffer) {
-        console.log("Link to Offer", LinkToPublicOffer);
-        window.open(LinkToPublicOffer, '_system', 'location=no');
+      console.log("Link to Offer", LinkToPublicOffer);
+      window.open(LinkToPublicOffer, '_system', 'location=no');
     }
 
 
@@ -712,7 +723,6 @@
       cardNumberForTransfer = '',
       arrayOfContacts = [];
 
-    scope.showError = false;
     scope.showComponent = false;
 
     scope.suggestionOne = {};
@@ -926,10 +936,16 @@
 //            riot.update()
           }
           else {
-//              alert(result[0][0].error_note);
-            scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
-            scope.showError = true;
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+              pathtosettings: scope.pathToSettings,
+              permissionerror: scope.permissionError,
+            });
+
             scope.update();
           }
         },
@@ -958,12 +974,10 @@
         cardInputId.value = inputVerification.cardVerification(cardInputId.value);
 
         if (cardOldValueOfNumber.length != cardInputId.value.length && inputVerification.spaceDeleter(cardOldValueOfNumber) == inputVerification.spaceDeleter(cardInputId.value)) {
-          console.log("111")
           cardInputId.selectionStart = cardCursorPositionSelectionStart + 1
           cardInputId.selectionEnd = cardCursorPositionSelectionEnd + 1
         }
         else {
-          console.log("222")
           cardInputId.selectionStart = cardCursorPositionSelectionStart
           cardInputId.selectionEnd = cardCursorPositionSelectionEnd
         }
@@ -1271,16 +1285,10 @@
         ownerCardDsiplayId.style.display = 'none'
 
         if (scope.tourClosed) {
-
-          if (device.platform == 'iOS') {
+          setTimeout(function () {
             contactPhoneNumberId.autofocus;
             contactPhoneNumberId.focus();
-          }
-          else {
-            setTimeout(function () {
-              contactPhoneNumberId.focus();
-            }, 0)
-          }
+          }, 0)
         }
 
         contactInputFieldId.style.display = 'block'
@@ -1333,15 +1341,11 @@
         viewTransferStepTwo.sum = 0;
         viewTransferStepTwo.sumWithoutSpace = 0;
 
-        if (device.platform == 'iOS') {
+
+        setTimeout(function () {
           cardInputId.autofocus;
           cardInputId.focus();
-        }
-        else {
-          setTimeout(function () {
-            cardInputId.focus();
-          }, 0)
-        }
+        }, 0)
 
         contactInputFieldId.style.display = 'none'
         cardInputFieldId.style.display = 'block'
@@ -1405,9 +1409,16 @@
       if (Math.abs(goToTransferStepTwoTouchStartX - goToTransferStepTwoTouchEndX) <= 20 && Math.abs(goToTransferStepTwoTouchStartY - goToTransferStepTwoTouchEndY) <= 20) {
 
         if (!checkPhoneForTransfer && !checkCardForTransfer) {
-          scope.clickPinError = false;
           scope.errorNote = 'Введите номер телефона или номер карты';
-          scope.showError = true;
+
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+            pathtosettings: scope.pathToSettings,
+            permissionerror: scope.permissionError,
+          });
+
           scope.update();
 //        alert('Write phone number or card number for transfer')
         }
@@ -1418,9 +1429,16 @@
             viewTransfer.type = 2;
             if (phoneNumberForTransfer.length != 9) {
               contactPhoneNumberId.blur();
-              scope.clickPinError = false;
               scope.errorNote = 'Неверный номер телефона';
-              scope.showError = true;
+
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote,
+                pathtosettings: scope.pathToSettings,
+                permissionerror: scope.permissionError,
+              });
+
               scope.update();
 //            alert('Incorrect phone number')
               return
@@ -1451,10 +1469,17 @@
               var firstFourSymbols = cardInputId.value.replace(/\s/g, '').substring(0, 4);
               console.log('firstFourSymbols', firstFourSymbols)
               if (firstFourSymbols != '8600') {
-                cardInputId.blur()
-                scope.clickPinError = false;
+                cardInputId.blur();
                 scope.errorNote = 'Неверные данные о карте';
-                scope.showError = true;
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: scope.clickPinError,
+                  errornote: scope.errorNote,
+                  pathtosettings: scope.pathToSettings,
+                  permissionerror: scope.permissionError,
+                });
+
                 scope.update();
 //            alert('Неверный код банка');
                 return;
@@ -1468,37 +1493,66 @@
               var bankList = JSON.parse(localStorage.getItem('click_client_p2p_all_bank_list'))
               console.log("BANKLIST", bankList);
               var percentOfBank = 0;
-              for (var i = 0; i < bankList.length; i++) {
-                if (codeOfBank == bankList[i].code) {
-                  checkOfCode = true;
-                  nameOfBank = bankList[i].bank_name;
-                  if (bankList[i].p2p_status == 1) {
-                    statusOfBankToP2P = true
+
+              if (bankList)
+                for (var i = 0; i < bankList.length; i++) {
+                  if (codeOfBank == bankList[i].code) {
+                    checkOfCode = true;
+                    nameOfBank = bankList[i].bank_name;
+                    if (bankList[i].p2p_status == 1) {
+                      statusOfBankToP2P = true
+                    }
+                    percentOfBank = bankList[i].p2p_percent
+                    break;
                   }
-                  percentOfBank = bankList[i].p2p_percent
-                  break;
+                  else {
+                    checkOfCode = false;
+                  }
                 }
-                else {
-                  checkOfCode = false;
-                }
+              else {
+                cardInputId.blur();
+                scope.errorNote = 'Подождите, данные для обработки информации еще не прогрузились';
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: scope.clickPinError,
+                  errornote: scope.errorNote,
+                  pathtosettings: scope.pathToSettings,
+                  permissionerror: scope.permissionError,
+                });
+
+                scope.update();
+                return;
               }
               if (!checkOfCode) {
-                cardInputId.blur()
-                scope.clickPinError = false;
+                cardInputId.blur();
                 scope.errorNote = 'Неверный номер карты';
-                scope.showError = true;
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: scope.clickPinError,
+                  errornote: scope.errorNote,
+                  pathtosettings: scope.pathToSettings,
+                  permissionerror: scope.permissionError,
+                });
+
                 scope.update();
-//            alert('Неверный код банка');
                 return;
               }
 
               if (checkOfCode && !statusOfBankToP2P) {
-                cardInputId.blur()
-                scope.clickPinError = false;
+                cardInputId.blur();
                 scope.errorNote = 'Карта "' + nameOfBank + '" банка временно недоступна для перевода средств';
-                scope.showError = true;
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: scope.clickPinError,
+                  errornote: scope.errorNote,
+                  pathtosettings: scope.pathToSettings,
+                  permissionerror: scope.permissionError,
+                });
+
                 scope.update();
-//            alert('Неверный код банка');
                 return;
               }
 
@@ -1507,10 +1561,17 @@
             viewTransfer.cardNumber = cardNumberForTransfer
             viewTransfer.type = 1;
             if (cardNumberForTransfer.replace(/\s/g, '').length != 16) {
-              cardInputId.blur()
-              scope.clickPinError = false;
+              cardInputId.blur();
               scope.errorNote = 'Неверный номер карты';
-              scope.showError = true;
+
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote,
+                pathtosettings: scope.pathToSettings,
+                permissionerror: scope.permissionError,
+              });
+
               scope.update();
 //            alert('Incorrect card number')
               return
@@ -1534,8 +1595,8 @@
       }
     }
 
+    scope.accessToContacts = true;
     findContacts = function () {
-
       var options = new ContactFindOptions();
       var fields = [''];
       options.filter = "";
@@ -1559,11 +1620,8 @@
       }
 
       function error(message) {
-        scope.clickPinError = false;
-        scope.errorNote = 'Отсутствует доступ';
-        scope.showError = true;
+        scope.accessToContacts = false;
         scope.update();
-//        alert('Failed because: ' + message);
       }
     }
     if (device.platform != 'BrowserStand') {
@@ -1572,6 +1630,36 @@
       }
       catch (e) {
         console.log(e)
+      }
+    }
+
+    var goToSettingsTouchStartX, goToSettingsTouchStartY, goToSettingsTouchEndX,
+      goToSettingsTouchEndY;
+
+    goToSettingsStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      goToSettingsTouchStartX = event.changedTouches[0].pageX
+      goToSettingsTouchStartY = event.changedTouches[0].pageY
+    }
+
+    goToSettingsEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      goToSettingsTouchEndX = event.changedTouches[0].pageX
+      goToSettingsTouchEndY = event.changedTouches[0].pageY
+
+      if (Math.abs(goToSettingsTouchEndX - goToSettingsTouchStartX) <= 20 &&
+        Math.abs(goToSettingsTouchEndY - goToSettingsTouchStartY) <= 20) {
+        window.cordova.plugins.settings.open("application_details", function () {
+            console.log('opened settings');
+          },
+          function () {
+            console.log('failed to open settings');
+          }
+        );
       }
     }
 

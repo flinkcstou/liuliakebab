@@ -11,7 +11,7 @@
 
   <div class="view-transfer-on-card-content-container">
 
-    <component-pincards clean="{true}" transferoncard="true"></component-pincards>
+    <component-pincards clean="{true}" transferoncard="true" useFor="p2p"></component-pincards>
 
     <button id="acceptTransferOnCardButtonId" class="transfer-on-card-ok-button"
             ontouchend="transferOnCardOnTouchEndAccept()"
@@ -21,17 +21,6 @@
 
   </div>
 
-  <component-success id="componentSuccessId"
-                     operationmessage="{window.languages.ComponentSuccessMessage}"
-                     viewpage="{'view-invoice-list'}" step_amount="{0}"></component-success>
-  <component-unsuccess id="componentUnsuccessId"
-                       viewpage="{'view-invoice-list'}"
-                       operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
-                       operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
-                       operationmessagepartthree="{errorMessageFromTransfer}"></component-unsuccess>
-
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
 
   <script>
 
@@ -102,24 +91,13 @@
 
         console.log("Account ID and SECRET_KEY for accepting the TRANSFER INVOICE", accountId, scope.opts.secret_key);
 
-        if (accountId == undefined) {
 
-          scope.showError = true;
-          scope.errorNote = window.languages.ViewTransferOnCardCardNotChosen;
-          scope.clickPinError = false;
+        if ((!accountId && accountId != 0) || accountId == undefined) {
 
-          scope.update();
-
-          return;
-        }
-
-        if (!accountId && accountId != 0) {
-
-          scope.showError = true;
-          scope.errorNote = window.languages.ViewTransferOnCardCardNotChosen;
-          scope.clickPinError = false;
-
-          scope.update();
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: window.languages.ViewTransferOnCardCardNotChosen
+          });
 
           return;
         }
@@ -160,56 +138,59 @@
 
             if (result[0][0].error == 0) {
 
-              componentSuccessId.style.display = 'block';
+              window.common.alert.show("componentSuccessId", {
+                parent: scope,
+                operationmessage: window.languages.ComponentSuccessMessage,
+                viewpage: 'view-invoice-list',
+                step_amount: 0
+              });
               window.updateBalanceGlobalFunction();
 
-//              for (var i in scope.parent.invoiceList) {
-////          console.log("scope.parent.invoiceList[i]", scope.parent.invoiceList[i])
-//                if (scope.parent.invoiceList[i].invoice_id == scope.opts.invoiceId) {
-//                  scope.parent.invoiceList[i].deleted = true;
-////            console.log("QWEQW")
-////            alert('TRUE')
-//                }
-//              }
-//              riot.update(scope.parent.invoiceList);
             }
             else {
+              window.common.alert.show("componentUnsuccessId", {
+                parent: scope,
+                viewpage: 'view-invoice-list',
+                operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
+                operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+                operationmessagepartthree: result[0][0].error_note
+              });
 
-              scope.errorMessageFromTransfer = result[0][0].error_note;
-              scope.update();
-              componentUnsuccessId.style.display = 'block';
-//              alert(result[0][0].error_note);
             }
           },
 
           onFail: function (api_status, api_status_message, data) {
             transferOnCardCheckAnswer = true;
 
-            componentUnsuccessId.style.display = 'block';
+            window.common.alert.show("componentUnsuccessId", {
+              parent: scope,
+              viewpage: 'view-invoice-list',
+              operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
+              operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+              operationmessagepartthree: api_status_message
+            });
 
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
           }
-        });
+        }, 10000);
 
-        if (!transferOnCardCheckAnswer && window.isConnected) {
-          console.log("wwww")
-          setTimeout(function () {
-            if (!transferOnCardCheckAnswer) {
-              scope.showError = true;
-              scope.errorNote = "Сервис временно недоступен";
-              scope.stepAmount = 1;
-              scope.clickPinError = false;
-              scope.update();
-              if (device.platform != 'BrowserStand') {
-                console.log("Spinner Stop View Transfer On Card 204");
-                SpinnerPlugin.activityStop();
-              }
-              window.isConnected = false;
-              return
+        setTimeout(function () {
+          if (!transferOnCardCheckAnswer) {
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              errornote: window.languages.ViewTransferOnCardCardNotChosen,
+              step_amount: scope.stepAmount
+            });
+            if (device.platform != 'BrowserStand') {
+              console.log("Spinner Stop View Transfer On Card 204");
+              SpinnerPlugin.activityStop();
             }
-          }, 10000);
-        }
+            return
+          }
+        }, 10000);
+
 
       }
     };

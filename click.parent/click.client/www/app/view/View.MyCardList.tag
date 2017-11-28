@@ -34,10 +34,6 @@
 
   </div>
 
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
   <script>
     var scope = this;
     this.titleName = window.languages.ViewMyCardListTitleName;
@@ -60,169 +56,6 @@
     console.log('CARDS', scope.cardsArray)
     scope.update();
 
-    refreshCards = function () {
-
-
-      if (modeOfApp.onlineMode) {
-        if (JSON.parse(localStorage.getItem("click_client_loginInfo"))) {
-          var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-          var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-          var sessionKey = info.session_key;
-
-          window.api.call({
-            method: 'get.accounts',
-            input: {
-              session_key: sessionKey,
-              phone_num: phoneNumber
-            },
-
-            scope: this,
-
-            onSuccess: function (result) {
-
-              var arrayAccountInfo = [];
-
-
-              if (result[0][0].error == 0) {
-                if (localStorage.getItem('click_client_cards')) {
-                  var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'))
-                  for (var i in result[1]) {
-                    console.log('cardsArray[result[1].id]', cardsArray[result[1][i].id])
-                    if (cardsArray[result[1][i].id]) {
-
-                      console.log('HASH SUM CHECKING', cardsArray[result[1][i].id].checksum, result[1][i].checksum)
-
-                      if (cardsArray[result[1][i].id].checksum != result[1][i].checksum) {
-                        scope.checkSumOfHash = false;
-                      }
-                    }
-                    else {
-                      scope.checkSumOfHash = false;
-                    }
-                  }
-
-                  console.log("CARDS RESULT", result[1], cardsArray)
-
-                }
-                else {
-                  scope.checkSumOfHash = false;
-                }
-
-                console.log('HASH SUM CHECK', scope.checkSumOfHash)
-
-//                console.log('CARDS UPDATE()', result[1])
-//                console.log(result[1])
-                if (!scope.checkSumOfHash) {
-                  if (device.platform != 'BrowserStand') {
-                    window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
-                      var j = -1, count = 0;
-                      for (var i = 0; i < result[1].length; i++) {
-
-                        j++;
-
-                        console.log('arrayAccountInfo_1' + " " + i.toString(), JSON.stringify(arrayAccountInfo));
-
-                        arrayAccountInfo.push(result[1][i]);
-
-                        console.log('arrayAccountInfo_2' + " " + i.toString(), JSON.stringify(arrayAccountInfo));
-
-                        var icon = result[1][i].card_background_url;
-
-                        var filename = icon.substr(icon.lastIndexOf('/') + 1);
-//                      alert("filename=" + filename);
-
-                        var newIconBool = checkImageURL;
-                        newIconBool('www/resources/icons/cards/', 'cards', filename, icon, j, function (bool, index, fileName) {
-
-                          if (bool) {
-                            count++;
-//                          alert("(1)new file name=" + fileName + "," + count);
-                            arrayAccountInfo[index].card_background_url = cordova.file.dataDirectory + fileName;
-                          } else {
-                            count++;
-//                          alert("(2)new file name=" + fileName + "," + count);
-                            arrayAccountInfo[index].card_background_url = 'resources/icons/cards/' + fileName;
-                          }
-
-                          var icon2 = arrayAccountInfo[index].image_url;
-                          var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);
-                          var newIcon = checkImageURL;
-                          newIcon('www/resources/icons/cards/logo/', 'logo', filename2, icon2, index, function (bool2, index2, fileName2) {
-
-                            if (bool2) {
-                              count++;
-//                            alert("(11)new file name=" + fileName2 + "," + count);
-                              arrayAccountInfo[index2].image_url = cordova.file.dataDirectory + fileName2;
-                            } else {
-                              count++;
-//                            alert("(12)new file name=" + fileName2 + "," + count);
-                              arrayAccountInfo[index2].image_url = 'resources/icons/cards/logo/' + fileName2;
-                            }
-
-                            if (count == (result[1].length * 2)) {
-//                            alert("GHVCHGFUIHOI:JIJsave into localstorage");
-                              var accountInfo = JSON.stringify(arrayAccountInfo);
-                              if (JSON.parse(localStorage.getItem("click_client_accountInfo"))) {
-                                localStorage.removeItem("click_client_accountInfo")
-                              }
-
-                              console.log('arrayAccountInfo_1232131' + " " + i.toString(), JSON.stringify(arrayAccountInfo));
-
-                              console.log('accountInfo', accountInfo);
-
-                              localStorage.setItem("click_client_accountInfo", accountInfo);
-                              setTimeout(function () {
-
-                                addCard()
-                              }, 0);
-                            }
-
-                          });
-
-                        });
-
-                      }
-                    }, onErrorLoadFs);
-                  } else {
-                    for (var i = 0; i < result[1].length; i++)
-                      arrayAccountInfo.push(result[1][i])
-                    var accountInfo = JSON.stringify(arrayAccountInfo);
-                    if (JSON.parse(localStorage.getItem("click_client_accountInfo"))) {
-                      localStorage.removeItem("click_client_accountInfo")
-                    }
-
-                    console.log('accountInfo BROWSER STAND', accountInfo);
-                    localStorage.setItem("click_client_accountInfo", accountInfo);
-                    setTimeout(function () {
-
-                      addCard()
-                    }, 0);
-                  }
-                }
-                else {
-                  setTimeout(function () {
-
-                    addCard(false)
-                  }, 0);
-                }
-              }
-              else {
-                scope.clickPinError = false;
-                scope.errorNote = result[0][0].error_note;
-                scope.showError = true;
-                scope.update();
-              }
-            },
-
-
-            onFail: function (api_status, api_status_message, data) {
-              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-              console.error(data);
-            }
-          });
-        }
-      }
-    };
 
     addCard = function (withoutBalance) {
 
@@ -424,9 +257,11 @@
               }
             }
             else {
-              scope.clickPinError = false;
-              scope.errorNote = result[0][0].error_note;
-              scope.showError = true;
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: false,
+                errornote: result[0][0].error_note
+              });
               scope.update();
             }
           },
@@ -438,8 +273,6 @@
         });
       }
     };
-
-    //    refreshCards();
 
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 
@@ -471,46 +304,45 @@
 
     var goToCardTouchStartX, goToCardTouchStartY, goToCardTouchEndX, goToCardTouchEndY;
     goToCardPageTouchStart = function (id) {
-      event.preventDefault();
-      event.stopPropagation();
 
       goToCardTouchStartX = event.changedTouches[0].pageX
       goToCardTouchStartY = event.changedTouches[0].pageY
 
-      document.getElementById(id).style.webkitTransform = 'scale(0.9)'
-
     }
 
     goToCardPageTouchEnd = function (cardId, id) {
-      if (modeOfApp.offlineMode) return
-      event.preventDefault();
-      event.stopPropagation();
-
-      document.getElementById(id).style.webkitTransform = 'scale(1)'
+      if (modeOfApp.offlineMode) return;
 
       goToCardTouchEndX = event.changedTouches[0].pageX
       goToCardTouchEndY = event.changedTouches[0].pageY
 
       if (Math.abs(goToCardTouchStartX - goToCardTouchEndX) <= 20 && Math.abs(goToCardTouchStartY - goToCardTouchEndY) <= 20) {
 
-        console.log('cardId', cardId);
-        for (var i in scope.cardsArray) {
-          if (scope.cardsArray[i] == scope.cardsArray[cardId]) {
-            scope.cardsArray[cardId].chosenCard = true;
-            console.log('scope.cardsArray[cardId]', scope.cardsArray[cardId])
-            console.log('scope.cardsArray[i]', scope.cardsArray[i])
-            localStorage.setItem('cardNumber', scope.cardsArray[cardId].countCard);
+        document.getElementById(id).style.webkitTransform = 'scale(0.9)';
+
+        setTimeout(function () {
+
+          document.getElementById(id).style.webkitTransform = 'scale(1)';
+
+          console.log('cardId', cardId);
+          for (var i in scope.cardsArray) {
+            if (scope.cardsArray[i] == scope.cardsArray[cardId]) {
+              scope.cardsArray[cardId].chosenCard = true;
+              console.log('scope.cardsArray[cardId]', scope.cardsArray[cardId])
+              console.log('scope.cardsArray[i]', scope.cardsArray[i])
+              localStorage.setItem('cardNumber', scope.cardsArray[cardId].countCard);
+            }
+            else
+              scope.cardsArray[cardId].chosenCard = false;
           }
-          else
-            scope.cardsArray[cardId].chosenCard = false;
-        }
 
-        scope.update();
+          scope.update();
 
-        riotTags.innerHTML = "<view-my-cards>";
-        riot.mount('view-my-cards', [cardId]);
+          riotTags.innerHTML = "<view-my-cards>";
+          riot.mount('view-my-cards', [cardId]);
 
-        scope.unmount()
+          scope.unmount()
+        }, 50)
       }
     }
 
@@ -541,8 +373,10 @@
 
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-          scope.showError = true;
-          scope.errorNote = question;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: question
+          });
 //        confirm(question)
 //        scope.confirmShowBool = true;
 //        scope.confirmNote = question;

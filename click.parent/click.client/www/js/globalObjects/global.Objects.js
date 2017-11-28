@@ -1,5 +1,6 @@
 window.viewMainPage = {};
 viewMainPage.myCards = false;
+viewMainPage.addFirstCardBool = false;
 
 window.onBackParams = {};
 onBackParams.opts = null;
@@ -14,6 +15,164 @@ window.viewAuthorization = {};
 viewAuthorization.check = false;
 
 window.isConnected = false;
+
+window.common = {};
+window.common.alert = {
+  ids: [
+    "componentAlertId", //component-alert
+    "componentConfirmId", //component-confirm
+    "componentInProcessingId", //component-in-processing
+    "componentResultId", //component-result
+    "componentSuccessId", //component-success
+    "componentUnsuccessId", //component-unsuccess
+    "componentGeneratedQrId" //component-generated-qr
+  ],
+  priorities: {
+    "componentAlertId": 4,
+    "componentConfirmId": 6,
+    "componentInProcessingId": 2,
+    "componentResultId": 1,
+    "componentSuccessId": 3,
+    "componentUnsuccessId": 3,
+    "componentGeneratedQrId": 3
+  },
+  tags: {
+    "componentAlertId": "component-alert",
+    "componentConfirmId": "component-confirm",
+    "componentInProcessingId": "component-in-processing",
+    "componentResultId": "component-result",
+    "componentSuccessId": "component-success",
+    "componentUnsuccessId": "component-unsuccess",
+    "componentGeneratedQrId": "component-generated-qr"
+  },
+  scopes: {},
+  hide: function (id) {
+
+    console.log(id);
+
+    try {
+
+      if (!window.common.alert.scopes[id]) return;
+      window.common.alert.scopes[id].unmount();
+      delete window.common.alert.scopes[id];
+    } catch (error) {
+
+      console.error(error);
+    }
+  },
+  updateView: function (id, params) {
+
+    if (!window.common.alert.isShown(id)) {
+      window.common.alert.show(id, params);
+      return;
+    }
+
+    for (var i in window.common.alert.scopes) {
+
+      if (i === id) {
+        for (var j in params) {
+          window.common.alert.scopes[i].opts[j] = params[j];
+          console.log("Param", j, "value", params[j]);
+        }
+        console.log("Setted opts", window.common.alert.scopes[i].opts);
+        window.common.alert.scopes[i].update();
+        return;
+      }
+    }
+  },
+  compare2Ids: function (id1, id2) {
+
+    console.log(id1, id2);
+
+    if (!window.common.alert.priorities[id1]) return undefined;
+    if (!window.common.alert.priorities[id2]) return undefined;
+
+    if (window.common.alert.priorities[id1] > window.common.alert.priorities[id2]) return 1;
+    if (window.common.alert.priorities[id1] < window.common.alert.priorities[id2]) return -1;
+    if (window.common.alert.priorities[id1] === window.common.alert.priorities[id2]) return 0;
+  },
+  show: function (id, params) {
+
+    window.clearTimers();
+
+    console.log(id);
+
+    if (!window.common.alert.priorities[id]) return;
+
+    var show = true;
+
+    try {
+      if (device.platform !== 'BrowserStand') {
+        SpinnerPlugin.activityStop();
+      }
+    } catch (error) {
+
+      console.error(error);
+    }
+
+    for (var i = 0; i < window.common.alert.ids.length; i++) {
+
+      var element = window.common.alert.ids[i];
+
+      if (!window.common.alert.isShown(element)) {
+
+        // console.log("Is Not Shown", element);
+        continue;
+      }
+
+      if (id !== element && window.common.alert.compare2Ids(id, element) >= 0) {
+
+        window.common.alert.hide(element);
+      }
+
+      if (window.common.alert.compare2Ids(id, element) < 0) {
+
+        show = false;
+      }
+    }
+
+    if (show) {
+
+      try {
+
+        alertTags.innerHTML = "<" + window.common.alert.tags[id] + ">";
+        window.common.alert.scopes[id] = riot.mount(window.common.alert.tags[id], params)[0];
+      } catch (error) {
+
+        console.error(error);
+      }
+    }
+  },
+  isShown: function (id) {
+
+    // console.log(id);
+    //
+    // console.log("IS SHOWN FUNC ELEMENT", id, window[id]);
+    if (!window[id]) {
+      return false;
+    }
+
+    // console.log("IS SHOWN FUNC ELEMENT SCOPE", id, window.common.alert.scopes[id]);
+
+    if (!window.common.alert.scopes[id]) {
+      return false;
+    }
+
+    try {
+
+      // console.log("IS SHOWN FUNC ELEMENT SCOPE", id, window[id], window[id].style.display);
+
+      if (window[id].style.display !== "none") {
+        return true;
+      }
+    } catch (error) {
+
+      console.error(error);
+    }
+
+    return false;
+  }
+};
 
 window.lastSocketMethodToSend;
 
@@ -114,7 +273,6 @@ window.News.newsCounter = 0;
 window.fingerPrint = {};
 window.fingerPrint.check = false;
 window.fingerPrint.fingerPrintInitialize = false;
-
 
 window.representDotedDate = function (left, middle, right) {
 
@@ -632,10 +790,16 @@ window.getAccount = function (checkSessionKey, firstEnter) {
             if (history.arrayOfHistory) {
               if (history.arrayOfHistory[history.arrayOfHistory.length - 1]) {
                 if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-news') {
+                  console.log("G.O. 798 mounting main-page 793");
                   this.riotTags.innerHTML = "<view-main-page>";
                   riot.mount("view-main-page");
                 }
                 else {
+                  if (device.platform !== 'BrowserStand') {
+                    console.log("Spinner stop in G.O. 799");
+                    SpinnerPlugin.activityStop();
+                  }
+                  console.log("G.O. 798 mounting ", history.arrayOfHistory[history.arrayOfHistory.length - 1].view, ", history=", history.arrayOfHistory);
                   this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
                   riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
                 }
@@ -652,6 +816,7 @@ window.getAccount = function (checkSessionKey, firstEnter) {
                   }
                   else {
                     if (JSON.parse(sessionStorage.getItem("push_news")) === true) {
+                      console.log("G.O. 815 push_news set to false");
                       sessionStorage.setItem("push_news", false)
                     }
                   }
@@ -661,11 +826,13 @@ window.getAccount = function (checkSessionKey, firstEnter) {
             }
           }
           else {
+            console.log("G.O. 825 main page mount");
             this.riotTags.innerHTML = "<view-main-page>";
             riot.mount('view-main-page');
           }
         }
         else {
+          console.log("G.O. 831 main page mount");
           this.riotTags.innerHTML = "<view-main-page>";
           riot.mount('view-main-page');
         }
@@ -678,6 +845,7 @@ window.getAccount = function (checkSessionKey, firstEnter) {
       var categoryNamesMap = {};
       window.api.call({
         method: 'get.service.category.list',
+        stopSpinner: false,
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber
@@ -757,6 +925,7 @@ window.getAccount = function (checkSessionKey, firstEnter) {
       var operatorKey = phoneNumber.substr(3, 2);
       window.api.call({
         method: 'get.service.list',
+        stopSpinner: false,
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber
@@ -877,6 +1046,7 @@ window.getAccount = function (checkSessionKey, firstEnter) {
       var servicesParamsMapSix = {};
       window.api.call({
         method: 'get.service.parameters.list',
+        stopSpinner: false,
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber
@@ -965,8 +1135,177 @@ window.getAccount = function (checkSessionKey, firstEnter) {
   }
 
   if (device.platform != 'BrowserStand') {
-    console.log("Spinner Stop View Authorization");
+    console.log("Spinner Stop global objects getAccount");
     SpinnerPlugin.activityStop();
+  }
+};
+
+
+window.fingerPrintTurnOn = function (firstEnter) {
+  console.log("G.O. fingerprint, firstEnter=", firstEnter);
+  window.fingerPrint.fingerPrintInitialize = true;
+  if (localStorage.getItem('settings_finger_print') !== null) {
+    if (device.platform == 'Android') {
+
+      function isAvailableSuccess(result) {
+        console.log("FingerprintAuth available: " + JSON.stringify(result));
+        if (result.isAvailable) {
+          window.fingerPrint.check = true;
+          localStorage.setItem('settings_finger_print_enrolled', true)
+
+          if (window.fingerPrint.check && !firstEnter && (!sessionStorage.getItem("push_news") || JSON.parse(sessionStorage.getItem("push_news")) !== true)) {
+            var encryptConfig = {
+              clientId: "myAppName",
+              clientSecret: "currentUser",
+              password: "currentUser",
+              token: "currentUser",
+              locale: "ru",
+              disableBackup: true,
+//              userAuthRequired: false,
+              dialogHint: "Повторите попытку",
+              dialogTitle: "Сканирование для CLICK"
+
+            }; // See config object for required parameters
+
+            if (localStorage.getItem("settings_finger_print") !== null) {
+              if (JSON.parse(localStorage.getItem("settings_finger_print")) === true && localStorage.getItem('click_client_pin')) {
+
+                FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
+              }
+              else {
+
+                onConfirm = function (index) {
+                  if (index == 1) {
+                    localStorage.setItem('settings_finger_print', true)
+
+                  }
+                  else {
+                    localStorage.setItem('settings_finger_print', false)
+                  }
+                }
+
+                navigator.notification.confirm(
+                  'Хотите использовать ее для CLICK?',  // message
+                  onConfirm,              // callback to invoke with index of button pressed
+                  'Устройтсво поддерживает технологию TouchID',            // title
+                  ['Да', 'Нет']          // buttonLabels
+                );
+
+              }
+            }
+          }
+        }
+        else {
+          window.fingerPrint.check = false
+          riot.update();
+        }
+      }
+
+      function isAvailableError(message) {
+        console.log("isAvailableError(): " + message);
+        window.fingerPrint.check = false;
+        riot.update();
+      }
+
+      FingerprintAuth.isAvailable(isAvailableSuccess, isAvailableError);
+
+
+      function encryptSuccessCallback(result) {
+        window.fingerPrint.fingerPrintInitialize = false;
+        console.log("successCallback(): " + JSON.stringify(result));
+        if (result.withFingerprint) {
+          console.log("Successfully encrypted credentials.");
+          console.log("Encrypted credentials: " + result.token);
+          pin = localStorage.getItem('click_client_pin');
+          console.log('pin', pin)
+          enter();
+        } else if (result.withBackup) {
+          console.log("Authenticated with backup password");
+          pin = localStorage.getItem('click_client_pin');
+          console.log('pin', pin)
+          enter();
+        }
+      }
+
+      function encryptErrorCallback(error) {
+        window.fingerPrint.fingerPrintInitialize = false;
+        if (error === "Cancelled") {
+          console.log("FingerprintAuth Dialog Cancelled!");
+        } else {
+          console.log("FingerprintAuth Error: " + error);
+        }
+      }
+
+    }
+    else if (device.platform == 'iOS') {
+
+      function successCallback(success) {
+        window.fingerPrint.check = true;
+        localStorage.setItem('settings_finger_print_enrolled', true)
+        console.log('success', success)
+
+        if (window.fingerPrint.check && !firstEnter && (!sessionStorage.getItem("push_news") || JSON.parse(sessionStorage.getItem("push_news")) !== true)) {
+          if (localStorage.getItem("settings_finger_print") !== null) {
+            if (JSON.parse(localStorage.getItem("settings_finger_print")) === true && localStorage.getItem('click_client_pin')) {
+              var text = 'Приложите палец для сканирования';
+              window.plugins.touchid.verifyFingerprint(text, successCallbackOfAuth, failureCallbackOfAuth);
+            }
+            else {
+
+              onConfirm = function (index) {
+                if (index == 1) {
+                  localStorage.setItem('settings_finger_print', true)
+                }
+                else {
+                  localStorage.setItem('settings_finger_print', false)
+                }
+              }
+
+              navigator.notification.confirm(
+                'Хотите использовать ее для CLICK?',  // message
+                onConfirm,              // callback to invoke with index of button pressed
+                'Устройтсво поддерживает технологию TouchID',            // title
+                ['Да', 'Нет']          // buttonLabels
+              );
+
+            }
+          }
+        }
+      }
+
+      function notSupportedCallback(error) {
+        console.log('error', error)
+        window.fingerPrint.check = false;
+        localStorage.setItem('settings_finger_print_enrolled', false)
+      }
+
+
+      window.plugins.touchid.isAvailable(successCallback, notSupportedCallback);
+
+
+      function successCallbackOfAuth(success) {
+        window.fingerPrint.fingerPrintInitialize = false;
+        console.log(success)
+        console.log('SUCCIESS FINGER PRINT')
+        pin = localStorage.getItem('click_client_pin');
+        enter();
+      }
+
+      function failureCallbackOfAuth(error) {
+        window.fingerPrint.fingerPrintInitialize = false;
+        console.log(error)
+        console.log('FAIL FINGER PRINT')
+      }
+    }
   }
 }
 
+window.clearTimers = function () {
+  var id = window.setTimeout(function () {
+  }, 0);
+  var maxInterval = id - 10;
+  while (id > maxInterval) {
+    window.clearTimeout(id);
+    id--;
+  }
+};

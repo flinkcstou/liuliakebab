@@ -64,15 +64,8 @@
 
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
-
   <script>
     var scope = this;
-    scope.showError = false;
     var defaultAccount;
     scope.attention = false;
     scope.fullBalance = 0;
@@ -149,7 +142,7 @@
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber,
-          accounts: accountsForBalance,
+          accounts: accountsForBalance
         },
         //TODO: DO CARDS
         scope: this,
@@ -218,15 +211,19 @@
           "*880*2%23",
           function (err) {
             if (err == "empty") {
-              scope.clickPinError = false;
-              scope.errorNote = "Unknown phone number";
-              scope.showError = true;
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: false,
+                errornote: "Unknown phone number"
+              });
               scope.update();
             }
             else {
-              scope.clickPinError = false;
-              scope.errorNote = "Dialer Error:" + err;
-              scope.showError = true;
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: false,
+                errornote: "Dialer Error:" + err
+              });
               scope.update();
             }
           },
@@ -382,9 +379,11 @@
 //            console.log('scope.lastOperationContainer', scope.lastOperationContainer);
           }
           else {
-            scope.clickPinError = false;
-            scope.errorNote = result[0][0].error_note;
-            scope.showError = true;
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: false,
+              errornote: result[0][0].error_note
+            });
             scope.update();
           }
 
@@ -424,9 +423,12 @@
             "*880*00*3" + "%23",
             function (err) {
               if (err == "empty") {
-                scope.clickPinError = false;
-                scope.errorNote = ("Unknown phone number");
-                scope.showError = true;
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: false,
+                  errornote: "Unknown phone number"
+                });
                 scope.update();
               }
               else console.log("Dialer Error:" + err);
@@ -469,9 +471,11 @@
           if (modeOfApp.demoVersion) {
             var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
-            scope.confirmShowBool = true;
-            scope.confirmNote = question;
-            scope.confirmType = 'local';
+            window.common.alert.show("componentConfirmId", {
+              parent: scope,
+              "confirmnote": question,
+              "confirmtype": 'local'
+            });
             scope.result = function (bool) {
               if (bool) {
                 localStorage.clear();
@@ -480,7 +484,7 @@
                 return
               }
               else {
-                scope.confirmShowBool = false;
+                window.common.alert.hide("componentConfirmId");
                 return
               }
             };

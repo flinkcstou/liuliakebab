@@ -47,14 +47,7 @@
     <iframe id="iFrameExternalUrlId" class="iFrame-main" frameborder="0"></iframe>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
-
   <script>
-
 
     var closeIFrameStartX, closeIFrameEndX, closeIFrameStartY, closeIFrameEndY;
 
@@ -63,7 +56,7 @@
       closeIFrameStartY = event.changedTouches[0].pageY;
 
       document.getElementById(id).style.webkitTransform = 'scale(0.8)'
-    }
+    };
 
     hideIFrameEnd = function (id) {
       closeIFrameEndX = event.changedTouches[0].pageX;
@@ -77,7 +70,7 @@
         riot.update()
       }
 
-    }
+    };
 
     var scope = this;
     var payStartX, payEndX, payStartY, payEndY;
@@ -88,17 +81,17 @@
       event.preventDefault();
       event.stopPropagation();
 
-      payButtonId.style.webkitTransform = 'scale(0.7)'
+      payButtonId.style.webkitTransform = 'scale(0.7)';
 
       payStartX = event.changedTouches[0].pageX;
       payStartY = event.changedTouches[0].pageY;
-    }
+    };
 
     goToPayViewEnd = function (e) {
       event.preventDefault();
       event.stopPropagation();
 
-      payButtonId.style.webkitTransform = 'scale(1)'
+      payButtonId.style.webkitTransform = 'scale(1)';
 
       payEndX = event.changedTouches[0].pageX;
       payEndY = event.changedTouches[0].pageY;
@@ -109,25 +102,25 @@
 //        scope.unmount()
       }
       else return
-    }
+    };
 
     var transferStartX, transferEndX, transferStartY, transferEndY;
     goToTransferViewStart = function (e) {
       event.preventDefault();
       event.stopPropagation();
 
-      transferButtonId.style.webkitTransform = 'scale(0.7)'
+      transferButtonId.style.webkitTransform = 'scale(0.7)';
 
       transferStartX = event.changedTouches[0].pageX;
       transferStartY = event.changedTouches[0].pageY;
 
-    }
+    };
 
     goToTransferViewEnd = function () {
       transferEndX = event.changedTouches[0].pageX;
       transferEndY = event.changedTouches[0].pageY;
 
-      transferButtonId.style.webkitTransform = 'scale(1)'
+      transferButtonId.style.webkitTransform = 'scale(1)';
 
       if (Math.abs(transferStartX - transferEndX) <= 20 && Math.abs(transferStartY - transferEndY) <= 20) {
         riotTags.innerHTML = "<view-transfer>";
@@ -135,34 +128,38 @@
 //        scope.unmount()
       }
       else return;
-    }
+    };
 
     var autoPayStartX, autoPayEndX, autoPayStartY, autoPayEndY;
     goToAutoPayViewStart = function (e) {
       event.preventDefault();
       event.stopPropagation();
 
-      qrButtonId.style.webkitTransform = 'scale(0.7)'
+      qrButtonId.style.webkitTransform = 'scale(0.7)';
 
       autoPayStartX = event.changedTouches[0].pageX;
       autoPayStartY = event.changedTouches[0].pageY;
 
-    }
+    };
 
     goToAutoPayViewEnd = function (e) {
       event.preventDefault();
       event.stopPropagation();
 
-      qrButtonId.style.webkitTransform = 'scale(1)'
+      qrButtonId.style.webkitTransform = 'scale(1)';
 
       autoPayEndX = event.changedTouches[0].pageX;
       autoPayEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(autoPayStartX - autoPayEndX) <= 20 && Math.abs(autoPayStartY - autoPayEndY) <= 20) {
         if (modeOfApp.demoVersion) {
-          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-          scope.showError = true;
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
           scope.errorNote = question;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote
+          });
 //        confirm(question)
 //          scope.confirmShowBool = true;
 //          scope.confirmNote = question;
@@ -190,13 +187,18 @@
           riot.mount('view-auto-pay');
 //        scope.unmount();
         } else {
+
           scope.clickPinError = false;
           scope.errorNote = "Раздел автоплатежей доступен только в онлайн режиме";
-          scope.showError = true;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote
+          });
           scope.update();
         }
       }
-    }
+    };
 
     var qrPayStartX, qrPayEndX, qrPayStartY, qrPayEndY;
 
@@ -204,27 +206,31 @@
       event.preventDefault();
       event.stopPropagation();
 
-      qrButtonId.style.webkitTransform = 'scale(0.7)'
+      qrButtonId.style.webkitTransform = 'scale(0.7)';
 
       qrPayStartX = event.changedTouches[0].pageX;
       qrPayStartY = event.changedTouches[0].pageY;
 
-    }
+    };
 
     goToQrEnd = function (e) {
       event.preventDefault();
       event.stopPropagation();
 
-      qrButtonId.style.webkitTransform = 'scale(1)'
+      qrButtonId.style.webkitTransform = 'scale(1)';
 
       qrPayEndX = event.changedTouches[0].pageX;
       qrPayEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(qrPayStartX - qrPayEndX) <= 20 && Math.abs(qrPayStartY - qrPayEndY) <= 20) {
         if (modeOfApp.demoVersion) {
-          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-          scope.showError = true;
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
           scope.errorNote = question;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote
+          });
 //        confirm(question)
 //          scope.confirmShowBool = true;
 //          scope.confirmNote = question;
@@ -396,9 +402,15 @@
                               return
                             }
                           }
+
                           scope.clickPinError = false;
                           scope.errorNote = result[0][0].error_note;
-                          scope.showError = true;
+
+                          window.common.alert.show("componentAlertId", {
+                            parent: scope,
+                            clickpinerror: scope.clickPinError,
+                            errornote: scope.errorNote
+                          });
                           scope.update();
                         }
                       },
@@ -424,14 +436,20 @@
               }
             },
             function (error) {
+
               scope.clickPinError = false;
               scope.errorNote = "Отсутствует доступ";
-              scope.showError = true;
+
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote
+              });
               scope.update();
             },
             {
               preferFrontCamera: false, // iOS and Android
-              showFlipCameraButton: true, // iOS and Android
+              showFlipCameraButton: false, // iOS and Android
               showTorchButton: true, // iOS and Android
               torchOn: false, // Android, launch with the torch switched on (if available)
               prompt: "Наведите камеру к QR коду", // Android
@@ -473,9 +491,14 @@
               }
               else {
 
-                scope.showError = true;
                 scope.clickPinError = false;
                 scope.errorNote = result[0][0].error_note;
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: scope.clickPinError,
+                  errornote: scope.errorNote
+                });
                 scope.update();
 //                alert(result[0][0].error_note);
               }

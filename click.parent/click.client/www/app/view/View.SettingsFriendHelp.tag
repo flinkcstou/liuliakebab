@@ -10,30 +10,27 @@
            class="settings-friend-help-add-button"></div>
     </div>
     <div id="mainContainerId" class="settings-container">
-      <div each="{i in arrayOfFriends}" id="{'id'+i.number}" class="settings-friend-help-contact-container">
+      <div each="{i in arrayOfFriends}" id="{'id'+i.id}" class="settings-friend-help-contact-container">
         <div class="settings-friend-help-contact-found-photo"
              style="background-image: url({i.photo})">{i.firstLetterOfName}
         </div>
         <div class="settings-friend-help-contact-found-text-container"
-             ontouchstart="chooseFriendForHelpStart('id'+{i.number})"
-             ontouchend="chooseFriendForHelpEnd({i.number}, 'id'+{i.number})">
+             ontouchstart="chooseFriendForHelpStart('id'+{i.id})"
+             ontouchend="chooseFriendForHelpEnd({i.number}, 'id'+{i.id})">
           <div class="settings-friend-help-contact-found-text-one">{i.name}</div>
           <div class="settings-friend-help-contact-found-text-two">+{i.number.substring(0, 3) + ' ' +
             inputVerification.telVerificationWithSpace(i.number.substring(3, i.number.length))}
           </div>
         </div>
-        <div id="{'del' + i.number}" class="settings-friend-help-contact-cancel-icon"
+        <div id="{'del' + i.id}" class="settings-friend-help-contact-cancel-icon"
              ontouchstart="deleteFriendTouchStart(this.id)"
-             ontouchend="deleteFriendTouchEnd({'id'+i.number}, {i.number}, this.id)" role="button"
+             ontouchend="deleteFriendTouchEnd({'id'+i.id}, {i.number}, this.id)" role="button"
              aria-label="{window.languages.ViewFriendHelpSettingsVoiceOverDeleteFriend}"></div>
       </div>
 
     </div>
 
   </div>
-
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
 
   <script>
     var scope = this;
@@ -46,7 +43,7 @@
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-friend-help-settings') {
       history.arrayOfHistory.push(
         {
-          "view"  : 'view-friend-help-settings',
+          "view": 'view-friend-help-settings',
           "params": opts
         }
       );
@@ -101,9 +98,9 @@
 
       window.api.call({
         method: 'check.contact.list',
-        input : {
-          phone_num  : phoneNumber,
-          phone_list : scope.arrayOfPhoneNumbers,
+        input: {
+          phone_num: phoneNumber,
+          phone_list: scope.arrayOfPhoneNumbers,
           session_key: sessionKey,
 
         },
@@ -111,13 +108,15 @@
         scope: this,
 
         onSuccess: function (result) {
-          if (result[0][0].error == 0) {
+          answerFromServer = true;
+
+          if (result[0][0].error === 0) {
             var object = {};
             var counter = 0;
 
             if (result[1][0])
               for (var i in result[1][0].phone_list) {
-                object = {}
+                object = {};
                 if (!result[1][0].phone_list[i].phone) {
                   continue
                 }
@@ -140,7 +139,7 @@
                   object.firstLetterOfName = object.name[0].toUpperCase();
                 object.photo = null;
                 counter++;
-
+                object.id = object.number + Math.floor((Math.random() * 1000) + 1);
                 scope.arrayOfFriends.push(object);
               }
 
@@ -158,6 +157,7 @@
         },
 
         onFail: function (api_status, api_status_message, data) {
+          answerFromServer = true;
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -166,7 +166,7 @@
 
 
     function onError(contactError) {
-      //      alert('onError!');
+      answerFromServer = true;
       console.log('error', contactError)
     }
 
@@ -180,7 +180,31 @@
         var options = new ContactFindOptions();
         options.multiple = true;
         options.hasPhoneNumber = true;
+        var answerFromServer = false;
+        if (device.platform !== 'BrowserStand') {
+          var options = {dimBackground: true};
+          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+            console.log("Spinner start in settingsFriendHelp");
+          }, function () {
+            console.log("Spinner stop in settingsFriendHelp");
+          });
+        }
         navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
+        setTimeout(function () {
+          if (!answerFromServer) {
+            answerFromServer = true;
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              errornote: window.languages.WaitingTimeExpiredText,
+              step_amount: 0
+            });
+            scope.update();
+            if (device.platform !== 'BrowserStand') {
+              console.log("Spinner stop in settingsFriendHelp by timeout");
+              SpinnerPlugin.activityStop();
+            }
+          }
+        }, 30000);
       }
     }
 
@@ -366,10 +390,15 @@
 
         var question = "Подтвердите удаление из списка";
 
-
-        scope.confirmShowBool = true;
         scope.confirmNote = question;
         scope.confirmType = 'local';
+
+        window.common.alert.show("componentConfirmId", {
+          "confirmnote": scope.confirmNote,
+          "confirmtype": scope.confirmType,
+          parent: scope,
+        });
+
         scope.result = function (bool) {
           if (bool) {
             var idOfBlock = 'id' + idWithoutPrefix;

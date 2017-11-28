@@ -270,17 +270,10 @@
 
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
-
   <component-tour view="calculator" focusfield="{true}"></component-tour>
 
 
   </div>
-
 
   <script>
 
@@ -356,7 +349,6 @@
 
     scope.enterButton = opts.mode == 'ADDFAVORITE' ? false : true;
     scope.enterButtonEnabled = false;
-    scope.showError = false;
     scope.showConfirm = false;
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
@@ -491,10 +483,10 @@
 
     var contactStopChanging = false
     telPayVerificationKeyDown = function (input) {
-//      console.log(event.target.value)
+
       if (scope.phoneFieldBool)
         if (input.value.length >= 10 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
-//          firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
+
           contactStopChanging = true;
         }
         else {
@@ -512,13 +504,7 @@
       if (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT && onPaste) {
         if (firstFieldInput.type != 'text' && scope.phoneFieldBool)
           firstFieldInput.value = inputVerification.telVerificationWithSpace(inputVerification.telVerification(firstFieldInput.value))
-//
-//
-//        firstFieldInput.selectionStart = cursorPositionSelectionStart
-//        firstFieldInput.selectionEnd = cursorPositionSelectionEnd
-//
-//        if (oldValueOfNumber != firstFieldInput.value && cursorPositionSelectionStart == 3)
-//          firstFieldInput.selectionStart = cursorPositionSelectionStart + 1;
+
 
         onPaste = false;
 
@@ -623,7 +609,7 @@
 
     });
 
-    focusFieldAfterTourClosed = function () {
+    scope.focusFieldAfterTourClosed = focusFieldAfterTourClosed = function () {
 
       if (opts.mode != 'ADDAUTOPAY' && opts.mode != 'ADDFAVORITE') {
         if (device.platform == 'iOS') {
@@ -694,6 +680,7 @@
                 phone += digits[i]
               }
               firstFieldInput.value = inputVerification.telVerificationWithSpace(phone.substring(phone.length - 9, phone.length));
+              checkFieldsToActivateNext();
             }, 0);
           }, function (error) {
             console.log('error', error)
@@ -724,9 +711,15 @@
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
-          scope.confirmShowBool = true;
           scope.confirmNote = question;
           scope.confirmType = 'local';
+
+          window.common.alert.show("componentConfirmId", {
+            parent: scope,
+            "confirmnote": scope.confirmNote,
+            "confirmtype": scope.confirmType,
+          });
+
           scope.result = function (bool) {
             if (bool) {
               localStorage.clear();
@@ -735,7 +728,9 @@
               return
             }
             else {
-              scope.confirmShowBool = false;
+
+              window.common.alert.hide("componentConfirmId");
+
               return
             }
           };
@@ -768,7 +763,13 @@
             else {
               scope.clickPinError = false;
               scope.errorNote = result[0][0].error_note;
-              scope.showError = true;
+
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote,
+              });
+
               scope.update();
             }
           },
@@ -1115,7 +1116,7 @@
                   if (scope.hasSecondLevel && scope.secondLevelMap[scope.firstLevelArray[0].type]) {
                     var chosenFirstLevelId = scope.firstLevelArray[0].type;
                     if (scope.chosenFieldParamIdTwo)
-                        chosenFirstLevelId = scope.chosenFieldParamIdTwo;
+                      chosenFirstLevelId = scope.chosenFieldParamIdTwo;
                     scope.secondLevelArray = scope.secondLevelMap[chosenFirstLevelId];
                   }
                   checkFieldsToActivateNext();
@@ -1335,8 +1336,8 @@
       }
       if (scope.secondLevelArray) {
         this.blockSecondDropdownId.style.display = 'block';
-          if (scope.oldFieldParamIdThree) {
-            if (scope.formType == 3)
+        if (scope.oldFieldParamIdThree) {
+          if (scope.formType == 3)
             document.getElementById('two' + scope.oldFieldParamIdThree).style.backgroundColor = 'white';
           else if (scope.formType == 4)
             document.getElementById(scope.oldFieldParamIdThree).style.backgroundColor = 'white';
@@ -1790,7 +1791,13 @@
         if (scope.phoneFieldBool && firstFieldInput.value.length < 10 && opts.chosenServiceId != "mynumber") {
           scope.clickPinError = false;
           scope.errorNote = "Неправильно введён номер телефона";
-          scope.showError = true;
+
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+          });
+
           scope.update();
 
           return;
@@ -1814,7 +1821,13 @@
           } else {
             scope.errorNote = scope.fieldArray[0].error_message;
           }
-          scope.showError = true;
+
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+          });
+
           scope.update();
           return;
         }
@@ -1833,7 +1846,13 @@
               scope.errorNote = "Выберите район";
 
             scope.clickPinError = false;
-            scope.showError = true;
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+            });
+
             scope.update();
             return;
           }
@@ -1844,7 +1863,13 @@
           else {
             scope.clickPinError = false;
             scope.errorNote = "Выберите интернет пакет";
-            scope.showError = true;
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+            });
+
             scope.update();
             return;
           }
@@ -1854,14 +1879,26 @@
           console.log("amount=", amountForPayTransaction);
           scope.clickPinError = false;
           scope.errorNote = scope.service.lang_min_amount;
-          scope.showError = true;
+
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+          });
+
           scope.update();
           return;
         }
         if (amountForPayTransaction > scope.service.max_pay_limit) {
           scope.clickPinError = false;
           scope.errorNote = scope.service.lang_max_amount;
-          scope.showError = true;
+
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+          });
+
           scope.update();
           return;
         }
@@ -1879,6 +1916,9 @@
         opts.chosenPrefixId = scope.chosenPrefixId;
         opts.chosenPrefixName = scope.chosenPrefixName;
         opts.transactionId = null;
+
+        history.arrayOfHistory[history.arrayOfHistory.length - 1].params = opts;
+        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
 
 //      viewServicePage.phoneText = inputVerification.telLengthVerification(firstFieldInput.value, window.languages.PhoneNumberLength);
@@ -1947,7 +1987,13 @@
             if (ussdQuery === null) {
               scope.clickPinError = false;
               scope.errorNote = ("Сервис временно недоступен!");
-              scope.showError = true;
+
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote,
+              });
+
               scope.update();
               return
             }
@@ -1963,7 +2009,13 @@
                 if (err == "empty") {
                   scope.clickPinError = false;
                   scope.errorNote = ("Unknown phone number");
-                  scope.showError = true;
+
+                  window.common.alert.show("componentAlertId", {
+                    parent: scope,
+                    clickpinerror: scope.clickPinError,
+                    errornote: scope.errorNote,
+                  });
+
                   scope.update();
                 }
                 else console.log("Dialer Error:" + err);
@@ -2017,7 +2069,13 @@
           if (autoPayNameInput.value.length < 1) {
             scope.clickPinError = false;
             scope.errorNote = "Введите название автоплатежа";
-            scope.showError = true;
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+            });
+
             scope.update();
             return;
           }
@@ -2092,7 +2150,13 @@
           if (ussdQuery === null) {
             scope.clickPinError = false;
             scope.errorNote = ("Сервис временно недоступен!");
-            scope.showError = true;
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+            });
+
             scope.update();
             return
           }
@@ -2108,7 +2172,13 @@
               if (err == "empty") {
                 scope.clickPinError = false;
                 scope.errorNote = ("Unknown phone number");
-                scope.showError = true;
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: scope.clickPinError,
+                  errornote: scope.errorNote,
+                });
+
                 scope.update();
               }
               else console.log("Dialer Error:" + err);
@@ -2164,7 +2234,13 @@
           else {
             scope.clickPinError = false;
             scope.errorNote = "Попробуйте еще раз";
-            scope.showError = true;
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+            });
+
             scope.update();
           }
 
@@ -2173,7 +2249,13 @@
           if (autoPayNameInput.value.length < 1) {
             scope.clickPinError = false;
             scope.errorNote = "Введите название автоплатежа";
-            scope.showError = true;
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+            });
+
             scope.update();
             return;
           }
@@ -2259,8 +2341,14 @@
           }
           else {
             scope.clickPinError = false;
-            scope.showError = true;
             scope.errorNote = result[0][0].error_note
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+            });
+
             scope.update();
             console.log(result[0][0].error_note);
           }
@@ -2318,8 +2406,14 @@
               }
               else {
                 scope.clickPinError = false;
-                scope.showError = true;
                 scope.errorNote = result[0][0].error_note
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: scope.clickPinError,
+                  errornote: scope.errorNote,
+                });
+
                 scope.update();
                 console.log(result[0][0].error_note);
               }

@@ -23,7 +23,7 @@
       <div class="filter-menu-title">{languages.ComponentReportFilterAccount}</div>
       <div class="filter-menu-body-container">
 
-        <component-pincards filteraccount="true"></component-pincards>
+        <component-pincards filteraccount="true" useFor="all"></component-pincards>
 
         <button id="readyButtonId" class="report-filter-ready-button" if="{filterDate || filterAccount}"
                 ontouchstart="readyButtonTouchStart(this.id)"

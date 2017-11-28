@@ -1,8 +1,8 @@
 <component-unsuccess id="componentUnsuccessId" class="component-unsuccess">
-  <p class="unsuccess-operation-success-message">{opts.operationmessagepartone}<br>{opts.operationmessageparttwo}</p>
-  <p class="unsuccess-operation-success-message-part-three">{(opts.operationmessagepartthree)
-    ? opts.operationmessagepartthree :window.languages.tempText}</p>
   <div class="unsuccess-unsuccess-icon"></div>
+  <div class="unsuccess-operation-success-message">{(opts.operationmessagepartthree)
+    ? opts.operationmessagepartthree :window.languages.tempText}
+  </div>
 
   <button id="unsuccessButtonId" class="unsuccess-next-button-inner-container"
           ontouchstart="closeUnsuccessMessageFormStart()" ontouchend="closeUnsuccessMessageFormEnd()">
@@ -31,19 +31,19 @@
       unsuccessButtonId.style.webkitTransform = 'scale(1)'
 
       if (Math.abs(closeButtonStartX - closeButtonEndX) <= 20 && Math.abs(closeButtonStartY - closeButtonEndY) <= 20) {
-        console.log('OPTS', opts)
-        console.log('errorMessage', scope.errorMessage)
-        componentUnsuccessId.style.display = 'none';
-        console.log("before unsuccess", history.arrayOfHistory)
+        console.log('OPTS', opts);
+        console.log('errorMessage', scope.errorMessage);
+        window.common.alert.hide("componentUnsuccessId");
+        console.log("before unsuccess", history.arrayOfHistory);
         if (opts.step_amount) {
-          history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
-          console.log(history.arrayOfHistory)
-          sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+          history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount);
+          console.log(history.arrayOfHistory);
+          sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
-          console.log("after unsuccess", history.arrayOfHistory)
+          console.log("after unsuccess", history.arrayOfHistory);
 
           if (history.arrayOfHistory.length != 0) {
-            console.log('opts', history.arrayOfHistory[history.arrayOfHistory.length - 1].params)
+            console.log('opts', history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
             riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
             riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
             return;

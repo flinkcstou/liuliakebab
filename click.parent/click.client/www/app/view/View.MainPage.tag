@@ -13,12 +13,13 @@
     <view-news if="{!modeOfApp.offlineMode}"></view-news>
 
     <div class="bank-operation-button-my-cards">
-      <div id="myCardButtonId" class="bank-operation-button-my-cards-container">
+      <div id="myCardButtonId" class="bank-operation-button-my-cards-container" if="{!viewMainPage.addFirstCardBool}">
         <div class="bank-operation-button-my-cards-icon"></div>
         <div class="bank-operation-button-my-cards-label">
           {window.languages.BankOperationsAutoPay}
         </div>
-        <div class="bank-operation-button-container" ontouchend="myCardListTouchEnd()"
+        <div class="bank-operation-button-container"
+             ontouchend="myCardListTouchEnd()"
              ontouchstart="myCardListTouchStart()"></div>
       </div>
     </div>
@@ -26,8 +27,6 @@
 
   <component-tour view="mainpage"></component-tour>
   <script>
-
-    //    console.log('BASE64', atob('aWQ9MDEwMDAmYW1vdW50PTEyMjAwJm9yZGVyX2lkPTAxN0I1N0NFLUJDRUItNEE3MC04NEFFLUJFRTM0NUY4NUI1OQ=='))
 
     viewMainPage.atMainPage = true;
     viewTransfer.check = false;
@@ -40,25 +39,25 @@
 
 
     this.on('mount', function () {
-      if (device.platform != 'BrowserStand')
+      if (device.platform !== 'BrowserStand')
         StatusBar.backgroundColorByHexString("#00a8f1");
 
       localStorage.setItem("click_client_authorized", true);
 
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).mainpage) {
         componentTourId.style.display = "block";
-        if (device.platform != 'BrowserStand')
+        if (device.platform !== 'BrowserStand')
           StatusBar.backgroundColorByHexString("#004663");
       }
 
       if (opts) {
-        if (opts.view == "news") {
-          viewNewsId.style.display = 'block'
+        if (opts.view === "news" || (sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true)) {
+          console.log("mainPage news");
+          viewNewsId.style.display = 'block';
           scope.tags['view-news'].showNewsFunction(1);
 
-//          window.News.newsCounter = 0;
 
-          if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-news') {
+          if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-news') {
             history.arrayOfHistory.push(
               {
                 "view": 'view-news',
@@ -71,18 +70,9 @@
       }
     });
 
+
     var scope = this;
-    //
-    //        function sum(arg1, arg2, callback) {
-    //
-    //            var my_number = arg1 + arg2;
-    //
-    //            callback(my_number);
-    //        }
-    //
-    //        sum(5, 15, function(num) {
-    //            console.log("callback SUM " + num);
-    //        });
+
 
     localStorage.setItem('cardNumber', 1);
 
@@ -106,22 +96,22 @@
     var width = window.innerWidth;
 
 
-    var myCardListStartX, myCardListEndX, myCardListStartY, myCardListEndY
+    var myCardListStartX, myCardListEndX, myCardListStartY, myCardListEndY;
 
     myCardListTouchStart = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      myCardButtonId.style.webkitTransform = 'scale(0.7)'
+      myCardButtonId.style.webkitTransform = 'scale(0.7)';
 
       myCardListStartX = event.changedTouches[0].pageX;
       myCardListStartY = event.changedTouches[0].pageY;
-    }
+    };
     myCardListTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      myCardButtonId.style.webkitTransform = 'scale(1)'
+      myCardButtonId.style.webkitTransform = 'scale(1)';
 
       myCardListEndX = event.changedTouches[0].pageX;
       myCardListEndY = event.changedTouches[0].pageY;
@@ -146,17 +136,13 @@
     };
 
     blockForSwipeTouchEnd = function () {
-      event.stopPropagation()
+      event.stopPropagation();
 
       touchEndX = event.changedTouches[0].pageX;
       timeEndX = event.timeStamp.toFixed(0);
 
-//      if (touchEndX - touchStartX > 20) {
-//        menuOpen();
-//      }
-
-      console.log('touchMoveX', touchMoveX)
-      console.log('widthK', 269 * widthK)
+      console.log('touchMoveX', touchMoveX);
+      console.log('widthK', 269 * widthK);
       if (touchMoveX > 269 * widthK) {
         menuOpenTouchEnd(true);
       }
@@ -167,22 +153,22 @@
         else
           closeMenu()
       }
-    }
+    };
 
     blockForSwipeTouchMove = function () {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
       var deltaForSideMenuBack = event.changedTouches[0].pageX.toFixed(0) / width;
       var deltaForMainPage = 1 - deltaForSideMenuBack;
       if (deltaForMainPage < 0.1)
-        deltaForMainPage = 0.1
+        deltaForMainPage = 0.1;
       if (event.changedTouches[0].pageX - 538 * widthK <= 0) {
         sideMenuId.style.webkitTransform = 'translate3d(' + (event.changedTouches[0].pageX - 538 * widthK) + 'px,0,0)'
         touchMoveX = event.changedTouches[0].pageX;
       }
       sideMenuBackPageId.style.opacity = deltaForSideMenuBack;
       mainPageId.style.opacity = deltaForMainPage;
-    }
+    };
 
     if (!localStorage.getItem('push_registered')) {
       window.pushNotificationInitialize();

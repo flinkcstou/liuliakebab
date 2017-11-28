@@ -2,6 +2,7 @@
   <div class="registration-device-flex-container">
     <div class="registration-device-unchangable-container">
       <div class="registration-device-phone-field">
+        <component-canvas></component-canvas>
         <p class="registration-device-text-field">{window.languages.ViewRegistrationTextField}</p>
 
         <p class="registration-device-phone-code-part">+{window.languages.CodeOfCountry}</p>
@@ -47,9 +48,6 @@
     </a>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
   <component-tour view="registration"></component-tour>
 
   <div hidden id="demoContinueContainer" class="demo-version-continue riot-tags-main-container">
@@ -75,6 +73,8 @@
         demoContainer.style.left = 100 * widthK + 'px';
       if (device.platform != 'BrowserStand')
         StatusBar.backgroundColorByHexString("#00b0eb");
+      canvas = document.getElementById('canvas');
+      ctx = canvas.getContext("2d");
     })
 
     var checkRemember = false;
@@ -124,8 +124,6 @@
 
     var scope = this;
     var token;
-
-    scope.showError = false;
 
     scope.phoneNumber = '';
     scope.maskPhoneNumber = '';
@@ -189,9 +187,8 @@
     var inputStartX = 260 * widthK;
     var inputLocalStartX = inputStartX - 80 * widthK;
     var inputFocusIndex = 0;
-    var canvas = document.createElement('canvas');
-    var ctx = canvas.getContext("2d");
-    ctx.font = 64 * widthK + "px SFUIDisplay-Light";
+    var canvas;
+    var ctx;
 
 
     onTouchendRegNumber = function () {
@@ -362,7 +359,12 @@
         if (phoneNumber.length != 12) {
           scope.clickPinError = false;
           scope.errorNote = "Неправильно введен номер телефона";
-          scope.showError = true;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+            viewpage: scope.viewPage,
+          });
           scope.update();
           correctPhoneNumber = false;
         }
@@ -450,7 +452,7 @@
 
       window.api.call({
         method: 'device.register.request',
-        stopSpinner: true,
+        stopSpinner: false,
         input: {
           phone_num: phoneNumber,
           device_info: deviceInfo(),
@@ -465,6 +467,10 @@
 
         onSuccess: function (result) {
           answerFromServer = true;
+          if (device.platform != 'BrowserStand') {
+            console.log("Spinner stop in device registration by timeout");
+            SpinnerPlugin.activityStop();
+          }
           console.log("Device.register.request method answer: fail");
 
           if (result[0][0].error == 0) {
@@ -494,16 +500,18 @@
           }
           else {
             scope.clickPinError = false;
-            scope.errorNote = result[0][0].error_note;
-            scope.showError = true;
-            scope.update();
+            updateAlertComponent(true, null, 'view-registration-device', result[0][0].error_note);
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
           console.log("Device.register.request method answer: fail");
-          showAlertComponent("Сервис временно не доступен");
+          if (device.platform != 'BrowserStand') {
+            console.log("Spinner stop in device registration by timeout");
+            SpinnerPlugin.activityStop();
+          }
+          updateAlertComponent(true, null, 'view-registration-device', "Сервис временно не доступен");
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -511,9 +519,7 @@
 
       setTimeout(function () {
         if (!answerFromServer) {
-          scope.showError = true;
-          scope.errorNote = "Время ожидания истекло";
-          scope.update();
+          updateAlertComponent(true, null, 'view-registration-device', window.languages.WaitingTimeExpiredText);
           if (device.platform != 'BrowserStand') {
             console.log("Spinner stop in device registration by timeout");
             SpinnerPlugin.activityStop();
@@ -522,6 +528,29 @@
           return;
         }
       }, 30000)
+    }
+
+    updateAlertComponent = function (showError, stepAmount, viewPage, text) {
+      console.log("OPEN ALERT COMPONENT:", showError, text, stepAmount, viewPage);
+
+      scope.stepAmount = stepAmount;
+
+      scope.viewPage = viewPage;
+      scope.errorNote = text;
+      riot.update();
+
+      if (showError) {
+
+        window.common.alert.show("componentAlertId", {
+          parent: scope,
+          clickpinerror: scope.clickPinError,
+          errornote: scope.errorNote,
+          viewpage: scope.viewPage,
+        });
+      } else {
+
+        window.common.alert.hide("componentAlertId");
+      }
     }
 
   </script>

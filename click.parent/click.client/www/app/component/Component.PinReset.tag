@@ -6,11 +6,13 @@
 
 
     <div class="component-pinreset-buttons-container">
-      <div id="pinResetYesButtonId" class="component-pinreset-button" ontouchstart="resetPinStart()" ontouchend="resetPinEnd()">
+      <div id="pinResetYesButtonId" class="component-pinreset-button" ontouchstart="resetPinStart()"
+           ontouchend="resetPinEnd()">
         <p class="component-pinreset-button-label">
           {window.languages.ComponentPinResetYesButtonLabel}</p>
       </div>
-      <div id="pinResetCloseButtonId" class="component-pinreset-button component-pinreset-no-button" ontouchstart="closeWindowStart()"
+      <div id="pinResetCloseButtonId" class="component-pinreset-button component-pinreset-no-button"
+           ontouchstart="closeWindowStart()"
            ontouchend="closeWindowEnd()">
         <p class="component-pinreset-button-label">{window.languages.ComponentPinResetNoButtonLabel}</p>
       </div>
@@ -26,7 +28,8 @@
 
 
     <div class="component-pinreset-buttons-container">
-      <div id="goToRegButtonId" class="component-pinreset-registration-button" ontouchstart="goToRegistrationStart()" ontouchend="goToRegistrationEnd()">
+      <div id="goToRegButtonId" class="component-pinreset-registration-button" ontouchstart="goToRegistrationStart()"
+           ontouchend="goToRegistrationEnd()">
         <p class="component-pinreset-registration-button-label">
           {window.languages.ComponentPinResetRegistrationButtonLabel}</p>
       </div>
@@ -34,13 +37,9 @@
 
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
   <script>
     var scope = this;
     scope.firstStage = true;
-    scope.showError = false;
 
     var resetPinStartX, resetPinStartY, resetPinEndX, resetPinEndY;
 
@@ -66,9 +65,9 @@
         var sign_string = hex_md5(phoneNumber.substring(0, 5) + timeStamp + phoneNumber.substring(phoneNumber.length - 4, phoneNumber.length));
         window.api.call({
           method: 'pin.reset',
-          input : {
-            timestamp  : timeStamp,
-            phone_num  : phoneNumber,
+          input: {
+            timestamp: timeStamp,
+            phone_num: phoneNumber,
             sign_string: sign_string
           },
 
@@ -77,16 +76,23 @@
           onSuccess: function (result) {
             console.log('pin.reset', result);
             if (result[0][0].error == 0) {
-              console.log("result of PIN RESET ", result);
+              console.log("resetting account");
+              localStorage.removeItem('click_client_cards');
+              localStorage.removeItem('click_client_accountInfo');
+              localStorage.removeItem('cardNumber');
+              localStorage.removeItem('click_client_countCard');
               scope.firstMessage = result[1][0].text1;
               scope.secondMessage = result[1][0].text2;
               scope.firstStage = false;
               scope.update();
             }
             else {
-              scope.clickPinError = false;
-              scope.errorNote = result[0][0].error_note;
-              scope.showError = true;
+
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: false,
+                errornote: result[0][0].error_note
+              });
               scope.update();
             }
           },

@@ -35,7 +35,7 @@
       <p class="payment-detail-title-pay-from">{window.languages.ViewPaymentDetailTitlePayFrom}</p>
     </div>
 
-    <component-pincards paymentdetail="{true}" clean="{true}"></component-pincards>
+    <component-pincards paymentdetail="{true}" clean="{true}" useFor="payment"></component-pincards>
 
     <div class="account-detail-cover"></div>
 
@@ -53,24 +53,8 @@
     </div>
   </div>
 
-
-  <component-success id="componentSuccessId"
-                     operationmessage="{window.languages.ComponentSuccessMessageForPay}"
-                     viewpage="{viewPage}" step_amount="{}" close_action="{goToBack}"></component-success>
-  <component-unsuccess id="componentUnsuccessId"
-                       operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
-                       operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
-                       operationmessagepartthree="{errorMessageFromTransfer}"
-                       step_amount="{1}"></component-unsuccess>
-  <component-in-processing id="componentInProcessingId" viewpage="{viewPage}"
-                           operationmessagepartone="{window.languages.ComponentInProcessingPartOneForPay}"
-                           operationmessageparttwo="{window.languages.ComponentInProcessingPartTwo}"
-                           step_amount="{0}"></component-in-processing>
-
-  <component-alert if="{showError}" clickpinerror="{clickPinError}" errorcode="{errorCode}"
-                   errornote="{errorNote}"></component-alert>
-
   <script>
+
     var scope = this,
       touchStartDeclineX,
       touchStartDeclineY,
@@ -81,12 +65,54 @@
       touchEndAcceptX,
       touchEndAcceptY;
 
-    scope.showError = false;
     scope.commission_amount = scope.opts.amount * scope.opts.commission_percent / 100;
     scope.errorCode = 0;
+
+    var pageToReturnIfError = 'view-main-page', pageToReturnIfSuccess = 'view-report';
+    var paymentSuccessStep = 1, paymentWaitingStep = 0;
     //    scope.titleName = window.languages.ViewPaymentDetailTitle + scope.opts.invoiceId;
 
     console.log("OPTS Payment Detail", opts)
+
+    updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
+      console.log("OPEN RESULT COMPONENT");
+//      scope.showResult = showResult;
+
+      scope.stepAmount = stepAmount;
+      scope.viewPage = viewPage;
+      scope.resultText = text;
+
+      if (showResult) {
+        window.common.alert.updateView("componentResultId", {
+          parent: scope,
+          resulttext: scope.resultText,
+          viewpage: scope.viewPage,
+          step_amount: scope.stepAmount,
+          parent: scope
+        });
+      } else {
+        window.common.alert.hide("componentResultId");
+      }
+      updateIcon(status, null, null, text, stepAmount, scope.viewPage);
+    };
+
+    closeResultComponent = function () {
+      scope.showResult = false;
+      window.common.alert.hide("componentResultId");
+      scope.update();
+    };
+
+    initResultComponent = function () {
+
+      window.common.alert.updateView("componentResultId", {
+        parent: scope,
+        resulttext: scope.resultText,
+        viewpage: scope.viewPage,
+        step_amount: scope.stepAmount,
+        parent: scope
+      });
+      scope.update();
+    };
 
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 
@@ -160,6 +186,8 @@
             console.log("closed");
           });
         }
+
+        var answerFromServer = false;
         window.api.call({
           method: 'invoice.action',
           input: {
@@ -170,6 +198,7 @@
           },
           scope: this,
           onSuccess: function (result) {
+            answerFromServer = true;
 
             console.log("result of invoice payment decline", result);
 
@@ -177,18 +206,46 @@
               paymentDetailGoToBackEnd(true);
             }
             else {
-              scope.clickPinError = false;
-              scope.errorNote = result[0][0].error_note;
-              scope.showError = true;
-              scope.update();
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: false,
+                errornote: result[0][0].error_note,
+                errorcode: scope.errorCode,
+                viewpage: 'view-main-page'
+              });
             }
           },
 
           onFail: function (api_status, api_status_message, data) {
+            answerFromServer = true;
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: false,
+              errornote: api_status_message,
+              errorcode: scope.errorCode,
+              viewpage: 'view-main-page'
+            });
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
           }
         });
+
+        setTimeout(function () {
+          if (!answerFromServer) {
+            answerFromServer = true;
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: false,
+              errornote: window.languages.WaitingTimeExpiredText,
+              errorcode: scope.errorCode,
+              viewpage: 'view-main-page'
+            });
+            if (device.platform !== 'BrowserStand') {
+              console.log("Spinner stop in authorization by timeout");
+              SpinnerPlugin.activityStop();
+            }
+          }
+        }, 30000)
       }
     };
 
@@ -220,35 +277,29 @@
 
         if (accountId == undefined) {
 
-          scope.showError = true;
-          scope.errorNote = window.languages.ViewPaymentDetailCardNotChosen;
-          scope.clickPinError = false;
-
-          scope.update();
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: false,
+            errornote: window.languages.ViewPaymentDetailCardNotChosen,
+            errorcode: scope.errorCode
+          });
 
           return;
         }
 
         if (!accountId && accountId != 0) {
 
-          scope.showError = true;
-          scope.errorNote = window.languages.ViewPaymentDetailCardNotChosen;
-          scope.clickPinError = false;
-
-          scope.update();
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: false,
+            errornote: window.languages.ViewPaymentDetailCardNotChosen,
+            errorcode: scope.errorCode
+          });
 
           return;
         }
 
-        if (device.platform != 'BrowserStand') {
-          var options = {dimBackground: true};
-
-          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-            console.log("Started");
-          }, function () {
-            console.log("closed");
-          });
-        }
+        initResultComponent();
 
         window.api.call({
           method: 'invoice.action',
@@ -267,17 +318,6 @@
 
             if (result[0][0].error == 0) {
 
-
-//              if (device.platform != 'BrowserStand') {
-//                var options = {dimBackground: true};
-//
-//                SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-//                  console.log("Started");
-//                }, function () {
-//                  console.log("closed");
-//                });
-//              }
-
               setTimeout(function () {
                 checkPaymentStatus(result[1][0].payment_id);
               }, 2000);
@@ -285,19 +325,19 @@
             }
             else {
               answerFromServer = true;
-              componentUnsuccessId.style.display = 'block';
+
               history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1)
               console.log(history.arrayOfHistory)
               sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
 
-              scope.viewPage = 'main-page'
-              scope.update()
+              updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', result[0][0].error_note);
             }
           },
 
           onFail: function (api_status, api_status_message, data) {
             answerFromServer = true;
-            componentUnsuccessId.style.display = 'block';
+            updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
+
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
           }
@@ -305,15 +345,8 @@
 
         setTimeout(function () {
           if (!answerFromServer) {
-            scope.showError = true;
-            scope.errorNote = "Время ожидания истекло";
-            scope.errorCode = 1;
-            scope.update();
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Pay Confirm New 705");
-              SpinnerPlugin.activityStop();
-            }
-            window.isConnected = false;
+
+            updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
             return
           }
         }, 40000)
@@ -350,38 +383,23 @@
             if (result[1][0].state == -1) {
               answerFromServer = true;
 
-              if (device.platform != 'BrowserStand') {
-                console.log("Spinner Stop View Payment Detail 331");
-                SpinnerPlugin.activityStop();
-              }
+              history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1);
+              console.log(history.arrayOfHistory);
+              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
-              componentUnsuccessId.style.display = 'block';
-              history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1)
-              console.log(history.arrayOfHistory)
-              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-
-              scope.viewPage = 'main-page'
-              scope.errorMessageFromTransfer = result[1][0].error;
-              scope.update()
-
+              updateResultComponent(true, paymentSuccessStep, null, 'unsuccess', result[1][0].error);
 
             } else if (result[1][0].state == 2) {
               answerFromServer = true;
 
-              if (device.platform != 'BrowserStand') {
-                console.log("Spinner Stop View Payment Detail 348");
-                SpinnerPlugin.activityStop();
-              }
               window.updateBalanceGlobalFunction();
 
-              componentSuccessId.style.display = 'block';
 
-              history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1)
-              console.log(history.arrayOfHistory)
-              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+              history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1);
+              console.log(history.arrayOfHistory);
+              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
-              scope.viewPage = 'view-report'
-              scope.update()
+              updateResultComponent(true, null, pageToReturnIfSuccess, 'success', window.languages.ComponentSuccessMessageForPay);
 
             } else if (result[1][0].state == 1) {
 
@@ -396,18 +414,12 @@
 
               } else {
                 answerFromServer = true;
-                if (device.platform != 'BrowserStand') {
-                  console.log("Spinner Stop View Payment Detail 384");
-                  SpinnerPlugin.activityStop();
-                }
 
-                componentInProcessingId.style.display = 'block';
-                history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1)
-                console.log(history.arrayOfHistory)
-                sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+                history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1);
+                console.log(history.arrayOfHistory);
+                sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
-                scope.viewPage = 'main-page'
-                scope.update();
+                updateResultComponent(true, paymentWaitingStep, null, 'waiting', window.languages.ComponentInProcessingPartOneForPay);
 
               }
 
@@ -416,18 +428,15 @@
           }
           else {
             answerFromServer = true;
-            console.log("result of GET.PAYMENT in else", result);
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Payment Detail 404");
-              SpinnerPlugin.activityStop();
-            }
-            componentUnsuccessId.style.display = 'block';
+            updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', result[1][0].error);
+
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
-          componentUnsuccessId.style.display = 'block';
+
+          updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }

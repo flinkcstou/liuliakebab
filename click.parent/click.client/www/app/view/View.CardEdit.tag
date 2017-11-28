@@ -4,7 +4,8 @@
     <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()"
          class="{back-button: backbuttoncheck}">
     </div>
-    <div id="rightButton" type="button" class="{check-button: rightbuttoncheck}" ontouchstart="saveEditStart()" ontouchend="saveEditEnd()"></div>
+    <div id="rightButton" type="button" class="{check-button: rightbuttoncheck}" ontouchstart="saveEditStart()"
+         ontouchend="saveEditEnd()"></div>
   </div>
   <div class="card-edit-body-container">
     <div class="card-edit-field">
@@ -18,10 +19,8 @@
     </div>
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
   <script>
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-card-edit') {
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-card-edit') {
       history.arrayOfHistory.push(
         {
           "view": 'view-card-edit',
@@ -32,11 +31,10 @@
     }
 
     var scope = this;
-    scope.showError = false;
     scope.backbuttoncheck = true;
     scope.rightbuttoncheck = true;
     scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
-    var isMain
+    var isMain;
 
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 
@@ -44,7 +42,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      backButton.style.webkitTransform = 'scale(0.7)'
+      backButton.style.webkitTransform = 'scale(0.7)';
 
       goBackButtonStartX = event.changedTouches[0].pageX;
       goBackButtonStartY = event.changedTouches[0].pageY;
@@ -55,19 +53,19 @@
       event.preventDefault();
       event.stopPropagation();
 
-      backButton.style.webkitTransform = 'scale(1)'
+      backButton.style.webkitTransform = 'scale(1)';
 
       goBackButtonEndX = event.changedTouches[0].pageX;
       goBackButtonEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
-        onBackKeyDown()
-        scope.unmount()
+        onBackKeyDown();
+        scope.unmount();
       }
     };
 
     this.on('mount', function () {
-      console.log("OPTS CARD", opts)
+      console.log("OPTS CARD", opts);
       if (opts[0]) {
         scope.card = opts[0];
         console.log('scope.card from opt', scope.card);
@@ -81,40 +79,12 @@
           isMain = scope.card.default_account;
           scope.update();
         }
-
       }
 
       if (isMain) {
         makeMainCheckId.style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
       }
     });
-
-
-    //    cardEditFocus = function () {
-    //      event.preventDefault()
-    //      event.stopPropagation()
-    //
-    //      if (cardNameInputID.value.length > 25) {
-    //        return
-    //      }
-    //    }
-    //
-    //    cardEditKeyDown = function () {
-    //      if (cardNameInputID.value.length > 25) {
-    //        event.preventDefault()
-    //        event.stopPropagation()
-    //        return
-    //      }
-    //    }
-    //
-    //    cardEditKeyUp = function () {
-    //      event.preventDefault()
-    //      event.stopPropagation()
-    //
-    //      if (cardNameInputID.value.length > 25) {
-    //        return
-    //      }
-    //    }
 
     var saveButtonStartX, saveButtonEndX, saveButtonStartY, saveButtonEndY;
 
@@ -138,12 +108,10 @@
         var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
         var phoneNumber = localStorage.getItem('click_client_phoneNumber');
         var newCardName = cardNameInputID.value;
-//      console.log("old name=", scope.card.name);
-//      console.log("new name=", newCardName);
-//      console.log("card id=", scope.card.card_id);
+
 
         if (scope.card.name != newCardName) {
-//        console.log("going to change name");
+
           window.api.call({
             method: 'settings.account.name',
             input: {
@@ -155,11 +123,10 @@
             scope: this,
 
             onSuccess: function (result) {
-//            console.log(result);
-//            console.log(result[0][0]);
+
               if (result[0][0].error == 0) {
                 scope.cardsArray[scope.card.card_id].name = newCardName;
-//              console.log("name new=", scope.cardsArray[scope.card.card_id].name);
+
                 //TODO: CHANGED - COMMENTED
                 if (isMain == scope.card.default_account) {
                   localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
@@ -170,9 +137,12 @@
 
               }
               else {
-                scope.clickPinError = false;
-                scope.errorNote = result[0][0].error_note;
-                scope.showError = true;
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: false,
+                  errornote: result[0][0].error_note
+                });
                 scope.update();
               }
 
@@ -186,7 +156,7 @@
           scope.noNameChange = true;
         }
         if (isMain != scope.card.default_account && !scope.onlyOneCard) {
-//        console.log("is main");
+
           window.api.call({
             method: 'settings.change.default.account',
             input: {
@@ -197,18 +167,22 @@
             scope: this,
 
             onSuccess: function (result) {
-//            console.log(result);
-//            console.log(result[0][0]);
+
               if (result[0][0].error == 0 && result[1][0]) {
+                var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
                 var j = 2;
                 for (var i in scope.cardsArray) {
                   if (scope.cardsArray[i].card_id == result[1][0].default_account_id) {
                     scope.cardsArray[i].default_account = true;
                     scope.cardsArray[i].countCard = 1;
+                    scope.cardsArray[i].chosenCard = true;
+                    loginInfo.default_account = result[1][0].default_account_id;
+
                   }
                   else {
                     scope.cardsArray[i].default_account = false;
                     scope.cardsArray[i].countCard = j++;
+                    scope.cardsArray[i].chosenCard = false;
                   }
                 }
 
@@ -217,20 +191,23 @@
                   for (var k in scope.cardsArray) {
                     if (scope.cardsArray[k].countCard == i) {
                       scope.cardsarrayTwo[scope.cardsArray[k].card_id] = scope.cardsArray[k];
-//                    console.log("i=", i, ",card=", cardsarrayTwo[scope.cardsArray[k].card_id]);
+
                     }
                   }
                 }
-//              console.log("Default account ID new=", result[1][0].default_account_id);
-//              console.log("bool of current card=", scope.cardsArray[scope.card.card_id].default_account);
+
                 localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarrayTwo));
+                localStorage.setItem('click_client_loginInfo', JSON.stringify(loginInfo));
                 onBackKeyDown();
 
               }
               else if (result[0][0].error != 0) {
-                scope.clickPinError = false;
-                scope.errorNote = result[0][0].error_note;
-                scope.showError = true;
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: false,
+                  errornote: result[0][0].error_note
+                });
                 scope.update();
               }
             },
@@ -244,7 +221,7 @@
         }
 
         if (scope.noNameChange && scope.noBoolChange) {
-//        console.log("no changes");
+
           onBackKeyDown();
 
         }
@@ -255,11 +232,11 @@
 
     MakeMainCheck = function () {
       if (isMain) {
-//        console.log("false!!!");
+
         isMain = false;
         makeMainCheckId.style.backgroundImage = "url(resources/icons/ViewService/unchecked.png)";
       } else {
-//        console.log("true!!!");
+
         isMain = true;
         makeMainCheckId.style.backgroundImage = "url(resources/icons/ViewService/checked.png)";
       }

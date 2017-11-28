@@ -84,16 +84,9 @@
 
   <component-delete-card id="deleteCardComponentId"></component-delete-card>
 
-  <component-alert if="{showError}" carddelete="{cardDelete}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
-
   <script>
 
     var scope = this;
-    scope.cardDelete = false;
     viewMainPage.atMainPage = false;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-my-cards') {
@@ -236,8 +229,10 @@
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
-          scope.showError = true;
-          scope.errorNote = question;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: question
+          });
 //        scope.confirmType = 'local';
 //        scope.result = function (bool) {
 //          if (bool) {
@@ -332,9 +327,11 @@
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
-          scope.confirmShowBool = true;
-          scope.confirmNote = question;
-          scope.confirmType = 'local';
+          window.common.alert.show("componentConfirmId", {
+            parent: scope,
+            "confirmnote": question,
+            "confirmtype": 'local'
+          });
           scope.result = function (bool) {
             if (bool) {
               localStorage.clear();
@@ -343,7 +340,7 @@
               return
             }
             else {
-              scope.confirmShowBool = false;
+              window.common.alert.hide("componentConfirmId");
               return
             }
           };
@@ -352,124 +349,33 @@
           return
         }
 
-        deleteCardComponentId.style.display = 'block'
 
         var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
         var phoneNumber = localStorage.getItem('click_client_phoneNumber');
         var account_id = scope.card.card_id;
         var removable = scope.card.removable;
 
-        if (removable == 1)
+        if (removable == 1) {
+          deleteCardComponentId.style.display = 'block';
           componentDeleteCard.getInformation(sessionKey, phoneNumber, account_id);
+        }
         else {
-          scope.clickPinError = false;
-          scope.errorNote = 'Вы не можете удалить эту карту!';
-          scope.showError = true;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: false,
+            errornote: 'Вы не можете удалить эту карту!',
+          });
           scope.update();
         }
       }
     }
 
-    //    updateCard = function () {
-    //
-    //      var arrayAccountInfo = [];
-    //      localStorage.removeItem('click_client_accountInfo')
-    //      localStorage.removeItem('click_client_cards')
-    //      localStorage.removeItem('cardNumber')
-    //      localStorage.removeItem('click_client_countCard')
-    //
-    //      console.log('ACCOUNT INFO', JSON.parse(localStorage.getItem('click_client_accountInfo')))
-    //      console.log('ACCOUNT INFO')
-    //
-    //      if (!localStorage.getItem("click_client_accountInfo")) {
-    //        window.api.call({
-    //          method: 'get.accounts',
-    //          input: {
-    //            session_key: sessionKey,
-    //            phone_num: phoneNumber
-    //          },
-    //
-    //          scope: this,
-    //
-    //          onSuccess: function (result) {
-    //
-    //            if (result[0][0].error == 0) {
-    //
-    //              if (device.platform != 'BrowserStand') {
-    //                window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
-    //                  var j = -1;
-    //                  for (var i = 0; i < result[1].length; i++) {
-    //
-    //                    j++;
-    //                    arrayAccountInfo.push(result[1][i]);
-    //
-    //                    var icon = result[1][i].card_background_url;
-    //                    console.log();
-    //                    var filename = icon.substr(icon.lastIndexOf('/') + 1);
-    //                    console.log("filename=" + filename);
-    //
-    //                    var newIconBool = checkImageURL;
-    //                    newIconBool('www/resources/icons/cards/', 'cards', filename, icon, j, function (bool, index, fileName) {
-    //
-    //                      if (bool) {
-    //                        arrayAccountInfo[index].card_background_url = cordova.file.dataDirectory + 'cards' + fileName;
-    //                      } else {
-    //                        arrayAccountInfo[index].card_background_url = 'resources/icons/cards/' + fileName;
-    //                      }
-    //
-    //                      var icon2 = arrayAccountInfo[index].image_url;
-    //                      var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);
-    //                      var newIcon = checkImageURL;
-    //                      newIcon('www/resources/icons/cards/logo/', 'logo', filename2, icon2, index, function (bool2, index2, fileName2) {
-    //
-    //                        if (bool2) {
-    //                          arrayAccountInfo[index2].image_url = cordova.file.dataDirectory + 'cards' + fileName2;
-    //                        } else {
-    //                          arrayAccountInfo[index2].image_url = url('resources/icons/cards/logo/' + fileName2);
-    //                        }
-    //
-    //                        if (result[1].length == arrayAccountInfo.length) {
-    //                          console.log("save into localstorage");
-    //                          var accountInfo = JSON.stringify(arrayAccountInfo);
-    //                          localStorage.setItem("click_client_accountInfo", accountInfo);
-    //                          this.riotTags.innerHTML = "<view-my-cards>";
-    //                          riot.mount('view-my-cards');
-    //                        }
-    //                      });
-    //
-    //                    });
-    //
-    //                  }
-    //                }, onErrorLoadFs);
-    //              } else {
-    //                for (var i = 0; i < result[1].length; i++)
-    //                  arrayAccountInfo.push(result[1][i])
-    //                var accountInfo = JSON.stringify(arrayAccountInfo);
-    //                localStorage.setItem("click_client_accountInfo", accountInfo);
-    //                this.riotTags.innerHTML = "<view-my-cards>";
-    //                riot.mount('view-my-cards');
-    //              }
-    //            }
-    //            else
-    //              alert(result[0][0].error_note);
-    //          },
-    //
-    //
-    //          onFail: function (api_status, api_status_message, data) {
-    //            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-    //            console.error(data);
-    //          }
-    //        })
-    //      }
-    //
-    //
-    //    }
+
     var scope = this,
       sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key,
       phoneNumber = localStorage.getItem('click_client_phoneNumber'),
       myCardsOnTouchStartY, myCardsOnTouchStartX, myCardsOnTouchEndY, myCardsOnTouchEndX;
 
-    scope.showError = false;
     console.log("MY CARDS VIEW, OPTS=", opts);
 
     if (opts[0]) {
@@ -586,9 +492,11 @@
               }
             }
             else {
-              scope.clickPinError = false;
-              scope.errorNote = result[0][0].error_note;
-              scope.showError = true;
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: false,
+                errornote: result[0][0].error_note
+              });
               scope.update();
             }
 
@@ -643,9 +551,11 @@
           scope.unmount()
         }
         else {
-          scope.clickPinError = false;
-          scope.errorNote = 'Извининте, вы не можете произвести оплату с этой карты';
-          scope.showError = true;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: false,
+            errornote: 'Извининте, вы не можете произвести оплату с этой карты'
+          });
           scope.update();
         }
       }
@@ -693,9 +603,11 @@
           scope.unmount()
         }
         else {
-          scope.clickPinError = false;
-          scope.errorNote = 'Извининте, вы не можете произвести перевод с этой карты';
-          scope.showError = true;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: false,
+            errornote: 'Извининте, вы не можете произвести перевод с этой карты'
+          });
           scope.update();
         }
       }
@@ -726,9 +638,11 @@
           if (modeOfApp.demoVersion) {
             var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
 //        confirm(question)
-            scope.confirmShowBool = true;
-            scope.confirmNote = question;
-            scope.confirmType = 'local';
+            window.common.alert.show("componentConfirmId", {
+              parent: scope,
+              "confirmnote": question,
+              "confirmtype": 'local'
+            });
             scope.result = function (bool) {
               if (bool) {
                 localStorage.clear();
@@ -737,7 +651,7 @@
                 return
               }
               else {
-                scope.confirmShowBool = false;
+                window.common.alert.hide("componentConfirmId");
                 return
               }
             };

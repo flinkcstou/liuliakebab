@@ -1,7 +1,9 @@
 <component-in-processing id="componentInProcessingId" class="component-in-processing">
-  <p class="in-processing-operation-success-message-part-one">{opts.operationmessagepartone}</p>
-  <p class="in-processing-operation-success-message-part-two">{opts.operationmessageparttwo}</p>
   <div class="in-processing-success-icon"></div>
+  <p class="in-processing-operation-success-message-part-one">{opts.operationmessagepartone}</p>
+  <p class="{in-processing-operation-success-message-part-two-for-transfer: forTransfer,
+   in-processing-operation-success-message-part-two: !forTransfer}">{opts.operationmessageparttwo}</p>
+
 
   <button class="in-processing-next-button-inner-container" ontouchend="closeInProcessingMessageForm()">
     {window.languages.ComponentSuccessNext}
@@ -9,11 +11,18 @@
 
   <script>
     var scope = this;
+    scope.forTransfer = false;
+    if (!opts.operationmessageparttwo.localeCompare(window.languages.ComponentInProcessingPartTwoForTransfer)) {
+      scope.forTransfer = true;
+      console.log(opts.operationmessageparttwo);
+      console.log(window.languages.ComponentInProcessingPartTwoForTransfer);
+      scope.update();
+    }
 
     closeInProcessingMessageForm = function () {
       event.preventDefault();
       event.stopPropagation();
-      componentInProcessingId.style.display = 'none';
+      window.common.alert.hide("componentInProcessingId");
       console.log("before inProcessing", history.arrayOfHistory)
 
       if (opts.step_amount) {
@@ -34,28 +43,11 @@
           riot.mount("view-main-page");
         }
       } else if (!opts.step_amount && opts.viewpage) {
-        console.log('opts.viewpage',opts.viewpage)
+        console.log('opts.viewpage', opts.viewpage)
         riotTags.innerHTML = "<" + opts.viewpage + ">";
         riot.mount(opts.viewpage);
       }
-//
-//      else if (!opts.step_amount && !opts.viewpage) {
-//        history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 3)
-//        console.log(history.arrayOfHistory)
-//        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-//      }
 
-
-//
-//
-//      console.log('viewpage', opts.viewpage)
-//
-//
-//      if (opts.viewpage) {
-//        riotTags.innerHTML = "<" + opts.viewpage + ">";
-//        riot.mount(opts.viewpage);
-////      scope.unmount()
-//      }
     }
   </script>
 </component-in-processing>

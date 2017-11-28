@@ -105,33 +105,6 @@
     </div>
   </div>
 
-  <component-success id="componentSuccessId"
-                     operationmessage="{operationMessage}"
-                     goback="{goBack}"
-                     viewpage="{viewPage}" step_amount="{stepAmount}"></component-success>
-  <component-unsuccess id="componentUnsuccessId"
-                       viewpage="{viewPage}"
-                       step_amount="{stepErrorAmount}"
-                       goback="{goBack}"
-                       operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
-                       operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
-                       operationmessagepartthree="{errorMessageFromPayment}"></component-unsuccess>
-
-  <component-in-processing id="componentInProcessingId" viewpage="{viewPage}" step_amount="{stepAmount}"
-                           operationmessagepartone="{window.languages.ComponentInProcessingPartOneForPay}"
-                           operationmessageparttwo="{window.languages.ComponentInProcessingPartTwo}"></component-in-processing>
-
-  <component-confirm if="{confirmShowBool}" confirmnote="{confirmNote}"
-                     confirmtype="{confirmType}"></component-confirm>
-
-  <component-generated-qr id="componentGeneratedQrId" qr_image="{qrImage}" qr_header="{qrHeader}" qr_footer="{qrFooter}"
-                          viewpage="{viewPage}"
-                          step_amount="{stepAmount}"></component-generated-qr>
-
-  <component-alert if="{showError}" clickpinerror="{clickPinError}" errorcode="{errorCode}"
-                   errornote="{errorNote}"></component-alert>
-
-
   <script>
 
     console.log("OPTS PAYCONFIRM NEW", opts)
@@ -213,6 +186,12 @@
     scope.stepErrorAmount = 3;
     scope.errorCode = 0;
 
+    var pageToReturnIfError = 'view-main-page';
+    var getPaymentSuccessStep = 3,
+      getPaymentErrorStep = 2,
+      appPaymentErrorStep = 3;
+
+
     this.formType = opts.formtype;
     this.firstFieldId = opts.firstFieldId;
 
@@ -221,7 +200,6 @@
 
 
     if (opts.firstFieldId == '1') {
-//      console.log("TEL LENGTH VERIFICATION=", inputVerification.telLengthVerification(opts[0][2].firstFieldText, window.languages.PhoneNumberLength));
       opts.firstFieldText = inputVerification.telLengthVerification(opts.firstFieldText, window.languages.PhoneNumberLength);
 
       this.firstFieldText = "+" + window.languages.CodeOfCountry + ' ' + inputVerification.telVerificationWithSpace(opts.firstFieldText);
@@ -264,8 +242,6 @@
 
     scope.update(scope.amountTextCopy)
 
-    //    riot.update()
-
     if (scope.cardOrFriendBool) {
       var chosenCardId = opts.chosenCardId;
 
@@ -298,13 +274,6 @@
     }
     scope.update();
 
-
-    if (payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) === true) {
-      console.log("payTransferConfirmed=", sessionStorage.getItem('payTransferConfirmed'))
-      payService();
-      sessionStorage.setItem('payTransferConfirmed', null);
-    }
-
     var favoriteStartY, favoriteStartX, favoriteEndY, favoriteEndX;
 
     scope.onTouchStartOfFavorite = onTouchStartOfFavorite = function () {
@@ -313,6 +282,37 @@
       favoriteStartX = event.changedTouches[0].pageX;
     };
 
+
+    updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
+      console.log("OPEN RESULT COMPONENT:", showResult, status, text);
+
+      if (showResult) {
+        window.common.alert.updateView("componentResultId", {
+          parent: scope,
+          resulttext: text,
+          viewpage: viewPage,
+          step_amount: stepAmount
+        });
+      } else {
+        window.common.alert.hide("componentResultId");
+      }
+      updateIcon(status, null, null, text, stepAmount, viewPage);
+    }
+
+    closeResultComponent = function () {
+      console.log("CLOSE RESULT COMPONENT");
+      window.common.alert.hide("componentResultId");
+      riot.update();
+    }
+
+    initResultComponent = function () {
+      console.log("INIT RESULT COMPONENT");
+      window.common.alert.updateView("componentResultId", {
+        parent: scope,
+
+      });
+      riot.update();
+    }
 
     addToFavoritesinPayConfirm = function () {
       event.stopPropagation();
@@ -324,8 +324,10 @@
 
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-          scope.showError = true;
-          scope.errorNote = question;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: question
+          });
           scope.update();
 
           return
@@ -388,8 +390,10 @@
 
             }
             else {
-              scope.showError = true;
-              scope.errorNote = result[0][0].error_note
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                errornote: result[0][0].error_note,
+              });
               scope.update();
               console.log(result[0][0].error_note);
             }
@@ -459,9 +463,11 @@
 
                 }
                 else {
-                  scope.clickPinError = false;
-                  scope.showError = true;
-                  scope.errorNote = result[0][0].error_note
+                  window.common.alert.show("componentAlertId", {
+                    parent: scope,
+                    clickpinerror: false,
+                    errornote: result[0][0].error_note,
+                  });
                   scope.update();
                   console.log(result[0][0].error_note);
                 }
@@ -508,21 +514,11 @@
       if (Math.abs(enterPayStartY - enterPayEndY) <= 20 && Math.abs(enterPayStartX - enterPayEndX) <= 20) {
 
         if (modeOfApp.demoVersion) {
-          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-          scope.showError = true;
-          scope.errorNote = question;
-//        confirm(question)
-//        scope.confirmShowBool = true;
-//        scope.confirmNote = question;
-//        scope.confirmType = 'local';
-//        scope.result = function (bool) {
-//          if (bool) {
-//            localStorage.clear();
-//            window.location = 'index.html'
-//            scope.unmount()
-//            return
-//          }
-//        };
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: question
+          });
           scope.update();
           return
         }
@@ -530,6 +526,7 @@
         if (opts.mode != 'ADDAUTOPAY' && payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) != true) {
           riotTags.innerHTML = "<view-pin-code>";
           riot.mount('view-pin-code', ['view-pay-confirm']);
+          scope.unmount();
           return
         }
         payService();
@@ -612,24 +609,17 @@
 
     function paymentFunction(payment_data) {
 
-      if (device.platform != 'BrowserStand') {
-        var options = {dimBackground: true};
-
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Started");
-        }, function () {
-          console.log("closed");
-        });
-      }
-
 
       if (opts.optionAttribute && opts.optionValue) {
         payment_data[opts.optionAttribute] = opts.optionValue;
       }
 
+      initResultComponent();
+
+//      showResultComponentGlobal(getPaymentSuccessStep, null, 'success', "");
+
       window.api.call({
         method: 'app.payment',
-        stopSpinner: false,
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber,
@@ -650,16 +640,6 @@
 
               if (result[1][0].payment_id && !result[1][0].invoice_id) {
 
-//                if (device.platform != 'BrowserStand') {
-//                  var options = {dimBackground: true};
-//
-//                  SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-//                    console.log("Started");
-//                  }, function () {
-//                    console.log("closed");
-//                  });
-//                }
-
                 setTimeout(function () {
                   checkPaymentStatus(result[1][0].payment_id);
                 }, 2000);
@@ -669,29 +649,25 @@
 
                 answerFromServer = true;
 
-                if (device.platform != 'BrowserStand') {
-                  console.log("Spinner Stop View Pay Confirm New 676");
-                  SpinnerPlugin.activityStop();
-                }
-
                 viewServicePinCards.friendHelpPaymentMode = false;
                 viewServicePinCards.chosenFriendForHelp = null;
+                console.log("WWWWWWWW")
 
-                componentSuccessId.style.display = 'block';
+                updateResultComponent(true, getPaymentSuccessStep, null, 'success', result[0][0].error_note);
               }
             }
           }
           else {
             answerFromServer = true;
-            scope.errorMessageFromPayment = result[0][0].error_note;
-            componentUnsuccessId.style.display = 'block';
-            scope.update();
+            console.log("Error on app.payment", result[0][0].error_note);
+            updateResultComponent(true, appPaymentErrorStep, null, 'unsuccess', result[0][0].error_note);
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
-          componentUnsuccessId.style.display = 'block';
+          updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
+
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -699,15 +675,7 @@
 
       setTimeout(function () {
         if (!answerFromServer) {
-          scope.showError = true;
-          scope.errorNote = "Время ожидания истекло";
-          scope.errorCode = 1;
-          scope.update();
-          if (device.platform != 'BrowserStand') {
-            console.log("Spinner Stop View Pay Confirm New 705");
-            SpinnerPlugin.activityStop();
-          }
-          window.isConnected = false;
+          updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
           return
         }
       }, 30000)
@@ -719,7 +687,6 @@
 
       window.api.call({
         method: 'get.payment',
-        stopSpinner: false,
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber,
@@ -733,16 +700,9 @@
 
 
             if (result[1][0].state == -1) {
+
               answerFromServer = true;
-              scope.stepErrorAmount = 2;
-              window.languages.tempText = JSON.stringify(result[1][0].error);
-              scope.errorMessageFromPayment = result[1][0].error;
-              if (device.platform != 'BrowserStand') {
-                console.log("Spinner Stop View Pay Confirm New 737");
-                SpinnerPlugin.activityStop();
-              }
-              componentUnsuccessId.style.display = 'block';
-              riot.update()
+              updateResultComponent(true, getPaymentErrorStep, null, 'unsuccess', result[1][0].error);
 
 
             } else if (result[1][0].state == 2) {
@@ -751,31 +711,30 @@
 
               viewServicePinCards.friendHelpPaymentMode = false;
               viewServicePinCards.chosenFriendForHelp = null;
-              scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 3 : scope.stepAmount;
-              this.operationMessage = window.languages.ComponentSuccessMessageForPay;
-              scope.update();
-              if (device.platform != 'BrowserStand') {
-                console.log("Spinner stop in pay confirm");
-                SpinnerPlugin.activityStop();
-              }
 
               if (result[1][0].qr_image) {
-                answerFromServer = true;
-                scope.qrImage = result[1][0].qr_image;
-                scope.qrHeader = result[1][0].qr_header;
-                scope.qrFooter = result[1][0].qr_footer;
+                closeResultComponent();
                 scope.update();
-                componentGeneratedQrId.style.display = 'block';
+                window.common.alert.show("componentGeneratedQrId", {
+                  parent: scope,
+                  qr_image: result[1][0].qr_image,
+                  qr_header: result[1][0].qr_header,
+                  qr_footer: result[1][0].qr_footer,
+                  viewpage: scope.viewPage,
+                  step_amount: scope.stepAmount
+                });
                 qrFooterTextId.innerHTML = result[1][0].qr_footer;
-              } else
-                componentSuccessId.style.display = 'block';
+              } else {
+                updateResultComponent(true, getPaymentSuccessStep, null, 'success', window.languages.ComponentSuccessMessageForPay);
+
+              }
 
 
             } else if (result[1][0].state == 1) {
 
               statusCheckCounter++;
 
-              if (statusCheckCounter < 5) {
+              if (statusCheckCounter < 5 && window.common.alert.isShown("componentResultId")) {
 
                 setTimeout(function () {
                   checkPaymentStatus(result[1][0].payment_id);
@@ -789,16 +748,8 @@
                 viewServicePinCards.friendHelpPaymentMode = false;
                 viewServicePinCards.chosenFriendForHelp = null;
 
-                scope.stepAmount = (scope.isInFavorites || opts.mode == 'POPULAR') ? 3 : scope.stepAmount;
-                scope.update();
+                updateResultComponent(true, getPaymentSuccessStep, null, 'waiting', window.languages.ComponentInProcessingPartOneForPay);
 
-
-                if (device.platform != 'BrowserStand') {
-                  console.log("Spinner stop in pay confirm");
-                  SpinnerPlugin.activityStop();
-                }
-
-                componentInProcessingId.style.display = 'block';
               }
 
             }
@@ -807,17 +758,15 @@
           }
           else {
             answerFromServer = true;
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner stop in pay confirm");
-              SpinnerPlugin.activityStop();
-            }
-            componentUnsuccessId.style.display = 'block';
+            updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', result[1][0].error);
+
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
-          componentUnsuccessId.style.display = 'block';
+          updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
+
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -878,18 +827,43 @@
 
                 scope.autoPayData.isNew = false;
                 localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-                componentSuccessId.style.display = 'block';
+                window.common.alert.show("componentSuccessId", {
+                  parent: scope,
+                  operationmessage: scope.operationMessage,
+                  goback: scope.goBack,
+                  viewpage: scope.viewPage,
+                  step_amount: scope.stepAmount
+                });
+
 
               }
               else {
                 scope.errorMessageFromPayment = result[0][0].error_note;
                 scope.update();
-                componentUnsuccessId.style.display = 'block';
+                window.common.alert.show("componentUnsuccessId", {
+                  parent: scope,
+                  viewpage: scope.viewPage,
+                  step_amount: scope.stepErrorAmount,
+                  goback: scope.goBack,
+                  operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
+                  operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+                  operationmessagepartthree: scope.errorMessageFromPayment
+                });
               }
             },
 
             onFail: function (api_status, api_status_message, data) {
-              componentUnsuccessId.style.display = 'block';
+
+              window.common.alert.show("componentUnsuccessId", {
+                parent: scope,
+                viewpage: scope.viewPage,
+                step_amount: scope.stepErrorAmount,
+                goback: scope.goBack,
+                operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
+                operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+                operationmessagepartthree: scope.errorMessageFromPayment
+              });
+
               console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
               console.error(data);
             }
@@ -921,19 +895,42 @@
                   scope.autoPayData.fromView = 'AFTERCREATION';
                 scope.autoPayData.isNew = false;
                 localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-                componentSuccessId.style.display = 'block';
+                window.common.alert.show("componentSuccessId", {
+                  parent: scope,
+                  operationmessage: scope.operationMessage,
+                  goback: scope.goBack,
+                  viewpage: scope.viewPage,
+                  step_amount: scope.stepAmount
+                });
 
               }
               else {
 
                 scope.errorMessageFromPayment = result[0][0].error_note;
                 scope.update();
-                componentUnsuccessId.style.display = 'block';
+
+                window.common.alert.show("componentUnsuccessId", {
+                  parent: scope,
+                  viewpage: scope.viewPage,
+                  step_amount: scope.stepErrorAmount,
+                  goback: scope.goBack,
+                  operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
+                  operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+                  operationmessagepartthree: scope.errorMessageFromPayment
+                });
               }
             },
 
             onFail: function (api_status, api_status_message, data) {
-              componentUnsuccessId.style.display = 'block';
+              window.common.alert.show("componentUnsuccessId", {
+                parent: scope,
+                viewpage: scope.viewPage,
+                step_amount: scope.stepErrorAmount,
+                goback: scope.goBack,
+                operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
+                operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+                operationmessagepartthree: scope.errorMessageFromPayment
+              });
               console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
               console.error(data);
             }
@@ -997,15 +994,38 @@
               scope.viewPage = 'view-auto-pay-new';
               scope.stepAmount = 1;
               scope.update();
-              componentSuccessId.style.display = 'block';
+
+              window.common.alert.show("componentSuccessId", {
+                parent: scope,
+                operationmessage: scope.operationMessage,
+                goback: scope.goBack,
+                viewpage: scope.viewPage,
+                step_amount: scope.stepAmount
+              });
             }
             else {
-              componentUnsuccessId.style.display = 'block';
+              window.common.alert.show("componentUnsuccessId", {
+                parent: scope,
+                viewpage: scope.viewPage,
+                step_amount: scope.stepErrorAmount,
+                goback: scope.goBack,
+                operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
+                operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+                operationmessagepartthree: scope.errorMessageFromPayment
+              });
             }
           },
 
           onFail: function (api_status, api_status_message, data) {
-            componentUnsuccessId.style.display = 'block';
+            window.common.alert.show("componentUnsuccessId", {
+              parent: scope,
+              viewpage: scope.viewPage,
+              step_amount: scope.stepErrorAmount,
+              goback: scope.goBack,
+              operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
+              operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+              operationmessagepartthree: scope.errorMessageFromPayment
+            });
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
           }
@@ -1023,8 +1043,10 @@
 
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-          scope.showError = true;
-          scope.errorNote = question;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: question
+          });
           scope.update();
 
           return
@@ -1057,5 +1079,13 @@
       }
 
     }
+
+    if (payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) === true) {
+      console.log("payTransferConfirmed=", sessionStorage.getItem('payTransferConfirmed'))
+      payService();
+      sessionStorage.setItem('payTransferConfirmed', null);
+    }
+
+
   </script>
 </view-pay-confirm-new>

@@ -36,7 +36,7 @@
         </div>
       </div>
 
-      <div class="add-card-carousel" if="{addFirstCardBool}" ontouchend="addFirstCardTouchEnd()"
+      <div class="add-card-carousel" if="{viewMainPage.addFirstCardBool}" ontouchend="addFirstCardTouchEnd()"
            ontouchstart="addFirstCardTouchStart()">
         <div class="add-card-carousel-icon">
         </div>
@@ -55,67 +55,45 @@
                       background="{(i.card_background_url)?(i.card_background_url):('resources/icons/cards/all.png')}"
                       fontcolor="{i.font_color}"
                       error_message="{i.error_message}"></component-card>
+
+
     </div>
   </div>
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
 
   <script>
-    //if="{!cardsarray || cardsarray.length==0}"
+
 
     var scope = this;
     scope.invoiceLeft = 100 * widthK;
     scope.invoiceList = [];
-    scope.addFirstCardBool = false;
 
     var arrayOfPhones = [];
 
-    scope.showError = false;
-
     scope.checkSumOfHash = true;
+    scope.addFirstCardBool = false;
 
     if (localStorage.getItem('click_client_cards')) {
       scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
-      if (scope.cardsarray.length < 1) {
+      if (Object.keys(scope.cardsarray).length < 1) {
         scope.addFirstCardBool = true;
-        console.log("condition one worked")
+        viewMainPage.addFirstCardBool = true;
+        localStorage.removeItem('click_client_cards');
+//        scope.parent.update();
+      } else {
+
+        for (var i in scope.cardsarray) {
+          if (scope.cardsarray[i].card_id == JSON.parse(localStorage.getItem("click_client_loginInfo")).default_account) {
+            scope.cardsarray[i].chosenCard = true;
+          }
+          else
+            scope.cardsarray[i].chosenCard = false;
+        }
+        localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
+
       }
       scope.update();
-      console.log("first card link", JSON.stringify(scope.cardsarray[0]));
     }
 
-    //    this.on('mount', function () {
-    //      scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
-    //
-    //      if (!scope.invoiceCheck) {
-    //        count = 0;
-    //        for (var i in scope.cardsarray) {
-    //          scope.cardsarray[i].countCard = count;
-    //          count++;
-    //        }
-    //      }
-    //      scope.update()
-    //
-    //    })
-
-    //    scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
-    //    scope.cardsarray = (scope.cardsarray) ? (scope.cardsarray) : ({});
-    //    riot.update(scope.cardsarray);
-
-
-    //    stopPropagation = function () {
-    //
-    //      billsHolderTouchEndX = event.changedTouches[0].pageX;
-    //
-    //      console.log('billsHolderTouchEndX', billsHolderTouchEndX)
-    //      console.log('carouselTouchStartX', billsHolderTouchEndX)
-    //      if (Math.abs(carouselTouchStartX - billsHolderTouchEndX) < 20) {
-    //        event.stopPropagation();
-    //        event.preventDefault();
-    //        stopPropagationInvoice = true;
-    ////        return
-    //      }
-    //    };
 
     var touchStartAddFirstCardX, touchEndAddFirstCardX, touchStartAddFirstCardY, touchEndAddFirstCardY;
 
@@ -160,11 +138,6 @@
 
       touchEndInvoiceOne = event.changedTouches[0].pageX;
 
-      console.log('touchEndInvoiceOne', touchEndInvoiceOne)
-
-      console.log('START', touchStartInvoiceOne)
-      console.log('END', touchEndInvoiceOne)
-
       if (Math.abs(touchStartInvoiceOne - touchEndInvoiceOne) < 20) {
         event.stopPropagation();
         event.preventDefault();
@@ -178,7 +151,7 @@
             amount: invoice.amount,
             invoiceId: invoice.invoice_id,
             time: invoice.time,
-            date: invoice.date,
+            date: invoice.date
           };
 
           history.arrayOfHistory.push({view: "view-transfer-detail"});
@@ -206,116 +179,59 @@
       }
     };
 
+
     scope.addCard = addCard = function (withoutBalance, invoice) {
 
       if (modeOfApp.offlineMode) return;
 
       if (localStorage.getItem('click_client_accountInfo') && !scope.checkSumOfHash) {
+
         getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
-        console.log("getAccountsCards ", getAccountsCards)
+
         if (getAccountsCards.length < 1) {
           scope.addFirstCardBool = true;
-          console.log("scope.addFirstCardBool = true;")
+          viewMainPage.addFirstCardBool = true;
+          localStorage.removeItem('click_client_cards');
+//          scope.parent.update();
+        } else {
+          viewMainPage.addFirstCardBool = false;
+//          scope.parent.update();
         }
         var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'))
       }
 
-      if (!scope.checkSumOfHash) {
+      if (scope.checkSumOfHash) {
+
+        scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
+        console.log("scope.checkSumOfHash", scope.checkSumOfHash, " cards from storage", scope.cardsarray);
+
+      } else if (!scope.checkSumOfHash) {
+
+        console.log("scope.checkSumOfHash ", scope.checkSumOfHash);
+
+        if (!loginInfo.update_account_cache) {
+          console.log("updateAccountCache false");
+          scope.cardImageCachedLinks = {};
+          for (var j in scope.cardsarray) {
+            scope.cardImageCachedLinks[j] = {
+              "cardId": j,
+              "cardBackgroundUrl": scope.cardsarray[j].card_background_url,
+              "url": scope.cardsarray[j].url
+            };
+          }
+          console.log("SAVE CACHED LINKS", scope.cardImageCachedLinks)
+        }
 
         scope.cardsarray = {};
-      }
-      else {
-        if (scope.checkSumOfHash) {
-          scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
-//          var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
-//          var idTMP;
-//          var countFromDefault;
-//          for (var j in scope.cardsarray) {
-//            console.log('IN CYCLE SEARCH DEFAULT', scope.cardsarray[j].countCard, scope.cardsarray[j].default_account)
-//            if (scope.cardsarray[j].countCard == 0 && scope.cardsarray[j].default_account === false) {
-//              idTMP = j;
-//              console.log('idTMP', idTMP)
-//              countFromDefault = scope.cardsarray[loginInfo.default_account].countCard;
-//
-//            }
-//          }
-//
-//          if (idTMP) {
-//            console.log('idTMP', idTMP)
-//            scope.cardsarray[loginInfo.default_account].countCard = 0;
-//            console.log('FOUND', scope.cardsarray[loginInfo.default_account])
-//            scope.cardsarray[idTMP].countCard = countFromDefault;
-//            console.log('FOUND', scope.cardsarray[idTMP])
-//            localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
-//          }
-//
-//          scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
-//
-//          console.log('DEFAULT PROBLEM ', JSON.parse(localStorage.getItem("click_client_cards")))
+        var numberOfCardPartOne;
+        var numberOfCardPartTwo;
+        var typeOfCard;
 
+        console.log("cards empty");
 
-//          console.log("CARDS ARRAY AFTER HASH SUM", scope.cardsarray)
-//
-//          if (scope.invoiceCheck && viewMainPage.atMainPage) {
-//            count = 1;
-//            var tmpCount = count;
-//
-//            for (var i in scope.cardsarray) {
-//              scope.cardsarray[i].countCard = scope.cardsarray[i].countCard + count;
-//              if (scope.cardsarray[i].countCard >= tmpCount)
-//                tmpCount = scope.cardsarray[i].countCard;
-//            }
-//            count = tmpCount + 1;
-//
-//            localStorage.setItem('click_client_countCard', count)
-//            localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray))
-//
-//            console.log('CARD NUMBER', scope.cardNumber)
-//
-//          }
-//          else {
-//            if (!viewMainPage.atMainPage)
-//              count = 1;
-//            else {
-//              if (viewMainPage.atMainPage && !scope.invoiceCheck) {
-//                count = 1
-//              }
-//            }
-//            var tmpCount = count;
-//
-//            for (var i in scope.cardsarray) {
-//              scope.cardsarray[i].countCard = scope.cardsarray[i].countCard + count;
-//              if (scope.cardsarray[i].countCard >= tmpCount)
-//                tmpCount = scope.cardsarray[i].countCard;
-//            }
-//            count = tmpCount + 1;
-//          }
-//          scope.update()
-        }
-//        else {
-//          if (!viewMainPage.atMainPage)
-//            count = 1;
-//        }
-//        localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray))
-      }
-
-//      if (scope.invoiceCheck && viewMainPage.atMainPage && !scope.checkSumOfHash) {
-//        count = 1;
-////        scope.update()
-//      }
-//      else {
-//        if(!scope.invoiceCheck && viewMainPage.atMainPage)
-//          count = 0;
-//      }
-
-      var numberOfCardPartOne;
-      var numberOfCardPartTwo;
-      var typeOfCard;
-
-      if (!scope.checkSumOfHash) {
         count = 1;
+        if (viewMainPage.addFirstCardBool) count = 2;
         for (var i = 0; i < getAccountsCards.length; i++) {
-
 
           if (getAccountsCards[i].access == 0) break;
           if (loginInfo.default_account == getAccountsCards[i].id) {
@@ -324,7 +240,7 @@
           else
             defaultAccount = false;
 
-          numberOfCardPartOne = getAccountsCards[i].accno.substring(0, 4)
+          numberOfCardPartOne = getAccountsCards[i].accno.substring(0, 4);
           numberOfCardPartTwo = getAccountsCards[i].accno.substring(getAccountsCards[i].accno.length - 4, getAccountsCards[i].accno.length);
 
 
@@ -351,32 +267,48 @@
             background_color_top: getAccountsCards[i].background_color_top,
             font_color: getAccountsCards[i].font_color,
             removable: getAccountsCards[i].removable,
+            payment_allowed: getAccountsCards[i].payment_allowed,
+            p2p_allowed: getAccountsCards[i].p2p_allowed,
           };
 
           scope.cardsarray[getAccountsCards[i].id] = card;
-
 
           localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
 
           count++;
 
-//        cardNumber %= count;
           localStorage.setItem('click_client_countCard', count);
-//        localStorage.setItem('cardNumber', cardNumber);
         }
+
+        if (loginInfo.update_account_cache) {
+
+          cardImagesCaching(true);
+          loginInfo.update_account_cache = false;
+          localStorage.setItem('click_client_loginInfo', JSON.stringify(loginInfo));
+
+        } else {
+          cardImagesCaching(false);
+        }
+
       }
 
-      scope.update()
 
+//      scope.parent.update();
 //      scope.update(scope.cardsarray);
+
+      scope.update();
+
+
       if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance) {
         writeBalance();
         scope.update()
       } else {
-        if (invoice)
+        if (invoice) {
           scope.update();
+        }
       }
-    };
+    }
+    ;
 
     scope.invoiceCheck = false;
 
@@ -414,18 +346,16 @@
                   scope.cardNumber = 1;
                 }
 
-//                scope.update(scope.invoiceCheck);
-//                scope.update(scope.cardNumber);
                 var arrayOfInvoice = [];
                 for (var i = 0; i < result[1].length; i++) {
 
                   //TODO: FIX
                   try {
                     result[1][i].amount = window.amountTransform(result[1][i].amount.toString());
-                    console.log("phone number matching", result[1][i].merchant_phone, ", array of numbers", arrayOfPhones)
                     scope.searchNumber = inputVerification.spaceDeleter(result[1][i].merchant_phone);
+                    arrayOfPhones = JSON.parse(sessionStorage.getItem('arrayOfPhones'));
 
-                    if (result[1][i].is_friend_help && arrayOfPhones.length != 0) {
+                    if (result[1][i].is_friend_help && arrayOfPhones && arrayOfPhones.length != 0) {
 
                       arrayOfPhones.filter(function (wordOfFunction) {
                         if (wordOfFunction.phoneNumbers) {
@@ -433,8 +363,6 @@
                             index = wordOfFunction.phoneNumbers[i].value.indexOf(scope.searchNumber);
                             if (index != -1) {
                               result[1][i].friend_name = wordOfFunction.name.givenName;
-                              console.log('result[1][i].friend_name=', result[1][i].friend_name)
-                              break;
                             }
                           }
                         }
@@ -470,7 +398,6 @@
                 if (scope.invoiceList)
                   setTimeout(function () {
                     addCard()
-//                  scope.update()
                   }, 0);
               }
               else {
@@ -485,9 +412,15 @@
             }
           }
           else {
+
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
-            scope.showError = true;
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote
+            });
             scope.update();
           }
         },
@@ -510,7 +443,7 @@
               contacts[i].phoneNumbers[j].value = phone;
             }
             arrayOfPhones.push(contacts[i])
-            sessionStorage.setItem('arrayOfPhones', arrayOfPhones);
+            sessionStorage.setItem('arrayOfPhones', JSON.stringify(arrayOfPhones));
           }
       }
 
@@ -518,75 +451,96 @@
 
 
     function onError(contactError) {
-      //      alert('onError!');
       console.log('error', contactError)
     }
 
 
-    // if (!localStorage.getItem('click_client_friendsOuter_count')) {
-
     if (device.platform != 'BrowserStand' && !sessionStorage.getItem('arrayOfPhones')) {
-      console.log("Looking for phoneNUmbners")
       var options = new ContactFindOptions();
       options.multiple = true;
       options.hasPhoneNumber = true;
       navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
     }
-    //}
 
 
-    cardImagesCaching = function () {
+    cardImagesCaching = function (full) {
+      console.log("FULL CACH? ", full);
       if (device.platform != 'BrowserStand') {
+        console.log("START CACHING CARDS");
 
         window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
-          var j = -1, count = 0;
-          for (var i = 0; i < arrayAccountInfo.length; i++) {
-            j++;
+          var count = 0;
+          for (var i in scope.cardsarray) {
 
-            var icon = arrayAccountInfo[i].card_background_url;
-            var filename = icon.substr(icon.lastIndexOf('/') + 1);
+            if (!full && scope.cardImageCachedLinks[i]) {
+              console.log("card exists", i)
+              scope.cardsarray[i].card_background_url = scope.cardImageCachedLinks[i].cardBackgroundUrl;
+              scope.cardsarray[i].url = scope.cardImageCachedLinks[i].url;
+              count = count + 2;
 
-            var newIconBool = checkImageURL;
-            newIconBool('www/resources/icons/cards/', 'cards', filename, icon, j, function (bool, index, fileName) {
-              if (bool) {
-                count++;
-                arrayAccountInfo[index].card_background_url = cordova.file.dataDirectory + fileName;
-              } else {
-                count++;
-                arrayAccountInfo[index].card_background_url = 'resources/icons/cards/' + fileName;
+              console.log("old icon", scope.cardsarray[i].card_background_url);
+              console.log("old icon 2", scope.cardsarray[i].url);
+
+              if (count == (Object.keys(scope.cardsarray).length * 2)) {
+                console.log("FINISH CACH", scope.cardsarray);
+                localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
+                scope.update();
               }
 
-              var icon2 = arrayAccountInfo[index].image_url;
-              var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);
-              var newIcon = checkImageURL;
-              newIcon('www/resources/icons/cards/logo/', 'logo', filename2, icon2, index, function (bool2, index2, fileName2) {
-                if (bool2) {
+            } else {
+
+              var icon = scope.cardsarray[i].card_background_url;
+              var filename = icon.substr(icon.lastIndexOf('/') + 1);
+
+              console.log("icon1=", icon);
+
+              var newIconBool = checkImageURL;
+              newIconBool('www/resources/icons/cards/', 'cards', filename, icon, i, function (bool, index, fileName) {
+                console.log("bool=", bool, "index=", index, "fileName=", fileName);
+                if (bool) {
                   count++;
-                  arrayAccountInfo[index2].image_url = cordova.file.dataDirectory + fileName2;
+                  scope.cardsarray[index].card_background_url = cordova.file.dataDirectory + fileName;
                 } else {
                   count++;
-                  arrayAccountInfo[index2].image_url = 'resources/icons/cards/logo/' + fileName2;
+                  scope.cardsarray[index].card_background_url = 'resources/icons/cards/' + fileName;
                 }
 
-                if (count == (arrayAccountInfo.length * 2)) {
-                  localStorage.setItem("click_client_accountInfo", JSON.stringify(arrayAccountInfo));
-                }
+                console.log("new icon=", scope.cardsarray[index].card_background_url);
+
+                var icon2 = scope.cardsarray[index].url;
+                var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);
+                console.log("icon 2=", icon2);
+                var newIcon = checkImageURL;
+                newIcon('www/resources/icons/cards/logo/', 'logo', filename2, icon2, index, function (bool2, index2, fileName2) {
+                  console.log("bool=", bool2, "index=", index2, "fileName=", fileName2);
+                  if (bool2) {
+                    count++;
+                    scope.cardsarray[index2].url = cordova.file.dataDirectory + fileName2;
+                  } else {
+                    count++;
+                    scope.cardsarray[index2].url = 'resources/icons/cards/logo/' + fileName2;
+                  }
+
+                  console.log("new icon 2=", scope.cardsarray[index2].url);
+
+                  if (count == (Object.keys(scope.cardsarray).length * 2)) {
+                    console.log("FINISH CACH", scope.cardsarray);
+                    localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
+                    scope.update();
+                  }
+                });
               });
-            });
+            }
           }
         }, onErrorLoadFs);
       }
     };
 
+
     var arrayAccountInfo = [];
 
     scope.onComponentCreated = onComponentCreated = function (cardNumberParameter) {
 
-//    this.on('mount', function () {
-//      clearInterval(changingColor);
-
-//      console.log(scope.cardsarray);
-//      localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
       if (modeOfApp.onlineMode) {
         if (JSON.parse(localStorage.getItem("click_client_loginInfo"))) {
           var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
@@ -607,10 +561,8 @@
               if (result[0][0].error == 0) {
                 if (localStorage.getItem('click_client_cards')) {
                   var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
-                  var countLocalStorageCard = 0;
-                  for (var k in cardsArray) {
-                    countLocalStorageCard++;
-                  }
+                  var countLocalStorageCard = Object.keys(cardsArray).length;
+
                   if (countLocalStorageCard == result[1].length) {
                     for (var i in result[1]) {
                       if (cardsArray[result[1][i].id]) {
@@ -658,44 +610,52 @@
                   scope.checkSumOfHash = false;
                 }
 
-                if (!scope.checkSumOfHash || info.update_account_cache) {
-                  var countCard = 2;
-                  var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+                if (!scope.checkSumOfHash) {
 
-                  for (var i = 0; i < result[1].length; i++) {
-                    if (result[1][i].id == loginInfo.default_account) {
-                      result[1][i].countCard = 1;
+                  var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+                  arrayAccountInfo = [];
+                  var countCard;
+
+                  if (loginInfo.default_account && loginInfo.default_account != 0) {
+                    countCard = 2;
+
+                    for (var i = 0; i < result[1].length; i++) {
+                      if (result[1][i].id == loginInfo.default_account) {
+                        result[1][i].countCard = 1;
+                      }
+                      else {
+                        result[1][i].countCard = countCard;
+                        countCard++;
+                      }
+                      arrayAccountInfo.push(result[1][i])
                     }
-                    else {
+                  } else {
+                    countCard = 1;
+
+                    for (var i = 0; i < result[1].length; i++) {
                       result[1][i].countCard = countCard;
                       countCard++;
+                      arrayAccountInfo.push(result[1][i])
                     }
-                    arrayAccountInfo.push(result[1][i])
                   }
                   var accountInfo = JSON.stringify(arrayAccountInfo);
                   if (JSON.parse(localStorage.getItem("click_client_accountInfo"))) {
                     localStorage.removeItem("click_client_accountInfo")
                   }
-
                   localStorage.setItem("click_client_accountInfo", accountInfo);
-
-                  cardImagesCaching();
 
                   setTimeout(function () {
                     addCard()
                   }, 0);
 
-                  info.update_account_cache = false;
-                  localStorage.setItem('click_client_loginInfo', JSON.stringify(info));
-
-                  if (device.platform != 'BrowserStand') {
+                  if (device.platform !== 'BrowserStand') {
                     console.log("Spinner Stop Component Card Carousel 650");
                     SpinnerPlugin.activityStop();
                   }
                 }
                 else {
                   setTimeout(function () {
-                    if (device.platform != 'BrowserStand') {
+                    if (device.platform !== 'BrowserStand') {
                       console.log("Spinner Stop Component Card Carousel 657");
                       SpinnerPlugin.activityStop();
                     }
@@ -704,9 +664,15 @@
                 }
               }
               else {
+
                 scope.clickPinError = false;
                 scope.errorNote = result[0][0].error_note;
-                scope.showError = true;
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: scope.clickPinError,
+                  errornote: scope.errorNote
+                });
                 scope.update();
               }
             },
@@ -717,35 +683,6 @@
           });
         }
       }
-//      copyCardsArray = JSON.parse(JSON.stringify(scope.cardsarray));
-//      console.log(copyCardsArray, defaultAccountId)
-//
-//      var splitTop = copyCardsArray[defaultAccountId].background_color_top.split(',')
-//
-//      cMount1 = splitTowp[0]
-//      cMount2 = splitTop[1]
-//      cMount3 = splitTop[2]
-//
-//      var splitBottom = copyCardsArray[defaultAccountId].background_color_bottom.split(',')
-//
-//      vMount1 = splitBottom[0]
-//      vMount2 = splitBottom[1]
-//      vMount3 = splitBottom[2]
-//      console.log('splitTop', splitTop)
-//      console.log('splitBottom', splitBottom)
-//
-//      if (!viewMainPage.myCards) {
-//        htmlId.style.background = '-webkit-linear-gradient(rgb(' + cMount1 + ',' + cMount2 + ',' + cMount3 + '),' +
-//          'rgb(' + vMount1 + ',' + vMount2 + ',' + vMount3 + ')150%)';
-//
-//        contacts.style.backgroundColor = 'rgb(' + cMount1 + ',' + cMount2 + ',' + cMount3 + ')';
-//        circleMenuId.style.border = '' + 8 * widthK + 'px solid rgb(' + cMount1 + ',' + cMount2 + ',' + cMount3 + ')';
-//
-//        contactsId.style.backgroundColor = 'rgb(' + cMount1 + ',' + cMount2 + ',' + cMount3 + ')';
-//        contactsId.style.border = '' + 2 * widthK + 'px solid rgb(' + cMount1 + ',' + cMount2 + ',' + cMount3 + ')';
-//      }
-//      console.log(modeOfApp.offlineMode)
-//    })
     };
 
 
@@ -761,7 +698,6 @@
       scope.invoiceList = [];
       scope.invoiceCheck = false;
 
-      console.log("THERE IS NO CARDS IN LOCALSTORAGE");
       if (!localStorage.getItem('click_client_cards')) {
         scope.cardNumber = 1;
         count = 1;
@@ -769,7 +705,6 @@
         localStorage.setItem("cardNumber", scope.cardNumber);
         localStorage.setItem("click_client_countCard", count);
       }
-
       changePositionCardCarousel()
 
 
@@ -777,16 +712,6 @@
     };
 
     this.on("mount", function () {
-//      console.log("CARDS", JSON.parse(localStorage.getItem("click_client_cards")))
-
-//      if (!scope.invoiceCheck) {
-//        count = 0;
-//        scope.cardNumber = 1;
-//        for (var i in scope.cardsarray) {
-//          scope.cardsarray[i].countCard = count;
-//          count++;
-//        }
-//      }
 
       cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
       cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
@@ -794,15 +719,13 @@
       cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
 
+
       if (modeOfApp.offlineMode) {
-
-        console.log("scope.switchToOfflineMode");
-
         setTimeout(scope.switchToOfflineMode, 10);
       }
     });
 
-    //
+
     writeBalance = function () {
 
       if (getAccountsCards.length == 0) {
@@ -810,70 +733,64 @@
           getAccountsCards = JSON.parse(localStorage.getItem('click_client_cards'))
       }
 
-      for (var i in getAccountsCards) {
-        window.api.call({
-          method: 'get.balance',
-          stopSpinner: false,
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            account_id: getAccountsCards[i].id,
-            card_num_hash: getAccountsCards[i].card_num_hash,
-            card_num_crypted: getAccountsCards[i].card_num_crypted
-          },
-          //TODO: DO CARDS
-          scope: this,
-          onSuccess: function (result) {
-            if (result[0][0].error == 0) {
-              if (result[1][0]) {
-                try {
-
-                  if (scope.cardsarray[result[1][0].account_id])
-                    scope.cardsarray[result[1][0].account_id].salaryOriginal = result[1][0].balance.toFixed(0);
-
-                  result[1][0].balance = result[1][0].balance.toFixed(0).toString();
-
-                  if (result[1][0].balance != 0)
-                    result[1][0].balance = window.amountTransform(result[1][0].balance.toString());
-
-                  scope.cardsarray[result[1][0].account_id].salary = result[1][0].balance;
-                  localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
-
-                  scope.update();
-
-                }
-                catch (error) {
-                  console.log(error)
-                }
-
-              }
-            }
-            else {
-
-              console.log("STOP STOP STOP")
-
-              if (scope.cardsarray[result[1][0].account_id]) {
-                scope.cardsarray[result[1][0].account_id].salary = null;
-                scope.cardsarray[result[1][0].account_id].error_message = "Ошибка баланса";
-                localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
-              }
-              scope.update();
-            }
-          },
-
-          onFail: function (api_status, api_status_message, data) {
-            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-            console.error(data);
-          }
-        });
+      for (var j in getAccountsCards) {
+        objectAccount.account_id = getAccountsCards[j].id
+        objectAccount.card_num_hash = getAccountsCards[j].card_num_hash
+        objectAccount.card_num_crypted = getAccountsCards[j].card_num_crypted
+        accountsForBalance.push(objectAccount);
+        objectAccount = {};
       }
+
+      window.api.call({
+        method: 'get.balance.multiple',
+        stopSpinner: false,
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          accounts: accountsForBalance
+        },
+        scope: this,
+        onSuccess: function (result) {
+          if (result[0][0].error == 0) {
+            if (result[1]) {
+              try {
+                for (var i in result[1]) {
+                  scope.cardsarray[result[1][i].account_id].salaryOriginal = result[1][i].balance.toFixed(0);
+                  result[1][i].balance = result[1][i].balance.toFixed(0).toString();
+
+                  if (result[1][i].balance !== 0)
+                    result[1][i].balance = window.amountTransform(result[1][i].balance.toString());
+
+                  scope.cardsarray[result[1][i].account_id].salary = result[1][i].balance;
+                  localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
+                }
+                scope.update();
+              } catch (Error) {
+                console.log("Error on parse result fro get.balance.multiple", Error);
+              }
+            }
+          }
+          else {
+            for (var i in scope.cardsarray) {
+              scope.cardsarray[i].salary = null;
+              scope.cardsarray[i].error_message = "Ошибка баланса";
+            }
+            localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
+            scope.update();
+          }
+        },
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
     }
 
     var getAccountsCards = [];
-
+    var objectAccount = {};
+    var accountsForBalance = [];
 
     var defaultAccountId;
-
 
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
     var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
@@ -881,11 +798,6 @@
       var sessionKey = info.session_key;
 
     var carouselTouchStartX, carouselTouchEndX;
-    //    scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
-    //    if (!scope.cardsarray) {
-    //      scope.cardsarray = {};
-    //    }
-
 
     var card;
     scope.cardNumber = JSON.parse(localStorage.getItem('cardNumber'));
@@ -893,7 +805,6 @@
     if (!scope.cardNumber) {
       scope.cardNumber = 1;
     }
-    //    riot.update(scope.cardNumber);
 
     var pos = 0;
     var count = localStorage.getItem('click_client_countCard');
@@ -901,10 +812,6 @@
     if (!count)
       count = 1;
 
-    //    if (!viewMainPage.atMainPage) {
-    //      scope.cardNumber = 0;
-    ////      count = 0;
-    //    }
 
     var cNow1, cNow2, cNow3, vNow1, vNow2, vNow3;
     var cNext1, cNext2, cNext3, vNext1, vNext2, vNext3;
@@ -916,81 +823,16 @@
 
     startTouchCarousel = function () {
 
-      //
-      //Test
-//      scope.direction = 0;
-//      scope.whereWasX = event.changedTouches[0].pageX;
-//      //
-//      //
-//      clearInterval(changingColor)
-//
-//      firstEnter = true;
-
       carouselTouchStartX = event.changedTouches[0].pageX;
       left = -((540 * scope.cardNumber) * widthK) - carouselTouchStartX;
       delta = left;
-//
-//      for (var i in scope.cardsarray) {
-//        if (scope.cardsarray[i].countCard == cardNumber) {
-//          console.log('SPLIT SPLIT ', scope.cardsarray[i].background_color_top.split(','))
-//          var splitTop = scope.cardsarray[i].background_color_top.split(',');
-//
-//          cNow1 = splitTop[0]
-//          cNow2 = splitTop[1]
-//          cNow3 = splitTop[2]
-//
-//          var splitBottom = scope.cardsarray[i].background_color_bottom.split(',')
-//
-//          vNow1 = splitBottom[0]
-//          vNow2 = splitBottom[1]
-//          vNow3 = splitBottom[2]
-//        }
-//
-//        if (scope.cardsarray[i].countCard == cardNumber - 1) {
-//          console.log('PRIVIOUS', scope.cardsarray[i])
-//          var splitTopPrivious = scope.cardsarray[i].background_color_top.split(',');
-//          cPrivious1 = splitTopPrivious[0]
-//          cPrivious2 = splitTopPrivious[1]
-//          cPrivious3 = splitTopPrivious[2]
-//
-//          var splitBottomPrivious = scope.cardsarray[i].background_color_bottom.split(',');
-//          vPrivious1 = splitBottomPrivious[0]
-//          vPrivious2 = splitBottomPrivious[1]
-//          vPrivious3 = splitBottomPrivious[2]
-//        }
-//
-//        if (scope.cardsarray[i].countCard == cardNumber + 1) {
-//
-//          var splitTopNext = scope.cardsarray[i].background_color_top.split(',');
-//          cNext1 = splitTopNext[0]
-//          cNext2 = splitTopNext[1]
-//          cNext3 = splitTopNext[2]
-//
-//          var splitBottomNext = scope.cardsarray[i].background_color_bottom.split(',');
-//          vNext1 = splitBottomNext[0]
-//          vNext2 = splitBottomNext[1]
-//          vNext3 = splitBottomNext[2]
-//        }
-//      }
-//      scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
-//      cNowOriginal1 = cNow1
-//      cNowOriginal2 = cNow2
-//      cNowOriginal3 = cNow3
-//
-//      vNowOriginal1 = vNow1
-//      vNowOriginal2 = vNow2
-//      vNowOriginal3 = vNow3
+
     }
 
-    //    var leftCard = false, rightCard = false;
 
     endTouchCarousel = function () {
       event.preventDefault()
       event.stopPropagation()
-
-      console.log('Carousel Touch End', event)
-
-//      clearInterval(changingColor)
 
       carouselTouchEndX = event.changedTouches[0].pageX;
       if (Math.abs(carouselTouchStartX - carouselTouchEndX) > 20) {
@@ -1001,32 +843,27 @@
 
           if (scope.invoiceCheck && scope.cardNumber == 0)
             scope.cardNumber = 1;
-          console.log("End Touch Carousel", scope.cardNumber);
-
-//          scope.cardNumber = (scope.invoiceCheck && scope.cardNumber) ? (scope.cardNumber - 2) : (scope.cardNumber);
 
           localStorage.setItem("cardNumber", scope.cardNumber);
 
           pos = (scope.cardNumber) * 540 * widthK;
           var sendChosenCardId;
-          console.log("CARD CARD CARD", scope.cardsarray);
 
           for (var i in scope.cardsarray) {
             if (scope.cardsarray[i].countCard == scope.cardNumber) {
               sendChosenCardId = i;
               break;
             }
-
           }
 
-//          htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
-//            'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
-          riotTags.innerHTML = "<view-my-cards>";
-          riot.mount("view-my-cards", [sendChosenCardId]);
-          document.getElementById('cards').style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-          document.getElementById('cards').style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-          document.getElementById('cards').style.transform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
-          document.getElementById('cards').style.webkitTransform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
+          if (sendChosenCardId !== undefined) {
+            riotTags.innerHTML = "<view-my-cards>";
+            riot.mount("view-my-cards", [sendChosenCardId]);
+            document.getElementById('cards').style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+            document.getElementById('cards').style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+            document.getElementById('cards').style.transform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
+            document.getElementById('cards').style.webkitTransform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
+          }
         }
         else
           modeOfApp.offlineMode.balance = false;
@@ -1039,211 +876,21 @@
       event.preventDefault()
       event.stopPropagation()
 
-//      if (scope.whereWasX < event.changedTouches[0].pageX && scope.direction == 1
-//        || scope.whereWasX > event.changedTouches[0].pageX && scope.direction == -1) {
-//
-//
-//        if (fromChangableColor1 == cNowOriginal1 && fromChangableColor2 == cNowOriginal2 && fromChangableColor3 == cNowOriginal3 &&
-//          toChangableColor1 == vNowOriginal1 && toChangableColor2 == vNowOriginal2 && toChangableColor3 == vNowOriginal3) {
-//
-//          console.log("ASD", fromChangableColor1, cNext1, cPrivious1, cNowOriginal1);
-//
-//          if (scope.direction == -1) {
-//
-//            fromChangableColor1 = cNext1
-//            fromChangableColor2 = cNext2
-//            fromChangableColor3 = cNext3
-//
-//            toChangableColor1 = vNext1
-//            toChangableColor2 = vNext2
-//            toChangableColor3 = vNext3
-//
-//            console.log("BBB");
-//
-//          } else {
-//
-//            fromChangableColor1 = cPrivious1
-//            fromChangableColor2 = cPrivious2
-//            fromChangableColor3 = cPrivious3
-//
-//            toChangableColor1 = vPrivious1
-//            toChangableColor2 = vPrivious2
-//            toChangableColor3 = vPrivious3
-//            console.log("GGG");
-//          }
-//        } else {
-//
-//          if (fromChangableColor1 == cNext1 || fromChangableColor1 == cPrivious1) {
-//            fromChangableColor1 = cNowOriginal1
-//            fromChangableColor2 = cNowOriginal2
-//            fromChangableColor3 = cNowOriginal3
-//
-//            toChangableColor1 = vNowOriginal1
-//            toChangableColor2 = vNowOriginal2
-//            toChangableColor3 = vNowOriginal3
-//          }
-//        }
-//
-//        scope.direction *= -1;
-//
-//        console.log('QQQQ')
-//      }
-//
-//      if (carouselTouchStartX > event.changedTouches[0].pageX && firstEnter) {
-//        //to RIGHT
-//        scope.direction = 1;
-//        rightCard = true;
-//        leftCard = false;
-//        firstEnter = false;
-//        fromChangableColor1 = cNext1
-//        fromChangableColor2 = cNext2
-//        fromChangableColor3 = cNext3
-//
-//        toChangableColor1 = vNext1
-//        toChangableColor2 = vNext2
-//        toChangableColor3 = vNext3
-//      }
-//
-//      if (carouselTouchStartX < event.changedTouches[0].pageX && firstEnter) {
-//        //to LEFT
-//        scope.direction = -1;
-//        rightCard = false;
-//        leftCard = true;
-//        firstEnter = false;
-//        fromChangableColor1 = cPrivious1
-//        fromChangableColor2 = cPrivious2
-//        fromChangableColor3 = cPrivious3
-//
-//        toChangableColor1 = vPrivious1
-//        toChangableColor2 = vPrivious2
-//        toChangableColor3 = vPrivious3
-//      }
-//
-//      if (cNow1 > fromChangableColor1) cNow1--;
-//      if (cNow1 < fromChangableColor1) cNow1++;
-//      if (cNow2 > fromChangableColor2) cNow2--;
-//      if (cNow2 < fromChangableColor2) cNow2++;
-//      if (cNow3 > fromChangableColor3) cNow3--;
-//      if (cNow3 < fromChangableColor3) cNow3++;
-//      if (vNow1 > toChangableColor1) vNow1--;
-//      if (vNow1 < toChangableColor1) vNow1++;
-//      if (vNow2 > toChangableColor2) vNow2--;
-//      if (vNow2 < toChangableColor2) vNow2++;
-//      if (vNow3 > toChangableColor3) vNow3--;
-//      if (vNow3 < toChangableColor3) vNow3++;
-//
-//      htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
-//        'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
-//
-//      if (!viewMainPage.myCards) {
-//        contacts.style.backgroundColor = 'rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-//        circleMenuId.style.border = '' + 8 * widthK + 'px solid rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-//
-//        contactsId.style.backgroundColor = 'rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-//        contactsId.style.border = '' + 2 * widthK + 'px solid rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-//      }
-
 
       document.getElementById('cards').style.transition = '0s';
       document.getElementById('cards').style.webkitTransition = '0s';
       document.getElementById('cards').style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
       document.getElementById('cards').style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta ) + 'px' + ", 0, 0)";
 
-      //Test
-      //
-      //scope.whereWasX = event.changedTouches[0].pageX;
     };
 
-    //    if (modeOfApp.offlineMode) {
-    //
-    ////        scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
-    //      addCard();
-    //    }
-    //    changeColor = function (index) {
-    //      console.log('sss')
-    //      var splitTop = scope.cardsarray[index].background_color_top.split(',');
-    //      fromChangableColor1 = splitTop[0]
-    //      fromChangableColor2 = splitTop[1]
-    //      fromChangableColor3 = splitTop[2]
-    //
-    //      var splitBottom = scope.cardsarray[index].background_color_bottom.split(',');
-    //      toChangableColor1 = splitBottom[0]
-    //      toChangableColor2 = splitBottom[1]
-    //      toChangableColor3 = splitBottom[2]
-    //
-    //      if (cNow1 != fromChangableColor1)
-    //        if (cNow1 > fromChangableColor1) cNow1--;
-    //
-    //      if (cNow1 != fromChangableColor1)
-    //        if (cNow1 < fromChangableColor1) cNow1++;
-    //
-    //      if (cNow2 != fromChangableColor2)
-    //        if (cNow2 > fromChangableColor2) cNow2--;
-    //
-    //      if (cNow2 != fromChangableColor2)
-    //        if (cNow2 < fromChangableColor2) cNow2++;
-    //
-    //      if (cNow3 != fromChangableColor3)
-    //        if (cNow3 > fromChangableColor3) cNow3--;
-    //
-    //      if (cNow3 != fromChangableColor3)
-    //        if (cNow3 < fromChangableColor3) cNow3++;
-    //
-    //      if (vNow1 != toChangableColor1)
-    //        if (vNow1 > toChangableColor1) vNow1--;
-    //
-    //      if (vNow1 != toChangableColor1)
-    //        if (vNow1 < toChangableColor1) vNow1++;
-    //
-    //      if (vNow2 != toChangableColor2)
-    //        if (vNow2 > toChangableColor2) vNow2--;
-    //
-    //      if (vNow2 != toChangableColor2)
-    //        if (vNow2 < toChangableColor2) vNow2++;
-    //
-    //      if (vNow3 != toChangableColor3)
-    //        if (vNow3 > toChangableColor3) vNow3--;
-    //
-    //      if (vNow3 != toChangableColor3)
-    //        if (vNow3 < toChangableColor3) vNow3++;
-    //
-    //      htmlId.style.background = '-webkit-linear-gradient(rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + '),' +
-    //        'rgb(' + vNow1 + ',' + vNow2 + ',' + vNow3 + ')150%)';
-    //
-    //      if (!viewMainPage.myCards) {
-    //        contacts.style.backgroundColor = 'rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-    //        circleMenuId.style.border = '' + 8 * widthK + 'px solid rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-    //
-    //        contactsId.style.backgroundColor = 'rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-    //        contactsId.style.border = '' + 2 * widthK + 'px solid rgb(' + cNow1 + ',' + cNow2 + ',' + cNow3 + ')';
-    //      }
-    //
-    //      if (cNow1 == fromChangableColor1 && cNow2 == fromChangableColor2 && cNow3 == fromChangableColor3 &&
-    //        vNow1 == toChangableColor1 && vNow2 == toChangableColor2 && vNow3 == toChangableColor3)
-    //        clearInterval(changingColor)
-    //
-    //      if (!fromChangableColor1 || !fromChangableColor2 || !fromChangableColor3 || !toChangableColor1 || !toChangableColor2 || !toChangableColor3)
-    //        clearInterval(changingColor)
-    ////
-    ////      console.log('cNow1', cNow1, 'fromChangableColor1', fromChangableColor1)
-    ////      console.log('cNow2', cNow2, 'fromChangableColor2', fromChangableColor2)
-    ////      console.log('cNow3', cNow3, 'fromChangableColor3', fromChangableColor3)
-    ////      console.log('vNow1', vNow1, 'toChangableColor1', toChangableColor1)
-    ////      console.log('vNow2', vNow2, 'toChangableColor2', toChangableColor2)
-    ////      console.log('vNow3', vNow3, 'toChangableColor3', toChangableColor3)
-    //
-    //
-    //    }
-    //    var changingColor;
 
     scope.changePositionCardCarousel = changePositionCardCarousel = function () {
       if (event) {
         event.preventDefault()
         event.stopPropagation()
       }
-//      clearInterval(changingColor);
-//      if (!scope.invoiceCheck && count != 0)
-//        count -= 1;
+
 
       if (scope.invoiceCheck) {
         var invoiceVar = 0;
@@ -1259,7 +906,7 @@
         console.log("Move Touch Carousel1", scope.cardNumber);
 
         ++scope.cardNumber;
-//        riot.update(scope.cardNumber);
+
         document.getElementById('cards').style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById('cards').style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById('cards').style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
@@ -1293,24 +940,18 @@
         console.log("Move Touch Carousel4", scope.cardNumber);
 
         --scope.cardNumber;
-//        riot.update(scope.cardNumber);
+
         document.getElementById('cards').style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById('cards').style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById('cards').style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
         document.getElementById('cards').style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       }
 
-//      for (i in scope.cardsarray) {
-//        if (scope.cardsarray[i].countCard == cardNumber)
-//          var index = i;
-//      }
-//      changingColor = setInterval(function () {
-//        changeColor(index)
-//      }, 4);
 
       if (viewMainPage.myCards) {
         for (var i in scope.cardsarray) {
           if (scope.cardsarray[i].countCard == scope.cardNumber) {
+
             scope.parent.cardInformation(scope.cardsarray[i].card_id);
           }
         }

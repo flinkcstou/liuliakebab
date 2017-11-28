@@ -11,7 +11,7 @@
     <div class="transferthree-menus-container">
       <p id="cardLabelId" class="transferthree-menu-name-label">{window.languages.ViewTransferThreeMenuTitle}</p>
     </div>
-    <component-pincards clean="{true}"></component-pincards>
+    <component-pincards clean="{true}" useFor="p2p"></component-pincards>
 
     <button id="nextButtonId" class="transferthree-next-button-inner-container"
             ontouchstart="goToTransferFourTouchStart()"
@@ -21,10 +21,8 @@
 
   </div>
 
-  <component-alert if="{showError}" clickpinerror="{clickPinError}"
-                   errornote="{errorNote}"></component-alert>
-
   <script>
+
     var scope = this,
       arrayForTransfer = [],
       transferTitle,
@@ -34,8 +32,6 @@
 
     if (opts[0].owner)
       var owner = opts[0].owner;
-
-    scope.showError = false;
 
     arrayForTransfer.push(opts[0])
     arrayForTransfer.push(opts[1])
@@ -140,7 +136,13 @@
           console.log(cardSumFromPinCards, opts[1].sum)
           scope.clickPinError = false;
           scope.errorNote = "На выбранной карте недостаточно средств";
-          scope.showError = true;
+
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote
+          });
+
           scope.update();
           return;
         }
@@ -155,7 +157,13 @@
         else {
           scope.clickPinError = false;
           scope.errorNote = ('Выберите карту');
-          scope.showError = true;
+
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote
+          });
+
           scope.update();
         }
       }

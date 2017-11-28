@@ -1,7 +1,8 @@
-<component-alert hidden="{outerShowAlertBool}">
+<component-alert>
   <div id="componentAlertId" class="component-alert">
     <div class="component-alert-icon"></div>
     <p class="component-alert-message" if="{!opts.clickpinerror}">{opts.errornote}</p>
+    <p class="component-alert-message-settings" if="{opts.permissionerror}">{opts.pathtosettings}</p>
 
     <div class="component-alert-clickpin-error-container" if="{opts.clickpinerror}">
       <p class="component-alert-message component-alert-clickpin-message-one">
@@ -22,7 +23,6 @@
 
   <script>
     var scope = this;
-    scope.outerShowAlertBool = false;
 
     //    console.log("OPTS OF ALERT", opts)
     //    if (opts[0] && opts[0].outerErrorNote) {
@@ -41,38 +41,38 @@
       okButtonStartX = event.changedTouches[0].pageX;
       okButtonStartY = event.changedTouches[0].pageY;
 
-      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
-    }
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)';
+    };
 
     closeAlertFormEnd = function (id) {
       event.preventDefault();
       event.stopPropagation();
 
-      document.getElementById(id).style.webkitTransform = 'scale(1)'
+      document.getElementById(id).style.webkitTransform = 'scale(1)';
 
       okButtonEndX = event.changedTouches[0].pageX;
       okButtonEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(okButtonStartX - okButtonEndX) <= 20 && Math.abs(okButtonStartY - okButtonEndY) <= 20) {
 
-        if (scope.parent) {
-          console.log("Alert from parent:", scope.parent);
-          scope.parent.showError = false;
+        if (opts.parent) {
+          console.log("Alert from parent:", opts.parent);
+          window.common.alert.hide("componentAlertId");
 
           if (opts.carddelete) {
             riotTags.innerHTML = "<view-my-cards>";
             riot.mount('view-my-cards');
-            return
+            return;
           }
 
-          if (opts.errorcode == 1) {
+          if (opts.errorcode === 1) {
             console.log("Alert to main page");
             riotTags.innerHTML = "<view-main-page>";
             riot.mount('view-main-page');
             return;
           }
 
-          if (opts.errorcode == 2) {
+          if (opts.errorcode === 2) {
             console.log("Alert to registration");
             riotTags.innerHTML = "<view-registration-device>";
             riot.mount('view-registration-device');
@@ -83,19 +83,20 @@
             console.log("Alert to ", opts.viewpage);
             riotTags.innerHTML = "<" + opts.viewpage + ">";
             riot.mount(opts.viewpage);
-
+            return;
           }
 
-          console.log("OPTS in ALERT", opts)
+          console.log("OPTS in ALERT", opts);
+          console.log(JSON.stringify(history.arrayOfHistory));
 
           if (opts.step_amount)
             if (opts.step_amount || opts.step_amount == 0) {
-              console.log("opts.step_amount", opts)
+              console.log("opts.step_amount", opts);
               history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - opts.step_amount)
-              console.log(history.arrayOfHistory)
-              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+              console.log(history.arrayOfHistory);
+              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
               if (!opts.viewmount)
-                onBackKeyDown()
+                onBackKeyDown();
               else {
                 riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
                 riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
@@ -103,11 +104,10 @@
 //          scope.unmount()
             }
         }
-        else
-        {
+        else {
           console.log("Alert without parent");
           if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device') {
-            scope.outerShowAlertBool = true;
+            window.common.alert.hide("componentAlertId");
             console.log("Alert to device registration");
             riot.update()
             riotTags.innerHTML = "<view-registration-device>";
@@ -115,7 +115,7 @@
           }
           else {
             console.log("Alert to authorization");
-            scope.outerShowAlertBool = true;
+            window.common.alert.hide("componentAlertId");
             riot.update()
             riotTags.innerHTML = "<view-authorization>";
             riot.mount('view-authorization');

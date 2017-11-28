@@ -59,27 +59,11 @@
     </div>
   </div>
 
-  <component-success id="componentSuccessId"
-                     operationmessage="{operationMessage}"
-                     viewpage="{viewPage}" step_amount="{3}"></component-success>
-  <component-unsuccess id="componentUnsuccessId"
-                       operationmessagepartone="{window.languages.ComponentUnsuccessMessagePart1}"
-                       operationmessageparttwo="{window.languages.ComponentUnsuccessMessagePart2}"
-                       operationmessagepartthree="{window.languages.ComponentUnsuccessMessagePart3ForPay}"
-                       step_amount="{0}"></component-unsuccess>
-
-  <component-in-processing id="componentInProcessingId"
-                           operationmessagepartone="{window.languages.ComponentInProcessingPartOneForPay}"
-                           operationmessageparttwo="{window.languages.ComponentInProcessingPartTwo}"
-                           step_amount="{3}"></component-in-processing>
-  <component-alert if="{showError}" errorcode="{errorCode}"
-                   errornote="{errorNote}"></component-alert>
-
-
   <script>
 
     console.log('OPTS QR CONFIRM', opts)
     var scope = this;
+    var pageToReturnIfError = 'view-main-page';
     goToBack = function () {
       event.preventDefault();
       event.stopPropagation();
@@ -106,13 +90,52 @@
 
     var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
     scope.cardOrFriendBool = opts[0];
-    scope.titleName = opts[2].name
-    scope.serviceIcon = opts[2].image
-    scope.categoryName = opts[2].name
-    scope.tax = opts[2].tax
+    scope.titleName = opts[2].name;
+    scope.serviceIcon = opts[2].image;
+    scope.categoryName = opts[2].name;
+    scope.tax = opts[2].tax;
 
-    scope.update()
-    console.log(opts[0])
+    scope.update();
+    console.log(opts[0]);
+
+    var successStep = 3, errorStep = 0, waitingStep = 3, unsuccessStep = 2;
+
+    updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
+      console.log("OPEN RESULT COMPONENT");
+//      scope.showResult = showResult;
+
+      scope.stepAmount = stepAmount;
+      scope.viewPage = viewPage;
+      scope.resultText = text;
+      if (showResult) {
+
+        window.common.alert.updateView("componentResultId", {
+          parent: scope,
+          resulttext: scope.resultText,
+          viewpage: scope.viewPage,
+          step_amount: scope.stepAmount
+        });
+      } else {
+
+        window.common.alert.hide("componentResultId");
+      }
+      updateIcon(status, null, null, text, stepAmount, viewPage);
+    };
+
+    closeResultComponent = function () {
+      window.common.alert.hide("componentResultId");
+      scope.update();
+    };
+
+    initResultComponent = function () {
+      window.common.alert.updateView("componentResultId", {
+        parent: scope,
+        resulttext: scope.resultText,
+        viewpage: scope.viewPage,
+        step_amount: scope.stepAmount
+      });
+      scope.update();
+    };
     //
     //    if (scope.isInFavorites)
     //      this.viewPage = 'view-main-page';
@@ -232,17 +255,25 @@
           friend_phone: friendPhone
         };
 
-        if (device.platform != 'BrowserStand') {
-          var options = {dimBackground: true};
-
-          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-            console.log("Started");
-          }, function () {
-            console.log("closed");
-          });
-        }
+//        if (device.platform != 'BrowserStand') {
+//          var options = {dimBackground: true};
+//
+//          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+//            console.log("Started");
+//          }, function () {
+//            console.log("closed");
+//          });
+//        }
 
         console.log("inputObject", inputObject)
+
+        window.common.alert.updateView("componentResultId", {
+          parent: scope,
+          resulttext: scope.resultText,
+          viewpage: scope.viewPage,
+          step_amount: scope.stepAmount
+        });
+        scope.update();
 
         window.api.call({
           method: 'app.payment',
@@ -262,30 +293,16 @@
 
                   answerFromServer = true;
 
-                  if (device.platform != 'BrowserStand') {
-                    console.log("Spinner Stop View QR Pay Confirm 261");
-                    SpinnerPlugin.activityStop();
-                  }
                   console.log("result of APP.PAYMENT 1", result);
                   viewServicePage.phoneText = null;
                   viewServicePage.amountText = null;
 
-                  scope.operationMessage = 'Оплата QR прошла успешно'
+//                  scope.operationMessage = 'Оплата QR прошла успешно';
                   viewServicePinCards.friendHelpPaymentMode = false;
-
-                  scope.update();
-                  componentSuccessId.style.display = 'block';
+                  updateResultComponent(true, successStep, null, 'success', window.languages.ComponentResultQRSuccess);
+//                  componentSuccessId.style.display = 'block';
                 } else if (result[1][0].payment_id && !result[1][0].invoice_id) {
 
-//                  if (device.platform != 'BrowserStand') {
-//                    var options = {dimBackground: true};
-//
-//                    SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-//                      console.log("Started");
-//                    }, function () {
-//                      console.log("closed");
-//                    });
-//                  }
 
                   setTimeout(function () {
                     checkQrPaymentStatus(result[1][0].payment_id);
@@ -295,12 +312,14 @@
             }
             else {
               console.log("result of APP.PAYMENT 3", result);
-              scope.update();
-              componentUnsuccessId.style.display = 'block';
+              updateResultComponent(true, errorStep, null, 'unsuccess', result[0][0].error_note);
+//              componentUnsuccessId.style.display = 'block';
             }
           },
 
           onFail: function (api_status, api_status_message, data) {
+            answerFromServer = true;
+            updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
           }
@@ -308,15 +327,15 @@
 
         setTimeout(function () {
           if (!answerFromServer) {
-            scope.showError = true;
-            scope.errorNote = "Время ожидания истекло";
-            scope.errorCode = 1;
+            scope.errorNote = window.languages.WaitingTimeExpiredText;
+            scope.viewPage = pageToReturnIfError;
             scope.update();
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View QR Pay Confirm 307");
-              SpinnerPlugin.activityStop();
-            }
-            window.isConnected = false;
+            window.common.alert.updateView("componentResultId", {
+              parent: scope,
+              resulttext: scope.resultText,
+              viewpage: scope.viewPage,
+              step_amount: scope.stepAmount
+            });
             return
           }
         }, 30000)
@@ -352,34 +371,24 @@
 
               answerFromServer = true;
 
-              if (device.platform != 'BrowserStand') {
-                console.log("Spinner Stop View QR Pay Confirm 343");
-                SpinnerPlugin.activityStop();
-              }
-              componentUnsuccessId.style.display = 'block';
-              riot.update()
+//              scope.errorQrPayment = result[0][0].error_note;
+//              componentUnsuccessId.style.display = 'block';
+//              riot.update()
+              updateResultComponent(true, unsuccessStep, null, 'unsuccess', result[1][0].error);
 
 
             } else if (result[1][0].state == 2) {
 
               answerFromServer = true;
-
-              if (device.platform != 'BrowserStand') {
-                console.log("Spinner Stop View QR Pay Confirm 353");
-                SpinnerPlugin.activityStop();
-              }
-
               window.updateBalanceGlobalFunction();
               console.log("result of APP.PAYMENT 1", result);
               viewServicePage.phoneText = null;
               viewServicePage.amountText = null;
-
-              scope.operationMessage = 'Оплата QR прошла успешно'
               viewServicePinCards.friendHelpPaymentMode = false;
 
-              scope.update();
-              componentSuccessId.style.display = 'block';
-
+//              scope.operationMessage = 'Оплата QR прошла успешно';
+//              scope.update();
+              updateResultComponent(true, successStep, null, 'success', window.languages.ComponentResultQRSuccess);
 
             } else if (result[1][0].state == 1) {
 
@@ -394,13 +403,7 @@
               } else {
 
                 answerFromServer = true;
-
-                if (device.platform != 'BrowserStand') {
-                  console.log("Spinner Stop View QR Pay Confirm 382");
-                  SpinnerPlugin.activityStop();
-                }
-
-                componentInProcessingId.style.display = 'block';
+                updateResultComponent(true, waitingStep, null, 'waiting', window.languages.ComponentInProcessingPartOneForPay);
               }
 
             }
@@ -409,17 +412,16 @@
           }
           else {
             answerFromServer = true;
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View QR Pay Confirm 395");
-              SpinnerPlugin.activityStop();
-            }
-            componentUnsuccessId.style.display = 'block';
+            updateResultComponent(true, errorStep, pageToReturnIfError, 'unsuccess', result[1][0].error);
+
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
-          componentUnsuccessId.style.display = 'block';
+
+          updateResultComponent(true, errorStep, pageToReturnIfError, 'unsuccess', api_status_message);
+
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
