@@ -343,7 +343,7 @@
 
     })
 
-    focusFieldAfterTourClosed = function () {
+    scope.focusFieldAfterTourClosed = focusFieldAfterTourClosed = function () {
 
       scope.tourClosed = true;
 

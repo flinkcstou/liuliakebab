@@ -521,6 +521,7 @@
         scope.pageNumberOptional++;
         paymentListUpdate();
       }
+
 //      var position = reportBodyContainerId.scrollTop;
 //      console.log('POSITION', position)
 //      console.log('HEight', reportBodyContainerId.style.height)
@@ -529,13 +530,14 @@
     scope.paymentListUpdate = paymentListUpdate = function (from) {
 
       if (from == 'fromGraph' || from == 'fromFilter') {
+        console.log("111")
         scope.pageNumberOptional = 1;
         scope.paymentsMap = {};
         scope.paymentDates = [];
         scope.paymentsList = []
       }
       if (scope.monthNotStartedYet) {
-
+        console.log("222")
         scope.paymentsMap = {};
         scope.paymentDates = [];
         scope.paymentsList = [];
@@ -546,6 +548,7 @@
       }
       else {
         if (monthChanged) {
+          console.log("333")
           scope.pageNumberOptional = 1;
           scope.paymentsMap = {};
           scope.paymentDates = [];
@@ -1100,6 +1103,7 @@
       reportBodyContainerStartY = event.changedTouches[0].pageY;
       reportBodyContainerStartX = event.changedTouches[0].pageX;
       reportBodyTimeStart = event.timeStamp.toFixed(0);
+      console.log("touch start", reportBodyContainerStartY)
     }
 
     reportsBodyContainerTouchEnd = function () {
@@ -1109,12 +1113,24 @@
       reportBodyContainerEndY = event.changedTouches[0].pageY;
       reportBodyContainerEndX = event.changedTouches[0].pageX;
       reportBodyTimeEnd = event.timeStamp.toFixed(0);
+      console.log("touch end out", reportBodyContainerEndY)
 
-      if (Math.abs(reportBodyContainerStartY - reportBodyContainerEndY) <= 100 && (Math.abs(reportBodyContainerStartX - reportBodyContainerEndX) > 20) && reportBodyTimeEnd - reportBodyTimeStart < 500) {
+      if (Math.abs(reportBodyContainerStartY - reportBodyContainerEndY) <= 100 && (Math.abs(reportBodyContainerStartX - reportBodyContainerEndX) > 20) && (reportBodyTimeEnd - reportBodyTimeStart) < 500) {
         mCarouselTouchEndX = reportBodyContainerEndX
         mCarouselTouchStartX = reportBodyContainerStartX
+        console.log("touch end inner", reportBodyContainerEndY)
         monthChanged = true
         changePositionReport()
+      } else if (reportBodyContainerEndY > reportBodyContainerStartY && (reportBodyContainerEndY - reportBodyContainerStartY) >= 250 && reportBodyContainerId.scrollTop == 0) {
+//        console.log("update page")
+//        console.log("scrollTop=", reportBodyContainerId.scrollTop)
+//        scope.pageNumberOptional = 1;
+//        scope.paymentsMap = {};
+//        scope.paymentDates = [];
+//        scope.paymentsList = []
+//        monthChanged = false;
+//        paymentListUpdate();
+
       }
 
     }

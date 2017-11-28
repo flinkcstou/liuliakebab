@@ -46,8 +46,6 @@
 <component-notification id="notificationPushId">
 </component-notification>
 
-<div id="alertComponentBlockId" style="opacity: 0;"></div>
-
 <div id="alertTags"></div>
 <div id="riotTags" class="riotTags">
 </div>
@@ -233,21 +231,16 @@
   }
 
   function showAlertComponent(outerErrorNote) {
-    setTimeout(function () {
-      alertComponentBlockId.style.opacity = 1;
-    }, 500);
 
-    scope.alertComponentBlockId.innerHTML = "<component-alert>";
-    riot.mount('component-alert', {"errornote": outerErrorNote});
+    window.common.alert.show("componentAlertId", {"errornote": outerErrorNote});
   }
 
   function showConfirmComponent(outerConfirmNote, confirmType) {
-    setTimeout(function () {
-      alertComponentBlockId.style.opacity = 1;
-    }, 500);
 
-    scope.alertComponentBlockId.innerHTML = "<component-confirm>";
-    riot.mount('component-confirm', {"confirmnote": outerConfirmNote, "confirmtype": confirmType});
+    window.common.alert.show("componentConfirmId", {
+      "confirmnote": outerConfirmNote,
+      "confirmtype": confirmType
+    });
   }
 
 

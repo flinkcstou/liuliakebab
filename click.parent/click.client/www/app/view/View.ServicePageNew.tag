@@ -609,7 +609,7 @@
 
     });
 
-    focusFieldAfterTourClosed = function () {
+    scope.focusFieldAfterTourClosed = focusFieldAfterTourClosed = function () {
 
       if (opts.mode != 'ADDAUTOPAY' && opts.mode != 'ADDFAVORITE') {
         if (device.platform == 'iOS') {
