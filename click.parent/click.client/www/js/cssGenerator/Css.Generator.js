@@ -7012,8 +7012,7 @@ var css = {
   "top:" + 280 * widthK + "px;" +
   "left:" + -10 * widthK + "px;" +
   "font-size:" + 36 * widthK + "px;" +
-  "text-overflow: ellipsis;" +
-  "overflow: hidden;" +
+  "overflow-y: scroll;" +
   "}",
 
   successNextButtonInnerContainer: ".success-next-button-inner-container" +
@@ -7168,8 +7167,7 @@ var css = {
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "top:" + 340 * widthK + "px;" +
-  "text-overflow: ellipsis;" +
-  "overflow: hidden;" +
+  "overflow-y: scroll;" +
   "}",
 
   unsuccessNextButtonInnerContainer: ".unsuccess-next-button-inner-container" +
@@ -11764,6 +11762,8 @@ var css = {
   "top:" + 370 * widthK + "px;" +
   // "left:" + -10 * widthK + "px;" +
   "font-size:" + 36 * widthK + "px;" +
+  "height:" + 435 * widthK + "px;" +
+  "overflow-y: scroll;" +
   "}",
 
   componentAlertMessageSettings: ".component-alert-message-settings" +
@@ -11922,7 +11922,7 @@ var css = {
   "font-size:" + 36 * widthK + "px;" +
   "opacity: 0;" +
   "height: 300px;" +
-  "overflow: hidden;" +
+  "overflow-y: scroll;" +
   "}",
 
   componentResultMessageStart: ".component-result-message-start " +
