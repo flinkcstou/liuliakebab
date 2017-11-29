@@ -11503,6 +11503,7 @@ var css = {
   "background-position: center;" +
   "background-repeat: no-repeat;" +
   // "display: none;" +
+  "visibility: hidden;" +
   "}",
 
   addCardCardDateBox: ".add-card-card-date-box " +
