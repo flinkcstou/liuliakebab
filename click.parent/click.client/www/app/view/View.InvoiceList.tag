@@ -32,7 +32,7 @@
            ontouchend="goToInvoiceHistoryDetailTouchEnd(this.title, this.id)"
            ontouchstart="goToInvoiceHistoryDetailTouchStart(this.id)">
         <div
-            class="invoice-list-invoice-sum-holder {invoice-list-invoice-is-p2p: invoice.is_p2p == 1 && toUser, invoice-list-invoice-is-not-p2p: invoice.is_p2p == 0 || !toUser}">
+          class="invoice-list-invoice-sum-holder {invoice-list-invoice-is-p2p: invoice.is_p2p == 1 && toUser, invoice-list-invoice-is-not-p2p: invoice.is_p2p == 0 || !toUser}">
           <mark class="invoice-list-invoice-sum-sym">сум</mark>
           <p class="invoice-list-invoice-sum">{invoice.amount}</p>
         </div>
@@ -183,7 +183,7 @@
           if (result[0][0].error == 0) {
             console.log(result[1])
             if (result[1]) {
-              if (result[1].length == 0) {
+              if (result[1].length == 0 && invoiceListPageNumber == 1) {
                 canDownloadInvoiceList = false;
                 scope.invoiceListShow = false;
                 scope.update();
@@ -292,7 +292,7 @@
           checkAnswerFromUser = true;
           if (result[0][0].error == 0) {
             if (result[1]) {
-              if (result[1].length == 0) {
+              if (result[1].length == 0 && invoiceListPageNumber == 1) {
                 canDownloadInvoiceList = false;
                 scope.invoiceListShow = false;
                 scope.update();
