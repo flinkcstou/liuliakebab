@@ -41,9 +41,16 @@
       <div id="doMainId" class="add-card-main-card-icon" ontouchend="doMainCardTouchEnd()"></div>
     </div>
 
-    <button id="createCardButtonId" class="view-add-next-button"
-            ontouchstart="createCardTouchStart(this.id)" ontouchend="createCardTouchEnd(this.id)">добавить
+
+    <button if="{showBottomButton}"
+            id="bottomButtonId"
+            class="transfer-new-button-container"
+            style="bottom: {window.bottomButtonBottom};"
+            ontouchstart="createCardTouchStart(this.id)"
+            ontouchend="createCardTouchEnd(this.id)">
+      {window.languages.ViewPayTransferNewContinue}
     </button>
+
   </div>
 
   <script>
@@ -80,7 +87,7 @@
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
     }
-
+    scope.showBottomButton = false;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-add-card') {
       history.arrayOfHistory.push(
@@ -440,6 +447,18 @@
       }
     };
 
+    checkCardNumberLength = function () {
+
+      if (boxOne.value.replace(/\s/g, '').length === 16 && boxDate.value.replace(/\s/g, '').length === 5) {
+        scope.showBottomButton = true;
+        boxOne.blur();
+        boxDate.blur();
+      } else {
+        scope.showBottomButton = false;
+      }
+      scope.update();
+    };
+
     boxOnePaste = function () {
       onPaste = true;
     };
@@ -474,6 +493,7 @@
       }
 
       checkForIconsAddCard();
+      checkCardNumberLength();
       scope.update();
 
     };
@@ -492,6 +512,8 @@
       if (event.keyCode !== input_codes.BACKSPACE_CODE) {
         boxDate.value = inputVerification.dateVerification(boxDate.value)
       }
+
+      checkCardNumberLength();
     };
 
 
