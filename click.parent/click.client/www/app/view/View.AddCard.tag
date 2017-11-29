@@ -11,8 +11,10 @@
     <div hidden if="{!modeOfApp.offlineMode}" class="add-card-card-name-input-part-container">
       <input maxlength="25" class="add-card-card-name-input-part"/>
     </div>
+
+
     <div class="add-card-card-field">
-      <div class="add-card-uzcard-icon"></div>
+      <div id="processingIconId" class="add-card-uzcard-icon" style="background-image: url({processingImage});"></div>
       <p class="add-card-card-text add-card-card-number-text">{window.languages.ViewAddCardNumberTitle}</p>
       <div id="cardNumberInput" class="add-card-card-number">
         <input type="tel" onpaste="boxOnePaste()" onkeyup="boxOneKeyUp()"
@@ -25,19 +27,14 @@
       <p id="cardDateInputTitleId" class="add-card-card-text add-card-card-text-date">
         {window.languages.ViewAddCardDateTitle}</p>
       <div id="cardDateInputId" class="add-card-card-date" type="text">
-        <input type="tel" onkeyup="boxDateKeyUp()" onkeydown="boxDateKeyDown()" maxlength="5" id="boxDate"
+        <input type="tel" onkeyup="boxDateKeyUp()" maxlength="5" id="boxDate"
                class="add-card-card-date-box">
         </input>
       </div>
 
-      <p style="display: none" id="cardPinInputTitleId" class="add-card-card-text add-card-card-text-pin">
-        {window.languages.ViewAddCardPinTitle}</p>
-      <div style="display: none" id="cardPinInputId" class="add-card-card-pin">
-        <input oninput="boxPinKeyUp()" onkeyup="boxPinKeyUp()" type="tel" maxlength="4" id="boxPin"
-               class="add-card-card-date-pin-box">
-        </input>
-      </div>
+      <div id="bankIconId" class="add-card-bankIcon" style="background-image: url({bankImage});"></div>
     </div>
+
 
     <div hidden if="{!modeOfApp.offlineMode}" class="add-card-main-card-field">
       <p class="add-card-main-card-text">{window.languages.ViewAddCardDoMainTitle}</p>
@@ -54,10 +51,38 @@
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
     var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
     var sessionKey = info.session_key;
+    var dateOrPin = '';
+    var cardNumber = '';
+    var createButtonStartX,
+      createButtonEndX,
+      createButtonStartY,
+      createButtonEndY;
+    var mainPageToReturn = 'view-main-page',
+      pageToReturnTwo = 'view-add-card';
+    var answerFromServer = false;
+    var onPaste = false;
+    var canFormatNumber = true;
+    var stars = '';
+    var pinCodeOfBank = '';
+    var boxCursorPositionSelectionStart,
+      boxCursorPositionSelectionEnd,
+      oldValueOfBoxNumber;
+    var bankIconFound = false;
+    var processingIconFound = false;
+    var bankId = '';
+    var processingId = '';
+    scope.titleName = window.languages.ViewAddCardTitle;
+    scope.doMainCard = false;
+    scope.bankImage = '';
+    scope.processingImage = '';
+    scope.allBankList = [];
+    if (localStorage.getItem('click_client_loginInfo')) {
+      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+      var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
+    }
 
-    var mainPageToReturn = 'view-main-page', pageToReturnTwo = 'view-add-card';
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-add-card') {
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-add-card') {
       history.arrayOfHistory.push(
         {
           "view": 'view-add-card',
@@ -67,12 +92,60 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
+    if (loginInfo)
+      if (!localStorage.getItem("click_client_p2p_bank_list") || loginInfo.update_bank_list) {
+        if (modeOfApp.onlineMode)
+          window.api.call({
+            method: 'p2p.bank.list',
+            input: {
+              session_key: sessionKey,
+              phone_num: phoneNumber
+            },
+            scope: this,
 
-    scope.doMainCard = false;
+            onSuccess: function (result) {
+              if (result[0][0].error === 0) {
+                var bankListAvailable = [];
+                for (var i in result[1]) {
+                  if (result[1][i].p2p_status === 1)
+                    bankListAvailable.push(result[1][i]);
+                }
+                if (localStorage.getItem('click_client_p2p_all_bank_list') !== JSON.stringify(result[1])) {
+                  localStorage.setItem('click_client_p2p_bank_list', JSON.stringify(bankListAvailable));
+                  localStorage.setItem('click_client_p2p_all_bank_list', JSON.stringify(result[1]));
+                  scope.allBankList = result[1];
+                }
+              }
+              else {
+                scope.errorNote = result[0][0].error_note;
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: scope.clickPinError,
+                  errornote: scope.errorNote,
+                  pathtosettings: scope.pathToSettings,
+                  permissionerror: scope.permissionError
+                });
+
+                scope.update();
+              }
+            },
+            onFail: function (api_status, api_status_message, data) {
+              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+              console.error(data);
+            }
+          });
+      }
+
+    if (JSON.parse(localStorage.getItem("click_client_p2p_all_bank_list"))) {
+      scope.allBankList = JSON.parse(localStorage.getItem("click_client_p2p_all_bank_list"));
+
+    }
+
 
     doMainCardTouchEnd = function () {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
 
       if (!scope.doMainCard) {
         scope.doMainCard = true;
@@ -82,7 +155,7 @@
         scope.doMainCard = false;
         doMainId.style.backgroundImage = 'url(resources/icons/ViewService/unchecked.png)';
       }
-    }
+    };
 
 
     updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
@@ -112,15 +185,11 @@
     initResultComponent = function () {
       console.log("INIT RESULT COMPONENT");
       window.common.alert.updateView("componentResultId", {
-        parent: scope,
+        parent: scope
       });
       scope.update();
     };
 
-    var dateOrPin = '';
-    var cardNumber = '';
-
-    var createButtonStartX, createButtonEndX, createButtonStartY, createButtonEndY;
 
     createCardTouchStart = function (id) {
 
@@ -128,12 +197,12 @@
       createButtonStartY = event.changedTouches[0].pageY;
 
       document.getElementById(id).style.webkitTransform = 'scale(0.8)'
-    }
+    };
 
 
     createCardTouchEnd = function (id) {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
 
       createButtonEndX = event.changedTouches[0].pageX;
       createButtonEndY = event.changedTouches[0].pageY;
@@ -156,7 +225,7 @@
           phonedialer.dial(
             "*880*0*" + cardNumber + '*' + dateOrPin + "%23",
             function (err) {
-              if (err == "empty") {
+              if (err === "empty") {
                 window.common.alert.show("componentAlertId", {
                   parent: scope,
                   clickpinerror: false,
@@ -172,8 +241,6 @@
           return
         }
 
-
-        var answerFromServer = false;
 
         initResultComponent();
 
@@ -247,11 +314,11 @@
         }, 20000)
       }
 
-    }
+    };
 
     scope.cardAddCheck = cardAddCheck = function () {
 
-      console.log(" scope.checkId=", scope.checkId)
+      console.log(" scope.checkId=", scope.checkId);
 
       window.api.call({
         method: 'card.add.check',
@@ -266,25 +333,25 @@
         onSuccess: function (result) {
 
           answerFromServer = true;
-          if (result[0][0].error == 0) {
+          if (result[0][0].error === 0) {
             console.log("CARD ADD CHECK", result);
 
-            if (result[0][0].registered == 1) {
+            if (result[0][0].registered === 1) {
               viewMainPage.addFirstCardBool = false;
               localStorage.removeItem('cardNumber');
               localStorage.removeItem('click_client_countCard');
               var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-              if (!loginInfo.default_account || loginInfo.default_account == 0) {
+              if (!loginInfo.default_account || loginInfo.default_account === 0) {
                 loginInfo.default_account = result[0][0].default_account;
                 localStorage.setItem("click_client_loginInfo", JSON.stringify(loginInfo));
                 console.log("DEFAULT was set", loginInfo.default_account, localStorage.getItem("click_client_loginInfo"));
               }
               updateResultComponent(true, null, mainPageToReturn, 'success', result[0][0].error_note);
-            } else if (result[0][0].registered == -1) {
+            } else if (result[0][0].registered === -1) {
 
               updateResultComponent(true, null, pageToReturnTwo, 'unsuccess', result[0][0].error_note);
 
-            } else if (result[0][0].registered == 0) {
+            } else if (result[0][0].registered === 0) {
               window.common.alert.updateView("componentResultId", {
                 parent: scope,
                 resulttext: result[0][0].error_note,
@@ -311,14 +378,73 @@
 
     };
 
-    var onPaste = false;
-    var canFormatNumber = true;
+
+    scope.processingTypes = [{"code": "8600", "url": "resources/icons/cards/typeOfCards/uzcard.png"}, {
+      "code": "9000",
+      "url": "resources/icons/cards/typeOfCards/duet.png"
+    }];
+
+    checkForIconsAddCard = function () {
+      //Check for bank icon
+      bankIdInInput = boxOne.value.replace(/\s/g, '').substring(3, 6);
+      if (bankId !== bankIdInInput) {
+        bankId = bankIdInInput;
+        bankIconFound = false;
+        scope.allBankList.forEach(function (element) {
+          if (element.code === bankId) {
+            scope.bankImage = element.image;
+            bankIconId.style.display = 'block';
+            bankIconFound = true;
+          }
+        });
+        if (bankIconFound === false) {
+          bankId = '';
+          scope.bankImage = '';
+          bankIconId.style.display = 'none';
+        }
+      }
+      if (boxOne.value.replace(/\s/g, '').length < 6) {
+        bankId = '';
+        scope.bankImage = '';
+        bankIconId.style.display = 'none';
+      }
+
+      //Check for processing icon
+      processingIdInInput = boxOne.value.replace(/\s/g, '').substring(0, 4);
+      if (processingId !== processingIdInInput) {
+        processingId = processingIdInInput;
+        processingIconFound = false;
+        /// TO DO PROCESSING ICON
+
+
+        scope.processingTypes.forEach(function (element) {
+          if (element.code === processingId) {
+            scope.processingImage = element.url;
+            processingIconId.style.display = 'block';
+            processingIconFound = true;
+          }
+        });
+
+
+        if (processingIconFound === false) {
+          processingId = '';
+          scope.processingImage = '';
+          processingIconId.style.display = 'none';
+        }
+      }
+
+      if (boxOne.value.replace(/\s/g, '').length < 4) {
+        processingId = '';
+        scope.processingImage = '';
+        processingIconId.style.display = 'none';
+      }
+    };
 
     boxOnePaste = function () {
       onPaste = true;
     };
 
-    var boxCursorPositionSelectionStart, boxCursorPositionSelectionEnd, oldValueOfBoxNumber;
+
     boxOneKeyUp = function () {
       event.preventDefault();
       event.stopPropagation();
@@ -328,82 +454,78 @@
       oldValueOfBoxNumber = boxOne.value;
 
 
-      if (boxOne.value.length <= 19 && (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT)) {
+      if (boxOne.value.length <= 19 && (event.keyCode !== input_codes.BACKSPACE_CODE && event.keyCode !== input_codes.NEXT)) {
         boxOne.value = inputVerification.cardVerification(boxOne.value);
 
-        if ((oldValueOfBoxNumber.length != boxOne.value.length && inputVerification.spaceDeleter(oldValueOfBoxNumber) == inputVerification.spaceDeleter(boxOne.value)) ||
-          boxCursorPositionSelectionStart % 5 == 4 && inputVerification.spaceDeleter(oldValueOfBoxNumber) != inputVerification.spaceDeleter(boxOne.value)) {
+        if ((oldValueOfBoxNumber.length !== boxOne.value.length && inputVerification.spaceDeleter(oldValueOfBoxNumber) === inputVerification.spaceDeleter(boxOne.value)) ||
+          boxCursorPositionSelectionStart % 5 === 4 && inputVerification.spaceDeleter(oldValueOfBoxNumber) !== inputVerification.spaceDeleter(boxOne.value)) {
           boxOne.selectionStart = boxCursorPositionSelectionStart + 1
           boxOne.selectionEnd = boxCursorPositionSelectionEnd + 1
         }
         else {
-          boxOne.selectionStart = boxCursorPositionSelectionStart
-          boxOne.selectionEnd = boxCursorPositionSelectionEnd
+          boxOne.selectionStart = boxCursorPositionSelectionStart;
+          boxOne.selectionEnd = boxCursorPositionSelectionEnd;
         }
       }
 
-      if (boxOne.value.length == 19) {
+      if (boxOne.value.length === 19) {
         boxDate.autofocus
         boxDate.focus()
       }
 
-    }
+      checkForIconsAddCard();
+      scope.update();
+
+    };
 
 
     boxOneKeyDown = function () {
 
-      if (boxOne.value.length >= 19 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
+      if (boxOne.value.length >= 19 && event.keyCode !== input_codes.BACKSPACE_CODE && event.keyCode !== input_codes.NEXT) {
         boxOne.value = event.target.value.substring(0, event.target.value.length - 1);
       }
 
-    }
-
-
-    boxDateKeyDown = function () {
-
-    }
+    };
 
     boxDateKeyUp = function () {
 
-      if (event.keyCode != input_codes.BACKSPACE_CODE) {
+      if (event.keyCode !== input_codes.BACKSPACE_CODE) {
         boxDate.value = inputVerification.dateVerification(boxDate.value)
       }
-    }
+    };
 
-    var stars = '';
-    var pinCodeOfBank = '';
+
     boxPinKeyUp = function () {
 
 
-      if (event.keyCode != 8 && pinCodeOfBank.length < 4) {
+      if (event.keyCode !== 8 && pinCodeOfBank.length < 4) {
         pinCodeOfBank += event.key;
-        console.log('pinCodeOfBank', pinCodeOfBank)
-        stars += '*'
+        console.log('pinCodeOfBank', pinCodeOfBank);
+        stars += '*';
         boxPin.value = stars
       }
       else {
-        if (event.keyCode == 8) {
-          stars = stars.substring(0, stars.length - 1)
-          pinCodeOfBank = pinCodeOfBank.substring(0, pinCodeOfBank.length - 1)
+        if (event.keyCode === 8) {
+          stars = stars.substring(0, stars.length - 1);
+          pinCodeOfBank = pinCodeOfBank.substring(0, pinCodeOfBank.length - 1);
           boxPin.value = stars
         }
       }
 
       event.preventDefault()
-    }
+    };
 
-    scope.titleName = window.languages.ViewAddCardTitle;
 
     goToBack = function () {
-      event.preventDefault()
-      event.stopPropagation()
-      onBackKeyDown()
+      event.preventDefault();
+      event.stopPropagation();
+      onBackKeyDown();
       scope.unmount();
-    }
+    };
 
 
     this.on('mount', function () {
-      if (device.platform == 'iOS') {
+      if (device.platform === 'iOS') {
         boxOne.autofocus;
         boxOne.focus()
       }

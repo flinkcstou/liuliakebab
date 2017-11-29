@@ -11357,7 +11357,7 @@ var css = {
 
   addCardUzcardIcon: ".add-card-uzcard-icon " +
   "{" +
-  "visibility: hidden;" +
+  // "visibility: hidden;" +
   "position: absolute;" +
   "top:4%;" +
   "right:2%;" +
@@ -11366,7 +11366,6 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 75%;" +
   "background-position: center;" +
-  "background-image: url(resources/icons/ViewAddCard/addcard_uzcard.png);" +
   "}",
 
   addCardMainCardField: ".add-card-main-card-field " +
@@ -11490,6 +11489,20 @@ var css = {
   "height:" + 55 * widthK + "px;" +
   "left: 6%;" +
   "top: 71%;" +
+  "}",
+
+
+  addCardBankIcon: ".add-card-bankIcon" +
+  "{" +
+  "position: absolute;" +
+  "width:" + 185 * widthK + "px;" +
+  "height:" + 90 * widthK + "px;" +
+  "bottom: 7%;" +
+  "right: 2%;" +
+  "background-size: contain;" +
+  "background-position: center;" +
+  "background-repeat: no-repeat;" +
+  // "display: none;" +
   "}",
 
   addCardCardDateBox: ".add-card-card-date-box " +
@@ -15762,7 +15775,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "width: 60%;" +
-  "}"
+  "}",
 
 }
 
