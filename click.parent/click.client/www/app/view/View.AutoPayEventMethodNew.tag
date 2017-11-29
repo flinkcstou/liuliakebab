@@ -52,8 +52,8 @@
 
 
       <button
-          class="{autopay-event-button-enter-enabled: enterButtonEnabled,autopay-event-button-enter-disabled:!enterButtonEnabled}"
-          ontouchend="chooseCardToPay()" ontouchstart="onTouchStartOfChooseCard()">
+        class="{autopay-event-button-enter-enabled: enterButtonEnabled,autopay-event-button-enter-disabled:!enterButtonEnabled}"
+        ontouchend="chooseCardToPay()" ontouchstart="onTouchStartOfChooseCard()">
         {window.languages.ViewServicePageEnterLabel}
       </button>
 
@@ -158,9 +158,12 @@
       this.serviceName = scope.servicesMap[scope.autoPayData.service_id][0].name;
       this.serviceIcon = scope.servicesMap[scope.autoPayData.service_id][0].image;
       if (scope.autoPayData.fromView == 'PAYCONFIRM' && opts.firstFieldText) {
-        if (opts.firstFieldId === 1)
+        if (opts.firstFieldId == 1) {
           scope.defaultNumber = !opts.firstFieldText ? null : (inputVerification.telVerificationWithSpace(opts.firstFieldText));
-        else scope.defaultNumber = opts.firstFieldText;
+        }
+        else {
+          scope.defaultNumber = opts.firstFieldText;
+        }
       }
     }
 
