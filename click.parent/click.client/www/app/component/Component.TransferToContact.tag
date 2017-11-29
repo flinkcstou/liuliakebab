@@ -242,6 +242,7 @@
     checkPhoneNumberLength = function () {
       if (contactPhoneNumberId.value.length === scope.numberLength) {
         scope.showBottomButton = true;
+        contactPhoneNumberId.blur();
         contactPhoneSuggestions.style.display = 'none';
       }
       else {
@@ -253,6 +254,9 @@
 
     //Go to next step
     onTouchStartOfNextContact = function () {
+
+      bottomButtonId.style.webkitTransform = 'scale(0.7)';
+
       event.preventDefault();
       event.stopPropagation();
 
@@ -260,6 +264,9 @@
       transferContactTouchStartY = event.changedTouches[0].pageY;
     };
     onTouchEndOfNextContact = function () {
+
+      bottomButtonId.style.webkitTransform = 'scale(1)';
+
       event.preventDefault();
       event.stopPropagation();
 

@@ -245,6 +245,9 @@
     };
 
     onTouchStartOfSubmit = function () {
+
+      bottomButtonId.style.webkitTransform = 'scale(0.7)';
+
       event.preventDefault();
       event.stopPropagation();
 
@@ -253,6 +256,9 @@
     };
 
     onTouchEndOfSubmit = function () {
+
+      bottomButtonId.style.webkitTransform = 'scale(1)';
+
       event.preventDefault();
       event.stopPropagation();
 

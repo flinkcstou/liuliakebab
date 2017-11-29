@@ -247,6 +247,7 @@
     checkCardNumberLength = function () {
       if (cardInputId.value.replace(/\s/g, '').length === 16) {
         scope.showBottomButton = true;
+        cardInputId.blur();
         cardSuggestions.style.display = 'none';
         cardContainer.style.background = '';
         cardInputContainer.style.border = '';
@@ -305,6 +306,9 @@
 
     //Go to next step
     onTouchStartOfNextCard = function () {
+
+      bottomButtonId.style.webkitTransform = 'scale(0.7)';
+
       event.preventDefault();
       event.stopPropagation();
 
@@ -312,6 +316,9 @@
       transferCardTouchStartY = event.changedTouches[0].pageY;
     };
     onTouchEndOfNextCard = function () {
+
+      bottomButtonId.style.webkitTransform = 'scale(1)';
+
       event.preventDefault();
       event.stopPropagation();
 

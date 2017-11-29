@@ -197,7 +197,7 @@
         }
         if (opts.transferType === 'contact') {
           scope.receiver = opts.phoneNumber;
-          scope.receiverTitle = opts.phoneNumber;
+          scope.receiverTitle = '+998 ' + inputVerification.telVerificationWithSpace(inputVerification.telVerification(opts.phoneNumber));
           scope.taxPercent = opts.taxPercent;
           scope.transferType = 2;
         }
@@ -312,6 +312,9 @@
       };
 
       onTouchStartOfSubmit = function () {
+
+        bottomButtonId.style.webkitTransform = 'scale(0.7)';
+
         event.preventDefault();
         event.stopPropagation();
 
@@ -320,6 +323,9 @@
       };
 
       onTouchEndOfSubmit = function () {
+
+        bottomButtonId.style.webkitTransform = 'scale(1)';
+
         event.preventDefault();
         event.stopPropagation();
 
