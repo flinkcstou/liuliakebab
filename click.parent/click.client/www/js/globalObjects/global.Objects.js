@@ -95,7 +95,7 @@ window.common.alert = {
 
     window.clearTimers();
 
-    console.log(id);
+    console.log(id, params);
 
     if (!window.common.alert.priorities[id]) return;
 
