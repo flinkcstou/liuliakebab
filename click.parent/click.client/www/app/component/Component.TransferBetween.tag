@@ -23,7 +23,8 @@
   </div>
 
   <div id="cardFromId"
-       class="transfer-new-card-from">
+       class="transfer-new-card-from"
+       ontouchstart="blurInput()">
     <p class="transfer-new-between-from-text-field">{window.languages.ViewPayTransferBetweenCardsFrom}</p>
     <component-transfer-card-carousel-top
       carouselid="1"
@@ -37,7 +38,8 @@
   </div>
 
   <div id="cardToId"
-       class="transfer-new-card-to">
+       class="transfer-new-card-to"
+       ontouchstart="blurInput()">
     <p class="transfer-new-between-from-text-field">{window.languages.ViewPayTransferBetweenCardsTo}</p>
     <component-transfer-card-carousel-bottom
       carouselid="2"
@@ -236,6 +238,10 @@
         }
       }
       scope.update();
+    };
+
+    blurInput = function () {
+      betweenAmountId.blur();
     };
 
     onTouchStartOfSubmit = function () {
