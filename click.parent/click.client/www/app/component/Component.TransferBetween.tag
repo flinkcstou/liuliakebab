@@ -50,7 +50,7 @@
     </component-transfer-card-carousel-bottom>
   </div>
   <button if="{showBottomButton}"
-          id="bottomButtonId"
+          id="bottomButtonBetweenId"
           style="bottom: {window.bottomButtonBottom}"
           class="transfer-new-submit-button-container"
           ontouchstart="onTouchStartOfSubmit(this)"

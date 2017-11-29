@@ -56,7 +56,7 @@
     </div>
 
     <button if="{showBottomButton}"
-            id="bottomButtonId"
+            id="bottomButtonSubmitId"
             class="transfer-new-submit-button-container"
             style="bottom: {window.bottomButtonBottom}"
             ontouchstart="onTouchStartOfSubmit(this)"

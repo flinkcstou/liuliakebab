@@ -35,7 +35,7 @@
     </div>
   </div>
   <button if="{showBottomButton}"
-          id="bottomButtonId"
+          id="bottomButtonCardId"
           style="bottom: {window.bottomButtonBottom}"
           class="transfer-new-button-container"
           ontouchstart="onTouchStartOfNextCard(this)"

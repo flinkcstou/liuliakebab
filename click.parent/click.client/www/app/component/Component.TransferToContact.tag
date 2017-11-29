@@ -33,7 +33,7 @@
     </div>
   </div>
   <button if="{showBottomButton}"
-          id="bottomButtonId"
+          id="bottomButtonContactId"
           class="transfer-new-button-container"
           style="bottom: {window.bottomButtonBottom}"
           ontouchstart="onTouchStartOfNextContact(this)"
