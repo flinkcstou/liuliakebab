@@ -7612,7 +7612,7 @@ var css = {
   "position: relative;" +
   "color: black;" +
   "width:" + 340 * widthK + "px;" +
-  "height:" + 390 * widthK + "px;" +
+  "height:" + 380 * heightK + "px;" +
   "text-align: center;" +
   "margin-left: auto;" +
   "margin-top: 0;" +
@@ -7621,8 +7621,8 @@ var css = {
   "top:" + 280 * widthK + "px;" +
   "left:" + -10 * widthK + "px;" +
   "font-size:" + 36 * widthK + "px;" +
-  "text-overflow: ellipsis;" +
-  "overflow: hidden;" +
+  "overflow-y: scroll;" +
+  "word-wrap: break-word;" +
   "}",
 
   successNextButtonInnerContainer: ".success-next-button-inner-container" +
@@ -7769,7 +7769,7 @@ var css = {
   "position: relative;" +
   "color: #ff3c5e;" +
   "width:" + 640 * widthK + "px;" +
-  "height:" + 435 * widthK + "px;" +
+  "height:" + 380 * heightK + "px;" +
   "font-size:" + 30 * widthK + "px;" +
   "text-align: center;" +
   "margin-left: auto;" +
@@ -7777,8 +7777,8 @@ var css = {
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "top:" + 340 * widthK + "px;" +
-  "text-overflow: ellipsis;" +
-  "overflow: hidden;" +
+  "overflow-y: scroll;" +
+  "word-wrap: break-word;" +
   "}",
 
   unsuccessNextButtonInnerContainer: ".unsuccess-next-button-inner-container" +
@@ -12373,6 +12373,8 @@ var css = {
   "top:" + 370 * widthK + "px;" +
   // "left:" + -10 * widthK + "px;" +
   "font-size:" + 36 * widthK + "px;" +
+  "height:" + 435 * widthK + "px;" +
+  "overflow-y: scroll;" +
   "}",
 
   componentAlertMessageSettings: ".component-alert-message-settings" +
@@ -12530,8 +12532,9 @@ var css = {
   "top:" + 250 * widthK + "px" + "!important;" +
   "font-size:" + 36 * widthK + "px;" +
   "opacity: 0;" +
-  "height: 300px;" +
-  "overflow: hidden;" +
+  "height: " + 240 * heightK + "px;" +
+  "overflow-y: scroll;" +
+
   "}",
 
   componentResultMessageStart: ".component-result-message-start " +

@@ -353,44 +353,41 @@
 
                 var arrayOfInvoice = [];
                 for (var i = 0; i < result[1].length; i++) {
-
                   //TODO: FIX
-                  try {
-                    result[1][i].amount = window.amountTransform(result[1][i].amount.toString());
-                    scope.searchNumber = inputVerification.spaceDeleter(result[1][i].merchant_phone);
-                    arrayOfPhones = JSON.parse(sessionStorage.getItem('arrayOfPhones'));
-
-                    if (result[1][i].is_friend_help && arrayOfPhones && arrayOfPhones.length != 0) {
-
-                      arrayOfPhones.filter(function (wordOfFunction) {
-                        if (wordOfFunction.phoneNumbers) {
-                          for (var i in wordOfFunction.phoneNumbers) {
-                            index = wordOfFunction.phoneNumbers[i].value.indexOf(scope.searchNumber);
-                            if (index != -1) {
-                              result[1][i].friend_name = wordOfFunction.name.givenName;
-                            }
-                          }
-                        }
-                        else
-                          index = -1;
-
-                      });
-
-                    }
-
-
-                  } catch (error) {
-
-                    console.log(error);
-                  }
-
+//                  try {
+//                    result[1][i].amount = window.amountTransform(result[1][i].amount.toString());
+//                    scope.searchNumber = inputVerification.spaceDeleter(result[1][i].merchant_phone);
+//                    arrayOfPhones = JSON.parse(sessionStorage.getItem('arrayOfPhones'));
+//
+//                    if (result[1][i].is_friend_help && arrayOfPhones && arrayOfPhones.length != 0) {
+//
+//                      arrayOfPhones.filter(function (wordOfFunction) {
+//                        if (wordOfFunction.phoneNumbers) {
+//                          for (var i in wordOfFunction.phoneNumbers) {
+//                            index = wordOfFunction.phoneNumbers[i].value.indexOf(scope.searchNumber);
+//                            if (index != -1) {
+//                              result[1][i].friend_name = wordOfFunction.name.givenName;
+//                            }
+//                          }
+//                        }
+//                        else
+//                          index = -1;
+//
+//                      });
+//
+//                    }
+//
+//
+//                  } catch (error) {
+//
+//                    console.log(error);
+//                  }
                   arrayOfInvoice.push(result[1][i]);
                 }
 
                 localStorage.setItem('click_client_invoice_list', JSON.stringify(arrayOfInvoice));
 
                 if (scope.invoiceList) {
-
                   if (arrayOfInvoice[0]) {
                     scope.invoiceList.push(arrayOfInvoice[0]);
                   }
@@ -417,15 +414,16 @@
             }
           }
           else {
+            if (result[0][0].error != 0) {
+              scope.clickPinError = false;
+              scope.errorNote = result[0][0].error_note;
 
-            scope.clickPinError = false;
-            scope.errorNote = result[0][0].error_note;
-
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote
-            });
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote
+              });
+            }
             scope.update();
           }
         },
@@ -437,35 +435,36 @@
     };
 
 
-    function onSuccess(contacts) {
-
-      for (var i = 0; i < contacts.length; i++) {
-        if (contacts[i].name)
-          if ((contacts[i].name.familyName != null || contacts[i].name.givenName != null) && contacts[i].phoneNumbers != null) {
-            for (var j = 0; j < contacts[i].phoneNumbers.length; j++) {
-              var phone = inputVerification.spaceDeleter(contacts[i].phoneNumbers[j].value);
-
-              contacts[i].phoneNumbers[j].value = phone;
-            }
-            arrayOfPhones.push(contacts[i])
-            sessionStorage.setItem('arrayOfPhones', JSON.stringify(arrayOfPhones));
-          }
-      }
-
-    }
-
-
-    function onError(contactError) {
-      console.log('error', contactError)
-    }
-
-
-    if (device.platform != 'BrowserStand' && !sessionStorage.getItem('arrayOfPhones')) {
-      var options = new ContactFindOptions();
-      options.multiple = true;
-      options.hasPhoneNumber = true;
-      navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
-    }
+    //TODO: FIX THIS BUG WITH MANY CONTACTS ON PHONE !!!!!!
+//    function onSuccess(contacts) {
+//
+//      for (var i = 0; i < contacts.length; i++) {
+//        if (contacts[i].name)
+//          if ((contacts[i].name.familyName != null || contacts[i].name.givenName != null) && contacts[i].phoneNumbers != null) {
+//            for (var j = 0; j < contacts[i].phoneNumbers.length; j++) {
+//              var phone = inputVerification.spaceDeleter(contacts[i].phoneNumbers[j].value);
+//
+//              contacts[i].phoneNumbers[j].value = phone;
+//            }
+//            arrayOfPhones.push(contacts[i])
+//            sessionStorage.setItem('arrayOfPhones', JSON.stringify(arrayOfPhones));
+//          }
+//      }
+//
+//    }
+//
+//
+//    function onError(contactError) {
+//      console.log('error', contactError)
+//    }
+//
+//
+//    if (device.platform != 'BrowserStand' && !sessionStorage.getItem('arrayOfPhones')) {
+//      var options = new ContactFindOptions();
+//      options.multiple = true;
+//      options.hasPhoneNumber = true;
+//      navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
+//    }
 
 
     cardImagesCaching = function (full) {

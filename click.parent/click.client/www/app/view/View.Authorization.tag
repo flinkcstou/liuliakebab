@@ -112,15 +112,7 @@
 
         authorizationButtonsContainerId.style.top = 400 * widthK + 'px';
 
-        if (device.platform === 'iOS') {
-          firstPinInputId.autofocus;
-          firstPinInputId.focus();
-        }
-        else {
-          setTimeout(function () {
-            firstPinInputId.focus();
-          }, 0)
-        }
+        inputPinFocus();
       }
       scope.update();
       if (device.platform !== 'BrowserStand')
@@ -221,6 +213,18 @@
 
 
       firstPinInputId.blur();
+    };
+
+    inputPinFocus = function () {
+      if (device.platform === 'iOS') {
+        firstPinInputId.autofocus;
+        firstPinInputId.focus();
+      }
+      else {
+        setTimeout(function () {
+          firstPinInputId.focus();
+        }, 0)
+      }
     };
 
     var pinResetTouchStartX, pinResetTouchStartY, pinResetTouchEndX, pinResetTouchEndY;
@@ -573,6 +577,10 @@
             enteredPin = '';
             if (!scope.firstEnter)
               updateEnteredPin();
+            else {
+              firstPinInputId.value = "";
+              inputPinFocus();
+            }
             return
           }
         },
