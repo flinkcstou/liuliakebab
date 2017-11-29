@@ -33,11 +33,11 @@
     </div>
   </div>
   <button if="{showBottomButton}"
-          id="bottomButtonId"
+          id="bottomButtonContactId"
           class="transfer-new-button-container"
-          style="bottom: {window.bottomButtonBottom};"
-          ontouchstart="onTouchStartOfNextContact()"
-          ontouchend="onTouchEndOfNextContact()">
+          style="bottom: {window.bottomButtonBottom}"
+          ontouchstart="onTouchStartOfNextContact(this)"
+          ontouchend="onTouchEndOfNextContact(this)">
     {window.languages.ViewPayTransferNewContinue}
   </button>
   <script>
@@ -88,7 +88,7 @@
         findContacts();
       }
       catch (e) {
-        console.log(e)
+        console.error(e)
       }
     }
 
@@ -234,7 +234,7 @@
             console.error('Error on picking contact from native', error)
           });
         } catch (e) {
-          console.log(e);
+          console.error(e);
         }
       }
     };
@@ -249,13 +249,15 @@
         scope.showBottomButton = false;
         contactPhoneSuggestions.style.display = 'block';
       }
+      scope.update();
       scope.parent.update();
     };
 
     //Go to next step
-    onTouchStartOfNextContact = function () {
+    onTouchStartOfNextContact = function (button) {
 
-      bottomButtonId.style.webkitTransform = 'scale(0.7)';
+      console.log(button);
+      button.style.webkitTransform = 'scale(0.7)';
 
       event.preventDefault();
       event.stopPropagation();
@@ -263,9 +265,9 @@
       transferContactTouchStartX = event.changedTouches[0].pageX;
       transferContactTouchStartY = event.changedTouches[0].pageY;
     };
-    onTouchEndOfNextContact = function () {
+    onTouchEndOfNextContact = function (button) {
 
-      bottomButtonId.style.webkitTransform = 'scale(1)';
+      button.style.webkitTransform = 'scale(1)';
 
       event.preventDefault();
       event.stopPropagation();

@@ -166,13 +166,17 @@
           StatusBar.backgroundColorByHexString("#004663");
       }
 
+      if (modeOfApp.offlineMode) {
+        between.style.display = 'none';
+        card.style.width = '50%';
+        contact.style.width = '50%';
+      }
       if (localStorage.getItem('click_client_countCard')) {
         scope.countCard = JSON.parse(localStorage.getItem('click_client_countCard'));
         if (scope.countCard < 3){
           between.style.display = 'none';
           card.style.width = '50%';
           contact.style.width = '50%';
-          console.log('small amount of cards');
         }
       }
       if (localStorage.getItem('click_client_cards')) {
@@ -182,12 +186,10 @@
           if (scope.cardsarray[i].p2p_allowed == 1)
             p2pAllowedCardsCount++;
         }
-        console.log('p2p allowed cards number', p2pAllowedCardsCount);
         if (p2pAllowedCardsCount === 0){
           between.style.display = 'none';
           card.style.width = '50%';
           contact.style.width = '50%';
-          console.log('small amount of cards with p2p permission');
         }
       }
     });
@@ -476,7 +478,6 @@
       };
 
       openPublicOffer = function (LinkToPublicOffer) {
-        console.log("Link to Offer", LinkToPublicOffer);
         window.open(LinkToPublicOffer, '_system', 'location=no');
       }
     }

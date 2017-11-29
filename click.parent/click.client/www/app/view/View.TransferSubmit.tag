@@ -45,7 +45,8 @@
       <p class="transfer-new-between-from-text-field">{window.languages.ViewPayTransferBetweenCardsFrom}</p>
       <p if="{noCards}" class="transfer-new-submit-no-cards">{window.languages.ViewTransferSubmitNoCards}</p>
       <component-transfer-card-carousel-top
-        if="{!noCards}"
+        if="{!noCards && !offlineMode}"
+        id="cardCarouselTopId"
         carouselid="1"
         usefor="p2p"
         style="position: relative;
@@ -55,11 +56,11 @@
     </div>
 
     <button if="{showBottomButton}"
-            id="bottomButtonId"
+            id="bottomButtonSubmitId"
             class="transfer-new-submit-button-container"
-            style="bottom: {window.bottomButtonBottom};"
-            ontouchstart="onTouchStartOfSubmit()"
-            ontouchend="onTouchEndOfSubmit()">
+            style="bottom: {window.bottomButtonBottom}"
+            ontouchstart="onTouchStartOfSubmit(this)"
+            ontouchend="onTouchEndOfSubmit(this)">
       <div id="bottomButtonIcon"
            class="transfer-new-submit-button-icon">
       </div>
@@ -156,6 +157,7 @@
     scope.showPlaceHolderError = false;
     scope.showCommission = false;
     scope.noCards = false;
+    scope.offlineMode = modeOfApp.offlineMode;
     var counter = 0;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-transfer-submit') {
@@ -185,7 +187,7 @@
       console.log("opts on mount cardSubmit", opts);
       if (opts) {
         if (opts.transferType === 'card') {
-          scope.receiver = opts.cardNumber;
+          scope.receiver = opts.cardNumber.replace(/\s/g, '');
           scope.receiverTitle = opts.cardOwner;
           if (scope.receiverTitle.length > 17) {
             scope.receiverTitle = scope.receiverTitle.substr(0, 17) + '...';
@@ -196,14 +198,13 @@
           scope.transferType = 1;
         }
         if (opts.transferType === 'contact') {
-          scope.receiver = opts.phoneNumber;
+          scope.receiver = opts.phoneNumber.replace(/\s/g, '');
           scope.receiverTitle = '+998 ' + inputVerification.telVerificationWithSpace(inputVerification.telVerification(opts.phoneNumber));
           scope.taxPercent = opts.taxPercent;
           scope.transferType = 2;
         }
       }
       setTimeout(function () {
-        submitAmountId.autofocus;
         submitAmountId.focus();
       }, 0);
       console.log(scope);
@@ -229,9 +230,6 @@
 
         if (submitAmountId.value.length === 0) {
           submitAmountId.value = 0;
-          scope.placeHolderText = "Минимальная сумма " + window.amountTransform(scope.minLimit);
-          scope.showPlaceHolderError = true;
-          scope.update();
         }
       };
 
@@ -280,7 +278,6 @@
 
         scope.showPlaceHolderError = false;
         scope.showBottomButton = true;
-        console.log(scope);
 
         if (scope.sumForTransfer > scope.maxLimit) {
           scope.placeHolderText = 'Максимальная сумма ' + window.amountTransform(scope.maxLimit);
@@ -294,6 +291,11 @@
         }
         if (scope.noCards){
           scope.showBottomButton = false;
+        }
+
+        if (submitAmountId.value.length === 0) {
+          scope.showPlaceHolderError = false;
+          scope.showCommission = false;
         }
         scope.update()
       };
@@ -311,9 +313,9 @@
         console.log("Chosen card on submit",scope.chosenCard);
       };
 
-      onTouchStartOfSubmit = function () {
+      onTouchStartOfSubmit = function (button) {
 
-        bottomButtonId.style.webkitTransform = 'scale(0.7)';
+        button.style.webkitTransform = 'scale(0.7)';
 
         event.preventDefault();
         event.stopPropagation();
@@ -322,9 +324,9 @@
         transferSubmitTouchStartY = event.changedTouches[0].pageY;
       };
 
-      onTouchEndOfSubmit = function () {
+      onTouchEndOfSubmit = function (button) {
 
-        bottomButtonId.style.webkitTransform = 'scale(1)';
+        button.style.webkitTransform = 'scale(1)';
 
         event.preventDefault();
         event.stopPropagation();
@@ -346,6 +348,12 @@
             scope.update();
             return;
           }
+
+          if (scope.offlineMode) {
+            transferViaUssd();
+            return;
+          }
+
           if (scope.chosenCard && parseInt(scope.chosenCard.salaryOriginal) < (parseInt(scope.sumForTransfer) + scope.tax)) {
             scope.clickPinError = false;
             scope.errorNote = "На выбранной карте недостаточно средств";
@@ -403,7 +411,7 @@
             session_key: sessionKey,
             phone_num: phoneNumber,
             account_id: scope.chosenCard.card_id,
-            receiver_data: scope.receiver.replace(/\s/g, ''),
+            receiver_data: scope.receiver,
             amount: parseInt(scope.sumForTransfer),
             type: scope.transferType,
             transaction_id: scope.transactionId
@@ -447,6 +455,59 @@
             return;
           }
         }, 30000)
+      };
+
+      //send USSD request to API
+      transferViaUssd = function () {
+        console.log(scope.receiver);
+        if (scope.transferType === 2) {
+          phonedialer.dial(
+            "*880*3*" + scope.receiver + "*" + parseInt(scope.sumForTransfer) + "%23",
+            function (err) {
+              if (err === "empty") {
+                scope.clickPinError = false;
+                scope.errorNote = ("Unknown phone number");
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: scope.clickPinError,
+                  errornote: scope.errorNote
+                });
+                scope.update();
+              }
+              else console.error("Dialer Error:" + err);
+            },
+            function (success) {
+              console.error('success', success)
+              console.error("*880*3*" + scope.receiver + "*" + parseInt(scope.sumForTransfer) + "%23")
+            }
+          );
+          return;
+        }
+        if (scope.transferType === 1) {
+          phonedialer.dial(
+            "*880*" + scope.receiver + "*" + parseInt(scope.sumForTransfer) + "%23",
+            function (err) {
+              if (err == "empty") {
+                scope.clickPinError = false;
+                scope.errorNote = ("Unknown phone number");
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: scope.clickPinError,
+                  errornote: scope.errorNote
+                });
+
+                scope.update();
+              }
+              else console.error("Dialer Error:" + err);
+            },
+            function (success) {
+              console.error('success', success)
+              console.error("*880*" + scope.receiver + "*" + parseInt(scope.sumForTransfer) + "%23")
+            }
+          );
+        }
       };
 
       checkTransferStatus = function (payment_id) {

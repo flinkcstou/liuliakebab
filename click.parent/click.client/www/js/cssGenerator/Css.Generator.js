@@ -5885,8 +5885,8 @@ var css = {
   "background-color: #00a8f1;" +
   "bottom: 0;" +
   "padding: 0;" +
+  "left: 0;" +
   "color: #ffffff;" +
-  "display: block;" +
   "}",
 
   transferNewSubmitButtonContainer: ".transfer-new-submit-button-container" +
@@ -5902,7 +5902,7 @@ var css = {
   "bottom: 0;" +
   "padding: 0;" +
   "color: #ffffff;" +
-  "display: block;" +
+  "left: 0;" +
   "}",
 
   transferNewSubmitButtonIcon: ".transfer-new-submit-button-icon" +
