@@ -409,15 +409,16 @@
             }
           }
           else {
+            if (result[0][0].error != 0) {
+              scope.clickPinError = false;
+              scope.errorNote = result[0][0].error_note;
 
-            scope.clickPinError = false;
-            scope.errorNote = result[0][0].error_note;
-
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote
-            });
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote
+              });
+            }
             scope.update();
           }
         },
