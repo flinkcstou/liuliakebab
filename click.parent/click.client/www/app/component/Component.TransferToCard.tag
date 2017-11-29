@@ -36,10 +36,10 @@
   </div>
   <button if="{showBottomButton}"
           id="bottomButtonId"
+          style="bottom: {window.bottomButtonBottom}"
           class="transfer-new-button-container"
-          style="bottom: {window.bottomButtonBottom};"
-          ontouchstart="onTouchStartOfNextCard()"
-          ontouchend="onTouchEndOfNextCard()">
+          ontouchstart="onTouchStartOfNextCard(this)"
+          ontouchend="onTouchEndOfNextCard(this)">
     {window.languages.ViewPayTransferNewContinue}
   </button>
   <script>
@@ -158,45 +158,47 @@
       if (JSON.parse(localStorage.getItem('click_client_loginInfo')))
         sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       phoneNumber = localStorage.getItem('click_client_phoneNumber');
-      window.api.call({
-        method: 'p2p.card.info',
-        input: {
-          session_key: sessionKey,
-          phone_num: phoneNumber,
-          card_number: cardInputId.value.replace(/\s/g, ''),
-        },
-        scope: this,
-        onSuccess: function (result) {
-          if (result[0][0].error === 0) {
-            try {
-              if (result[1] && result[1][0]) {
-                scope.cardOwner = result[1][0].card_owner;
-                if (scope.cardOwner)
-                  cardOwnerId.style.display = 'block';
+      if (!modeOfApp.offlineMode) {
+        window.api.call({
+          method: 'p2p.card.info',
+          input: {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            card_number: cardInputId.value.replace(/\s/g, ''),
+          },
+          scope: this,
+          onSuccess: function (result) {
+            if (result[0][0].error === 0) {
+              try {
+                if (result[1] && result[1][0]) {
+                  scope.cardOwner = result[1][0].card_owner;
+                  if (scope.cardOwner)
+                    cardOwnerId.style.display = 'block';
+                }
+                scope.update()
               }
-              scope.update()
+              catch (error) {
+                console.error(error)
+              }
             }
-            catch (error) {
-              console.log(error)
+            else {
+              scope.errorNote = result[0][0].error_note;
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote,
+                pathtosettings: scope.pathToSettings,
+                permissionerror: scope.permissionError,
+              });
+              scope.update();
             }
+          },
+          onFail: function (api_status, api_status_message, data) {
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
           }
-          else {
-            scope.errorNote = result[0][0].error_note;
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote,
-              pathtosettings: scope.pathToSettings,
-              permissionerror: scope.permissionError,
-            });
-            scope.update();
-          }
-        },
-        onFail: function (api_status, api_status_message, data) {
-          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
-        }
-      });
+        });
+      }
     };
 
     checkForIcons = function () {
@@ -275,6 +277,7 @@
         cardInputContainer.style.top = '';
       }
       scope.parent.update();
+      scope.update();
     };
 
     onPasteTrigger = function () {
@@ -305,9 +308,9 @@
     };
 
     //Go to next step
-    onTouchStartOfNextCard = function () {
+    onTouchStartOfNextCard = function (button) {
 
-      bottomButtonId.style.webkitTransform = 'scale(0.7)';
+      button.style.webkitTransform = 'scale(0.7)';
 
       event.preventDefault();
       event.stopPropagation();
@@ -315,9 +318,9 @@
       transferCardTouchStartX = event.changedTouches[0].pageX;
       transferCardTouchStartY = event.changedTouches[0].pageY;
     };
-    onTouchEndOfNextCard = function () {
+    onTouchEndOfNextCard = function (button) {
 
-      bottomButtonId.style.webkitTransform = 'scale(1)';
+      button.style.webkitTransform = 'scale(1)';
 
       event.preventDefault();
       event.stopPropagation();
@@ -426,8 +429,18 @@
           riotTags.innerHTML = "<view-transfer-submit>";
           riot.mount('view-transfer-submit', params);
         }
-
-
+        else {
+          params = {
+            transferType: 'card',
+            cardNumber: cardInputId.value,
+            cardOwner: scope.cardOwner,
+            taxPercent: 0,
+            minLimit: 5000,
+            maxLimit: 99999999999,
+          };
+          riotTags.innerHTML = "<view-transfer-submit>";
+          riot.mount('view-transfer-submit', params);
+        }
       }
     };
 

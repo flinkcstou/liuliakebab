@@ -51,10 +51,10 @@
   </div>
   <button if="{showBottomButton}"
           id="bottomButtonId"
+          style="bottom: {window.bottomButtonBottom}"
           class="transfer-new-submit-button-container"
-          style="bottom: {window.bottomButtonBottom};"
-          ontouchstart="onTouchStartOfSubmit()"
-          ontouchend="onTouchEndOfSubmit()">
+          ontouchstart="onTouchStartOfSubmit(this)"
+          ontouchend="onTouchEndOfSubmit(this)">
     <div id="bottomButtonIcon"
          class="transfer-new-submit-button-icon">
     </div>
@@ -170,6 +170,12 @@
         scope.showPlaceHolderError = true;
         scope.showBottomButton = false;
       }
+
+      if (betweenAmountId.value.length === 0) {
+        scope.showBottomButton = false;
+        scope.showPlaceHolderError = false;
+        scope.showCommission = false;
+      }
       console.log(scope);
       scope.update();
     };
@@ -237,6 +243,7 @@
           }
         }
       }
+      console.log("on card change", scope);
       scope.update();
     };
 
@@ -244,9 +251,9 @@
       betweenAmountId.blur();
     };
 
-    onTouchStartOfSubmit = function () {
+    onTouchStartOfSubmit = function (button) {
 
-      bottomButtonId.style.webkitTransform = 'scale(0.7)';
+      button.style.webkitTransform = 'scale(0.7)';
 
       event.preventDefault();
       event.stopPropagation();
@@ -255,9 +262,9 @@
       transferBetweenTouchStartY = event.changedTouches[0].pageY;
     };
 
-    onTouchEndOfSubmit = function () {
+    onTouchEndOfSubmit = function (button) {
 
-      bottomButtonId.style.webkitTransform = 'scale(1)';
+      button.style.webkitTransform = 'scale(1)';
 
       event.preventDefault();
       event.stopPropagation();
@@ -419,7 +426,6 @@
     };
 
     updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
-      console.log("OPEN RESULT COMPONENT");
       scope.stepAmount = stepAmount;
       scope.viewPage = viewPage;
       scope.resultText = text;
