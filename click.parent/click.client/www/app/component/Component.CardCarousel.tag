@@ -436,35 +436,35 @@
 
 
     //TODO: FIX THIS BUG WITH MANY CONTACTS ON PHONE !!!!!!
-//    function onSuccess(contacts) {
-//
-//      for (var i = 0; i < contacts.length; i++) {
-//        if (contacts[i].name)
-//          if ((contacts[i].name.familyName != null || contacts[i].name.givenName != null) && contacts[i].phoneNumbers != null) {
-//            for (var j = 0; j < contacts[i].phoneNumbers.length; j++) {
-//              var phone = inputVerification.spaceDeleter(contacts[i].phoneNumbers[j].value);
-//
-//              contacts[i].phoneNumbers[j].value = phone;
-//            }
-//            arrayOfPhones.push(contacts[i])
-//            sessionStorage.setItem('arrayOfPhones', JSON.stringify(arrayOfPhones));
-//          }
-//      }
-//
-//    }
-//
-//
-//    function onError(contactError) {
-//      console.log('error', contactError)
-//    }
-//
-//
-//    if (device.platform != 'BrowserStand' && !sessionStorage.getItem('arrayOfPhones')) {
-//      var options = new ContactFindOptions();
-//      options.multiple = true;
-//      options.hasPhoneNumber = true;
-//      navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
-//    }
+    //    function onSuccess(contacts) {
+    //
+    //      for (var i = 0; i < contacts.length; i++) {
+    //        if (contacts[i].name)
+    //          if ((contacts[i].name.familyName != null || contacts[i].name.givenName != null) && contacts[i].phoneNumbers != null) {
+    //            for (var j = 0; j < contacts[i].phoneNumbers.length; j++) {
+    //              var phone = inputVerification.spaceDeleter(contacts[i].phoneNumbers[j].value);
+    //
+    //              contacts[i].phoneNumbers[j].value = phone;
+    //            }
+    //            arrayOfPhones.push(contacts[i])
+    //            sessionStorage.setItem('arrayOfPhones', JSON.stringify(arrayOfPhones));
+    //          }
+    //      }
+    //
+    //    }
+    //
+    //
+    //    function onError(contactError) {
+    //      console.log('error', contactError)
+    //    }
+    //
+    //
+    //    if (device.platform != 'BrowserStand' && !sessionStorage.getItem('arrayOfPhones')) {
+    //      var options = new ContactFindOptions();
+    //      options.multiple = true;
+    //      options.hasPhoneNumber = true;
+    //      navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
+    //    }
 
 
     cardImagesCaching = function (full) {
@@ -758,16 +758,29 @@
           if (result[0][0].error == 0) {
             if (result[1]) {
               try {
+
+                var balances = {};
                 for (var i in result[1]) {
-                  scope.cardsarray[result[1][i].account_id].salaryOriginal = result[1][i].balance.toFixed(0);
-                  result[1][i].balance = result[1][i].balance.toFixed(0).toString();
-
-                  if (result[1][i].balance !== 0)
-                    result[1][i].balance = window.amountTransform(result[1][i].balance.toString());
-
-                  scope.cardsarray[result[1][i].account_id].salary = result[1][i].balance;
-                  localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
+                  balances[result[1][i].account_id] = result[1][i];
                 }
+//                console.log("balances=", balances);
+
+                for (var i in scope.cardsarray) {
+                  if (balances[i]) {
+//                    console.log("qwerty ", balances[i]);
+                    scope.cardsarray[balances[i].account_id].salaryOriginal = balances[i].balance.toFixed(0);
+                    balances[i].balance = balances[i].balance.toFixed(0).toString();
+
+                    if (balances[i].balance !== 0)
+                      balances[i].balance = window.amountTransform(balances[i].balance.toString());
+
+                    scope.cardsarray[balances[i].account_id].salary = balances[i].balance;
+                  } else {
+                    scope.cardsarray[i].salary = "0";
+                  }
+                }
+
+                localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
                 scope.update();
               } catch (Error) {
                 console.log("Error on parse result fro get.balance.multiple", Error);
