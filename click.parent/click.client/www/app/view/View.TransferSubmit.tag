@@ -12,7 +12,7 @@
   </div>
 
   <div class="transfer-body-container">
-    <div class="transfer-new-submit-receiver-container">
+    <div if="{showReceiver}" class="transfer-new-submit-receiver-container">
       <p class="transfer-new-submit-receiver-label">
         {window.languages.ViewPayTransferNewSubmitRecieverLabel}
         {receiverTitle}
@@ -42,10 +42,10 @@
     </div>
     <div id="cardFromId"
          class="transfer-new-card-from">
-      <p class="transfer-new-between-from-text-field">{window.languages.ViewPayTransferBetweenCardsFrom}</p>
+      <p if="{!modeOfApp.offlineMode}" class="transfer-new-between-from-text-field">{window.languages.ViewPayTransferBetweenCardsFrom}</p>
       <p if="{noCards}" class="transfer-new-submit-no-cards">{window.languages.ViewTransferSubmitNoCards}</p>
       <component-transfer-card-carousel-top
-        if="{!noCards && !offlineMode}"
+        if="{!noCards && !modeOfApp.offlineMode}"
         id="cardCarouselTopId"
         carouselid="1"
         cardnumber="{countCardFromMain}"
@@ -159,7 +159,7 @@
     scope.showCommission = false;
     scope.noCards = false;
     scope.countCardFromMain = 1;
-    scope.offlineMode = modeOfApp.offlineMode;
+    scope.showReceiver = true;
     var counter = 0;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-transfer-submit') {
@@ -198,6 +198,9 @@
           scope.maxLimit = opts.maxLimit;
           scope.minLimit = opts.minLimit;
           scope.transferType = 1;
+          if (modeOfApp.offlineMode){
+            scope.showReceiver = false;
+          }
         }
         if (opts.transferType === 'contact') {
           scope.receiver = opts.phoneNumber.replace(/\s/g, '');
@@ -218,8 +221,8 @@
     });
     {
       amountMouseUp = function () {
-        event.preventDefault()
-        event.stopPropagation()
+        event.preventDefault();
+        event.stopPropagation();
         if (submitAmountId.value.match(scope.maskOne) !== null
           && submitAmountId.value.match(scope.maskOne).length !== null) {
           submitAmountId.selectionStart = submitAmountId.value.match(scope.maskTwo).length;
@@ -355,7 +358,7 @@
             return;
           }
 
-          if (scope.offlineMode) {
+          if (modeOfApp.offlineMode) {
             transferViaUssd();
             return;
           }
