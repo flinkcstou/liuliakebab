@@ -14719,7 +14719,7 @@ var css = {
 
   autopayEventNumberField: ".autopay-event-number-field" +
   "{" +
-  "height: 10%" +
+  "height: 10%;" +
   "top: 11%;" +
   "}",
 
