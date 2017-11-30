@@ -7621,7 +7621,7 @@ var css = {
   "top:" + 280 * widthK + "px;" +
   "left:" + -10 * widthK + "px;" +
   "font-size:" + 36 * widthK + "px;" +
-  "overflow-y: scroll;" +
+  "overflow-y: auto;" +
   "word-wrap: break-word;" +
   "}",
 
@@ -7777,7 +7777,7 @@ var css = {
   "margin-top: 0;" +
   "margin-bottom: 0;" +
   "top:" + 340 * widthK + "px;" +
-  "overflow-y: scroll;" +
+  "overflow-y: auto;" +
   "word-wrap: break-word;" +
   "}",
 
@@ -12384,7 +12384,7 @@ var css = {
   // "left:" + -10 * widthK + "px;" +
   "font-size:" + 36 * widthK + "px;" +
   "height:" + 435 * widthK + "px;" +
-  "overflow-y: scroll;" +
+  "overflow-y: auto;" +
   "}",
 
   componentAlertMessageSettings: ".component-alert-message-settings" +
@@ -12543,7 +12543,7 @@ var css = {
   "font-size:" + 36 * widthK + "px;" +
   "opacity: 0;" +
   "height: " + 240 * heightK + "px;" +
-  "overflow-y: scroll;" +
+  "overflow-y: auto;" +
 
   "}",
 
