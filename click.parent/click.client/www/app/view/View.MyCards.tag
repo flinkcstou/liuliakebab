@@ -595,24 +595,32 @@
         event.preventDefault();
         event.stopPropagation();
 
-        console.log('CARD CHOSEN ', JSON.parse(localStorage.getItem('click_client_cards')))
-        if (scope.card.access == 2) {
-          params = {
-            countCardFromMain: scope.card.countCard,
-          };
-          riotTags.innerHTML = "<view-transfer-new>";
-          riot.mount('view-transfer-new', params);
 
-          scope.unmount()
-        }
-        else {
+        if (scope.card.access != 2) {
           window.common.alert.show("componentAlertId", {
             parent: scope,
             clickpinerror: false,
-            errornote: 'Извининте, вы не можете произвести перевод с этой карты'
+            errornote: window.languages.ViewMyCardTransferDeniedAccess,
           });
           scope.update();
+          return;
         }
+        if (scope.card.p2p_allowed == 0) {
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: false,
+            errornote: window.languages.ViewMyCardTransferDeniedP2p,
+          });
+          scope.update();
+          return;
+        }
+
+        params = {
+          countCardFromMain: scope.card.countCard,
+        };
+        riotTags.innerHTML = "<view-transfer-new>";
+        riot.mount('view-transfer-new', params);
+        scope.unmount()
       }
     }
 

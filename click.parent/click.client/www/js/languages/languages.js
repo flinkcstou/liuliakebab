@@ -67,6 +67,8 @@ var RU_LANGUAGES =
     "ViewMyCardBlock": "Удалить карту",
     "ViewMyCardLastOperations": "Последние операции",
     "ViewMyCardSuccessDelete": "Карта успешно удалена",
+    "ViewMyCardTransferDeniedAccess": "Извининте, вы не можете произвести перевод с этой карты",
+    "ViewMyCardTransferDeniedP2p": "Первод средств с данной карты недоступен",
 
     "ViewServicePageEnterLabel": "Далее",
     "ViewServicePageChooseCityLabel": "Выберите город",
