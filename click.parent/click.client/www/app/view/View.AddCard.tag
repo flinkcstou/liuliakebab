@@ -18,7 +18,7 @@
       <p class="add-card-card-text add-card-card-number-text">{window.languages.ViewAddCardNumberTitle}</p>
       <div id="cardNumberInput" class="add-card-card-number">
         <input type="tel" onpaste="boxOnePaste()" onkeyup="boxOneKeyUp()"
-               onkeydown="boxOneKeyDown()" autofocus="true"
+               onkeydown="boxOneKeyDown()" autofocus="true" oninput="boxOneChange()"
                id="boxOne"
                class="add-card-card-number-box add-card-card-number-box-one">
         </input>
@@ -78,6 +78,8 @@
     var processingIconFound = false;
     var bankId = '';
     var processingId = '';
+    var isUzcard = false;
+    var newCardWithoutSpace = '';
     scope.titleName = window.languages.ViewAddCardTitle;
     scope.doMainCard = false;
     scope.bankImage = '';
@@ -86,6 +88,7 @@
     if (localStorage.getItem('click_client_loginInfo')) {
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
+      scope.processingTypes = loginInfo.card_prefixes;
     }
     scope.showBottomButton = false;
 
@@ -386,49 +389,25 @@
     };
 
 
-    scope.processingTypes = [{"code": "8600", "url": "resources/icons/cards/typeOfCards/uzcard.png"}, {
-      "code": "9000",
-      "url": "resources/icons/cards/typeOfCards/duet.png"
-    }];
-
     checkForIconsAddCard = function () {
-      //Check for bank icon
-      bankIdInInput = boxOne.value.replace(/\s/g, '').substring(3, 6);
-      if (bankId !== bankIdInInput) {
-        bankId = bankIdInInput;
-        bankIconFound = false;
-        scope.allBankList.forEach(function (element) {
-          if (element.code === bankId) {
-            scope.bankImage = element.image;
-            bankIconId.style.display = 'block';
-            bankIconFound = true;
-          }
-        });
-        if (bankIconFound === false) {
-          bankId = '';
-          scope.bankImage = '';
-          bankIconId.style.display = 'none';
-        }
-      }
-      if (boxOne.value.replace(/\s/g, '').length < 6) {
-        bankId = '';
-        scope.bankImage = '';
-        bankIconId.style.display = 'none';
-      }
 
       //Check for processing icon
+
       processingIdInInput = boxOne.value.replace(/\s/g, '').substring(0, 4);
       if (processingId !== processingIdInInput) {
         processingId = processingIdInInput;
         processingIconFound = false;
-        /// TO DO PROCESSING ICON
-
+        ///PROCESSING ICON
 
         scope.processingTypes.forEach(function (element) {
-          if (element.code === processingId) {
+
+          console.log(processingId.substring(0, Number(element.prefix_length)), element.prefix);
+
+          if (element.prefix == processingId.substring(0, Number(element.prefix_length))) {
             scope.processingImage = element.url;
             processingIconId.style.display = 'block';
             processingIconFound = true;
+            isUzcard = element.prefix == "860";
           }
         });
 
@@ -436,15 +415,37 @@
         if (processingIconFound === false) {
           processingId = '';
           scope.processingImage = '';
+          isUzcard = false;
           processingIconId.style.display = 'none';
         }
       }
 
-      if (boxOne.value.replace(/\s/g, '').length < 4) {
-        processingId = '';
-        scope.processingImage = '';
-        processingIconId.style.display = 'none';
+      //Check for bank icon
+      if (isUzcard) {
+        bankIdInInput = boxOne.value.replace(/\s/g, '').substring(3, 6);
+        if (bankId !== bankIdInInput) {
+          bankId = bankIdInInput;
+          bankIconFound = false;
+          scope.allBankList.forEach(function (element) {
+            if (element.code === bankId) {
+              scope.bankImage = element.image;
+              bankIconId.style.display = 'block';
+              bankIconFound = true;
+            }
+          });
+          if (bankIconFound === false) {
+            bankId = '';
+            scope.bankImage = '';
+            bankIconId.style.display = 'none';
+          }
+        }
+        if (boxOne.value.replace(/\s/g, '').length < 6) {
+          bankId = '';
+          scope.bankImage = '';
+          bankIconId.style.display = 'none';
+        }
       }
+
     };
 
     checkCardNumberLength = function () {
@@ -458,6 +459,21 @@
       }
       scope.update();
     };
+
+    boxOneChange = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (onPaste) {
+        newCardWithoutSpace = inputVerification.spaceDeleter(event.target.value);
+        boxOne.value = inputVerification.cardVerification(newCardWithoutSpace);
+        onPaste = false;
+      }
+
+      checkForIconsAddCard();
+      checkCardNumberLength();
+      scope.update();
+    }
 
     boxOnePaste = function () {
       onPaste = true;
@@ -518,7 +534,6 @@
 
 
     boxPinKeyUp = function () {
-
 
       if (event.keyCode !== 8 && pinCodeOfBank.length < 4) {
         pinCodeOfBank += event.key;

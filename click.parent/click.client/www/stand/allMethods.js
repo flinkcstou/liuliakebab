@@ -100,6 +100,8 @@ window.fakedSocket.register("app.login", function (input) {
         "error_note": ''
       }],
       [{
+        card_prefixes: [{prefix: "860", prefix_length: "3", url: "https://cdn.click.uz/app/rev2/icons/misc/uzcard.png"},
+          {prefix: "900", prefix_length: "3", url: "https://cdn.click.uz/app/rev2/icons/misc/globuz.png"}],
         default_account: "2484171",
         firstname: "Jasur",
         gender: "M",
