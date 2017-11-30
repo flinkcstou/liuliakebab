@@ -28,6 +28,7 @@
     <p class="transfer-new-between-from-text-field">{window.languages.ViewPayTransferBetweenCardsFrom}</p>
     <component-transfer-card-carousel-top
       carouselid="1"
+      cardnumber="{countCardFromMain}"
       usefor="p2p"
       style="position: relative;
       top:{11 * heightK}px">
@@ -86,15 +87,23 @@
     scope.statusOfBankToP2PBottom = false;
     scope.showPlaceHolderError = false;
     scope.showCommission = false;
+    scope.countCardFromMain = 1;
     var counter = 0;
 
     if (localStorage.getItem('click_client_cards')) {
       scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
     }
 
+    scope.on('mount', function () {
+      if (scope.parent.countCardFromMain !== -1) {
+        scope.countCardFromMain = scope.parent.countCardFromMain;
+        scope.update();
+      }
+    });
+
     amountMouseUp = function () {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
       if (betweenAmountId.value.match(scope.maskOne) !== null
         && betweenAmountId.value.match(scope.maskOne).length !== null) {
         betweenAmountId.selectionStart = betweenAmountId.value.match(scope.maskTwo).length;
@@ -202,6 +211,7 @@
           }
         }
       }
+      console.log("on card change top", scope);
       scope.update();
     };
 
@@ -243,7 +253,7 @@
           }
         }
       }
-      console.log("on card change", scope);
+      console.log("on card change bottom", scope);
       scope.update();
     };
 

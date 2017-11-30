@@ -48,6 +48,7 @@
         if="{!noCards && !offlineMode}"
         id="cardCarouselTopId"
         carouselid="1"
+        cardnumber="{countCardFromMain}"
         usefor="p2p"
         style="position: relative;
         right:{16 * widthK}px;
@@ -157,6 +158,7 @@
     scope.showPlaceHolderError = false;
     scope.showCommission = false;
     scope.noCards = false;
+    scope.countCardFromMain = 1;
     scope.offlineMode = modeOfApp.offlineMode;
     var counter = 0;
 
@@ -202,6 +204,10 @@
           scope.receiverTitle = '+998 ' + inputVerification.telVerificationWithSpace(inputVerification.telVerification(opts.phoneNumber));
           scope.taxPercent = opts.taxPercent;
           scope.transferType = 2;
+        }
+        console.log('on mount submit', opts);
+        if (opts.countCardFromMain !== -1){
+          scope.countCardFromMain = opts.countCardFromMain;
         }
       }
       setTimeout(function () {

@@ -122,6 +122,7 @@
     scope.showComponent = false;
     scope.allBankList = [];
     scope.activatedType = '';
+    scope.countCardFromMain = -1;
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-transfer-new') {
       history.arrayOfHistory.push(
         {
@@ -149,6 +150,10 @@
           showTransferByCard();
           cardInputId.value = opts.cardNumber;
           cardBlurAndChange();
+        }
+        if (opts.countCardFromMain){
+          scope.countCardFromMain = opts.countCardFromMain;
+          showTransferByContact();
         }
       }
       else {

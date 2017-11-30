@@ -283,6 +283,8 @@
           phoneNumber: scope.phoneNumberForSubmit,
           taxPercent: taxPercent
         };
+        if (scope.parent.countCardFromMain)
+          params.countCardFromMain = scope.parent.countCardFromMain;
         riotTags.innerHTML = "<view-transfer-submit>";
         riot.mount('view-transfer-submit', params);
       }

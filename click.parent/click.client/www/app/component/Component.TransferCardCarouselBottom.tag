@@ -22,7 +22,7 @@
     var scope = this;
     var carouselTouchStartX, carouselTouchEndX;
     scope.carouselidBottom = opts.carouselid;
-    scope.cardNumberBottom = parseInt(opts.cardnumber);
+    scope.cardNumberBottom = 1;
     scope.leftBottom = 0;
     scope.deltaBottom = 0;
 
@@ -38,10 +38,11 @@
 
 
     scope.on("mount", function () {
+      scope.cardNumberBottom = parseInt(opts.cardnumber);
       document.getElementById(scope.carouselidBottom).style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
       document.getElementById(scope.carouselidBottom).style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-      document.getElementById(scope.carouselidBottom).style.transform = "translate3d(" + (-scope.cardNumberBottom * 404) * heightK + 'px' + ", 0, 0)";
-      document.getElementById(scope.carouselidBottom).style.webkitTransform = "translate3d(" + (-scope.cardNumberBottom * 404) * heightK + 'px' + ", 0, 0)";
+      document.getElementById(scope.carouselidBottom).style.transform = "translate3d(" + (-scope.cardNumberBottom * 420) * heightK + 'px' + ", 0, 0)";
+      document.getElementById(scope.carouselidBottom).style.webkitTransform = "translate3d(" + (-scope.cardNumberBottom * 420) * heightK + 'px' + ", 0, 0)";
       if (scope.parent.cardChangedBottom){
         scope.parent.cardChangedBottom(scope.cardNumberBottom);
       }
@@ -49,7 +50,7 @@
 
     startTouchCarouselTransferBottom = function () {
       carouselTouchStartX = event.changedTouches[0].pageX;
-      scope.leftBottom = -((404 * scope.cardNumberBottom) * heightK) - carouselTouchStartX;
+      scope.leftBottom = -((420 * scope.cardNumberBottom) * heightK) - carouselTouchStartX;
       scope.deltaBottom = scope.leftBottom;
     };
 
@@ -81,16 +82,16 @@
         ++scope.cardNumberBottom;
         document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        document.getElementById(id).style.transform = "translate3d(" + (-scope.cardNumberBottom * 404) * heightK + 'px' + ", 0, 0)";
-        document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.cardNumberBottom * 404) * heightK + 'px' + ", 0, 0)";
+        document.getElementById(id).style.transform = "translate3d(" + (-scope.cardNumberBottom * 420) * heightK + 'px' + ", 0, 0)";
+        document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.cardNumberBottom * 420) * heightK + 'px' + ", 0, 0)";
 
       }
 
       if (carouselTouchEndX < carouselTouchStartX && scope.cardNumberBottom >= scope.count - 1) {
         document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        document.getElementById(id).style.transform = "translate3d(" + (-scope.cardNumberBottom * 404) * heightK + 'px' + ", 0, 0)";
-        document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.cardNumberBottom * 404) * heightK + 'px' + ", 0, 0)";
+        document.getElementById(id).style.transform = "translate3d(" + (-scope.cardNumberBottom * 420) * heightK + 'px' + ", 0, 0)";
+        document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.cardNumberBottom * 420) * heightK + 'px' + ", 0, 0)";
 
       }
 
@@ -98,15 +99,15 @@
         --scope.cardNumberBottom;
         document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        document.getElementById(id).style.transform = "translate3d(" + (-scope.cardNumberBottom * 404) * heightK + 'px' + ", 0, 0)";
-        document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.cardNumberBottom * 404) * heightK + 'px' + ", 0, 0)";
+        document.getElementById(id).style.transform = "translate3d(" + (-scope.cardNumberBottom * 420) * heightK + 'px' + ", 0, 0)";
+        document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.cardNumberBottom * 420) * heightK + 'px' + ", 0, 0)";
       }
       
       if (carouselTouchEndX > carouselTouchStartX && scope.cardNumberBottom === 1) {
         document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        document.getElementById(id).style.transform = "translate3d(" + (-scope.cardNumberBottom * 404) * heightK + 'px' + ", 0, 0)";
-        document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.cardNumberBottom * 404) * heightK + 'px' + ", 0, 0)";
+        document.getElementById(id).style.transform = "translate3d(" + (-scope.cardNumberBottom * 420) * heightK + 'px' + ", 0, 0)";
+        document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.cardNumberBottom * 420) * heightK + 'px' + ", 0, 0)";
       }
 
       if (scope.parent.cardChangedBottom){
@@ -131,7 +132,6 @@
           if (scope.count < 3)
             scope.cardNumberBottom = 1;
           delete scope.cardsarray[i];
-          console.log(scope.cardsarray, scope.count);
         }
       }
     }

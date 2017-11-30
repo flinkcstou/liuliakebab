@@ -426,6 +426,8 @@
             minLimit: minOfBank,
             maxLimit: maxOfBank,
           };
+          if (scope.parent.countCardFromMain)
+            params.countCardFromMain = scope.parent.countCardFromMain;
           riotTags.innerHTML = "<view-transfer-submit>";
           riot.mount('view-transfer-submit', params);
         }
@@ -438,6 +440,8 @@
             minLimit: 5000,
             maxLimit: 99999999999,
           };
+          if (scope.parent.countCardFromMain)
+            params.countCardFromMain = scope.parent.countCardFromMain;
           riotTags.innerHTML = "<view-transfer-submit>";
           riot.mount('view-transfer-submit', params);
         }
