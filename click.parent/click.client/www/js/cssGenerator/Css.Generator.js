@@ -11339,10 +11339,9 @@ var css = {
   addCardCardField: ".add-card-card-field " +
   "{" +
   "position: relative;" +
-  //"top:" + 177 * heightK + "px;" +
-  "top:" + 100 * heightK + "px;" +
-  "width:" + 515 * widthK + "px;" +
-  "height:" + 285 * heightK + "px;" +
+  "top:" + 132 * heightK + "px;" +
+  "width:" + 610 * widthK + "px;" +
+  "height:" + 340 * heightK + "px;" +
   "border:" + 1 + "px solid #e7e7e7;" +
   //"border:" + 3 * heightK + "px solid #e7e7e7;" +
   "background-color: white;" +
@@ -11359,12 +11358,12 @@ var css = {
   "{" +
   // "visibility: hidden;" +
   "position: absolute;" +
-  "top:4%;" +
-  "right:2%;" +
+  "top:5%;" +
+  "right:1%;" +
   "width: 30%;" +
   "height: 18%;" +
   "background-repeat: no-repeat;" +
-  "background-size: 75%;" +
+  "background-size: 70%;" +
   "background-position: center;" +
   "}",
 
@@ -11402,7 +11401,7 @@ var css = {
 
   addCardCardNumberText: ".add-card-card-number-text " +
   "{" +
-  "left: 6%;" +
+  "left: 7%;" +
   "top: 13%;" +
   "}",
 
@@ -11413,7 +11412,7 @@ var css = {
   "text-align: center;" +
   "color: #757389;" +
   "font-size:" + 24 * widthK + "px;" +
-  "top: 2%;" +
+  "top: 3%;" +
   "left: 8%;" +
   "}",
 
@@ -11424,28 +11423,26 @@ var css = {
   "color: white;" +
   "background-color: white;" +
   "border:" + 1 + "px solid #e7e7e7;" +
-  //"border:" + 3 * heightK + "px solid #e7e7e7;" +
-  "width:" + 460 * widthK + "px;" +
-  "height:" + 55 * widthK + "px;" +
-  //"height: 19%;" +
-  "left: 6%;" +
-  "top: 26%;" +
+  "width:" + 550 * widthK + "px;" +
+  "height:" + 71 * widthK + "px;" +
+  "left: 5%;" +
+  "top: 27%;" +
   "}",
 
   addCardCardNumberBox: ".add-card-card-number-box " +
   "{" +
   "position: absolute;" +
-  "width:" + 420 * widthK + "px;" +
+  "width:96%;" +
   "height: 100%;" +
-  "top: 0%;" +
+  "top: 4%;" +
   "padding: 0;" +
   "background-color: transparent;" +
   "border: none;" +
   "outline: none;" +
-  "font-size:" + 25 * widthK + "px;" +
+  "font-size:" + 36 * widthK + "px;" +
   "font-family: 'OCRAStd';" +
   //"letter-spacing:1px;" +
-  "word-spacing:" + 25 * widthK + "px;" +
+  "word-spacing:" + 4 * widthK + "px;" +
   "}",
 
   addCardCardNumberBoxOne: ".add-card-card-number-box-one " +
@@ -11459,14 +11456,14 @@ var css = {
   "margin: 0;" +
   "background-size: contain;" +
   "color: #757389;" +
-  "font-size:" + 23 * widthK + "px;" +
+  "font-size:" + 28 * widthK + "px;" +
   "}",
 
   addCardCardTextDate: ".add-card-card-text-date " +
   "{" +
-  "left: 6%;" +
+  "left: 7%;" +
   "width: 200%;" +
-  "top: 58%;" +
+  "top: 53%;" +
   "}",
 
   addCardCardTextPin: ".add-card-card-text-pin " +
@@ -11482,13 +11479,11 @@ var css = {
   "padding: 0;" +
   "color: white;" +
   "background-color: white;" +
-  //"border:" + 3 * heightK + "px solid #e7e7e7;" +
   "border:" + 1 + "px solid #e7e7e7;" +
-  "width: 24%;" +
-  //"height: 18%;" +
-  "height:" + 55 * widthK + "px;" +
-  "left: 6%;" +
-  "top: 71%;" +
+  "width: 29%;" +
+  "height:" + 71 * widthK + "px;" +
+  "left: 5%;" +
+  "top: 66%;" +
   "}",
 
 
@@ -11497,8 +11492,8 @@ var css = {
   "position: absolute;" +
   "width:" + 185 * widthK + "px;" +
   "height:" + 90 * widthK + "px;" +
-  "bottom: 7%;" +
-  "right: 2%;" +
+  "bottom: 13%;" +
+  "right: 3%;" +
   "background-size: contain;" +
   "background-position: center;" +
   "background-repeat: no-repeat;" +
@@ -11509,14 +11504,15 @@ var css = {
   addCardCardDateBox: ".add-card-card-date-box " +
   "{" +
   "position: absolute;" +
-  "width:" + 95 * widthK + "px;" +
-  "left:" + 17 * widthK + "px;" +
-  "top: 20%;" +
+  "width:80%;" +
+  "height:97%;" +
+  "left:" + 20 * widthK + "px;" +
+  "top: 3%;" +
   "padding: 0;" +
   "background-color: transparent;" +
   "outline: none;" +
   "border: none;" +
-  "font-size:" + 25 * widthK + "px;" +
+  "font-size:" + 37 * widthK + "px;" +
   "font-family: 'OCRAStd';" +
   "}",
 
