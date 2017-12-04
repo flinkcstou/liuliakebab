@@ -156,9 +156,6 @@
           showTransferByContact();
         }
       }
-      else {
-        showTransferByContact();
-      }
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).transfer) {
         setTimeout(function () {
           cardInputId.blur();
@@ -169,6 +166,9 @@
         scope.tourClosed = false;
         if (device.platform !== 'BrowserStand')
           StatusBar.backgroundColorByHexString("#004663");
+      }
+      else {
+        showTransferByContact();
       }
 
       if (modeOfApp.offlineMode) {
@@ -265,8 +265,8 @@
           contactIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/touser1.png)';
           contact.setAttribute('activated', true);
           scope.activatedType = 'contact';
+          cordova.plugins.Keyboard.close();
           setTimeout(function () {
-            contactPhoneNumberId.autofocus;
             contactPhoneNumberId.focus();
           }, 0);
           scope.update();
@@ -283,8 +283,8 @@
           cardIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/tofriend1.png)';
           card.setAttribute('activated', true);
           scope.activatedType = 'card';
+          cordova.plugins.Keyboard.close();
           setTimeout(function () {
-            cardInputId.autofocus;
             cardInputId.focus();
           }, 0);
           scope.update();
@@ -300,8 +300,8 @@
           betweenIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/toown1.png)';
           between.setAttribute('activated', true);
           scope.activatedType = 'between';
+          cordova.plugins.Keyboard.close();
           setTimeout(function () {
-            betweenAmountId.autofocus;
             betweenAmountId.focus();
           }, 0);
           scope.update();
@@ -522,7 +522,6 @@
     scope.focusFieldAfterTourClosed = focusFieldAfterTourClosed = function () {
       scope.tourClosed = true;
       setTimeout(function () {
-        contactPhoneNumberId.autofocus;
         contactPhoneNumberId.focus();
       }, 0);
     };
