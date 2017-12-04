@@ -281,7 +281,6 @@
         params = {
           transferType: 'contact',
           phoneNumber: scope.phoneNumberForSubmit,
-          taxPercent: taxPercent
         };
         if (scope.parent.countCardFromMain)
           params.countCardFromMain = scope.parent.countCardFromMain;
