@@ -13530,7 +13530,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
   "width: 100%;" +
-  "top: 48.7%;" +
+  "top: 49.7%;" +
   "padding-top: 6.4%;" +
   "bottom: 0;" +
   "}",
@@ -13540,7 +13540,7 @@ var css = {
   "position: relative;" +
   "background-color: white;" +
   "top: 0;" +
-  "height: 50%;" +
+  "height: 51%;" +
   "}",
 
   reportServiceDataContainer: ".report-service-data-container" +
@@ -13558,7 +13558,7 @@ var css = {
   "position: relative;" +
   "width: 92%;" +
   "margin: 0 4%;" +
-  "height: 24.5%;" +
+  "height: 23.5%;" +
   "border-bottom: 1px solid lightgray;" +
   "color: white;" +
   "}",
@@ -13570,7 +13570,7 @@ var css = {
   "color: darkgray;" +
   "font-size: " + 23 * widthK + "px; " +
   "left: 4%;" +
-  "top: 15%;" +
+  "top: " + 13 * widthK + "px; " +
   "}",
 
   reportServicePhoneInput: ".report-service-phone-input" +
@@ -13588,13 +13588,14 @@ var css = {
   "position: absolute;" +
   "margin: 0;" +
   "left: 4%;" +
-  "top: 45%;" +
+  "top: " + 40 * widthK + "px; " +
   "font-size: " + 28 * widthK + "px; " +
   "color: gray;" +
   "text-overflow: ellipsis;" +
   "width: " + 625 * widthK + "px;" +
-  "max-height: " + 80 * widthK + "px;" +
+  "max-height: " + 73 * widthK + "px;" +
   "overflow: hidden;" +
+  "word-wrap: break-word;" +
   "}",
 
   reportServiceInfoInputAmount: ".report-service-info-input-amount" +
@@ -13631,7 +13632,7 @@ var css = {
   "position: relative;" +
   "width: 92%;" +
   "margin: 0 4% 0 4%;" +
-  "height: 21.5%;" +
+  "height: 20.5%;" +
   "border-bottom:  " + 1 + "px solid lightgray;" +
   "color: white;" +
   //"top: 23%;" +
@@ -13645,6 +13646,7 @@ var css = {
   reportServiceLastField: ".report-service-last-field" +
   "{" +
   "border: none;" +
+  "height: 30%;" +
   "}",
 
   reportServiceStatusError: ".report-service-status-error" +
