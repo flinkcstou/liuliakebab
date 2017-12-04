@@ -48,7 +48,7 @@
             style="bottom: {window.bottomButtonBottom};"
             ontouchstart="createCardTouchStart(this.id)"
             ontouchend="createCardTouchEnd(this.id)">
-      {window.languages.ViewPayTransferNewContinue}
+      {window.languages.ViewAddCardAddBtnText}
     </button>
 
   </div>

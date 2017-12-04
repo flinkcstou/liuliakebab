@@ -416,6 +416,7 @@ var RU_LANGUAGES =
   "ViewAddCardDateTitle": "Срок действия",
   "ViewAddCardPinTitle": "Код банка",
   "ViewAddCardDoMainTitle": "Сделать основной",
+  "ViewAddCardAddBtnText": "ДОБАВИТЬ",
 
   "ViewContactTitle": "КОНТАКТ",
   "ViewContactPay": "Оплатить за мобильный",
