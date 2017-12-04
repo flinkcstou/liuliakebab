@@ -186,12 +186,16 @@
       }
       if (localStorage.getItem('click_client_cards')) {
         scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
-        var p2pAllowedCardsCount = 0;
+        scope.cardCounter = 0;
         for (var i in scope.cardsarray) {
-          if (scope.cardsarray[i].p2p_allowed == 1)
-            p2pAllowedCardsCount++;
+          if (scope.cardsarray[i].p2p_allowed == 0){
+            delete scope.cardsarray[i];
+          } else {
+            scope.cardCounter++;
+          }
         }
-        if (p2pAllowedCardsCount === 0){
+        console.log('cards array length in new transfers', scope.cardCounter);
+        {
           between.style.display = 'none';
           card.style.width = '50%';
           contact.style.width = '50%';
@@ -265,7 +269,8 @@
           contactIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/touser1.png)';
           contact.setAttribute('activated', true);
           scope.activatedType = 'contact';
-          cordova.plugins.Keyboard.close();
+          if (device.platform != 'BrowserStand')
+            cordova.plugins.Keyboard.close();
           setTimeout(function () {
             contactPhoneNumberId.focus();
           }, 0);
@@ -283,7 +288,8 @@
           cardIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/tofriend1.png)';
           card.setAttribute('activated', true);
           scope.activatedType = 'card';
-          cordova.plugins.Keyboard.close();
+          if (device.platform != 'BrowserStand')
+            cordova.plugins.Keyboard.close();
           setTimeout(function () {
             cardInputId.focus();
           }, 0);
@@ -300,7 +306,8 @@
           betweenIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/toown1.png)';
           between.setAttribute('activated', true);
           scope.activatedType = 'between';
-          cordova.plugins.Keyboard.close();
+          if (device.platform != 'BrowserStand')
+            cordova.plugins.Keyboard.close();
           setTimeout(function () {
             betweenAmountId.focus();
           }, 0);
