@@ -222,50 +222,59 @@
       window.addEventListener('native.keyboardshow', keyboardShowHandler);
       window.addEventListener('native.keyboardhide', keyboardHideHandler);
 
-      function keyboardShowHandler(e){
+      function keyboardShowHandler(e) {
         console.log('Keyboard height is: ' + e.keyboardHeight);
         window.bottomButtomBottom = e.keyboardHeight + "px";
         try {
-          bottomButtonContactId.style.bottom = e.keyboardHeight + "px";
+          if (this.bottomButtonContactId)
+            bottomButtonContactId.style.bottom = e.keyboardHeight + "px";
         } catch (error) {
           console.error(error);
         }
         try {
-          bottomButtonCardId.style.bottom = e.keyboardHeight + "px";
+          if (this.bottomButtonCardId)
+            bottomButtonCardId.style.bottom = e.keyboardHeight + "px";
         } catch (error) {
           console.error(error);
         }
         try {
-          bottomButtonBetweenId.style.bottom = e.keyboardHeight + "px";
+          if (this.bottomButtonBetweenId)
+            bottomButtonBetweenId.style.bottom = e.keyboardHeight + "px";
         } catch (error) {
           console.error(error);
         }
         try {
-          bottomButtonSubmitId.style.bottom = e.keyboardHeight + "px";
+          if (this.bottomButtonSubmitId)
+            bottomButtonSubmitId.style.bottom = e.keyboardHeight + "px";
         } catch (error) {
           console.error(error);
         }
       }
-      function keyboardHideHandler(e){
+
+      function keyboardHideHandler(e) {
         console.log('Keyboard hidden');
         window.bottomButtomBottom = "0px";
         try {
-          bottomButtonContactId.style.bottom = "0px";
+          if (this.bottomButtonContactId)
+            bottomButtonContactId.style.bottom = "0px";
         } catch (error) {
           console.error(error);
         }
         try {
-          bottomButtonCardId.style.bottom = "0px";
+          if (this.bottomButtonCardId)
+            bottomButtonCardId.style.bottom = "0px";
         } catch (error) {
           console.error(error);
         }
         try {
-          bottomButtonBetweenId.style.bottom = "0px";
+          if (this.bottomButtonBetweenId)
+            bottomButtonBetweenId.style.bottom = "0px";
         } catch (error) {
           console.error(error);
         }
         try {
-          bottomButtonSubmitId.style.bottom = "0px";
+          if (this.bottomButtonSubmitId)
+            bottomButtonSubmitId.style.bottom = "0px";
         } catch (error) {
           console.error(error);
         }
