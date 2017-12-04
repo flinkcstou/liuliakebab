@@ -44,7 +44,7 @@
     <p class="transfer-new-between-from-text-field">{window.languages.ViewPayTransferBetweenCardsTo}</p>
     <component-transfer-card-carousel-bottom
       carouselid="2"
-      cardnumber="2"
+      cardnumber="cardNumberForBottom"
       usefor="p2p"
       style="position: relative;
       top:{11 * heightK}px">
@@ -88,6 +88,7 @@
     scope.showPlaceHolderError = false;
     scope.showCommission = false;
     scope.countCardFromMain = 1;
+    scope.cardNumberForBottom = 2;
     var counter = 0;
 
     if (localStorage.getItem('click_client_cards')) {
@@ -96,7 +97,15 @@
 
     scope.on('mount', function () {
       if (scope.parent.countCardFromMain !== -1) {
+//        scope.countArrayCard = localStorage.getItem('click_client_countCard');
+//        if (!scope.count)
+//          scope.countArrayCard = 1;
         scope.countCardFromMain = scope.parent.countCardFromMain;
+//        if (scope.countCardFromMain === (scope.countArratCard - 1))
+//          scope.cardNumberForBottom = scope.countCardFromMain - 1;
+//        else
+//          scope.cardNumberForBottom = scope.countCardFromMain + 1;
+//        console.log(scope, "choose bottom carousel posititon");
         scope.update();
       }
     });
