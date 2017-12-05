@@ -21,23 +21,23 @@
 
     var scope = this;
     var carouselTouchStartX, carouselTouchEndX;
-    scope.carouselidTop = opts.carouselid;
+    scope.carouselidTop = 0;
     scope.cardNumberTop = 1;
     scope.leftTop = 0;
     scope.deltaTop = 0;
+    scope.count = 1;
 
-    scope.count = localStorage.getItem('click_client_countCard');
-    if (!scope.count)
-      scope.count = 1;
 
-    if (localStorage.getItem('click_client_cards')) {
-      scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
-      checkCardPermissionTop();
-      scope.update();
-    }
+
 
     scope.on("mount", function () {
-      scope.cardNumberTop = parseInt(opts.cardnumber);
+      if (opts && JSON.stringify(opts) !== '{}') {
+        scope.cardNumberTop = parseInt(opts.cardnumber);
+        scope.cardsarray = opts.cardsarray;
+        scope.carouselidTop = opts.carouselid;
+        scope.count = opts.cardcounter + 1;
+        console.log(opts, scope);
+      }
       document.getElementById(scope.carouselidTop).style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
       document.getElementById(scope.carouselidTop).style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
       document.getElementById(scope.carouselidTop).style.transform = "translate3d(" + (-scope.cardNumberTop * 420) * heightK + 'px' + ", 0, 0)";
@@ -45,6 +45,7 @@
       if (scope.parent.cardChangedTop){
         scope.parent.cardChangedTop(scope.cardNumberTop);
       }
+      scope.update();
     });
 
     startTouchCarouselTransferTop = function () {
@@ -115,27 +116,6 @@
 
       scope.update();
     };
-
-    function checkCardPermissionTop() {
-      for (var i in scope.cardsarray) {
-        scope.cardsarray[i].permission = opts.usefor === "p2p" && scope.cardsarray[i].p2p_allowed == 1;
-        if (opts.usefor === "payment" && scope.cardsarray[i].payment_allowed == 1) {
-          scope.cardsarray[i].permission = true;
-        }
-        if (opts.usefor === "all") {
-          scope.cardsarray[i].permission = true;
-        }
-
-        if (scope.cardsarray[i].permission === false) {
-          scope.count--;
-          scope.cardNumberTop = -1;
-          if (scope.count < 3)
-            scope.cardNumberTop = 1;
-          delete scope.cardsarray[i];
-        }
-      }
-    };
-
   </script>
 </component-transfer-card-carousel-top>
 

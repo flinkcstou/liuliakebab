@@ -36,19 +36,23 @@
          class="transfer-new-between-input-commission">
         {placeHolderText}
       </p>
-      <p if="{!showPlaceHolderError && !modeOfApp.offlineMode  && showCommission}" class="transfer-new-between-input-commission">
+      <p if="{!showPlaceHolderError && !modeOfApp.offlineMode  && showCommission}"
+         class="transfer-new-between-input-commission">
         {window.languages.ViewTransferTwoTax} {tax}
         {window.languages.Currency}</p>
     </div>
     <div id="cardFromId"
          class="transfer-new-card-from">
-      <p if="{!modeOfApp.offlineMode}" class="transfer-new-between-from-text-field">{window.languages.ViewPayTransferBetweenCardsFrom}</p>
+      <p if="{!modeOfApp.offlineMode}" class="transfer-new-between-from-text-field">
+        {window.languages.ViewPayTransferBetweenCardsFrom}</p>
       <p if="{noCards}" class="transfer-new-submit-no-cards">{window.languages.ViewTransferSubmitNoCards}</p>
       <component-transfer-card-carousel-top
         if="{!noCards && !modeOfApp.offlineMode}"
         id="cardCarouselTopId"
         carouselid="1"
-        cardnumber="{countCardFromMain}"
+        cardnumber="{cardNumberFromMain}"
+        cardsarray="{cardsarray}"
+        cardcounter="{cardCounter}"
         usefor="p2p"
         style="position: relative;
         right:{16 * widthK}px;
@@ -141,7 +145,7 @@
     scope.clickPinError = false;
     scope.showComponent = false;
     scope.allBankList = [];
-    scope.cardsarray = [];
+    scope.cardsarray = {};
     scope.chosenCard;
     scope.showBottomButton = false;
     scope.receiver = '';
@@ -158,12 +162,11 @@
     scope.showPlaceHolderError = false;
     scope.showCommission = false;
     scope.noCards = false;
-    scope.countCardFromMain = 1;
+    scope.cardNumberFromMain = 1;
     scope.showReceiver = true;
     var counter = 0;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-transfer-submit') {
-      console.log("opts on saving history", opts);
       history.arrayOfHistory.push(
         {
           "view": 'view-transfer-submit',
@@ -177,17 +180,14 @@
       scope.allBankList = JSON.parse(localStorage.getItem("click_client_p2p_all_bank_list"));
     }
 
-    if (localStorage.getItem('click_client_cards')) {
-      scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
-    }
-
     if (localStorage.getItem('settings_block_payAndTransfer'))
       scope.payTransferBlocked = JSON.parse(localStorage.getItem('settings_block_payAndTransfer'));
 
 
     scope.on('mount', function () {
-      console.log("opts on mount cardSubmit", opts);
-      if (opts) {
+
+      if (opts && JSON.stringify(opts) !== '{}') {
+        console.log('opts in submit', opts);
         if (opts.transferType === 'card') {
           scope.receiver = opts.cardNumber.replace(/\s/g, '');
           scope.receiverTitle = opts.cardOwner;
@@ -198,7 +198,7 @@
           scope.maxLimit = opts.maxLimit;
           scope.minLimit = opts.minLimit;
           scope.transferType = 1;
-          if (modeOfApp.offlineMode){
+          if (modeOfApp.offlineMode) {
             scope.showReceiver = false;
           }
         }
@@ -208,15 +208,21 @@
           scope.taxPercent = opts.taxPercent;
           scope.transferType = 2;
         }
-        console.log('on mount submit', opts);
-        if (opts.countCardFromMain !== -1){
-          scope.countCardFromMain = opts.countCardFromMain;
+        if (opts.cardsarray) {
+          scope.cardsarray = opts.cardsarray;
         }
+        if (opts.idcardfrommycards !== -1) {
+          scope.idCardFromMyCards = opts.idcardfrommycards;
+          scope.cardNumberFromMain = scope.cardsarray[scope.idCardFromMyCards].countCard;
+        }
+        if (opts.cardcounter) {
+          scope.cardCounter = opts.cardcounter;
+        }
+        console.log('scope in submit after mount', scope);
       }
       setTimeout(function () {
         submitAmountId.focus();
       }, 0);
-      console.log(scope);
       scope.update();
     });
     {
@@ -298,7 +304,7 @@
           scope.showPlaceHolderError = true;
           scope.showBottomButton = false;
         }
-        if (scope.noCards){
+        if (scope.noCards) {
           scope.showBottomButton = false;
         }
 
@@ -315,11 +321,10 @@
             scope.chosenCard = scope.cardsarray[i];
           }
         }
-        if (scope.chosenCard === undefined){
+        if (scope.chosenCard === undefined) {
           scope.noCards = true;
         }
         scope.update();
-        console.log("Chosen card on submit",scope.chosenCard);
       };
 
       onTouchStartOfSubmit = function (button) {
@@ -468,7 +473,6 @@
 
       //send USSD request to API
       transferViaUssd = function () {
-        console.log(scope.receiver);
         if (scope.transferType === 2) {
           phonedialer.dial(
             "*880*3*" + scope.receiver + "*" + parseInt(scope.sumForTransfer) + "%23",
@@ -574,7 +578,6 @@
       };
 
       transferFindCards = function (saveCard, saveCardOwner) {
-        console.log('SAVE CARD', saveCard);
 
         var transferCards = [];
         var codeOfBank = saveCard.replace(/\s/g, '').substring(3, 6);
@@ -619,7 +622,6 @@
       };
 
       updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
-        console.log("OPEN RESULT COMPONENT");
         scope.stepAmount = stepAmount;
         scope.viewPage = viewPage;
         scope.resultText = text;
@@ -660,9 +662,7 @@
       };
 
       if (scope.payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) === true) {
-        console.log("payTransferConfirmed", opts);
-        if (opts.fromPinCode === true){
-          console.log('fromPinCode');
+        if (opts.fromPinCode === true) {
           scope.receiver = opts.receiver;
           scope.receiverTitle = opts.receiverTitle;
           scope.taxPercent = opts.taxPercent;

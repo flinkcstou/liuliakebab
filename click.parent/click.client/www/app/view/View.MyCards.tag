@@ -616,7 +616,7 @@
         }
 
         params = {
-          countCardFromMain: scope.card.countCard,
+          idCardFromMyCards: scope.card.card_id,
         };
         riotTags.innerHTML = "<view-transfer-new>";
         riot.mount('view-transfer-new', params);

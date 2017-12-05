@@ -64,6 +64,26 @@
     scope.searchCardNumber = '';
     scope.showBottomButton = false;
     scope.cardOwner = '';
+    scope.cardsarray = {};
+    scope.cardNumberFromMain = 1;
+    scope.idCardFromMyCards = -1;
+    scope.cardCounter = 1;
+
+    scope.on('mount', function () {
+      if (opts && JSON.stringify(opts) !== '{}') {
+        if (opts.cardsarray) {
+          scope.cardsarray = opts.cardsarray;
+        }
+      }
+      if (opts.idcardfrommycards !== -1) {
+        scope.idCardFromMyCards = opts.idcardfrommycards;
+        scope.countCard = scope.cardsarray[scope.idCardFromMyCards].countCard;
+      }
+      if (opts.cardcounter) {
+        scope.cardCounter = opts.cardcounter;
+      }
+      scope.update();
+    });
 
     //Card number input handler
     cardBlurAndChange = function () {
@@ -425,9 +445,10 @@
             taxPercent: percentOfBank,
             minLimit: minOfBank,
             maxLimit: maxOfBank,
+            cardsarray: scope.cardsarray,
+            cardcounter: scope.cardCounter,
+            idcardfrommycards: scope.idCardFromMyCards,
           };
-          if (scope.parent.countCardFromMain)
-            params.countCardFromMain = scope.parent.countCardFromMain;
           riotTags.innerHTML = "<view-transfer-submit>";
           riot.mount('view-transfer-submit', params);
         }
@@ -439,9 +460,10 @@
             taxPercent: 0,
             minLimit: 5000,
             maxLimit: 99999999999,
+            cardsarray: scope.cardsarray,
+            cardcounter: scope.cardCounter,
+            idcardfrommycards: scope.idCardFromMyCards,
           };
-          if (scope.parent.countCardFromMain)
-            params.countCardFromMain = scope.parent.countCardFromMain;
           riotTags.innerHTML = "<view-transfer-submit>";
           riot.mount('view-transfer-submit', params);
         }
