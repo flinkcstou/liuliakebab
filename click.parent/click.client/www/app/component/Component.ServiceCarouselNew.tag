@@ -220,10 +220,11 @@
     fillFavorites();
 
     console.log("AppVersion", AppVersion.version, "; localStorage.getItem('version')", localStorage.getItem('version'))
+    console.log("push news?", (sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true))
 
 
-    if (modeOfApp.onlineMode && (!localStorage.getItem('favoritePaymentsList') ||
-      (localStorage.getItem('version') !== AppVersion.version && localStorage.getItem('favoritePaymentsList')))) {
+    if (modeOfApp.onlineMode && !(sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true) &&
+      (!localStorage.getItem('favoritePaymentsList') || (localStorage.getItem('version') !== AppVersion.version && localStorage.getItem('favoritePaymentsList')))) {
 
       window.api.call({
         method: 'get.wishlist',

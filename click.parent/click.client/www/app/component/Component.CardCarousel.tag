@@ -303,7 +303,8 @@
       scope.update();
 
 
-      if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance) {
+      if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance &&
+        !(sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true)) {
         writeBalance();
         scope.update()
       } else {
@@ -523,7 +524,7 @@
 
     scope.onComponentCreated = onComponentCreated = function (cardNumberParameter) {
 
-      if (modeOfApp.onlineMode) {
+      if (modeOfApp.onlineMode && !(sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true)) {
         if (JSON.parse(localStorage.getItem("click_client_loginInfo"))) {
           var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
           var phoneNumber = localStorage.getItem("click_client_phoneNumber");
@@ -668,7 +669,7 @@
     };
 
 
-    if (viewMainPage.atMainPage && !modeOfApp.demoVersion && modeOfApp.onlineMode) {
+    if (viewMainPage.atMainPage && !modeOfApp.demoVersion && modeOfApp.onlineMode && !(sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true)) {
       invoiceCheckFunction();
     }
 
