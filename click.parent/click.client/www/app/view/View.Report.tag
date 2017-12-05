@@ -1122,14 +1122,14 @@
         monthChanged = true
         changePositionReport()
       } else if (reportBodyContainerEndY > reportBodyContainerStartY && (reportBodyContainerEndY - reportBodyContainerStartY) >= 250 && reportBodyContainerId.scrollTop == 0) {
-//        console.log("update page")
-//        console.log("scrollTop=", reportBodyContainerId.scrollTop)
-//        scope.pageNumberOptional = 1;
-//        scope.paymentsMap = {};
-//        scope.paymentDates = [];
-//        scope.paymentsList = []
-//        monthChanged = false;
-//        paymentListUpdate();
+        console.log("update page")
+        console.log("scrollTop=", reportBodyContainerId.scrollTop)
+        scope.pageNumberOptional = 1;
+        scope.paymentsMap = {};
+        scope.paymentDates = [];
+        scope.paymentsList = []
+        monthChanged = false;
+        paymentListUpdate();
 
       }
 
