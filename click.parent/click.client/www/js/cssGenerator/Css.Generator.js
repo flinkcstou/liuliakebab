@@ -5820,6 +5820,7 @@ var css = {
   "float: left;" +
   "position: relative;" +
   "margin-top: 3%;" +
+  "margin-bottom: 0;" +
   "font-size:" + 51 * widthK + "px;" +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
@@ -6392,7 +6393,6 @@ var css = {
   "margin: 0;" +
   "color: gray;" +
   "font-size:" + 24 * widthK + "px;" +
-  "top: -9%;" +
   "}",
 
   transferContactAccessSettings: ".transfer-contact-access-text-settings" +
@@ -6401,16 +6401,15 @@ var css = {
   "margin: 0;" +
   "color: #01cfff;" +
   "font-size:" + 24 * widthK + "px;" +
-  "top: -9%;" +
   "}",
 
   transferContactAccessContainer: ".transfer-contact-access-container" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "width: 79.5%;" +
   "height:" + 120 * widthK + "px;" +
   "left: 10%;" +
-  "top:" + 165 * widthK + "px;" +
+  "top:" + 15 * widthK + "px;" +
   "}",
 
   transferContactPhoneIcon: ".transfer-contact-phone-icon" +

@@ -17,6 +17,12 @@
          ontouchend="pickContactFromNativeTouchEnd()">
     </div>
   </div>
+  <div if="{!accessToContacts}" class="transfer-contact-access-container">
+    <p class="transfer-contact-access-text">{window.languages.ViewPayTransferAccessToContacts}</p>
+    <p class="transfer-contact-access-text-settings"
+       ontouchstart="goToSettingsStart()"
+       ontouchend="goToSettingsEnd()">{window.languages.ViewPayTransferAccessToContactsSettings}</p>
+  </div>
   <div id="contactPhoneSuggestions" class="transfer-new-contact-suggestions-container">
     <div each="{i in phoneSuggestionsArray}"
          id="{'id'+i.id}"
@@ -60,6 +66,7 @@
     scope.cardNumberFromMain = 1;
     scope.idCardFromMyCards = -1;
     scope.cardCounter = 1;
+    scope.accessToContacts = true;
 
     scope.on('mount', function () {
       if (opts && JSON.stringify(opts) !== '{}') {
@@ -79,6 +86,7 @@
 
     //Find contacts after page is loaded
     findContacts = function () {
+      console.log('in find contacts function');
       var options = new ContactFindOptions();
       var fields = [''];
       options.filter = "";
@@ -86,6 +94,7 @@
       options.desiredFields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.phoneNumbers];
       navigator.contacts.find(fields, success, error, options);
       function success(contacts) {
+        console.log('in find contacts success function');
         for (var i = 0; i < contacts.length; i++) {
           if (contacts[i].name)
             if ((contacts[i].name.familyName !== null || contacts[i].name.givenName !== null) && contacts[i].phoneNumbers !== null) {
@@ -99,6 +108,7 @@
       }
 
       function error(message) {
+        console.log('in find contacts error function');
         scope.accessToContacts = false;
         scope.update();
       }
@@ -304,6 +314,7 @@
           cardsarray: scope.cardsarray,
           cardcounter: scope.cardCounter,
           idcardfrommycards: scope.idCardFromMyCards,
+          taxPercent: taxPercent,
         };
         if (scope.parent.countCardFromMain)
           params.countCardFromMain = scope.parent.countCardFromMain;
@@ -311,5 +322,31 @@
         riot.mount('view-transfer-submit', params);
       }
     };
+
+    goToSettingsStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      transferContactTouchStartX = event.changedTouches[0].pageX;
+      transferContactTouchStartY = event.changedTouches[0].pageY;
+    };
+    goToSettingsEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      transferContactTouchEndX = event.changedTouches[0].pageX;
+      transferContactTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(transferContactTouchStartX - transferContactTouchEndX) <= 20
+        && Math.abs(transferContactTouchStartY - transferContactTouchEndY) <= 20) {
+        window.cordova.plugins.settings.open("application_details", function () {
+            console.log('opened settings');
+          },
+          function () {
+            console.log('failed to open settings');
+          }
+        );
+      }
+    }
   </script>
 </component-transfer-to-contact>
