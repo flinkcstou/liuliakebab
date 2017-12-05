@@ -221,54 +221,67 @@
         var numberOfCardMiddleTwo;
         var numberOfCardPartTwo;
         var typeOfCard;
+        var sortedAccounts = [],
+          sortedCards = [];
+
+        for (var i = 0; i < getAccountsCards.length; i++) {
+          sortedAccounts[getAccountsCards[i].countCard - 1] = getAccountsCards[i];
+        }
+
+        console.log("sortedAccounts=", sortedAccounts);
 
         count = 1;
         if (viewMainPage.addFirstCardBool) count = 2;
-        for (var i = 0; i < getAccountsCards.length; i++) {
+        for (var i = 0; i < sortedAccounts.length; i++) {
 
-          if (getAccountsCards[i].access == 0) break;
-          if (loginInfo.default_account == getAccountsCards[i].id) {
+
+          if (sortedAccounts[i].access == 0) break;
+          if (loginInfo.default_account == sortedAccounts[i].id) {
             var defaultAccount = true;
           }
           else
             defaultAccount = false;
 
-          numberOfCardPartOne = getAccountsCards[i].accno.substring(0, 4);
-          numberOfCardMiddleTwo = getAccountsCards[i].accno.substring(5, 7);
-          numberOfCardPartTwo = getAccountsCards[i].accno.substring(getAccountsCards[i].accno.length - 4, getAccountsCards[i].accno.length);
+          numberOfCardPartOne = sortedAccounts[i].accno.substring(0, 4);
+          numberOfCardMiddleTwo = sortedAccounts[i].accno.substring(5, 7);
+          numberOfCardPartTwo = sortedAccounts[i].accno.substring(sortedAccounts[i].accno.length - 4, sortedAccounts[i].accno.length);
 
 
           card = {
-            card_id: getAccountsCards[i].id,
-            id: getAccountsCards[i].id,
-            card_num_hash: getAccountsCards[i].card_num_hash,
-            card_num_crypted: getAccountsCards[i].card_num_crypted,
-            checksum: getAccountsCards[i].checksum,
+            card_id: sortedAccounts[i].id,
+            id: sortedAccounts[i].id,
+            card_num_hash: sortedAccounts[i].card_num_hash,
+            card_num_crypted: sortedAccounts[i].card_num_crypted,
+            checksum: sortedAccounts[i].checksum,
             bankName: typeOfCard,
-            name: getAccountsCards[i].description,
+            name: sortedAccounts[i].description,
             salary: '',
             error_message: null,
-            countCard: getAccountsCards[i].countCard,
-            currency: getAccountsCards[i].currency_name.trim(),
+            countCard: sortedAccounts[i].countCard,
+            currency: sortedAccounts[i].currency_name.trim(),
             numberPartOne: numberOfCardPartOne,
             numberMiddleTwo: numberOfCardMiddleTwo,
             numberPartTwo: numberOfCardPartTwo,
-            url: getAccountsCards[i].image_url,
-            card_background_url: getAccountsCards[i].card_background_url,
+            url: sortedAccounts[i].image_url,
+            card_background_url: sortedAccounts[i].card_background_url,
             chosenCard: defaultAccount,
             default_account: defaultAccount,
-            access: getAccountsCards[i].access,
-            background_color_bottom: getAccountsCards[i].background_color_bottom,
-            background_color_top: getAccountsCards[i].background_color_top,
-            font_color: getAccountsCards[i].font_color,
-            removable: getAccountsCards[i].removable,
-            payment_allowed: getAccountsCards[i].payment_allowed,
-            p2p_allowed: getAccountsCards[i].p2p_allowed
+            access: sortedAccounts[i].access,
+            background_color_bottom: sortedAccounts[i].background_color_bottom,
+            background_color_top: sortedAccounts[i].background_color_top,
+            font_color: sortedAccounts[i].font_color,
+            removable: sortedAccounts[i].removable,
+            payment_allowed: sortedAccounts[i].payment_allowed,
+            p2p_allowed: sortedAccounts[i].p2p_allowed
           };
 
-          scope.cardsarray[getAccountsCards[i].id] = card;
+          scope.cardsarray[sortedAccounts[i].id] = card;
+          sortedCards.push(card);
+
+          console.log("i=", i, sortedAccounts[i].id, card);
 
           localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
+          localStorage.setItem("click_client_sortedCards", JSON.stringify(sortedCards));
 
           count++;
 
@@ -443,43 +456,33 @@
 
 
     cardImagesCaching = function (full) {
-      console.log("FULL CACH? ", full);
+
       if (device.platform != 'BrowserStand') {
-        console.log("START CACHING CARDS");
 
         window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
           var count = 0;
           for (var i in scope.cardsarray) {
 
             if (!full && scope.cardImageCachedLinks[i]) {
-              console.log("card exists", i)
+
               scope.cardsarray[i].card_background_url = scope.cardImageCachedLinks[i].cardBackgroundUrl;
               scope.cardsarray[i].url = scope.cardImageCachedLinks[i].url;
               count = count + 2;
 
-              console.log("old icon", scope.cardsarray[i].card_background_url);
-              console.log("old icon 2", scope.cardsarray[i].url);
-
               if (count == (Object.keys(scope.cardsarray).length * 2)) {
-                console.log("FINISH CACH", scope.cardsarray);
 
-                console.log("cardNumber before update", scope.cardNumber.toString());
                 localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
                 scope.update();
 
-                console.log("cardNumber after update", scope.cardNumber.toString());
               }
 
             } else {
 
               var icon = scope.cardsarray[i].card_background_url;
               var filename = icon.substr(icon.lastIndexOf('/') + 1);
-
-              console.log("icon1=", icon);
-
               var newIconBool = checkImageURL;
               newIconBool('www/resources/icons/cards/', 'cards', filename, icon, i, function (bool, index, fileName) {
-                console.log("bool=", bool, "index=", index, "fileName=", fileName);
+
                 if (bool) {
                   count++;
                   scope.cardsarray[index].card_background_url = cordova.file.dataDirectory + fileName;
@@ -488,14 +491,11 @@
                   scope.cardsarray[index].card_background_url = 'resources/icons/cards/' + fileName;
                 }
 
-                console.log("new icon=", scope.cardsarray[index].card_background_url);
-
                 var icon2 = scope.cardsarray[index].url;
                 var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);
-                console.log("icon 2=", icon2);
                 var newIcon = checkImageURL;
                 newIcon('www/resources/icons/cards/logo/', 'logo', filename2, icon2, index, function (bool2, index2, fileName2) {
-                  console.log("bool=", bool2, "index=", index2, "fileName=", fileName2);
+
                   if (bool2) {
                     count++;
                     scope.cardsarray[index2].url = cordova.file.dataDirectory + fileName2;
@@ -504,15 +504,11 @@
                     scope.cardsarray[index2].url = 'resources/icons/cards/logo/' + fileName2;
                   }
 
-                  console.log("new icon 2=", scope.cardsarray[index2].url);
-
                   if (count == (Object.keys(scope.cardsarray).length * 2)) {
-                    console.log("FINISH CACH", scope.cardsarray);
 
-                    console.log("cardNumber before update", scope.cardNumber.toString());
                     localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
                     scope.update();
-                    console.log("cardNumber after update", scope.cardNumber.toString());
+
                   }
                 });
               });
@@ -762,12 +758,9 @@
                   }
                 }
 
-                console.log("cardNumber before update", scope.cardNumber.toString());
-
                 localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
                 scope.update();
 
-                console.log("cardNumber after", scope.cardNumber.toString());
               } catch (Error) {
                 console.log("Error on parse result fro get.balance.multiple", Error);
               }
