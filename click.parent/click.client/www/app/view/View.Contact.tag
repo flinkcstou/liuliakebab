@@ -197,6 +197,7 @@
         for (var i in digits) {
           phone += digits[i]
         }
+        phoneForTransfer = phone.substring(phone.length - 12, phone.length);
         phone = phone.substring(phone.length - 9, phone.length);
 
         if (goToPay) {
@@ -228,8 +229,13 @@
           }
         }
         else {
-          riotTags.innerHTML = "<view-transfer>";
-          riot.mount('view-transfer', {number: phone});
+          params = {
+            transferType: 'contact',
+            phoneNumber: phoneForTransfer,
+          };
+          console.log("TEL number in view-contact", params);
+          riotTags.innerHTML = "<view-transfer-new>";
+          riot.mount('view-transfer-new', params);
 
           scope.unmount()
         }
@@ -315,9 +321,14 @@
           }
           else {
 
-            scope.arrayOfNumbers[0].value = scope.arrayOfNumbers[0].value.substring(scope.arrayOfNumbers[0].value.length - 9, scope.arrayOfNumbers[0].value.length);
-            riotTags.innerHTML = "<view-transfer>";
-            riot.mount('view-transfer', {number: scope.arrayOfNumbers[0].value});
+            scope.arrayOfNumbers[0].value = scope.arrayOfNumbers[0].value.substring(scope.arrayOfNumbers[0].value.length - 12, scope.arrayOfNumbers[0].value.length);
+            params = {
+              transferType: 'contact',
+              phoneNumber: scope.arrayOfNumbers[0].value,
+            };
+            console.log("TEL number in view-contact", scope.arrayOfNumbers[0].value);
+            riotTags.innerHTML = "<view-transfer-new>";
+            riot.mount('view-transfer-new', params);
 
             scope.unmount()
           }
