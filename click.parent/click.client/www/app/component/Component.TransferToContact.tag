@@ -304,6 +304,7 @@
           cardsarray: scope.cardsarray,
           cardcounter: scope.cardCounter,
           idcardfrommycards: scope.idCardFromMyCards,
+          taxPercent: taxPercent,
         };
         if (scope.parent.countCardFromMain)
           params.countCardFromMain = scope.parent.countCardFromMain;
