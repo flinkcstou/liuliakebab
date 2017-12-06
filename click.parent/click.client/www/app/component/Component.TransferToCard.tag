@@ -69,6 +69,9 @@
     scope.idCardFromMyCards = -1;
     scope.cardCounter = 1;
     scope.processingPrefix = '';
+    scope.minLimit = 5000;
+    scope.maxLimit = 15000000;
+    scope.taxPercent = 1;
 
     //get list of issuers and bank codes
     {
@@ -276,8 +279,6 @@
         if (scope.issuerList !== JSON.parse(localStorage.getItem('click_client_issuer_list'))[0])
           scope.issuerList = JSON.parse(localStorage.getItem('click_client_issuer_list'))[0];
 
-        console.log(scope.issuerList);
-
         var currentIssuer = {};
 
         processingIconFound = false;
@@ -295,12 +296,15 @@
         if (processingIconFound) {
           bankIdInInput = cardInputId.value.replace(/\s/g, '').substring(parseInt(currentIssuer.code_start) - 1,
             parseInt(currentIssuer.code_start) + parseInt(currentIssuer.code_length) - 1);
-          console.log(cardInputId.value, 'bank code:', bankIdInInput);
           currentIssuer.item.forEach(function (bank) {
             if (bank.code === bankIdInInput) {
               scope.bankImage = bank.image;
               bankIconId.style.display = 'block';
               bankIconFound = true;
+              scope.minLimit = parseInt(bank.p2p_min_limit);
+              scope.maxLimit = parseInt(bank.p2p_max_limit);
+              scope.taxPercent = parseInt(bank.p2p_percent);
+              console.log('Matching bank', bank);
             }
           });
         }
@@ -405,9 +409,9 @@
           transferType: 'card',
           cardNumber: cardInputId.value,
           cardOwner: scope.cardOwner,
-          taxPercent: 0,
-          minLimit: 5000,
-          maxLimit: 99999999999,
+          taxPercent: scope.taxPercent,
+          minLimit: scope.minLimit,
+          maxLimit: scope.maxLimit,
           cardsarray: scope.cardsarray,
           cardcounter: scope.cardCounter,
           idcardfrommycards: scope.idCardFromMyCards,
