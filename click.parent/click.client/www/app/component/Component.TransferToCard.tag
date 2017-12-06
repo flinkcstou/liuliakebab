@@ -107,7 +107,6 @@
                   });
                   scope.update();
                 }
-                console.log('Issuer list', result);
               },
               onFail: function (api_status, api_status_message, data) {
                 console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
