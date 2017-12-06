@@ -216,14 +216,17 @@
     };
 
     inputPinFocus = function () {
-      if (device.platform === 'iOS') {
-        firstPinInputId.autofocus;
-        firstPinInputId.focus();
-      }
-      else {
-        setTimeout(function () {
+      console.log("ALert is shown? ", window.common.alert.isShown("componentAlertId"));
+      if (!window.common.alert.isShown("componentAlertId")) {
+        if (device.platform === 'iOS') {
+          firstPinInputId.autofocus;
           firstPinInputId.focus();
-        }, 0)
+        }
+        else {
+          setTimeout(function () {
+            firstPinInputId.focus();
+          }, 0)
+        }
       }
     };
 
@@ -558,6 +561,7 @@
 
             } else {
 
+              //This conidition cannot be true, need to be deleted in future
               if (opts.from === "registration-client") {
                 errorNote = "Карта ещё не добавлена. Попробуйте войти через несколько минут";
               }
