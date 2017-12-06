@@ -67,6 +67,8 @@
     var scope = this;
     scope.invoiceLeft = 100 * widthK;
     scope.invoiceList = [];
+    var sortedAccounts = localStorage.getItem('click_client_sortedAccounts') ? JSON.parse(localStorage.getItem('click_client_sortedAccounts')) : [],
+      sortedCards = localStorage.getItem('click_client_sortedCards') ? JSON.parse(localStorage.getItem('click_client_sortedCards')) : [];
 
     var arrayOfPhones = [];
 
@@ -219,12 +221,12 @@
         }
 
         scope.cardsarray = {};
+        sortedAccounts = [];
+        sortedCards = [];
         var numberOfCardPartOne;
         var numberOfCardMiddleTwo;
         var numberOfCardPartTwo;
         var typeOfCard;
-        var sortedAccounts = [],
-          sortedCards = [];
 
         for (var i = 0; i < getAccountsCards.length; i++) {
           sortedAccounts[getAccountsCards[i].countCard - 1] = getAccountsCards[i];
@@ -278,12 +280,11 @@
           };
 
           scope.cardsarray[sortedAccounts[i].id] = card;
-          sortedCards.push(card);
 
           console.log("i=", i, sortedAccounts[i].id, card);
 
           localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
-          localStorage.setItem("click_client_sortedCards", JSON.stringify(sortedCards));
+          localStorage.setItem("click_client_sortedAccounts", JSON.stringify(sortedAccounts));
 
           count++;
 
@@ -389,9 +390,10 @@
                   }
                 }
 
+                scope.update();
+
               }
 
-              scope.update();
 
 //              if (scope.invoiceList)
 //                setTimeout(function () {
@@ -552,42 +554,18 @@
                     for (var i in result[1]) {
                       if (cardsArray[result[1][i].id]) {
                         if (cardsArray[result[1][i].id].checksum != result[1][i].checksum) {
-                          if (device.platform != 'BrowserStand') {
-                            var options = {dimBackground: true};
-
-                            SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-                              console.log("Spinner start in card carousel");
-                            }, function () {
-                              console.log("Spinner stop in card carousel");
-                            });
-                          }
+                          window.startSpinner();
                           scope.checkSumOfHash = false;
                         }
                       }
                       else {
-                        if (device.platform != 'BrowserStand') {
-                          var options = {dimBackground: true};
-
-                          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-                            console.log("Started");
-                          }, function () {
-                            console.log("closed");
-                          });
-                        }
+                        window.startSpinner();
                         scope.checkSumOfHash = false;
                       }
                     }
                   }
                   else {
-                    if (device.platform != 'BrowserStand') {
-                      var options = {dimBackground: true};
-
-                      SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-                        console.log("Started");
-                      }, function () {
-                        console.log("closed");
-                      });
-                    }
+                    window.startSpinner();
                     scope.checkSumOfHash = false;
                   }
                 }
@@ -634,14 +612,12 @@
                   }, 0);
 
                   if (device.platform !== 'BrowserStand') {
-                    console.log("Spinner Stop Component Card Carousel 650");
                     SpinnerPlugin.activityStop();
                   }
                 }
                 else {
                   setTimeout(function () {
                     if (device.platform !== 'BrowserStand') {
-                      console.log("Spinner Stop Component Card Carousel 657");
                       SpinnerPlugin.activityStop();
                     }
                     addCard()
@@ -719,9 +695,9 @@
       }
 
       for (var j in getAccountsCards) {
-        objectAccount.account_id = getAccountsCards[j].id
-        objectAccount.card_num_hash = getAccountsCards[j].card_num_hash
-        objectAccount.card_num_crypted = getAccountsCards[j].card_num_crypted
+        objectAccount.account_id = getAccountsCards[j].id;
+        objectAccount.card_num_hash = getAccountsCards[j].card_num_hash;
+        objectAccount.card_num_crypted = getAccountsCards[j].card_num_crypted;
         accountsForBalance.push(objectAccount);
         objectAccount = {};
       }
@@ -748,7 +724,6 @@
 
                 for (var i in scope.cardsarray) {
                   if (balances[i]) {
-//                    console.log("qwerty ", balances[i]);
                     scope.cardsarray[balances[i].account_id].salaryOriginal = balances[i].balance.toFixed(0);
                     balances[i].balance = balances[i].balance.toFixed(0).toString();
 
@@ -761,6 +736,17 @@
                   }
                 }
 
+                console.log("SORTEDACCOUNTS", sortedAccounts)
+                sortedCards = [];
+                for (var i in sortedAccounts) {
+                  console.log("SORTEDACCOUNTS i", sortedAccounts[i])
+
+                  sortedCards.push(scope.cardsarray[sortedAccounts[i].id]);
+                }
+
+                console.log("SORTEDCARDS", sortedCards)
+
+                localStorage.setItem("click_client_sortedCards", JSON.stringify(sortedCards));
                 localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
                 scope.update();
 
