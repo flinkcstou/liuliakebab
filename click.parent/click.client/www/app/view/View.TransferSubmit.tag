@@ -314,6 +314,7 @@
         }
         scope.update()
       };
+    }
 
       scope.cardChangedTop = cardChangedTop = function (cardNumber) {
         for (var i in scope.cardsarray) {
@@ -621,35 +622,38 @@
         }
       };
 
-      updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
-        scope.stepAmount = stepAmount;
-        scope.viewPage = viewPage;
-        scope.resultText = text;
+      // Functions for result component
+      {
+        updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
+          scope.stepAmount = stepAmount;
+          scope.viewPage = viewPage;
+          scope.resultText = text;
 
-        if (showResult) {
-          window.common.alert.updateView("componentResultId", {
-            parent: scope,
-            resulttext: scope.resultText,
-            viewpage: scope.viewPage,
-            step_amount: scope.stepAmount
-          });
-        } else {
+          if (showResult) {
+            window.common.alert.updateView("componentResultId", {
+              parent: scope,
+              resulttext: scope.resultText,
+              viewpage: scope.viewPage,
+              step_amount: scope.stepAmount
+            });
+          } else {
+            window.common.alert.hide("componentResultId");
+          }
+          updateIcon(status, null, null, text, stepAmount, scope.viewPage);
+        };
+
+        closeResultComponent = function () {
           window.common.alert.hide("componentResultId");
-        }
-        updateIcon(status, null, null, text, stepAmount, scope.viewPage);
-      };
+          scope.update();
+        };
 
-      closeResultComponent = function () {
-        window.common.alert.hide("componentResultId");
-        scope.update();
-      };
-
-      initResultComponent = function () {
-        window.common.alert.updateView("componentResultId", {
-          parent: scope
-        });
-        scope.update();
-      };
+        initResultComponent = function () {
+          window.common.alert.updateView("componentResultId", {
+            parent: scope
+          });
+          scope.update();
+        };
+      }
 
       closeSecretCodePage = function () {
         blockCodeConfirmId.style.display = 'none';
@@ -676,7 +680,7 @@
         }
         sessionStorage.setItem('payTransferConfirmed', null);
       }
-    }
+
 
     //Info about banks
     {

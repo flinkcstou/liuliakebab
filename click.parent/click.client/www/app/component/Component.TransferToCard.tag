@@ -68,6 +68,56 @@
     scope.cardNumberFromMain = 1;
     scope.idCardFromMyCards = -1;
     scope.cardCounter = 1;
+    scope.processingPrefix = '';
+
+    //get list of issuers and bank codes
+    {
+      if (JSON.parse(localStorage.getItem('click_client_loginInfo'))) {
+        loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
+        sessionKey = loginInfo.session_key;
+        phoneNumber = localStorage.getItem('click_client_phoneNumber');
+
+        if (!localStorage.getItem("click_client_issuer_list") || loginInfo.update_issuer_list) {
+          if (modeOfApp.onlineMode) {
+            window.api.call({
+              method: 'issuer.list',
+              input: {
+                session_key: sessionKey,
+                phone_num: phoneNumber
+              },
+              scope: this,
+
+              onSuccess: function (result) {
+                if (result[0][0].error == 0) {
+                  var issuerList = [];
+                  for (var i in result[1]) {
+                    issuerList.push(result[1][i]);
+                  }
+                  localStorage.setItem('click_client_issuer_list', JSON.stringify(issuerList));
+
+                } else {
+                  scope.errorNote = result[0][0].error_note;
+
+                  window.common.alert.show("componentAlertId", {
+                    parent: scope,
+                    clickpinerror: scope.clickPinError,
+                    errornote: scope.errorNote,
+                    pathtosettings: scope.pathToSettings,
+                    permissionerror: scope.permissionError,
+                  });
+                  scope.update();
+                }
+                console.log('Issuer list', result);
+              },
+              onFail: function (api_status, api_status_message, data) {
+                console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                console.error(data);
+              }
+            });
+          }
+        }
+      }
+    }
 
     scope.on('mount', function () {
       if (opts && JSON.stringify(opts) !== '{}') {
@@ -178,7 +228,7 @@
       if (JSON.parse(localStorage.getItem('click_client_loginInfo')))
         sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       phoneNumber = localStorage.getItem('click_client_phoneNumber');
-      if (!modeOfApp.offlineMode) {
+      if (modeOfApp.onlineMode) {
         window.api.call({
           method: 'p2p.card.info',
           input: {
@@ -223,46 +273,47 @@
 
     checkForIcons = function () {
       //Check for bank icon
-      bankIdInInput = cardInputId.value.replace(/\s/g, '').substring(3, 6);
-      if (bankId !== bankIdInInput) {
-        bankId = bankIdInInput;
+      if (JSON.parse(localStorage.getItem('click_client_issuer_list'))) {
+        if (scope.issuerList !== JSON.parse(localStorage.getItem('click_client_issuer_list'))[0])
+          scope.issuerList = JSON.parse(localStorage.getItem('click_client_issuer_list'))[0];
+
+        console.log(scope.issuerList);
+
+        var currentIssuer = {};
+
+        processingIconFound = false;
         bankIconFound = false;
-        scope.parent.allBankList.forEach(function (element) {
-          if (element.code === bankId) {
-            scope.bankImage = element.image;
-            bankIconId.style.display = 'block';
-            bankIconFound = true;
+        scope.issuerList.forEach(function (issuer) {
+          processingIdInInput = cardInputId.value.replace(/\s/g, '').substring(0, parseInt(issuer.prefix_length));
+          if (issuer.prefix === processingIdInInput) {
+            scope.processingImage = issuer.url;
+            processingIconId.style.display = 'block';
+            processingIconFound = true;
+            currentIssuer = issuer;
           }
         });
-        if (bankIconFound === false) {
-          bankId = '';
-          scope.bankImage = '';
-          bankIconId.style.display = 'none';
-        }
-      }
-      if (cardInputId.value.replace(/\s/g, '').length < 6) {
-        bankId = '';
-        scope.bankImage = '';
-        bankIconId.style.display = 'none';
-      }
 
-      //Check for processing icon
-      processingIdInInput = cardInputId.value.replace(/\s/g, '').substring(0, 3);
-      if (processingId !== processingIdInInput) {
-        processingId = processingIdInInput;
-        processingIconFound = false;
-        /// TO DO PROCESSING ICON
+        if (processingIconFound) {
+          bankIdInInput = cardInputId.value.replace(/\s/g, '').substring(parseInt(currentIssuer.code_start) - 1,
+            parseInt(currentIssuer.code_start) + parseInt(currentIssuer.code_length) - 1);
+          console.log(cardInputId.value, 'bank code:', bankIdInInput);
+          currentIssuer.item.forEach(function (bank) {
+            if (bank.code === bankIdInInput) {
+              scope.bankImage = bank.image;
+              bankIconId.style.display = 'block';
+              bankIconFound = true;
+            }
+          });
+        }
+
         if (processingIconFound === false) {
-          processingId = '';
           scope.processingImage = '';
           processingIconId.style.display = 'none';
         }
-      }
-
-      if (cardInputId.value.replace(/\s/g, '').length < 3) {
-        processingId = '';
-        scope.processingImage = '';
-        processingIconId.style.display = 'none';
+        if (bankIconFound === false) {
+          scope.bankImage = '';
+          bankIconId.style.display = 'none';
+        }
       }
     };
 
@@ -284,13 +335,13 @@
           'url(resources/icons/ViewTransfer/transfer_card.png)';
         cardContainer.style.backgroundSize = 'cover';
         cardContainer.style.backgroundRepeat = 'no-repeat';
-        cardContainer.style.backgroundPosition= 'center';
+        cardContainer.style.backgroundPosition = 'center';
         cardInputContainer.style.top = '' + 133 * widthK + 'px';
         cardInputContainer.style.border = '' + 3 * widthK + 'px solid #F0F1F4';
         cardOwnerId.style.display = 'none';
         scope.cardOwner = '';
       }
-      if ((scope.cardSuggestionsArray && scope.cardSuggestionsArray < 1) || cardInputId.value.length === 0){
+      if ((scope.cardSuggestionsArray && scope.cardSuggestionsArray < 1) || cardInputId.value.length === 0) {
         cardSuggestions.style.display = 'none';
         cardContainer.style.background = '';
         cardInputContainer.style.border = '';
@@ -351,122 +402,19 @@
       if (Math.abs(transferCardTouchStartX - transferCardTouchEndX) <= 20
         && Math.abs(transferCardTouchStartY - transferCardTouchEndY) <= 20) {
 
-        if (modeOfApp.onlineMode) {
-          var firstFourSymbols = cardInputId.value.replace(/\s/g, '').substring(0, 4);
-          if (firstFourSymbols !== '8600') {
-            cardInputId.blur();
-            scope.errorNote = 'Неверные данные о карте';
-
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote,
-              pathtosettings: scope.pathToSettings,
-              permissionerror: scope.permissionError,
-            });
-            scope.update();
-            return;
-          }
-          var codeOfBank = cardInputId.value.replace(/\s/g, '').substring(3, 6);
-          var checkOfCode = false;
-          var statusOfBankToP2P = false;
-          var nameOfBank = '';
-
-          var bankList = JSON.parse(localStorage.getItem('click_client_p2p_all_bank_list'));
-          var percentOfBank = 0;
-          var minOfBank = 0;
-          var maxOfBank = 0;
-          if (bankList) {
-            for (var i = 0; i < bankList.length; i++) {
-              if (codeOfBank === bankList[i].code) {
-                checkOfCode = true;
-                nameOfBank = bankList[i].bank_name;
-                if (bankList[i].p2p_status === 1) {
-                  statusOfBankToP2P = true
-                }
-                minOfBank = bankList[i].p2p_min_limit;
-                maxOfBank = bankList[i].p2p_max_limit;
-                percentOfBank = bankList[i].p2p_percent;
-                break;
-              }
-              else {
-                checkOfCode = false;
-              }
-            }
-          }
-          else {
-            cardInputId.blur();
-            scope.errorNote = 'Подождите, данные для обработки информации еще не прогрузились';
-
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote,
-              pathtosettings: scope.pathToSettings,
-              permissionerror: scope.permissionError,
-            });
-
-            scope.update();
-            return;
-          }
-          if (!checkOfCode) {
-            cardInputId.blur();
-            scope.errorNote = 'Неверный номер карты';
-
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote,
-              pathtosettings: scope.pathToSettings,
-              permissionerror: scope.permissionError,
-            });
-            scope.update();
-            return;
-          }
-
-          if (!statusOfBankToP2P) {
-            cardInputId.blur();
-            scope.errorNote = 'Карта "' + nameOfBank + '" банка временно недоступна для перевода средств';
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote,
-              pathtosettings: scope.pathToSettings,
-              permissionerror: scope.permissionError,
-            });
-            scope.update();
-            return;
-          }
-
-          params = {
-            transferType: 'card',
-            cardNumber: cardInputId.value,
-            cardOwner: scope.cardOwner,
-            taxPercent: percentOfBank,
-            minLimit: minOfBank,
-            maxLimit: maxOfBank,
-            cardsarray: scope.cardsarray,
-            cardcounter: scope.cardCounter,
-            idcardfrommycards: scope.idCardFromMyCards,
-          };
-          riotTags.innerHTML = "<view-transfer-submit>";
-          riot.mount('view-transfer-submit', params);
-        }
-        else {
-          params = {
-            transferType: 'card',
-            cardNumber: cardInputId.value,
-            cardOwner: scope.cardOwner,
-            taxPercent: 0,
-            minLimit: 5000,
-            maxLimit: 99999999999,
-            cardsarray: scope.cardsarray,
-            cardcounter: scope.cardCounter,
-            idcardfrommycards: scope.idCardFromMyCards,
-          };
-          riotTags.innerHTML = "<view-transfer-submit>";
-          riot.mount('view-transfer-submit', params);
-        }
+        params = {
+          transferType: 'card',
+          cardNumber: cardInputId.value,
+          cardOwner: scope.cardOwner,
+          taxPercent: 0,
+          minLimit: 5000,
+          maxLimit: 99999999999,
+          cardsarray: scope.cardsarray,
+          cardcounter: scope.cardCounter,
+          idcardfrommycards: scope.idCardFromMyCards,
+        };
+        riotTags.innerHTML = "<view-transfer-submit>";
+        riot.mount('view-transfer-submit', params);
       }
     };
 
