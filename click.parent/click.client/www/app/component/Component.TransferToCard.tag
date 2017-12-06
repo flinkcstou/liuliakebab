@@ -72,6 +72,10 @@
     scope.minLimit = 5000;
     scope.maxLimit = 15000000;
     scope.taxPercent = 1;
+    scope.bankIdentified = false;
+    scope.issuerList = [];
+    scope.p2pStatusOfBank = false;
+    scope.nameOfBank = '';
 
     //get list of issuers and bank codes
     {
@@ -92,11 +96,11 @@
 
               onSuccess: function (result) {
                 if (result[0][0].error == 0) {
-                  var issuerList = [];
+                  scope.issuerList = [];
                   for (var i in result[1]) {
-                    issuerList.push(result[1][i]);
+                    scope.issuerList.push(result[1][i]);
                   }
-                  localStorage.setItem('click_client_issuer_list', JSON.stringify(issuerList));
+                  localStorage.setItem('click_client_issuer_list', JSON.stringify(scope.issuerList));
 
                 } else {
                   scope.errorNote = result[0][0].error_note;
@@ -283,6 +287,8 @@
 
         processingIconFound = false;
         bankIconFound = false;
+        scope.bankIdentified = false;
+        scope.p2pStatusOfBank = false;
         scope.issuerList.forEach(function (issuer) {
           processingIdInInput = cardInputId.value.replace(/\s/g, '').substring(0, parseInt(issuer.prefix_length));
           if (issuer.prefix === processingIdInInput) {
@@ -304,7 +310,9 @@
               scope.minLimit = parseInt(bank.p2p_min_limit);
               scope.maxLimit = parseInt(bank.p2p_max_limit);
               scope.taxPercent = parseInt(bank.p2p_percent);
-              console.log('Matching bank', bank);
+              scope.bankIdentified = true;
+              scope.p2pStatusOfBank = parseInt(bank.p2p_status);
+              scope.nameOfBank = bank.bank_name;
             }
           });
         }
@@ -404,7 +412,48 @@
 
       if (Math.abs(transferCardTouchStartX - transferCardTouchEndX) <= 20
         && Math.abs(transferCardTouchStartY - transferCardTouchEndY) <= 20) {
+        if (scope.issuerList.length === 0){
+          cardInputId.blur();
+          scope.errorNote = 'Подождите, данные для обработки информации еще не прогрузились';
 
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+            pathtosettings: scope.pathToSettings,
+            permissionerror: scope.permissionError,
+          });
+          scope.update();
+          return;
+        }
+        if (!scope.bankIdentified) {
+          cardInputId.blur();
+          scope.errorNote = 'Неверный номер карты';
+
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+            pathtosettings: scope.pathToSettings,
+            permissionerror: scope.permissionError,
+          });
+          scope.update();
+          return;
+        }
+        if (scope.p2pStatusOfBank === 0){
+            cardInputId.blur();
+            scope.errorNote = 'Карта "' + scope.nameOfBank + '" банка временно недоступна для перевода средств';
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+              pathtosettings: scope.pathToSettings,
+              permissionerror: scope.permissionError,
+            });
+            scope.update();
+            return;
+        }
+        checkForIcons();
         params = {
           transferType: 'card',
           cardNumber: cardInputId.value,
