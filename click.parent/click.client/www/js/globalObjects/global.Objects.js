@@ -1305,3 +1305,16 @@ window.clearTimers = function () {
     id--;
   }
 };
+
+
+window.startSpinner = function () {
+  if (device.platform != 'BrowserStand') {
+    var options = {dimBackground: true};
+
+    SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+      console.log("Started");
+    }, function () {
+      console.log("closed");
+    });
+  }
+}
