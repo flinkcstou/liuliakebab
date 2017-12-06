@@ -391,61 +391,41 @@
 
     checkForIconsAddCard = function () {
 
-      //Check for processing icon
-
-      processingIdInInput = boxOne.value.replace(/\s/g, '').substring(0, 4);
-      if (processingId !== processingIdInInput) {
-        processingId = processingIdInInput;
+      if (JSON.parse(localStorage.getItem('click_client_issuer_list'))) {
+        if (scope.issuerList !== JSON.parse(localStorage.getItem('click_client_issuer_list'))[0])
+          scope.issuerList = JSON.parse(localStorage.getItem('click_client_issuer_list'))[0];
+        var currentIssuer = {};
         processingIconFound = false;
-        ///PROCESSING ICON
-
-        scope.processingTypes.forEach(function (element) {
-
-          console.log(processingId.substring(0, Number(element.prefix_length)), element.prefix);
-
-          if (element.prefix == processingId.substring(0, Number(element.prefix_length))) {
-            scope.processingImage = element.url;
+        bankIconFound = false;
+        scope.issuerList.forEach(function (issuer) {
+          processingIdInInput = boxOne.value.replace(/\s/g, '').substring(0, parseInt(issuer.prefix_length));
+          if (issuer.prefix === processingIdInInput) {
+            scope.processingImage = issuer.url;
             processingIconId.style.display = 'block';
             processingIconFound = true;
-            isUzcard = element.prefix == "860";
+            currentIssuer = issuer;
           }
         });
-
-
-        if (processingIconFound === false) {
-          processingId = '';
-          scope.processingImage = '';
-          isUzcard = false;
-          processingIconId.style.display = 'none';
-        }
-      }
-
-      //Check for bank icon
-      if (isUzcard) {
-        bankIdInInput = boxOne.value.replace(/\s/g, '').substring(3, 6);
-        if (bankId !== bankIdInInput) {
-          bankId = bankIdInInput;
-          bankIconFound = false;
-          scope.allBankList.forEach(function (element) {
-            if (element.code === bankId) {
-              scope.bankImage = element.image;
+        if (processingIconFound) {
+          bankIdInInput = boxOne.value.replace(/\s/g, '').substring(parseInt(currentIssuer.code_start) - 1,
+            parseInt(currentIssuer.code_start) + parseInt(currentIssuer.code_length) - 1);
+          currentIssuer.item.forEach(function (bank) {
+            if (bank.code === bankIdInInput) {
+              scope.bankImage = bank.image;
               bankIconId.style.display = 'block';
               bankIconFound = true;
             }
           });
-          if (bankIconFound === false) {
-            bankId = '';
-            scope.bankImage = '';
-            bankIconId.style.display = 'none';
-          }
         }
-        if (boxOne.value.replace(/\s/g, '').length < 6) {
-          bankId = '';
+        if (processingIconFound === false) {
+          scope.processingImage = '';
+          processingIconId.style.display = 'none';
+        }
+        if (bankIconFound === false) {
           scope.bankImage = '';
           bankIconId.style.display = 'none';
         }
       }
-
     };
 
     checkCardNumberLength = function () {
