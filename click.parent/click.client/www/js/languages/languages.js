@@ -612,7 +612,9 @@ var RU_LANGUAGES =
   "ViewDefaultAccountChooseButtonText": "Выбрать",
 
 
-  "ViewDefaultAccountSuccessText": "Основная карта установлена успешно"
+  "ViewDefaultAccountSuccessText": "Основная карта установлена успешно",
+
+  "DemoModeConstraintText": "Внимание! Для совершения данного действия необходимо авторизоваться!"
 
 
 };
