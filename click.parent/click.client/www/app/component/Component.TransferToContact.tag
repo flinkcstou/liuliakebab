@@ -108,10 +108,23 @@
       }
 
       function error(message) {
-        console.log('in find contacts error function');
         scope.accessToContacts = false;
-        scope.update();
       }
+      if (device.platform == 'Android') {
+        var permissions = cordova.plugins.permissions;
+        permissions.checkPermission(permissions.READ_CONTACTS, function(status) {
+          if (status.hasPermission) {
+            scope.accessToContacts = true;
+          }
+          else {
+            scope.accessToContacts = false;
+          }
+        },
+        function() {
+          scope.accessToContacts = false;
+        });
+      }
+      scope.update();
     };
     if (device.platform !== 'BrowserStand') {
       try {
