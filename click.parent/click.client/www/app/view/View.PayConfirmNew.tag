@@ -110,6 +110,30 @@
     console.log("OPTS PAYCONFIRM NEW", opts)
 
     var scope = this;
+    var favoriteStartY, favoriteStartX, favoriteEndY, favoriteEndX;
+    var enterPayStartY, enterPayStartX, enterPayEndY, enterPayEndX;
+    var backStartY, backStartX, backEndY, backEndX;
+    var date, sessionKey, phoneNumber, amount, accountId, friendPhone, payment_data;
+
+    scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ?
+      (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
+
+    scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ?
+      (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
+
+    if (localStorage.getItem('settings_block_payAndTransfer'))
+      var payTransferBlocked = JSON.parse(localStorage.getItem('settings_block_payAndTransfer'));
+
+
+    scope.servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ?
+      (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
+    scope.fieldArray = scope.servicesParamsMapOne[opts.chosenServiceId];
+
+    var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+    var serviceId = localStorage.getItem('chosenServiceId');
+    scope.service = scope.servicesMap[opts.chosenServiceId][0];
+    scope.isInFavorites = opts.isInFavorites;
+
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-pay-confirm-new') {
       history.arrayOfHistory.push(
@@ -121,21 +145,20 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
-    var backStartY, backStartX, backEndY, backEndX;
 
     scope.onTouchStartOfBack = onTouchStartOfBack = function () {
       event.stopPropagation();
 
-      payconfirmButtonId.style.webkitTransform = 'scale(0.7)'
+      payconfirmButtonId.style.webkitTransform = 'scale(0.7)';
 
       backStartY = event.changedTouches[0].pageY;
       backStartX = event.changedTouches[0].pageX;
     };
 
-    goToBack = function () {
+    scope.goToBack = goToBack = function () {
       event.stopPropagation();
 
-      payconfirmButtonId.style.webkitTransform = 'scale(1)'
+      payconfirmButtonId.style.webkitTransform = 'scale(1)';
 
       backEndY = event.changedTouches[0].pageY;
       backEndX = event.changedTouches[0].pageX;
@@ -150,19 +173,6 @@
     };
 
 
-    scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
-    scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
-    cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
-    var serviceId = localStorage.getItem('chosenServiceId');
-    if (localStorage.getItem('settings_block_payAndTransfer'))
-      var payTransferBlocked = JSON.parse(localStorage.getItem('settings_block_payAndTransfer'));
-    scope.service = scope.servicesMap[opts.chosenServiceId][0];
-    scope.isInFavorites = opts.isInFavorites;
-
-    console.log('isInFavorites', opts.isInFavorites)
-    scope.servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
-    scope.fieldArray = scope.servicesParamsMapOne[opts.chosenServiceId];
-
     if (opts.mode == 'ADDAUTOPAY') {
       scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
       if (scope.autoPayData.fromView == 'AFTERCREATION') {
@@ -173,14 +183,13 @@
         scope.autoPayTypeText = scope.autoPayData.title;
         scope.autoPayConditionText = scope.autoPayData.condition_text;
         scope.autoPayDelete = !scope.autoPayData.isNew;
-        console.log("autoPayData=", scope.autoPayData);
       }
     }
     scope.titleName = scope.service.name;
     scope.serviceIcon = scope.service.image;
     scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
     scope.cardOrFriendBool = opts.payByCard;
-    //    scope.errorMessageFromPayment = '';
+
 
     scope.stepAmount = 3;
     scope.stepErrorAmount = 3;
@@ -196,37 +205,37 @@
     this.firstFieldId = opts.firstFieldId;
 
     this.firstFieldTitle = opts.firstFieldTitle;
-    console.log("firstFieldTitle pay confirm=", this.firstFieldTitle);
 
 
     if (opts.firstFieldId == '1') {
-      opts.firstFieldText = inputVerification.telLengthVerification(opts.firstFieldText, window.languages.PhoneNumberLength);
 
+      opts.firstFieldText = inputVerification.telLengthVerification(opts.firstFieldText, window.languages.PhoneNumberLength);
       this.firstFieldText = "+" + window.languages.CodeOfCountry + ' ' + inputVerification.telVerificationWithSpace(opts.firstFieldText);
       var firstFieldtext = "+" + window.languages.CodeOfCountry + opts.firstFieldText;
-      console.log("text=", firstFieldtext)
+
     } else if (opts.firstFieldId == '65536' || opts.firstFieldId == '128') {
+
       opts.firstFieldText = inputVerification.telLengthVerification(opts.firstFieldText, window.languages.PhoneNumberLength);
       this.firstFieldText = "+" + window.languages.CodeOfCountry + ' ' + inputVerification.telVerificationWithSpace(opts.firstFieldText);
       var firstFieldtext = inputVerification.spaceDeleter(opts.firstFieldText);
-      console.log("text in else=", firstFieldtext)
+
     }
     else if (opts.chosenPrefixId) {
+
       this.firstFieldText = opts.chosenPrefixName + opts.firstFieldText;
       var firstFieldtext = opts.chosenPrefixName + opts.firstFieldText;
-      console.log("text if prefix=", firstFieldtext)
+
 
     } else {
       this.firstFieldText = opts.firstFieldText;
       var firstFieldtext = opts.firstFieldText;
-      console.log("text in else=", firstFieldtext)
+
     }
 
     this.cardTypeId = opts.cardTypeId;
-
     this.amountText = opts.amountText;
     scope.amountTextCopy = opts.amountText;
-    console.log(opts.amountText, " amounts ", this.amountText, opts.cost);
+
 
     try {
       if (opts.cost) {
@@ -240,7 +249,7 @@
       scope.amountTextCopy = opts.amountText;
     }
 
-    scope.update(scope.amountTextCopy)
+    scope.update(scope.amountTextCopy);
 
     if (scope.cardOrFriendBool) {
       var chosenCardId = opts.chosenCardId;
@@ -268,13 +277,9 @@
         }
       }
 
-//      this.on('mount', function () {
-//        addToAutoPayContainerId.style.display = 'none';
-//      });
     }
     scope.update();
 
-    var favoriteStartY, favoriteStartX, favoriteEndY, favoriteEndX;
 
     scope.onTouchStartOfFavorite = onTouchStartOfFavorite = function () {
       event.stopPropagation();
@@ -284,7 +289,6 @@
 
 
     updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
-      console.log("OPEN RESULT COMPONENT:", showResult, status, text);
 
       if (showResult) {
         window.common.alert.updateView("componentResultId", {
@@ -297,22 +301,22 @@
         window.common.alert.hide("componentResultId");
       }
       updateIcon(status, null, null, text, stepAmount, viewPage);
-    }
+    };
 
     closeResultComponent = function () {
-      console.log("CLOSE RESULT COMPONENT");
+
       window.common.alert.hide("componentResultId");
       riot.update();
-    }
+    };
 
     initResultComponent = function () {
-      console.log("INIT RESULT COMPONENT");
+
       window.common.alert.updateView("componentResultId", {
-        parent: scope,
+        parent: scope
 
       });
       riot.update();
-    }
+    };
 
     addToFavoritesinPayConfirm = function () {
       event.stopPropagation();
@@ -323,15 +327,15 @@
       if (Math.abs(favoriteStartY - favoriteEndY) <= 20 && Math.abs(favoriteStartX - favoriteEndX) <= 20) {
 
         if (modeOfApp.demoVersion) {
-          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+          var question = window.languages.DemoModeConstraintText;
           window.common.alert.show("componentAlertId", {
             parent: scope,
             errornote: question
           });
           scope.update();
-
           return
         }
+
         scope.isInFavorites = true;
         scope.update(scope.isInFavorites);
         opts.isInFavorites = true;
@@ -339,15 +343,13 @@
         onBackParams.opts = JSON.parse(JSON.stringify(opts));
         var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
         var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-        console.log("sessionKey=", sessionKey, "phoneNumber", phoneNumber)
-        var favoritePaymentsList, favoritePaymentsListForApi;
-        console.log("ID for favorite", Math.floor((Math.random() * 1000000) + 1))
+
         var id = Math.floor((Math.random() * 1000000) + 1);
         opts.favoriteId = id;
-        favoritePaymentsList = localStorage.getItem('favoritePaymentsList') ? JSON.parse(localStorage.getItem('favoritePaymentsList')) : [];
-        favoritePaymentsListForApi = localStorage.getItem('favoritePaymentsListForApi') ? JSON.parse(localStorage.getItem('favoritePaymentsListForApi')) : [];
+        var favoritePaymentsList = localStorage.getItem('favoritePaymentsList') ? JSON.parse(localStorage.getItem('favoritePaymentsList')) : [];
+        var favoritePaymentsListForApi = localStorage.getItem('favoritePaymentsListForApi') ? JSON.parse(localStorage.getItem('favoritePaymentsListForApi')) : [];
 
-        if (favoritePaymentsListForApi.length != favoritePaymentsList.length) {
+        if (favoritePaymentsListForApi.length !== favoritePaymentsList.length) {
           favoritePaymentsListForApi = [];
           for (var i in favoritePaymentsList)
             favoritePaymentsListForApi.push({
@@ -392,7 +394,7 @@
             else {
               window.common.alert.show("componentAlertId", {
                 parent: scope,
-                errornote: result[0][0].error_note,
+                errornote: result[0][0].error_note
               });
               scope.update();
               console.log(result[0][0].error_note);
@@ -405,8 +407,6 @@
           }
         });
 
-        console.log("favoritePaymentsList=", favoritePaymentsList);
-        console.log("favoritePaymentsListForApi=", favoritePaymentsListForApi);
         localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
         localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(favoritePaymentsListForApi));
 
@@ -421,19 +421,18 @@
       favoriteEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(favoriteStartY - favoriteEndY) <= 20 && Math.abs(favoriteStartX - favoriteEndX) <= 20) {
+
         var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
         var favoritePaymentsListForApi = JSON.parse(localStorage.getItem('favoritePaymentsListForApi'));
         var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
         var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-        console.log(favoritePaymentsList);
+
         for (var i in favoritePaymentsList) {
 
-          console.log(favoritePaymentsList[i].service.id, opts.chosenServiceId)
 
           if (favoritePaymentsList[i].id == opts.favoriteId) {
-            console.log("i=", i);
+
             favoritePaymentsList.splice(i, 1);
-            console.log(favoritePaymentsList);
             scope.isInFavorites = false;
             opts.isInFavorites = false;
             onBackParams.opts = JSON.parse(JSON.stringify(opts));
@@ -466,7 +465,7 @@
                   window.common.alert.show("componentAlertId", {
                     parent: scope,
                     clickpinerror: false,
-                    errornote: result[0][0].error_note,
+                    errornote: result[0][0].error_note
                   });
                   scope.update();
                   console.log(result[0][0].error_note);
@@ -485,28 +484,24 @@
 
           }
         }
-
-
       }
     };
-
-    var enterPayStartY, enterPayStartX, enterPayEndY, enterPayEndX;
 
     scope.onTouchStartOfEnterPay = onTouchStartOfEnterPay = function () {
       event.stopPropagation();
 
-      autoPayButtonId.style.webkitTransform = 'scale(0.8)'
+      autoPayButtonId.style.webkitTransform = 'scale(0.8)';
 
       enterPayStartY = event.changedTouches[0].pageY;
       enterPayStartX = event.changedTouches[0].pageX;
     };
 
-    var date, sessionKey, phoneNumber, serviceId, amount, accountId, friendPhone, payment_data;
+
 
     scope.onTouchEndOfEnterPay = onTouchEndOfEnterPay = function () {
       event.stopPropagation();
 
-      autoPayButtonId.style.webkitTransform = 'scale(1)'
+      autoPayButtonId.style.webkitTransform = 'scale(1)';
 
       enterPayEndY = event.changedTouches[0].pageY;
       enterPayEndX = event.changedTouches[0].pageX;
@@ -514,7 +509,7 @@
       if (Math.abs(enterPayStartY - enterPayEndY) <= 20 && Math.abs(enterPayStartX - enterPayEndX) <= 20) {
 
         if (modeOfApp.demoVersion) {
-          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
+          var question = window.languages.DemoModeConstraintText;
           window.common.alert.show("componentAlertId", {
             parent: scope,
             errornote: question
@@ -531,7 +526,8 @@
         }
         payService();
       }
-    }
+    };
+
 
     payService = function () {
 
@@ -557,8 +553,6 @@
       }
 
       scope.update();
-      console.log("accountId", accountId);
-      console.log("friendPhone", friendPhone);
 
       if (opts.formtype == 1) {
         payment_data = {
@@ -590,9 +584,6 @@
         };
       }
 
-      console.log("payTransferBlocked=", payTransferBlocked);
-      console.log("payment_data=", payment_data);
-
       if (opts.mode != 'ADDAUTOPAY') {
 
         paymentFunction(payment_data);
@@ -615,8 +606,6 @@
       }
 
       initResultComponent();
-
-//      showResultComponentGlobal(getPaymentSuccessStep, null, 'success', "");
 
       window.api.call({
         method: 'app.payment',
@@ -651,7 +640,6 @@
 
                 viewServicePinCards.friendHelpPaymentMode = false;
                 viewServicePinCards.chosenFriendForHelp = null;
-                console.log("WWWWWWWW")
 
                 updateResultComponent(true, getPaymentSuccessStep, null, 'success', result[0][0].error_note);
               }
@@ -659,7 +647,6 @@
           }
           else {
             answerFromServer = true;
-            console.log("Error on app.payment", result[0][0].error_note);
             updateResultComponent(true, appPaymentErrorStep, null, 'unsuccess', result[0][0].error_note);
           }
         },
@@ -743,8 +730,6 @@
               } else {
                 answerFromServer = true;
 
-                console.log("stopping check")
-
                 viewServicePinCards.friendHelpPaymentMode = false;
                 viewServicePinCards.chosenFriendForHelp = null;
 
@@ -803,7 +788,7 @@
 
       if (scope.autoPayData) {
         if (scope.autoPayData.autopay_type == 2) {
-          console.log(Number(amount));
+
           window.api.call({
             method: 'autopay.add.by.event',
             input: {
@@ -1042,7 +1027,7 @@
       if (Math.abs(autoPayStartY - autoPayEndY) <= 20 && Math.abs(autoPayStartX - autoPayEndX) <= 20) {
 
         if (modeOfApp.demoVersion) {
-          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+          var question = window.languages.DemoModeConstraintText;
           window.common.alert.show("componentAlertId", {
             parent: scope,
             errornote: question
@@ -1081,7 +1066,6 @@
     }
 
     if (payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) === true) {
-      console.log("payTransferConfirmed=", sessionStorage.getItem('payTransferConfirmed'))
       payService();
       sessionStorage.setItem('payTransferConfirmed', null);
     }
