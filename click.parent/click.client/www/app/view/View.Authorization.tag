@@ -529,7 +529,7 @@
                 localStorage.removeItem('click_client_friendsOuter_count')
               }
 
-              getAccount(checkSessionKey, scope.firstEnter);
+              getAccount(checkSessionKey, scope.firstEnter, firstPinInputId.value);
               window.pushNotificationActions.retrievePushNotification();
             }
           }

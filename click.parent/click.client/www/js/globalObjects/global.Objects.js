@@ -749,7 +749,7 @@ window.updateBalanceGlobalFunction = function () {
 /////////
 
 
-window.getAccount = function (checkSessionKey, firstEnter) {
+window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
 
   if (checkSessionKey) {
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
@@ -767,8 +767,8 @@ window.getAccount = function (checkSessionKey, firstEnter) {
     var sessionKey = info.session_key;
 
     if (firstEnter) {
-      var lengthOfPin = firstPinInputId.value.length;
-      var compareLength = window.inputVerification.spaceDeleter(firstPinInputId.value);
+      var lengthOfPin = firstPinInputValue.length;
+      var compareLength = window.inputVerification.spaceDeleter(firstPinInputValue);
       console.log("First enter in account");
     }
 
