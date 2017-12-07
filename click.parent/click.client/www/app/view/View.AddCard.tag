@@ -102,50 +102,6 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
-    if (loginInfo)
-      if (!localStorage.getItem("click_client_p2p_bank_list") || loginInfo.update_bank_list) {
-        if (modeOfApp.onlineMode)
-          window.api.call({
-            method: 'p2p.bank.list',
-            input: {
-              session_key: sessionKey,
-              phone_num: phoneNumber
-            },
-            scope: this,
-
-            onSuccess: function (result) {
-              if (result[0][0].error === 0) {
-                var bankListAvailable = [];
-                for (var i in result[1]) {
-                  if (result[1][i].p2p_status === 1)
-                    bankListAvailable.push(result[1][i]);
-                }
-                if (localStorage.getItem('click_client_p2p_all_bank_list') !== JSON.stringify(result[1])) {
-                  localStorage.setItem('click_client_p2p_bank_list', JSON.stringify(bankListAvailable));
-                  localStorage.setItem('click_client_p2p_all_bank_list', JSON.stringify(result[1]));
-                  scope.allBankList = result[1];
-                }
-              }
-              else {
-                scope.errorNote = result[0][0].error_note;
-
-                window.common.alert.show("componentAlertId", {
-                  parent: scope,
-                  clickpinerror: scope.clickPinError,
-                  errornote: scope.errorNote,
-                  pathtosettings: scope.pathToSettings,
-                  permissionerror: scope.permissionError
-                });
-
-                scope.update();
-              }
-            },
-            onFail: function (api_status, api_status_message, data) {
-              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-              console.error(data);
-            }
-          });
-      }
 
     //get list of issuers and bank codes
     {
@@ -167,8 +123,8 @@
               onSuccess: function (result) {
                 if (result[0][0].error == 0) {
                   var issuerList = [];
-                  for (var i in result[1]) {
-                    issuerList.push(result[1][i]);
+                  for (var i in result[1][0]) {
+                    issuerList.push(result[1][0][i]);
                   }
                   localStorage.setItem('click_client_issuer_list', JSON.stringify(issuerList));
 
@@ -440,8 +396,8 @@
     checkForIconsAddCard = function () {
 
       if (JSON.parse(localStorage.getItem('click_client_issuer_list'))) {
-        if (scope.issuerList !== JSON.parse(localStorage.getItem('click_client_issuer_list'))[0])
-          scope.issuerList = JSON.parse(localStorage.getItem('click_client_issuer_list'))[0];
+        if (scope.issuerList !== JSON.parse(localStorage.getItem('click_client_issuer_list')))
+          scope.issuerList = JSON.parse(localStorage.getItem('click_client_issuer_list'));
         var currentIssuer = {};
         processingIconFound = false;
         bankIconFound = false;

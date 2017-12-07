@@ -226,7 +226,7 @@ function offlineDetector() {
     if (device.platform === 'Android')
       showConfirmComponent("Сервер временно недоступен.\nПерейти в оффлайн режим ?", 'internet');
     else {
-      showAlertComponent("Сервер временно недоступен");
+      showAlertComponent("Отсутствует интернет-соединение");
     }
   }
 }

@@ -238,17 +238,40 @@
         if (scope.cardsarray[i].countCard === cardNumber) {
           scope.chosenCardBottom = scope.cardsarray[i];
 
-          var codeOfBankBottom = scope.chosenCardBottom.numberPartOne.substring(3, 4) + scope.chosenCardBottom.numberMiddleTwo;
-          for (var i = 0; i < scope.parent.allBankList.length; i++) {
-            if (codeOfBankBottom === scope.parent.allBankList[i].code) {
-              if (scope.parent.allBankList[i].p2p_status === 1) {
-                scope.statusOfBankToP2PBottom = true;
+          var firstSixDigits = scope.chosenCardBottom.numberPartOne + scope.chosenCardBottom.numberMiddleTwo;
+          if (JSON.parse(localStorage.getItem('click_client_issuer_list'))) {
+            if (scope.issuerList !== JSON.parse(localStorage.getItem('click_client_issuer_list')))
+              scope.issuerList = JSON.parse(localStorage.getItem('click_client_issuer_list'));
+
+            var currentIssuer = {};
+
+            processingIconFound = false;
+            bankIconFound = false;
+            scope.bankIdentified = false;
+            scope.statusOfBankToP2PBottom = true;
+            scope.issuerList.forEach(function (issuer) {
+              processingIdInInput = firstSixDigits.replace(/\s/g, '').substring(0, parseInt(issuer.prefix_length));
+              if (issuer.prefix === processingIdInInput) {
+                processingIconFound = true;
+                currentIssuer = issuer;
               }
-              scope.minLimit = scope.parent.allBankList[i].p2p_min_limit;
-              scope.maxLimit = scope.parent.allBankList[i].p2p_max_limit;
-              scope.taxPercent = scope.parent.allBankList[i].p2p_percent;
-              scope.nameOfBankBottom = scope.parent.allBankList[i].bank_name;
-              break;
+            });
+
+            if (processingIconFound) {
+              bankIdInInput = firstSixDigits.replace(/\s/g, '').substring(parseInt(currentIssuer.code_start) - 1,
+                parseInt(currentIssuer.code_start) + parseInt(currentIssuer.code_length) - 1);
+              currentIssuer.item.forEach(function (bank) {
+                if (bank.code === bankIdInInput) {
+                  bankIconFound = true;
+                  scope.minLimit = parseInt(bank.p2p_min_limit);
+                  scope.maxLimit = parseInt(bank.p2p_max_limit);
+                  scope.taxPercent = parseInt(bank.p2p_percent);
+                  if (bank.p2p_status == 1){
+                    scope.statusOfBankToP2PBottom = true;
+                  }
+                  scope.nameOfBankBottom = bank.bank_name;
+                }
+              });
             }
           }
 
@@ -269,6 +292,7 @@
           else {
             scope.tax = 0
           }
+          console.log('currentBank', scope.nameOfBankBottom);
         }
       }
       scope.update();
