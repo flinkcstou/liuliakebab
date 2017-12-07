@@ -206,6 +206,8 @@
           scope.receiver = opts.phoneNumber.replace(/\s/g, '');
           scope.receiverTitle = '+998 ' + inputVerification.telVerificationWithSpace(inputVerification.telVerification(opts.phoneNumber));
           scope.taxPercent = opts.taxPercent;
+          scope.maxLimit = opts.maxLimit;
+          scope.minLimit = opts.minLimit;
           scope.transferType = 2;
         }
         if (opts.cardsarray) {

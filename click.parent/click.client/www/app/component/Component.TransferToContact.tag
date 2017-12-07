@@ -328,6 +328,8 @@
           cardcounter: scope.cardCounter,
           idcardfrommycards: scope.idCardFromMyCards,
           taxPercent: taxPercent,
+          maxLimit: 9999999999999,
+          minLimit: 5000,
         };
         if (scope.parent.countCardFromMain)
           params.countCardFromMain = scope.parent.countCardFromMain;
