@@ -489,14 +489,7 @@
       var version = localStorage.getItem('version');
       answerFromServer = false;
 
-      if (device.platform !== 'BrowserStand') {
-        var options = {dimBackground: true};
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Spinner start in authorization");
-        }, function () {
-          console.log("Spinner stop in authorization");
-        });
-      }
+      window.startSpinner();
 
       window.api.call({
         method: 'app.login',
@@ -544,10 +537,7 @@
 
             var clickPinError, errorNote, errorCode;
 
-            if (device.platform !== 'BrowserStand') {
-              console.log("Spinner Stop View Authorization");
-              SpinnerPlugin.activityStop();
-            }
+            window.stopSpinner();
 
             if (result[0][0].error === -31) {
 
@@ -601,10 +591,7 @@
         if (!answerFromServer) {
           answerFromServer = true;
           updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText);
-          if (device.platform !== 'BrowserStand') {
-            console.log("Spinner stop in authorization by timeout");
-            SpinnerPlugin.activityStop();
-          }
+          window.stopSpinner();
           return
         }
       }, 30000)

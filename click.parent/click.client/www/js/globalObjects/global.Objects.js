@@ -1317,4 +1317,11 @@ window.startSpinner = function () {
       console.log("closed");
     });
   }
+};
+
+window.stopSpinner = function () {
+  if (device.platform !== 'BrowserStand') {
+    console.log("Spinner Stop View Authorization");
+    SpinnerPlugin.activityStop();
+  }
 }
