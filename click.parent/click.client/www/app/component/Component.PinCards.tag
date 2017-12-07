@@ -29,57 +29,9 @@
   <script>
     var scope = this;
 
-    //<div class="pincard-allcards-transparent-block"></div>
-    //    if (!viewTransfer.check) {
-
     scope.cardsArray = localStorage.getItem('click_client_cards') ? JSON.parse(localStorage.getItem('click_client_cards')) : [];
     checkCardPermission();
-    updateCardsArray = function () {
-//      console.log("update cards array")
-//      if (localStorage.getItem('click_client_cards')) {
-//        scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
-//        console.log("cardsArray in pincards", scope.cardsArray);
-//        checkCardPermission();
-//        if (device.platform != 'BrowserStand') {
-//          console.log("Spinner Stop View Pincard Comp 45");
-//          SpinnerPlugin.activityStop();
-//        }
-//        console.log("Before update");
-//        scope.update();
-//        console.log("After update");
-//      }
-//      else
-//        setTimeout(function () {
-//          updateCardsArray();
-//        }, 3000)
-    }
 
-    //    if (!localStorage.getItem('click_client_cards')) {
-    //      if (device.platform != 'BrowserStand') {
-    //        var options = {dimBackground: true};
-    //
-    //        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-    //          console.log("Started");
-    //        }, function () {
-    //          console.log("closed");
-    //        });
-    //      }
-    //
-    ////      updateCardsArray();
-    //    }
-
-
-    //    else {
-    //      scope.cardsArray = [];
-    //      var cards = JSON.parse(localStorage.getItem('click_client_cards'));
-    //      for (var j in cards) {
-    //        if (cards[j].numberPartOne == '8600' && (parseInt(viewTransferStepTwo.sumWithoutSpace) <= parseInt(cards[j].salary.replace(/\s/g, '')))) {
-    //          console.log(cards[j])
-    //          scope.cardsArray.push(cards[j])
-    //        }
-    //      }
-    //      riot.update()
-    //    }
     scope.checked = false;
     scope.cardId = undefined;
     scope.cardSum = 0;
@@ -97,7 +49,7 @@
     });
 
     if (viewServicePinCards.friendHelpPaymentMode && viewServicePinCards.chosenFriendForHelp) {
-//    if (!scope.opts.clean) {
+
       for (var i in scope.cardsArray) {
         if (scope.cardsArray[i].chosenCard == true && scope.cardsArray[i].access == 2) {
           scope.cardsArray[i].chosenCard = false;
@@ -119,21 +71,16 @@
 
 
     chooseCardTouchEnd = function (id) {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
 
       scope.cardId = id;
 
       pinCardtouchEndY = event.changedTouches[0].pageY;
 
-      console.log('CARD ID', scope.cardId)
-      console.log('pinCardtouchStartY - pinCardtouchEndY', pinCardtouchStartY - pinCardtouchEndY)
-
       if (Math.abs(pinCardtouchStartY - pinCardtouchEndY) < 20) {
 
         scope.checkedId = "check" + id;
-        console.log('scope.checkedId', document.getElementById(scope.checkedId))
-//        scope.update(scope.checkedId);
 
         if (viewServicePinCards.friendHelpPaymentMode && viewServicePinCards.chosenFriendForHelp) {
           scope.parent.refreshFunction(false);
@@ -151,9 +98,8 @@
           else
             scope.cardsArray[i].chosenCard = false;
         }
-//        }
 
-        localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray))
+        localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
         scope.update(scope.cardsArray)
       }
       else return
@@ -195,7 +141,6 @@
 
 
     if (scope.opts.clean && viewMainPage.myCards !== true && scope.cardsArray.length > 0) {
-      console.log("198");
       scope.cleanChosenCards();
     }
 
@@ -210,7 +155,6 @@
     };
 
     scope.getAccountCardSum = function () {
-      console.log('sum', scope)
 
       return scope.cardSum;
     };

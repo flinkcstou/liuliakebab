@@ -38,6 +38,7 @@
   <script>
     var scope = this;
     this.titleName = window.languages.ViewMyCardListTitleName;
+    viewMainPage.atMainPage = false;
     var goBackButtonStartX,
       goBackButtonEndX,
       goBackButtonStartY,
@@ -61,6 +62,7 @@
       scope.sortedCards = JSON.parse(localStorage.getItem("click_client_sortedCards"));
 
     console.log('CARDS', scope.cardsArray)
+    console.log('CARDS sorted', scope.sortedCards)
     scope.update();
 
     goToBackStart = function () {
