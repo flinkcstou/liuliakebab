@@ -164,7 +164,7 @@ window.api.initSocket = function () {
     if (modeOfApp.offlineMode) return;
     console.log('Error with socket ' + error.message);
     if (navigator.connection.type !== Connection.NONE) {
-      showAlertComponent("Сервер временно недоступен");
+      showAlertComponent("Связь с сервером потеряна. Повторите попытку.");
     }
     riot.update();
   };
@@ -224,9 +224,9 @@ function offlineDetector() {
     window.isConnected = false;
     console.log("Offline detector, window.isConnected:", window.isConnected);
     if (device.platform === 'Android')
-      showConfirmComponent("Сервер временно недоступен.\nПерейти в оффлайн режим ?", 'internet');
+      showConfirmComponent("Интернет-соединение отсутствует.\nПерейти в оффлайн режим ?", 'internet');
     else {
-      showAlertComponent("Отсутствует интернет-соединение");
+      showAlertComponent("Интернет-соединение отсутствует. Проверьте подключение.");
     }
   }
 }
