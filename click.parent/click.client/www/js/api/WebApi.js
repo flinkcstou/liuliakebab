@@ -224,7 +224,7 @@ function offlineDetector() {
     window.isConnected = false;
     console.log("Offline detector, window.isConnected:", window.isConnected);
     if (device.platform === 'Android')
-      showConfirmComponent("Интернет-соединение отсутствует.\nПерейти в оффлайн режим ?", 'internet');
+      showConfirmComponent("Интернет-соединение отсутствует.\nПерейти в офлайн режим ?", 'internet');
     else {
       showAlertComponent("Интернет-соединение отсутствует. Проверьте подключение.");
     }
