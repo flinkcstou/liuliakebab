@@ -55,7 +55,7 @@
 
   <script>
     var scope = this;
-    this.titleName = 'ИЗБРАННОЕ';
+    this.titleName = window.languages.ViewFavoriteBodyTitleText;
     scope.favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');

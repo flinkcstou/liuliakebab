@@ -32,7 +32,7 @@
     <div id="favouriteButtonId" class="side-menu-favorite-container" ontouchstart="goToFavoritesStart()"
          ontouchend="goToFavoritesEnd()">
       <div class="side-menu-containers-icon side-menu-containers-icon-favorite"></div>
-      <div class="side-menu-containers-name side-menu-containers-name-favorite">Избранные</div>
+      <div class="side-menu-containers-name side-menu-containers-name-favorite">Избранные платежи</div>
     </div>
 
     <div id="autoPayButtonId" if="{!modeOfApp.offlineMode}" class="side-menu-auto-pay-container"
