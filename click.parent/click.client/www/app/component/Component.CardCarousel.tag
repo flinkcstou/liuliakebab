@@ -534,7 +534,7 @@
             onSuccess: function (result) {
 
               if (result[0][0].error == 0) {
-                if (localStorage.getItem('click_client_cards')) {
+                if (JSON.parse(localStorage.getItem('click_client_cards'))) {
                   var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
                   var countLocalStorageCard = Object.keys(cardsArray).length;
 
