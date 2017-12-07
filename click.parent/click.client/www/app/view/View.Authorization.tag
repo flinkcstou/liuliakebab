@@ -479,12 +479,14 @@
       authorization(phoneNumber, deviceId, password, date);
     };
 
-    var answerFromServer;
+    var answerFromServer, firstPinInputValue = "";
 
     function authorization(phoneNumber, deviceId, password, date) {
 
-      if (scope.firstEnter)
+      if (scope.firstEnter) {
         firstPinInputId.blur();
+        firstPinInputValue = firstPinInputId.value;
+      }
 
       var version = localStorage.getItem('version');
       answerFromServer = false;
@@ -529,7 +531,8 @@
                 localStorage.removeItem('click_client_friendsOuter_count')
               }
 
-              getAccount(checkSessionKey, scope.firstEnter, firstPinInputId.value);
+
+              getAccount(checkSessionKey, scope.firstEnter, firstPinInputValue);
               window.pushNotificationActions.retrievePushNotification();
             }
           }
