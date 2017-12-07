@@ -1321,7 +1321,7 @@ window.startSpinner = function () {
 
 window.stopSpinner = function () {
   if (device.platform !== 'BrowserStand') {
-    console.log("Spinner Stop View Authorization");
+    console.log("Spinner Stop");
     SpinnerPlugin.activityStop();
   }
 }

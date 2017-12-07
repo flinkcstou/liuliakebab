@@ -34,8 +34,6 @@
     scope.success = false;
     scope.fail = false;
 
-    console.log('opts.amount', scope.opts)
-
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 
     goToBackStart = function () {
@@ -43,7 +41,7 @@
       event.stopPropagation();
 
       if (backButton)
-        backButton.style.webkitTransform = 'scale(0.7)'
+        backButton.style.webkitTransform = 'scale(0.7)';
 
       goBackButtonStartX = event.changedTouches[0].pageX;
       goBackButtonStartY = event.changedTouches[0].pageY;
@@ -55,20 +53,20 @@
       event.stopPropagation();
 
       if (backButton)
-        backButton.style.webkitTransform = 'scale(1)'
+        backButton.style.webkitTransform = 'scale(1)';
 
       goBackButtonEndX = event.changedTouches[0].pageX;
       goBackButtonEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
-        onBackKeyDown()
+        onBackKeyDown();
         scope.unmount()
       }
     };
 
     transferOnCardOnTouchStartAccept = function () {
 
-      acceptTransferOnCardButtonId.style.webkitTransform = 'scale(0.8)'
+      acceptTransferOnCardButtonId.style.webkitTransform = 'scale(0.8)';
 
       touchStartAcceptX = event.changedTouches[0].pageX;
       touchStartAcceptY = event.changedTouches[0].pageY;
@@ -76,7 +74,7 @@
 
     transferOnCardOnTouchEndAccept = function () {
 
-      acceptTransferOnCardButtonId.style.webkitTransform = 'scale(1)'
+      acceptTransferOnCardButtonId.style.webkitTransform = 'scale(1)';
 
       touchEndAcceptX = event.changedTouches[0].pageX;
       touchEndAcceptY = event.changedTouches[0].pageY;
@@ -102,15 +100,7 @@
           return;
         }
 
-        if (device.platform != 'BrowserStand') {
-          var options = {dimBackground: true};
-
-          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-            console.log("Started");
-          }, function () {
-            console.log("closed");
-          });
-        }
+        window.startSpinner();
 
         transferOnCardCheckAnswer = false;
 
@@ -129,10 +119,7 @@
           onSuccess: function (result) {
             transferOnCardCheckAnswer = true;
 
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Transfer On Card 154");
-              SpinnerPlugin.activityStop();
-            }
+            widnow.stopSpinner();
 
             console.log("result of invoice transfer accept", result);
 
@@ -161,7 +148,7 @@
 
           onFail: function (api_status, api_status_message, data) {
             transferOnCardCheckAnswer = true;
-
+            window.stopSpinner();
             window.common.alert.show("componentUnsuccessId", {
               parent: scope,
               viewpage: 'view-invoice-list',
@@ -183,10 +170,6 @@
               errornote: window.languages.ViewTransferOnCardCardNotChosen,
               step_amount: scope.stepAmount
             });
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Transfer On Card 204");
-              SpinnerPlugin.activityStop();
-            }
             return
           }
         }, 10000);
