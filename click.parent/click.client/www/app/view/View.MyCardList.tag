@@ -43,6 +43,7 @@
       goBackButtonEndX,
       goBackButtonStartY,
       goBackButtonEndY;
+    scope.sortedCards = [];
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-mycard-list') {
       history.arrayOfHistory.push(
@@ -54,12 +55,11 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
+    scope.cardsArray = localStorage.getItem("click_client_cards") ? JSON.parse(localStorage.getItem("click_client_cards")) : [];
 
-    if (JSON.parse(localStorage.getItem("click_client_cards")))
-      scope.cardsArray = JSON.parse(localStorage.getItem("click_client_cards"));
-
-    if (JSON.parse(localStorage.getItem("click_client_sortedCards")))
-      scope.sortedCards = JSON.parse(localStorage.getItem("click_client_sortedCards"));
+    for (var i in scope.cardsArray) {
+      scope.sortedCards[scope.cardsArray[i].countCard - 1] = scope.cardsArray[i];
+    }
 
     console.log('CARDS', scope.cardsArray)
     console.log('CARDS sorted', scope.sortedCards)

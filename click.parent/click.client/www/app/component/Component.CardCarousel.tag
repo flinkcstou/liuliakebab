@@ -67,8 +67,6 @@
     var scope = this;
     scope.invoiceLeft = 100 * widthK;
     scope.invoiceList = [];
-    var sortedAccounts = localStorage.getItem('click_client_sortedAccounts') ? JSON.parse(localStorage.getItem('click_client_sortedAccounts')) : [],
-      sortedCards = localStorage.getItem('click_client_sortedCards') ? JSON.parse(localStorage.getItem('click_client_sortedCards')) : [];
 
     var arrayOfPhones = [];
 
@@ -221,70 +219,60 @@
         }
 
         scope.cardsarray = {};
-        sortedAccounts = [];
-        sortedCards = [];
+
         var numberOfCardPartOne;
         var numberOfCardMiddleTwo;
         var numberOfCardPartTwo;
         var typeOfCard;
 
-        for (var i = 0; i < getAccountsCards.length; i++) {
-          sortedAccounts[getAccountsCards[i].countCard - 1] = getAccountsCards[i];
-        }
-
-        console.log("sortedAccounts=", sortedAccounts);
 
         count = 1;
         if (viewMainPage.addFirstCardBool) count = 2;
-        for (var i = 0; i < sortedAccounts.length; i++) {
+        for (var i = 0; i < getAccountsCards.length; i++) {
 
-
-          if (sortedAccounts[i].access == 0) break;
-          if (loginInfo.default_account == sortedAccounts[i].id) {
+          if (getAccountsCards[i].access == 0) break;
+          if (loginInfo.default_account == getAccountsCards[i].id) {
             var defaultAccount = true;
           }
           else
             defaultAccount = false;
 
-          numberOfCardPartOne = sortedAccounts[i].accno.substring(0, 4);
-          numberOfCardMiddleTwo = sortedAccounts[i].accno.substring(5, 7);
-          numberOfCardPartTwo = sortedAccounts[i].accno.substring(sortedAccounts[i].accno.length - 4, sortedAccounts[i].accno.length);
+          numberOfCardPartOne = getAccountsCards[i].accno.substring(0, 4);
+          numberOfCardMiddleTwo = getAccountsCards[i].accno.substring(5, 7);
+          numberOfCardPartTwo = getAccountsCards[i].accno.substring(getAccountsCards[i].accno.length - 4, getAccountsCards[i].accno.length);
 
 
           card = {
-            card_id: sortedAccounts[i].id,
-            id: sortedAccounts[i].id,
-            card_num_hash: sortedAccounts[i].card_num_hash,
-            card_num_crypted: sortedAccounts[i].card_num_crypted,
-            checksum: sortedAccounts[i].checksum,
+            card_id: getAccountsCards[i].id,
+            id: getAccountsCards[i].id,
+            card_num_hash: getAccountsCards[i].card_num_hash,
+            card_num_crypted: getAccountsCards[i].card_num_crypted,
+            checksum: getAccountsCards[i].checksum,
             bankName: typeOfCard,
-            name: sortedAccounts[i].description,
+            name: getAccountsCards[i].description,
             salary: '',
             error_message: null,
-            countCard: sortedAccounts[i].countCard,
-            currency: sortedAccounts[i].currency_name.trim(),
+            countCard: getAccountsCards[i].countCard,
+            currency: getAccountsCards[i].currency_name.trim(),
             numberPartOne: numberOfCardPartOne,
             numberMiddleTwo: numberOfCardMiddleTwo,
             numberPartTwo: numberOfCardPartTwo,
-            url: sortedAccounts[i].image_url,
-            card_background_url: sortedAccounts[i].card_background_url,
+            url: getAccountsCards[i].image_url,
+            card_background_url: getAccountsCards[i].card_background_url,
             chosenCard: defaultAccount,
             default_account: defaultAccount,
-            access: sortedAccounts[i].access,
-            background_color_bottom: sortedAccounts[i].background_color_bottom,
-            background_color_top: sortedAccounts[i].background_color_top,
-            font_color: sortedAccounts[i].font_color,
-            removable: sortedAccounts[i].removable,
-            payment_allowed: sortedAccounts[i].payment_allowed,
-            p2p_allowed: sortedAccounts[i].p2p_allowed
+            access: getAccountsCards[i].access,
+            background_color_bottom: getAccountsCards[i].background_color_bottom,
+            background_color_top: getAccountsCards[i].background_color_top,
+            font_color: getAccountsCards[i].font_color,
+            removable: getAccountsCards[i].removable,
+            payment_allowed: getAccountsCards[i].payment_allowed,
+            p2p_allowed: getAccountsCards[i].p2p_allowed
           };
 
-          scope.cardsarray[sortedAccounts[i].id] = card;
-
-          console.log("i=", i, sortedAccounts[i].id, card);
+          scope.cardsarray[getAccountsCards[i].id] = card;
 
           localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
-          localStorage.setItem("click_client_sortedAccounts", JSON.stringify(sortedAccounts));
 
           count++;
 
@@ -736,17 +724,6 @@
                   }
                 }
 
-                console.log("SORTEDACCOUNTS", sortedAccounts)
-                sortedCards = [];
-                for (var i in sortedAccounts) {
-                  console.log("SORTEDACCOUNTS i", sortedAccounts[i])
-
-                  sortedCards.push(scope.cardsarray[sortedAccounts[i].id]);
-                }
-
-                console.log("SORTEDCARDS", sortedCards)
-
-                localStorage.setItem("click_client_sortedCards", JSON.stringify(sortedCards));
                 localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
                 scope.update();
 
