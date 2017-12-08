@@ -313,7 +313,20 @@ window.amountTransform = function (amount) {
 
   if (amount.indexOf('.') >= 0) {
     newAmount = amount;
-    console.log("Amount contains dot");
+    var integerPart = amount.slice(0, amount.indexOf('.'));
+    var newIntegerPart = '';
+    var fractionalPart = amount.slice(amount.indexOf('.'), amount.length);
+    var j = 0;
+    for (var i = integerPart.length - 1; i >= 0; i--) {
+      j++;
+      newIntegerPart += integerPart[i];
+      if (j % 3 == 0 && i != 0) {
+        newIntegerPart += ' ';
+      }
+    }
+    if (parseFloat(fractionalPart) === 0)
+      fractionalPart = "";
+    return newIntegerPart.split("").reverse().join("") + fractionalPart;
   }
   else {
     var j = 0;
@@ -325,6 +338,8 @@ window.amountTransform = function (amount) {
       }
     }
   }
+
+  console.log('amountInglobalObjects', newAmount);
 
   return newAmount.split("").reverse().join("");
 }

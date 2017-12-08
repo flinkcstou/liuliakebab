@@ -37,8 +37,34 @@ window.fakedSocket.register("get.balance.multiple", function (input) {
   return [
     [{"method": input.method, "success": 1, "error": 0, "error_note": ""}],
     [{
-      "balance": 14000000,
+      "balance": 14000000.005,
       "account_id": 2484171,
+    }]
+  ];
+});
+
+window.fakedSocket.register("issuer.list", function (input){
+  return [
+    [{"method": input.method, "success": 1, "error": 0, "error_note": ""}],
+    [{
+      "prefix": "860",
+      "prefix_length": "3",
+      "url": "https://cdn.click.uz/app/rev2/icons/misc/uzcard.png",
+      "code_start": "4",
+      "code_length": "3",
+      "item": [{
+        "image": "https://cdn.click.uz/app/rev2/bank/5.0/nbu.png",
+        "code": "002",
+        "bank_name": "Узнацбанк",
+        "p2p_min_limit": "5000.0000",
+        "p2p_max_limit": "5000000.0000",
+        "p2p_receipt_max_limit": "5000000.0000",
+        "p2p_max_limit_text": "5 000 000 сум",
+        "p2p_receipt_max_limit_text": "5 000 000 сум",
+        "p2p_percent": "1",
+        "p2p_status": "1",
+        "public_offer": ""
+      }]
     }]
   ];
 });
