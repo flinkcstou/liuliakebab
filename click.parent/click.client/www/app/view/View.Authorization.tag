@@ -78,6 +78,7 @@
         navigator.splashscreen.hide();
     });
 
+
     if (localStorage.getItem("click_client_accountInfo")) {
       scope.firstEnter = false;
     }
@@ -269,7 +270,7 @@
 
       keyboardTouchStartX = event.changedTouches[0].pageX;
       keyboardTouchStartY = event.changedTouches[0].pageY;
-    }
+    };
 
     componentKeyboard.returnValue = function (myValue, id) {
 
@@ -301,7 +302,7 @@
         scope.update();
         updateEnteredPin();
       }
-    }
+    };
 
     var offlineModeTouchStartX, offlineModeTouchStartY, offlineModeTouchEndX, offlineModeTouchEndY;
 
@@ -309,20 +310,20 @@
       event.preventDefault();
       event.stopPropagation();
 
-      authOfflineButtonId.style.webkitTransform = 'scale(0.8)'
+      authOfflineButtonId.style.webkitTransform = 'scale(0.8)';
 
-      offlineModeTouchStartX = event.changedTouches[0].pageX
-      offlineModeTouchStartY = event.changedTouches[0].pageY
+      offlineModeTouchStartX = event.changedTouches[0].pageX;
+      offlineModeTouchStartY = event.changedTouches[0].pageY;
 
-    }
+    };
     offlineModeTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      authOfflineButtonId.style.webkitTransform = 'scale(1)'
+      authOfflineButtonId.style.webkitTransform = 'scale(1)';
 
-      offlineModeTouchEndX = event.changedTouches[0].pageX
-      offlineModeTouchEndY = event.changedTouches[0].pageY
+      offlineModeTouchEndX = event.changedTouches[0].pageX;
+      offlineModeTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(offlineModeTouchStartX - offlineModeTouchEndX) <= 20 && Math.abs(offlineModeTouchStartY - offlineModeTouchEndY) <= 20) {
         modeOfApp.onlineMode = false
@@ -392,20 +393,20 @@
       event.preventDefault();
       event.stopPropagation();
 
-      firstEnterButtonId.style.webkitTransform = 'scale(0.8)'
+      firstEnterButtonId.style.webkitTransform = 'scale(0.8)';
 
-      firstPinEnterTouchStartX = event.changedTouches[0].pageX
-      firstPinEnterTouchStartY = event.changedTouches[0].pageY
-    }
+      firstPinEnterTouchStartX = event.changedTouches[0].pageX;
+      firstPinEnterTouchStartY = event.changedTouches[0].pageY;
+    };
 
     firstPinEnterTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      firstEnterButtonId.style.webkitTransform = 'scale(1)'
+      firstEnterButtonId.style.webkitTransform = 'scale(1)';
 
-      firstPinEnterTouchEndX = event.changedTouches[0].pageX
-      firstPinEnterTouchEndY = event.changedTouches[0].pageY
+      firstPinEnterTouchEndX = event.changedTouches[0].pageX;
+      firstPinEnterTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(firstPinEnterTouchStartX - firstPinEnterTouchEndX) <= 20 && Math.abs(firstPinEnterTouchStartY - firstPinEnterTouchEndY) <= 20) {
         pin = hex_md5(firstPinInputId.value);
@@ -486,7 +487,7 @@
           }
           else {
 
-            var clickPinError, errorNote, errorCode;
+            var clickPinError, errorNote, errorCode, viewPage;
 
             window.stopSpinner();
 
@@ -506,8 +507,10 @@
               if (opts.from === "registration-client") {
                 errorNote = "Карта ещё не добавлена. Попробуйте войти через несколько минут";
               }
-              else
+              else {
                 errorNote = result[0][0].error_note;
+                viewPage = "view-authorization";
+              }
               clickPinError = false;
 
             }
@@ -516,7 +519,8 @@
               parent: scope,
               clickpinerror: clickPinError,
               errornote: errorNote,
-              errorcode: errorCode
+              errorcode: errorCode,
+              viewpage: viewPage
             });
             scope.update();
             enteredPin = '';
