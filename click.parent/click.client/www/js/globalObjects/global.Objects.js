@@ -324,8 +324,12 @@ window.amountTransform = function (amount) {
         newIntegerPart += ' ';
       }
     }
-    if (parseFloat(fractionalPart) === 0)
+    if (fractionalPart.length > 3){
+      fractionalPart = fractionalPart.slice(0, 3);
+    }
+    if (parseFloat(fractionalPart) === 0) {
       fractionalPart = "";
+    }
     return newIntegerPart.split("").reverse().join("") + fractionalPart;
   }
   else {
