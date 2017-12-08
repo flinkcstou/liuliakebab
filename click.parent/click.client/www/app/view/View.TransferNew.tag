@@ -150,56 +150,6 @@
 
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
-    //get list of issuers and bank codes
-    {
-      if (JSON.parse(localStorage.getItem('click_client_loginInfo'))) {
-        loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
-        sessionKey = loginInfo.session_key;
-        phoneNumber = localStorage.getItem('click_client_phoneNumber');
-
-        if (!localStorage.getItem("click_client_issuer_list") || loginInfo.update_issuer_list) {
-          if (modeOfApp.onlineMode) {
-            window.api.call({
-              method: 'issuer.list',
-              input: {
-                session_key: sessionKey,
-                phone_num: phoneNumber
-              },
-              scope: this,
-
-              onSuccess: function (result) {
-                if (result[0][0].error == 0) {
-                  scope.issuerList = [];
-                  console.log('result in method issuer list', result);
-                  for (var i in result[1][0]) {
-                    scope.issuerList.push(result[1][0][i]);
-                  }
-                  console.log('list before saving', scope.issuerList);
-                  localStorage.setItem('click_client_issuer_list', JSON.stringify(scope.issuerList));
-
-                } else {
-                  scope.errorNote = result[0][0].error_note;
-
-                  window.common.alert.show("componentAlertId", {
-                    parent: scope,
-                    clickpinerror: scope.clickPinError,
-                    errornote: scope.errorNote,
-                    pathtosettings: scope.pathToSettings,
-                    permissionerror: scope.permissionError,
-                  });
-                  scope.update();
-                }
-              },
-              onFail: function (api_status, api_status_message, data) {
-                console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-                console.error(data);
-              }
-            });
-          }
-        }
-      }
-    }
-
     scope.on('mount', function () {
       if (opts && JSON.stringify(opts) !== '{}') {
         console.log('opts in new transfers', opts);

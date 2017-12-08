@@ -835,6 +835,46 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
       }
     }
 
+    //get list of issuers and bank codes
+    {
+      if (!localStorage.getItem("click_client_issuer_list") || info.update_issuer_list) {
+        if (modeOfApp.onlineMode) {
+          window.api.call({
+            method: 'issuer.list',
+            input: {
+              session_key: sessionKey,
+              phone_num: phoneNumber
+            },
+            scope: this,
+
+            onSuccess: function (result) {
+              if (result[0][0].error == 0) {
+                scope.issuerList = [];
+                for (var i in result[1][0]) {
+                  scope.issuerList.push(result[1][0][i]);
+                }
+                localStorage.setItem('click_client_issuer_list', JSON.stringify(scope.issuerList));
+              } else {
+                scope.errorNote = result[0][0].error_note;
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: scope.clickPinError,
+                  errornote: scope.errorNote,
+                  pathtosettings: scope.pathToSettings,
+                  permissionerror: scope.permissionError,
+                });
+                scope.update();
+              }
+            },
+            onFail: function (api_status, api_status_message, data) {
+              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+              console.error(data);
+            }
+          });
+        }
+      }
+    }
+
     if ((!localStorage.getItem("click_client_payCategoryList") || info.update_categories) && modeOfApp.onlineMode) {
 
       var categoryList = [];
