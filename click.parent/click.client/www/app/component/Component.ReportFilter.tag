@@ -167,6 +167,8 @@
 
       var options = {
         date: new Date(),
+        doneButtonLabel: window.languages.ComponentReportFilterDoneButtonLabel,
+        cancelButtonLabel: window.languages.ComponentReportFilterCancelButtonLabel,
         mode: 'date',
         androidTheme: 5
       };
@@ -208,6 +210,8 @@
 
       var options = {
         date: new Date(),
+        doneButtonLabel: window.languages.ComponentReportFilterDoneButtonLabel,
+        cancelButtonLabel: window.languages.ComponentReportFilterCancelButtonLabel,
         mode: 'date',
         androidTheme: 5
       };

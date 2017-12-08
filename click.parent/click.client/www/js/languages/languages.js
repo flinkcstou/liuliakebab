@@ -105,6 +105,9 @@ var RU_LANGUAGES =
   "ComponentReportFilterTodayText": "сегодня",
   "ComponentReportFilterYesterdayText": "вчера",
 
+  "ComponentReportFilterDoneButtonLabel": "Готово",
+  "ComponentReportFilterCancelButtonLabel": "Отменить",
+
   "ComponentResultPleaseWait": "Пожалуйста подождите...",
   "ComponentResultOk": "Закрыть",
   "ComponentResultClose": "Закрыть",
@@ -315,7 +318,7 @@ var RU_LANGUAGES =
   "ViewAboutSettingsRateUsTitle": "Оцените нас в Google Play",
 
   "ViewSettingsAboutProgramTitleName": "О ПРОГРАММЕ",
-  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 5.1",
+  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 5.8.2",
   "ViewSettingsAboutProgramVersionTitleNamePartOneClick": "CLICK Uzbekistan",
   "ViewSettingsAboutProgramVersionTitleNamePartTwo": "8 декабря, 2017",
   "ViewSettingsAboutProgramUserAgreementTitleName": "Пользовательское соглашение",
