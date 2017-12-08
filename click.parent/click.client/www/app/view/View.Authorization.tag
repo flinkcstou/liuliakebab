@@ -57,51 +57,10 @@
 
   <script>
 
+    var scope = this;
+    scope.checkAndroid = false;
+    scope.errorCode = 0;
 
-    //    TEST = function () {
-    //      CardIO.scan({
-    //        "expiry": true,
-    //        "cvv": true,
-    //        "zip": false,
-    //        "suppressManual": false,
-    //        "suppressConfirm": false,
-    //        "hideLogo": true
-    //      }, onCardIOComplete, onCardIOCancel);
-    //    };
-    //
-    //    if (device.platform != 'BrowserStand')
-    //      CardIO.canScan(onCardIOCheck);
-    //
-    //    function onCardIOComplete(response) {
-    //      var cardIOResponseFields = [
-    //        "card_type",
-    //        "redacted_card_number",
-    //        "card_number",
-    //        "expiry_month",
-    //        "expiry_year",
-    //        "cvv",
-    //        "zip"
-    //      ];
-    //
-    //      var len = cardIOResponseFields.length;
-    //      console.log("card.io scan complete");
-    //      for (var i = 0; i < len; i++) {
-    //        var field = cardIOResponseFields[i];
-    //        alert(field + ": " + response[field]);
-    //      }
-    //    }
-    //
-    //    function onCardIOCancel(error) {
-    //      console.log("card.io scan cancelled");
-    //      console.log(error)
-    //    }
-    //
-    //    function onCardIOCheck(canScan) {
-    //      console.log("card.io canScan? " + canScan);
-    //      if (!canScan) {
-    //        console.log('can Scan false')
-    //      }
-    //    }
 
     this.on('mount', function () {
 
@@ -119,13 +78,6 @@
         navigator.splashscreen.hide();
     });
 
-    window.lastSocketMethodToSend = undefined;
-
-
-    var scope = this;
-    scope.checkAndroid = false;
-    scope.errorCode = 0;
-
     if (localStorage.getItem("click_client_accountInfo")) {
       scope.firstEnter = false;
     }
@@ -140,7 +92,6 @@
         console.log("It's first enter");
         scope.firstEnter = true;
       }
-
     }
 
     if (history.arrayOfHistory.length !== 0) {
@@ -208,9 +159,6 @@
     };
 
     inputPinBlur = function () {
-//      event.preventDefault();
-//      event.stopPropagation();
-
 
       firstPinInputId.blur();
     };
