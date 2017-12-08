@@ -500,7 +500,6 @@
               errorNote = result[0][0].error_note;
               errorCode = 2;
 
-
             } else {
 
               //This conidition cannot be true, need to be deleted in future

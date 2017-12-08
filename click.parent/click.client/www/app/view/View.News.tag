@@ -41,10 +41,40 @@
 
   <script>
     var scope = this;
-    console.log("Is update running here ?");
     scope.newsArray = [];
     scope.newsOpened = false;
+    var touchStartY, touchEndY;
+    var openImage = false;
+    var pageNumber = 2;
 
+
+    openNews = function (news) {
+      console.log("news to open", news);
+      var containerId = "newsContainerId" + news.news_id;
+      var textId = "newsTextId" + news.news_id;
+      var longText = news.news_content;
+      var shortText = news.content_short;
+      var imageId = "newsImageId" + news.news_id;
+      var newsId = news.news_id;
+
+
+      console.log("This post is not opened and its id is", newsId);
+      console.log("All posts", scope.newsArray);
+      for (var i in scope.newsArray) {
+        if (scope.newsArray[i].news_id === newsId) {
+          scope.newsArray[i].opened = true;
+        }
+      }
+      openImage = JSON.parse(document.getElementById(imageId).getAttribute('exist')) === true;
+      document.getElementById(containerId).style.paddingBottom = 100 * widthK + 'px';
+      document.getElementById(containerId).setAttribute('opened', true);
+      if (openImage)
+        document.getElementById(imageId).style.display = 'block';
+      document.getElementById(containerId).style.height = 'auto';
+      document.getElementById(textId).innerHTML = longText;
+
+      scope.update();
+    };
 
     closeNewsTouchEnd = function () {
       event.preventDefault();
@@ -74,17 +104,12 @@
       scope.unmount()
     };
 
-    var pageNumber = 2;
     newsScrollFunction = function () {
       if ((newsMainContainerId.scrollHeight - newsMainContainerId.scrollTop) == newsMainContainerId.offsetHeight) {
         scope.showNewsFunction(pageNumber);
         pageNumber++;
       }
-
     };
-
-    var touchStartY, touchEndY;
-    var openImage = false;
 
     newsTouchStart = function () {
       touchStartY = event.changedTouches[0].pageY;
@@ -138,20 +163,14 @@
       }
     };
 
-    scope.showNewsFunction = function (pageNumber) {
+    scope.showNewsFunction = function (pageNumber, news_id) {
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var signString = hex_md5(phoneNumber.substring(0, 5) + "CLICK" + phoneNumber.substring(phoneNumber.length - 7, phoneNumber.length));
-
       var answerFromServer = false;
+      var newsToOpen;
 
-      if (device.platform !== 'BrowserStand') {
-        var options = {dimBackground: true};
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Spinner start in news");
-        }, function () {
-          console.log("Spinner stop in news");
-        });
-      }
+      window.startSpinner();
+
       window.api.call({
         method: 'get.news',
         input: {
@@ -179,9 +198,14 @@
                 if (result[1][i].news_content_short)
                   result[1][i].content_short = result[1][i].news_content_short.substring(0, 120) + '...';
               }
+
+              if (news_id && news_id == result[1][i].news_id)
+                newsToOpen = result[1][i];
               scope.newsArray.push(result[1][i])
             }
-            scope.update()
+            scope.update();
+            if (newsToOpen)
+              openNews(newsToOpen);
           }
           else {
             console.log("view news error 1");
@@ -217,10 +241,7 @@
             viewpage: 'view-main-page'
           });
           scope.update();
-          if (device.platform !== 'BrowserStand') {
-            console.log("Spinner stop in authorization by timeout");
-            SpinnerPlugin.activityStop();
-          }
+          window.stopSpinner();
           return
         }
       }, 30000)

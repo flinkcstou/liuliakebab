@@ -36,6 +36,17 @@
     viewServicePage.amountWithoutSpace = 0;
     viewServicePage.amountTex = 0;
     onBackParams.opts = null;
+    viewMainPage.myCards = false;
+    viewTransfer.phoneNumber = '';
+    viewTransfer.cardNumber = '';
+    viewTransfer.type = 2;
+    viewTransferStepTwo.sum = '';
+
+    var touchStartX, touchEndX, touchMoveX;
+    var timeStartX, timeEndX;
+    var width = window.innerWidth;
+
+    var myCardListStartX, myCardListEndX, myCardListStartY, myCardListEndY;
 
 
     this.on('mount', function () {
@@ -85,18 +96,6 @@
     );
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
-    viewMainPage.myCards = false;
-    viewTransfer.phoneNumber = '';
-    viewTransfer.cardNumber = '';
-    viewTransfer.type = 2;
-    viewTransferStepTwo.sum = '';
-
-    var touchStartX, touchEndX, touchMoveX;
-    var timeStartX, timeEndX;
-    var width = window.innerWidth;
-
-
-    var myCardListStartX, myCardListEndX, myCardListStartY, myCardListEndY;
 
     myCardListTouchStart = function () {
       event.preventDefault();

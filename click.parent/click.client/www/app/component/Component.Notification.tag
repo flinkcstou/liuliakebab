@@ -35,8 +35,6 @@
     if (device.platform !== 'BrowserStand') {
       window.FirebasePlugin.onNotificationOpen(function (notification) {
 
-//        alert("onNotification open input object " + JSON.stringify(notification));
-
         if (notification.message) {
           try {
             scope.notificationNew = JSON.parse(notification.message);
@@ -133,11 +131,17 @@
             sessionStorage.setItem("push_news", true);
 
             console.log('running news');
+//            var news_id = 24;
 
-            riotTags.innerHTML = "<view-main-page>";
-            riot.mount("view-main-page", {view: "news"});
-
+            if (news_id) {
+              riotTags.innerHTML = "<view-main-page>";
+              riot.mount("view-main-page", {view: "news", news_id: news_id});
+            } else {
+              riotTags.innerHTML = "<view-main-page>";
+              riot.mount("view-main-page", {view: "news"});
+            }
             return
+
 
           }
 
