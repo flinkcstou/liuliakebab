@@ -92,7 +92,9 @@ window.api.initSocket = function () {
     console.log('Connection is closed');
     console.log(event);
     window.isConnected = false;
-    window.api.init();
+    if (navigator.connection.type !== Connection.NONE) {
+      window.api.init();
+    }
   };
 
   var me = this;
