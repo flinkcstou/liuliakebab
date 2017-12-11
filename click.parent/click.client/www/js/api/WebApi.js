@@ -37,7 +37,9 @@ window.api.call = function (params, timeout) {
     if (window.api.socket.readyState === 3) {
       console.log("Connection in state 3, opening new connection for next requests");
       window.isConnected = false;
-      window.api.init();
+      if (navigator.connection.type !== Connection.NONE) {
+        window.api.init();
+      }
       stateCheckerCleared = true;
       clearInterval(stateChecker);
     }
@@ -92,7 +94,9 @@ window.api.initSocket = function () {
     console.log('Connection is closed');
     console.log(event);
     window.isConnected = false;
-    window.api.init();
+    if (navigator.connection.type !== Connection.NONE) {
+      window.api.init();
+    }
   };
 
   var me = this;
