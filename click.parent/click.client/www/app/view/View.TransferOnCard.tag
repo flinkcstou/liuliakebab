@@ -119,7 +119,7 @@
           onSuccess: function (result) {
             transferOnCardCheckAnswer = true;
 
-            widnow.stopSpinner();
+            window.stopSpinner();
 
             console.log("result of invoice transfer accept", result);
 
