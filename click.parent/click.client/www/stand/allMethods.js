@@ -43,7 +43,7 @@ window.fakedSocket.register("get.balance.multiple", function (input) {
   ];
 });
 
-window.fakedSocket.register("issuer.list", function (input){
+window.fakedSocket.register("issuer.list", function (input) {
   return [
     [{"method": input.method, "success": 1, "error": 0, "error_note": ""}],
     [{
@@ -75,11 +75,11 @@ window.fakedSocket.register("device.register.confirm", function (input) {
     if (!window.standCheckRegistration)
       return [
         [{
-          "client_exists": 0,
+          "client_exists": true,
           "method": input.method,
           "success": 1,
           "error": 0,
-          "error_note": ""
+          "error_note": "Успешно зарегестрирован"
         }]
       ];
     else
@@ -12953,7 +12953,7 @@ window.fakedSocket.register("add.favourite", function (input) {
         "method": input.method,
         "success": 1,
         "error": 0,
-        "error_note": "Карта успешно добавлена",
+        "error_note": "Карта успешно добавлена"
       }]
     ];
   }
@@ -12963,7 +12963,30 @@ window.fakedSocket.register("add.favourite", function (input) {
       "method": input.method,
       "success": 1,
       "error": -4,
-      "error_note": 'wrong'
+      "error_note": 'Нет входящих данных'
+    }
+  ];
+});
+
+window.fakedSocket.register("push.register.token", function (input) {
+
+  if (input) {
+    return [
+      [{
+        "method": input.method,
+        "success": 1,
+        "error": 0,
+        "error_note": ""
+      }]
+    ];
+  }
+
+  return [
+    {
+      "method": input.method,
+      "success": 1,
+      "error": -4,
+      "error_note": 'Нет входящих данных'
     }
   ];
 });
