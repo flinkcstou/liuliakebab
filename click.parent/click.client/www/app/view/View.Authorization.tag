@@ -131,7 +131,7 @@
 
 
     if (typeof window.fingerPrint.fingerPrintInitialize != undefined
-      && window.fingerPrint.fingerPrintInitialize === false && window.isConnected) {
+      && window.fingerPrint.fingerPrintInitialize === false) {
       console.log("AUTHORIZATION CALL OF FINGERPRINT 191");
 
       try {
