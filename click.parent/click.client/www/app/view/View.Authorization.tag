@@ -546,6 +546,7 @@
           answerFromServer = true;
           updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText);
           window.stopSpinner();
+
           return
         }
       }, 30000)

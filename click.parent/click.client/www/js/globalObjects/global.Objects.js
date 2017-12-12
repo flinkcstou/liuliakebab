@@ -324,7 +324,7 @@ window.amountTransform = function (amount) {
         newIntegerPart += ' ';
       }
     }
-    if (fractionalPart.length > 3){
+    if (fractionalPart.length > 3) {
       fractionalPart = fractionalPart.slice(0, 3);
     }
     if (parseFloat(fractionalPart) === 0) {
@@ -1189,10 +1189,7 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
 
   }
 
-  if (device.platform != 'BrowserStand') {
-    console.log("Spinner Stop global objects getAccount");
-    SpinnerPlugin.activityStop();
-  }
+  window.stopSpinner();
 };
 
 

@@ -505,6 +505,7 @@
         },
         scope: this,
 
+
         onSuccess: function (result) {
           answerFromServer = true;
           console.log("App.login method answer: success");
