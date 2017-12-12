@@ -297,7 +297,7 @@
       if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance &&
         !(sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true)) {
         writeBalance();
-        scope.update()
+//        scope.update()
       } else {
         if (invoice) {
           scope.update();
@@ -462,11 +462,7 @@
               scope.cardsarray[i].url = scope.cardImageCachedLinks[i].url;
               count = count + 2;
 
-              console.log("1 image i=", i, scope.cardsarray[i].card_background_url, scope.cardsarray[i].url);
-
               if (count == (Object.keys(scope.cardsarray).length * 2)) {
-
-                console.log("card images saving 1");
 
                 localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
                 scope.update();
@@ -487,7 +483,6 @@
                   count++;
                   scope.cardsarray[index].card_background_url = 'resources/icons/cards/' + fileName;
                 }
-                console.log("21 image i=", index, scope.cardsarray[index].card_background_url);
 
                 var icon2 = scope.cardsarray[index].url;
                 var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);
@@ -502,11 +497,8 @@
                     scope.cardsarray[index2].url = 'resources/icons/cards/logo/' + fileName2;
                   }
 
-                  console.log("22 image i=", index2, scope.cardsarray[index2].url);
-
                   if (count == (Object.keys(scope.cardsarray).length * 2)) {
 
-                    console.log("card images saving 2");
                     localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
                     scope.update();
 
@@ -607,15 +599,11 @@
                     addCard()
                   }, 0);
 
-                  if (device.platform !== 'BrowserStand') {
-                    SpinnerPlugin.activityStop();
-                  }
+                  window.stopSpinner();
                 }
                 else {
                   setTimeout(function () {
-                    if (device.platform !== 'BrowserStand') {
-                      SpinnerPlugin.activityStop();
-                    }
+                    window.stopSpinner();
                     addCard()
                   }, 0);
                 }
