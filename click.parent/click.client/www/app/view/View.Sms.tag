@@ -377,7 +377,7 @@
           if (countOfCall == 3 && !checkServiceAnswer) {
             scope.errorNote = "Сервис временно недоступен";
             countOfCall = 0;
-            widnow.stopSpinner();
+            window.stopSpinner();
 
             window.common.alert.show("componentAlertId", {
               parent: scope,
