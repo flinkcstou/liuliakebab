@@ -37,7 +37,7 @@ window.api.call = function (params, timeout) {
     if (window.api.socket.readyState === 3) {
       console.log("Connection in state 3, opening new connection for next requests");
       window.isConnected = false;
-      if (navigator.connection.type !== Connection.NONE) {
+      if (navigator.connection.type !== Connection.NONE && navigator.connection.type !== Connection.UNKNOWN) {
         window.api.init();
       }
       stateCheckerCleared = true;
@@ -94,7 +94,7 @@ window.api.initSocket = function () {
     console.log('Connection is closed');
     console.log(event);
     window.isConnected = false;
-    if (navigator.connection.type !== Connection.NONE) {
+    if (navigator.connection.type !== Connection.NONE && navigator.connection.type !== Connection.UNKNOWN) {
       window.api.init();
     }
   };
@@ -167,7 +167,7 @@ window.api.initSocket = function () {
     window.isConnected = false;
     if (modeOfApp.offlineMode) return;
     console.log('Error with socket ' + error.message);
-    if (navigator.connection.type !== Connection.NONE) {
+    if (navigator.connection.type !== Connection.NONE && navigator.connection.type !== Connection.UNKNOWN) {
       showAlertComponent("Связь с сервером потеряна. Повторите попытку.");
     }
     riot.update();
@@ -224,7 +224,7 @@ function onlineDetector() {
 
 function offlineDetector() {
   console.log("navigator connection", navigator.connection.type, Connection.NONE);
-  if (navigator.connection.type === Connection.NONE) {
+  if (navigator.connection.type === Connection.NONE || navigator.connection.type === Connection.UNKNOWN) {
     window.isConnected = false;
     console.log("Offline detector, window.isConnected:", window.isConnected);
     if (device.platform === 'Android')
