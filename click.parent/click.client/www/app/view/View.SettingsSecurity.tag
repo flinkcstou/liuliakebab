@@ -316,27 +316,24 @@
           window.common.alert.show("componentAlertId", {
             parent: scope,
             clickpinerror: scope.clickPinError,
-            errornote: scope.errorNote,
+            errornote: scope.errorNote
           });
 
           scope.update();
           return
         }
       }
-      console.log("QQQ")
       if (!fingerPrint) {
-        console.log()
         securityFingerPrintIconId.style.backgroundImage = "url(resources/icons/ViewService/radio_selected.png)";
-        fingerPrint = true
-        console.log("true")
+        fingerPrint = true;
         localStorage.setItem("settings_finger_print", true)
       }
       else {
         securityFingerPrintIconId.style.backgroundImage = "url(resources/icons/ViewService/radio_unselected.png)";
-        fingerPrint = false
+        fingerPrint = false;
         localStorage.setItem("settings_finger_print", false)
       }
-      scope.update()
+      scope.update();
     }
 
 

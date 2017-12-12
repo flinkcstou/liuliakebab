@@ -67,31 +67,6 @@
       keyboardTouchStartY = event.changedTouches[0].pageY
     };
 
-    //
-    //    componentKeyboard.returnValue = function (myValue) {
-    //
-    //      keyboardTouchEndX = event.changedTouches[0].pageX
-    //      keyboardTouchEndY = event.changedTouches[0].pageY
-    //
-    //
-    //      if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20) {
-    //
-    //        if (scope.confirmSms.length < 5 && myValue != 'x') {
-    //          scope.confirmSms += myValue;
-    //        }
-    //        if (myValue == 'x') {
-    //          scope.confirmSms = scope.confirmSms.substring(0, scope.confirmSms.length - 1);
-    //        }
-    //        scope.update();
-    //        if (scope.confirmSms.length == 5) {
-    //          var sms = scope.confirmSms;
-    //          viewSms.getSms(sms);
-    //          return;
-    //        }
-    //      }
-    //    }
-
-
     componentKeyboard.returnValue = function (myValue, id) {
 
       document.getElementById(id).style.webkitTransform = 'scale(1)';
@@ -196,63 +171,60 @@
 
     var helpTouchStartXSms, helpTouchStartYSms, helpTouchEndXSms, helpTouchEndYSms;
     helpTouchStartSms = function () {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
 
-      smsButtonHelpId.style.webkitTransform = 'scale(0.8)'
+      smsButtonHelpId.style.webkitTransform = 'scale(0.8)';
 
-      helpTouchStartXSms = event.changedTouches[0].pageX
-      helpTouchStartYSms = event.changedTouches[0].pageY
+      helpTouchStartXSms = event.changedTouches[0].pageX;
+      helpTouchStartYSms = event.changedTouches[0].pageY;
 
-    }
+    };
 
     helpTouchEndSms = function () {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
 
-      smsButtonHelpId.style.webkitTransform = 'scale(1)'
+      smsButtonHelpId.style.webkitTransform = 'scale(1)';
 
-      helpTouchEndXSms = event.changedTouches[0].pageX
-      helpTouchEndYSms = event.changedTouches[0].pageY
+      helpTouchEndXSms = event.changedTouches[0].pageX;
+      helpTouchEndYSms = event.changedTouches[0].pageY;
 
 
       if (Math.abs(helpTouchStartXSms - helpTouchEndXSms) <= 20 && Math.abs(helpTouchStartYSms - helpTouchEndYSms) <= 20) {
-//        riotTags.innerHTML = "<view-help>";
-//        riot.mount('view-help');
-//        scope.unmount()
+
         componentTourId.style.display = "block";
-//        tourBackPageId.style.opacity = '1';
         if (device.platform !== 'BrowserStand')
           StatusBar.backgroundColorByHexString("#024361");
 
 
       }
-    }
+    };
 
     var goBackTouchStartXSms, goBackTouchStartYSms, goBackTouchEndXSms, goBackTouchEndYSms;
     goToBackRegistrationStart = function () {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
 
-      changeNumberButtonId.style.webkitTransform = 'scale(0.8)'
+      changeNumberButtonId.style.webkitTransform = 'scale(0.8)';
 
-      goBackTouchStartXSms = event.changedTouches[0].pageX
-      goBackTouchStartYSms = event.changedTouches[0].pageY
-    }
+      goBackTouchStartXSms = event.changedTouches[0].pageX;
+      goBackTouchStartYSms = event.changedTouches[0].pageY;
+    };
 
     goToBackRegistrationEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      changeNumberButtonId.style.webkitTransform = 'scale(1)'
+      changeNumberButtonId.style.webkitTransform = 'scale(1)';
 
-      goBackTouchEndXSms = event.changedTouches[0].pageX
-      goBackTouchEndYSms = event.changedTouches[0].pageY
+      goBackTouchEndXSms = event.changedTouches[0].pageX;
+      goBackTouchEndYSms = event.changedTouches[0].pageY;
 
       if (Math.abs(goBackTouchStartXSms - goBackTouchEndXSms) <= 20 && Math.abs(goBackTouchStartYSms - goBackTouchEndYSms) <= 20) {
         onBackKeyDown()
       }
-    }
+    };
 
 
     var minutes = 0;
@@ -273,9 +245,7 @@
         var phoneNumber = localStorage.getItem('click_client_phoneNumber');
         var deviceId = localStorage.getItem('click_client_deviceID');
         var timestamp = parseInt(Date.now() / 1000);
-        var signString = hex_md5(phoneNumber.substring(0, 5) + timestamp + phoneNumber.substring(phoneNumber.length - 4, phoneNumber.length))
-
-        console.log('CALL CALL CALL CALL CALL')
+        var signString = hex_md5(phoneNumber.substring(0, 5) + timestamp + phoneNumber.substring(phoneNumber.length - 4, phoneNumber.length));
 
         window.api.call({
           method: 'call.ivr',
@@ -329,7 +299,8 @@
       };
       localStorage.setItem("tour_data", JSON.stringify(scope.tourData));
       registrationConfirm(sms, phoneNumber, deviceId);
-    }
+    };
+
     function deviceRemember() {
       if (JSON.parse(localStorage.getItem('device_remember')) === true)
         return 1;
@@ -342,15 +313,7 @@
     function registrationConfirm(sms, phoneNumber, deviceId) {
       countOfCall++;
       checkServiceAnswer = false;
-      if (device.platform !== 'BrowserStand') {
-        var options = {dimBackground: true};
-
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Started");
-        }, function () {
-          console.log("closed");
-        });
-      }
+      window.startSpinner();
 
 
       window.api.call({
@@ -372,19 +335,13 @@
 
               localStorage.setItem('confirm_needed', false);
               if (result[0][0].client_exists == 1) {
-                localStorage.setItem('click_client_registered', true)
+                localStorage.setItem('click_client_registered', true);
                 this.riotTags.innerHTML = "<view-authorization>";
                 riot.mount('view-authorization');
-
                 scope.unmount()
               }
               else {
-                localStorage.setItem('click_client_registered', false)
-//                this.riotTags.innerHTML = "<view-registration-client>";
-//                riot.mount('view-registration-client');
-
-//                scope.unmount()
-//
+                localStorage.setItem('click_client_registered', false);
                 riotTags.innerHTML = "<view-pin-code>";
                 riot.mount('view-pin-code', ['view-sms']);
                 scope.unmount()
@@ -397,7 +354,7 @@
               window.common.alert.show("componentAlertId", {
                 parent: scope,
                 clickpinerror: scope.clickPinError,
-                errornote: scope.errorNote,
+                errornote: scope.errorNote
               });
 
               scope.update();
@@ -420,15 +377,12 @@
           if (countOfCall == 3 && !checkServiceAnswer) {
             scope.errorNote = "Сервис временно недоступен";
             countOfCall = 0;
-            if (device.platform !== 'BrowserStand') {
-              console.log("Spinner Stop View SMS 422");
-              SpinnerPlugin.activityStop();
-            }
+            widnow.stopSpinner();
 
             window.common.alert.show("componentAlertId", {
               parent: scope,
               clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote,
+              errornote: scope.errorNote
             });
 
             scope.update();
@@ -464,11 +418,10 @@
         window.common.alert.show("componentAlertId", {
           parent: scope,
           clickpinerror: scope.clickPinError,
-          errornote: scope.errorNote,
+          errornote: scope.errorNote
         });
 
         scope.update();
-//      alert(window.languages.ViewSmsResendText + localStorage.getItem('click_client_phoneNumber'));
         resendSms();
       }
     };
@@ -488,8 +441,6 @@
         scope: this,
 
         onSuccess: function (result) {
-//                    console.log("result[0][0] ", result[0][0]);
-//                    console.log("result ", result);
         },
 
         onFail: function (api_status, api_status_message, data) {

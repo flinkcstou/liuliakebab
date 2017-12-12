@@ -440,15 +440,7 @@
 
     function registrationDevice(phoneNumber, date) {
       answerFromServer = false;
-      if (device.platform != 'BrowserStand') {
-        var options = {dimBackground: true};
-
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Spinner start in device registration");
-        }, function () {
-          console.log("Spinner stop in device registration");
-        });
-      }
+      window.startSpinner();
 
       window.api.call({
         method: 'device.register.request',
@@ -467,16 +459,13 @@
 
         onSuccess: function (result) {
           answerFromServer = true;
-          if (device.platform != 'BrowserStand') {
-            console.log("Spinner stop in device registration by timeout");
-            SpinnerPlugin.activityStop();
-          }
+          window.stopSpinner();
           console.log("Device.register.request method answer: fail");
 
           if (result[0][0].error == 0) {
             if (result[1][0]) {
 
-              localStorage.setItem('onResume', false)
+              localStorage.setItem('onResume', false);
 
               var deviceId = result[1][0].device_id;
               localStorage.setItem('click_client_deviceID', deviceId);
@@ -491,7 +480,7 @@
               else {
                 window.pushNotificationInitialize();
                 localStorage.setItem('confirm_needed', false);
-                localStorage.setItem('click_client_registered', true)
+                localStorage.setItem('click_client_registered', true);
                 this.riotTags.innerHTML = "<view-authorization>";
                 riot.mount('view-authorization');
                 scope.unmount()
@@ -507,10 +496,7 @@
         onFail: function (api_status, api_status_message, data) {
           answerFromServer = true;
           console.log("Device.register.request method answer: fail");
-          if (device.platform != 'BrowserStand') {
-            console.log("Spinner stop in device registration by timeout");
-            SpinnerPlugin.activityStop();
-          }
+          window.stopSpinner();
           updateAlertComponent(true, null, 'view-registration-device', "Сервис временно не доступен");
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
@@ -520,10 +506,7 @@
       setTimeout(function () {
         if (!answerFromServer) {
           updateAlertComponent(true, null, 'view-registration-device', window.languages.WaitingTimeExpiredText);
-          if (device.platform != 'BrowserStand') {
-            console.log("Spinner stop in device registration by timeout");
-            SpinnerPlugin.activityStop();
-          }
+          window.stopSpinner();
           window.api.forceClose();
           return;
         }
