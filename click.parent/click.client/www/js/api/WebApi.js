@@ -16,17 +16,18 @@ window.api.forceClose = function () {
 window.api.call = function (params, timeout) {
   console.log("Function call:");
 
-  if (navigator.connection.type === Connection.NONE || navigator.connection.type === Connection.UNKNOWN) {
-    window.isConnected = false;
-    window.stopSpinner();
-    window.clearTimers();
-    if (device.platform === 'Android')
-      showConfirmComponent("Интернет-соединение отсутствует.\nПерейти в офлайн режим ?", 'internet');
-    else {
-      showAlertComponent("Интернет-соединение отсутствует. Проверьте подключение.");
+  if (device.platform !== 'BrowserStand')
+    if (navigator.connection.type === Connection.NONE || navigator.connection.type === Connection.UNKNOWN) {
+      window.isConnected = false;
+      window.stopSpinner();
+      window.clearTimers();
+      if (device.platform === 'Android')
+        showConfirmComponent("Интернет-соединение отсутствует.\nПерейти в офлайн режим ?", 'internet');
+      else {
+        showAlertComponent("Интернет-соединение отсутствует. Проверьте подключение.");
+      }
+      return;
     }
-    return;
-  }
 
   if (timeout === undefined)
     timeout = 30000;
