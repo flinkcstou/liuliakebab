@@ -313,24 +313,7 @@ window.amountTransform = function (amount) {
 
   if (amount.indexOf('.') >= 0) {
     newAmount = amount;
-    var integerPart = amount.slice(0, amount.indexOf('.'));
-    var newIntegerPart = '';
-    var fractionalPart = amount.slice(amount.indexOf('.'), amount.length);
-    var j = 0;
-    for (var i = integerPart.length - 1; i >= 0; i--) {
-      j++;
-      newIntegerPart += integerPart[i];
-      if (j % 3 == 0 && i != 0) {
-        newIntegerPart += ' ';
-      }
-    }
-    if (fractionalPart.length > 3) {
-      fractionalPart = fractionalPart.slice(0, 3);
-    }
-    if (parseFloat(fractionalPart) === 0) {
-      fractionalPart = "";
-    }
-    return newIntegerPart.split("").reverse().join("") + fractionalPart;
+    console.log("Amount contains dot");
   }
   else {
     var j = 0;
@@ -347,6 +330,15 @@ window.amountTransform = function (amount) {
 
   return newAmount.split("").reverse().join("");
 }
+
+window.getFractionalPart = function (amount){
+  var fractionalPartResult = '';
+  if (amount !== undefined && amount.indexOf('.') >= 0) {
+    fractionalPartResult = amount.slice(amount.indexOf('.'), amount.length);
+    console.log("Amount contains dot");
+  }
+  return fractionalPartResult;
+};
 
 
 window.inputVerification = {};

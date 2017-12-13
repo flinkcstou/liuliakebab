@@ -709,7 +709,7 @@
                 for (var i in scope.cardsarray) {
                   if (balances[i]) {
                     scope.cardsarray[balances[i].account_id].salaryOriginal = balances[i].balance.toFixed(0);
-                    balances[i].balance = balances[i].balance.toString();
+                    balances[i].balance = balances[i].balance.toFixed(0).toString();
 
                     if (balances[i].balance !== 0)
                       balances[i].balance = window.amountTransform(balances[i].balance.toString());
