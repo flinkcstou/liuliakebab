@@ -599,7 +599,15 @@
                     }
 
                     var answerFromServer = false;
+                    setTimeout(function () {
+                      if (!answerFromServer) {
+                        if (device.platform != 'BrowserStand') {
+                          SpinnerPlugin.activityStop();
+                        }
+                      }
 
+                      return
+                    }, 15000)
                     window.api.call({
                       method: 'get.indoor.service',
                       input: {
@@ -661,16 +669,6 @@
                         console.error(data);
                       }
                     });
-
-                    setTimeout(function () {
-                      if (!answerFromServer) {
-                        if (device.platform != 'BrowserStand') {
-                          SpinnerPlugin.activityStop();
-                        }
-                      }
-
-                      return
-                    }, 15000)
                   }
                 }
               }

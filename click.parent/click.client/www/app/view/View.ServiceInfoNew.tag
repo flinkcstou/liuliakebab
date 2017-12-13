@@ -149,6 +149,31 @@
       checkAnswer = false;
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
 
+      if (!checkAnswer) {
+        console.log("wwww")
+        setTimeout(function () {
+          if (!checkAnswer) {
+            scope.errorNote = "Сервис временно недоступен";
+            scope.stepAmount = 1;
+            scope.update();
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              step_amount: scope.stepAmount,
+              viewpage: scope.viewPage,
+              viewmount: true,
+              errornote: scope.errorNote,
+            });
+
+            if (device.platform != 'BrowserStand') {
+              console.log("Spinner Stop View Service Info New 224");
+              SpinnerPlugin.activityStop();
+            }
+            return
+          }
+        }, 10000);
+      }
       window.api.call({
         method: 'get.additional.information',
         input: {
@@ -216,34 +241,6 @@
           console.error(data);
         }
       }, 10000);
-
-      if (!checkAnswer) {
-        console.log("wwww")
-        setTimeout(function () {
-          if (!checkAnswer) {
-            scope.errorNote = "Сервис временно недоступен";
-            scope.stepAmount = 1;
-            scope.update();
-
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: scope.clickPinError,
-              step_amount: scope.stepAmount,
-              viewpage: scope.viewPage,
-              viewmount: true,
-              errornote: scope.errorNote,
-            });
-
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Service Info New 224");
-              SpinnerPlugin.activityStop();
-            }
-            return
-          }
-        }, 10000);
-      }
-
-
     }
 
     var goBackStartY, goBackStartX, goBackEndY, goBackEndX;

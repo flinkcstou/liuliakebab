@@ -384,6 +384,13 @@
 
       console.log("TRANSACTION_ID", objectForTransfer.transactionId);
 
+      setTimeout(function () {
+        if (!answerFromServer) {
+          window.api.forceClose();
+          updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
+          return
+        }
+      }, 30000)
       window.api.call({
         method: 'p2p.payment',
         input: {
@@ -439,20 +446,10 @@
 
         onFail: function (api_status, api_status_message, data) {
           updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
-//          componentUnsuccessId.style.display = 'block';
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
       });
-
-      setTimeout(function () {
-        if (!answerFromServer) {
-          window.api.forceClose();
-//          scope.showError = true;
-          updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
-          return
-        }
-      }, 30000)
 
     }
 

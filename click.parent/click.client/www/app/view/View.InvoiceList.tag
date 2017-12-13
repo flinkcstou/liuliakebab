@@ -168,7 +168,27 @@
           console.log("closed");
         });
       }
+      if (!checkAnswerToUser) {
+        console.log("wwww to user")
+        setTimeout(function () {
+          if (!checkAnswerToUser) {
+            console.log("STOP method")
+            if (device.platform != 'BrowserStand') {
+              console.log("Spinner Stop View Invoice List 238");
+              SpinnerPlugin.activityStop();
+            }
 
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: false,
+              errornote: "Сервис временно недоступен"
+            });
+
+            scope.update();
+            return
+          }
+        }, 10000);
+      }
       window.api.call({
         method: 'invoice.list',
         input: {
@@ -229,27 +249,6 @@
           console.error(data);
         }
       }, 10000);
-      if (!checkAnswerToUser) {
-        console.log("wwww to user")
-        setTimeout(function () {
-          if (!checkAnswerToUser) {
-            console.log("STOP method")
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Invoice List 238");
-              SpinnerPlugin.activityStop();
-            }
-
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: false,
-              errornote: "Сервис временно недоступен"
-            });
-
-            scope.update();
-            return
-          }
-        }, 10000);
-      }
 
     };
 
@@ -279,7 +278,26 @@
           console.log("closed");
         });
       }
+      if (!checkAnswerFromUser) {
+        console.log("wwww from user")
+        setTimeout(function () {
+          if (!checkAnswerFromUser) {
+            console.log("STOP method")
+            if (device.platform != 'BrowserStand') {
+              console.log("Spinner Stop View Invoice List 339");
+              SpinnerPlugin.activityStop();
+            }
 
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: false,
+              errornote: "Сервис временно недоступен"
+            });
+            scope.update();
+            return
+          }
+        }, 10000);
+      }
       window.api.call({
         method: 'invoice.history',
         input: {
@@ -334,27 +352,6 @@
           console.error(data);
         }
       }, 10000);
-
-      if (!checkAnswerFromUser) {
-        console.log("wwww from user")
-        setTimeout(function () {
-          if (!checkAnswerFromUser) {
-            console.log("STOP method")
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Invoice List 339");
-              SpinnerPlugin.activityStop();
-            }
-
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: false,
-              errornote: "Сервис временно недоступен"
-            });
-            scope.update();
-            return
-          }
-        }, 10000);
-      }
 
     };
 

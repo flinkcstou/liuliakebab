@@ -94,6 +94,23 @@
         });
       }
 
+      setTimeout(function () {
+        if (!answerFromServer) {
+          answerFromServer = true;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            viewpage: "view-main-page",
+            errornote: window.languages.WaitingTimeExpiredText
+          });
+          deleteCardComponentId.style.display = "none";
+          riot.update();
+          if (device.platform != 'BrowserStand') {
+            console.log("Spinner stop in authorization by timeout");
+            SpinnerPlugin.activityStop();
+          }
+          return
+        }
+      }, 30000)
       window.api.call({
         method: 'account.remove',
         input: {
@@ -200,24 +217,6 @@
           console.error(data);
         }
       });
-
-      setTimeout(function () {
-        if (!answerFromServer) {
-          answerFromServer = true;
-          window.common.alert.show("componentAlertId", {
-            parent: scope,
-            viewpage: "view-main-page",
-            errornote: window.languages.WaitingTimeExpiredText
-          });
-          deleteCardComponentId.style.display = "none";
-          riot.update();
-          if (device.platform != 'BrowserStand') {
-            console.log("Spinner stop in authorization by timeout");
-            SpinnerPlugin.activityStop();
-          }
-          return
-        }
-      }, 30000)
     };
 
 

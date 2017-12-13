@@ -383,6 +383,12 @@
       scope.transactionId = parseInt(Date.now() / 1000);
 
       initResultComponent();
+      setTimeout(function () {
+        if (!answerFromServer) {
+          updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
+          return;
+        }
+      }, 30000)
       window.api.call({
         method: 'p2p.account',
         input: {
@@ -415,13 +421,6 @@
           console.error(data);
         }
       });
-
-      setTimeout(function () {
-        if (!answerFromServer) {
-          updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
-          return;
-        }
-      }, 30000)
     };
 
     checkTransferStatus = function (payment_id) {

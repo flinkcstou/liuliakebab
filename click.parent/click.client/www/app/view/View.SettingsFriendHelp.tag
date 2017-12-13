@@ -189,7 +189,6 @@
             console.log("Spinner stop in settingsFriendHelp");
           });
         }
-        navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
         setTimeout(function () {
           if (!answerFromServer) {
             answerFromServer = true;
@@ -205,50 +204,10 @@
             }
           }
         }, 30000);
+        navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
       }
     }
 
-
-    //    var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-    //    var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-    //    var sessionKey = info.session_key;
-    //
-    //    window.api.call({
-    //      method: 'card.add',
-    //      input: {
-    //        phone_num: phoneNumber,
-    //        card_number: cardNumber,
-    //        card_data: dateOrPin,
-    //        session_key: sessionKey,
-    //
-    //      },
-    //
-    //      scope: this,
-    //
-    //      onSuccess: function (result) {
-    //        if (result[0][0].error == 0) {
-    //          console.log("CARD ADD", result);
-    //
-    //          scope.clickPinError = false;
-    //          scope.errorNote = result[0][0].error_note;
-    //          scope.showError = true;
-    //          scope.viewPage = 'view-main-page'
-    //          scope.update();
-    //        }
-    //        else {
-    //          scope.clickPinError = false;
-    //          scope.errorNote = result[0][0].error_note;
-    //          scope.showError = true;
-    //          scope.viewPage = ''
-    //          scope.update();
-    //        }
-    //      },
-    //
-    //      onFail: function (api_status, api_status_message, data) {
-    //        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-    //        console.error(data);
-    //      }
-    //    });
 
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 

@@ -315,7 +315,32 @@
       checkServiceAnswer = false;
       window.startSpinner();
 
+      if (countOfCall <= 3 && !checkServiceAnswer)
+        setTimeout(function () {
+          if (!checkServiceAnswer && modeOfApp.onlineMode) {
+            var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+            var deviceId = localStorage.getItem('click_client_deviceID');
+            registrationConfirm(scope.confirmSms, phoneNumber, deviceId);
+          }
+          if (countOfCall == 3 && !checkServiceAnswer) {
+            scope.errorNote = "Сервис временно недоступен";
+            countOfCall = 0;
+            if (device.platform !== 'BrowserStand') {
+              console.log("Spinner Stop View SMS 422");
+              SpinnerPlugin.activityStop();
+            }
 
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+            });
+
+            scope.update();
+
+            return;
+          }
+        }, 10000);
       window.api.call({
         method: 'device.register.confirm',
         input: {
@@ -366,30 +391,6 @@
           console.error(data);
         }
       }, 10000);
-
-      if (countOfCall <= 3 && !checkServiceAnswer)
-        setTimeout(function () {
-          if (!checkServiceAnswer && modeOfApp.onlineMode) {
-            var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-            var deviceId = localStorage.getItem('click_client_deviceID');
-            registrationConfirm(scope.confirmSms, phoneNumber, deviceId);
-          }
-          if (countOfCall == 3 && !checkServiceAnswer) {
-            scope.errorNote = "Сервис временно недоступен";
-            countOfCall = 0;
-            window.stopSpinner();
-
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote
-            });
-
-            scope.update();
-
-            return;
-          }
-        }, 10000);
 
     }
 

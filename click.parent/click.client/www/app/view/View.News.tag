@@ -171,6 +171,22 @@
 
       window.startSpinner();
 
+      setTimeout(function () {
+        if (!answerFromServer) {
+          answerFromServer = true;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: window.languages.WaitingTimeExpiredText,
+            viewpage: 'view-main-page'
+          });
+          scope.update();
+          if (device.platform !== 'BrowserStand') {
+            console.log("Spinner stop in authorization by timeout");
+            SpinnerPlugin.activityStop();
+          }
+          return
+        }
+      }, 30000)
       window.api.call({
         method: 'get.news',
         input: {
@@ -231,20 +247,6 @@
           console.error(data);
         }
       });
-
-      setTimeout(function () {
-        if (!answerFromServer) {
-          answerFromServer = true;
-          window.common.alert.show("componentAlertId", {
-            parent: scope,
-            errornote: window.languages.WaitingTimeExpiredText,
-            viewpage: 'view-main-page'
-          });
-          scope.update();
-          window.stopSpinner();
-          return
-        }
-      }, 30000)
     }
 
   </script>

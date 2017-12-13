@@ -275,6 +275,20 @@
         });
         scope.update();
 
+        setTimeout(function () {
+          if (!answerFromServer) {
+            scope.errorNote = window.languages.WaitingTimeExpiredText;
+            scope.viewPage = pageToReturnIfError;
+            scope.update();
+            window.common.alert.updateView("componentResultId", {
+              parent: scope,
+              resulttext: scope.resultText,
+              viewpage: scope.viewPage,
+              step_amount: scope.stepAmount
+            });
+            return
+          }
+        }, 30000)
         window.api.call({
           method: 'app.payment',
           stopSpinner: false,
@@ -324,21 +338,6 @@
             console.error(data);
           }
         });
-
-        setTimeout(function () {
-          if (!answerFromServer) {
-            scope.errorNote = window.languages.WaitingTimeExpiredText;
-            scope.viewPage = pageToReturnIfError;
-            scope.update();
-            window.common.alert.updateView("componentResultId", {
-              parent: scope,
-              resulttext: scope.resultText,
-              viewpage: scope.viewPage,
-              step_amount: scope.stepAmount
-            });
-            return
-          }
-        }, 30000)
       }
 
     }

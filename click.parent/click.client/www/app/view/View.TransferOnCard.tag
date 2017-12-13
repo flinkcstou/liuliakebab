@@ -104,6 +104,17 @@
 
         transferOnCardCheckAnswer = false;
 
+        setTimeout(function () {
+          if (!transferOnCardCheckAnswer) {
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              errornote: window.languages.ViewTransferOnCardCardNotChosen,
+              step_amount: scope.stepAmount
+            });
+            return
+          }
+        }, 10000);
         window.api.call({
           method: 'invoice.action',
           stopSpinner: false,
@@ -161,19 +172,6 @@
             console.error(data);
           }
         }, 10000);
-
-        setTimeout(function () {
-          if (!transferOnCardCheckAnswer) {
-
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              errornote: window.languages.ViewTransferOnCardCardNotChosen,
-              step_amount: scope.stepAmount
-            });
-            return
-          }
-        }, 10000);
-
 
       }
     };

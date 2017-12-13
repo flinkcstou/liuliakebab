@@ -188,6 +188,22 @@
         }
 
         var answerFromServer = false;
+        setTimeout(function () {
+          if (!answerFromServer) {
+            answerFromServer = true;
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: false,
+              errornote: window.languages.WaitingTimeExpiredText,
+              errorcode: scope.errorCode,
+              viewpage: 'view-main-page'
+            });
+            if (device.platform !== 'BrowserStand') {
+              console.log("Spinner stop in authorization by timeout");
+              SpinnerPlugin.activityStop();
+            }
+          }
+        }, 30000)
         window.api.call({
           method: 'invoice.action',
           input: {
@@ -229,23 +245,6 @@
             console.error(data);
           }
         });
-
-        setTimeout(function () {
-          if (!answerFromServer) {
-            answerFromServer = true;
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: false,
-              errornote: window.languages.WaitingTimeExpiredText,
-              errorcode: scope.errorCode,
-              viewpage: 'view-main-page'
-            });
-            if (device.platform !== 'BrowserStand') {
-              console.log("Spinner stop in authorization by timeout");
-              SpinnerPlugin.activityStop();
-            }
-          }
-        }, 30000)
       }
     };
 
@@ -300,7 +299,12 @@
         }
 
         initResultComponent();
-
+        setTimeout(function () {
+          if (!answerFromServer) {
+            updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
+            return
+          }
+        }, 40000)
         window.api.call({
           method: 'invoice.action',
           stopSpinner: false,
@@ -342,14 +346,6 @@
             console.error(data);
           }
         });
-
-        setTimeout(function () {
-          if (!answerFromServer) {
-
-            updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
-            return
-          }
-        }, 40000)
       }
     };
 

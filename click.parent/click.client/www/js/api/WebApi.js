@@ -16,6 +16,18 @@ window.api.forceClose = function () {
 window.api.call = function (params, timeout) {
   console.log("Function call:");
 
+  if (navigator.connection.type === Connection.NONE || navigator.connection.type === Connection.UNKNOWN) {
+    window.isConnected = false;
+    window.stopSpinner();
+    window.clearTimers();
+    if (device.platform === 'Android')
+      showConfirmComponent("Интернет-соединение отсутствует.\nПерейти в офлайн режим ?", 'internet');
+    else {
+      showAlertComponent("Интернет-соединение отсутствует. Проверьте подключение.");
+    }
+    return;
+  }
+
   if (timeout === undefined)
     timeout = 30000;
 
@@ -223,14 +235,6 @@ function onlineDetector() {
 }
 
 function offlineDetector() {
-  console.log("navigator connection", navigator.connection.type, Connection.NONE);
-  if (navigator.connection.type === Connection.NONE || navigator.connection.type === Connection.UNKNOWN) {
-    window.isConnected = false;
-    console.log("Offline detector, window.isConnected:", window.isConnected);
-    if (device.platform === 'Android')
-      showConfirmComponent("Интернет-соединение отсутствует.\nПерейти в офлайн режим ?", 'internet');
-    else {
-      showAlertComponent("Интернет-соединение отсутствует. Проверьте подключение.");
-    }
-  }
+  window.isConnected = false;
+  console.log("Offline detector, window.isConnected:", window.isConnected);
 }
