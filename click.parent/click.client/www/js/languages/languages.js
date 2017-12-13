@@ -19,6 +19,7 @@ var RU_LANGUAGES =
 
     "ComponentBankOperationsAutoPay": "АВТОПЛАТЁЖ",
     "ComponentBankOperationsQr": "СКАНЕР QR",
+    "ComponentBankOperationsInPlacePay": "НА МЕСТАХ",
 
     "BankOperationsAutoPay": "МОИ КАРТЫ",
 
@@ -618,7 +619,10 @@ var RU_LANGUAGES =
 
   "ViewDefaultAccountSuccessText": "Основная карта установлена успешно",
 
-  "DemoModeConstraintText": "Внимание! Для совершения данного действия необходимо авторизоваться!"
+  "DemoModeConstraintText": "Внимание! Для совершения данного действия необходимо авторизоваться!",
+
+
+  "ViewInPlacePayTitle": "ОПЛАТА НА МЕСТАХ"
 
 
 };

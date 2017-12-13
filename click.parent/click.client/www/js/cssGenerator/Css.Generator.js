@@ -15775,6 +15775,33 @@ var css = {
   "width: 60%;" +
   "}",
 
+
+  // InPlace Payment
+
+  inPlacePayCategoryContainer: ".inplace-pay-category-container" +
+  "{" +
+  "position: absolute;" +
+  "height:93%; " +
+  "width: 100%; " +
+  "top:" + 86 * widthK + "px; " +
+  "bottom:0; " +
+  "background-color: white; " +
+  "}",
+
+
+  inPlacePayInnerContainer: ".inplace-pay-inner-container" +
+  "{" +
+  "position: absolute;" +
+  "height:90%; " +
+  "width: 100%; " +
+  "top:10%; " +
+  "bottom:0; " +
+  "overflow-y: scroll; " +
+  "overflow-x: hidden; " +
+  "-webkit-overflow-scrolling: touch; " +
+  "}",
+
+
 }
 
 
