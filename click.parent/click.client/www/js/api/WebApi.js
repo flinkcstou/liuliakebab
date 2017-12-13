@@ -19,6 +19,7 @@ window.api.call = function (params, timeout) {
   if (navigator.connection.type === Connection.NONE || navigator.connection.type === Connection.UNKNOWN) {
     window.isConnected = false;
     window.stopSpinner();
+    window.clearTimers();
     if (device.platform === 'Android')
       showConfirmComponent("Интернет-соединение отсутствует.\nПерейти в офлайн режим ?", 'internet');
     else {

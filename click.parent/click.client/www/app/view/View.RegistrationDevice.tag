@@ -450,6 +450,17 @@
         });
       }
 
+      setTimeout(function () {
+        if (!answerFromServer) {
+          updateAlertComponent(true, null, 'view-registration-device', window.languages.WaitingTimeExpiredText);
+          if (device.platform != 'BrowserStand') {
+            console.log("Spinner stop in device registration by timeout");
+            SpinnerPlugin.activityStop();
+          }
+          window.api.forceClose();
+          return;
+        }
+      }, 30000)
       window.api.call({
         method: 'device.register.request',
         stopSpinner: false,
@@ -517,17 +528,7 @@
         }
       });
 
-      setTimeout(function () {
-        if (!answerFromServer) {
-          updateAlertComponent(true, null, 'view-registration-device', window.languages.WaitingTimeExpiredText);
-          if (device.platform != 'BrowserStand') {
-            console.log("Spinner stop in device registration by timeout");
-            SpinnerPlugin.activityStop();
-          }
-          window.api.forceClose();
-          return;
-        }
-      }, 30000)
+
     }
 
     updateAlertComponent = function (showError, stepAmount, viewPage, text) {
