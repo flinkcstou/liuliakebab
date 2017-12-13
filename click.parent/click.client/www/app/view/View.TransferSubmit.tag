@@ -164,7 +164,10 @@
     scope.noCards = false;
     scope.cardNumberFromMain = 1;
     scope.showReceiver = true;
+    scope.checkTransferAnswer = false;
     var counter = 0;
+    answerFromServer = false;
+    var pageToReturnIfError = 'view-main-page';
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-transfer-submit') {
       history.arrayOfHistory.push(
@@ -425,6 +428,7 @@
         setTimeout(function () {
           if (!answerFromServer) {
             window.api.forceClose();
+            answerFromServer = false;
             updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
             return;
           }
@@ -455,6 +459,7 @@
                   }
                   if (result[1][0].secret_code === 0) {
                     setTimeout(function () {
+                      answerFromServer = false;
                       checkTransferStatus(result[1][0].payment_id);
                     }, 2000);
                   }
@@ -577,7 +582,7 @@
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
           }
-        });
+        }, 30000);
       };
 
       transferFindCards = function (saveCard, saveCardOwner) {
