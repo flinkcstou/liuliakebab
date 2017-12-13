@@ -605,6 +605,24 @@
 
       var gotAnswer = false;
 
+      setTimeout(function () {
+        if (!gotAnswer) {
+          scope.errorNote = "Сервис временно недоступен";
+          scope.stepAmount = 0;
+          scope.update();
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+            step_amount: scope.stepAmount
+          });
+          if (device.platform != 'BrowserStand') {
+            console.log("Spinner Stop View Report 694");
+            SpinnerPlugin.activityStop();
+          }
+          return
+        }
+      }, 10000);
       window.api.call({
         method: 'get.payment.list',
         input: {
@@ -698,29 +716,6 @@
           console.error(data);
         }
       }, 10000);
-
-
-      if (!gotAnswer)
-        setTimeout(function () {
-          if (!gotAnswer) {
-            scope.errorNote = "Сервис временно недоступен";
-            scope.stepAmount = 0;
-            scope.update();
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote,
-              step_amount: scope.stepAmount
-            });
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Report 694");
-              SpinnerPlugin.activityStop();
-            }
-            return
-          }
-        }, 10000);
-
-
     };
 
 
@@ -780,6 +775,25 @@
       scope.paymentsSum = 0;
       var gotAnswer = false;
       scope.update();
+
+      setTimeout(function () {
+        if (!gotAnswer) {
+          scope.errorNote = "Сервис временно недоступен";
+          scope.stepAmount = 0;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+            step_amount: scope.stepAmount
+          });
+          scope.update();
+          if (device.platform != 'BrowserStand') {
+            console.log("Spinner Stop View Report 823");
+            SpinnerPlugin.activityStop();
+          }
+          return
+        }
+      }, 10000);
       window.api.call({
         method: 'history.chart.data',
         input: {
@@ -838,26 +852,6 @@
           console.error(data);
         }
       }, 10000);
-
-      if (!gotAnswer)
-        setTimeout(function () {
-          if (!gotAnswer) {
-            scope.errorNote = "Сервис временно недоступен";
-            scope.stepAmount = 0;
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote,
-              step_amount: scope.stepAmount
-            });
-            scope.update();
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Report 823");
-              SpinnerPlugin.activityStop();
-            }
-            return
-          }
-        }, 10000);
 
     };
 

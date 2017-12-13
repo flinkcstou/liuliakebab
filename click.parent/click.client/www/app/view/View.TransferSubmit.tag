@@ -422,6 +422,13 @@
         scope.transactionId = parseInt(Date.now() / 1000);
 
         initResultComponent();
+        setTimeout(function () {
+          if (!answerFromServer) {
+            window.api.forceClose();
+            updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
+            return;
+          }
+        }, 30000)
         window.api.call({
           method: 'p2p.payment',
           input: {
@@ -465,13 +472,6 @@
           }
         });
 
-        setTimeout(function () {
-          if (!answerFromServer) {
-            window.api.forceClose();
-            updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
-            return;
-          }
-        }, 30000)
       };
 
       //send USSD request to API

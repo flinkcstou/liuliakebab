@@ -328,6 +328,15 @@
 
                     var answerFromServer = false;
 
+                    setTimeout(function () {
+                      if (!answerFromServer) {
+                        if (device.platform != 'BrowserStand') {
+                          console.log("Spinner Stop Compnent Bank Operations 415");
+                          SpinnerPlugin.activityStop();
+                        }
+                      }
+                      return
+                    }, 15000)
                     window.api.call({
                       method: 'get.indoor.service',
                       input: {
@@ -420,17 +429,6 @@
                         console.error(data);
                       }
                     });
-
-                    setTimeout(function () {
-                      if (!answerFromServer) {
-                        if (device.platform != 'BrowserStand') {
-                          console.log("Spinner Stop Compnent Bank Operations 415");
-                          SpinnerPlugin.activityStop();
-                        }
-                      }
-
-                      return
-                    }, 15000)
                   }
                 }
               }

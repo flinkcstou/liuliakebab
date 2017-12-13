@@ -441,7 +441,14 @@
       answerFromServer = false;
 
       window.startSpinner();
-
+      setTimeout(function () {
+        if (!answerFromServer) {
+          answerFromServer = true;
+          updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText);
+          window.stopSpinner();
+          return
+        }
+      }, 30000)
       window.api.call({
         method: 'app.login',
         stopSpinner: false,
@@ -541,15 +548,6 @@
           return;
         }
       });
-
-      setTimeout(function () {
-        if (!answerFromServer) {
-          answerFromServer = true;
-          updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText);
-          window.stopSpinner();
-          return
-        }
-      }, 30000)
     }
 
 

@@ -492,7 +492,17 @@
           console.log("Spinner stop in authorization");
         });
       }
-
+      setTimeout(function () {
+        if (!answerFromServer) {
+          updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText);
+          answerFromServer = true;
+          if (device.platform != 'BrowserStand') {
+            console.log("Spinner stop in authorization by timeout");
+            SpinnerPlugin.activityStop();
+          }
+          return
+        }
+      }, 30000)
       window.api.call({
         method: 'app.login',
         stopSpinner: false,
@@ -599,18 +609,6 @@
           return;
         }
       });
-
-      setTimeout(function () {
-        if (!answerFromServer) {
-          updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText);
-          answerFromServer = true;
-          if (device.platform != 'BrowserStand') {
-            console.log("Spinner stop in authorization by timeout");
-            SpinnerPlugin.activityStop();
-          }
-          return
-        }
-      }, 30000)
     }
 
 

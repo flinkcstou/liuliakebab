@@ -258,6 +258,13 @@
 
         initResultComponent();
 
+        setTimeout(function () {
+          if (!answerFromServer) {
+            updateResultComponent(true, null, mainPageToReturn, 'waiting', window.languages.WaitingTimeExpiredText);
+
+            return
+          }
+        }, 20000)
         window.api.call({
           method: 'card.add',
           input: {
@@ -318,14 +325,6 @@
             console.error(data);
           }
         }, 20000);
-
-        setTimeout(function () {
-          if (!answerFromServer) {
-            updateResultComponent(true, null, mainPageToReturn, 'waiting', window.languages.WaitingTimeExpiredText);
-
-            return
-          }
-        }, 20000)
       }
 
     };

@@ -606,7 +606,12 @@
       }
 
       initResultComponent();
-
+      setTimeout(function () {
+        if (!answerFromServer) {
+          updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
+          return
+        }
+      }, 30000)
       window.api.call({
         method: 'app.payment',
         input: {
@@ -659,13 +664,6 @@
           console.error(data);
         }
       });
-
-      setTimeout(function () {
-        if (!answerFromServer) {
-          updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
-          return
-        }
-      }, 30000)
     }
 
     function checkPaymentStatus(payment_id) {
