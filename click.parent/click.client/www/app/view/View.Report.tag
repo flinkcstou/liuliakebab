@@ -106,6 +106,8 @@
 
     this.titleName = 'ОТЧЕТЫ';
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
+    var timeOutTimerData = 0;
+    var timeOutTimerPayment = 0;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-report') {
       history.arrayOfHistory.push(
@@ -526,8 +528,6 @@
           scope.paymentsList = []
         }
 
-      var timeOutTimerPayment = 0;
-
       window.api.call({
         method: 'get.payment.list',
         input: {
@@ -671,7 +671,6 @@
 
       scope.graphList = [];
       scope.paymentsSum = 0;
-      var timeOutTimerData = 0;
       scope.update();
 
       window.api.call({

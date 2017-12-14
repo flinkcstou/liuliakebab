@@ -216,7 +216,7 @@
 
           onSuccess: function (result) {
 
-            console.log('Clearing timer onSuccess',timeOutTimer);
+            console.log('Clearing timer onSuccess', timeOutTimer);
             window.clearTimeout(timeOutTimer);
             if (result[0][0].error == 0) {
               console.log("CARD ADD", result);
@@ -253,7 +253,7 @@
           },
 
           onFail: function (api_status, api_status_message, data) {
-            console.log('Clearing timer onFail',timeOutTimer);
+            console.log('Clearing timer onFail', timeOutTimer);
             window.clearTimeout(timeOutTimer);
             updateResultComponent(true, null, mainPageToReturn, 'unsuccess', api_status_message);
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
@@ -261,11 +261,11 @@
           },
           onTimeOut: function () {
             timeOutTimer = setTimeout(function () {
-                updateResultComponent(true, null, mainPageToReturn, 'waiting', window.languages.WaitingTimeExpiredText);
+              updateResultComponent(true, null, mainPageToReturn, 'waiting', window.languages.WaitingTimeExpiredText);
             }, 20000)
           },
-          onEmergencyStop: function(){
-            console.log('Clearing timer emergencyStop',timeOutTimer);
+          onEmergencyStop: function () {
+            console.log('Clearing timer emergencyStop', timeOutTimer);
             window.clearTimeout(timeOutTimer);
           }
         }, 20000);
@@ -289,7 +289,8 @@
 
         onSuccess: function (result) {
 
-          answerFromServer = true;
+          console.log('Clearing timer onSuccess', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           if (result[0][0].error === 0) {
             console.log("CARD ADD CHECK", result);
 
@@ -327,6 +328,8 @@
         },
 
         onFail: function (api_status, api_status_message, data) {
+          console.log('Clearing timer onSuccess', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           updateResultComponent(true, null, mainPageToReturn, 'unsuccess', api_status_message);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
