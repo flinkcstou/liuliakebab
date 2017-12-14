@@ -28,7 +28,7 @@
       touchStartAcceptX,
       touchStartAcceptY,
       touchEndAcceptX,
-      touchEndAcceptY,
+      touchEndAcceptY;
     var timeOutTimer = 0;
 
     scope.success = false;
