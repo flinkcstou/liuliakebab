@@ -66,9 +66,7 @@
       createButtonEndY;
     var mainPageToReturn = 'view-main-page',
       pageToReturnTwo = 'view-add-card';
-    var answerFromServer = false;
     var timeOutTimer = 0;
-    var timeOutTimerCardCheck = 0;
     var onPaste = false;
     var canFormatNumber = true;
     var stars = '';
