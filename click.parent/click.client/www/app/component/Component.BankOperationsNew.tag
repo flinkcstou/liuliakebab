@@ -253,8 +253,8 @@
         }
 
         closeMenu();
-        riotTags.innerHTML = "<view-inplace-pay>";
-        riot.mount('view-inplace-pay');
+        riotTags.innerHTML = "<view-inplace-pay-category>";
+        riot.mount('view-inplace-pay-category');
       }
     }
 

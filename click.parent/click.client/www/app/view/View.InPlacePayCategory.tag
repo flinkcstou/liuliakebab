@@ -1,4 +1,4 @@
-<view-inplace-pay>
+<view-inplace-pay-category>
   <div id="viewPayId" class="view-pay riot-tags-main-container">
     <div class="pay-page-title">
       <p class="pay-name-title">{titleName}</p>
@@ -10,13 +10,13 @@
       <div class="inplace-pay-inner-container">
         <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
           <li each="{i in categoryList}" style="overflow: hidden;">
-            <div if="{!(modeOfApp.offlineMode)}" class="pay-service-block-containter" id="{i.id}"
+            <div if="{!(modeOfApp.offlineMode)}" class="pay-service-block-containter" id="{i.category_id}"
                  ontouchstart="onTouchStartOfCategory(this.id)"
                  onclick="onTouchEndOfCategory(this.id)">
               <div class="pay-category-icon" style="background-image: url({i.icon})"></div>
-              <div class="pay-category-name-field">{i.name}
+              <div class="pay-category-name-field">{i.category_name}
               </div>
-              <div class="pay-icon-tick" id="tick{i.id}"></div>
+              <div class="pay-icon-tick"></div>
             </div>
           </li>
         </ul>
@@ -24,7 +24,7 @@
     </div>
   </div>
   <script>
-    //TODO: OPTIMIZE THIS PAGE SLOW DOWNLOADING CATEGORIES AND SERVICES
+
     var scope = this;
     scope.checkOfSearch = false;
 
@@ -40,9 +40,44 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
-    scope.categoryList = (JSON.parse(localStorage.getItem("click_client_payCategoryList"))) ? (JSON.parse(localStorage.getItem("click_client_payCategoryList"))) : (offlinePayCategoryList);
-    scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
+    var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+    var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+    var sessionKey = loginInfo.session_key;
 
+    if (modeOfApp.onlineMode) {
+
+      scope.categoryList = [];
+
+      window.api.call({
+        method: 'get.indoor.category.list',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber
+        },
+        scope: this,
+
+        onSuccess: function (result) {
+          if (result[0][0].error == 0)
+            if (result[1][0]) {
+
+
+              for (var i in result[1]) {
+
+                scope.categoryList.push(result[1][i]);
+
+              }
+//              localStorage.setItem('click_client_payCategoryList', JSON.stringify(categoryList));
+              scope.update();
+
+            }
+
+        },
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+    }
 
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
@@ -83,6 +118,40 @@
       }
     };
 
+    findLocation = function () {
+
+      console.log("find location method");
+
+      // onSuccess Callback
+      // This method accepts a Position object, which contains the
+      // current GPS coordinates
+      //
+
+      var geoOptions = {timeout: 5000, enableHighAccuracy: true};
+      var onGeoSuccess = function (position) {
+        console.log("Success in getting position", position)
+        alert('Latitude: ' + position.coords.latitude + '\n' +
+          'Longitude: ' + position.coords.longitude + '\n' +
+          'Altitude: ' + position.coords.altitude + '\n' +
+          'Accuracy: ' + position.coords.accuracy + '\n' +
+          'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
+          'Heading: ' + position.coords.heading + '\n' +
+          'Speed: ' + position.coords.speed + '\n' +
+          'Timestamp: ' + position.timestamp + '\n');
+      };
+
+      // onError Callback receives a PositionError object
+      //
+      function onGeoError(error) {
+        console.log("Error in getting position", error)
+        alert('code: ' + error.code + '\n' +
+          'message: ' + error.message + '\n');
+      }
+
+      navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError, geoOptions);
+    };
+
+    //    findLocation();
 
     scope.index = -1;
     scope.show = false;
@@ -156,10 +225,8 @@
 //      }, 100)
     };
 
-
-    localStorage.setItem('autoPayData', null);
     window.viewServicePinCards = {};
 
 
   </script>
-</view-inplace-pay>
+</view-inplace-pay-category>
