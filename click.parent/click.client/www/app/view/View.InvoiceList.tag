@@ -125,12 +125,10 @@
       if ((invoiceListInvoicesId.scrollHeight - invoiceListInvoicesId.scrollTop) == invoiceListInvoicesId.offsetHeight && canDownloadInvoiceList) {
         console.log(scope.toUser)
         if (scope.toUser) {
-          console.log("ASDQQQ");
           invoiceListPageNumber++;
           getInvoiceListToUser()
         }
         else {
-          console.log("ASDQQQ");
           invoiceListPageNumber++;
           getInvoiceListFromUser()
         }
@@ -141,7 +139,6 @@
     var checkAnswerToUser;
 
     getInvoiceListToUser = function () {
-      console.log("ASDQQQ");
 
       if (!scope.toUser) {
         scope.oldInvoiceList = scope.invoiceList;
@@ -157,38 +154,9 @@
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
       var sessionKey = loginInfo.session_key;
-      checkAnswerToUser = false;
+      var timeOutTimerToUser = 0;
 
-      if (device.platform != 'BrowserStand') {
-        var options = {dimBackground: true};
-
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Started");
-        }, function () {
-          console.log("closed");
-        });
-      }
-      if (!checkAnswerToUser) {
-        console.log("wwww to user")
-        setTimeout(function () {
-          if (!checkAnswerToUser) {
-            console.log("STOP method")
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Invoice List 238");
-              SpinnerPlugin.activityStop();
-            }
-
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: false,
-              errornote: "Сервис временно недоступен"
-            });
-
-            scope.update();
-            return
-          }
-        }, 10000);
-      }
+      window.startSpinner();
       window.api.call({
         method: 'invoice.list',
         input: {
@@ -198,10 +166,10 @@
         },
         scope: this,
         onSuccess: function (result) {
-          checkAnswerToUser = true;
+          console.log('Clearing timer onSuccess',timeOutTimerToUser);
+          window.clearTimeout(timeOutTimerToUser);
 
           if (result[0][0].error == 0) {
-            console.log(result[1])
             if (result[1]) {
               if (result[1].length == 0 && invoiceListPageNumber == 1) {
                 canDownloadInvoiceList = false;
@@ -209,23 +177,17 @@
                 scope.update();
               }
               if (result[1][0]) {
-                console.log('invoice to user', result[1])
-                console.log('LENGTH', result[1].length)
-
                 for (var i = 0; i < result[1].length; i++) {
 
                   try {
                     result[1][i].amount = window.amountTransform(result[1][i].amount.toString());
                   } catch (error) {
-
                     console.log(error);
                   }
                   result[1][i].deleted = false;
                   scope.invoiceList.push(result[1][i]);
                 }
-
                 scope.update();
-
                 localStorage.setItem('click_client_invoice_list', JSON.stringify(scope.invoiceList));
               }
             }
@@ -234,7 +196,6 @@
             }
           }
           else {
-
             window.common.alert.show("componentAlertId", {
               parent: scope,
               clickpinerror: false,
@@ -247,6 +208,22 @@
         onFail: function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
+        },
+        onTimeOut: function () {
+          timeOutTimerToUser = setTimeout(function () {
+            window.stopSpinner();
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: false,
+                errornote: "Сервис временно недоступен"
+              });
+              scope.update();
+          }, 10000);
+          console.log('creating timeOutToUser', timeOutTimerToUser);
+        },
+        onEmergencyStop: function(){
+          console.log('Clearing timer emergencyStop',timeOutTimerToUser);
+          window.clearTimeout(timeOutTimerToUser);
         }
       }, 10000);
 
@@ -267,37 +244,10 @@
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
       var sessionKey = loginInfo.session_key;
-      var checkAnswerFromUser = false;
+      var timeOutTimerFromUser = 0;
 
-      if (device.platform != 'BrowserStand') {
-        var options = {dimBackground: true};
+      window.startSpinner();
 
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Started");
-        }, function () {
-          console.log("closed");
-        });
-      }
-      if (!checkAnswerFromUser) {
-        console.log("wwww from user")
-        setTimeout(function () {
-          if (!checkAnswerFromUser) {
-            console.log("STOP method")
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Invoice List 339");
-              SpinnerPlugin.activityStop();
-            }
-
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: false,
-              errornote: "Сервис временно недоступен"
-            });
-            scope.update();
-            return
-          }
-        }, 10000);
-      }
       window.api.call({
         method: 'invoice.history',
         input: {
@@ -307,7 +257,8 @@
         },
         scope: this,
         onSuccess: function (result) {
-          checkAnswerFromUser = true;
+          console.log('Clearing timer onSuccess',timeOutTimerFromUser);
+          window.clearTimeout(timeOutTimerFromUser);
           if (result[0][0].error == 0) {
             if (result[1]) {
               if (result[1].length == 0 && invoiceListPageNumber == 1) {
@@ -316,9 +267,6 @@
                 scope.update();
               }
               if (result[1][0]) {
-                console.log('invoice from user', result[1])
-
-
                 for (var i = 0; i < result[1].length; i++) {
 
                   try {
@@ -330,8 +278,6 @@
                   result[1][i].deleted = false;
                   scope.invoiceList.push(result[1][i]);
                 }
-
-
                 scope.update();
 //                localStorage.setItem('click_client_invoice_list', JSON.stringify(scope.invoiceList));
               }
@@ -350,6 +296,22 @@
         onFail: function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
+        },
+        onTimeOut: function () {
+          timeOutTimerFromUser = setTimeout(function () {
+            window.stopSpinner();
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: false,
+                errornote: "Сервис временно недоступен"
+              });
+              scope.update();
+          }, 10000);
+          console.log('creating timeOutFromUser', timeOutTimerFromUser);
+        },
+        onEmergencyStop: function(){
+          console.log('Clearing timer emergencyStop',timeOutTimerFromUser);
+          window.clearTimeout(timeOutTimerFromUser);
         }
       }, 10000);
 

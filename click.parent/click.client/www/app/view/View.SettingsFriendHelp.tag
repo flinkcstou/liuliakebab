@@ -34,6 +34,7 @@
 
   <script>
     var scope = this;
+    var timeOutTimer = 0;
     console.log('OPTS in FriendHelp', opts);
 
     scope.arrayOfPhoneNumbers = [];
@@ -58,17 +59,9 @@
     else {
       scope.arrayOfFriends = JSON.parse(localStorage.getItem('click_client_friends'));
       console.log('scope.arrayOfFriends', scope.arrayOfFriends)
-
-//      for(var i in scope.arrayOfFriends){
-//        if(scope.arrayOfFriends[i].photo === null){
-//
-//        }
-//      }
     }
 
     function onSuccess(contacts) {
-      //      alert('Found ' + contacts.length + ' contacts.');
-
       for (var i in contacts) {
         var personObj = {};
         if (contacts[i].phoneNumbers) {
@@ -90,8 +83,6 @@
       }
 
       if (typeof scope.arrayOfPhoneNumbers === 'undefined' || scope.arrayOfPhoneNumbers.length < 1) return
-
-
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
       var sessionKey = info.session_key;
@@ -102,14 +93,12 @@
           phone_num: phoneNumber,
           phone_list: scope.arrayOfPhoneNumbers,
           session_key: sessionKey,
-
         },
 
         scope: this,
-
         onSuccess: function (result) {
-          answerFromServer = true;
-
+          console.log('Clearing timer onSuccess', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           if (result[0][0].error === 0) {
             var object = {};
             var counter = 0;
@@ -151,27 +140,41 @@
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
-            scope.viewPage = ''
+            scope.viewPage = '';
             scope.update();
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
-          answerFromServer = true;
+          console.log('Clearing timer onFail', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
-        }
-      });
-    }
+        },
 
+        onTimeOut: function () {
+          timeOutTimer = setTimeout(function () {
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                errornote: window.languages.WaitingTimeExpiredText,
+                step_amount: 0
+              });
+              scope.update();
+            window.stopSpinner();
+          }, 30000);
+        },
+        onEmergencyStop: function(){
+          console.log('Clearing timer emergencyStop',timeOutTimer);
+          window.clearTimeout(timeOutTimer);
+        }
+      }, 30000);
+    }
 
     function onError(contactError) {
       answerFromServer = true;
       console.log('error', contactError)
     }
 
-
-    // find all contacts with 'Bob' in any name field
 
     if (!localStorage.getItem('click_client_friendsOuter_count')) {
       console.log("requesting friend list")
@@ -189,21 +192,6 @@
             console.log("Spinner stop in settingsFriendHelp");
           });
         }
-        setTimeout(function () {
-          if (!answerFromServer) {
-            answerFromServer = true;
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              errornote: window.languages.WaitingTimeExpiredText,
-              step_amount: 0
-            });
-            scope.update();
-            if (device.platform !== 'BrowserStand') {
-              console.log("Spinner stop in settingsFriendHelp by timeout");
-              SpinnerPlugin.activityStop();
-            }
-          }
-        }, 30000);
         navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
       }
     }

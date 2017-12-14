@@ -164,7 +164,11 @@
     scope.noCards = false;
     scope.cardNumberFromMain = 1;
     scope.showReceiver = true;
+    scope.checkTransferAnswer = false;
     var counter = 0;
+    answerFromServer = false;
+    var pageToReturnIfError = 'view-main-page';
+    var timeOutTimer = 0;
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-transfer-submit') {
       history.arrayOfHistory.push(
@@ -318,370 +322,384 @@
       };
     }
 
-      scope.cardChangedTop = cardChangedTop = function (cardNumber) {
-        for (var i in scope.cardsarray) {
-          if (scope.cardsarray[i].countCard === cardNumber) {
-            scope.chosenCard = scope.cardsarray[i];
-          }
+    scope.cardChangedTop = cardChangedTop = function (cardNumber) {
+      for (var i in scope.cardsarray) {
+        if (scope.cardsarray[i].countCard === cardNumber) {
+          scope.chosenCard = scope.cardsarray[i];
         }
-        if (scope.chosenCard === undefined) {
-          scope.noCards = true;
-        }
-        scope.update();
-      };
+      }
+      if (scope.chosenCard === undefined) {
+        scope.noCards = true;
+      }
+      scope.update();
+    };
 
-      onTouchStartOfSubmit = function (button) {
+    onTouchStartOfSubmit = function (button) {
 
-        button.style.webkitTransform = 'scale(0.7)';
+      button.style.webkitTransform = 'scale(0.7)';
 
-        event.preventDefault();
-        event.stopPropagation();
+      event.preventDefault();
+      event.stopPropagation();
 
-        transferSubmitTouchStartX = event.changedTouches[0].pageX;
-        transferSubmitTouchStartY = event.changedTouches[0].pageY;
-      };
+      transferSubmitTouchStartX = event.changedTouches[0].pageX;
+      transferSubmitTouchStartY = event.changedTouches[0].pageY;
+    };
 
-      onTouchEndOfSubmit = function (button) {
+    onTouchEndOfSubmit = function (button) {
 
-        button.style.webkitTransform = 'scale(1)';
+      button.style.webkitTransform = 'scale(1)';
 
-        event.preventDefault();
-        event.stopPropagation();
+      event.preventDefault();
+      event.stopPropagation();
 
-        transferSubmitTouchEndX = event.changedTouches[0].pageX;
-        transferSubmitTouchEndY = event.changedTouches[0].pageY;
+      transferSubmitTouchEndX = event.changedTouches[0].pageX;
+      transferSubmitTouchEndY = event.changedTouches[0].pageY;
 
-        if (Math.abs(transferSubmitTouchStartX - transferSubmitTouchEndX) <= 20
-          && Math.abs(transferSubmitTouchStartY - transferSubmitTouchEndY) <= 20) {
-          submitAmountId.blur();
-          if (modeOfApp.demoVersion) {
-            scope.errorNote = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              errorcode: scope.errorCode,
-              clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote,
-            });
-            scope.update();
-            return;
-          }
-
-          if (modeOfApp.offlineMode) {
-            transferViaUssd();
-            return;
-          }
-
-          if (scope.chosenCard && parseInt(scope.chosenCard.salaryOriginal) < (parseInt(scope.sumForTransfer) + scope.tax)) {
-            scope.clickPinError = false;
-            scope.errorNote = "На выбранной карте недостаточно средств";
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote
-            });
-            scope.update();
-            return;
-          }
-          if (scope.chosenCard === undefined) {
-            scope.clickPinError = false;
-            scope.errorNote = "Выберите карту списания";
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote
-            });
-            scope.update();
-            return;
-          }
-          if (scope.payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) !== true) {
-            optsForPinCode = {
-              fromPinCode: true,
-              receiver: scope.receiver,
-              receiverTitle: scope.receiverTitle,
-              taxPercent: scope.taxPercent,
-              maxLimit: scope.maxLimit,
-              minLimit: scope.minLimit,
-              transferType: scope.transferType,
-              sumForTransfer: scope.sumForTransfer,
-              chosenCard: scope.chosenCard,
-            };
-            riotTags.innerHTML = "<view-pin-code>";
-            riot.mount('view-pin-code', ['view-transfer-submit', optsForPinCode]);
-            return
-          }
-
-          transfer();
-        }
-      };
-
-      //send request to API
-      transfer = function () {
-
-        var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-        var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-        scope.transactionId = parseInt(Date.now() / 1000);
-
-        initResultComponent();
-        setTimeout(function () {
-          if (!answerFromServer) {
-            window.api.forceClose();
-            updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
-            return;
-          }
-        }, 30000)
-        window.api.call({
-          method: 'p2p.payment',
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            account_id: scope.chosenCard.card_id,
-            receiver_data: scope.receiver,
-            amount: parseInt(scope.sumForTransfer),
-            type: scope.transferType,
-            transaction_id: scope.transactionId
-          },
-          scope: this,
-          onSuccess: function (result) {
-            if (result[0][0].error === 0) {
-              if (result[1])
-                if (result[1][0]) {
-                  if (result[1][0].secret_code && scope.transferType === 2) {
-                    answerFromServer = true;
-                    closeResultComponent();
-                    blockCodeConfirmId.style.display = 'block';
-                    scope.secretCode = result[1][0].secret_code;
-                    window.updateBalanceGlobalFunction();
-                    scope.update();
-                  }
-                  if (result[1][0].secret_code === 0) {
-                    setTimeout(function () {
-                      checkTransferStatus(result[1][0].payment_id);
-                    }, 2000);
-                  }
-                }
-            }
-            else {
-              updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', result[0][0].error_note)
-            }
-          },
-
-          onFail: function (api_status, api_status_message, data) {
-            updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
-            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-            console.error(data);
-          }
-        });
-
-      };
-
-      //send USSD request to API
-      transferViaUssd = function () {
-        if (scope.transferType === 2) {
-          phonedialer.dial(
-            "*880*3*" + scope.receiver + "*" + parseInt(scope.sumForTransfer) + "%23",
-            function (err) {
-              if (err === "empty") {
-                scope.clickPinError = false;
-                scope.errorNote = ("Unknown phone number");
-
-                window.common.alert.show("componentAlertId", {
-                  parent: scope,
-                  clickpinerror: scope.clickPinError,
-                  errornote: scope.errorNote
-                });
-                scope.update();
-              }
-              else console.error("Dialer Error:" + err);
-            },
-            function (success) {
-              console.error('success', success)
-              console.error("*880*3*" + scope.receiver + "*" + parseInt(scope.sumForTransfer) + "%23")
-            }
-          );
+      if (Math.abs(transferSubmitTouchStartX - transferSubmitTouchEndX) <= 20
+        && Math.abs(transferSubmitTouchStartY - transferSubmitTouchEndY) <= 20) {
+        submitAmountId.blur();
+        if (modeOfApp.demoVersion) {
+          scope.errorNote = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errorcode: scope.errorCode,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+          });
+          scope.update();
           return;
         }
-        if (scope.transferType === 1) {
-          phonedialer.dial(
-            "*880*" + scope.receiver + "*" + parseInt(scope.sumForTransfer) + "%23",
-            function (err) {
-              if (err == "empty") {
-                scope.clickPinError = false;
-                scope.errorNote = ("Unknown phone number");
 
-                window.common.alert.show("componentAlertId", {
-                  parent: scope,
-                  clickpinerror: scope.clickPinError,
-                  errornote: scope.errorNote
-                });
-
-                scope.update();
-              }
-              else console.error("Dialer Error:" + err);
-            },
-            function (success) {
-              console.error('success', success)
-              console.error("*880*" + scope.receiver + "*" + parseInt(scope.sumForTransfer) + "%23")
-            }
-          );
+        if (modeOfApp.offlineMode) {
+          transferViaUssd();
+          return;
         }
-      };
 
-      checkTransferStatus = function (payment_id) {
-        var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-        var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-        window.api.call({
-          method: 'get.payment',
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            payment_id: payment_id
-          },
-          scope: this,
-          onSuccess: function (result) {
-            if (result[0][0].error === 0 && result[1][0]) {
-              if (result[1][0].state === -1) {
-                answerFromServer = true;
+        if (scope.chosenCard && parseInt(scope.chosenCard.salaryOriginal) < (parseInt(scope.sumForTransfer) + scope.tax)) {
+          scope.clickPinError = false;
+          scope.errorNote = "На выбранной карте недостаточно средств";
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote
+          });
+          scope.update();
+          return;
+        }
+        if (scope.chosenCard === undefined) {
+          scope.clickPinError = false;
+          scope.errorNote = "Выберите карту списания";
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote
+          });
+          scope.update();
+          return;
+        }
+        if (scope.payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) !== true) {
+          optsForPinCode = {
+            fromPinCode: true,
+            receiver: scope.receiver,
+            receiverTitle: scope.receiverTitle,
+            taxPercent: scope.taxPercent,
+            maxLimit: scope.maxLimit,
+            minLimit: scope.minLimit,
+            transferType: scope.transferType,
+            sumForTransfer: scope.sumForTransfer,
+            chosenCard: scope.chosenCard,
+          };
+          riotTags.innerHTML = "<view-pin-code>";
+          riot.mount('view-pin-code', ['view-transfer-submit', optsForPinCode]);
+          return
+        }
 
-                window.languages.tempText = JSON.stringify(result[1][0].error);
-                scope.errorMessageFromTransfer = result[1][0].error;
-                updateResultComponent(true, scope.stepAmount, null, 'unsuccess', result[1][0].error);
-              } else if (result[1][0].state === 2) {
-                answerFromServer = true;
-                window.updateBalanceGlobalFunction();
-                updateResultComponent(true, scope.stepAmount, null, 'success', window.languages.ComponentSuccessMessage);
-                if (scope.transferType === 1)
-                  transferFindCards(scope.receiver, scope.receiverTitle);
-              } else if (result[1][0].state === 1) {
-                counter++;
+        transfer();
+      }
+    };
 
-                if (counter < 5) {
+    //send request to API
+    transfer = function () {
+
+      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+      scope.transactionId = parseInt(Date.now() / 1000);
+
+      initResultComponent();
+      window.api.call({
+        method: 'p2p.payment',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          account_id: scope.chosenCard.card_id,
+          receiver_data: scope.receiver,
+          amount: parseInt(scope.sumForTransfer),
+          type: scope.transferType,
+          transaction_id: scope.transactionId
+        },
+        scope: this,
+        onSuccess: function (result) {
+          if (result[0][0].error === 0) {
+            if (result[1])
+              if (result[1][0]) {
+                if (result[1][0].secret_code && scope.transferType === 2) {
+                  console.log('Clearing timer onSuccess', timeOutTimer);
+                  window.clearTimeout(timeOutTimer);
+                  closeResultComponent();
+                  blockCodeConfirmId.style.display = 'block';
+                  scope.secretCode = result[1][0].secret_code;
+                  window.updateBalanceGlobalFunction();
+                  scope.update();
+                }
+                if (result[1][0].secret_code === 0) {
                   setTimeout(function () {
                     checkTransferStatus(result[1][0].payment_id);
                   }, 2000);
-                } else {
-                  answerFromServer = true;
-                  updateResultComponent(true, scope.stepAmount, null, 'waiting', window.languages.ComponentInProcessingPartOne);
                 }
               }
-              window.api.spinnerOn = false;
+          }
+          else {
+            console.log('Clearing timer onSuccess', timeOutTimer);
+            window.clearTimeout(timeOutTimer);
+            updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', result[0][0].error_note)
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.log('Clearing timer onFail', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
+          updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        },
+        onTimeOut: function () {
+          timeOutTimer = setTimeout(function () {
+            window.api.forceClose();
+            updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
+          }, 30000);
+          console.log('creating timeOut', timeOutTimer);
+        },
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
+        }
+      });
+
+    };
+
+    //send USSD request to API
+    transferViaUssd = function () {
+      if (scope.transferType === 2) {
+        phonedialer.dial(
+          "*880*3*" + scope.receiver + "*" + parseInt(scope.sumForTransfer) + "%23",
+          function (err) {
+            if (err === "empty") {
+              scope.clickPinError = false;
+              scope.errorNote = ("Unknown phone number");
+
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote
+              });
+              scope.update();
             }
-            else {
-              answerFromServer = true;
-              updateResultComponent(true, scope.stepAmount, null, 'unsuccess', result[0][0].error);
-            }
+            else console.error("Dialer Error:" + err);
           },
-
-          onFail: function (api_status, api_status_message, data) {
-            answerFromServer = true;
-            updateResultComponent(true, scope.stepAmount, null, 'unsuccess', api_status_message);
-            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-            console.error(data);
+          function (success) {
+            console.error('success', success)
+            console.error("*880*3*" + scope.receiver + "*" + parseInt(scope.sumForTransfer) + "%23")
           }
-        });
-      };
+        );
+        return;
+      }
+      if (scope.transferType === 1) {
+        phonedialer.dial(
+          "*880*" + scope.receiver + "*" + parseInt(scope.sumForTransfer) + "%23",
+          function (err) {
+            if (err == "empty") {
+              scope.clickPinError = false;
+              scope.errorNote = ("Unknown phone number");
 
-      transferFindCards = function (saveCard, saveCardOwner) {
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote
+              });
 
-        var transferCards = [];
-        var codeOfBank = saveCard.replace(/\s/g, '').substring(3, 6);
-        var card = {};
-        card.image = '';
-        card.name = '';
-        card.cardNumber = '';
-        card.owner = {};
-        if (saveCardOwner)
-          card.owner.firstName = saveCardOwner;
-        card.owner.secondName = '';
-        var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'));
-        if (JSON.parse(localStorage.getItem('p2pTransferCards'))) {
-          transferCards = JSON.parse(localStorage.getItem('p2pTransferCards'));
-          for (var j = 0; j < transferCards.length; j++) {
-            if (transferCards[j].cardNumber === saveCard) {
-              transferCards.splice(j, 1);
-              localStorage.setItem('p2pTransferCards', JSON.stringify(transferCards));
+              scope.update();
             }
+            else console.error("Dialer Error:" + err);
+          },
+          function (success) {
+            console.error('success', success)
+            console.error("*880*" + scope.receiver + "*" + parseInt(scope.sumForTransfer) + "%23")
+          }
+        );
+      }
+    };
+
+    checkTransferStatus = function (payment_id) {
+      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+      window.api.call({
+        method: 'get.payment',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          payment_id: payment_id
+        },
+        scope: this,
+        onSuccess: function (result) {
+          if (result[0][0].error === 0 && result[1][0]) {
+            if (result[1][0].state === -1) {
+              console.log('Clearing timer onFail', timeOutTimer);
+              window.clearTimeout(timeOutTimer);
+
+              window.languages.tempText = JSON.stringify(result[1][0].error);
+              scope.errorMessageFromTransfer = result[1][0].error;
+              updateResultComponent(true, scope.stepAmount, null, 'unsuccess', result[1][0].error);
+            } else if (result[1][0].state === 2) {
+              console.log('Clearing timer onSuccess', timeOutTimer);
+              window.clearTimeout(timeOutTimer);
+              window.updateBalanceGlobalFunction();
+              updateResultComponent(true, scope.stepAmount, null, 'success', window.languages.ComponentSuccessMessage);
+              if (scope.transferType === 1)
+                transferFindCards(scope.receiver, scope.receiverTitle);
+            } else if (result[1][0].state === 1) {
+              counter++;
+
+              if (counter < 5) {
+                setTimeout(function () {
+                  checkTransferStatus(result[1][0].payment_id);
+                }, 2000);
+              } else {
+                console.log('Clearing timer onSuccess', timeOutTimer);
+                window.clearTimeout(timeOutTimer);
+                updateResultComponent(true, scope.stepAmount, null, 'waiting', window.languages.ComponentInProcessingPartOne);
+              }
+            }
+            window.api.spinnerOn = false;
+          }
+          else {
+            console.log('Clearing timer onSuccess', timeOutTimer);
+            window.clearTimeout(timeOutTimer);
+            updateResultComponent(true, scope.stepAmount, null, 'unsuccess', result[0][0].error);
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.log('Clearing timer onFail', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
+          updateResultComponent(true, scope.stepAmount, null, 'unsuccess', api_status_message);
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      }, 30000);
+    };
+
+    transferFindCards = function (saveCard, saveCardOwner) {
+
+      var transferCards = [];
+      var codeOfBank = saveCard.replace(/\s/g, '').substring(3, 6);
+      var card = {};
+      card.image = '';
+      card.name = '';
+      card.cardNumber = '';
+      card.owner = {};
+      if (saveCardOwner)
+        card.owner.firstName = saveCardOwner;
+      card.owner.secondName = '';
+      var bankList = JSON.parse(localStorage.getItem('click_client_p2p_bank_list'));
+      if (JSON.parse(localStorage.getItem('p2pTransferCards'))) {
+        transferCards = JSON.parse(localStorage.getItem('p2pTransferCards'));
+        for (var j = 0; j < transferCards.length; j++) {
+          if (transferCards[j].cardNumber === saveCard) {
+            transferCards.splice(j, 1);
+            localStorage.setItem('p2pTransferCards', JSON.stringify(transferCards));
           }
         }
+      }
 
-        for (var i = 0; i < bankList.length; i++) {
-          if (codeOfBank === bankList[i].code) {
-            if (JSON.parse(localStorage.getItem('p2pTransferCards'))) {
-              transferCards = JSON.parse(localStorage.getItem('p2pTransferCards'));
-              card.image = bankList[i].image;
-              card.name = bankList[i].name;
-              card.cardNumber = saveCard;
-              transferCards.unshift(card);
-              localStorage.setItem('p2pTransferCards', JSON.stringify(transferCards));
-            }
-            else {
-              card.image = bankList[i].image;
-              card.name = bankList[i].name;
-              card.cardNumber = saveCard;
-              transferCards.unshift(card);
-              localStorage.setItem('p2pTransferCards', JSON.stringify(transferCards));
-            }
+      for (var i = 0; i < bankList.length; i++) {
+        if (codeOfBank === bankList[i].code) {
+          if (JSON.parse(localStorage.getItem('p2pTransferCards'))) {
+            transferCards = JSON.parse(localStorage.getItem('p2pTransferCards'));
+            card.image = bankList[i].image;
+            card.name = bankList[i].name;
+            card.cardNumber = saveCard;
+            transferCards.unshift(card);
+            localStorage.setItem('p2pTransferCards', JSON.stringify(transferCards));
+          }
+          else {
+            card.image = bankList[i].image;
+            card.name = bankList[i].name;
+            card.cardNumber = saveCard;
+            transferCards.unshift(card);
+            localStorage.setItem('p2pTransferCards', JSON.stringify(transferCards));
           }
         }
-      };
+      }
+    };
 
-      // Functions for result component
-      {
-        updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
-          scope.stepAmount = stepAmount;
-          scope.viewPage = viewPage;
-          scope.resultText = text;
+    // Functions for result component
+    {
+      updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
+        scope.stepAmount = stepAmount;
+        scope.viewPage = viewPage;
+        scope.resultText = text;
 
-          if (showResult) {
-            window.common.alert.updateView("componentResultId", {
-              parent: scope,
-              resulttext: scope.resultText,
-              viewpage: scope.viewPage,
-              step_amount: scope.stepAmount
-            });
-          } else {
-            window.common.alert.hide("componentResultId");
-          }
-          updateIcon(status, null, null, text, stepAmount, scope.viewPage);
-        };
-
-        closeResultComponent = function () {
-          window.common.alert.hide("componentResultId");
-          scope.update();
-        };
-
-        initResultComponent = function () {
+        if (showResult) {
           window.common.alert.updateView("componentResultId", {
-            parent: scope
+            parent: scope,
+            resulttext: scope.resultText,
+            viewpage: scope.viewPage,
+            step_amount: scope.stepAmount
           });
-          scope.update();
-        };
-      }
-
-      closeSecretCodePage = function () {
-        blockCodeConfirmId.style.display = 'none';
-        window.common.alert.show("componentInProcessingId", {
-          parent: scope,
-          operationmessagepartone: window.languages.ComponentInProcessingPartOneForTransfer,
-          operationmessageparttwo: window.languages.ComponentInProcessingPartTwoForTransfer,
-          step_amount: 2,
-        });
+        } else {
+          window.common.alert.hide("componentResultId");
+        }
+        updateIcon(status, null, null, text, stepAmount, scope.viewPage);
       };
 
-      if (scope.payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) === true) {
-        if (opts.fromPinCode === true) {
-          scope.receiver = opts.receiver;
-          scope.receiverTitle = opts.receiverTitle;
-          scope.taxPercent = opts.taxPercent;
-          scope.maxLimit = opts.maxLimit;
-          scope.minLimit = opts.minLimit;
-          scope.transferType = opts.transferType;
-          scope.sumForTransfer = opts.sumForTransfer;
-          scope.chosenCard = opts.chosenCard;
+      closeResultComponent = function () {
+        window.common.alert.hide("componentResultId");
+        scope.update();
+      };
 
-          transfer();
-        }
-        sessionStorage.setItem('payTransferConfirmed', null);
+      initResultComponent = function () {
+        window.common.alert.updateView("componentResultId", {
+          parent: scope
+        });
+        scope.update();
+      };
+    }
+
+    closeSecretCodePage = function () {
+      blockCodeConfirmId.style.display = 'none';
+      window.common.alert.show("componentInProcessingId", {
+        parent: scope,
+        operationmessagepartone: window.languages.ComponentInProcessingPartOneForTransfer,
+        operationmessageparttwo: window.languages.ComponentInProcessingPartTwoForTransfer,
+        step_amount: 2,
+      });
+    };
+
+    if (scope.payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) === true) {
+      if (opts.fromPinCode === true) {
+        scope.receiver = opts.receiver;
+        scope.receiverTitle = opts.receiverTitle;
+        scope.taxPercent = opts.taxPercent;
+        scope.maxLimit = opts.maxLimit;
+        scope.minLimit = opts.minLimit;
+        scope.transferType = opts.transferType;
+        scope.sumForTransfer = opts.sumForTransfer;
+        scope.chosenCard = opts.chosenCard;
+
+        transfer();
       }
+      sessionStorage.setItem('payTransferConfirmed', null);
+    }
 
 
     //Info about banks

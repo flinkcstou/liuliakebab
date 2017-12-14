@@ -114,6 +114,7 @@
     var enterPayStartY, enterPayStartX, enterPayEndY, enterPayEndX;
     var backStartY, backStartX, backEndY, backEndX;
     var date, sessionKey, phoneNumber, amount, accountId, friendPhone, payment_data;
+    var timeOutTimer = 0;
 
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ?
       (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
@@ -497,7 +498,6 @@
     };
 
 
-
     scope.onTouchEndOfEnterPay = onTouchEndOfEnterPay = function () {
       event.stopPropagation();
 
@@ -595,23 +595,14 @@
     };
 
     var statusCheckCounter = 0;
-    var answerFromServer = false;
-
 
     function paymentFunction(payment_data) {
-
 
       if (opts.optionAttribute && opts.optionValue) {
         payment_data[opts.optionAttribute] = opts.optionValue;
       }
 
       initResultComponent();
-      setTimeout(function () {
-        if (!answerFromServer) {
-          updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
-          return
-        }
-      }, 30000)
       window.api.call({
         method: 'app.payment',
         input: {
@@ -631,37 +622,44 @@
 
           if (result[0][0].error == 0) {
             if (result[1]) {
-
               if (result[1][0].payment_id && !result[1][0].invoice_id) {
-
                 setTimeout(function () {
                   checkPaymentStatus(result[1][0].payment_id);
                 }, 2000);
-
               }
               else if (result[1][0].invoice_id && !result[1][0].payment_id) {
-
-                answerFromServer = true;
-
+                console.log('Clearing timer onSuccess', timeOutTimer);
+                window.clearTimeout(timeOutTimer);
                 viewServicePinCards.friendHelpPaymentMode = false;
                 viewServicePinCards.chosenFriendForHelp = null;
-
                 updateResultComponent(true, getPaymentSuccessStep, null, 'success', result[0][0].error_note);
               }
             }
           }
           else {
-            answerFromServer = true;
+            console.log('Clearing timer onSuccess', timeOutTimer);
+            window.clearTimeout(timeOutTimer);
             updateResultComponent(true, appPaymentErrorStep, null, 'unsuccess', result[0][0].error_note);
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
-          answerFromServer = true;
+          console.log('Clearing timer onFail', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
 
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
+        },
+        onTimeOut: function () {
+          timeOutTimer = setTimeout(function () {
+            updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
+          }, 30000);
+          console.log('creating timeOut', timeOutTimer);
+        },
+        onEmergencyStop: function(){
+          console.log('Clearing timer emergencyStop',timeOutTimer);
+          window.clearTimeout(timeOutTimer);
         }
       });
     }
@@ -682,16 +680,14 @@
 
         onSuccess: function (result) {
           if (result[0][0].error == 0 && result[1][0]) {
-
-
             if (result[1][0].state == -1) {
-
-              answerFromServer = true;
+              console.log('Clearing timer onFail', timeOutTimer);
+              window.clearTimeout(timeOutTimer);
               updateResultComponent(true, getPaymentErrorStep, null, 'unsuccess', result[1][0].error);
 
-
             } else if (result[1][0].state == 2) {
-              answerFromServer = true;
+              console.log('Clearing timer onSuccess', timeOutTimer);
+              window.clearTimeout(timeOutTimer);
               window.updateBalanceGlobalFunction();
 
               viewServicePinCards.friendHelpPaymentMode = false;
@@ -711,45 +707,37 @@
                 qrFooterTextId.innerHTML = result[1][0].qr_footer;
               } else {
                 updateResultComponent(true, getPaymentSuccessStep, null, 'success', window.languages.ComponentSuccessMessageForPay);
-
               }
 
-
             } else if (result[1][0].state == 1) {
-
               statusCheckCounter++;
-
               if (statusCheckCounter < 5 && window.common.alert.isShown("componentResultId")) {
-
                 setTimeout(function () {
                   checkPaymentStatus(result[1][0].payment_id);
                 }, 2000);
-
               } else {
-                answerFromServer = true;
-
+                console.log('Clearing timer onSuccess', timeOutTimer);
+                window.clearTimeout(timeOutTimer);
                 viewServicePinCards.friendHelpPaymentMode = false;
                 viewServicePinCards.chosenFriendForHelp = null;
-
                 updateResultComponent(true, getPaymentSuccessStep, null, 'waiting', window.languages.ComponentInProcessingPartOneForPay);
-
               }
-
             }
             window.api.spinnerOn = false;
 
           }
           else {
-            answerFromServer = true;
+            console.log('Clearing timer onSuccess', timeOutTimer);
+            window.clearTimeout(timeOutTimer);
             updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', result[1][0].error);
 
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
-          answerFromServer = true;
+          console.log('Clearing timer onFail', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
-
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
