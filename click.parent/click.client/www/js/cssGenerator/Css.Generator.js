@@ -1901,6 +1901,21 @@ var css = {
   "max-height: 52%;" +
   "}",
 
+  cardBalanceFractional: ".card-balance-fractional " +
+  "{" +
+  "position: relative;" +
+  "left:" + 25 * widthK + "px;" +
+  "font-size:" + 36 * widthK + "px;" +
+  "margin: 0;" +
+  "margin-top:" + 7 * widthK + "px;" +
+  "float: left;" +
+  "padding: 0;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "max-height: 52%;" +
+  "}",
+
   cardCurrency: ".card-currency " +
   "{" +
   "position: relative;" +
