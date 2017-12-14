@@ -34,6 +34,7 @@
   <plugin name="cordova-plugin-inappbrowser"/>
   <plugin name="cordova-plugin-appversion"/>
   <plugin name="cordova-open-native-settings"/>
+  <plugin name="cordova-plugin-geolocation"/>
   <access origin="*"/>
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>
@@ -62,6 +63,12 @@
       </string>
     </config-file>
 
+    <config-file parent="NSLocationWhenInUseUsageDescription" target="*-Info.plist">
+      <string>Программа «CLICK Uzbekistan» запрашивает доступ к Геоданным.
+        Это необходимо для корректной работы приложения с такими функциями, как:оплата на местах.
+      </string>
+    </config-file>
+
     <allow-intent href="itms:*"/>
     <allow-intent href="itms-apps:*"/>
     <allow-intent href="tel:*" launch-external="yes"/>
@@ -71,6 +78,7 @@
     <preference name="SplashScreenDelay" value="3000"/>
     <preference name="SplashMaintainAspectRatio" value="true"/>
     <preference name="KeyboardDisplayRequiresUserAction" value="false"/>
+
     <icon height="57" src="resources/ios/icon/icon.png" width="57"/>
     <icon height="114" src="resources/ios/icon/icon@2x.png" width="114"/>
     <icon height="40" src="resources/ios/icon/icon-40.png" width="40"/>
@@ -107,6 +115,7 @@
     <preference name="SplashScreen" value="screen"/>
     <preference name="SplashScreenDelay" value="3000"/>
     <preference name="SplashMaintainAspectRatio" value="true"/>
+
     <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png"/>
     <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png"/>
     <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png"/>

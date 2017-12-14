@@ -12990,3 +12990,48 @@ window.fakedSocket.register("push.register.token", function (input) {
     }
   ];
 });
+
+
+window.fakedSocket.register("get.indoor.category.list", function (input) {
+
+  var array = [];
+  array.push([{method: input.method, success: 1, error: 0, error_note: ""}]);
+  array.push([{
+      "category_id": 1,
+      "parent": 0,
+      "category_name": "Розничная торговля",
+      "status": 1,
+      "icon": "https://cdn.click.uz/app/rev2/categories/indoor/indoor_category_1.png"
+    }, {
+      "category_id": 2,
+      "parent": 0,
+      "category_name": "Кафе и рестораны",
+      "status": 1,
+      "icon": "https://cdn.click.uz/app/rev2/categories/indoor/indoor_category_2.png"
+    }, {
+      "category_id": 3,
+      "parent": 0,
+      "category_name": "Услуги",
+      "status": 1,
+      "icon": "https://cdn.click.uz/app/rev2/categories/indoor/indoor_category_3.png"
+    }, {
+      "category_id": 4,
+      "parent": 0,
+      "category_name": "Производство",
+      "status": 1,
+      "icon": "https://cdn.click.uz/app/rev2/categories/indoor/indoor_category_4.png"
+    }, {
+      "category_id": 5,
+      "parent": 0,
+      "category_name": "Страхование",
+      "status": 1,
+      "icon": "https://cdn.click.uz/app/rev2/categories/indoor/indoor_category_5.png"
+    }]
+  );
+
+  if (localStorage.getItem("click_client_token"))
+    return array;
+
+
+  return [{"method": input.method, "success": 1, "error": -4, "error_note": 'Dostup zapreshen'}];
+});
