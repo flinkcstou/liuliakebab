@@ -220,6 +220,10 @@
               scope.update();
           }, 10000);
           console.log('creating timeOutToUser', timeOutTimerToUser);
+        },
+        onEmergencyStop: function(){
+          console.log('Clearing timer emergencyStop',timeOutTimerToUser);
+          window.clearTimeout(timeOutTimerToUser);
         }
       }, 10000);
 
@@ -304,6 +308,10 @@
               scope.update();
           }, 10000);
           console.log('creating timeOutFromUser', timeOutTimerFromUser);
+        },
+        onEmergencyStop: function(){
+          console.log('Clearing timer emergencyStop',timeOutTimerFromUser);
+          window.clearTimeout(timeOutTimerFromUser);
         }
       }, 10000);
 

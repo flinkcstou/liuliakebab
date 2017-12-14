@@ -526,26 +526,8 @@
           scope.paymentsList = []
         }
 
-      var gotAnswer = false;
+      var timeOutTimerPayment = 0;
 
-      setTimeout(function () {
-        if (!gotAnswer) {
-          scope.errorNote = "Сервис временно недоступен";
-          scope.stepAmount = 0;
-          scope.update();
-          window.common.alert.show("componentAlertId", {
-            parent: scope,
-            clickpinerror: scope.clickPinError,
-            errornote: scope.errorNote,
-            step_amount: scope.stepAmount
-          });
-          if (device.platform != 'BrowserStand') {
-            console.log("Spinner Stop View Report 694");
-            SpinnerPlugin.activityStop();
-          }
-          return
-        }
-      }, 10000);
       window.api.call({
         method: 'get.payment.list',
         input: {
@@ -560,8 +542,8 @@
 
         onSuccess: function (result) {
 
-          gotAnswer = true;
-
+          console.log('Clearing timer onSuccess',timeOutTimerPayment);
+          window.clearTimeout(timeOutTimerPayment);
           console.log(result)
           console.log(result[0][0])
           if (result[0][0].error == 0) {
@@ -625,8 +607,28 @@
 
         },
         onFail: function (api_status, api_status_message, data) {
+          console.log('Clearing timer onFail',timeOutTimerPayment);
+          window.clearTimeout(timeOutTimerPayment);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
+        },
+        onTimeOut: function () {
+          timeOutTimerPayment = setTimeout(function () {
+              scope.errorNote = "Сервис временно недоступен";
+              scope.stepAmount = 0;
+              scope.update();
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote,
+                step_amount: scope.stepAmount
+              });
+            window.stopSpinner();
+          }, 10000);
+        },
+        onEmergencyStop: function(){
+          console.log('Clearing timer emergencyStop',timeOutTimerPayment);
+          window.clearTimeout(timeOutTimerPayment);
         }
       }, 10000);
     };
@@ -669,27 +671,9 @@
 
       scope.graphList = [];
       scope.paymentsSum = 0;
-      var gotAnswer = false;
+      var timeOutTimerData = 0;
       scope.update();
 
-      setTimeout(function () {
-        if (!gotAnswer) {
-          scope.errorNote = "Сервис временно недоступен";
-          scope.stepAmount = 0;
-          window.common.alert.show("componentAlertId", {
-            parent: scope,
-            clickpinerror: scope.clickPinError,
-            errornote: scope.errorNote,
-            step_amount: scope.stepAmount
-          });
-          scope.update();
-          if (device.platform != 'BrowserStand') {
-            console.log("Spinner Stop View Report 823");
-            SpinnerPlugin.activityStop();
-          }
-          return
-        }
-      }, 10000);
       window.api.call({
         method: 'history.chart.data',
         input: {
@@ -705,21 +689,16 @@
 
           scope.graphList = [];
           scope.paymentsSum = 0;
-          gotAnswer = true;
-
+          console.log('Clearing timer onSuccess',timeOutTimerData);
+          window.clearTimeout(timeOutTimerData);
           if (result[0][0].error == 0) {
             for (var i in result[1]) {
-
               scope.paymentsSum += parseInt(result[1][i].amount.replace(/\s/g, ''));
-
               scope.graphList.push(result[1][i]);
             }
-
             scope.paymentsSum = scope.paymentsSum.toString();
-
             if (scope.paymentsSum)
               scope.paymentsSum = window.amountTransform(scope.paymentsSum);
-
             scope.update();
             createGraph(scope.graphList);
           }
@@ -739,8 +718,28 @@
 
         },
         onFail: function (api_status, api_status_message, data) {
+          console.log('Clearing timer onFail',timeOutTimerData);
+          window.clearTimeout(timeOutTimerData);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
+        },
+        onTimeOut: function () {
+          timeOutTimerData = setTimeout(function () {
+              scope.errorNote = "Сервис временно недоступен";
+              scope.stepAmount = 0;
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote,
+                step_amount: scope.stepAmount
+              });
+              window.stopSpinner();
+              scope.update();
+          }, 10000);
+        },
+        onEmergencyStop: function(){
+          console.log('Clearing timer emergencyStop',timeOutTimerData);
+          window.clearTimeout(timeOutTimerData);
         }
       }, 10000);
 

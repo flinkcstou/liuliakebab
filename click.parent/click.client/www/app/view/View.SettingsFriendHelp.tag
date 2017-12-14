@@ -160,11 +160,12 @@
                 step_amount: 0
               });
               scope.update();
-              if (device.platform !== 'BrowserStand') {
-                console.log("Spinner stop in settingsFriendHelp by timeout");
-                SpinnerPlugin.activityStop();
-              }
+            window.stopSpinner();
           }, 30000);
+        },
+        onEmergencyStop: function(){
+          console.log('Clearing timer emergencyStop',timeOutTimer);
+          window.clearTimeout(timeOutTimer);
         }
       }, 30000);
     }
