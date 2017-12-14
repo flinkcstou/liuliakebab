@@ -136,7 +136,6 @@
     }
 
     scope.invoiceList = [];
-    var checkAnswerToUser;
 
     getInvoiceListToUser = function () {
 

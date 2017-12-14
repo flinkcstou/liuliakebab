@@ -75,6 +75,7 @@
     var fromAuthorization = false;
     var fromSettings = false;
     var fromPayOrTransfer = false;
+    var timeOutTimer = 0;
     scope.showRegistrationProcess = false;
     scope.nowCheckPinTitle = window.languages.ViewPinCodeNowClickPinLabel;
     scope.backbuttoncheck = false;
@@ -474,7 +475,6 @@
     };
 
     //    scope.registrationSuccess = 0;
-    var answerFromServer;
 
     function authorizationPinCode(phoneNumber, deviceId, password, date) {
       scope.firstEnter = false;
@@ -482,7 +482,6 @@
 //        firstPinInputId.blur();
 
       var version = localStorage.getItem('version')
-      answerFromServer = false;
 
       if (device.platform != 'BrowserStand') {
         var options = {dimBackground: true};
@@ -492,17 +491,6 @@
           console.log("Spinner stop in authorization");
         });
       }
-      setTimeout(function () {
-        if (!answerFromServer) {
-          updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText);
-          answerFromServer = true;
-          if (device.platform != 'BrowserStand') {
-            console.log("Spinner stop in authorization by timeout");
-            SpinnerPlugin.activityStop();
-          }
-          return
-        }
-      }, 30000)
       window.api.call({
         method: 'app.login',
         stopSpinner: false,
@@ -517,7 +505,8 @@
 
 
         onSuccess: function (result) {
-          answerFromServer = true;
+          console.log('Clearing timer onSuccess',timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           console.log("App.login method answer: success");
 
           if (result[0][0].error == 0) {
@@ -561,10 +550,7 @@
             }
           }
           else {
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Authorization");
-              SpinnerPlugin.activityStop();
-            }
+            window.stopSpinner();
 
             if (result[0][0].error == -31) {
               console.log("click pin error");
@@ -585,7 +571,6 @@
               pin = '';
               enteredPin = '';
             }
-            console.log("qwert")
             scope.update();
 
             window.common.alert.show("componentAlertId", {
@@ -599,17 +584,27 @@
             enteredPin = '';
             if (!scope.firstEnter)
               updateEnteredPin();
-            return
           }
         },
         onFail: function (api_status, api_status_message, data) {
-          answerFromServer = true;
+          console.log('Clearing timer onFail',timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           updateAlertComponent(true, null, 'view-authorization', "Сервис временно не доступен");
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error("Error data: ", data);
-          return;
+        },
+        onTimeOut: function () {
+          timeOutTimer = setTimeout(function () {
+              updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText);
+              window.stopSpinner();
+          }, 30000);
+          console.log('creating timeOut', timeOutTimer);
+        },
+        onEmergencyStop: function(){
+          console.log('Clearing timer emergencyStop',timeOutTimer);
+          window.clearTimeout(timeOutTimer);
         }
-      });
+      }, 30000);
     }
 
 

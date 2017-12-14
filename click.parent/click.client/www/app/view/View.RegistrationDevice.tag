@@ -78,6 +78,7 @@
     })
 
     var checkRemember = false;
+    var timeOutTimer = 0;
 
     var rememberTouchStartX, rememberTouchStartY, rememberTouchEndX, rememberTouchEndY;
     rememberTouchStart = function () {
@@ -436,23 +437,9 @@
       return device.manufacturer + ' ' + device.version + ' ' + device.model;
     }
 
-    var answerFromServer;
-
     function registrationDevice(phoneNumber, date) {
-      answerFromServer = false;
       window.startSpinner();
 
-      setTimeout(function () {
-        if (!answerFromServer) {
-          updateAlertComponent(true, null, 'view-registration-device', window.languages.WaitingTimeExpiredText);
-          if (device.platform != 'BrowserStand') {
-            console.log("Spinner stop in device registration by timeout");
-            SpinnerPlugin.activityStop();
-          }
-          window.api.forceClose();
-          return;
-        }
-      }, 30000)
       window.api.call({
         method: 'device.register.request',
         stopSpinner: false,
@@ -469,7 +456,8 @@
         scope: this,
 
         onSuccess: function (result) {
-          answerFromServer = true;
+          console.log('Clearing timer onSuccess',timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           window.stopSpinner();
           console.log("Device.register.request method answer: fail");
 
@@ -505,12 +493,25 @@
         },
 
         onFail: function (api_status, api_status_message, data) {
-          answerFromServer = true;
+          console.log('Clearing timer onFail',timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           console.log("Device.register.request method answer: fail");
           window.stopSpinner();
           updateAlertComponent(true, null, 'view-registration-device', "Сервис временно не доступен");
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
+        },
+        onTimeOut: function () {
+          timeOutTimer = setTimeout(function () {
+              updateAlertComponent(true, null, 'view-registration-device', window.languages.WaitingTimeExpiredText);
+              window.stopSpinner();
+              window.api.forceClose();
+          }, 30000);
+          console.log('creating timeOut', timeOutTimer);
+        },
+        onEmergencyStop: function(){
+          console.log('Clearing timer emergencyStop',timeOutTimer);
+          window.clearTimeout(timeOutTimer);
         }
       });
 

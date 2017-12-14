@@ -456,7 +456,6 @@
         onSuccess: function (result) {
           console.log('Clearing timer onSuccess',timeOutTimer);
           window.clearTimeout(timeOutTimer);
-          console.log("App.login method answer: success");
 
           if (result[0][0].error === 0) {
             if (!result[1][0].error) {
