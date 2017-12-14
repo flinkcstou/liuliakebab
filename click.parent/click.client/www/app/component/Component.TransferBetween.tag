@@ -95,7 +95,9 @@
     scope.idCardFromMyCards = -1;
     scope.cardNumberForBottom = 2;
     scope.cardCounter = 1;
+    answerFromServer = false;
     var counter = 0;
+    var pageToReturnIfError = 'view-main-page';
 
     scope.on('mount', function () {
       if (opts && JSON.stringify(opts) !== '{}') {
@@ -381,10 +383,13 @@
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       scope.transactionId = parseInt(Date.now() / 1000);
+      answerFromServer = false;
 
       initResultComponent();
       setTimeout(function () {
+        console.log('')
         if (!answerFromServer) {
+          answerFromServer = true;
           updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
           return;
         }
@@ -404,18 +409,20 @@
           if (result[0][0].error === 0) {
             if (result[1])
               if (result[1][0]) {
-                answerFromServer = true;
                 setTimeout(function () {
+                  answerFromServer = false;
                   checkTransferStatus(result[1][0].payment_id);
                 }, 2000);
               }
           }
           else {
+            answerFromServer = true;
             updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', result[0][0].error_note)
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
+          answerFromServer = true;
           updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
