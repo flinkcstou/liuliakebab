@@ -64,6 +64,7 @@
     console.log('OPTS QR CONFIRM', opts)
     var scope = this;
     var pageToReturnIfError = 'view-main-page';
+    var timeOutTimer = 0;
     goToBack = function () {
       event.preventDefault();
       event.stopPropagation();
@@ -274,21 +275,6 @@
           step_amount: scope.stepAmount
         });
         scope.update();
-
-        setTimeout(function () {
-          if (!answerFromServer) {
-            scope.errorNote = window.languages.WaitingTimeExpiredText;
-            scope.viewPage = pageToReturnIfError;
-            scope.update();
-            window.common.alert.updateView("componentResultId", {
-              parent: scope,
-              resulttext: scope.resultText,
-              viewpage: scope.viewPage,
-              step_amount: scope.stepAmount
-            });
-            return
-          }
-        }, 30000)
         window.api.call({
           method: 'app.payment',
           stopSpinner: false,
@@ -298,25 +284,20 @@
 
           onSuccess: function (result) {
 
-
-            console.log('RESULT QR QR', result)
-
             if (result[0][0].error == 0) {
               if (result[1])
                 if (!result[1][0].payment_id && result[1][0].invoice_id) {
 
-                  answerFromServer = true;
+                  console.log('Clearing timer onSuccess',timeOutTimer);
+                  window.clearTimeout(timeOutTimer);
 
                   console.log("result of APP.PAYMENT 1", result);
                   viewServicePage.phoneText = null;
                   viewServicePage.amountText = null;
 
-//                  scope.operationMessage = 'Оплата QR прошла успешно';
                   viewServicePinCards.friendHelpPaymentMode = false;
                   updateResultComponent(true, successStep, null, 'success', window.languages.ComponentResultQRSuccess);
-//                  componentSuccessId.style.display = 'block';
                 } else if (result[1][0].payment_id && !result[1][0].invoice_id) {
-
 
                   setTimeout(function () {
                     checkQrPaymentStatus(result[1][0].payment_id);
@@ -325,19 +306,37 @@
                 }
             }
             else {
-              console.log("result of APP.PAYMENT 3", result);
               updateResultComponent(true, errorStep, null, 'unsuccess', result[0][0].error_note);
-//              componentUnsuccessId.style.display = 'block';
             }
           },
 
           onFail: function (api_status, api_status_message, data) {
-            answerFromServer = true;
+            console.log('Clearing timer onFail',timeOutTimer);
+            window.clearTimeout(timeOutTimer);
             updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
+          },
+          onTimeOut: function () {
+            timeOutTimer = setTimeout(function () {
+                scope.errorNote = window.languages.WaitingTimeExpiredText;
+                scope.viewPage = pageToReturnIfError;
+                scope.update();
+                window.common.alert.updateView("componentResultId", {
+                  parent: scope,
+                  resulttext: scope.resultText,
+                  viewpage: scope.viewPage,
+                  step_amount: scope.stepAmount
+                });
+
+            }, 30000);
+            console.log('creating timeOut', timeOutTimer);
+          },
+          onEmergencyStop: function(){
+            console.log('Clearing timer emergencyStop',timeOutTimer);
+            window.clearTimeout(timeOutTimer);
           }
-        });
+        }, 30000);
       }
 
     }

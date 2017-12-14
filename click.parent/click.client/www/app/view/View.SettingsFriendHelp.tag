@@ -171,7 +171,8 @@
     }
 
     function onError(contactError) {
-      answerFromServer = true;
+      console.log('Clearing timer emergencyStop',timeOutTimer);
+      window.clearTimeout(timeOutTimer);
       console.log('error', contactError)
     }
 
@@ -183,7 +184,6 @@
         var options = new ContactFindOptions();
         options.multiple = true;
         options.hasPhoneNumber = true;
-        var answerFromServer = false;
         if (device.platform !== 'BrowserStand') {
           var options = {dimBackground: true};
           SpinnerPlugin.activityStart(languages.Downloading, options, function () {

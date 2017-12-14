@@ -485,6 +485,10 @@
           updateResultComponent(true, scope.stepAmount, null, 'unsuccess', api_status_message);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
+        },
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
         }
       });
     };

@@ -127,6 +127,7 @@
 
 
     var closeIFrameStartX, closeIFrameEndX, closeIFrameStartY, closeIFrameEndY;
+    var timeOutTimer = 0;
 
     hideIFrameStart = function (id) {
       closeIFrameStartX = event.changedTouches[0].pageX;
@@ -598,45 +599,29 @@
                       });
                     }
 
-                    var answerFromServer = false;
-                    setTimeout(function () {
-                      if (!answerFromServer) {
-                        if (device.platform != 'BrowserStand') {
-                          SpinnerPlugin.activityStop();
-                        }
-                      }
-
-                      return
-                    }, 15000)
                     window.api.call({
                       method: 'get.indoor.service',
                       input: {
                         phone_num: phoneNumber,
                         session_key: sessionKey,
                         service_id: id,
-
                       },
 
                       scope: this,
-
                       onSuccess: function (result) {
-
-                        answerFromServer = true;
-
-                        console.log('MAIN RESULT', result)
+                        console.log('Clearing timer onSuccess', timeOutTimer);
+                        window.clearTimeout(timeOutTimer);
 
                         if (result[0][0].error == 0) {
                           if (result[1]) {
                             if (result[1][0]) {
                               closeMenu();
-
                               if (rkAmount) {
                                 result[1][0].rk_amount = rkAmount
                               }
                               if (rkOrder) {
                                 result[1][0].rk_order = rkOrder
                               }
-
                               riotTags.innerHTML = "<view-qr>";
                               riot.mount('view-qr', result[1][0]);
 //                                scope.unmount()
@@ -645,16 +630,12 @@
                           console.log("QR PAY", result);
                         }
                         else {
-
                           if (result[0][0].error == -202) {
-
                             window.checkShowingComponent = scope;
                             scope.update();
                             iFrameExternalUrlId.src = result[0][0].error_url
-
                             return
                           }
-
                           window.common.alert.show("componentAlertId", {
                             parent: scope,
                             clickpinerror: false,
@@ -663,12 +644,24 @@
                           scope.update();
                         }
                       },
-
                       onFail: function (api_status, api_status_message, data) {
+                        console.log('Clearing timer onFail', timeOutTimer);
+                        window.clearTimeout(timeOutTimer);
                         console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
                         console.error(data);
+                      },
+                      onTimeOut: function () {
+                        timeOutTimer = setTimeout(function () {
+                          window.stopSpinner();
+                          return;
+                        }, 15000)
+                        console.log('creating timeOut', timeOutTimer);
+                      },
+                      onEmergencyStop: function () {
+                        console.log('Clearing timer emergencyStop', timeOutTimer);
+                        window.clearTimeout(timeOutTimer);
                       }
-                    });
+                    }, 15000);
                   }
                 }
               }

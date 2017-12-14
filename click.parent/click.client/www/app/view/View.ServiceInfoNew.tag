@@ -70,6 +70,7 @@
     this.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
     var payment_data, optionAttribute;
+    var timeOutTimer = 0;
     scope.type = 0;
 
 
@@ -143,37 +144,9 @@
 
     }
 
-    var checkAnswer;
-
     function getInformation() {
-      checkAnswer = false;
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
 
-      if (!checkAnswer) {
-        console.log("wwww")
-        setTimeout(function () {
-          if (!checkAnswer) {
-            scope.errorNote = "Сервис временно недоступен";
-            scope.stepAmount = 1;
-            scope.update();
-
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: scope.clickPinError,
-              step_amount: scope.stepAmount,
-              viewpage: scope.viewPage,
-              viewmount: true,
-              errornote: scope.errorNote,
-            });
-
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Service Info New 224");
-              SpinnerPlugin.activityStop();
-            }
-            return
-          }
-        }, 10000);
-      }
       window.api.call({
         method: 'get.additional.information',
         input: {
@@ -182,13 +155,12 @@
           service_id: opts.chosenServiceId,
           payment_data: payment_data
         },
-
         scope: this,
 
         onSuccess: function (result) {
-          checkAnswer = true;
+          console.log('Clearing timer onSuccess', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           if (result[0][0].error == 0) {
-            console.log("result of GET ADDITIONAL INFO 0", result);
             if (result[1]) {
               localStorage.setItem('click_client_infoCacheEnabled', result[1][0].enable_information_cache)
               if (result[1][0].enable_information_cache)
@@ -208,15 +180,11 @@
                 scope.type = 1;
                 scope.update();
               }
-
             }
           }
           else {
-            checkAnswer = true;
-            console.log("result of GET ADDITIONAL INFO 2", result);
             scope.errorMessage = result[0][0].error_note;
             scope.stepAmount = 1;
-
             window.common.alert.show("componentUnsuccessId", {
               parent: scope,
               step_amount: scope.stepAmount,
@@ -224,12 +192,13 @@
               operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
               operationmessagepartthree: scope.errorMessage
             });
-
             scope.update();
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
+          console.log('Clearing timer onFail', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           window.common.alert.show("componentUnsuccessId", {
             parent: scope,
             step_amount: scope.stepAmount,
@@ -239,6 +208,28 @@
           });
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
+        },
+        onTimeOut: function () {
+          timeOutTimer = setTimeout(function () {
+            scope.errorNote = "Сервис временно недоступен";
+            scope.stepAmount = 1;
+            scope.update();
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              step_amount: scope.stepAmount,
+              viewpage: scope.viewPage,
+              viewmount: true,
+              errornote: scope.errorNote,
+            });
+            window.stopSpinner();
+          }, 10000);
+          console.log('creating timeOut', timeOutTimer);
+        },
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
         }
       }, 10000);
     }

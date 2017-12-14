@@ -50,6 +50,7 @@
   <script>
 
     var closeIFrameStartX, closeIFrameEndX, closeIFrameStartY, closeIFrameEndY;
+    var timeOutTimer = 0;
 
     hideIFrameStart = function (id) {
       closeIFrameStartX = event.changedTouches[0].pageX;
@@ -326,17 +327,6 @@
                       });
                     }
 
-                    var answerFromServer = false;
-
-                    setTimeout(function () {
-                      if (!answerFromServer) {
-                        if (device.platform != 'BrowserStand') {
-                          console.log("Spinner Stop Compnent Bank Operations 415");
-                          SpinnerPlugin.activityStop();
-                        }
-                      }
-                      return
-                    }, 15000)
                     window.api.call({
                       method: 'get.indoor.service',
                       input: {
@@ -349,11 +339,9 @@
                       scope: this,
 
                       onSuccess: function (result) {
-                        answerFromServer = true;
                         if (result[0][0].error == 0) {
                           if (result[1]) {
                             if (result[1][0]) {
-
                               if (rkAmount) {
                                 result[1][0].rk_amount = rkAmount
                               }
@@ -362,19 +350,16 @@
                               }
                               riotTags.innerHTML = "<view-qr>";
                               riot.mount('view-qr', result[1][0]);
-//                                scope.unmount()
                             }
                           }
-                          console.log("QR PAY", result);
                         }
                         else {
                           if (result[0][0].error == -202) {
                             if (result[0][0].error_url) {
 
                               window.checkShowingComponent = scope;
-                              scope.update()
-                              iFrameExternalUrlId.src = result[0][0].error_url
-
+                              scope.update();
+                              iFrameExternalUrlId.src = result[0][0].error_url;
 
 //                               ref = cordova.InAppBrowser.open(result[0][0].error_url, '_blank', 'location=no');
 //
@@ -407,7 +392,6 @@
 //
 //
 //                              });
-
                               return
                             }
                           }
@@ -427,8 +411,18 @@
                       onFail: function (api_status, api_status_message, data) {
                         console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
                         console.error(data);
+                      },
+                      onTimeOut: function () {
+                        timeOutTimer = setTimeout(function () {
+                          window.stopSpinner();
+                        }, 15000);
+                        console.log('creating timeOut', timeOutTimer);
+                      },
+                      onEmergencyStop: function(){
+                        console.log('Clearing timer emergencyStop',timeOutTimer);
+                        window.clearTimeout(timeOutTimer);
                       }
-                    });
+                    }, 15000);
                   }
                 }
               }

@@ -70,6 +70,7 @@
 
     var pageToReturnIfError = 'view-main-page', pageToReturnIfSuccess = 'view-report';
     var paymentSuccessStep = 1, paymentWaitingStep = 0;
+    var timeOutTimer = 0;
     //    scope.titleName = window.languages.ViewPaymentDetailTitle + scope.opts.invoiceId;
 
     console.log("OPTS Payment Detail", opts)
@@ -88,7 +89,6 @@
           resulttext: scope.resultText,
           viewpage: scope.viewPage,
           step_amount: scope.stepAmount,
-          parent: scope
         });
       } else {
         window.common.alert.hide("componentResultId");
@@ -109,7 +109,6 @@
         resulttext: scope.resultText,
         viewpage: scope.viewPage,
         step_amount: scope.stepAmount,
-        parent: scope
       });
       scope.update();
     };
@@ -133,7 +132,7 @@
         event.preventDefault();
         event.stopPropagation();
 
-        paymentDetailBackButtonId.style.webkitTransform = 'scale(1)'
+        paymentDetailBackButtonId.style.webkitTransform = 'scale(1)';
 
         goBackButtonEndX = event.changedTouches[0].pageX;
         goBackButtonEndY = event.changedTouches[0].pageY;
@@ -146,7 +145,7 @@
 
     paymentDetailOnTouchStartDecline = function () {
 
-      paymentCancelButtonId.style.webkitTransform = 'scale(0.8)'
+      paymentCancelButtonId.style.webkitTransform = 'scale(0.8)';
 
       touchStartDeclineX = event.changedTouches[0].pageX;
       touchStartDeclineY = event.changedTouches[0].pageY;
@@ -154,7 +153,7 @@
 
     paymentDetailOnTouchEndDecline = function () {
 
-      paymentCancelButtonId.style.webkitTransform = 'scale(1)'
+      paymentCancelButtonId.style.webkitTransform = 'scale(1)';
 
       touchEndDeclineX = event.changedTouches[0].pageX;
       touchEndDeclineY = event.changedTouches[0].pageY;
@@ -165,13 +164,11 @@
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");
         var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
         var sessionKey = loginInfo.session_key;
-        console.log('scope.parent.invoiceList', scope)
 
         if (scope.parent) {
           for (var i in scope.parent.invoiceList) {
             if (scope.parent.invoiceList[i].invoice_id == scope.opts.invoiceId) {
               scope.parent.invoiceList[i].deleted = true;
-//            alert('TRUE')
             }
           }
         }
@@ -187,23 +184,6 @@
           });
         }
 
-        var answerFromServer = false;
-        setTimeout(function () {
-          if (!answerFromServer) {
-            answerFromServer = true;
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: false,
-              errornote: window.languages.WaitingTimeExpiredText,
-              errorcode: scope.errorCode,
-              viewpage: 'view-main-page'
-            });
-            if (device.platform !== 'BrowserStand') {
-              console.log("Spinner stop in authorization by timeout");
-              SpinnerPlugin.activityStop();
-            }
-          }
-        }, 30000)
         window.api.call({
           method: 'invoice.action',
           input: {
@@ -214,9 +194,8 @@
           },
           scope: this,
           onSuccess: function (result) {
-            answerFromServer = true;
-
-            console.log("result of invoice payment decline", result);
+            console.log('Clearing timer onSuccess',timeOutTimer);
+            window.clearTimeout(timeOutTimer);
 
             if (result[0][0].error == 0) {
               paymentDetailGoToBackEnd(true);
@@ -233,7 +212,8 @@
           },
 
           onFail: function (api_status, api_status_message, data) {
-            answerFromServer = true;
+            console.log('Clearing timer onFail',timeOutTimer);
+            window.clearTimeout(timeOutTimer);
             window.common.alert.show("componentAlertId", {
               parent: scope,
               clickpinerror: false,
@@ -243,8 +223,25 @@
             });
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
+          },
+          onTimeOut: function () {
+            timeOutTimer = setTimeout(function () {
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: false,
+                  errornote: window.languages.WaitingTimeExpiredText,
+                  errorcode: scope.errorCode,
+                  viewpage: 'view-main-page'
+                });
+                window.stopSpinner();
+            }, 30000);
+            console.log('creating timeOut', timeOutTimer);
+          },
+          onEmergencyStop: function(){
+            console.log('Clearing timer emergencyStop',timeOutTimer);
+            window.clearTimeout(timeOutTimer);
           }
-        });
+        }, 30000);
       }
     };
 
@@ -272,17 +269,13 @@
 
         var accountId = scope.tags["component-pincards"].getAccountCardId();
 
-        console.log("Account ID for accepting the payment invoice", accountId);
-
         if (accountId == undefined) {
-
           window.common.alert.show("componentAlertId", {
             parent: scope,
             clickpinerror: false,
             errornote: window.languages.ViewPaymentDetailCardNotChosen,
             errorcode: scope.errorCode
           });
-
           return;
         }
 
@@ -294,17 +287,10 @@
             errornote: window.languages.ViewPaymentDetailCardNotChosen,
             errorcode: scope.errorCode
           });
-
           return;
         }
 
         initResultComponent();
-        setTimeout(function () {
-          if (!answerFromServer) {
-            updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
-            return
-          }
-        }, 40000)
         window.api.call({
           method: 'invoice.action',
           stopSpinner: false,
@@ -319,16 +305,14 @@
           onSuccess: function (result) {
 
             console.log("result of invoice payment accept", result);
-
             if (result[0][0].error == 0) {
-
               setTimeout(function () {
                 checkPaymentStatus(result[1][0].payment_id);
               }, 2000);
-
             }
             else {
-              answerFromServer = true;
+              console.log('Clearing timer onSuccess',timeOutTimer);
+              window.clearTimeout(timeOutTimer);
 
               history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1)
               console.log(history.arrayOfHistory)
@@ -339,18 +323,27 @@
           },
 
           onFail: function (api_status, api_status_message, data) {
-            answerFromServer = true;
+            console.log('Clearing timer onFail',timeOutTimer);
+            window.clearTimeout(timeOutTimer);
             updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
-
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
+          },
+          onTimeOut: function () {
+            timeOutTimer = setTimeout(function () {
+                updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
+            }, 40000);
+            console.log('creating timeOut', timeOutTimer);
+          },
+          onEmergencyStop: function(){
+            console.log('Clearing timer emergencyStop',timeOutTimer);
+            window.clearTimeout(timeOutTimer);
           }
-        });
+        }, 40000);
       }
     };
 
     var statusCheckCounter = 0;
-    var answerFromServer = false;
 
     function checkPaymentStatus(payment_id) {
 
@@ -374,10 +367,10 @@
           if (result[0][0].error == 0 && result[1][0]) {
 
             window.checkShowingComponent = null;
-
             console.log("result of get.payment success=", result);
             if (result[1][0].state == -1) {
-              answerFromServer = true;
+              console.log('Clearing timer onSuccess',timeOutTimer);
+              window.clearTimeout(timeOutTimer);
 
               history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1);
               console.log(history.arrayOfHistory);
@@ -386,55 +379,52 @@
               updateResultComponent(true, paymentSuccessStep, null, 'unsuccess', result[1][0].error);
 
             } else if (result[1][0].state == 2) {
-              answerFromServer = true;
+              console.log('Clearing timer onSuccess',timeOutTimer);
+              window.clearTimeout(timeOutTimer);
 
               window.updateBalanceGlobalFunction();
-
-
               history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1);
               console.log(history.arrayOfHistory);
               sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
-
               updateResultComponent(true, null, pageToReturnIfSuccess, 'success', window.languages.ComponentSuccessMessageForPay);
 
             } else if (result[1][0].state == 1) {
 
               statusCheckCounter++;
-
               if (statusCheckCounter < 5) {
-
-
                 setTimeout(function () {
                   checkPaymentStatus(result[1][0].payment_id);
                 }, 2000);
-
               } else {
-                answerFromServer = true;
+                console.log('Clearing timer onSuccess',timeOutTimer);
+                window.clearTimeout(timeOutTimer);
 
                 history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1);
                 console.log(history.arrayOfHistory);
                 sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
                 updateResultComponent(true, paymentWaitingStep, null, 'waiting', window.languages.ComponentInProcessingPartOneForPay);
-
               }
-
             }
-
           }
           else {
-            answerFromServer = true;
+            console.log('Clearing timer onSuccess',timeOutTimer);
+            window.clearTimeout(timeOutTimer);
             updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', result[1][0].error);
-
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
-          answerFromServer = true;
+          console.log('Clearing timer onFail',timeOutTimer);
+          window.clearTimeout(timeOutTimer);
 
           updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
+        },
+        onEmergencyStop: function(){
+          console.log('Clearing timer emergencyStop',timeOutTimer);
+          window.clearTimeout(timeOutTimer);
         }
       });
     }
