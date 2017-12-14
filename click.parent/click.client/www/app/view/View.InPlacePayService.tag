@@ -1,4 +1,4 @@
-<view-inplace-pay-category>
+<view-inplace-pay-service>
   <div id="viewPayId" class="view-pay riot-tags-main-container">
     <div class="pay-page-title">
       <p class="pay-name-title">{titleName}</p>
@@ -15,10 +15,9 @@
       <div class="inplace-pay-inner-container">
         <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
           <li each="{i in categoryList}" style="overflow: hidden;">
-            <div if="{!(modeOfApp.offlineMode)}" class="inplace-pay-block-containter" title="{i.category_name}"
-                 id="{i.category_id}"
-                 ontouchstart="onTouchStartOfCategory()"
-                 ontouchend="onTouchEndOfCategory(this.id, this.title)">
+            <div if="{!(modeOfApp.offlineMode)}" class="inplace-pay-block-containter" id="{i.category_id}"
+                 ontouchstart="onTouchStartOfCategory(this.id)"
+                 onclick="onTouchEndOfCategory(this.id)">
               <div class="inplace-pay-category-icon" style="background-image: url({i.icon})"></div>
               <div class="inplace-pay-category-name-field">{i.category_name}
               </div>
@@ -27,15 +26,15 @@
           </li>
         </ul>
       </div>
-
     </div>
-
   </div>
   <script>
 
+    console.log("OPTS", opts);
+
     var scope = this;
     scope.checkOfSearch = false;
-    scope.titleName = window.languages.ViewInPlacePayTitle;
+    scope.titleName = opts.categoryName;
     var onTouchStartY, onTouchStartX;
     var onTouchEndY, onTouchEndX;
     var goBackButtonStartX, goBackButtonEndX,
@@ -45,26 +44,22 @@
     var sessionKey = loginInfo.session_key;
 
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-inplace-pay-category') {
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-inplace-pay-service') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-inplace-pay-category',
+          "view": 'view-inplace-pay-service',
           "params": opts
         }
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
-    if (JSON.parse(sessionStorage.getItem('click_client_inPlacePayCategoryList'))) {
-      scope.categoryList = JSON.parse(sessionStorage.getItem('click_client_inPlacePayCategoryList'));
-      scope.update();
-    }
-    else if (modeOfApp.onlineMode) {
+    if (modeOfApp.onlineMode) {
 
-      scope.categoryList = [];
+      scope.serviceList = [];
 
       window.api.call({
-        method: 'get.indoor.category.list',
+        method: 'get.indoor.service.list',
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber
@@ -78,10 +73,9 @@
 
               for (var i in result[1]) {
 
-                scope.categoryList.push(result[1][i]);
+                scope.serviceList.push(result[1][i]);
 
               }
-              sessionStorage.setItem('click_client_inPlacePayCategoryList', JSON.stringify(scope.categoryList));
               scope.update();
 
             }
@@ -123,8 +117,39 @@
       }
     };
 
+    findLocation = function () {
 
-    scope.onTouchStartOfCategory = onTouchStartOfCategory = function () {
+      console.log("find location method");
+
+
+      var geoOptions = {timeout: 5000, enableHighAccuracy: true};
+      var onGeoSuccess = function (position) {
+        console.log("Success in getting position", position)
+        alert('Latitude: ' + position.coords.latitude + '\n' +
+          'Longitude: ' + position.coords.longitude + '\n' +
+          'Altitude: ' + position.coords.altitude + '\n' +
+          'Accuracy: ' + position.coords.accuracy + '\n' +
+          'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '\n' +
+          'Heading: ' + position.coords.heading + '\n' +
+          'Speed: ' + position.coords.speed + '\n' +
+          'Timestamp: ' + position.timestamp + '\n');
+      };
+
+      // onError Callback receives a PositionError object
+      //
+      function onGeoError(error) {
+        console.log("Error in getting position", error)
+        alert('code: ' + error.code + '\n' +
+          'message: ' + error.message + '\n');
+      }
+
+      navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError, geoOptions);
+    };
+
+    //    findLocation();
+
+
+    scope.onTouchStartOfCategory = onTouchStartOfCategory = function (id) {
       event.stopPropagation();
 
 
@@ -132,19 +157,11 @@
       onTouchStartX = event.changedTouches[0].pageX;
     };
 
-    scope.onTouchEndOfCategory = onTouchEndOfCategory = function (id, name) {
+    scope.onTouchEndOfCategory = onTouchEndOfCategory = function (id) {
 
-      onTouchEndY = event.pageY;
-      onTouchEndX = event.pageX;
 
-      if (Math.abs(onTouchStartY - onTouchEndY) <= 20 && Math.abs(onTouchStartX - onTouchEndX) <= 20) {
-
-        riotTags.innerHTML = "<view-inplace-pay-service>";
-        riot.mount('view-inplace-pay-service', {categoryId: id, categoryName: name});
-
-      }
     };
 
 
   </script>
-</view-inplace-pay-category>
+</view-inplace-pay-service>
