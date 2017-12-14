@@ -15879,7 +15879,7 @@ var css = {
   inPlacePayServiceContainer: ".inplace-pay-service-containter" +
   "{" +
   "position: relative;" +
-  "min-height:" + 131 * widthK + "px; " +
+  "height:" + 190 * widthK + "px; " +
   "width: 100%;" +
   "padding-top: 1%;" +
   "border-bottom:" + 1 + "px solid gainsboro;" +
@@ -15889,25 +15889,68 @@ var css = {
 
   inPlacePayServiceIcon: ".inplace-pay-service-icon" +
   "{" +
-  "position: relative;" +
-  "width: 13%;" +
+  "position: absolute;" +
+  "width: 21%;" +
   "height:" + 120 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "float: left;" +
   "left: 5%;" +
   "background-size: 109%;" +
+  "margin-top: 4%;" +
+  "}",
+
+  inPlacePayServiceInfo: ".inplace-pay-service-info" +
+  "{" +
+  "position: absolute;" +
+  "height:" + 190 * widthK + "px; " +
+  "width: 60%;" +
+  "left: 30%;" +
+  // "float: left;" +
+  "background-color: transparent;" +
   "}",
 
   inPlacePayServiceNameField: ".inplace-pay-service-name-field" +
   "{" +
   "position: relative;" +
-  "background-size: contain;" +
-  "top: " + 39 * widthK + "px; " +
-  "left: 9%;" +
+  "top: " + 20 * widthK + "px; " +
+  // "left: 18%;" +
   "text-align: left;" +
-  "font-size:" + 36 * widthK + "px; " +
+  "font-size:" + 35 * widthK + "px; " +
   "color: gray;" +
+  "}",
+
+  inPlacePayServiceAddressField: ".inplace-pay-service-address-field" +
+  "{" +
+  "position: relative;" +
+  "top: " + 28 * widthK + "px; " +
+  // "left: 18%;" +
+  "text-align: left;" +
+  "font-size:" + 25 * widthK + "px; " +
+  "color: gray;" +
+  "width:71%;" +
+  "}",
+
+  inPlacePayServiceDistanceField: ".inplace-pay-service-distance-field" +
+  "{" +
+  "position: relative;" +
+  "top: " + 54 * widthK + "px; " +
+  // "left: 22%;" +
+  "text-align: left;" +
+  "font-size:" + 26 * widthK + "px; " +
+  "color: #00a8f1;" +
+  "}",
+
+  inPlacePayServiceIconTick: ".inplace-pay-service-icon-tick " +
+  "{" +
+  "position: absolute;" +
+  "left: 92%;" +
+  "background-size: contain;" +
+  "background-image: url(resources/icons/ViewInPlacePay/open.png);" +
+  "background-repeat: no-repeat;" +
+  "width:" + 19 * widthK + "px;" +
+  "height:" + 18 * widthK + "px;" +
+  "top:46%;" +
   "}"
 }
 

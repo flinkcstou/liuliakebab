@@ -16,12 +16,15 @@
         <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
           <li each="{i in serviceList}" style="overflow: hidden;">
             <div if="{!(modeOfApp.offlineMode)}" class="inplace-pay-service-containter" id="{i.id}"
-                 ontouchstart="onTouchStartOfCategory(this.id)"
-                 onclick="onTouchEndOfCategory(this.id)">
+                 ontouchstart="onTouchStartOfService()"
+                 ontouchend="onTouchEndOfService(this.id)">
               <div class="inplace-pay-service-icon" style="background-image: url({i.image})"></div>
-              <div class="inplace-pay-service-name-field">{i.name}
+              <div class="inplace-pay-service-info">
+                <div class="inplace-pay-service-name-field">{i.name}</div>
+                <div class="inplace-pay-service-address-field">{i.address}</div>
+                <div class="inplace-pay-service-distance-field">{i.distance}</div>
               </div>
-              <div class="inplace-pay-icon-tick"></div>
+              <div class="inplace-pay-service-icon-tick"></div>
             </div>
           </li>
         </ul>
@@ -154,7 +157,7 @@
     };
 
 
-    scope.onTouchStartOfCategory = onTouchStartOfCategory = function (id) {
+    scope.onTouchStartOfService = onTouchStartOfService = function () {
       event.stopPropagation();
 
 
@@ -162,7 +165,7 @@
       onTouchStartX = event.changedTouches[0].pageX;
     };
 
-    scope.onTouchEndOfCategory = onTouchEndOfCategory = function (id) {
+    scope.onTouchEndOfService = onTouchEndOfService = function (id) {
 
 
     };
