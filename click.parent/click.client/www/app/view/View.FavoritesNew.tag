@@ -163,13 +163,8 @@
             scope: this,
 
             onSuccess: function (result) {
-              if (device.platform != 'BrowserStand') {
-                console.log("Spinner Stop View Favorites new 167");
-                SpinnerPlugin.activityStop();
-              }
+              window.stopSpinner();
               if (result[0][0].error == 0) {
-                console.log(' disable_cache, updating amountText')
-
                 if (result[5])
                   for (var i in result[5]) {
                     console.log("1");
@@ -180,7 +175,6 @@
                       break;
                     }
                   }
-
               }
             },
 

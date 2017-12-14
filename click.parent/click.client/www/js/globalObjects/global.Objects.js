@@ -325,9 +325,6 @@ window.amountTransform = function (amount) {
       }
     }
   }
-
-  console.log('amountInglobalObjects', newAmount);
-
   return newAmount.split("").reverse().join("");
 }
 
