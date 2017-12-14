@@ -7,16 +7,21 @@
     </div>
 
     <div class="inplace-pay-category-container" id="categoriesContainerId">
+
+      <div id="searchContainerId" class="inplace-pay-search-container">
+        <input id="searchInputId" class="inplace-pay-search-input"/>
+      </div>
+
       <div class="inplace-pay-inner-container">
         <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
           <li each="{i in categoryList}" style="overflow: hidden;">
-            <div if="{!(modeOfApp.offlineMode)}" class="pay-service-block-containter" id="{i.category_id}"
+            <div if="{!(modeOfApp.offlineMode)}" class="inplace-pay-block-containter" id="{i.category_id}"
                  ontouchstart="onTouchStartOfCategory(this.id)"
                  onclick="onTouchEndOfCategory(this.id)">
-              <div class="pay-category-icon" style="background-image: url({i.icon})"></div>
-              <div class="pay-category-name-field">{i.category_name}
+              <div class="inplace-pay-category-icon" style="background-image: url({i.icon})"></div>
+              <div class="inplace-pay-category-name-field">{i.category_name}
               </div>
-              <div class="pay-icon-tick"></div>
+              <div class="inplace-pay-icon-tick"></div>
             </div>
           </li>
         </ul>
@@ -30,10 +35,10 @@
 
     scope.titleName = window.languages.ViewInPlacePayTitle;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-pay') {
+    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-inplace-pay-category') {
       history.arrayOfHistory.push(
         {
-          "view": 'view-pay',
+          "view": 'view-inplace-pay-category',
           "params": opts
         }
       );
@@ -44,7 +49,11 @@
     var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
     var sessionKey = loginInfo.session_key;
 
-    if (modeOfApp.onlineMode) {
+    if (JSON.parse(sessionStorage.getItem('click_client_inPlacePayCategoryList'))) {
+      scope.categoryList = JSON.parse(sessionStorage.getItem('click_client_inPlacePayCategoryList'));
+      scope.update();
+    }
+    else if (modeOfApp.onlineMode) {
 
       scope.categoryList = [];
 
@@ -66,7 +75,7 @@
                 scope.categoryList.push(result[1][i]);
 
               }
-//              localStorage.setItem('click_client_payCategoryList', JSON.stringify(categoryList));
+              sessionStorage.setItem('click_client_inPlacePayCategoryList', JSON.stringify(scope.categoryList));
               scope.update();
 
             }
@@ -78,15 +87,6 @@
         }
       });
     }
-
-    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-    var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
-
-    if (phoneNumber) {
-      scope.operatorKey = phoneNumber.substr(3, 2);
-      phoneNumber = phoneNumber.substring(3, phoneNumber.length);
-    }
-
 
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 

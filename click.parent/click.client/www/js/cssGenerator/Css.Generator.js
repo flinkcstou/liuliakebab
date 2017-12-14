@@ -15794,12 +15794,84 @@ var css = {
   "position: absolute;" +
   "height:90%; " +
   "width: 100%; " +
-  "top:10%; " +
+  "top:13%; " +
   "bottom:0; " +
   "overflow-y: scroll; " +
   "overflow-x: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
   "}",
+
+  inPlacePayBlockContainer: ".inplace-pay-block-containter" +
+  "{" +
+  "position: relative;" +
+  "min-height:" + 131 * widthK + "px; " +
+  "width: 100%;" +
+  "padding-top: 1%;" +
+  "border-bottom:" + 1 + "px solid gainsboro;" +
+  "background-color: transparent;" +
+  "}",
+
+
+  inPlacePayCategoryIcon: ".inplace-pay-category-icon" +
+  "{" +
+  "position: relative;" +
+  "width: 13%;" +
+  "height:" + 120 * widthK + "px; " +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "float: left;" +
+  "left: 5%;" +
+  "background-size: 109%;" +
+  "}",
+
+  inPlacePayCategoryNameField: ".inplace-pay-category-name-field" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "top: " + 39 * widthK + "px; " +
+  "left: 9%;" +
+  "text-align: left;" +
+  "font-size:" + 36 * widthK + "px; " +
+  "color: gray;" +
+  "}",
+
+  inPlacePayIconTick: ".inplace-pay-icon-tick " +
+  "{" +
+  "position: relative;" +
+  "left: 91%;" +
+  "background-size: contain;" +
+  "background-image: url(resources/icons/ViewInPlacePay/open.png);" +
+  "background-repeat: no-repeat;" +
+  "width:" + 19 * widthK + "px;" +
+  "height:" + 18 * widthK + "px;" +
+  "top:" + 9 * widthK + "px;" +
+  "}",
+
+  inPlacePaySearchContainer: ".inplace-pay-search-container" +
+  "{" +
+  "position: absolute;" +
+  "width:" + 583 * widthK + "px;" +
+  "height: 12%;" +
+  "left:" + 66 * widthK + "px;" +
+  "top: 0px;" +
+  "}",
+
+  inPlacePaySearchInput: ".inplace-pay-search-input " +
+  "{" +
+  "position: absolute;" +
+  "font-family: 'SFUIDisplay-Light';" +
+  "font-size:" + 32 * widthK + "px;" +
+  "background: none;" +
+  "border: none;" +
+  "border-bottom:" + 3 * widthK + "px solid #00a8f1;" +
+  "width: 98%;" +
+  "height: 56%;" +
+  "top: 22%;" +
+  "left: 1%;" +
+  "outline: none;" +
+  "-webkit-text-fill-color: #353340;" +
+  "color: #e2e3e5;" +
+  "}"
 
 
 }
