@@ -125,6 +125,7 @@
 
 
     scope.onTouchStartOfCategory = onTouchStartOfCategory = function () {
+      event.preventDefault();
       event.stopPropagation();
 
 
@@ -133,11 +134,15 @@
     };
 
     scope.onTouchEndOfCategory = onTouchEndOfCategory = function (id, name) {
+      event.preventDefault();
+      event.stopPropagation();
 
-      onTouchEndY = event.pageY;
-      onTouchEndX = event.pageX;
+      onTouchEndY = event.changedTouches[0].pageY;
+      onTouchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(onTouchStartY - onTouchEndY) <= 20 && Math.abs(onTouchStartX - onTouchEndX) <= 20) {
+
+        console.log(id, name);
 
         riotTags.innerHTML = "<view-inplace-pay-service>";
         riot.mount('view-inplace-pay-service', {categoryId: id, categoryName: name});

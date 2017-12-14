@@ -15871,9 +15871,44 @@ var css = {
   "outline: none;" +
   "-webkit-text-fill-color: #353340;" +
   "color: #e2e3e5;" +
+  "}",
+
+
+  // View InPlacePayService
+
+  inPlacePayServiceContainer: ".inplace-pay-service-containter" +
+  "{" +
+  "position: relative;" +
+  "min-height:" + 131 * widthK + "px; " +
+  "width: 100%;" +
+  "padding-top: 1%;" +
+  "border-bottom:" + 1 + "px solid gainsboro;" +
+  "background-color: transparent;" +
+  "}",
+
+
+  inPlacePayServiceIcon: ".inplace-pay-service-icon" +
+  "{" +
+  "position: relative;" +
+  "width: 13%;" +
+  "height:" + 120 * widthK + "px; " +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "float: left;" +
+  "left: 5%;" +
+  "background-size: 109%;" +
+  "}",
+
+  inPlacePayServiceNameField: ".inplace-pay-service-name-field" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "top: " + 39 * widthK + "px; " +
+  "left: 9%;" +
+  "text-align: left;" +
+  "font-size:" + 36 * widthK + "px; " +
+  "color: gray;" +
   "}"
-
-
 }
 
 
