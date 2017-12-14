@@ -171,8 +171,7 @@ window.api.initSocket = function () {
         }
       try {
         callBack.err(parsedData.api_status, parsedData.api_status_message, parsedData.data);
-      }
-      catch (error) {
+      } catch (error) {
         console.error("Error on socket initializing: ", error);
       }
     } catch (error) {
@@ -184,7 +183,11 @@ window.api.initSocket = function () {
     console.error("Onerror event in InitSocket", error);
     window.isConnected = false;
     if (modeOfApp.offlineMode) return;
-    console.log('Error with socket ' + error.message);
+    try{
+      callBack.socketErr();
+    } catch (error) {
+      console.error("Error on call socketErr callBack: ", error);
+    }
     if (navigator.connection.type !== Connection.NONE && navigator.connection.type !== Connection.UNKNOWN) {
       showAlertComponent("Связь с сервером потеряна. Повторите попытку.");
     }
@@ -208,20 +211,20 @@ window.api.send = function (params) {
     ok: function (data) {
       if (stopSpinner) {
         window.api.spinnerOn = false;
-        if (device.platform !== 'BrowserStand') {
-          console.log("Stopping spinner from webApi on answer of api")
-          SpinnerPlugin.activityStop();
-        }
+        window.stopSpinner();
       }
       onSuccess.call(scope, data);
     },
     err: function (api_status, api_status_message, data) {
-      if (device.platform !== 'BrowserStand') {
-        console.log("Spinner Stop in err function of WebApi");
-        SpinnerPlugin.activityStop();
-      }
+      window.stopSpinner();
       console.log("CONNECTION ERROR WEB SOCKET ON FAIL CALL");
       onFail.call(scope, api_status, api_status_message, data);
+    },
+    socketErr: function () {
+      window.stopSpinner();
+      if (params.onEmergencyStop !== undefined) {
+        onEmergencyStop.call();
+      }
     }
   };
 

@@ -654,9 +654,12 @@
         onTimeOut: function () {
           timeOutTimer = setTimeout(function () {
             updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
-            return
           }, 30000);
           console.log('creating timeOut', timeOutTimer);
+        },
+        onEmergencyStop: function(){
+          console.log('Clearing timer emergencyStop',timeOutTimer);
+          window.clearTimeout(timeOutTimer);
         }
       });
     }

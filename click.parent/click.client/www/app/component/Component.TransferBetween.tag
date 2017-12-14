@@ -17,7 +17,8 @@
        class="transfer-new-between-input-commission">
       {placeHolderText}
     </p>
-    <p if="{!showPlaceHolderError && !modeOfApp.offlineMode && showCommission}" class="transfer-new-between-input-commission">
+    <p if="{!showPlaceHolderError && !modeOfApp.offlineMode && showCommission}"
+       class="transfer-new-between-input-commission">
       {window.languages.ViewTransferTwoTax} {tax}
       {window.languages.Currency}</p>
   </div>
@@ -95,9 +96,9 @@
     scope.idCardFromMyCards = -1;
     scope.cardNumberForBottom = 2;
     scope.cardCounter = 1;
-    answerFromServer = false;
     var counter = 0;
     var pageToReturnIfError = 'view-main-page';
+    var timeOutTimer = 0;
 
     scope.on('mount', function () {
       if (opts && JSON.stringify(opts) !== '{}') {
@@ -112,7 +113,7 @@
       }
       if (opts.cardcounter) {
         scope.cardCounter = opts.cardcounter;
-        if (scope.cardNumberFromMain < scope.cardCounter){
+        if (scope.cardNumberFromMain < scope.cardCounter) {
           scope.cardNumberForBottom = scope.cardNumberFromMain + 1;
         }
         else {
@@ -268,7 +269,7 @@
                   scope.minLimit = parseInt(bank.p2p_min_limit);
                   scope.maxLimit = parseInt(bank.p2p_max_limit);
                   scope.taxPercent = parseInt(bank.p2p_percent);
-                  if (bank.p2p_status == 1){
+                  if (bank.p2p_status == 1) {
                     scope.statusOfBankToP2PBottom = true;
                   }
                   scope.nameOfBankBottom = bank.bank_name;
@@ -378,22 +379,13 @@
       }
     };
 
-    transferBetween  = function () {
+    transferBetween = function () {
 
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       scope.transactionId = parseInt(Date.now() / 1000);
-      answerFromServer = false;
 
       initResultComponent();
-      setTimeout(function () {
-        console.log('')
-        if (!answerFromServer) {
-          answerFromServer = true;
-          updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
-          return;
-        }
-      }, 30000)
       window.api.call({
         method: 'p2p.account',
         input: {
@@ -410,22 +402,32 @@
             if (result[1])
               if (result[1][0]) {
                 setTimeout(function () {
-                  answerFromServer = false;
                   checkTransferStatus(result[1][0].payment_id);
                 }, 2000);
               }
           }
           else {
-            answerFromServer = true;
+            console.log('Clearing timer onSuccess', timeOutTimer);
+            window.clearTimeout(timeOutTimer);
             updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', result[0][0].error_note)
           }
         },
-
         onFail: function (api_status, api_status_message, data) {
-          answerFromServer = true;
+          console.log('Clearing timer onFail', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
+        },
+        onTimeOut: function () {
+          timeOutTimer = setTimeout(function () {
+            updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
+          }, 30000);
+          console.log('creating timeOut', timeOutTimer);
+        },
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
         }
       });
     };
@@ -444,13 +446,15 @@
         onSuccess: function (result) {
           if (result[0][0].error === 0 && result[1][0]) {
             if (result[1][0].state === -1) {
-              answerFromServer = true;
+              console.log('Clearing timer inCheckTransferStatus', timeOutTimer);
+              window.clearTimeout(timeOutTimer);
 
               window.languages.tempText = JSON.stringify(result[1][0].error);
               scope.errorMessageFromTransfer = result[1][0].error;
               updateResultComponent(true, scope.stepAmount, null, 'unsuccess', result[1][0].error);
             } else if (result[1][0].state === 2) {
-              answerFromServer = true;
+              console.log('Clearing timer inCheckTransferStatus', timeOutTimer);
+              window.clearTimeout(timeOutTimer);
               window.updateBalanceGlobalFunction();
               updateResultComponent(true, scope.stepAmount, null, 'success', window.languages.ComponentSuccessMessage);
             } else if (result[1][0].state === 1) {
@@ -461,20 +465,23 @@
                   checkTransferStatus(result[1][0].payment_id);
                 }, 2000);
               } else {
-                answerFromServer = true;
+                console.log('Clearing timer inCheckTransferStatus', timeOutTimer);
+                window.clearTimeout(timeOutTimer);
                 updateResultComponent(true, scope.stepAmount, null, 'waiting', window.languages.ComponentInProcessingPartOne);
               }
             }
             window.api.spinnerOn = false;
           }
           else {
-            answerFromServer = true;
+            console.log('Clearing timer inCheckTransferStatus', timeOutTimer);
+            window.clearTimeout(timeOutTimer);
             updateResultComponent(true, scope.stepAmount, null, 'unsuccess', result[0][0].error);
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
-          answerFromServer = true;
+          console.log('Clearing timer inCheckTransferStatus', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           updateResultComponent(true, scope.stepAmount, null, 'unsuccess', api_status_message);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);

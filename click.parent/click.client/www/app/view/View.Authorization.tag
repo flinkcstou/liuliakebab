@@ -538,7 +538,6 @@
           updateAlertComponent(true, null, 'view-authorization', "Сервис временно не доступен");
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error("Error data: ", data);
-          return;
         },
         onTimeOut: function () {
           timeOutTimer = setTimeout(function () {
@@ -546,6 +545,10 @@
             window.stopSpinner();
           }, 30000);
           console.log('creating timeOut', timeOutTimer);
+        },
+        onEmergencyStop: function(){
+          console.log('Clearing timer emergencyStop',timeOutTimer);
+          window.clearTimeout(timeOutTimer);
         }
       }, 30000);
     }

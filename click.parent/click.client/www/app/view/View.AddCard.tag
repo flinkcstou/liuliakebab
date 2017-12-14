@@ -67,6 +67,8 @@
     var mainPageToReturn = 'view-main-page',
       pageToReturnTwo = 'view-add-card';
     var answerFromServer = false;
+    var timeOutTimer = 0;
+    var timeOutTimerCardCheck = 0;
     var onPaste = false;
     var canFormatNumber = true;
     var stars = '';
@@ -84,7 +86,6 @@
     scope.doMainCard = false;
     scope.bankImage = '';
     scope.processingImage = '';
-    scope.allBankList = [];
     if (localStorage.getItem('click_client_loginInfo')) {
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
@@ -101,61 +102,6 @@
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
-
-
-    //get list of issuers and bank codes
-    {
-      if (JSON.parse(localStorage.getItem('click_client_loginInfo'))) {
-        loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
-        sessionKey = loginInfo.session_key;
-        phoneNumber = localStorage.getItem('click_client_phoneNumber');
-
-        if (!localStorage.getItem("click_client_issuer_list") || loginInfo.update_issuer_list) {
-          if (modeOfApp.onlineMode) {
-            window.api.call({
-              method: 'issuer.list',
-              input: {
-                session_key: sessionKey,
-                phone_num: phoneNumber
-              },
-              scope: this,
-
-              onSuccess: function (result) {
-                if (result[0][0].error == 0) {
-                  var issuerList = [];
-                  for (var i in result[1][0]) {
-                    issuerList.push(result[1][0][i]);
-                  }
-                  localStorage.setItem('click_client_issuer_list', JSON.stringify(issuerList));
-
-                } else {
-                  scope.errorNote = result[0][0].error_note;
-
-                  window.common.alert.show("componentAlertId", {
-                    parent: scope,
-                    clickpinerror: scope.clickPinError,
-                    errornote: scope.errorNote,
-                    pathtosettings: scope.pathToSettings,
-                    permissionerror: scope.permissionError,
-                  });
-                  scope.update();
-                }
-              },
-              onFail: function (api_status, api_status_message, data) {
-                console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-                console.error(data);
-              }
-            });
-          }
-        }
-      }
-    }
-
-    if (JSON.parse(localStorage.getItem("click_client_p2p_all_bank_list"))) {
-      scope.allBankList = JSON.parse(localStorage.getItem("click_client_p2p_all_bank_list"));
-
-    }
-
 
     doMainCardTouchEnd = function () {
       event.preventDefault();
@@ -257,14 +203,6 @@
 
 
         initResultComponent();
-
-        setTimeout(function () {
-          if (!answerFromServer) {
-            updateResultComponent(true, null, mainPageToReturn, 'waiting', window.languages.WaitingTimeExpiredText);
-
-            return
-          }
-        }, 20000)
         window.api.call({
           method: 'card.add',
           input: {
@@ -278,7 +216,8 @@
 
           onSuccess: function (result) {
 
-            answerFromServer = true;
+            console.log('Clearing timer onSuccess', timeOutTimer);
+            window.clearTimeout(timeOutTimer);
             if (result[0][0].error == 0) {
               console.log("CARD ADD", result);
 
@@ -293,13 +232,9 @@
                   localStorage.setItem("click_client_loginInfo", JSON.stringify(loginInfo));
                   console.log("DEFAULT was set", loginInfo.default_account, localStorage.getItem("click_client_loginInfo"));
                 }
-
                 updateResultComponent(true, null, mainPageToReturn, 'success', result[0][0].error_note);
-
               } else if (result[0][0].registered == -1) {
-
                 updateResultComponent(true, null, pageToReturnTwo, 'unsuccess', result[0][0].error_note);
-
               } else if (result[0][0].registered == 0) {
                 window.common.alert.updateView("componentResultId", {
                   parent: scope,
@@ -310,9 +245,7 @@
                 scope.checkId = result[0][0].check_id;
                 updateIcon('waiting', scope.repeat, 'view-add-card');
                 scope.update();
-
               }
-
             }
             else {
               updateResultComponent(true, null, mainPageToReturn, 'unsuccess', result[0][0].error_note);
@@ -320,9 +253,20 @@
           },
 
           onFail: function (api_status, api_status_message, data) {
+            console.log('Clearing timer onFail', timeOutTimer);
+            window.clearTimeout(timeOutTimer);
             updateResultComponent(true, null, mainPageToReturn, 'unsuccess', api_status_message);
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
+          },
+          onTimeOut: function () {
+            timeOutTimer = setTimeout(function () {
+              updateResultComponent(true, null, mainPageToReturn, 'waiting', window.languages.WaitingTimeExpiredText);
+            }, 20000)
+          },
+          onEmergencyStop: function () {
+            console.log('Clearing timer emergencyStop', timeOutTimer);
+            window.clearTimeout(timeOutTimer);
           }
         }, 20000);
       }
@@ -345,7 +289,8 @@
 
         onSuccess: function (result) {
 
-          answerFromServer = true;
+          console.log('Clearing timer onSuccess', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           if (result[0][0].error === 0) {
             console.log("CARD ADD CHECK", result);
 
@@ -383,6 +328,8 @@
         },
 
         onFail: function (api_status, api_status_message, data) {
+          console.log('Clearing timer onSuccess', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           updateResultComponent(true, null, mainPageToReturn, 'unsuccess', api_status_message);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
