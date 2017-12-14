@@ -133,13 +133,13 @@
             console.log('running news');
 //            var news_id = 24;
 
-            if (news_id) {
-              riotTags.innerHTML = "<view-main-page>";
-              riot.mount("view-main-page", {view: "news", news_id: news_id});
-            } else {
-              riotTags.innerHTML = "<view-main-page>";
-              riot.mount("view-main-page", {view: "news"});
-            }
+//            if (news_id) {
+//              riotTags.innerHTML = "<view-main-page>";
+//              riot.mount("view-main-page", {view: "news", news_id: news_id});
+//            } else {
+            riotTags.innerHTML = "<view-main-page>";
+            riot.mount("view-main-page", {view: "news"});
+//            }
             return
 
 
