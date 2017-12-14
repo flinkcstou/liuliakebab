@@ -58,6 +58,7 @@
   <script>
 
     var scope = this;
+    var timeOutTimer = 0;
     scope.checkAndroid = false;
     scope.errorCode = 0;
 
@@ -428,7 +429,7 @@
       authorization(phoneNumber, deviceId, password, date);
     };
 
-    var answerFromServer, firstPinInputValue = "";
+    var firstPinInputValue = "";
 
     function authorization(phoneNumber, deviceId, password, date) {
 
@@ -438,17 +439,8 @@
       }
 
       var version = localStorage.getItem('version');
-      answerFromServer = false;
 
       window.startSpinner();
-      setTimeout(function () {
-        if (!answerFromServer) {
-          answerFromServer = true;
-          updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText);
-          window.stopSpinner();
-          return
-        }
-      }, 30000)
       window.api.call({
         method: 'app.login',
         stopSpinner: false,
@@ -462,7 +454,8 @@
         scope: this,
 
         onSuccess: function (result) {
-          answerFromServer = true;
+          console.log('Clearing timer onSuccess',timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           console.log("App.login method answer: success");
 
           if (result[0][0].error === 0) {
@@ -540,13 +533,21 @@
           }
         },
         onFail: function (api_status, api_status_message, data) {
-          answerFromServer = true;
+          console.log('Clearing timer onFail',timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           updateAlertComponent(true, null, 'view-authorization', "Сервис временно не доступен");
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error("Error data: ", data);
           return;
+        },
+        onTimeOut: function () {
+          timeOutTimer = setTimeout(function () {
+            updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText);
+            window.stopSpinner();
+          }, 30000);
+          console.log('creating timeOut', timeOutTimer);
         }
-      });
+      }, 30000);
     }
 
 

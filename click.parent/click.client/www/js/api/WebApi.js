@@ -31,6 +31,17 @@ window.api.call = function (params, timeout) {
 
   if (timeout === undefined)
     timeout = 30000;
+  setTimeout(function () {
+    if (!stateCheckerCleared) {
+      clearInterval(stateChecker);
+      console.log('clearing interval-sender - time out', stateChecker);
+    }
+  }, timeout);
+
+  if (params.onTimeOut !== undefined){
+    console.log('Calling onTimeOut in webApi');
+    params.onTimeOut.call();
+  }
 
   if (!window.isConnected) {
     window.api.init();
@@ -58,12 +69,6 @@ window.api.call = function (params, timeout) {
     }
   }, 200);
 
-  setTimeout(function () {
-    if (!stateCheckerCleared) {
-      clearInterval(stateChecker);
-      console.log('clearing interval-sender - time out', stateChecker);
-    }
-  }, timeout);
 };
 
 window.api.init = function () {
