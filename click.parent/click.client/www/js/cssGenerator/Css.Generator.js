@@ -6348,6 +6348,10 @@ var css = {
   "padding-top:" + 24 * widthK + "px;" +
   "padding-left:" + 28 * widthK + "px;" +
   "color: gray;" +
+  "max-width: 90%;" +
+  "white-space: nowrap;" +
+  "overflow: hidden;" +
+  "text-overflow: ellipsis;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
 
