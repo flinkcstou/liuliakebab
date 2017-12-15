@@ -4591,6 +4591,11 @@ var css = {
   "overflow: hidden;" +
   "}",
 
+  pincardCardBalanceFractional: ".pincard-card-balance-fractional" +
+  "{" +
+  "font-size: " + 34 * widthK + "px; " +
+  "}",
+
   pincardCardInfoTextThree: ".pincard-card-info-text-three" +
   "{" +
   "position: absolute;" +
