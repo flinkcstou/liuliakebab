@@ -707,7 +707,6 @@
                 for (var i in result[1]) {
                   balances[result[1][i].account_id] = result[1][i];
                 }
-//                console.log("balances=", balances);
 
                 for (var i in scope.cardsarray) {
                   if (balances[i]) {
@@ -722,7 +721,7 @@
                     scope.cardsarray[balances[i].account_id].salary_fractional = balances[i].balance_fractional;
                   } else {
                     scope.cardsarray[i].salary = "0";
-                    scope.cardsarray[balances[i].account_id].salary_fractional = '';
+                    scope.cardsarray[i].salary_fractional = '';
                   }
                 }
 

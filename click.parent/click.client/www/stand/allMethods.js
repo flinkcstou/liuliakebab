@@ -39,7 +39,15 @@ window.fakedSocket.register("get.balance.multiple", function (input) {
     [{
       "balance": 14000000,
       "account_id": 2484171,
-    }]
+    },
+      {
+        "balance": 14000000,
+        "account_id": 7487271,
+      },
+      {
+        "balance": 14000000,
+        "account_id": 3487271,
+      }]
   ];
 });
 
@@ -179,7 +187,7 @@ window.fakedSocket.register("get.accounts", function (input) {
     {
       acc_abs: "DUET    ",
       access: 2,
-      accno: "8600 **** **** 0880",
+      accno: "8600 44** **** 0880",
       background_url: "resources/icons/cards/aab.png",
       bank_name: "UZCARD",
       branch: "00000",
@@ -207,7 +215,7 @@ window.fakedSocket.register("get.accounts", function (input) {
     {
       acc_abs: "SMARTV    ",
       access: 2,
-      accno: "8600 **** **** 0890",
+      accno: "8600 55** **** 0890",
       background_url: "resources/icons/cards/hitech.png",
       bank_name: "UZCARD",
       branch: "00000",
@@ -235,7 +243,7 @@ window.fakedSocket.register("get.accounts", function (input) {
     {
       acc_abs: "SMARTV    ",
       access: 2,
-      accno: "8600 **** **** 0900",
+      accno: "8600 66** **** 0900",
       background_url: "resources/icons/cards/nbu.png",
       bank_name: "UZCARD",
       branch: "00000",
