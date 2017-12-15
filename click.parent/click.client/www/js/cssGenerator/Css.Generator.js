@@ -15955,7 +15955,20 @@ var css = {
   "width:" + 19 * widthK + "px;" +
   "height:" + 18 * widthK + "px;" +
   "top:46%;" +
-  "}"
+  "}",
+
+  inPlacePayGoToQrButton: ".inplace-pay-gotoqr-button" +
+  "{ " +
+  "position: absolute;" +
+  "width:" + 130 * widthK + "px;" +
+  "height:" + 130 * widthK + "px;" +
+  "bottom:" + 65 * widthK + "px;" +
+  "right:" + 40 * widthK + "px;" +
+  "background-image: url(resources/icons/ViewInPlacePay/indoor_qr.png);" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "z-index: 999999999;" +
+  "}",
 }
 
 

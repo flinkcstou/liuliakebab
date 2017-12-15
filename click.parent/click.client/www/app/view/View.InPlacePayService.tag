@@ -1,5 +1,5 @@
 <view-inplace-pay-service>
-  <div id="viewPayId" class="view-pay riot-tags-main-container">
+  <div class="view-pay riot-tags-main-container">
     <div class="pay-page-title">
       <p class="pay-name-title">{titleName}</p>
       <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchstart="goToBackStart()"
