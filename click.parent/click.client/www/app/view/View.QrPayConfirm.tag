@@ -266,8 +266,6 @@
 //          });
 //        }
 
-        console.log("inputObject", inputObject)
-
         window.common.alert.updateView("componentResultId", {
           parent: scope,
           resulttext: scope.resultText,
@@ -279,30 +277,22 @@
           method: 'app.payment',
           stopSpinner: false,
           input: inputObject,
-
           scope: this,
 
           onSuccess: function (result) {
-
             if (result[0][0].error == 0) {
               if (result[1])
                 if (!result[1][0].payment_id && result[1][0].invoice_id) {
-
                   console.log('Clearing timer onSuccess',timeOutTimer);
                   window.clearTimeout(timeOutTimer);
-
-                  console.log("result of APP.PAYMENT 1", result);
                   viewServicePage.phoneText = null;
                   viewServicePage.amountText = null;
-
                   viewServicePinCards.friendHelpPaymentMode = false;
                   updateResultComponent(true, successStep, null, 'success', window.languages.ComponentResultQRSuccess);
                 } else if (result[1][0].payment_id && !result[1][0].invoice_id) {
-
                   setTimeout(function () {
                     checkQrPaymentStatus(result[1][0].payment_id);
                   }, 2000);
-
                 }
             }
             else {
@@ -338,17 +328,12 @@
           }
         }, 30000);
       }
-
-    }
-
-    var answerFromServer = false;
+    };
     var qrCounter = 0;
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
     function checkQrPaymentStatus(payment_id) {
-
-      console.log("check transfer status");
 
       window.api.call({
         method: 'get.payment',
@@ -363,65 +348,53 @@
 
         onSuccess: function (result) {
           if (result[0][0].error == 0 && result[1][0]) {
-
-
             if (result[1][0].state == -1) {
 
-              answerFromServer = true;
-
-//              scope.errorQrPayment = result[0][0].error_note;
-//              componentUnsuccessId.style.display = 'block';
-//              riot.update()
+              console.log('Clearing timer onSuccess',timeOutTimer);
+              window.clearTimeout(timeOutTimer);
               updateResultComponent(true, unsuccessStep, null, 'unsuccess', result[1][0].error);
-
-
             } else if (result[1][0].state == 2) {
 
-              answerFromServer = true;
+              console.log('Clearing timer onSuccess',timeOutTimer);
+              window.clearTimeout(timeOutTimer);
               window.updateBalanceGlobalFunction();
-              console.log("result of APP.PAYMENT 1", result);
               viewServicePage.phoneText = null;
               viewServicePage.amountText = null;
               viewServicePinCards.friendHelpPaymentMode = false;
-
-//              scope.operationMessage = 'Оплата QR прошла успешно';
-//              scope.update();
               updateResultComponent(true, successStep, null, 'success', window.languages.ComponentResultQRSuccess);
 
             } else if (result[1][0].state == 1) {
-
               qrCounter++;
-
               if (qrCounter < 5) {
-
                 setTimeout(function () {
                   checkQrPaymentStatus(result[1][0].payment_id);
                 }, 2000);
-
               } else {
-
-                answerFromServer = true;
+                console.log('Clearing timer onSuccess',timeOutTimer);
+                window.clearTimeout(timeOutTimer);
                 updateResultComponent(true, waitingStep, null, 'waiting', window.languages.ComponentInProcessingPartOneForPay);
               }
-
             }
             window.api.spinnerOn = false;
 
           }
           else {
-            answerFromServer = true;
+            console.log('Clearing timer onSuccess',timeOutTimer);
+            window.clearTimeout(timeOutTimer);
             updateResultComponent(true, errorStep, pageToReturnIfError, 'unsuccess', result[1][0].error);
-
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
-          answerFromServer = true;
-
+          console.log('Clearing timer onFail',timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           updateResultComponent(true, errorStep, pageToReturnIfError, 'unsuccess', api_status_message);
-
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
+        },
+        onEmergencyStop: function(){
+          console.log('Clearing timer emergencyStop',timeOutTimer);
+          window.clearTimeout(timeOutTimer);
         }
       });
     }

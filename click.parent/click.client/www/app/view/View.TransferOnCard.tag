@@ -28,8 +28,8 @@
       touchStartAcceptX,
       touchStartAcceptY,
       touchEndAcceptX,
-      touchEndAcceptY,
-      transferOnCardCheckAnswer;
+      touchEndAcceptY;
+    var timeOutTimer = 0;
 
     scope.success = false;
     scope.fail = false;
@@ -102,19 +102,6 @@
 
         window.startSpinner();
 
-        transferOnCardCheckAnswer = false;
-
-        setTimeout(function () {
-          if (!transferOnCardCheckAnswer) {
-
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              errornote: window.languages.ViewTransferOnCardCardNotChosen,
-              step_amount: scope.stepAmount
-            });
-            return
-          }
-        }, 10000);
         window.api.call({
           method: 'invoice.action',
           stopSpinner: false,
@@ -128,11 +115,9 @@
           },
           scope: this,
           onSuccess: function (result) {
-            transferOnCardCheckAnswer = true;
-
+            console.log('Clearing timer emergencyStop',timeOutTimer);
+            window.clearTimeout(timeOutTimer);
             window.stopSpinner();
-
-            console.log("result of invoice transfer accept", result);
 
             if (result[0][0].error == 0) {
 
@@ -143,7 +128,6 @@
                 step_amount: 0
               });
               window.updateBalanceGlobalFunction();
-
             }
             else {
               window.common.alert.show("componentUnsuccessId", {
@@ -158,7 +142,8 @@
           },
 
           onFail: function (api_status, api_status_message, data) {
-            transferOnCardCheckAnswer = true;
+            console.log('Clearing timer emergencyStop',timeOutTimer);
+            window.clearTimeout(timeOutTimer);
             window.stopSpinner();
             window.common.alert.show("componentUnsuccessId", {
               parent: scope,
@@ -167,9 +152,22 @@
               operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
               operationmessagepartthree: api_status_message
             });
-
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
+          },
+          onTimeOut: function () {
+            timeOutTimer = setTimeout(function () {
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  errornote: window.languages.ViewTransferOnCardCardNotChosen,
+                  step_amount: scope.stepAmount
+                });
+            }, 10000);
+            console.log('creating timeOut', timeOutTimer);
+          },
+          onEmergencyStop: function(){
+            console.log('Clearing timer emergencyStop',timeOutTimer);
+            window.clearTimeout(timeOutTimer);
           }
         }, 10000);
 

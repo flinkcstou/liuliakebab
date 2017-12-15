@@ -261,20 +261,17 @@
           onSuccess: function (result) {
 
           },
-
           onFail: function (api_status, api_status_message, data) {
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
           }
         });
-
         clearInterval(time);
       }
       if (seconds == 0) {
         seconds = 59;
         minutes--;
       }
-
       scope.update();
     }
     var time = setInterval(timer, 1000);
@@ -325,20 +322,14 @@
           if (countOfCall == 3 && !checkServiceAnswer) {
             scope.errorNote = "Сервис временно недоступен";
             countOfCall = 0;
-            if (device.platform !== 'BrowserStand') {
-              console.log("Spinner Stop View SMS 422");
-              SpinnerPlugin.activityStop();
-            }
+            window.stopSpinner();
 
             window.common.alert.show("componentAlertId", {
               parent: scope,
               clickpinerror: scope.clickPinError,
               errornote: scope.errorNote,
             });
-
             scope.update();
-
-            return;
           }
         }, 10000);
       window.api.call({
@@ -351,13 +342,11 @@
         },
 
         scope: this,
-
         onSuccess: function (result) {
           checkServiceAnswer = true;
           if (result[0][0])
             if (result[0][0].error == 0) {
               clearInterval(time);
-
               localStorage.setItem('confirm_needed', false);
               if (result[0][0].client_exists == 1) {
                 localStorage.setItem('click_client_registered', true);
