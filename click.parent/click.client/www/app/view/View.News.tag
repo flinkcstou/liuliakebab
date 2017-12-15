@@ -47,7 +47,6 @@
     var openImage = false;
     var pageNumber = 2;
 
-
     openNews = function (news) {
       console.log("news to open", news);
       var containerId = "newsContainerId" + news.news_id;
@@ -85,6 +84,12 @@
       if (sessionStorage.getItem("push_news")) {
         sessionStorage.setItem("push_news", false)
       }
+
+      console.log("1 authorized=", JSON.parse(localStorage.getItem('click_client_authorized')));
+      console.log("2 settings block=", JSON.parse(localStorage.getItem('settings_block')));
+      console.log("3 onResume=", JSON.parse(localStorage.getItem('onResume')));
+      console.log("4 session_broken=", JSON.parse(localStorage.getItem('session_broken')));//
+
 
       if (!JSON.parse(localStorage.getItem('click_client_authorized')) || JSON.parse(localStorage.getItem('session_broken')) || (JSON.parse(localStorage.getItem('settings_block')) === true && JSON.parse(localStorage.getItem('onResume')))) {
 
@@ -183,7 +188,7 @@
         scope: this,
 
         onSuccess: function (result) {
-          console.log('Clearing timer onSuccess',timeOutTimer);
+          console.log('Clearing timer onSuccess', timeOutTimer);
           window.clearTimeout(timeOutTimer);
 
           if (result[0][0].error === 0) {
@@ -221,7 +226,7 @@
         },
 
         onFail: function (api_status, api_status_message, data) {
-          console.log('Clearing timer onFail',timeOutTimer);
+          console.log('Clearing timer onFail', timeOutTimer);
           window.clearTimeout(timeOutTimer);
           window.common.alert.show("componentAlertId", {
             parent: scope,
@@ -234,19 +239,19 @@
         },
         onTimeOut: function () {
           timeOutTimer = setTimeout(function () {
-              window.common.alert.show("componentAlertId", {
-                parent: scope,
-                errornote: window.languages.WaitingTimeExpiredText,
-                viewpage: 'view-main-page'
-              });
-              scope.update();
-              window.stopSpinner();
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              errornote: window.languages.WaitingTimeExpiredText,
+              viewpage: 'view-main-page'
+            });
+            scope.update();
+            window.stopSpinner();
 
           }, 30000);
           console.log('creating timeOut', timeOutTimer);
         },
-        onEmergencyStop: function(){
-          console.log('Clearing timer emergencyStop',timeOutTimer);
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimer);
           window.clearTimeout(timeOutTimer);
         }
       }, 30000);

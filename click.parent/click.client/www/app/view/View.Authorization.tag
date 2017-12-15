@@ -65,6 +65,7 @@
 
     this.on('mount', function () {
 
+
       localStorage.setItem('session_broken', false);
       localStorage.setItem("click_client_authorized", false);
 

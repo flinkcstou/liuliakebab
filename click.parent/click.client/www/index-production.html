@@ -354,6 +354,10 @@
     setTimeout(function () {
       localStorage.setItem('onResume', true);
       console.log("onResume set true");
+      if (JSON.parse(localStorage.getItem('settings_block')) === true) {
+        localStorage.setItem('session_broken', false);
+        localStorage.setItem("click_client_authorized", false);
+      }
 //      if (JSON.parse(localStorage.getItem('settings_block')) === true) {
 //        console.log("authorization mount onPause, block true");
 //        riotTags.innerHTML = "<view-authorization>";
