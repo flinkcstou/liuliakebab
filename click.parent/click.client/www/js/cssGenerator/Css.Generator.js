@@ -1903,17 +1903,7 @@ var css = {
 
   cardBalanceFractional: ".card-balance-fractional " +
   "{" +
-  "position: relative;" +
-  "left:" + 25 * widthK + "px;" +
   "font-size:" + 36 * widthK + "px;" +
-  "margin: 0;" +
-  "margin-top:" + 7 * widthK + "px;" +
-  "float: left;" +
-  "padding: 0;" +
-  "white-space: nowrap;" +
-  "text-overflow: ellipsis;" +
-  "overflow: hidden;" +
-  "max-height: 52%;" +
   "}",
 
   cardCurrency: ".card-currency " +
@@ -3195,6 +3185,11 @@ var css = {
   "overflow: hidden;" +
   "text-overflow: ellipsis;" +
   "white-space: nowrap;" +
+  "}",
+
+  viewInfoCardBalanceSumFractional: ".view-info-card-balance-sum-fractional " +
+  "{" +
+  "font-size:" + 51 * widthK + "px;" +
   "}",
 
   viewInfoCardCurrency: ".view-info-card-currency " +
@@ -5468,6 +5463,11 @@ var css = {
   "text-overflow: ellipsis;" +
   "}",
 
+  myCardListcardBalanceFractional: ".mycardlist-card-balance-fractional " +
+  "{" +
+  "font-size:" + 27 * widthK + "px;" +
+  "}",
+
   myCardListcardCurrency: ".mycardlist-card-currency " +
   "{" +
   "position: relative;" +
@@ -6240,6 +6240,12 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "max-height: 52%;" +
+  "max-width: 65%;" +
+  "}",
+
+  transferNewCardBalanceFractional: ".transfer-new-card-balance-fractional" +
+  "{" +
+  "font-size:" + 34 * heightK + "px;" +
   "}",
 
   transferNewCardCurrency: ".transfer-new-card-currency " +

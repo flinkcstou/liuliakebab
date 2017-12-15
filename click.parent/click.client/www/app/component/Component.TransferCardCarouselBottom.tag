@@ -6,7 +6,10 @@
     <div id="{opts.carouselid}" class="cards">
       <component-transfer-card each="{i in cardsarray}"
                       countcard="{i.countCard}"
-                      name="{i.name}" salary="{i.salary}" currency="{i.currency}"
+                      name="{i.name}"
+                      salary="{i.salary}"
+                      salary_fractional="{i.salary_fractional}"
+                      currency="{i.currency}"
                       numberpartone="{i.numberPartOne}"
                       numbermiddletwo="{i.numberMiddleTwo}"
                       numberparttwo="{i.numberPartTwo}"

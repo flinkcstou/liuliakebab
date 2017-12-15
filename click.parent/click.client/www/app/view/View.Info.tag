@@ -9,7 +9,7 @@
     <p class="view-info-balance-label">{window.languages.ViewInfoBalanceTitle}</p>
     <div class="view-info-card-balance-currency-container">
       <div if="{!modeOfApp.offlineMode}" class="view-info-card-balance">
-        <p class="view-info-card-balance-sum">{(fullBalanceCopy) ? (fullBalanceCopy) : (error_message)}</p>
+        <p class="view-info-card-balance-sum">{(fullBalanceCopy) ? (fullBalanceCopy) : (error_message)}<span class="view-info-card-balance-sum-fractional">{(fractionalPart) ? (fractionalPart) : ''}</span></p>
         <p if="{!modeOfApp.offlineMode && fullBalanceCopy}" class="view-info-card-currency">сум</p>
       </div>
 
@@ -70,6 +70,7 @@
     scope.attention = false;
     scope.fullBalance = 0;
     scope.fullBalanceCopy = null;
+    scope.fractionalPart = null;
     scope.error_message = null;
 
     var cards = JSON.parse(localStorage.getItem('click_client_cards'));
@@ -136,7 +137,7 @@
       var j = 0;
       scope.fullBalance = 0;
       scope.fullBalanceCopy = 0;
-
+      scope.fractionalPart = 0;
       window.api.call({
         method: 'get.balance.multiple',
         input: {
@@ -158,7 +159,7 @@
                 for (var i in result[1]) {
                   scope.fullBalance += result[1][i].balance;
                 }
-                scope.fullBalanceCopy = scope.fullBalance;
+                scope.fullBalanceCopy = Math.floor(scope.fullBalance);
                 scope.fractionalPart = window.getFractionalPart(scope.fullBalance.toString());
 
                 scope.fullBalanceCopy = scope.fullBalanceCopy.toFixed(0).toString();
