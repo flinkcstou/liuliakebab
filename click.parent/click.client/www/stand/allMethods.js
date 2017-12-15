@@ -37,15 +37,15 @@ window.fakedSocket.register("get.balance.multiple", function (input) {
   return [
     [{"method": input.method, "success": 1, "error": 0, "error_note": ""}],
     [{
-      "balance": 14000000,
+      "balance": 1400000000.55,
       "account_id": 2484171,
     },
       {
-        "balance": 14000000,
+        "balance": 14000000.10,
         "account_id": 7487271,
       },
       {
-        "balance": 14000000,
+        "balance": 14000000.11,
         "account_id": 3487271,
       }]
   ];

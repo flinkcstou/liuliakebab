@@ -159,6 +159,7 @@
                   scope.fullBalance += result[1][i].balance;
                 }
                 scope.fullBalanceCopy = scope.fullBalance;
+                scope.fractionalPart = window.getFractionalPart(scope.fullBalance.toString());
 
                 scope.fullBalanceCopy = scope.fullBalanceCopy.toFixed(0).toString();
                 scope.fullBalanceCopy = window.amountTransform(scope.fullBalanceCopy);
