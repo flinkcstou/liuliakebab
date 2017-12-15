@@ -47,9 +47,6 @@
     var openImage = false;
     var pageNumber = 2;
 
-    alert("1 authorized=" + JSON.parse(localStorage.getItem('click_client_authorized')) + ", 2 settings block=" + JSON.parse(localStorage.getItem('settings_block')) + " " +
-      ",3 onResume=" + JSON.parse(localStorage.getItem('onResume')) + ", 4 session_broken=" + JSON.parse(localStorage.getItem('session_broken')));
-
     openNews = function (news) {
       console.log("news to open", news);
       var containerId = "newsContainerId" + news.news_id;
@@ -94,6 +91,7 @@
       console.log("4 session_broken=", JSON.parse(localStorage.getItem('session_broken')));//
 
 
+      
       if (!JSON.parse(localStorage.getItem('click_client_authorized')) || JSON.parse(localStorage.getItem('session_broken')) || (JSON.parse(localStorage.getItem('settings_block')) === true && JSON.parse(localStorage.getItem('onResume')))) {
 
         console.log("AUTH MOUNT FROM NEWS");
