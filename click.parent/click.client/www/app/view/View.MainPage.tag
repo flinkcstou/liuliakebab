@@ -53,8 +53,6 @@
       if (device.platform !== 'BrowserStand')
         StatusBar.backgroundColorByHexString("#00a8f1");
 
-      localStorage.setItem("click_client_authorized", true);
-
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).mainpage) {
         componentTourId.style.display = "block";
         if (device.platform !== 'BrowserStand')
@@ -78,6 +76,8 @@
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
           }
         }
+      } else {
+        localStorage.setItem("click_client_authorized", true);
       }
     });
 

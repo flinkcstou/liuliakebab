@@ -10,18 +10,18 @@ else {
 var heightOfMobile;
 var topOfIos;
 
-if (localStorage.getItem('device_platform') == 'iOS') {
-  heightK = (window.innerHeight - 20) / 1232;
-  heightOfMobile = window.innerHeight - 20;
-  if (device.platform == 'iOS')
-    cordova.plugins.Keyboard.disableScroll(true);
-  topOfIos = 20;
-}
-else {
-  heightK = window.innerHeight / 1232;
-  heightOfMobile = window.innerHeight;
-  topOfIos = 0;
-}
+// if (localStorage.getItem('device_platform') == 'iOS') {
+//   heightK = (window.innerHeight - 20) / 1232;
+//   heightOfMobile = window.innerHeight - 20;
+//   if (device.platform == 'iOS')
+//     cordova.plugins.Keyboard.disableScroll(true);
+//   topOfIos = 20;
+// }
+// else {
+heightK = window.innerHeight / 1232;
+heightOfMobile = window.innerHeight;
+topOfIos = 0;
+// }
 
 var css = {
 
