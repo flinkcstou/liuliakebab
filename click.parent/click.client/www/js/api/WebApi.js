@@ -52,22 +52,22 @@ window.api.call = function (params, timeout) {
     if (window.api.socket.readyState === 1) {
       window.api.send(params);
       stateCheckerCleared = true;
-      console.log("Clearing interval-sender - request sent", stateChecker);
+      console.log("Clearing interval-sender - sending request", stateChecker);
       clearInterval(stateChecker);
     }
     if (window.api.socket.readyState === 0) {
       console.log("Connection in state 0, checking again");
     }
     if (window.api.socket.readyState === 3) {
-      console.log("Connection in state 3, opening new connection for next requests");
+      console.log("Connection in state 3");
       window.isConnected = false;
-      if (navigator.connection.type !== Connection.NONE && navigator.connection.type !== Connection.UNKNOWN) {
-        window.api.init();
-      }
+      // if (navigator.connection.type !== Connection.NONE && navigator.connection.type !== Connection.UNKNOWN) {
+      //   window.api.init();
+      // }
       stateCheckerCleared = true;
       clearInterval(stateChecker);
     }
-  }, 200);
+  }, 300);
 
 };
 
@@ -75,13 +75,14 @@ window.api.init = function () {
   if (!window.isConnected) {
     try {
       window.api.socket = new WebSocket("wss://my.click.uz:8443");
+      window.isConnected = true;
       console.log("SOCKET =", window.api.socket);
       window.api.initSocket();
     }
     catch (error) {
       console.error("error on establishing connection", error);
-      if (modeOfApp.onlineMode)
-        window.api.init();
+      // if (modeOfApp.onlineMode)
+      //   window.api.init();
     }
   }
 };
