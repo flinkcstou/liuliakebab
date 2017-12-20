@@ -12,7 +12,7 @@
            style="background-image: url({i.url})"></div>
       <div class="pincard-card-info-container">
         <p class="pincard-card-info-text-one">{i.name}</p>
-        <p if="{i.salaryOriginal > 0}" class="pincard-card-info-text-two" if="{i.salaryOriginal>0}">{i.salary}
+        <p if="{i.salaryOriginal > 0}" class="pincard-card-info-text-two" if="{i.salaryOriginal>0}">{i.salary}<span class="pincard-card-balance-fractional">{i.salary_fractional}</span>
           {i.currency}</p>
         <p class="pincard-card-info-text-two" style="color: #EB604D"
            if="{i.salaryOriginal<=0 && !modeOfflineMode.check}">

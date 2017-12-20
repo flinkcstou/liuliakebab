@@ -48,7 +48,10 @@
 
       <component-card each="{i in cardsarray}"
                       countcard="{i.countCard}"
-                      name="{i.name}" salary="{i.salary}" currency="{i.currency}"
+                      name="{i.name}"
+                      salary="{i.salary}"
+                      salary_fractional="{i.salary_fractional}"
+                      currency="{i.currency}"
                       numberpartone="{i.numberPartOne}"
                       numbermiddletwo="{i.numberMiddleTwo}"
                       numberparttwo="{i.numberPartTwo}"
@@ -704,19 +707,21 @@
                 for (var i in result[1]) {
                   balances[result[1][i].account_id] = result[1][i];
                 }
-//                console.log("balances=", balances);
 
                 for (var i in scope.cardsarray) {
                   if (balances[i]) {
                     scope.cardsarray[balances[i].account_id].salaryOriginal = balances[i].balance.toFixed(0);
-                    balances[i].balance = balances[i].balance.toFixed(0).toString();
+                    balances[i].balance_fractional = window.getFractionalPart(balances[i].balance.toString());
+                    balances[i].balance = Math.floor(balances[i].balance).toFixed(0).toString();
 
                     if (balances[i].balance !== 0)
                       balances[i].balance = window.amountTransform(balances[i].balance.toString());
 
                     scope.cardsarray[balances[i].account_id].salary = balances[i].balance;
+                    scope.cardsarray[balances[i].account_id].salary_fractional = balances[i].balance_fractional;
                   } else {
                     scope.cardsarray[i].salary = "0";
+                    scope.cardsarray[i].salary_fractional = '';
                   }
                 }
 

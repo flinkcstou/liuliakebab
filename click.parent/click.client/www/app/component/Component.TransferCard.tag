@@ -6,7 +6,7 @@
   <div class="transfer-new-card-salary-title">{opts.name}</div>
 
   <div class="transfer-new-card-balance-currency-container">
-    <p if="{!modeOfApp.offlineMode}" class="transfer-new-card-balance">{(opts.salary) ? (opts.salary) : (opts.error_message)}</p>
+    <p if="{!modeOfApp.offlineMode}" class="transfer-new-card-balance">{(opts.salary) ? (opts.salary) : (opts.error_message)}<span class="transfer-new-card-balance-fractional">{(opts.salary_fractional) ? (opts.salary_fractional) : ''}</span></p>
     <p if="{!modeOfApp.offlineMode && opts.salary}" class="transfer-new-card-currency">{opts.currency}</p>
 
     <a if="{modeOfApp.offlineMode}" style="color: rgb({opts.fontcolor});" class="offline-card-balance"

@@ -10,18 +10,18 @@ else {
 var heightOfMobile;
 var topOfIos;
 
-if (localStorage.getItem('device_platform') == 'iOS') {
-  heightK = (window.innerHeight - 20) / 1232;
-  heightOfMobile = window.innerHeight - 20;
-  if (device.platform == 'iOS')
-    cordova.plugins.Keyboard.disableScroll(true);
-  topOfIos = 20;
-}
-else {
-  heightK = window.innerHeight / 1232;
-  heightOfMobile = window.innerHeight;
-  topOfIos = 0;
-}
+// if (localStorage.getItem('device_platform') == 'iOS') {
+//   heightK = (window.innerHeight - 20) / 1232;
+//   heightOfMobile = window.innerHeight - 20;
+//   if (device.platform == 'iOS')
+//     cordova.plugins.Keyboard.disableScroll(true);
+//   topOfIos = 20;
+// }
+// else {
+heightK = window.innerHeight / 1232;
+heightOfMobile = window.innerHeight;
+topOfIos = 0;
+// }
 
 var css = {
 
@@ -1901,6 +1901,11 @@ var css = {
   "max-height: 52%;" +
   "}",
 
+  cardBalanceFractional: ".card-balance-fractional " +
+  "{" +
+  "font-size:" + 36 * widthK + "px;" +
+  "}",
+
   cardCurrency: ".card-currency " +
   "{" +
   "position: relative;" +
@@ -3180,6 +3185,11 @@ var css = {
   "overflow: hidden;" +
   "text-overflow: ellipsis;" +
   "white-space: nowrap;" +
+  "}",
+
+  viewInfoCardBalanceSumFractional: ".view-info-card-balance-sum-fractional " +
+  "{" +
+  "font-size:" + 51 * widthK + "px;" +
   "}",
 
   viewInfoCardCurrency: ".view-info-card-currency " +
@@ -4581,6 +4591,11 @@ var css = {
   "overflow: hidden;" +
   "}",
 
+  pincardCardBalanceFractional: ".pincard-card-balance-fractional" +
+  "{" +
+  "font-size: " + 34 * widthK + "px; " +
+  "}",
+
   pincardCardInfoTextThree: ".pincard-card-info-text-three" +
   "{" +
   "position: absolute;" +
@@ -5453,6 +5468,11 @@ var css = {
   "text-overflow: ellipsis;" +
   "}",
 
+  myCardListcardBalanceFractional: ".mycardlist-card-balance-fractional " +
+  "{" +
+  "font-size:" + 27 * widthK + "px;" +
+  "}",
+
   myCardListcardCurrency: ".mycardlist-card-currency " +
   "{" +
   "position: relative;" +
@@ -6225,6 +6245,12 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "max-height: 52%;" +
+  "max-width: 65%;" +
+  "}",
+
+  transferNewCardBalanceFractional: ".transfer-new-card-balance-fractional" +
+  "{" +
+  "font-size:" + 34 * heightK + "px;" +
   "}",
 
   transferNewCardCurrency: ".transfer-new-card-currency " +

@@ -14,7 +14,7 @@
       -webkit-user-select: none;">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, maximum-scale=10.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, maximum-scale=10.0, user-scalable=no, viewport-fit=cover">
   <meta name="format-detection" content="telephone=no">
   <script src="js/languages/languages.js"></script>
   <script src="js/mOperators/mOperators.js"></script>
@@ -142,6 +142,7 @@
     document.addEventListener("deviceready", function () {
       window.FirebasePlugin.setBadgeNumber(0);
       MobileAccessibility.usePreferredTextZoom(false);
+      window.cordova.plugins.Keyboard.disableScroll(true);
       checkFirstStarting = true;
 
       console.log("Версия приложения из плагина", AppVersion.version);
@@ -168,6 +169,7 @@
 
 //      localStorage.setItem('device', JSON.stringify(device))
       localStorage.setItem("click_client_authorized", JSON.stringify(false));
+      console.log("authorized false");
 
 //      if (!window.isConnected) {
 //        var options = {dimBackground: true};
@@ -354,6 +356,10 @@
     setTimeout(function () {
       localStorage.setItem('onResume', true);
       console.log("onResume set true");
+      if (JSON.parse(localStorage.getItem('settings_block')) === true) {
+        localStorage.setItem('session_broken', false);
+        localStorage.setItem("click_client_authorized", false);
+      }
 //      if (JSON.parse(localStorage.getItem('settings_block')) === true) {
 //        console.log("authorization mount onPause, block true");
 //        riotTags.innerHTML = "<view-authorization>";

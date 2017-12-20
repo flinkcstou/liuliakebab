@@ -79,6 +79,9 @@
     <preference name="SplashMaintainAspectRatio" value="true"/>
     <preference name="KeyboardDisplayRequiresUserAction" value="false"/>
 
+    <preference name="StatusBarOverlaysWebView" value="false"/>
+    <preference name="StatusBarBackgroundColor" value="#00b0eb"/>
+    <preference name="StatusBarStyle" value="lightcontent"/>
     <icon height="57" src="resources/ios/icon/icon.png" width="57"/>
     <icon height="114" src="resources/ios/icon/icon@2x.png" width="114"/>
     <icon height="40" src="resources/ios/icon/icon-40.png" width="40"/>

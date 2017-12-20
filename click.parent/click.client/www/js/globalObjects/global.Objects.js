@@ -332,7 +332,12 @@ window.getFractionalPart = function (amount){
   var fractionalPartResult = '';
   if (amount !== undefined && amount.indexOf('.') >= 0) {
     fractionalPartResult = amount.slice(amount.indexOf('.'), amount.length);
-    console.log("Amount contains dot");
+  }
+  if (fractionalPartResult.length > 3){
+    fractionalPartResult = fractionalPartResult.slice(0, 3);
+  }
+  if (fractionalPartResult === '00'){
+    fractionalPartResult = '';
   }
   return fractionalPartResult;
 };
