@@ -15824,7 +15824,7 @@ var css = {
   "position: absolute;" +
   "height:90%; " +
   "width: 100%; " +
-  "top:13%; " +
+  "top:15%; " +
   "bottom:0; " +
   "overflow-y: scroll; " +
   "overflow-x: hidden; " +
@@ -15834,7 +15834,7 @@ var css = {
   inPlacePayBlockContainer: ".inplace-pay-block-containter" +
   "{" +
   "position: relative;" +
-  "min-height:" + 131 * widthK + "px; " +
+  "min-height:" + 95 * widthK + "px; " +
   "width: 100%;" +
   "padding-top: 1%;" +
   "border-bottom:" + 1 + "px solid gainsboro;" +
@@ -15846,22 +15846,22 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 13%;" +
-  "height:" + 120 * widthK + "px; " +
+  "height:" + 89 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "float: left;" +
-  "left: 5%;" +
-  "background-size: 109%;" +
+  "left: 2%;" +
+  "background-size: 87%;" +
   "}",
 
   inPlacePayCategoryNameField: ".inplace-pay-category-name-field" +
   "{" +
   "position: relative;" +
   "background-size: contain;" +
-  "top: " + 39 * widthK + "px; " +
-  "left: 9%;" +
+  "top: " + 25 * widthK + "px; " +
+  "left: 5%;" +
   "text-align: left;" +
-  "font-size:" + 36 * widthK + "px; " +
+  "font-size:" + 34 * widthK + "px; " +
   "color: gray;" +
   "}",
 
@@ -15874,7 +15874,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "width:" + 19 * widthK + "px;" +
   "height:" + 18 * widthK + "px;" +
-  "top:" + 9 * widthK + "px;" +
+  // "top:" + 9 * widthK + "px;" +
   "}",
 
 
@@ -15883,7 +15883,7 @@ var css = {
   "position: relative;" +
   "left: 10%;" +
   "width: 79.5%;" +
-  "height: 10%;" +
+  "height: 9.5%;" +
   "border-bottom:  " + 3 * widthK + "px solid #01cfff;" +
   "color: white;" +
   // "top: 8%;" +
@@ -15915,7 +15915,7 @@ var css = {
   "background-size: 47%;" +
   "background-position: center;" +
   "top: 32%;" +
-  "right: -2%;" +
+  "right: -3%;" +
   "}",
 
 
@@ -16003,8 +16003,8 @@ var css = {
   "position: absolute;" +
   "width:" + 115 * widthK + "px;" +
   "height:" + 115 * widthK + "px;" +
-  "bottom:" + 45 * widthK + "px;" +
-  "right:" + 55 * widthK + "px;" +
+  "bottom:" + 79 * widthK + "px;" +
+  "right:" + 54 * widthK + "px;" +
   "background-image: url(resources/icons/ViewInPlacePay/indoor_qr.png);" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
