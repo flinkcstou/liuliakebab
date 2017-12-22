@@ -8,8 +8,10 @@
 
     <div class="inplace-pay-category-container" id="categoriesContainerId">
 
-      <div id="searchContainerId" class="inplace-pay-search-container">
-        <input id="searchInputId" class="inplace-pay-search-input"/>
+      <div class="inplace-pay-search-field" id="searchContainerId">
+        <input class="inplace-pay-search-input-part" type="tel" id="searchInputId"/>
+        <div id="searchIcon" class="inplace-pay-search-icon" ontouchstart="onTouchStartOfSearchCategory()"
+             ontouchend="onTouchEndOfSearchCategory()"></div>
       </div>
 
       <div class="inplace-pay-inner-container">
@@ -40,11 +42,12 @@
     var scope = this;
     scope.checkOfSearch = false;
     scope.titleName = window.languages.ViewInPlacePayTitle;
-    var onTouchStartY, onTouchStartX;
-    var onTouchEndY, onTouchEndX;
+    var onTouchStartY, onTouchStartX,
+      onTouchEndY, onTouchEndX;
     var goBackButtonStartX, goBackButtonEndX,
       goBackButtonStartY, goBackButtonEndY;
     var qrPayStartX, qrPayEndX, qrPayStartY, qrPayEndY;
+    var searchStartX, searchEndX, searchStartY, searchEndY;
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
     var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
     var sessionKey = loginInfo.session_key;
@@ -125,6 +128,71 @@
       if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
         onBackKeyDown();
         scope.unmount()
+      }
+    };
+
+    onTouchStartOfSearchCategory = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (searchIcon)
+        searchIcon.style.webkitTransform = 'scale(0.7)';
+
+      searchStartX = event.changedTouches[0].pageX;
+      searchStartY = event.changedTouches[0].pageY;
+
+    };
+
+    onTouchEndOfSearchCategory = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (searchIcon)
+        searchIcon.style.webkitTransform = 'scale(1)';
+
+      searchEndX = event.changedTouches[0].pageX;
+      searchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(searchStartX - searchEndX) <= 20 && Math.abs(searchStartY - searchEndY) <= 20) {
+        console.log("string to search=", searchInputId.value);
+
+        var searchWord = searchInputId.value;
+
+        if (modeOfApp.onlineMode && searchWord) {
+
+          scope.categoryList = [];
+
+          window.api.call({
+            method: 'get.indoor.category.list',
+            input: {
+              session_key: sessionKey,
+              phone_num: phoneNumber,
+              search: searchWord
+            },
+            scope: this,
+
+            onSuccess: function (result) {
+              if (result[0][0].error == 0)
+                if (result[1][0]) {
+
+
+                  for (var i in result[1]) {
+
+                    scope.categoryList.push(result[1][i]);
+
+                  }
+                  sessionStorage.setItem('click_client_inPlacePayCategoryList', JSON.stringify(scope.categoryList));
+                  scope.update();
+
+                }
+
+            },
+            onFail: function (api_status, api_status_message, data) {
+              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+              console.error(data);
+            }
+          });
+        }
       }
     };
 

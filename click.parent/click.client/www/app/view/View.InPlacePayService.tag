@@ -8,8 +8,10 @@
 
     <div class="inplace-pay-category-container" id="categoriesContainerId">
 
-      <div id="searchContainerId" class="inplace-pay-search-container">
-        <input id="searchInputId" class="inplace-pay-search-input"/>
+      <div class="inplace-pay-search-field" id="searchContainerId">
+        <input class="inplace-pay-search-input-part" type="tel" id="searchInputId"/>
+        <div id="searchIcon" class="inplace-pay-search-icon" ontouchstart="onTouchStartOfSearchService()"
+             ontouchend="onTouchEndOfSearchService()"></div>
       </div>
 
       <div class="inplace-pay-inner-container">
@@ -46,9 +48,11 @@
     var onTouchEndY, onTouchEndX;
     var goBackButtonStartX, goBackButtonEndX,
       goBackButtonStartY, goBackButtonEndY;
+    var searchStartX, searchEndX, searchStartY, searchEndY;
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
     var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
     var sessionKey = loginInfo.session_key;
+    var latitude, longitude;
 
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-inplace-pay-service') {
@@ -68,8 +72,9 @@
       var geoOptions = {timeout: 5000, enableHighAccuracy: true};
       var onGeoSuccess = function (position) {
         console.log("Success in getting position", position);
-
-        getServiceList(position.coords.latitude, position.coords.longitude);
+        latitude = position.coords.latitude;
+        longitude = position.coords.longitude;
+        getServiceList(latitude, longitude);
 
       };
 
@@ -77,8 +82,7 @@
       //
       function onGeoError(error) {
         console.log("Error in getting position", error)
-        alert('code: ' + error.code + '\n' +
-          'message: ' + error.message + '\n');
+        alert("Убедитесь, что у вас включены геоданные");
       }
 
       navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError, geoOptions);
@@ -151,6 +155,91 @@
         onBackKeyDown();
         scope.unmount()
       }
+    };
+
+    onTouchStartOfSearchService = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (searchIcon)
+        searchIcon.style.webkitTransform = 'scale(0.7)';
+
+      searchStartX = event.changedTouches[0].pageX;
+      searchStartY = event.changedTouches[0].pageY;
+
+    };
+
+    onTouchEndOfSearchService = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (searchIcon)
+        searchIcon.style.webkitTransform = 'scale(1)';
+
+      searchEndX = event.changedTouches[0].pageX;
+      searchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(searchStartX - searchEndX) <= 20 && Math.abs(searchStartY - searchEndY) <= 20) {
+        console.log("string to search=", searchInputId.value);
+
+        var searchWord = searchInputId.value;
+
+        if (modeOfApp.onlineMode && searchWord) {
+
+          scope.serviceList = [];
+          latitude = 41.34994;
+          longitude = 69.22582;
+
+          window.api.call({
+            method: 'get.indoor.service.list',
+            input: {
+              session_key: sessionKey,
+              phone_num: phoneNumber,
+              category_id: 0,
+              location: latitude + " " + longitude,
+              search: searchWord
+            },
+            scope: this,
+
+            onSuccess: function (result) {
+              if (result[0][0].error == 0) {
+                if (result[1][0]) {
+
+
+                  for (var i in result[1]) {
+
+                    scope.serviceList.push(result[1][i]);
+
+                  }
+
+                }
+
+                console.log("Update");
+                scope.update();
+
+
+              }
+
+            },
+            onFail: function (api_status, api_status_message, data) {
+              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+              console.error(data);
+            }
+          });
+
+        }
+      }
+    };
+
+    goToQrTouchStart = function (e) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      qrButtonId.style.webkitTransform = 'scale(0.7)';
+
+      qrPayStartX = event.changedTouches[0].pageX;
+      qrPayStartY = event.changedTouches[0].pageY;
+
     };
 
     goToQrTouchStart = function (e) {

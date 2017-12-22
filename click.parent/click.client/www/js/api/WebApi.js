@@ -38,7 +38,7 @@ window.api.call = function (params, timeout) {
     }
   }, timeout);
 
-  if (params.onTimeOut !== undefined){
+  if (params.onTimeOut !== undefined) {
     console.log('Calling onTimeOut in webApi');
     params.onTimeOut.call();
   }
@@ -123,6 +123,7 @@ window.api.initSocket = function () {
   this.socket.onmessage = function (event) {
     if (modeOfApp.offlineMode) return;
     var parsedData = JSON.parse(event.data);
+    console.log("Received data:", parsedData);
 
     try {
       var method = parsedData.data[0][0].method;
@@ -184,7 +185,7 @@ window.api.initSocket = function () {
     console.error("Onerror event in InitSocket", error);
     window.isConnected = false;
     if (modeOfApp.offlineMode) return;
-    try{
+    try {
       callBack.socketErr();
     } catch (error) {
       console.error("Error on call socketErr callBack: ", error);

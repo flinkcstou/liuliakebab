@@ -15877,30 +15877,45 @@ var css = {
   "top:" + 9 * widthK + "px;" +
   "}",
 
-  inPlacePaySearchContainer: ".inplace-pay-search-container" +
+
+  inPlacePaySearchField: ".inplace-pay-search-field" +
   "{" +
-  "position: absolute;" +
-  "width:" + 583 * widthK + "px;" +
-  "height: 12%;" +
-  "left:" + 66 * widthK + "px;" +
-  "top: 0px;" +
+  "position: relative;" +
+  "left: 10%;" +
+  "width: 79.5%;" +
+  "height: 10%;" +
+  "border-bottom:  " + 3 * widthK + "px solid #01cfff;" +
+  "color: white;" +
+  // "top: 8%;" +
   "}",
 
-  inPlacePaySearchInput: ".inplace-pay-search-input " +
+  inPlacePaySearchInputPart: ".inplace-pay-search-input-part" +
   "{" +
-  "position: absolute;" +
-  "font-family: 'SFUIDisplay-Light';" +
-  "font-size:" + 32 * widthK + "px;" +
-  "background: none;" +
   "border: none;" +
-  "border-bottom:" + 3 * widthK + "px solid #00a8f1;" +
-  "width: 98%;" +
-  "height: 56%;" +
-  "top: 22%;" +
-  "left: 1%;" +
   "outline: none;" +
-  "-webkit-text-fill-color: #353340;" +
-  "color: #e2e3e5;" +
+  "position: relative;" +
+  "top: 37%;" +
+  "padding: 0;" +
+  "margin: 0;" +
+  // "margin-left: 3%;" +
+  "width: 85%;" +
+  "font-size:" + 50 * widthK + "px; " +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
+  "}",
+
+  inPlacePaySearchIcon: ".inplace-pay-search-icon" +
+  "{" +
+  "position: relative;" +
+  "float: right;" +
+  "background-image: url(resources/icons/ViewInPlacePay/indoor_search.png);" +
+  "width: 13%;" +
+  "height: 65%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 47%;" +
+  "background-position: center;" +
+  "top: 32%;" +
+  "right: -2%;" +
   "}",
 
 
@@ -15986,15 +16001,16 @@ var css = {
   inPlacePayGoToQrButton: ".inplace-pay-gotoqr-button" +
   "{ " +
   "position: absolute;" +
-  "width:" + 130 * widthK + "px;" +
-  "height:" + 130 * widthK + "px;" +
-  "bottom:" + 65 * widthK + "px;" +
-  "right:" + 40 * widthK + "px;" +
+  "width:" + 115 * widthK + "px;" +
+  "height:" + 115 * widthK + "px;" +
+  "bottom:" + 45 * widthK + "px;" +
+  "right:" + 55 * widthK + "px;" +
   "background-image: url(resources/icons/ViewInPlacePay/indoor_qr.png);" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
   "z-index: 999999999;" +
   "}",
+
 }
 
 
