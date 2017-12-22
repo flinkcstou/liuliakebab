@@ -63,7 +63,7 @@
         if (opts.view === "news" || (sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true)) {
           console.log("mainPage news");
           viewNewsId.style.display = 'block';
-          scope.tags['view-news'].showNewsFunction(1);
+          scope.tags['view-news'].showNewsFunction(1, opts.news_id);
 
 
           if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-news') {

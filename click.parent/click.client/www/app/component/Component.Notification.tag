@@ -130,15 +130,18 @@
 
             sessionStorage.setItem("push_news", true);
 
-            console.log('running news');
-//            var news_id = 24;
+            console.log('running news', JSON.parse(sessionStorage.getItem("push_notification_real")).notify_id, scope.notificationElementId);
+            var news_id = JSON.parse(sessionStorage.getItem("push_notification_real")).notify_id;
+            console.log("news_id=", news_id)
 
 //            if (news_id) {
-//              riotTags.innerHTML = "<view-main-page>";
-//              riot.mount("view-main-page", {view: "news", news_id: news_id});
-//            } else {
+//            console.log(" opening with news_id");
             riotTags.innerHTML = "<view-main-page>";
-            riot.mount("view-main-page", {view: "news"});
+            riot.mount("view-main-page", {view: "news", news_id: news_id});
+//            } else {
+//              console.log("without news_id");
+//              riotTags.innerHTML = "<view-main-page>";
+//              riot.mount("view-main-page", {view: "news"});
 //            }
             return
 
