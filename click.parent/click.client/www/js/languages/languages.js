@@ -622,7 +622,8 @@ var RU_LANGUAGES =
   "DemoModeConstraintText": "Внимание! Для совершения данного действия необходимо авторизоваться!",
 
 
-  "ViewInPlacePayTitle": "ОПЛАТА НА МЕСТАХ"
+  "ViewInPlacePayTitle": "ОПЛАТА НА МЕСТАХ",
+  "inPlaceSearchPlaceHolderText": "Поиск"
 
 
 };

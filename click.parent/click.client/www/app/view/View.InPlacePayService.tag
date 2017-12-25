@@ -9,7 +9,8 @@
     <div class="inplace-pay-category-container" id="categoriesContainerId">
 
       <div class="inplace-pay-search-field" id="searchContainerId">
-        <input class="inplace-pay-search-input-part" type="tel" id="searchInputId"/>
+        <input class="inplace-pay-search-input-part" type="tel"
+               placeholder="{window.languages.inPlaceSearchPlaceHolderText}" id="searchInputId"/>
         <div id="searchIcon" class="inplace-pay-search-icon" ontouchstart="onTouchStartOfSearchService()"
              ontouchend="onTouchEndOfSearchService()"></div>
       </div>
