@@ -65,7 +65,7 @@
 
     <config-file parent="NSLocationWhenInUseUsageDescription" target="*-Info.plist">
       <string>Программа «CLICK Uzbekistan» запрашивает доступ к Геоданным.
-        Это необходимо для корректной работы приложения с такими функциями, как:оплата на местах.
+        Это необходимо для корректной работы приложения с такими функциями, как: Оплата на местах.
       </string>
     </config-file>
 

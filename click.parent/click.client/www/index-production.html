@@ -67,7 +67,7 @@
       var permissions = cordova.plugins.permissions;
       permissions.checkPermission(permissions.CALL_PHONE, checkPermissionCallbackOfCall, null);
       permissions.checkPermission(permissions.READ_CONTACTS, checkPermissionCallbackOfContacts, null);
-//      permissions.checkPermission(permissions.ACCESS_COARSE_LOCATION, checkPermissionCallbackOfGps, null);
+      permissions.checkPermission(permissions.ACCESS_COARSE_LOCATION, checkPermissionCallbackOfGps, null);
 
       if (device.platform === 'Android') {
         permissions.checkPermission(permissions.READ_PHONE_STATE, checkPermissionCallbackOfSim, null);

@@ -93,14 +93,6 @@
       navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError, geoOptions);
     };
 
-    if (JSON.parse(sessionStorage.getItem('click_client_inPlacePayServiceList'))) {
-      console.log("ServiceList IS in the sessionStorage");
-      scope.serviceList = JSON.parse(sessionStorage.getItem('click_client_inPlacePayServiceList'));
-      scope.update();
-    } else {
-      console.log("NO ServiceList");
-      findLocation();
-    }
 
     scope.getServiceList = getServiceList = function (lat, long) {
 
@@ -143,6 +135,20 @@
 
     };
 
+
+    if (JSON.parse(sessionStorage.getItem('click_client_inPlacePayServiceList'))) {
+      console.log("ServiceList IS in the sessionStorage");
+      scope.serviceList = JSON.parse(sessionStorage.getItem('click_client_inPlacePayServiceList'));
+      scope.update();
+    } else if (opts.latitude && opts.longitude) {
+      console.log("NO ServiceList 111");
+      latitude = opts.latitude;
+      longitude = opts.longitude;
+      getServiceList(opts.latitude, opts.longitude);
+    } else {
+      console.log("NO ServiceList 222");
+      findLocation();
+    }
 
     goToBackStart = function () {
       event.preventDefault();

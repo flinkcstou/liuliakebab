@@ -54,6 +54,7 @@
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
     var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
     var sessionKey = loginInfo.session_key;
+    var latitude, longitude;
 
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-inplace-pay-category') {
@@ -65,6 +66,29 @@
       );
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
+
+    findLocation = function () {
+
+      console.log("find location method");
+
+      var geoOptions = {timeout: 5000, enableHighAccuracy: true};
+      var onGeoSuccess = function (position) {
+        console.log("Success in getting position", position);
+        latitude = position.coords.latitude;
+        longitude = position.coords.longitude;
+
+      };
+
+      // onError Callback receives a PositionError object
+      //
+      function onGeoError(error) {
+        console.log("Error in getting position", error)
+      }
+
+      navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError, geoOptions);
+    };
+
+    findLocation();
 
     if (JSON.parse(sessionStorage.getItem('click_client_inPlacePayCategoryList'))) {
       scope.categoryList = JSON.parse(sessionStorage.getItem('click_client_inPlacePayCategoryList'));
@@ -509,7 +533,12 @@
         sessionStorage.setItem('click_client_inPlacePayServiceList', JSON.stringify(null));
 
         riotTags.innerHTML = "<view-inplace-pay-service>";
-        riot.mount('view-inplace-pay-service', {categoryId: id, categoryName: name});
+        riot.mount('view-inplace-pay-service', {
+          categoryId: id,
+          categoryName: name,
+          latitude: latitude,
+          longitude: longitude
+        });
 
       }
     };
