@@ -15866,7 +15866,7 @@ var css = {
   "left: 4%;" +
   "text-align: left;" +
   "font-size:" + 33 * widthK + "px; " +
-  "color: gray;" +
+  "color: rgb(45,45,45);" +
   "}",
 
   inPlacePayIconTick: ".inplace-pay-icon-tick " +
@@ -15940,9 +15940,10 @@ var css = {
   "{" +
   "position: relative;" +
   "height:" + 190 * widthK + "px; " +
-  "width: 100%;" +
+  "width: 92%;" +
+  "left:4%;" +
   "padding-top: 1%;" +
-  "border-bottom:" + 1 + "px solid gainsboro;" +
+  "border-top:" + 1 + "px solid gainsboro;" +
   "background-color: transparent;" +
   "}",
 
@@ -15955,7 +15956,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "float: left;" +
-  "left: 6%;" +
+  "left: 2%;" +
   "background-size: 100%;" +
   "margin-top: 4%;" +
   "}",
@@ -15964,8 +15965,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "height:" + 190 * widthK + "px; " +
-  "width: 60%;" +
-  "left: 30%;" +
+  "width: 61%;" +
+  "left: 28%;" +
   // "float: left;" +
   "background-color: transparent;" +
   "}",
@@ -15977,7 +15978,7 @@ var css = {
   // "left: 18%;" +
   "text-align: left;" +
   "font-size:" + 35 * widthK + "px; " +
-  "color: gray;" +
+  "color: rgb(45,45,45);" +
   "}",
 
   inPlacePayServiceAddressField: ".inplace-pay-service-address-field" +
@@ -16004,7 +16005,7 @@ var css = {
   inPlacePayServiceIconTick: ".inplace-pay-service-icon-tick " +
   "{" +
   "position: absolute;" +
-  "left: 92%;" +
+  "left: 95%;" +
   "background-size: contain;" +
   "background-image: url(resources/icons/ViewInPlacePay/open.png);" +
   "background-repeat: no-repeat;" +
