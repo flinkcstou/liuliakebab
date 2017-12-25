@@ -14,7 +14,7 @@
              ontouchend="onTouchEndOfSearchService()"></div>
       </div>
 
-      <div class="inplace-pay-inner-container">
+      <div class="inplace-pay-inner-container" id="servicesBodyContainerId" onscroll="servicesBodyContainerTouchMove()">
         <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
           <li each="{i in serviceList}" style="overflow: hidden;">
             <div if="{!(modeOfApp.offlineMode)}" class="inplace-pay-service-containter" id="{i.id}"
@@ -53,6 +53,8 @@
     var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
     var sessionKey = loginInfo.session_key;
     var latitude, longitude;
+    scope.pageNumber = 1;
+    scope.serviceList = [];
 
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-inplace-pay-service') {
@@ -90,42 +92,43 @@
 
     findLocation();
 
-    getServiceList = function (lat, long) {
-      if (modeOfApp.onlineMode) {
+    scope.getServiceList = getServiceList = function (lat, long) {
 
-        scope.serviceList = [];
+//      scope.serviceList = [];
+      window.startSpinner();
 
-        window.api.call({
-          method: 'get.indoor.service.list',
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            category_id: opts.categoryId,
-            location: lat + " " + long
-          },
-          scope: this,
+      window.api.call({
+        method: 'get.indoor.service.list',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          category_id: opts.categoryId,
+          location: lat + " " + long,
+          page_number: parseInt(scope.pageNumber)
+        },
+        scope: this,
 
-          onSuccess: function (result) {
-            if (result[0][0].error == 0)
-              if (result[1][0]) {
+        onSuccess: function (result) {
+          if (result[0][0].error == 0)
+            if (result[1][0]) {
 
 
-                for (var i in result[1]) {
+              for (var i in result[1]) {
 
-                  scope.serviceList.push(result[1][i]);
-
-                }
-                scope.update();
+                scope.serviceList.push(result[1][i]);
 
               }
+              scope.update();
 
-          },
-          onFail: function (api_status, api_status_message, data) {
-            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-            console.error(data);
-          }
-        });
-      }
+            }
+
+        },
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+
     };
 
 
@@ -241,18 +244,6 @@
       qrPayStartY = event.changedTouches[0].pageY;
 
     };
-
-    goToQrTouchStart = function (e) {
-      event.preventDefault();
-      event.stopPropagation();
-
-      qrButtonId.style.webkitTransform = 'scale(0.7)';
-
-      qrPayStartX = event.changedTouches[0].pageX;
-      qrPayStartY = event.changedTouches[0].pageY;
-
-    };
-
 
     goToQrTouchEnd = function (e) {
       event.preventDefault();
@@ -562,6 +553,21 @@
         }
 
 
+      }
+    };
+
+
+    servicesBodyContainerTouchMove = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      console.log("services container move")
+
+      if ((servicesBodyContainerId.scrollHeight - servicesBodyContainerId.scrollTop) == servicesBodyContainerId.offsetHeight) {
+
+        scope.pageNumber++;
+        console.log("services container move pagenumber=", scope.pageNumber)
+        getServiceList(latitude, longitude);
       }
     };
 
