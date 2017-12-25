@@ -15937,13 +15937,13 @@ var css = {
   inPlacePayServiceIcon: ".inplace-pay-service-icon" +
   "{" +
   "position: absolute;" +
-  "width: 21%;" +
-  "height:" + 120 * widthK + "px; " +
+  "width:" + 125 * widthK + "px; " +
+  "height:" + 125 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "float: left;" +
-  "left: 5%;" +
-  "background-size: 109%;" +
+  "left: 6%;" +
+  "background-size: 100%;" +
   "margin-top: 4%;" +
   "}",
 
