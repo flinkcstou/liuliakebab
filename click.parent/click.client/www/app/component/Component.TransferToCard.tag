@@ -292,9 +292,9 @@
       } else {
         scope.showBottomButton = false;
         cardSuggestions.style.display = 'block';
-        cardContainer.style.background = 'linear-gradient(to top, white, transparent), ' +
+        cardContainer.style.background = 'linear-gradient(to top, white, rgba(255, 255, 255, 0)), ' +
           'url(resources/icons/ViewTransfer/transfer_card.png)';
-        cardContainer.style.background += '-webkit-linear-gradient(bottom, white, transparent), ' +
+        cardContainer.style.background += '-webkit-linear-gradient(bottom, white, rgba(255, 255, 255, 0)), ' +
           'url(resources/icons/ViewTransfer/transfer_card.png)';
         cardContainer.style.backgroundSize = 'cover';
         cardContainer.style.backgroundRepeat = 'no-repeat';

@@ -10954,6 +10954,8 @@ var css = {
   "background-color: white;" +
   "perspective: 1000px;" +
   "transition: 0.6s;" +
+  "transform: translate3d(0, 0, 0);" +
+  "-webkit-transform: translate3d(0, 0, 0);" +
   "-webkit-transition: 0.6s;" +
   "transform-style: preserve-3d;" +
   "-webkit-transform-style: preserve-3d;" +
