@@ -18,7 +18,7 @@
         <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
           <li each="{i in serviceList}" style="overflow: hidden;">
             <div if="{!(modeOfApp.offlineMode)}" class="inplace-pay-service-containter" id="{i.id}"
-                 ontouchstart="onTouchStartOfService()"
+                 ontouchstart="onTouchStartOfService(this.id)"
                  ontouchend="onTouchEndOfService(this.id)">
               <div class="inplace-pay-service-icon" style="background-image: url({i.image})"></div>
               <div class="inplace-pay-service-info">
@@ -528,25 +528,28 @@
     };
 
 
-    scope.onTouchStartOfService = onTouchStartOfService = function () {
+    scope.onTouchStartOfService = onTouchStartOfService = function (id) {
+
+      event.preventDefault();
       event.stopPropagation();
 
+      document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
 
       onTouchStartY = event.changedTouches[0].pageY;
       onTouchStartX = event.changedTouches[0].pageX;
     };
 
-    scope.onTouchEndOfService = onTouchEndOfService = function (id, element) {
+    scope.onTouchEndOfService = onTouchEndOfService = function (id) {
 
       event.preventDefault();
       event.stopPropagation();
+
+      document.getElementById(id).style.backgroundColor = 'transparent';
 
       onTouchEndY = event.changedTouches[0].pageY;
       onTouchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(onTouchStartY - onTouchEndY) <= 20 && Math.abs(onTouchStartX - onTouchEndX) <= 20) {
-
-        console.log(id, element);
 
         for (var i in scope.serviceList) {
           if (scope.serviceList[i].id == id) {

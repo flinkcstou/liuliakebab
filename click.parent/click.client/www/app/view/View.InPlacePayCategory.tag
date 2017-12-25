@@ -19,7 +19,7 @@
           <li each="{i in categoryList}" style="overflow: hidden;">
             <div if="{!(modeOfApp.offlineMode)}" class="inplace-pay-block-containter" title="{i.category_name}"
                  id="{i.category_id}"
-                 ontouchstart="onTouchStartOfCategory()"
+                 ontouchstart="onTouchStartOfCategory(this.id)"
                  ontouchend="onTouchEndOfCategory(this.id, this.title)">
               <div class="inplace-pay-category-icon" style="background-image: url({i.icon})"></div>
               <div class="inplace-pay-category-name-field">{i.category_name}
@@ -481,11 +481,11 @@
       }
     };
 
-    scope.onTouchStartOfCategory = onTouchStartOfCategory = function () {
+    scope.onTouchStartOfCategory = onTouchStartOfCategory = function (id) {
       event.preventDefault();
       event.stopPropagation();
 
-
+      document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
       onTouchStartY = event.changedTouches[0].pageY;
       onTouchStartX = event.changedTouches[0].pageX;
     };
@@ -493,6 +493,8 @@
     scope.onTouchEndOfCategory = onTouchEndOfCategory = function (id, name) {
       event.preventDefault();
       event.stopPropagation();
+
+      document.getElementById(id).style.backgroundColor = 'transparent';
 
       onTouchEndY = event.changedTouches[0].pageY;
       onTouchEndX = event.changedTouches[0].pageX;
