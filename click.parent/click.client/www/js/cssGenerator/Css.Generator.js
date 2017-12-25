@@ -16024,7 +16024,11 @@ var css = {
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
   "z-index: 999999999;" +
-  "}",
+  "border-radius: " + 100 * widthK + "px;" +
+  "-webkit-box-shadow: 0px " + 5 * widthK + "px " + 12 * widthK + "px " + -7 * widthK + "px " + "rgba(0,0,0,1);" +
+  "-moz-box-shadow: 0px " + 5 * widthK + "px " + 12 * widthK + "px " + -7 * widthK + "px " + "rgba(0,0,0,1);" +
+  "box-shadow:  0px " + 5 * widthK + "px " + 12 * widthK + "px " + -7 * widthK + "px " + "rgba(0,0,0,1);" +
+  "}"
 
 }
 
