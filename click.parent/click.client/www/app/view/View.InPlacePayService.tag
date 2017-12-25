@@ -90,7 +90,14 @@
       navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError, geoOptions);
     };
 
-    findLocation();
+    if (JSON.parse(sessionStorage.getItem('click_client_inPlacePayServiceList'))) {
+      console.log("ServiceList IS in the sessionStorage");
+      scope.serviceList = JSON.parse(sessionStorage.getItem('click_client_inPlacePayServiceList'));
+      scope.update();
+    } else {
+      console.log("NO ServiceList");
+      findLocation();
+    }
 
     scope.getServiceList = getServiceList = function (lat, long) {
 
@@ -118,6 +125,8 @@
                 scope.serviceList.push(result[1][i]);
 
               }
+
+              sessionStorage.setItem('click_client_inPlacePayServiceList', JSON.stringify(scope.serviceList));
               scope.update();
 
             }
