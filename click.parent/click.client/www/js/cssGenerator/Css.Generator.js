@@ -15837,9 +15837,10 @@ var css = {
   "{" +
   "position: relative;" +
   "min-height:" + 95 * widthK + "px; " +
-  "width: 100%;" +
+  "width: 92%;" +
+  "left: 4%;" +
   "padding-top: 1%;" +
-  "border-bottom:" + 1 + "px solid gainsboro;" +
+  "border-top:" + 1 + "px solid gainsboro;" +
   "background-color: transparent;" +
   "}",
 
@@ -15847,13 +15848,14 @@ var css = {
   inPlacePayCategoryIcon: ".inplace-pay-category-icon" +
   "{" +
   "position: relative;" +
-  "width: 13%;" +
-  "height:" + 89 * widthK + "px; " +
+  "width:" + 77 * widthK + "px; " +
+  "height:" + 77 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
+  "background-position-x: left;" +
   "float: left;" +
-  "left: 2%;" +
-  "background-size: 87%;" +
+  // "left: 2%;" +
+  "background-size: 100%;" +
   "}",
 
   inPlacePayCategoryNameField: ".inplace-pay-category-name-field" +
@@ -15861,16 +15863,16 @@ var css = {
   "position: relative;" +
   "background-size: contain;" +
   "top: " + 25 * widthK + "px; " +
-  "left: 5%;" +
+  "left: 4%;" +
   "text-align: left;" +
-  "font-size:" + 34 * widthK + "px; " +
+  "font-size:" + 33 * widthK + "px; " +
   "color: gray;" +
   "}",
 
   inPlacePayIconTick: ".inplace-pay-icon-tick " +
   "{" +
   "position: relative;" +
-  "left: 91%;" +
+  "left: 95%;" +
   "background-size: contain;" +
   "background-image: url(resources/icons/ViewInPlacePay/open.png);" +
   "background-repeat: no-repeat;" +
@@ -15879,13 +15881,24 @@ var css = {
   // "top:" + 9 * widthK + "px;" +
   "}",
 
+  inPlacePaySearchContainer: ".inplace-pay-search-container" +
+  "{" +
+  "position: absolute;" +
+  "height:15.5%; " +
+  "width: 100%; " +
+  // "top:" + 86 * widthK + "px; " +
+  // "bottom:0; " +
+  "background-color: white; " +
+  "z-index: 99999;" +
+  "}",
+
 
   inPlacePaySearchField: ".inplace-pay-search-field" +
   "{" +
   "position: relative;" +
   "left: 10%;" +
   "width: 79.5%;" +
-  "height: 9.5%;" +
+  "height: 64.5%;" +
   "border-bottom:  " + 3 * widthK + "px solid #01cfff;" +
   "color: white;" +
   // "top: 8%;" +
