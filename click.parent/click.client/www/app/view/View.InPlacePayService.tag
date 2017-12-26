@@ -27,7 +27,10 @@
               <div class="inplace-pay-service-info">
                 <div class="inplace-pay-service-name-field">{i.name}</div>
                 <div class="inplace-pay-service-address-field">{i.address}</div>
-                <div class="inplace-pay-service-distance-field">{i.distance}</div>
+                <div class="inplace-pay-service-distance-container">
+                  <div class="inplace-pay-service-distance-icon"></div>
+                  <div class="inplace-pay-service-distance-field">{i.distance}</div>
+                </div>
               </div>
               <div class="inplace-pay-service-icon-tick"></div>
             </div>
@@ -59,6 +62,7 @@
     var latitude, longitude;
     scope.pageNumber = 1;
     scope.serviceList = [];
+    var mainPageToReturn = "view-main-page";
 
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-inplace-pay-service') {
@@ -133,7 +137,7 @@
           } else {
             window.common.alert.show("componentAlertId", {
               parent: scope,
-              viewpage: "view-inplace-pay-category",
+              viewpage: mainPageToReturn,
               errornote: result[0][0].error_note
             });
           }
@@ -144,7 +148,7 @@
           window.clearTimeout(timeOutTimer);
           window.common.alert.show("componentAlertId", {
             parent: scope,
-            viewpage: "view-inplace-pay-category",
+            viewpage: mainPageToReturn,
             errornote: window.languages.ServiceUnavailableText
           });
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
@@ -154,7 +158,7 @@
           timeOutTimer = setTimeout(function () {
             window.common.alert.show("componentAlertId", {
               parent: scope,
-              viewpage: "view-inplace-pay-category",
+              viewpage: mainPageToReturn,
               errornote: window.languages.WaitingTimeExpiredText
             });
           }, 20000);
@@ -273,8 +277,8 @@
               } else {
                 window.common.alert.show("componentAlertId", {
                   parent: scope,
-                  viewpage: "view-inplace-pay-category",
-                  errornote: result[0][0].error_note
+                  viewpage: mainPageToReturn,
+                  errornote: result[0][0].error_note,
                 });
               }
 
@@ -284,7 +288,7 @@
               window.clearTimeout(timeOutTimer);
               window.common.alert.show("componentAlertId", {
                 parent: scope,
-                viewpage: "view-inplace-pay-category",
+                viewpage: mainPageToReturn,
                 errornote: window.languages.ServiceUnavailableText
               });
               console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
@@ -294,7 +298,7 @@
               timeOutTimer = setTimeout(function () {
                 window.common.alert.show("componentAlertId", {
                   parent: scope,
-                  viewpage: "view-inplace-pay-category",
+                  viewpage: mainPageToReturn,
                   errornote: window.languages.WaitingTimeExpiredText
                 });
               }, 20000);

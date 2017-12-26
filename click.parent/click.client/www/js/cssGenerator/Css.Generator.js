@@ -15867,6 +15867,9 @@ var css = {
   "text-align: left;" +
   "font-size:" + 33 * widthK + "px; " +
   "color: rgb(45,45,45);" +
+  "overflow: hidden;" +
+  "text-overflow: ellipsis;" +
+  "white-space: nowrap;" +
   "}",
 
   inPlacePayIconTick: ".inplace-pay-icon-tick " +
@@ -15956,7 +15959,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "float: left;" +
-  "left: 2%;" +
+  "left: 1%;" +
   "background-size: 100%;" +
   "margin-top: 4%;" +
   "}",
@@ -15965,8 +15968,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "height:" + 190 * widthK + "px; " +
-  "width: 61%;" +
-  "left: 28%;" +
+  "width: 70%;" +
+  "left: 25%;" +
   // "float: left;" +
   "background-color: transparent;" +
   "}",
@@ -15979,33 +15982,58 @@ var css = {
   "text-align: left;" +
   "font-size:" + 35 * widthK + "px; " +
   "color: rgb(45,45,45);" +
+  "overflow: hidden;" +
+  "text-overflow: ellipsis;" +
+  "white-space: nowrap;" +
   "}",
 
   inPlacePayServiceAddressField: ".inplace-pay-service-address-field" +
   "{" +
   "position: relative;" +
   "top: " + 28 * widthK + "px; " +
-  // "left: 18%;" +
   "text-align: left;" +
   "font-size:" + 25 * widthK + "px; " +
   "color: gray;" +
-  "width:71%;" +
+  "height: " + 65 * widthK + "px; " +
+  "overflow: hidden;" +
+  "text-overflow: ellipsis;" +
+  "}",
+
+  inPlacePayServiceDistanceContainer: ".inplace-pay-service-distance-container" +
+  "{" +
+  "position: relative;" +
+  "top: " + 25 * widthK + "px; " +
+  "text-align: left;" +
+  // "font-size:" + 26 * widthK + "px; " +
+  // "color: #00a8f1;" +
   "}",
 
   inPlacePayServiceDistanceField: ".inplace-pay-service-distance-field" +
   "{" +
   "position: relative;" +
-  "top: " + 54 * widthK + "px; " +
-  // "left: 22%;" +
+  // "top: " + 54 * widthK + "px; " +
   "text-align: left;" +
   "font-size:" + 26 * widthK + "px; " +
   "color: #00a8f1;" +
   "}",
 
+  inPlacePayServiceDistanceIcon: ".inplace-pay-service-distance-icon " +
+  "{" +
+  "position: relative;" +
+  // "left: 96%;" +
+  "background-size: contain;" +
+  "background-image: url(resources/icons/ViewInPlacePay/indoor_position.png);" +
+  "background-repeat: no-repeat;" +
+  "width:" + 23 * widthK + "px;" +
+  "height:" + 23 * widthK + "px;" +
+  "margin-top: " + 4 * widthK + "px;" +
+  "float: left;" +
+  "}",
+
   inPlacePayServiceIconTick: ".inplace-pay-service-icon-tick " +
   "{" +
   "position: absolute;" +
-  "left: 95%;" +
+  "left: 96%;" +
   "background-size: contain;" +
   "background-image: url(resources/icons/ViewInPlacePay/indoor_arrow.png);" +
   "background-repeat: no-repeat;" +
