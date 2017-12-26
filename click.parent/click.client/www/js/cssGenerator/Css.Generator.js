@@ -4039,15 +4039,11 @@ var css = {
   // //"line-height:" + 50 * widthK + "px; " +
   // "}",
 
-  servicePageAmountInputPlaceholder: "input::-webkit-input-placeholder" +
+  inputDefaultPlaceholder: "input::-webkit-input-placeholder" +
   "{" +
   "font-size:" + 30 * widthK + "px;" +
   "color: gainsboro;" +
   "padding: " + 20 * widthK + "px 0 0 0;" +
-  // "line-height: 100px;" +
-  // "text-indent: 100px;" +
-  // "text-align: bottom;" +
-  // "top: 300px;" +
   "}",
 
   // "-moz-placeholder { color:#f00; font-size:" + 40 * widthK + "px;}" + /* firefox 19+ */
@@ -4072,6 +4068,15 @@ var css = {
   servicePageNumberInputPartPlaceHolder: ".servicepage-number-input-part::-webkit-input-placeholder" +
   "{" +
   "font-size:" + 36 * widthK + "px; " +
+  "color: gainsboro;" +
+  "padding: " + 20 * widthK + "px 0 0 0;" +
+  "}",
+
+  servicePageAmountInputPlaceholder: ".servicepage-amount-input::-webkit-input-placeholder" +
+  "{" +
+  "font-size:" + 30 * widthK + "px;" +
+  "color: gainsboro;" +
+  "padding: " + 20 * widthK + "px 0 0 0;" +
   "}",
 
   servicePageNumberInputPartTwo: ".servicepage-number-input-part-two" +
@@ -15824,7 +15829,7 @@ var css = {
   inPlacePayInnerContainer: ".inplace-pay-inner-container" +
   "{" +
   "position: absolute;" +
-  "height:90%; " +
+  "height:85%; " +
   "width: 100%; " +
   "top:15%; " +
   "bottom:0; " +
@@ -15922,6 +15927,13 @@ var css = {
   "color: #515151;" +
   "}",
 
+  inPlacePaySearchInputPlaceholder: ".inplace-pay-search-input-part::-webkit-input-placeholder" +
+  "{" +
+  "font-size:" + 30 * widthK + "px;" +
+  "color: darkgray;" +
+  "padding: " + 20 * widthK + "px 0 0 0;" +
+  "}",
+
   inPlacePaySearchIcon: ".inplace-pay-search-icon" +
   "{" +
   "position: relative;" +
@@ -15993,7 +16005,7 @@ var css = {
   "top: " + 28 * widthK + "px; " +
   "text-align: left;" +
   "font-size:" + 25 * widthK + "px; " +
-  "color: gray;" +
+  "color: darkgray;" +
   "height: " + 65 * widthK + "px; " +
   "overflow: hidden;" +
   "text-overflow: ellipsis;" +

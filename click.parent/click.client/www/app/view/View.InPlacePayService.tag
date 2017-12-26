@@ -10,7 +10,7 @@
 
       <div class="inplace-pay-search-container">
         <div class="inplace-pay-search-field" id="searchContainerId">
-          <input class="inplace-pay-search-input-part" type="tel" id="searchInputId"
+          <input class="inplace-pay-search-input-part" type="text" id="searchInputId"
                  placeholder="{window.languages.InPlaceSearchPlaceHolderText}"/>
           <div id="searchIcon" class="inplace-pay-search-icon" ontouchstart="onTouchStartOfSearchCategory()"
                ontouchend="onTouchEndOfSearchCategory()"></div>
@@ -29,7 +29,7 @@
                 <div class="inplace-pay-service-address-field">{i.address}</div>
                 <div class="inplace-pay-service-distance-container">
                   <div class="inplace-pay-service-distance-icon"></div>
-                  <div class="inplace-pay-service-distance-field">{i.distance}</div>
+                  <div class="inplace-pay-service-distance-field">{i.distance} от вас</div>
                 </div>
               </div>
               <div class="inplace-pay-service-icon-tick"></div>
@@ -601,8 +601,8 @@
 
     scope.onTouchStartOfService = onTouchStartOfService = function (id) {
 
-      event.preventDefault();
-      event.stopPropagation();
+//      event.preventDefault();
+//      event.stopPropagation();
 
       document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
 
@@ -611,9 +611,9 @@
     };
 
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {
-
-      event.preventDefault();
-      event.stopPropagation();
+//
+//      event.preventDefault();
+//      event.stopPropagation();
 
       document.getElementById(id).style.backgroundColor = 'transparent';
 
