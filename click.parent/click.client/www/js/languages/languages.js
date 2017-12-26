@@ -11,6 +11,9 @@ var RU_LANGUAGES =
     "Close": "Закрыть",
     "Add": "Добавить",
     "Save": "Сохранить",
+
+    "ServiceUnavailableText": "Сервис временно не доступен",
+
     "ChooseFromContacts": "Выбрать контакт из телефонной книги",
 
     "ComponentBankOperationsPay": "ОПЛАТА",

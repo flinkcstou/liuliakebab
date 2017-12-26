@@ -455,7 +455,7 @@
         scope: this,
 
         onSuccess: function (result) {
-          console.log('Clearing timer onSuccess',timeOutTimer);
+          console.log('Clearing timer onSuccess', timeOutTimer);
           window.clearTimeout(timeOutTimer);
 
           if (result[0][0].error === 0) {
@@ -533,9 +533,9 @@
           }
         },
         onFail: function (api_status, api_status_message, data) {
-          console.log('Clearing timer onFail',timeOutTimer);
+          console.log('Clearing timer onFail', timeOutTimer);
           window.clearTimeout(timeOutTimer);
-          updateAlertComponent(true, null, 'view-authorization', "Сервис временно не доступен");
+          updateAlertComponent(true, null, 'view-authorization', window.languages.ServiceUnavailableText);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error("Error data: ", data);
         },
@@ -546,8 +546,8 @@
           }, 30000);
           console.log('creating timeOut', timeOutTimer);
         },
-        onEmergencyStop: function(){
-          console.log('Clearing timer emergencyStop',timeOutTimer);
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimer);
           window.clearTimeout(timeOutTimer);
         }
       }, 30000);
