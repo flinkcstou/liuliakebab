@@ -4799,9 +4799,9 @@ var css = {
   "bottom:0;" +
   "background-color: transparent;" +
   "border-bottom:  " + 1 + "px solid lightgray;" +
-  "overflow-y: scroll;" +
-  "overflow-x: hidden;" +
-  "-webkit-overflow-scrolling: touch; " +
+  // "overflow-y: scroll;" +
+  // "overflow-x: hidden;" +
+  // "-webkit-overflow-scrolling: touch; " +
   "}",
 
   pincardButtonEnter: " .pincard-button-enter" +
@@ -15828,7 +15828,7 @@ var css = {
   "width: 100%; " +
   "top:15%; " +
   "bottom:0; " +
-  "overflow-y: scroll; " +
+  "overflow-y: auto; " +
   "overflow-x: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
   "}",

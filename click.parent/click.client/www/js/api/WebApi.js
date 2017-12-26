@@ -14,7 +14,7 @@ window.api.forceClose = function () {
 };
 
 window.api.call = function (params, timeout) {
-  console.log("Function call:");
+  console.log("Function call:", params, timeout);
 
   if (device.platform !== 'BrowserStand')
     if (navigator.connection.type === Connection.NONE || navigator.connection.type === Connection.UNKNOWN) {

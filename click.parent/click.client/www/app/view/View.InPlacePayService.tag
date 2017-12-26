@@ -116,25 +116,53 @@
         scope: this,
 
         onSuccess: function (result) {
-          if (result[0][0].error == 0)
+          console.log('Clearing timer onSuccess', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
+
+          if (result[0][0].error == 0) {
             if (result[1][0]) {
 
-
               for (var i in result[1]) {
-
                 scope.serviceList.push(result[1][i]);
-
               }
 
-              sessionStorage.setItem('click_client_inPlacePayServiceList', JSON.stringify(scope.serviceList));
-              scope.update();
-
             }
+            sessionStorage.setItem('click_client_inPlacePayServiceList', JSON.stringify(scope.serviceList));
+            console.log("Update");
+            scope.update();
+          } else {
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              viewpage: "view-inplace-pay-category",
+              errornote: result[0][0].error_note
+            });
+          }
 
         },
         onFail: function (api_status, api_status_message, data) {
+          console.log('Clearing timer onFail', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            viewpage: "view-inplace-pay-category",
+            errornote: window.languages.ServiceUnavailableText
+          });
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
+        },
+        onTimeOut: function () {
+          timeOutTimer = setTimeout(function () {
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              viewpage: "view-inplace-pay-category",
+              errornote: window.languages.WaitingTimeExpiredText
+            });
+          }, 20000);
+          console.log('creating timeOut', timeOutTimer);
+        },
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
         }
       });
 
@@ -213,6 +241,7 @@
         if (modeOfApp.onlineMode && searchWord) {
 
           scope.serviceList = [];
+          scope.pageNumber = 1;
           latitude = 41.34994;
           longitude = 69.22582;
 
@@ -228,26 +257,36 @@
             scope: this,
 
             onSuccess: function (result) {
+              console.log('Clearing timer onSuccess', timeOutTimer);
+              window.clearTimeout(timeOutTimer);
+
               if (result[0][0].error == 0) {
                 if (result[1][0]) {
 
-
                   for (var i in result[1]) {
-
                     scope.serviceList.push(result[1][i]);
-
                   }
 
                 }
-
                 console.log("Update");
                 scope.update();
-
-
+              } else {
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  viewpage: "view-inplace-pay-category",
+                  errornote: result[0][0].error_note
+                });
               }
 
             },
             onFail: function (api_status, api_status_message, data) {
+              console.log('Clearing timer onFail', timeOutTimer);
+              window.clearTimeout(timeOutTimer);
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                viewpage: "view-inplace-pay-category",
+                errornote: window.languages.ServiceUnavailableText
+              });
               console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
               console.error(data);
             },
@@ -258,16 +297,14 @@
                   viewpage: "view-inplace-pay-category",
                   errornote: window.languages.WaitingTimeExpiredText
                 });
-                window.stopSpinner();
-                riot.update();
-              }, 30000);
+              }, 20000);
               console.log('creating timeOut', timeOutTimer);
             },
             onEmergencyStop: function () {
               console.log('Clearing timer emergencyStop', timeOutTimer);
               window.clearTimeout(timeOutTimer);
             }
-          });
+          }, 20000);
 
         }
       }
