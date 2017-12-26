@@ -15845,7 +15845,7 @@ var css = {
   "width: 92%;" +
   "left: 4%;" +
   "padding-top: 1%;" +
-  "border-top:" + 1 + "px solid gainsboro;" +
+  "border-top:" + 0.5 + "px solid gainsboro;" +
   "background-color: transparent;" +
   "}",
 
@@ -15958,7 +15958,7 @@ var css = {
   "width: 92%;" +
   "left:4%;" +
   "padding-top: 1%;" +
-  "border-top:" + 1 + "px solid gainsboro;" +
+  "border-top:" + 0.5 + "px solid gainsboro;" +
   "background-color: transparent;" +
   "}",
 

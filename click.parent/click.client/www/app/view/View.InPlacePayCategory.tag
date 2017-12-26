@@ -509,8 +509,7 @@
     };
 
     scope.onTouchStartOfCategory = onTouchStartOfCategory = function (id) {
-      event.preventDefault();
-      event.stopPropagation();
+
 
       document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
       onTouchStartY = event.changedTouches[0].pageY;
@@ -518,8 +517,7 @@
     };
 
     scope.onTouchEndOfCategory = onTouchEndOfCategory = function (id, name) {
-      event.preventDefault();
-      event.stopPropagation();
+
 
       document.getElementById(id).style.backgroundColor = 'transparent';
 
