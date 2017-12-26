@@ -3777,9 +3777,9 @@ var css = {
   "width: 100%; " +
   "top: " + 140 * heightK + "px; " +
   "background-color: white;" +
-  "overflow-x: hidden;" +
-  "overflow-y: scroll;" +
-  "-webkit-overflow-scrolling: touch; " +
+  // "overflow-x: hidden;" +
+  // "overflow-y: scroll;" +
+  // "-webkit-overflow-scrolling: touch; " +
   "}",
 
   payconfirmBodyContainer: ".payconfirm-body-container" +
@@ -3789,9 +3789,9 @@ var css = {
   "width: 100%; " +
   "top: " + 140 * heightK + "px; " +
   "background-color: white;" +
-  "overflow-x: hidden;" +
-  "overflow-y: scroll;" +
-  "-webkit-overflow-scrolling: touch; " +
+  // "overflow-x: hidden;" +
+  // "overflow-y: scroll;" +
+  // "-webkit-overflow-scrolling: touch; " +
   "border-bottom: 1px solid black;" +
   "}",
 
@@ -15874,7 +15874,7 @@ var css = {
   "position: relative;" +
   "left: 95%;" +
   "background-size: contain;" +
-  "background-image: url(resources/icons/ViewInPlacePay/open.png);" +
+  "background-image: url(resources/icons/ViewInPlacePay/indoor_arrow.png);" +
   "background-repeat: no-repeat;" +
   "width:" + 19 * widthK + "px;" +
   "height:" + 18 * widthK + "px;" +
@@ -16007,7 +16007,7 @@ var css = {
   "position: absolute;" +
   "left: 95%;" +
   "background-size: contain;" +
-  "background-image: url(resources/icons/ViewInPlacePay/open.png);" +
+  "background-image: url(resources/icons/ViewInPlacePay/indoor_arrow.png);" +
   "background-repeat: no-repeat;" +
   "width:" + 19 * widthK + "px;" +
   "height:" + 18 * widthK + "px;" +

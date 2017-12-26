@@ -11,7 +11,7 @@
       <div class="inplace-pay-search-container">
         <div class="inplace-pay-search-field" id="searchContainerId">
           <input class="inplace-pay-search-input-part" type="tel" id="searchInputId"
-                 placeholder="{window.languages.inPlaceSearchPlaceHolderText}"/>
+                 placeholder="{window.languages.InPlaceSearchPlaceHolderText}"/>
           <div id="searchIcon" class="inplace-pay-search-icon" ontouchstart="onTouchStartOfSearchCategory()"
                ontouchend="onTouchEndOfSearchCategory()"></div>
         </div>
@@ -55,6 +55,7 @@
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
     var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
     var sessionKey = loginInfo.session_key;
+    var timeOutTimer = 0;
     var latitude, longitude;
     scope.pageNumber = 1;
     scope.serviceList = [];
@@ -86,8 +87,12 @@
       // onError Callback receives a PositionError object
       //
       function onGeoError(error) {
-        console.log("Error in getting position", error)
-        alert("Убедитесь, что у вас включены геоданные");
+        console.log("Error in getting position", error);
+        window.common.alert.show("componentAlertId", {
+          parent: scope,
+          viewpage: "view-inplace-pay-category",
+          errornote: window.languages.InPlacePayGpsErrorText
+        });
       }
 
       navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError, geoOptions);
@@ -245,6 +250,22 @@
             onFail: function (api_status, api_status_message, data) {
               console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
               console.error(data);
+            },
+            onTimeOut: function () {
+              timeOutTimer = setTimeout(function () {
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  viewpage: "view-inplace-pay-category",
+                  errornote: window.languages.WaitingTimeExpiredText
+                });
+                window.stopSpinner();
+                riot.update();
+              }, 30000);
+              console.log('creating timeOut', timeOutTimer);
+            },
+            onEmergencyStop: function () {
+              console.log('Clearing timer emergencyStop', timeOutTimer);
+              window.clearTimeout(timeOutTimer);
             }
           });
 

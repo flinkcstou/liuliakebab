@@ -11,7 +11,7 @@
       <div class="inplace-pay-search-container">
         <div class="inplace-pay-search-field" id="searchContainerId">
           <input class="inplace-pay-search-input-part" type="tel" id="searchInputId"
-                 placeholder="{window.languages.inPlaceSearchPlaceHolderText}"/>
+                 placeholder="{window.languages.InPlaceSearchPlaceHolderText}"/>
           <div id="searchIcon" class="inplace-pay-search-icon" ontouchstart="onTouchStartOfSearchCategory()"
                ontouchend="onTouchEndOfSearchCategory()"></div>
         </div>
