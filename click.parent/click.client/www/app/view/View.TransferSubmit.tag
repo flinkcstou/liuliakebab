@@ -96,6 +96,7 @@
       <div id="closeBankListButtonId" type="button" class="component-banklist-close-button"
            ontouchend="closeComponentBankListTouchEnd()" ontouchstart="closeComponentBankListTouchStart()"></div>
     </div>
+    <img src="resources/gifs/1x1.gif" width="1" height="1">
     <div id="bankListContainerId" class="component-banklist-container" onscroll="bankListTouchMove()">
       <div class="component-banklist-card-flipper" each="{i in bankList}" ontouchstart="flipCardTouchStart()"
            ontouchend="flipCardTouchEnd(this)">
