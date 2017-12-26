@@ -290,20 +290,20 @@
 
       if (scope.notificationAction == "news") {
 
-        if (authorized) {
+//        if (authorized) {
 
-          window.pushNotificationActions.getNewsFunction(scope.notificationElementId);
-        } else {
-
-          notification = {
-            action: "getNewsFunction",
-            params: scope.notificationElementId
-          };
-
-          sessionStorage.setItem("push_notification", JSON.stringify(notification));
-
-          console.log(JSON.parse(sessionStorage.getItem("push_notification")));
-        }
+        window.pushNotificationActions.getNewsFunction(scope.notificationElementId);
+//        } else {
+//
+//          notification = {
+//            action: "getNewsFunction",
+//            params: scope.notificationElementId
+//          };
+//
+//          sessionStorage.setItem("push_notification", JSON.stringify(notification));
+//
+//          console.log(JSON.parse(sessionStorage.getItem("push_notification")));
+//        }
       }
 
       window.FirebasePlugin.logEvent("ACCEPT", {
