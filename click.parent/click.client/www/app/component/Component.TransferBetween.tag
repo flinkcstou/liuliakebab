@@ -139,10 +139,6 @@
     amountOnBlur = function () {
       event.preventDefault();
       event.stopPropagation();
-
-      if (betweenAmountId.value.length === 0) {
-        betweenAmountId.value = 0;
-      }
     };
 
     amountFocus = function () {
