@@ -62,7 +62,7 @@
     var latitude, longitude;
     scope.pageNumber = 1;
     scope.serviceList = [];
-    var mainPageToReturn = "view-main-page";
+    var pageToReturn = "view-inplace-pay-category";
 
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-inplace-pay-service') {
@@ -137,7 +137,7 @@
           } else {
             window.common.alert.show("componentAlertId", {
               parent: scope,
-              viewpage: mainPageToReturn,
+              viewpage: pageToReturn,
               errornote: result[0][0].error_note
             });
           }
@@ -148,7 +148,7 @@
           window.clearTimeout(timeOutTimer);
           window.common.alert.show("componentAlertId", {
             parent: scope,
-            viewpage: mainPageToReturn,
+            viewpage: pageToReturn,
             errornote: window.languages.ServiceUnavailableText
           });
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
@@ -158,7 +158,7 @@
           timeOutTimer = setTimeout(function () {
             window.common.alert.show("componentAlertId", {
               parent: scope,
-              viewpage: mainPageToReturn,
+              viewpage: pageToReturn,
               errornote: window.languages.WaitingTimeExpiredText
             });
           }, 20000);
@@ -277,7 +277,7 @@
               } else {
                 window.common.alert.show("componentAlertId", {
                   parent: scope,
-                  viewpage: mainPageToReturn,
+                  viewpage: pageToReturn,
                   errornote: result[0][0].error_note,
                 });
               }
@@ -288,7 +288,7 @@
               window.clearTimeout(timeOutTimer);
               window.common.alert.show("componentAlertId", {
                 parent: scope,
-                viewpage: mainPageToReturn,
+                viewpage: pageToReturn,
                 errornote: window.languages.ServiceUnavailableText
               });
               console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
@@ -298,7 +298,7 @@
               timeOutTimer = setTimeout(function () {
                 window.common.alert.show("componentAlertId", {
                   parent: scope,
-                  viewpage: mainPageToReturn,
+                  viewpage: pageToReturn,
                   errornote: window.languages.WaitingTimeExpiredText
                 });
               }, 20000);
