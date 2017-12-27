@@ -12,8 +12,8 @@
         <div class="inplace-pay-search-field" id="searchContainerId">
           <input class="inplace-pay-search-input-part" type="text" id="searchInputId"
                  placeholder="{window.languages.InPlaceSearchPlaceHolderText}"/>
-          <div id="searchIcon" class="inplace-pay-search-icon" ontouchstart="onTouchStartOfSearchCategory()"
-               ontouchend="onTouchEndOfSearchCategory()"></div>
+          <div id="searchIcon" class="inplace-pay-search-icon" ontouchstart="onTouchStartOfSearchService()"
+               ontouchend="onTouchEndOfSearchService()"></div>
         </div>
       </div>
 
@@ -27,7 +27,7 @@
               <div class="inplace-pay-service-info">
                 <div class="inplace-pay-service-name-field">{i.name}</div>
                 <div class="inplace-pay-service-address-field">{i.address}</div>
-                <div class="inplace-pay-service-distance-container">
+                <div class="inplace-pay-service-distance-container" if="{i.distance && i.distance!=null}">
                   <div class="inplace-pay-service-distance-icon"></div>
                   <div class="inplace-pay-service-distance-field">{i.distance} от вас</div>
                 </div>
@@ -79,7 +79,7 @@
 
       console.log("find location method");
 
-      var geoOptions = {timeout: 5000, enableHighAccuracy: true};
+      var geoOptions = {timeout: 20000, enableHighAccuracy: true};
       var onGeoSuccess = function (position) {
         console.log("Success in getting position", position);
         latitude = position.coords.latitude;
@@ -601,37 +601,34 @@
 
     scope.onTouchStartOfService = onTouchStartOfService = function (id) {
 
-//      event.preventDefault();
-//      event.stopPropagation();
-
-      document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
-
       onTouchStartY = event.changedTouches[0].pageY;
       onTouchStartX = event.changedTouches[0].pageX;
     };
 
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {
-//
-//      event.preventDefault();
-//      event.stopPropagation();
-
-      document.getElementById(id).style.backgroundColor = 'transparent';
 
       onTouchEndY = event.changedTouches[0].pageY;
       onTouchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(onTouchStartY - onTouchEndY) <= 20 && Math.abs(onTouchStartX - onTouchEndX) <= 20) {
 
-        for (var i in scope.serviceList) {
-          if (scope.serviceList[i].id == id) {
-            riotTags.innerHTML = "<view-qr>";
-            riot.mount('view-qr', scope.serviceList[i]);
+        document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
 
-            break;
+        setTimeout(function () {
+
+          document.getElementById(id).style.backgroundColor = 'transparent';
+
+          for (var i in scope.serviceList) {
+            if (scope.serviceList[i].id == id) {
+              riotTags.innerHTML = "<view-qr>";
+              riot.mount('view-qr', scope.serviceList[i]);
+
+              break;
+            }
+
           }
 
-        }
-
+        }, 50)
 
       }
     };

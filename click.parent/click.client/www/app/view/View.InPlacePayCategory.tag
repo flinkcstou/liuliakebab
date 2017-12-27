@@ -510,33 +510,33 @@
 
     scope.onTouchStartOfCategory = onTouchStartOfCategory = function (id) {
 
-
-      document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
       onTouchStartY = event.changedTouches[0].pageY;
       onTouchStartX = event.changedTouches[0].pageX;
     };
 
     scope.onTouchEndOfCategory = onTouchEndOfCategory = function (id, name) {
 
-
-      document.getElementById(id).style.backgroundColor = 'transparent';
-
       onTouchEndY = event.changedTouches[0].pageY;
       onTouchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(onTouchStartY - onTouchEndY) <= 20 && Math.abs(onTouchStartX - onTouchEndX) <= 20) {
 
-        console.log(id, name);
+        document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
 
-        sessionStorage.setItem('click_client_inPlacePayServiceList', JSON.stringify(null));
+        setTimeout(function () {
+          document.getElementById(id).style.backgroundColor = 'transparent';
+          console.log(id, name);
 
-        riotTags.innerHTML = "<view-inplace-pay-service>";
-        riot.mount('view-inplace-pay-service', {
-          categoryId: id,
-          categoryName: name,
-          latitude: latitude,
-          longitude: longitude
-        });
+          sessionStorage.setItem('click_client_inPlacePayServiceList', JSON.stringify(null));
+
+          riotTags.innerHTML = "<view-inplace-pay-service>";
+          riot.mount('view-inplace-pay-service', {
+            categoryId: id,
+            categoryName: name,
+            latitude: latitude,
+            longitude: longitude
+          });
+        }, 50)
 
       }
     };

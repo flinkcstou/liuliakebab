@@ -663,7 +663,7 @@ window.pushNotificationActions = {
     console.log('running news')
 
     riotTags.innerHTML = "<view-main-page>";
-    riot.mount("view-main-page", {view: "news", news_id: news_id});
+    riot.mount("view-main-page", {view: "news", news_id: newsId});
   },
 
   refreshCardCarousel: function (cardId) {
