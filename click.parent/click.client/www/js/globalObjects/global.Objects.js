@@ -790,6 +790,8 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
       riot.mount('view-pin-code', ['view-authorization']);
     }
     else if (!localStorage.getItem("click_client_accountInfo")) {
+      // console.log("FIRST ENTER OR REGISTRATION fingerprint init ");
+      // fingerPrintInit();
       this.riotTags.innerHTML = "<view-main-page>";
       riot.mount('view-main-page');
       //riot.unmount()

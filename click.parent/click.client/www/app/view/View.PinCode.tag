@@ -505,7 +505,7 @@
 
 
         onSuccess: function (result) {
-          console.log('Clearing timer onSuccess',timeOutTimer);
+          console.log('Clearing timer onSuccess', timeOutTimer);
           window.clearTimeout(timeOutTimer);
           console.log("App.login method answer: success");
 
@@ -587,7 +587,7 @@
           }
         },
         onFail: function (api_status, api_status_message, data) {
-          console.log('Clearing timer onFail',timeOutTimer);
+          console.log('Clearing timer onFail', timeOutTimer);
           window.clearTimeout(timeOutTimer);
           updateAlertComponent(true, null, 'view-authorization', "Сервис временно не доступен");
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
@@ -595,13 +595,13 @@
         },
         onTimeOut: function () {
           timeOutTimer = setTimeout(function () {
-              updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText);
-              window.stopSpinner();
+            updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText);
+            window.stopSpinner();
           }, 30000);
           console.log('creating timeOut', timeOutTimer);
         },
-        onEmergencyStop: function(){
-          console.log('Clearing timer emergencyStop',timeOutTimer);
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimer);
           window.clearTimeout(timeOutTimer);
         }
       }, 30000);
@@ -635,8 +635,10 @@
             if (!fromRegistration)
               scope.stepToBack = 1;
             if (fromAuthorization) {
-              scope.stepToBack = null
-              scope.viewpage = 'view-main-page'
+              scope.stepToBack = null;
+              scope.viewpage = 'view-main-page';
+//              console.log("FIRST ENTER CHANGE PIN fingerprint init ");
+//              fingerPrintInit();
             }
             localStorage.setItem('pinForStand', hex_md5(pin));
             scope.update();
