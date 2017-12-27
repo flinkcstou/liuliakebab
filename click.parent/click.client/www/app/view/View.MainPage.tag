@@ -75,6 +75,7 @@
             );
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
           }
+          console.log("MOUNT MAIN news to history");
         }
       } else {
         localStorage.setItem("click_client_authorized", true);
@@ -94,6 +95,8 @@
         "params": opts
       }
     );
+
+    console.log("main page to history");
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
 

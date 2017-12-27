@@ -47,6 +47,10 @@
     var openImage = false;
     var pageNumber = 2;
 
+    scope.on('mount', function () {
+      console.log("MOUNT NEWS");
+    });
+
     openNews = function (news) {
       console.log("news to open", news);
       var containerId = "newsContainerId" + news.news_id;
@@ -64,7 +68,9 @@
           scope.newsArray[i].opened = true;
         }
       }
-      openImage = JSON.parse(document.getElementById(imageId).getAttribute('exist')) === true;
+      console.log(document.getElementById(imageId));
+      if (document.getElementById(imageId))
+        openImage = JSON.parse(document.getElementById(imageId).getAttribute('exist')) === true;
       document.getElementById(containerId).style.paddingBottom = 100 * widthK + 'px';
       document.getElementById(containerId).setAttribute('opened', true);
       if (openImage)

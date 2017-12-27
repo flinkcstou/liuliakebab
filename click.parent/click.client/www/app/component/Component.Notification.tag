@@ -304,6 +304,8 @@
 //
 //          console.log(JSON.parse(sessionStorage.getItem("push_notification")));
 //        }
+
+        return
       }
 
       window.FirebasePlugin.logEvent("ACCEPT", {
