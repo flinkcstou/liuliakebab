@@ -120,6 +120,7 @@
     };
 
     scope.on('mount', function () {
+      console.log("OPTS in Pay", opts);
       if (opts.categoryId) {
         document.getElementById("tick" + viewPay.categoryId).style.backgroundImage = "url(resources/icons/ViewPay/catclose.png)";
         hintUpdate(viewPay.categoryId);

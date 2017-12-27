@@ -41,6 +41,7 @@
     viewTransfer.cardNumber = '';
     viewTransfer.type = 2;
     viewTransferStepTwo.sum = '';
+    viewPay = {};
 
     var touchStartX, touchEndX, touchMoveX;
     var timeStartX, timeEndX;

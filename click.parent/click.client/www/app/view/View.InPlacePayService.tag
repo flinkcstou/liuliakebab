@@ -75,6 +75,16 @@
       sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
     }
 
+    scope.on('mount', function () {
+      console.log("viewPay.serviceContainerScrollTop=", viewPay.serviceContainerScrollTop)
+      if (viewPay.serviceContainerScrollTop) {
+
+        servicesBodyContainerId.scrollTop = viewPay.serviceContainerScrollTop;
+        viewPay.serviceContainerScrollTop = null;
+      }
+
+    })
+
     findLocation = function () {
 
       console.log("find location method");
@@ -174,16 +184,18 @@
 
 
     if (JSON.parse(sessionStorage.getItem('click_client_inPlacePayServiceList'))) {
-      console.log("ServiceList IS in the sessionStorage");
+
       scope.serviceList = JSON.parse(sessionStorage.getItem('click_client_inPlacePayServiceList'));
       scope.update();
+
     } else if (opts.latitude && opts.longitude) {
-      console.log("NO ServiceList 111");
+
       latitude = opts.latitude;
       longitude = opts.longitude;
       getServiceList(opts.latitude, opts.longitude);
+
     } else {
-      console.log("NO ServiceList 222");
+
       findLocation();
     }
 
@@ -620,6 +632,7 @@
 
           for (var i in scope.serviceList) {
             if (scope.serviceList[i].id == id) {
+              viewPay.serviceContainerScrollTop = servicesBodyContainerId.scrollTop;
               riotTags.innerHTML = "<view-qr>";
               riot.mount('view-qr', scope.serviceList[i]);
 
