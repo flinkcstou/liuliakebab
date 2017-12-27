@@ -13020,7 +13020,7 @@ window.fakedSocket.register("get.indoor.category.list", function (input) {
       "parent": 0,
       "category_name": "Кафе и рестораны",
       "status": 1,
-      "icon": "https://cdn.click.uz/app/rev2/categories/indoor/indoor_category_2.png"
+      "icon": "https://cdn.click.uz/app/rev2/categories/indoor/indoor_category_1.png"
     }, {
       "category_id": 3,
       "parent": 0,

@@ -68,6 +68,7 @@
 
       localStorage.setItem('session_broken', false);
       localStorage.setItem("click_client_authorized", false);
+      sessionStorage.setItem('click_client_inPlacePayCategoryList', JSON.stringify(null));
 
       if (scope.firstEnter) {
 

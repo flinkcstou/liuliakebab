@@ -59,7 +59,7 @@
     var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
     var sessionKey = loginInfo.session_key;
     var timeOutTimer = 0;
-    var latitude, longitude;
+    var latitude = 0, longitude = 0;
     scope.pageNumber = 1;
     scope.serviceList = [];
     var pageToReturn = "view-inplace-pay-category";
@@ -87,9 +87,11 @@
 
     findLocation = function () {
 
+      window.startSpinner();
+
       console.log("find location method");
 
-      var geoOptions = {timeout: 20000, enableHighAccuracy: true};
+      var geoOptions = {timeout: 5000, enableHighAccuracy: true};
       var onGeoSuccess = function (position) {
         console.log("Success in getting position", position);
         latitude = position.coords.latitude;
@@ -102,11 +104,14 @@
       //
       function onGeoError(error) {
         console.log("Error in getting position", error);
-        window.common.alert.show("componentAlertId", {
-          parent: scope,
-          viewpage: "view-inplace-pay-category",
-          errornote: window.languages.InPlacePayGpsErrorText
-        });
+//        window.common.alert.show("componentAlertId", {
+//          parent: scope,
+//          viewpage: "view-inplace-pay-category",
+//          errornote: window.languages.InPlacePayGpsErrorText
+//        });
+        latitude = 0;
+        longitude = 0;
+        getServiceList(latitude, longitude);
       }
 
       navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError, geoOptions);
@@ -116,7 +121,6 @@
     scope.getServiceList = getServiceList = function (lat, long) {
 
 //      scope.serviceList = [];
-      window.startSpinner();
 
       window.api.call({
         method: 'get.indoor.service.list',
@@ -258,15 +262,13 @@
 
           scope.serviceList = [];
           scope.pageNumber = 1;
-          latitude = 41.34994;
-          longitude = 69.22582;
 
           window.api.call({
             method: 'get.indoor.service.list',
             input: {
               session_key: sessionKey,
               phone_num: phoneNumber,
-              category_id: 0,
+              category_id: opts.categoryId,
               location: latitude + " " + longitude,
               search: searchWord
             },
@@ -657,6 +659,7 @@
 
         scope.pageNumber++;
         console.log("services container move pagenumber=", scope.pageNumber)
+        window.startSpinner();
         getServiceList(latitude, longitude);
       }
     };
