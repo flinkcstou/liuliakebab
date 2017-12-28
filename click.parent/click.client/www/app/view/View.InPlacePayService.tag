@@ -29,7 +29,7 @@
                 <div class="inplace-pay-service-address-field">{i.address}</div>
                 <div class="inplace-pay-service-distance-container" if="{i.distance && i.distance!=null}">
                   <div class="inplace-pay-service-distance-icon"></div>
-                  <div class="inplace-pay-service-distance-field">{i.distance} от вас</div>
+                  <div class="inplace-pay-service-distance-field">{i.distance}</div>
                 </div>
               </div>
               <div class="inplace-pay-service-icon-tick"></div>
