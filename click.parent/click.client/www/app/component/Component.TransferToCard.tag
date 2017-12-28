@@ -364,7 +364,7 @@
 
       if (Math.abs(transferCardTouchStartX - transferCardTouchEndX) <= 20
         && Math.abs(transferCardTouchStartY - transferCardTouchEndY) <= 20) {
-        if (scope.issuerList.length === 0){
+        if (scope.issuerList.length === 0 && !modeOfApp.demoVersion){
           cardInputId.blur();
           scope.errorNote = 'Подождите, данные для обработки информации еще не прогрузились';
 
@@ -378,7 +378,7 @@
           scope.update();
           return;
         }
-        if (!scope.bankIdentified) {
+        if (!scope.bankIdentified && !modeOfApp.demoVersion) {
           cardInputId.blur();
           scope.errorNote = 'Неверный номер карты';
 
