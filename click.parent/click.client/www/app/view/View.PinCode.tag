@@ -414,8 +414,10 @@
       //event.preventDefault();
       //event.stopPropagation();
 
+      console.log("Enter of PINCODE");
+
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-      localStorage.setItem("click_client_pin", JSON.stringify(hex_md5(pin)));
+      localStorage.setItem("click_client_pin", hex_md5(pin));
 
 
       window.api.call({
@@ -444,7 +446,7 @@
             var token = localStorage.getItem('click_client_token');
             console.log("pin before=", pin.toString());
             if (localStorage.getItem('click_client_pin')) {
-              pin = JSON.parse(localStorage.getItem('click_client_pin'));
+              pin = localStorage.getItem('click_client_pin');
               var password = hex_sha512(token + date + pin);
             }
             localStorage.setItem("pinForStand", pin);
@@ -483,14 +485,8 @@
 
       var version = localStorage.getItem('version')
 
-      if (device.platform != 'BrowserStand') {
-        var options = {dimBackground: true};
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Spinner start in authorization");
-        }, function () {
-          console.log("Spinner stop in authorization");
-        });
-      }
+      window.startSpinner();
+
       window.api.call({
         method: 'app.login',
         stopSpinner: false,
@@ -513,7 +509,7 @@
             if (!result[1][0].error) {
               console.log("User is authorized");
 
-              localStorage.setItem('click_client_pin', pin)
+//              localStorage.setItem('click_client_pin', pin)
               localStorage.setItem('myNumberOperatorId', result[1][0].my_service_id);
               modeOfflineMode.check = false;
               var JsonInfo = JSON.stringify(result[1][0]);
@@ -535,15 +531,6 @@
                 localStorage.setItem('settings_finger_print', false)
               }
 
-              if (typeof window.fingerPrint.fingerPrintInitialize != undefined && window.fingerPrint.fingerPrintInitialize == false) {
-
-                try {
-                  fingerPrintTurnOn(true);
-                }
-                catch (e) {
-                  console.log(e)
-                }
-              }
 
               getAccount(checkSessionKey, scope.firstEnter);
               window.pushNotificationActions.retrievePushNotification();
@@ -637,8 +624,8 @@
             if (fromAuthorization) {
               scope.stepToBack = null;
               scope.viewpage = 'view-main-page';
-//              console.log("FIRST ENTER CHANGE PIN fingerprint init ");
-//              fingerPrintInit();
+              console.log("FIRST ENTER CHANGE PIN fingerprint init ");
+              fingerPrintInit();
             }
             localStorage.setItem('pinForStand', hex_md5(pin));
             scope.update();

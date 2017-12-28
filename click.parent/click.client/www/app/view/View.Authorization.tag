@@ -135,10 +135,10 @@
 
     if (typeof window.fingerPrint.fingerPrintInitialize != undefined
       && window.fingerPrint.fingerPrintInitialize === false) {
-      console.log("AUTHORIZATION CALL OF FINGERPRINT 191");
+      console.log("AUTHORIZATION CALL new OF FINGERPRINT 191");
 
       try {
-        fingerPrintTurnOn(scope.firstEnter);
+        fingerPrintAsk();
       }
       catch (e) {
         console.log(e)
@@ -294,8 +294,8 @@
 
         if (myValue === "space" && JSON.parse(localStorage.getItem('settings_finger_print')) === true) {
           try {
-            console.log("AUTHORIZATION CALL OF FINGERPRINT 338");
-            fingerPrintTurnOn(scope.firstEnter);
+            console.log("AUTHORIZATION CALL new OF FINGERPRINT 338");
+            fingerPrintAsk();
           }
           catch (e) {
             console.log(e)
@@ -418,6 +418,8 @@
     };
 
     enter = function () {
+
+      console.log("Enter of AUTH");
 
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var deviceId = localStorage.getItem('click_client_deviceID');
