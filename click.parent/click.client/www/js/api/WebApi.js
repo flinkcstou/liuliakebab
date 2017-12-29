@@ -16,18 +16,6 @@ window.api.forceClose = function () {
 window.api.call = function (params, timeout) {
   console.log("Function call:", params, timeout);
 
-  if (device.platform !== 'BrowserStand')
-    if (navigator.connection.type === Connection.NONE || navigator.connection.type === Connection.UNKNOWN) {
-      window.isConnected = false;
-      window.stopSpinner();
-      window.clearTimers();
-      if (device.platform === 'Android')
-        showConfirmComponent("Интернет-соединение отсутствует.\nПерейти в офлайн режим ?", 'internet');
-      else {
-        showAlertComponent("Интернет-соединение отсутствует. Проверьте подключение.");
-      }
-      return;
-    }
 
   if (timeout === undefined)
     timeout = 30000;
@@ -61,9 +49,6 @@ window.api.call = function (params, timeout) {
     if (window.api.socket.readyState === 3) {
       console.log("Connection in state 3");
       window.isConnected = false;
-      // if (navigator.connection.type !== Connection.NONE && navigator.connection.type !== Connection.UNKNOWN) {
-      //   window.api.init();
-      // }
       stateCheckerCleared = true;
       clearInterval(stateChecker);
     }
@@ -78,11 +63,8 @@ window.api.init = function () {
       window.isConnected = true;
       console.log("SOCKET =", window.api.socket);
       window.api.initSocket();
-    }
-    catch (error) {
+    } catch (error) {
       console.error("error on establishing connection", error);
-      // if (modeOfApp.onlineMode)
-      //   window.api.init();
     }
   }
 };
@@ -247,5 +229,12 @@ function onlineDetector() {
 
 function offlineDetector() {
   window.isConnected = false;
+  window.stopSpinner();
+  window.clearTimers();
+  if (device.platform === 'Android')
+    showConfirmComponent("Интернет-соединение отсутствует.\nПерейти в офлайн режим ?", 'internet');
+  else {
+    showAlertComponent("Интернет-соединение отсутствует. Проверьте подключение.");
+  }
   console.log("Offline detector, window.isConnected:", window.isConnected);
 }
