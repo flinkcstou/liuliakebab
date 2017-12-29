@@ -100,6 +100,8 @@ window.common.alert = {
 
     if (!window.common.alert.priorities[id]) return;
 
+    if (window.fingerPrint.fingerPrintInitialize) return;
+
     var show = true;
 
     try {

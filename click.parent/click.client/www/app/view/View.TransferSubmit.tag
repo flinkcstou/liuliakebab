@@ -810,18 +810,31 @@
         if (Math.abs(flipCardTouchStartX - flipCardTouchEndX) <= 20 &&
           Math.abs(flipCardTouchStartY - flipCardTouchEndY) <= 20 && !pointerInOffer) {
 
-          var rotated = object.style.transform;
+          var rotated = object.style.webkitTransform;
+          if (device.platform == 'Android')
+            rotated = object.style.transform;
           if (rotated === "rotateY(-180deg)") {
             if (!publicOfferHidden) {
-              if (publicOfferRect.top > flipCardTouchEndY)
-                object.style.transform = "rotateY(0deg)";
+              if (publicOfferRect.top > flipCardTouchEndY) {
+                if (device.platform == 'Android')
+                  object.style.transform = "rotateY(0deg)";
+                else
+                  object.style.webkitTransform = "rotateY(0deg)";
+              }
             }
             else {
-              object.style.transform = "rotateY(0deg)";
+              if (device.platform == 'Android')
+                object.style.transform = "rotateY(0deg)";
+              else
+                object.style.webkitTransform = "rotateY(0deg)";
             }
           }
-          else
-            object.style.transform = "rotateY(-180deg)";
+          else {
+            if (device.platform == 'Android')
+              object.style.transform = "rotateY(-180deg)";
+            else
+              object.style.webkitTransform = "rotateY(-180deg)";
+          }
         }
       };
 
