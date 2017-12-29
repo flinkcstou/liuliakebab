@@ -88,7 +88,9 @@
       navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError, geoOptions);
     };
 
-    findLocation();
+    console.log("location_find=", localStorage.getItem('location_find'));
+    if (localStorage.getItem('location_find') && JSON.parse(localStorage.getItem('location_find')))
+      findLocation();
 
     if (JSON.parse(sessionStorage.getItem('click_client_inPlacePayCategoryList'))) {
       scope.categoryList = JSON.parse(sessionStorage.getItem('click_client_inPlacePayCategoryList'));
@@ -260,6 +262,7 @@
         }
         if (device.platform != 'BrowserStand') {
           window.pickContactFromNativeChecker = true;
+          window.scannerCanBeAsked = false;
 
           cordova.plugins.barcodeScanner.scan(
             function (result) {
@@ -323,15 +326,7 @@
                     var sessionKey = info.session_key;
 
 
-                    if (device.platform != 'BrowserStand') {
-                      var options = {dimBackground: true};
-
-                      SpinnerPlugin.activityStart("Сканирование QR", options, function () {
-                        console.log("Started");
-                      }, function () {
-                        console.log("closed");
-                      });
-                    }
+                    window.startSpinner();
 
                     window.api.call({
                       method: 'get.indoor.service',

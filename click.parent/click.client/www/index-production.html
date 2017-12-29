@@ -132,12 +132,17 @@
       console.log("status.checkPermission 111 = ", status.checkPermission);
       if (!status.checkPermission) {
         var errorCallback = function () {
-          console.log('GPS permission is not turned on 222');
+          console.log('location find FALSE');
+          localStorage.setItem('location_find', false);
         };
         permissions.requestPermission(
           permissions.ACCESS_COARSE_LOCATION,
           function (status) {
             if (!status.checkPermission) errorCallback();
+            else {
+              console.log("location find TRUE");
+              localStorage.setItem('location_find', true);
+            }
           },
           errorCallback);
       }
@@ -145,57 +150,9 @@
 
     function checkPermissionErrorCallbackOfGps() {
       console.log("Check permission callback error 333");
+      localStorage.setItem('location_find', false);
     }
 
-//    var deniedCount = 0;
-//
-//    function onError(error) {
-//      console.error("The following error occurred: " + error);
-//    }
-//
-//    function evaluateAuthorizationStatus(status) {
-//      switch (status) {
-//        case cordova.plugins.diagnostic.permissionStatus.NOT_REQUESTED:
-//          console.log("Permission not requested");
-//          requestAuthorization();
-//          break;
-//        case cordova.plugins.diagnostic.permissionStatus.DENIED:
-//          console.log("Permission denied");
-//          if (deniedCount < 3) {
-//            deniedCount++;
-//            requestAuthorization();
-//          } else {
-//            // Are we sure we want to hassle the user more than 3 times?
-//          }
-//          break;
-//        case cordova.plugins.diagnostic.permissionStatus.DENIED_ALWAYS:
-//          console.log("Permission permanently denied");
-//          navigator.notification.confirm(
-//            "This app has been denied access to your location and it really needs it function properly. Would you like to switch to the app settings page to allow access?",
-//            function (i) {
-//              if (i === 1) {
-//                cordova.plugins.diagnostic.switchToSettings();
-//              }
-//            }, "Location access denied", ['Yes', 'No']);
-//          break;
-//        case cordova.plugins.diagnostic.permissionStatus.GRANTED:
-//          console.log("Permission granted always");
-//          // Yay! use location
-//          break;
-//      }
-//    }
-//
-//    function requestAuthorization() {
-//      cordova.plugins.diagnostic.requestLocationAuthorization(evaluateAuthorizationStatus, onError);
-//    }
-//
-//    function checkAuthorization() {
-//      cordova.plugins.diagnostic.getLocationAuthorizationStatus(evaluateAuthorizationStatus, onError);
-//    }
-//
-//    checkAuthorization();
-
-    ////
 
     try {
       window.FirebasePlugin.hasPermission(function (data) {
@@ -456,6 +413,7 @@
       var nowMinutes = new Date().getMinutes();
       console.log("BEFORE MINUTES", waitingMinutes);
       console.log("NOW MINUTES", nowMinutes);
+      console.log("window.scannerCanBeAsked=", window.scannerCanBeAsked);
 
       if ((Math.abs(parseInt(waitingMinutes) - parseInt(nowMinutes)) > 5)) {
         console.log("5 minutes >");
@@ -464,12 +422,12 @@
         riotTags.innerHTML = "<view-authorization>";
         riot.mount('view-authorization');
         return
-      } else if (JSON.parse(localStorage.getItem('settings_block')) === true) {
+      } else if (JSON.parse(localStorage.getItem('settings_block')) === true && window.scannerCanBeAsked) {
         console.log("authorization mount onResume, block true");
         riotTags.innerHTML = "<view-authorization>";
         riot.mount('view-authorization');
-
       }
+      window.scannerCanBeAsked = true;
       setTimeout(function () {
 
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");
