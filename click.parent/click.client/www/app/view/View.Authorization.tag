@@ -133,8 +133,7 @@
     }
 
 
-    if (typeof window.fingerPrint.fingerPrintInitialize != undefined
-      && window.fingerPrint.fingerPrintInitialize === false) {
+    if (JSON.parse(localStorage.getItem('settings_finger_print'))) {
       console.log("AUTHORIZATION CALL new OF FINGERPRINT 191");
 
       try {
