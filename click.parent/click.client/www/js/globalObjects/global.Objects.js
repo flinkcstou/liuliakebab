@@ -1402,33 +1402,22 @@ window.fingerPrintInit = function () {
         localStorage.setItem('settings_finger_print_enrolled', true)
         console.log('success', success)
 
-        if (window.fingerPrint.check && !firstEnter && (!sessionStorage.getItem("push_news") || JSON.parse(sessionStorage.getItem("push_news")) !== true)) {
-          if (localStorage.getItem("settings_finger_print") !== null) {
-            if (JSON.parse(localStorage.getItem("settings_finger_print")) === true && localStorage.getItem('click_client_pin')) {
-              var text = 'Приложите палец для сканирования';
-              window.plugins.touchid.verifyFingerprint(text, successCallbackOfAuth, failureCallbackOfAuth);
-            }
-            else {
-
-              onConfirm = function (index) {
-                if (index == 1) {
-                  localStorage.setItem('settings_finger_print', true)
-                }
-                else {
-                  localStorage.setItem('settings_finger_print', false)
-                }
-              }
-
-              navigator.notification.confirm(
-                'Хотите использовать ее для CLICK?',  // message
-                onConfirm,              // callback to invoke with index of button pressed
-                'Устройтсво поддерживает технологию TouchID',            // title
-                ['Да', 'Нет']          // buttonLabels
-              );
-
-            }
+        onConfirm = function (index) {
+          if (index == 1) {
+            localStorage.setItem('settings_finger_print', true)
+          }
+          else {
+            localStorage.setItem('settings_finger_print', false)
           }
         }
+
+        navigator.notification.confirm(
+          'Хотите использовать ее для CLICK?',  // message
+          onConfirm,              // callback to invoke with index of button pressed
+          'Устройтсво поддерживает технологию TouchID',            // title
+          ['Да', 'Нет']          // buttonLabels
+        );
+
       }
 
       function notSupportedCallback(error) {
@@ -1437,23 +1426,8 @@ window.fingerPrintInit = function () {
         localStorage.setItem('settings_finger_print_enrolled', false)
       }
 
-
       window.plugins.touchid.isAvailable(successCallback, notSupportedCallback);
 
-
-      function successCallbackOfAuth(success) {
-        window.fingerPrint.fingerPrintInitialize = false;
-        console.log(success)
-        console.log('SUCCIESS FINGER PRINT')
-        pin = localStorage.getItem('click_client_pin');
-        enter();
-      }
-
-      function failureCallbackOfAuth(error) {
-        window.fingerPrint.fingerPrintInitialize = false;
-        console.log(error)
-        console.log('FAIL FINGER PRINT')
-      }
     }
   }
 };
@@ -1466,9 +1440,6 @@ window.fingerPrintAsk = function () {
 
     if (device.platform == 'Android') {
 
-      // function isAvailableSuccess(result) {
-      //   console.log("FingerprintAuth available: " + JSON.stringify(result));
-      //   if (result.isAvailable) {
       window.fingerPrint.check = true;
       localStorage.setItem('settings_finger_print_enrolled', true);
 
@@ -1491,49 +1462,21 @@ window.fingerPrintAsk = function () {
 
           FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
         }
-        // else {
-        //
-        //   onConfirm = function (index) {
-        //     if (index == 1) {
-        //       localStorage.setItem('settings_finger_print', true)
-        //
-        //     }
-        //     else {
-        //       localStorage.setItem('settings_finger_print', false)
-        //     }
-        //   }
-        //
-        //   navigator.notification.confirm(
-        //     'Хотите использовать ее для CLICK?',  // message
-        //     onConfirm,              // callback to invoke with index of button pressed
-        //     'Устройтсво поддерживает технологию TouchID',            // title
-        //     ['Да', 'Нет']          // buttonLabels
-        //   );
-        //
-        // }
 
       }
-      //   }
-      //   else {
-      //     window.fingerPrint.check = false
-      //     riot.update();
-      //   }
-      // }
 
 
       function encryptSuccessCallback(result) {
         window.fingerPrint.fingerPrintInitialize = false;
-        console.log("successCallback(): " + JSON.stringify(result));
+
         if (result.withFingerprint) {
-          console.log("Successfully encrypted credentials.");
-          console.log("Encrypted credentials: " + result.token);
+
           pin = localStorage.getItem('click_client_pin');
-          console.log('pin', pin)
           enter();
+
         } else if (result.withBackup) {
-          console.log("Authenticated with backup password");
+
           pin = localStorage.getItem('click_client_pin');
-          console.log('pin', pin)
           enter();
         }
       }
@@ -1550,53 +1493,22 @@ window.fingerPrintAsk = function () {
     }
     else if (device.platform == 'iOS') {
 
-      function successCallback(success) {
-        window.fingerPrint.check = true;
-        localStorage.setItem('settings_finger_print_enrolled', true)
-        console.log('success', success)
+      window.fingerPrint.check = true;
+      localStorage.setItem('settings_finger_print_enrolled', true);
 
-        if (window.fingerPrint.check && !firstEnter && (!sessionStorage.getItem("push_news") || JSON.parse(sessionStorage.getItem("push_news")) !== true)) {
-          if (localStorage.getItem("settings_finger_print") !== null) {
-            if (JSON.parse(localStorage.getItem("settings_finger_print")) === true && localStorage.getItem('click_client_pin')) {
-              var text = 'Приложите палец для сканирования';
-              window.plugins.touchid.verifyFingerprint(text, successCallbackOfAuth, failureCallbackOfAuth);
-            }
-            else {
+      if (!sessionStorage.getItem("push_news") || JSON.parse(sessionStorage.getItem("push_news")) !== true) {
 
-              onConfirm = function (index) {
-                if (index == 1) {
-                  localStorage.setItem('settings_finger_print', true)
-                }
-                else {
-                  localStorage.setItem('settings_finger_print', false)
-                }
-              }
-
-              navigator.notification.confirm(
-                'Хотите использовать ее для CLICK?',  // message
-                onConfirm,              // callback to invoke with index of button pressed
-                'Устройтсво поддерживает технологию TouchID',            // title
-                ['Да', 'Нет']          // buttonLabels
-              );
-
-            }
-          }
+        if (JSON.parse(localStorage.getItem("settings_finger_print")) === true && localStorage.getItem('click_client_pin')) {
+          var text = 'Приложите палец для сканирования';
+          window.plugins.touchid.verifyFingerprint(text, successCallbackOfAuth, failureCallbackOfAuth);
         }
+
       }
-
-      function notSupportedCallback(error) {
-        console.log('error', error)
-        window.fingerPrint.check = false;
-        localStorage.setItem('settings_finger_print_enrolled', false)
-      }
-
-
-      window.plugins.touchid.isAvailable(successCallback, notSupportedCallback);
 
 
       function successCallbackOfAuth(success) {
         window.fingerPrint.fingerPrintInitialize = false;
-        console.log(success)
+
         console.log('SUCCIESS FINGER PRINT')
         pin = localStorage.getItem('click_client_pin');
         enter();
@@ -1604,7 +1516,7 @@ window.fingerPrintAsk = function () {
 
       function failureCallbackOfAuth(error) {
         window.fingerPrint.fingerPrintInitialize = false;
-        console.log(error)
+
         console.log('FAIL FINGER PRINT')
       }
     }
