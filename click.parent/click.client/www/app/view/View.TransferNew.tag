@@ -15,8 +15,7 @@
     <div id="menuContainerId" class="transfer-new-menu-container">
       <div id="contact" class="transfer-new-menu-item"
            ontouchend="transferTypeTouchEnd(this.id)"
-           ontouchstart="transferTypeTouchStart(this.id)"
-           activated="false">
+           ontouchstart="transferTypeTouchStart(this.id)">
         <div id="contactIconId"
              class="transfer-new-menu-contact-icon">
         </div>
@@ -25,8 +24,7 @@
       </div>
       <div id="card" class="transfer-new-menu-item"
            ontouchend="transferTypeTouchEnd(this.id)"
-           ontouchstart="transferTypeTouchStart(this.id)"
-           activated="false">
+           ontouchstart="transferTypeTouchStart(this.id)">
         <div id="cardIconId" class="transfer-new-menu-card-icon">
         </div>
         <p id="cardLabelId" class="transfer-new-menu-label-card">
@@ -34,40 +32,46 @@
       </div>
       <div id="between" class="transfer-new-menu-item"
            ontouchend="transferTypeTouchEnd(this.id)"
-           ontouchstart="transferTypeTouchStart(this.id)"
-           activated="false">
+           ontouchstart="transferTypeTouchStart(this.id)">
         <div id="betweenIconId" class="transfer-new-menu-between-icon">
         </div>
         <p id="betweenLabelId" class="transfer-new-menu-label-between">
           {window.languages.ViewPayTransferNewBetweenName}</p>
       </div>
     </div>
-    <component-transfer-to-contact
-      style="display: none"
-      class="transfer-new-form-container"
-      cardsarray="{cardsarray}"
-      cardcounter="{cardCounter}"
-      idcardfrommycards="{idCardFromMyCards}"
-      id="contactForm">
-    </component-transfer-to-contact>
+    <div id="transferTypeCarousel"
+         class="transfer-new-type-carousel"
+         ontouchend="endTouchTransferTypeCarousel(this)"
+         ontouchmove="moveTouchTransferTypeCarousel(this)"
+         ontouchstart="startTouchTransferTypeCarousel()">
+      <div id="transferType">
+        <component-transfer-to-contact
+          class="transfer-new-form-container"
+          cardsarray="{cardsarray}"
+          cardcounter="{cardCounter}"
+          idcardfrommycards="{idCardFromMyCards}"
+          id="contactForm">
+        </component-transfer-to-contact>
 
-    <component-transfer-to-card
-      style="display: none"
-      class="transfer-new-form-container"
-      cardsarray="{cardsarray}"
-      cardcounter="{cardCounter}"
-      idcardfrommycards="{idCardFromMyCards}"
-      id="cardForm">
-    </component-transfer-to-card>
+        <component-transfer-to-card
+          style="left: 100%"
+          class="transfer-new-form-container"
+          cardsarray="{cardsarray}"
+          cardcounter="{cardCounter}"
+          idcardfrommycards="{idCardFromMyCards}"
+          id="cardForm">
+        </component-transfer-to-card>
 
-    <component-transfer-between
-      style="display: none"
-      class="transfer-new-form-container"
-      cardsarray="{cardsarray}"
-      cardcounter="{cardCounter}"
-      idcardfrommycards="{idCardFromMyCards}"
-      id="betweenForm">
-    </component-transfer-between>
+        <component-transfer-between
+          style="left: 200%"
+          class="transfer-new-form-container"
+          cardsarray="{cardsarray}"
+          cardcounter="{cardCounter}"
+          idcardfrommycards="{idCardFromMyCards}"
+          id="betweenForm">
+        </component-transfer-between>
+      </div>
+    </div>
 
   </div>
 
@@ -135,6 +139,10 @@
     scope.idCardFromMyCards = -1;
     scope.cardsarray = [];
     scope.cardCounter = 0;
+    scope.leftTransferType = 0;
+    scope.deltaTransferType = 0;
+    scope.transferTypeNumber = 0;
+    scope.transferTypeCount = 2;
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-transfer-new') {
       history.arrayOfHistory.push(
         {
@@ -154,21 +162,27 @@
     scope.on('mount', function () {
       if (opts && JSON.stringify(opts) !== '{}') {
         console.log('opts in new transfers', opts);
-        if (opts.transferType && opts.transferType === 'contact'){
-          showTransferByContact();
+        if (opts.transferType && opts.transferType === 'contact') {
+          changeIconTransferByContact();
+          scope.transferTypeNumber = 0;
           contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(opts.phoneNumber.substr(3, opts.phoneNumber.length));
           contactPhoneBlurAndChange();
         }
-        if (opts.transferType && opts.transferType === 'card'){
+        if (opts.transferType && opts.transferType === 'card') {
           console.log('open transfers to card')
-          showTransferByCard();
+          changeIconTransferByCard();
+          scope.transferTypeNumber = 1;
           cardInputId.value = opts.cardNumber;
           cardBlurAndChange();
         }
-        if (opts.idCardFromMyCards){
+        if (opts.idCardFromMyCards) {
           scope.idCardFromMyCards = opts.idCardFromMyCards;
-          showTransferByContact();
+          changeIconTransferByContact();
         }
+        document.getElementById("transferType").style.transition = '0s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+        document.getElementById("transferType").style.webkitTransition = '0s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+        document.getElementById("transferType").style.transform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
+        document.getElementById("transferType").style.webkitTransform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
       }
       else {
         if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).transfer) {
@@ -183,19 +197,26 @@
             StatusBar.backgroundColorByHexString("#004663");
         }
         else {
-          showTransferByContact();
+          changeIconTransferByContact();
+          setTimeout(function () {
+            contactPhoneNumberId.focus();
+          }, 100);
         }
       }
 
       if (modeOfApp.offlineMode) {
         between.style.display = 'none';
+        betweenForm.style.display = 'none';
+        scope.transferTypeCount--;
         card.style.width = '50%';
         contact.style.width = '50%';
       }
       if (localStorage.getItem('click_client_countCard')) {
         scope.countCard = JSON.parse(localStorage.getItem('click_client_countCard'));
-        if (scope.countCard < 3){
+        if (scope.countCard < 3) {
           between.style.display = 'none';
+          betweenForm.style.display = 'none';
+          scope.transferTypeCount--;
           card.style.width = '50%';
           contact.style.width = '50%';
         }
@@ -203,15 +224,17 @@
       if (localStorage.getItem('click_client_cards')) {
         scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
         for (var i in scope.cardsarray) {
-          if (scope.cardsarray[i].p2p_allowed == 0 || scope.cardsarray[i].access != 2){
+          if (scope.cardsarray[i].p2p_allowed == 0 || scope.cardsarray[i].access != 2) {
             delete scope.cardsarray[i];
           } else {
             scope.cardCounter++;
             scope.cardsarray[i].countCard = scope.cardCounter;
           }
         }
-        if (scope.cardCounter < 2){
+        if (scope.cardCounter < 2) {
           between.style.display = 'none';
+          betweenForm.style.display = 'none';
+          scope.transferTypeCount--;
           card.style.width = '50%';
           contact.style.width = '50%';
         }
@@ -221,6 +244,89 @@
 
     {
       //Choose transfer type
+      startTouchTransferTypeCarousel = function () {
+        transferTouchStartX = event.changedTouches[0].pageX;
+        scope.leftTransferType = -((720 * scope.transferTypeNumber) * widthK) - transferTouchStartX;
+        scope.deltaTransferType = scope.leftTransferType;
+      };
+
+      moveTouchTransferTypeCarousel = function (id) {
+        console.log(id.childNodes[1].id);
+        contactPhoneNumberId.blur();
+        cardInputId.blur();
+        betweenAmountId.blur();
+        document.getElementById(id.childNodes[1].id).style.transition = '0s';
+        document.getElementById(id.childNodes[1].id).style.webkitTransition = '0s';
+        document.getElementById(id.childNodes[1].id).style.transform = "translate3d(" + (event.changedTouches[0].pageX + scope.deltaTransferType) + 'px' + ", 0, 0)";
+        document.getElementById(id.childNodes[1].id).style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + scope.deltaTransferType) + 'px' + ", 0, 0)";
+      };
+
+      endTouchTransferTypeCarousel = function (id) {
+        transferTouchEndX = event.changedTouches[0].pageX;
+        if (Math.abs(transferTouchStartX - transferTouchEndX) > 20) {
+          changePositionTransferTypeCarousel(id.childNodes[1].id);
+        }
+      };
+
+      changePositionTransferTypeCarousel = function (id) {
+        if (transferTouchEndX < transferTouchStartX && scope.transferTypeNumber < scope.transferTypeCount) {
+          console.log('if #1');
+          ++scope.transferTypeNumber;
+          document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+          document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+          document.getElementById(id).style.transform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
+          document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
+        }
+
+        if (transferTouchEndX < transferTouchStartX && scope.transferTypeNumber >= scope.transferTypeCount) {
+          console.log('if #2');
+          document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+          document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+          document.getElementById(id).style.transform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
+          document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
+        }
+
+        if (transferTouchEndX > transferTouchStartX && scope.transferTypeNumber > 0) {
+          console.log('if #3');
+          --scope.transferTypeNumber;
+          document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+          document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+          document.getElementById(id).style.transform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
+          document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
+        }
+
+        if (transferTouchEndX > transferTouchStartX && scope.transferTypeNumber === 0) {
+          console.log('if #4');
+          document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+          document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+          document.getElementById(id).style.transform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
+          document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
+        }
+        console.log(transferTouchEndX, transferTouchStartX, scope.transferTypeNumber);
+        if (scope.transferTypeNumber === 0) {
+          changeIconTransferByContact();
+          setTimeout(function () {
+          if (scope.transferTypeNumber === 0)
+            contactPhoneNumberId.focus();
+          }, 500);
+        }
+        if (scope.transferTypeNumber === 1) {
+          changeIconTransferByCard();
+          setTimeout(function () {
+          if (scope.transferTypeNumber === 1)
+            cardInputId.focus();
+          }, 500);
+        }
+        if (scope.transferTypeNumber === 2) {
+          changeIconTransferByBetween();
+          setTimeout(function () {
+          if (scope.transferTypeNumber === 2)
+            betweenAmountId.focus();
+          }, 500);
+        }
+        scope.update();
+      };
+
       transferTypeTouchStart = function (id) {
         event.preventDefault();
         event.stopPropagation();
@@ -243,93 +349,78 @@
           && Math.abs(transferTouchStartY - transferTouchEndY) <= 20) {
           makeAllGrey();
           if (id === 'contact') {
-            showTransferByContact();
+            changeIconTransferByContact();
+            scope.transferTypeNumber = 0;
+            setTimeout(function () {
+            if (scope.transferTypeNumber === 0)
+              contactPhoneNumberId.focus();
+            }, 500);
           }
           if (id === 'card') {
-            showTransferByCard();
+            changeIconTransferByCard();
+            scope.transferTypeNumber = 1;
+            setTimeout(function () {
+            if (scope.transferTypeNumber === 1)
+              cardInputId.focus();
+            }, 500);
           }
           if (id === 'between') {
-            showTransferByBetween();
+            changeIconTransferByBetween();
+            scope.transferTypeNumber = 2;
+            setTimeout(function () {
+            if (scope.transferTypeNumber === 2)
+              betweenAmountId.focus();
+            }, 500);
           }
+          document.getElementById("transferType").style.transition = '0s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+          document.getElementById("transferType").style.webkitTransition = '0s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+          document.getElementById("transferType").style.transform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
+          document.getElementById("transferType").style.webkitTransform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
         }
       };
 
       //Make all labels and icons grey
       makeAllGrey = function () {
+        setTimeout(function () {
+          contactPhoneNumberId.blur();
+          cardInputId.blur();
+          betweenAmountId.blur();
+        }, 0);
         contactLabelId.style.color = "#989898";
         cardLabelId.style.color = "#989898";
         betweenLabelId.style.color = "#989898";
-        if (contact.getAttribute('activated') === 'true') {
-          contactIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/touser2.png)';
-          contact.setAttribute('activated', false);
-        }
-        if (card.getAttribute('activated') === 'true') {
-          cardIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/tofriend2.png)';
-          card.setAttribute('activated', false);
-        }
-        if (between.getAttribute('activated') === 'true') {
-          betweenIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/toown2.png)';
-          between.setAttribute('activated', false);
-        }
-        contactForm.style.display = "none";
-        cardForm.style.display = "none";
-        betweenForm.style.display = "none";
+        contactIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/touser2.png)';
+        cardIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/tofriend2.png)';
+        betweenIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/toown2.png)';
       };
 
-      //Open transfer by contact
-      showTransferByContact = function () {
-        if (contact.getAttribute('activated') === 'false') {
+      //change icon transfer by contact
+      changeIconTransferByContact = function () {
           makeAllGrey();
           checkPhoneNumberLength();
-          contactForm.style.display = "block";
           contactLabelId.style.color = "black";
           contactIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/touser1.png)';
-          contact.setAttribute('activated', true);
-          scope.activatedType = 'contact';
           if (device.platform != 'BrowserStand')
             cordova.plugins.Keyboard.close();
-          setTimeout(function () {
-            contactPhoneNumberId.focus();
-          }, 0);
-          scope.update();
-        }
       };
 
-      //Open transfer by card
-      showTransferByCard = function () {
-        if (card.getAttribute('activated') === 'false') {
+      //change icon transfer by card
+      changeIconTransferByCard = function () {
           makeAllGrey();
           checkCardNumberLength();
-          cardForm.style.display = "block";
           cardLabelId.style.color = "black";
           cardIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/tofriend1.png)';
-          card.setAttribute('activated', true);
-          scope.activatedType = 'card';
           if (device.platform != 'BrowserStand')
             cordova.plugins.Keyboard.close();
-          setTimeout(function () {
-            cardInputId.focus();
-          }, 0);
-          scope.update();
-        }
       };
 
-      //Open transfer by between
-      showTransferByBetween = function () {
-        if (between.getAttribute('activated') === 'false') {
+      //change icon transfer by between
+      changeIconTransferByBetween = function () {
           makeAllGrey();
-          betweenForm.style.display = "block";
           betweenLabelId.style.color = "black";
           betweenIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/toown1.png)';
-          between.setAttribute('activated', true);
-          scope.activatedType = 'between';
           if (device.platform != 'BrowserStand')
             cordova.plugins.Keyboard.close();
-          setTimeout(function () {
-            betweenAmountId.focus();
-          }, 0);
-          scope.update();
-        }
       };
     }
 
@@ -558,10 +649,10 @@
     //Tour processing
     scope.focusFieldAfterTourClosed = focusFieldAfterTourClosed = function () {
       scope.tourClosed = true;
-      showTransferByContact();
+      changeIconTransferByContact();
       setTimeout(function () {
         contactPhoneNumberId.focus();
-      }, 0);
+      }, 100);
     };
 
   </script>
