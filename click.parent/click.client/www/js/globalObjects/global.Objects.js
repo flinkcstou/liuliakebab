@@ -108,6 +108,9 @@ window.common.alert = {
       if (device.platform !== 'BrowserStand') {
         SpinnerPlugin.activityStop();
       }
+
+      window.cordova.plugins.Keyboard.closeKeyboard();
+
     } catch (error) {
 
       console.error(error);
@@ -1556,4 +1559,24 @@ window.stopSpinner = function () {
     console.log("Spinner Stop");
     SpinnerPlugin.activityStop();
   }
+};
+
+window.blurFields = function () {
+  console.log("blurFields")
+  try {
+    if ('activeElement' in document) {
+      var activeObj = document.activeElement;
+      if (activeObj.tagName.toLowerCase() == "input")
+        console.log("bluring element ", activeObj.blur(), activeObj.value);
+      else
+        console.log("not bluring ", activeObj, activeObj.tagName);
+    }
+    else {
+      console.log("Your browser does not support the activeElement property!");
+    }
+    return;
+  }
+  catch (e) {
+  }
+  ;
 }

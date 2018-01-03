@@ -574,8 +574,10 @@
     this.on('mount', function () {
 
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).calculator && scope.calcOn) {
-        if (firstFieldInput)
-          firstFieldInput.blur();
+//        if (firstFieldInput)
+//          firstFieldInput.blur();
+
+        window.blurFields();
         componentTourId.style.display = "block";
         if (device.platform != 'BrowserStand')
           StatusBar.backgroundColorByHexString("#004663");
@@ -786,12 +788,14 @@
         //        console.log("currency rate is in localStorage=", scope.currencyRate);
         //      }
 
-        try {
-          this.firstFieldInput.blur();
-        } catch (error) {
+//        try {
+//          this.firstFieldInput.blur();
+//        } catch (error) {
+//
+//          console.log(error);
+//        }
 
-          console.log(error);
-        }
+        window.blurFields();
 
         scope.showComponent = true
         window.checkShowingComponent = scope;
@@ -1293,12 +1297,13 @@
 
 
     openDropDown = function () {
-      try {
-        this.firstFieldInput.blur();
-        this.amount.blur();
-      } catch (error) {
-        console.log(error);
-      }
+//      try {
+//        this.firstFieldInput.blur();
+//        this.amount.blur();
+//      } catch (error) {
+//        console.log(error);
+//      }
+      window.blurFields();
       this.blockFirstFieldId.style.display = 'block';
       console.log("id=", scope.chosenFieldParamId);
       if (scope.oldFieldParamId) {
@@ -1310,12 +1315,13 @@
     };
 
     openDropDownTwo = function () {
-      try {
-        this.firstFieldInput.blur();
-        this.amount.blur();
-      } catch (error) {
-        console.log(error);
-      }
+//      try {
+//        this.firstFieldInput.blur();
+//        this.amount.blur();
+//      } catch (error) {
+//        console.log(error);
+//      }
+      window.blurFields();
       this.blockFirstDropdownId.style.display = 'block';
       if (scope.oldFieldParamIdTwo) {
         document.getElementById(scope.oldFieldParamIdTwo).style.backgroundColor = 'white';
@@ -1328,12 +1334,13 @@
     };
 
     openDropDownThree = function () {
-      try {
-        this.firstFieldInput.blur();
-        this.amount.blur();
-      } catch (error) {
-        console.log(error);
-      }
+//      try {
+//        this.firstFieldInput.blur();
+//        this.amount.blur();
+//      } catch (error) {
+//        console.log(error);
+//      }
+      window.blurFields();
       if (scope.secondLevelArray) {
         this.blockSecondDropdownId.style.display = 'block';
         if (scope.oldFieldParamIdThree) {
@@ -1354,12 +1361,13 @@
     };
 
     openPrefixesDropDown = function () {
-      try {
-        this.firstFieldInput.blur();
-        this.amount.blur();
-      } catch (error) {
-        console.log(error);
-      }
+//      try {
+//        this.firstFieldInput.blur();
+//        this.amount.blur();
+//      } catch (error) {
+//        console.log(error);
+//      }
+      window.blurFields();
       this.blockPrefixId.style.display = 'block';
 
       if (scope.oldPrefixId) {
@@ -1780,13 +1788,15 @@
       if (Math.abs(enterStartY - enterEndY) <= 20 && Math.abs(enterStartX - enterEndX) <= 20) {
 
 
-        try {
-          this.firstFieldInput.blur();
-          this.amount.blur();
-        } catch (error) {
+//        try {
+//          this.firstFieldInput.blur();
+//          this.amount.blur();
+//        } catch (error) {
+//
+//          console.log(error);
+//        }
 
-          console.log(error);
-        }
+        window.blurFields();
 
         if (scope.phoneFieldBool && firstFieldInput.value.length < 10 && opts.chosenServiceId != "mynumber") {
           scope.clickPinError = false;

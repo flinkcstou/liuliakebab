@@ -224,6 +224,7 @@
       if (device.platform === 'Android')
         permissionAccess();
       else if (device.platform === 'iOS') {
+        localStorage.setItem('location_find', true);
         window.FirebasePlugin.grantPermission();
       }
 
