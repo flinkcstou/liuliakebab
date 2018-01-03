@@ -143,6 +143,7 @@
     scope.deltaTransferType = 0;
     scope.transferTypeNumber = 0;
     scope.transferTypeCount = 2;
+    scope.transitionRunning = false;
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-transfer-new') {
       history.arrayOfHistory.push(
         {
@@ -239,10 +240,43 @@
           contact.style.width = '50%';
         }
       }
+      transferType.addEventListener("webkitTransitionEnd", transitionEnd, true);
+      transferType.addEventListener("webkitTransitionRun", transitionRun, true);
+      transferType.addEventListener("webkitTransitionStart", transitionStart, true);
       scope.update();
     });
 
     {
+      transitionEnd = function () {
+        console.log('transitionEnd', scope.transferTypeNumber);
+        if (scope.transferTypeNumber === 0) {
+          changeIconTransferByContact();
+          setTimeout(function () {
+            contactPhoneNumberId.focus();
+          }, 0);
+        }
+        if (scope.transferTypeNumber === 1) {
+          changeIconTransferByCard();
+          setTimeout(function () {
+            cardInputId.focus();
+          }, 0);
+        }
+        if (scope.transferTypeNumber === 2) {
+          changeIconTransferByBetween();
+          setTimeout(function () {
+            betweenAmountId.focus();
+          }, 0);
+        }
+        scope.transitionRunning = false;
+      };
+      transitionRun = function () {
+        console.log('transitionRun');
+      };
+      transitionStart = function () {
+        console.log('transitionStart');
+        scope.transitionRunning = true;
+      };
+
       //Choose transfer type
       startTouchTransferTypeCarousel = function () {
         transferTouchStartX = event.changedTouches[0].pageX;
@@ -264,6 +298,7 @@
       endTouchTransferTypeCarousel = function (id) {
         transferTouchEndX = event.changedTouches[0].pageX;
         if (Math.abs(transferTouchStartX - transferTouchEndX) > 20) {
+          transitionStart();
           changePositionTransferTypeCarousel(id.childNodes[1].id);
         }
       };
@@ -302,34 +337,19 @@
           document.getElementById(id).style.transform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
           document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
         }
-        console.log(transferTouchEndX, transferTouchStartX, scope.transferTypeNumber);
-        if (scope.transferTypeNumber === 0) {
-          changeIconTransferByContact();
-          setTimeout(function () {
-          if (scope.transferTypeNumber === 0)
-            contactPhoneNumberId.focus();
-          }, 500);
-        }
-        if (scope.transferTypeNumber === 1) {
-          changeIconTransferByCard();
-          setTimeout(function () {
-          if (scope.transferTypeNumber === 1)
-            cardInputId.focus();
-          }, 500);
-        }
-        if (scope.transferTypeNumber === 2) {
-          changeIconTransferByBetween();
-          setTimeout(function () {
-          if (scope.transferTypeNumber === 2)
-            betweenAmountId.focus();
-          }, 500);
-        }
         scope.update();
       };
 
       transferTypeTouchStart = function (id) {
         event.preventDefault();
         event.stopPropagation();
+        if (device.platform != 'BrowserStand')
+          cordova.plugins.Keyboard.close();
+        setTimeout(function () {
+          contactPhoneNumberId.blur();
+          cardInputId.blur();
+          betweenAmountId.blur();
+        }, 0);
 
         document.getElementById(id).style.webkitTransform = 'scale(0.7)';
 
@@ -352,24 +372,24 @@
             changeIconTransferByContact();
             scope.transferTypeNumber = 0;
             setTimeout(function () {
-            if (scope.transferTypeNumber === 0)
-              contactPhoneNumberId.focus();
+              if (scope.transferTypeNumber === 0 && !scope.transitionRunning)
+                contactPhoneNumberId.focus();
             }, 500);
           }
           if (id === 'card') {
             changeIconTransferByCard();
             scope.transferTypeNumber = 1;
             setTimeout(function () {
-            if (scope.transferTypeNumber === 1)
-              cardInputId.focus();
+              if (scope.transferTypeNumber === 1 && !scope.transitionRunning)
+                cardInputId.focus();
             }, 500);
           }
           if (id === 'between') {
             changeIconTransferByBetween();
             scope.transferTypeNumber = 2;
             setTimeout(function () {
-            if (scope.transferTypeNumber === 2)
-              betweenAmountId.focus();
+              if (scope.transferTypeNumber === 2 && !scope.transitionRunning)
+                betweenAmountId.focus();
             }, 500);
           }
           document.getElementById("transferType").style.transition = '0s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
@@ -381,6 +401,8 @@
 
       //Make all labels and icons grey
       makeAllGrey = function () {
+        if (device.platform != 'BrowserStand')
+          cordova.plugins.Keyboard.close();
         setTimeout(function () {
           contactPhoneNumberId.blur();
           cardInputId.blur();
@@ -396,31 +418,25 @@
 
       //change icon transfer by contact
       changeIconTransferByContact = function () {
-          makeAllGrey();
-          checkPhoneNumberLength();
-          contactLabelId.style.color = "black";
-          contactIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/touser1.png)';
-          if (device.platform != 'BrowserStand')
-            cordova.plugins.Keyboard.close();
+        makeAllGrey();
+        checkPhoneNumberLength();
+        contactLabelId.style.color = "black";
+        contactIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/touser1.png)';
       };
 
       //change icon transfer by card
       changeIconTransferByCard = function () {
-          makeAllGrey();
-          checkCardNumberLength();
-          cardLabelId.style.color = "black";
-          cardIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/tofriend1.png)';
-          if (device.platform != 'BrowserStand')
-            cordova.plugins.Keyboard.close();
+        makeAllGrey();
+        checkCardNumberLength();
+        cardLabelId.style.color = "black";
+        cardIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/tofriend1.png)';
       };
 
       //change icon transfer by between
       changeIconTransferByBetween = function () {
-          makeAllGrey();
-          betweenLabelId.style.color = "black";
-          betweenIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/toown1.png)';
-          if (device.platform != 'BrowserStand')
-            cordova.plugins.Keyboard.close();
+        makeAllGrey();
+        betweenLabelId.style.color = "black";
+        betweenIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/toown1.png)';
       };
     }
 
