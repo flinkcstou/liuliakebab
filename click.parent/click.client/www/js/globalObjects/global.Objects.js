@@ -105,11 +105,8 @@ window.common.alert = {
     var show = true;
 
     try {
-      if (device.platform !== 'BrowserStand') {
-        SpinnerPlugin.activityStop();
-      }
-
-      window.cordova.plugins.Keyboard.closeKeyboard();
+      window.stopSpinner();
+      window.blurFields();
 
     } catch (error) {
 
@@ -1562,12 +1559,11 @@ window.stopSpinner = function () {
 };
 
 window.blurFields = function () {
-  console.log("blurFields")
   try {
     if ('activeElement' in document) {
       var activeObj = document.activeElement;
       if (activeObj.tagName.toLowerCase() == "input")
-        console.log("bluring element ", activeObj.blur(), activeObj.value);
+        console.log("bluring element ", activeObj.blur());
       else
         console.log("not bluring ", activeObj, activeObj.tagName);
     }
