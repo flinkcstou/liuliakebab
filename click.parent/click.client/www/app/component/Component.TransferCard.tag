@@ -1,6 +1,6 @@
 <component-transfer-card class="transfer-new-card"
                 id="{'cardNumber'+opts.countcard}"
-                style="background-image: url({(opts.background)}); color: rgb({opts.fontcolor}); left:{(420 * opts.countcard + 100) * heightK}px">
+                style="background-image: url({(opts.background)}); color: rgb({opts.fontcolor}); left:{(420 * opts.countcard + 100) * heightK + (360 * widthK - 296 * heightK)}px">
 
   <div class="card-bank-name" style="background-image: url({opts.bankname})"></div>
   <div class="transfer-new-card-salary-title">{opts.name}</div>

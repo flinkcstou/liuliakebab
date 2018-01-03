@@ -5981,7 +5981,16 @@ var css = {
 
   transferNewFormContainer: ".transfer-new-form-container" +
   "{" +
-  "padding-top:" + 155 * widthK + "px;" +
+  "position: absolute;" +
+  "margin-top:" + 155 * widthK + "px;" +
+  "height:" + (1232 * heightK - 241 * widthK) + "px;" +
+  "width: 100%;" +
+  "}",
+
+  transferNewTypeCarousel: ".transfer-new-type-carousel"+
+  "{" +
+  "height: 100%;" +
+  "width: 100%;" +
   "}",
 
   transferNewContactPhoto: ".transfer-new-contact-photo" +
@@ -6192,9 +6201,10 @@ var css = {
 
   transferNewCardCarousel: ".transfer-new-card-carousel " +
   "{" +
-  "left:" + (360 * widthK - 296 * heightK) + "px;" +
+  // "left:" + (360 * widthK - 296 * heightK) + "px;" +
   "position: relative;" +
-  "height:" + 225 * heightK + "px;" +
+  "overflow: hidden;" +
+  "height:" + 230 * heightK + "px;" +
   "width: 100%;" +
   "display: inline-block;" +
   "background: transparent;" +
