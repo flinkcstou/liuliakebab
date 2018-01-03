@@ -163,14 +163,33 @@
 
     scope.monthsArray = window.languages.ViewReportMonthsArray;
     scope.mArray = [];
-    var j = 12, t, curMonth = new Date().getMonth();
-    for (var i = curMonth; i > -curMonth; i--) {
-      if (j > 0) {
-        t = i <= 0 ? (11 + i) : i;
-        scope.mArray[j - 1] = {"count": j--, "name": scope.monthsArray[t].name, "month": t};
+    var j = 12, t;
+    var curMonth = new Date().getMonth();
+    var y = new Date().getFullYear();
+    var yearChanged = false;
+    console.log("monthsArray", scope.monthsArray, curMonth);
+
+    var i = curMonth;
+    while (j > 0) {
+      console.log("i=", i);
+      if (i < 0) {
+        t = 12 + i;
+        if (!yearChanged) {
+          yearChanged = true;
+          y--;
+        }
+
+      } else {
+        t = i;
       }
-      else break;
+
+      console.log("t=", t, ", j=", j, ", mArray[j]", scope.monthsArray[t].name);
+      scope.mArray[j - 1] = {"count": j--, "name": scope.monthsArray[t].name, "month": t, "year": y};
+//      console.log("array elem=", {"count": j--, "name": scope.monthsArray[t].name, "month": t});
+      console.log("array=", scope.mArray[j]);
+      i--;
     }
+    console.log("mArray", scope.mArray)
     scope.update(scope.mArray);
 
 
@@ -237,9 +256,9 @@
       scope.update();
 
       var date = new Date();
-      var yearToSearch = scope.mNumber >= 12 - curMonth ? date.getFullYear() : date.getFullYear() - 1;
-      firstDay = new Date(yearToSearch, scope.mArray[scope.mNumber].month, 1);
-      lastDay = new Date(yearToSearch, scope.mArray[scope.mNumber].month + 1, 0);
+//      var yearToSearch = scope.mNumber >= 12 - curMonth ? date.getFullYear() : date.getFullYear() - 1;
+      firstDay = new Date(scope.mArray[scope.mNumber].year, scope.mArray[scope.mNumber].month, 1);
+      lastDay = new Date(scope.mArray[scope.mNumber].year, scope.mArray[scope.mNumber].month + 1, 0);
 
       if (scope.firstReportView) {
         graphButtonId.style.backgroundImage = "url(resources/icons/ViewReport/reports_chart_off.png)";
@@ -499,10 +518,11 @@
       if (!(firstDay && lastDay)) {
 
         var date = new Date();
-        var yearToSearch = scope.mNumber >= 12 - curMonth ? date.getFullYear() : date.getFullYear() - 1;
-        console.log("yearToSearch", yearToSearch)
-        firstDay = new Date(yearToSearch, scope.mArray[scope.mNumber].month, 1);
-        lastDay = new Date(yearToSearch, scope.mArray[scope.mNumber].month + 1, 0);
+        console.log("mNumber=", scope.mNumber, curMonth)
+//        var yearToSearch = scope.mNumber >= 12 - curMonth ? date.getFullYear() : date.getFullYear() - 1;
+//        console.log("yearToSearch", yearToSearch)
+        firstDay = new Date(scope.mArray[scope.mNumber].year, scope.mArray[scope.mNumber].month, 1);
+        lastDay = new Date(scope.mArray[scope.mNumber].year, scope.mArray[scope.mNumber].month + 1, 0);
 
         firstDay = convertDate(firstDay);
         lastDay = convertDate(lastDay);
@@ -510,15 +530,7 @@
 
       scope.update();
 
-      if (device.platform != 'BrowserStand') {
-        var options = {dimBackground: false};
-
-        SpinnerPlugin.activityStart("", options, function () {
-          console.log("Started");
-        }, function () {
-          console.log("closed");
-        });
-      }
+      window.startSpinner();
 
       if (window.fakedSocket)
         if (window.fakedSocket.readyState == 1) {
@@ -542,7 +554,7 @@
 
         onSuccess: function (result) {
 
-          console.log('Clearing timer onSuccess',timeOutTimerPayment);
+          console.log('Clearing timer onSuccess', timeOutTimerPayment);
           window.clearTimeout(timeOutTimerPayment);
           console.log(result)
           console.log(result[0][0])
@@ -607,27 +619,27 @@
 
         },
         onFail: function (api_status, api_status_message, data) {
-          console.log('Clearing timer onFail',timeOutTimerPayment);
+          console.log('Clearing timer onFail', timeOutTimerPayment);
           window.clearTimeout(timeOutTimerPayment);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         },
         onTimeOut: function () {
           timeOutTimerPayment = setTimeout(function () {
-              scope.errorNote = "Сервис временно недоступен";
-              scope.stepAmount = 0;
-              scope.update();
-              window.common.alert.show("componentAlertId", {
-                parent: scope,
-                clickpinerror: scope.clickPinError,
-                errornote: scope.errorNote,
-                step_amount: scope.stepAmount
-              });
+            scope.errorNote = "Сервис временно недоступен";
+            scope.stepAmount = 0;
+            scope.update();
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+              step_amount: scope.stepAmount
+            });
             window.stopSpinner();
           }, 10000);
         },
-        onEmergencyStop: function(){
-          console.log('Clearing timer emergencyStop',timeOutTimerPayment);
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimerPayment);
           window.clearTimeout(timeOutTimerPayment);
         }
       }, 10000);
@@ -659,9 +671,9 @@
       if (!(firstDay && lastDay)) {
 
         var date = new Date();
-        var yearToSearch = scope.mNumber >= 12 - curMonth ? date.getFullYear() : date.getFullYear() - 1;
-        firstDay = new Date(yearToSearch, scope.mArray[scope.mNumber].month, 1);
-        lastDay = new Date(yearToSearch, scope.mArray[scope.mNumber].month + 1, 0);
+//        var yearToSearch = scope.mNumber >= 12 - curMonth ? date.getFullYear() : date.getFullYear() - 1;
+        firstDay = new Date(scope.mArray[scope.mNumber].year, scope.mArray[scope.mNumber].month, 1);
+        lastDay = new Date(scope.mArray[scope.mNumber].year, scope.mArray[scope.mNumber].month + 1, 0);
 
         firstDay = convertDate(firstDay);
         lastDay = convertDate(lastDay);
@@ -688,7 +700,7 @@
 
           scope.graphList = [];
           scope.paymentsSum = 0;
-          console.log('Clearing timer onSuccess',timeOutTimerData);
+          console.log('Clearing timer onSuccess', timeOutTimerData);
           window.clearTimeout(timeOutTimerData);
           if (result[0][0].error == 0) {
             for (var i in result[1]) {
@@ -717,27 +729,27 @@
 
         },
         onFail: function (api_status, api_status_message, data) {
-          console.log('Clearing timer onFail',timeOutTimerData);
+          console.log('Clearing timer onFail', timeOutTimerData);
           window.clearTimeout(timeOutTimerData);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         },
         onTimeOut: function () {
           timeOutTimerData = setTimeout(function () {
-              scope.errorNote = "Сервис временно недоступен";
-              scope.stepAmount = 0;
-              window.common.alert.show("componentAlertId", {
-                parent: scope,
-                clickpinerror: scope.clickPinError,
-                errornote: scope.errorNote,
-                step_amount: scope.stepAmount
-              });
-              window.stopSpinner();
-              scope.update();
+            scope.errorNote = "Сервис временно недоступен";
+            scope.stepAmount = 0;
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+              step_amount: scope.stepAmount
+            });
+            window.stopSpinner();
+            scope.update();
           }, 10000);
         },
-        onEmergencyStop: function(){
-          console.log('Clearing timer emergencyStop',timeOutTimerData);
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimerData);
           window.clearTimeout(timeOutTimerData);
         }
       }, 10000);
