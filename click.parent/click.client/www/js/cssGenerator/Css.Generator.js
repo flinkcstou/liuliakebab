@@ -1639,6 +1639,14 @@ var css = {
   "left:" + 505 * widthK + "px;" +
   "}",
 
+  bankOperationLabelInPlacePay: ".bank-operation-label-inplace-pay " +
+  "{" +
+  "left:" + 457 * widthK + "px;" +
+  "width:" + 250 * widthK + "px;" +
+  "bottom:" + -50 * widthK + "px;" +
+  "height:" + 66 * widthK + "px;" +
+  "}",
+
   operationPayIcon: ".operation-pay-icon " +
   "{" +
   "background-image: url(resources/icons/bank-operations/payment.png);" +
@@ -1969,8 +1977,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "top:" + 850 * heightK + "px;" +
-  "bottom:" + 90 * widthK + "px;" +
+  "top:" + 875 * heightK + "px;" +
+  "bottom:" + 65 * widthK + "px;" +
   "background: transparent;" +
   "}",
 
@@ -2554,7 +2562,7 @@ var css = {
   "bottom:" + 190 * widthK + "px;" +
   "left: 0;" +
   "right: 0;" +
-  "height:" + 105 * widthK + "px;" +
+  "height:" + 85 * widthK + "px;" +
   "width: 100%;" +
   "border-top:" + 2 + "px solid #00b3fd;" +
   "color: rgb(197, 233, 239);" +
@@ -2570,7 +2578,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "width:" + 33 * widthK + "px;" +
   "height:" + 18 * widthK + "px;" +
-  "top:" + 40 * widthK + "px;" +
+  "top:" + 27 * widthK + "px;" +
   "transition: 0.8s;" +
   "}",
 
@@ -2582,7 +2590,7 @@ var css = {
   "right: 0;" +
   "transition: 0.3s;" +
   "-webkit-transition: 0.3s;" +
-  "height:" + 300 * widthK + "px;" +
+  "height:" + 275 * widthK + "px;" +
   "width: 100%;" +
   "transform: translate3d(0, " + 200 * widthK + "px,0);" +
   "-webkit-transform: translate3d(0," + 200 * widthK + "px,0);" +
@@ -2593,7 +2601,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "font-size:" + 27 * widthK + "px;" +
-  "margin-top:" + 33 * widthK + "px;" +
+  "margin-top:" + 20 * widthK + "px;" +
   "color: white;" +
   "left:" + -1 * widthK + "px;" +
   "}",
@@ -5987,7 +5995,7 @@ var css = {
   "width: 100%;" +
   "}",
 
-  transferNewTypeCarousel: ".transfer-new-type-carousel"+
+  transferNewTypeCarousel: ".transfer-new-type-carousel" +
   "{" +
   "height: 100%;" +
   "width: 100%;" +

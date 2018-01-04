@@ -32,7 +32,7 @@
         </div>
       </div>
       <label
-        class="bank-operation-label bank-operation-label-qr">{window.languages.ComponentBankOperationsInPlacePay}</label>
+        class="bank-operation-label bank-operation-label-inplace-pay">{window.languages.ComponentBankOperationsInPlacePay}</label>
     </div>
 
   </div>

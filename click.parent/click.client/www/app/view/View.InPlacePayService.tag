@@ -665,7 +665,7 @@
 
       console.log("services container move")
 
-      if ((servicesBodyContainerId.scrollHeight - servicesBodyContainerId.scrollTop) == servicesBodyContainerId.offsetHeight) {
+      if ((servicesBodyContainerId.scrollHeight - servicesBodyContainerId.scrollTop) == servicesBodyContainerId.offsetHeight && scope.serviceList.length % 20 == 0) {
 
         scope.pageNumber++;
         console.log("services container move pagenumber=", scope.pageNumber)
