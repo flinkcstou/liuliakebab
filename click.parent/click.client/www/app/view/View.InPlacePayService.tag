@@ -128,6 +128,7 @@
     scope.getServiceList = getServiceList = function (lat, long) {
 
 //      scope.serviceList = [];
+      window.startSpinner();
 
       window.api.call({
         method: 'get.indoor.service.list',
@@ -143,6 +144,7 @@
         onSuccess: function (result) {
           console.log('Clearing timer onSuccess', timeOutTimer);
           window.clearTimeout(timeOutTimer);
+          window.stopSpinner();
 
           if (result[0][0].error == 0) {
             if (result[1][0]) {
