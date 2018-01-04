@@ -15840,6 +15840,7 @@ var css = {
   "width: 100%; " +
   "top:" + 86 * widthK + "px; " +
   "bottom:0; " +
+  "overflow:hidden; " +
   "background-color: white; " +
   "}",
 
@@ -15849,6 +15850,7 @@ var css = {
   "position: absolute;" +
   "height:100%; " +
   "width: 100%; " +
+  "top: -0.5%; " +
   // "top:15%; " +
   // "bottom:0; " +
   "overflow-y: auto; " +
