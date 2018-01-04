@@ -91,30 +91,35 @@
 
       console.log("find location method");
 
-      var geoOptions = {timeout: 5000, enableHighAccuracy: true};
-      var onGeoSuccess = function (position) {
-        console.log("Success in getting position", position);
-        latitude = position.coords.latitude;
-        longitude = position.coords.longitude;
-        getServiceList(latitude, longitude);
+      try {
+        var geoOptions = {timeout: 5000, enableHighAccuracy: true};
+        var onGeoSuccess = function (position) {
+          console.log("Success in getting position", position);
+          latitude = position.coords.latitude;
+          longitude = position.coords.longitude;
+          getServiceList(latitude, longitude);
 
-      };
+        };
 
-      // onError Callback receives a PositionError object
-      //
-      function onGeoError(error) {
-        console.log("Error in getting position", error);
+        // onError Callback receives a PositionError object
+        //
+        function onGeoError(error) {
+          console.log("Error in getting position", error);
 //        window.common.alert.show("componentAlertId", {
 //          parent: scope,
 //          viewpage: "view-inplace-pay-category",
 //          errornote: window.languages.InPlacePayGpsErrorText
 //        });
-        latitude = 0;
-        longitude = 0;
-        getServiceList(latitude, longitude);
-      }
+          latitude = 0;
+          longitude = 0;
+          getServiceList(latitude, longitude);
+        }
 
-      navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError, geoOptions);
+        navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError, geoOptions);
+
+      } catch (e) {
+        console.log("Geolocation error =", e);
+      }
     };
 
 

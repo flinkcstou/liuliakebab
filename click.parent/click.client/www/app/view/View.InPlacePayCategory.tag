@@ -71,21 +71,27 @@
 
       console.log("find location method");
 
-      var geoOptions = {timeout: 5000, enableHighAccuracy: true};
-      var onGeoSuccess = function (position) {
-        console.log("Success in getting position", position);
-        latitude = position.coords.latitude;
-        longitude = position.coords.longitude;
+      try {
 
-      };
+        var geoOptions = {timeout: 5000, enableHighAccuracy: true};
+        var onGeoSuccess = function (position) {
+          console.log("Success in getting position", position);
+          latitude = position.coords.latitude;
+          longitude = position.coords.longitude;
 
-      // onError Callback receives a PositionError object
-      //
-      function onGeoError(error) {
-        console.log("Error in getting position", error)
+        };
+
+        // onError Callback receives a PositionError object
+        //
+        function onGeoError(error) {
+          console.log("Error in getting position", error)
+        }
+
+        navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError, geoOptions);
+
+      } catch (e) {
+        console.log("Geolocation error =", e);
       }
-
-      navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError, geoOptions);
     };
 
     console.log("location_find=", localStorage.getItem('location_find'));

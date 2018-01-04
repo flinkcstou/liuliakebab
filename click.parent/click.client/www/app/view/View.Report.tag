@@ -140,59 +140,6 @@
       }
     });
 
-    scope.leftOfOperations = 320 * widthK;
-    scope.firstReportView = true;
-    scope.count = 12;
-    scope.firstReportView = !opts.show_graph;
-    scope.filterOpen = false;
-
-
-    if (!scope.mNumber) {
-      scope.mNumber = 12;
-
-      scope.monthNotStartedYet = false;
-
-      this.on('mount', function () {
-        changePositionReportInit();
-      });
-    }
-
-
-    var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-
-    scope.monthsArray = window.languages.ViewReportMonthsArray;
-    scope.mArray = [];
-    var j = 12, t;
-    var curMonth = new Date().getMonth();
-    var y = new Date().getFullYear();
-    var yearChanged = false;
-    console.log("monthsArray", scope.monthsArray, curMonth);
-
-    var i = curMonth;
-    while (j > 0) {
-      console.log("i=", i);
-      if (i < 0) {
-        t = 12 + i;
-        if (!yearChanged) {
-          yearChanged = true;
-          y--;
-        }
-
-      } else {
-        t = i;
-      }
-
-      console.log("t=", t, ", j=", j, ", mArray[j]", scope.monthsArray[t].name);
-      scope.mArray[j - 1] = {"count": j--, "name": scope.monthsArray[t].name, "month": t, "year": y};
-//      console.log("array elem=", {"count": j--, "name": scope.monthsArray[t].name, "month": t});
-      console.log("array=", scope.mArray[j]);
-      i--;
-    }
-    console.log("mArray", scope.mArray)
-    scope.update(scope.mArray);
-
-
     var monthChanged = false;
     var mCarouselTouchStartX, mCarouselTouchStartY, mCarouselTouchEndX, mCarouselTouchEndY;
     var paymentTouchStartY, paymentTouchStartX, paymentTouchEndY, paymentTouchEndX;
@@ -208,6 +155,54 @@
     scope.paymentsList = [];
     scope.pageNumberOptional = 1;
     scope.showComponent = false;
+
+    scope.leftOfOperations = 320 * widthK;
+    scope.firstReportView = true;
+    scope.count = 12;
+    scope.firstReportView = !opts.show_graph;
+    scope.filterOpen = false;
+    var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+
+    scope.monthsArray = window.languages.ViewReportMonthsArray;
+    scope.mArray = [];
+    var j = 12, t;
+    var curMonth = new Date().getMonth();
+    var i = curMonth;
+    var y = new Date().getFullYear();
+    var yearChanged = false;
+
+
+    if (!scope.mNumber) {
+      scope.mNumber = 12;
+
+      scope.monthNotStartedYet = false;
+
+      this.on('mount', function () {
+        changePositionReportInit();
+      });
+    }
+
+
+    while (j > 0) {
+
+      if (i < 0) {
+
+        t = 12 + i;
+
+        if (!yearChanged) {
+          yearChanged = true;
+          y--;
+        }
+
+      } else {
+        t = i;
+      }
+      scope.mArray[j - 1] = {"count": j--, "name": scope.monthsArray[t].name, "month": t, "year": y};
+      i--;
+    }
+
+    scope.update(scope.mArray);
 
 
     touchStartTitleStart = function () {
@@ -256,7 +251,6 @@
       scope.update();
 
       var date = new Date();
-//      var yearToSearch = scope.mNumber >= 12 - curMonth ? date.getFullYear() : date.getFullYear() - 1;
       firstDay = new Date(scope.mArray[scope.mNumber].year, scope.mArray[scope.mNumber].month, 1);
       lastDay = new Date(scope.mArray[scope.mNumber].year, scope.mArray[scope.mNumber].month + 1, 0);
 
@@ -518,9 +512,6 @@
       if (!(firstDay && lastDay)) {
 
         var date = new Date();
-        console.log("mNumber=", scope.mNumber, curMonth)
-//        var yearToSearch = scope.mNumber >= 12 - curMonth ? date.getFullYear() : date.getFullYear() - 1;
-//        console.log("yearToSearch", yearToSearch)
         firstDay = new Date(scope.mArray[scope.mNumber].year, scope.mArray[scope.mNumber].month, 1);
         lastDay = new Date(scope.mArray[scope.mNumber].year, scope.mArray[scope.mNumber].month + 1, 0);
 
@@ -671,7 +662,6 @@
       if (!(firstDay && lastDay)) {
 
         var date = new Date();
-//        var yearToSearch = scope.mNumber >= 12 - curMonth ? date.getFullYear() : date.getFullYear() - 1;
         firstDay = new Date(scope.mArray[scope.mNumber].year, scope.mArray[scope.mNumber].month, 1);
         lastDay = new Date(scope.mArray[scope.mNumber].year, scope.mArray[scope.mNumber].month + 1, 0);
 

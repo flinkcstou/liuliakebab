@@ -132,8 +132,8 @@
       console.log("status.checkPermission 111 = ", status.checkPermission);
       if (!status.checkPermission) {
         var errorCallback = function () {
-          console.log('location find FALSE');
-          localStorage.setItem('location_find', false);
+          console.log('location find FALSE in success');
+          localStorage.setItem('location_find', true);
         };
         permissions.requestPermission(
           permissions.ACCESS_COARSE_LOCATION,

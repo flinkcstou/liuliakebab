@@ -283,12 +283,12 @@
             if (result[0][0].error == 0) {
               if (result[1])
                 if (!result[1][0].payment_id && result[1][0].invoice_id) {
-                  console.log('Clearing timer onSuccess',timeOutTimer);
+                  console.log('Clearing timer onSuccess', timeOutTimer);
                   window.clearTimeout(timeOutTimer);
                   viewServicePage.phoneText = null;
                   viewServicePage.amountText = null;
                   viewServicePinCards.friendHelpPaymentMode = false;
-                  updateResultComponent(true, successStep, null, 'success', window.languages.ComponentResultQRSuccess);
+                  updateResultComponent(true, successStep, null, 'success', result[0][0].error_note);
                 } else if (result[1][0].payment_id && !result[1][0].invoice_id) {
                   setTimeout(function () {
                     checkQrPaymentStatus(result[1][0].payment_id);
@@ -301,7 +301,7 @@
           },
 
           onFail: function (api_status, api_status_message, data) {
-            console.log('Clearing timer onFail',timeOutTimer);
+            console.log('Clearing timer onFail', timeOutTimer);
             window.clearTimeout(timeOutTimer);
             updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
@@ -309,21 +309,21 @@
           },
           onTimeOut: function () {
             timeOutTimer = setTimeout(function () {
-                scope.errorNote = window.languages.WaitingTimeExpiredText;
-                scope.viewPage = pageToReturnIfError;
-                scope.update();
-                window.common.alert.updateView("componentResultId", {
-                  parent: scope,
-                  resulttext: scope.resultText,
-                  viewpage: scope.viewPage,
-                  step_amount: scope.stepAmount
-                });
+              scope.errorNote = window.languages.WaitingTimeExpiredText;
+              scope.viewPage = pageToReturnIfError;
+              scope.update();
+              window.common.alert.updateView("componentResultId", {
+                parent: scope,
+                resulttext: scope.resultText,
+                viewpage: scope.viewPage,
+                step_amount: scope.stepAmount
+              });
 
             }, 30000);
             console.log('creating timeOut', timeOutTimer);
           },
-          onEmergencyStop: function(){
-            console.log('Clearing timer emergencyStop',timeOutTimer);
+          onEmergencyStop: function () {
+            console.log('Clearing timer emergencyStop', timeOutTimer);
             window.clearTimeout(timeOutTimer);
           }
         }, 30000);
@@ -350,12 +350,12 @@
           if (result[0][0].error == 0 && result[1][0]) {
             if (result[1][0].state == -1) {
 
-              console.log('Clearing timer onSuccess',timeOutTimer);
+              console.log('Clearing timer onSuccess', timeOutTimer);
               window.clearTimeout(timeOutTimer);
               updateResultComponent(true, unsuccessStep, null, 'unsuccess', result[1][0].error);
             } else if (result[1][0].state == 2) {
 
-              console.log('Clearing timer onSuccess',timeOutTimer);
+              console.log('Clearing timer onSuccess', timeOutTimer);
               window.clearTimeout(timeOutTimer);
               window.updateBalanceGlobalFunction();
               viewServicePage.phoneText = null;
@@ -370,7 +370,7 @@
                   checkQrPaymentStatus(result[1][0].payment_id);
                 }, 2000);
               } else {
-                console.log('Clearing timer onSuccess',timeOutTimer);
+                console.log('Clearing timer onSuccess', timeOutTimer);
                 window.clearTimeout(timeOutTimer);
                 updateResultComponent(true, waitingStep, null, 'waiting', window.languages.ComponentInProcessingPartOneForPay);
               }
@@ -379,21 +379,21 @@
 
           }
           else {
-            console.log('Clearing timer onSuccess',timeOutTimer);
+            console.log('Clearing timer onSuccess', timeOutTimer);
             window.clearTimeout(timeOutTimer);
             updateResultComponent(true, errorStep, pageToReturnIfError, 'unsuccess', result[1][0].error);
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
-          console.log('Clearing timer onFail',timeOutTimer);
+          console.log('Clearing timer onFail', timeOutTimer);
           window.clearTimeout(timeOutTimer);
           updateResultComponent(true, errorStep, pageToReturnIfError, 'unsuccess', api_status_message);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         },
-        onEmergencyStop: function(){
-          console.log('Clearing timer emergencyStop',timeOutTimer);
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimer);
           window.clearTimeout(timeOutTimer);
         }
       });

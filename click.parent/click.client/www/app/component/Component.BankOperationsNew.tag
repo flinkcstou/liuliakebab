@@ -65,7 +65,6 @@
       document.getElementById(id).style.webkitTransform = 'scale(1)'
 
       if (Math.abs(closeIFrameStartX - closeIFrameEndX) <= 20 && Math.abs(closeIFrameStartY - closeIFrameEndY) <= 20) {
-        console.log('qweweeee')
         window.checkShowingComponent = null;
         riot.update()
       }

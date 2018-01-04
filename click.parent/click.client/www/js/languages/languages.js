@@ -22,7 +22,7 @@ var RU_LANGUAGES =
 
     "ComponentBankOperationsAutoPay": "АВТОПЛАТЁЖ",
     "ComponentBankOperationsQr": "СКАНЕР QR",
-    "ComponentBankOperationsInPlacePay": "НА МЕСТАХ",
+    "ComponentBankOperationsInPlacePay": "ОПЛАТА НА МЕСТАХ",
 
     "BankOperationsAutoPay": "МОИ КАРТЫ",
 
