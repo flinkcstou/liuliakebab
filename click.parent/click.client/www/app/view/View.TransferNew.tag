@@ -170,7 +170,7 @@
           contactPhoneBlurAndChange();
         }
         if (opts.transferType && opts.transferType === 'card') {
-          console.log('open transfers to card')
+          console.log('open transfers to card');
           changeIconTransferByCard();
           scope.transferTypeNumber = 1;
           cardInputId.value = opts.cardNumber;
@@ -208,7 +208,6 @@
       if (modeOfApp.offlineMode) {
         between.style.display = 'none';
         betweenForm.style.display = 'none';
-        scope.transferTypeCount--;
         card.style.width = '50%';
         contact.style.width = '50%';
       }
@@ -217,7 +216,6 @@
         if (scope.countCard < 3) {
           between.style.display = 'none';
           betweenForm.style.display = 'none';
-          scope.transferTypeCount--;
           card.style.width = '50%';
           contact.style.width = '50%';
         }
@@ -235,10 +233,12 @@
         if (scope.cardCounter < 2) {
           between.style.display = 'none';
           betweenForm.style.display = 'none';
-          scope.transferTypeCount--;
           card.style.width = '50%';
           contact.style.width = '50%';
         }
+      }
+      if (between.style.display === 'none'){
+        scope.transferTypeCount--;
       }
       transferType.addEventListener("webkitTransitionEnd", transitionEnd, true);
       transferType.addEventListener("webkitTransitionRun", transitionRun, true);
@@ -267,7 +267,10 @@
             betweenAmountId.focus();
           }, 0);
         }
-        scope.transitionRunning = false;
+        transitionStart();
+        setTimeout(function () {
+          scope.transitionRunning = false;
+        }, 500);
       };
       transitionRun = function () {
         console.log('transitionRun');
@@ -284,22 +287,31 @@
         scope.deltaTransferType = scope.leftTransferType;
       };
 
-      moveTouchTransferTypeCarousel = function (id) {
-        console.log(id.childNodes[1].id);
+      moveTouchTransferTypeCarousel = function () {
+        event.preventDefault();
+        event.stopPropagation();
+        if (scope.transitionRunning)
+          return;
+        transferTouchEndX = event.changedTouches[0].pageX;
+        moveDeltaX = transferTouchEndX - transferTouchStartX;
+        if (moveDeltaX > 0 && scope.transferTypeNumber === 0)
+          return;
+        if (moveDeltaX < 0 && scope.transferTypeNumber === scope.transferTypeCount)
+          return;
         contactPhoneNumberId.blur();
         cardInputId.blur();
         betweenAmountId.blur();
-        document.getElementById(id.childNodes[1].id).style.transition = '0s';
-        document.getElementById(id.childNodes[1].id).style.webkitTransition = '0s';
-        document.getElementById(id.childNodes[1].id).style.transform = "translate3d(" + (event.changedTouches[0].pageX + scope.deltaTransferType) + 'px' + ", 0, 0)";
-        document.getElementById(id.childNodes[1].id).style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + scope.deltaTransferType) + 'px' + ", 0, 0)";
+        document.getElementById("transferType").style.transition = '0s';
+        document.getElementById("transferType").style.webkitTransition = '0s';
+        document.getElementById("transferType").style.transform = "translate3d(" + (event.changedTouches[0].pageX + scope.deltaTransferType) + 'px' + ", 0, 0)";
+        document.getElementById("transferType").style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + scope.deltaTransferType) + 'px' + ", 0, 0)";
       };
 
-      endTouchTransferTypeCarousel = function (id) {
+      endTouchTransferTypeCarousel = function () {
         transferTouchEndX = event.changedTouches[0].pageX;
-        if (Math.abs(transferTouchStartX - transferTouchEndX) > 20) {
-          transitionStart();
-          changePositionTransferTypeCarousel(id.childNodes[1].id);
+        if (Math.abs(transferTouchStartX - transferTouchEndX) > 30 && !scope.transitionRunning) {
+//          transitionStart();
+          changePositionTransferTypeCarousel("transferType");
         }
       };
 
@@ -315,6 +327,7 @@
 
         if (transferTouchEndX < transferTouchStartX && scope.transferTypeNumber >= scope.transferTypeCount) {
           console.log('if #2');
+          console.log(scope.transferTypeCount);
           document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
           document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
           document.getElementById(id).style.transform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";

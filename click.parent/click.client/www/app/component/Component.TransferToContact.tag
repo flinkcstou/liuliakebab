@@ -226,6 +226,9 @@
     phoneSuggestionTouchStart = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      scope.parent.transitionRunning = true;
+
       transferContactTouchStartX = event.changedTouches[0].pageX;
       transferContactTouchStartY = event.changedTouches[0].pageY;
     };
@@ -233,6 +236,8 @@
     phoneSuggestionTouchEnd = function (suggestionPhone) {
       event.preventDefault();
       event.stopPropagation();
+
+      scope.parent.transitionRunning = false;
 
       transferContactTouchEndX = event.changedTouches[0].pageX;
       transferContactTouchEndY = event.changedTouches[0].pageY;
