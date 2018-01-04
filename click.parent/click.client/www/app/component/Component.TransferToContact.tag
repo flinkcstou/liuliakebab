@@ -304,7 +304,7 @@
     //Go to next step
     onTouchStartOfNextContact = function (button) {
 
-      console.log(button);
+      scope.parent.transitionRunning = true;
       button.style.webkitTransform = 'scale(0.7)';
 
       event.preventDefault();
@@ -315,6 +315,7 @@
     };
     onTouchEndOfNextContact = function (button) {
 
+      scope.parent.transitionRunning = false;
       button.style.webkitTransform = 'scale(1)';
 
       event.preventDefault();

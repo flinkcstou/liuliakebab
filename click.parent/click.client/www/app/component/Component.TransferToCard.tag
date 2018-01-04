@@ -344,6 +344,7 @@
     //Go to next step
     onTouchStartOfNextCard = function (button) {
 
+      scope.parent.transitionRunning = true;
       button.style.webkitTransform = 'scale(0.7)';
 
       event.preventDefault();
@@ -354,6 +355,7 @@
     };
     onTouchEndOfNextCard = function (button) {
 
+      scope.parent.transitionRunning = false;
       button.style.webkitTransform = 'scale(1)';
 
       event.preventDefault();

@@ -182,8 +182,8 @@
         }
         document.getElementById("transferType").style.transition = '0s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById("transferType").style.webkitTransition = '0s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-        document.getElementById("transferType").style.transform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
-        document.getElementById("transferType").style.webkitTransform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
+        document.getElementById("transferType").style.transform = "translate3d(" + (-scope.transferTypeNumber * 100) + '%' + ", 0, 0)";
+        document.getElementById("transferType").style.webkitTransform = "translate3d(" + (-scope.transferTypeNumber * 100) + '%' + ", 0, 0)";
       }
       else {
         if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).transfer) {
@@ -283,7 +283,7 @@
       //Choose transfer type
       startTouchTransferTypeCarousel = function () {
         transferTouchStartX = event.changedTouches[0].pageX;
-        scope.leftTransferType = -((720 * scope.transferTypeNumber) * widthK) - transferTouchStartX;
+        scope.leftTransferType = -(window.innerWidth * scope.transferTypeNumber) - transferTouchStartX;
         scope.deltaTransferType = scope.leftTransferType;
       };
 
@@ -309,7 +309,7 @@
 
       endTouchTransferTypeCarousel = function () {
         transferTouchEndX = event.changedTouches[0].pageX;
-        if (Math.abs(transferTouchStartX - transferTouchEndX) > 30 && !scope.transitionRunning) {
+        if (Math.abs(transferTouchStartX - transferTouchEndX) > 0 && !scope.transitionRunning) {
 //          transitionStart();
           changePositionTransferTypeCarousel("transferType");
         }
@@ -321,8 +321,8 @@
           ++scope.transferTypeNumber;
           document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
           document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-          document.getElementById(id).style.transform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
-          document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
+          document.getElementById(id).style.transform = "translate3d(" + (-scope.transferTypeNumber * 100) + '%' + ", 0, 0)";
+          document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.transferTypeNumber * 100) + '%' + ", 0, 0)";
         }
 
         if (transferTouchEndX < transferTouchStartX && scope.transferTypeNumber >= scope.transferTypeCount) {
@@ -330,8 +330,8 @@
           console.log(scope.transferTypeCount);
           document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
           document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-          document.getElementById(id).style.transform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
-          document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
+          document.getElementById(id).style.transform = "translate3d(" + (-scope.transferTypeNumber * 100) + '%' + ", 0, 0)";
+          document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.transferTypeNumber * 100) + '%' + ", 0, 0)";
         }
 
         if (transferTouchEndX > transferTouchStartX && scope.transferTypeNumber > 0) {
@@ -339,16 +339,16 @@
           --scope.transferTypeNumber;
           document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
           document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-          document.getElementById(id).style.transform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
-          document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
+          document.getElementById(id).style.transform = "translate3d(" + (-scope.transferTypeNumber * 100) + '%' + ", 0, 0)";
+          document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.transferTypeNumber * 100) + '%' + ", 0, 0)";
         }
 
         if (transferTouchEndX > transferTouchStartX && scope.transferTypeNumber === 0) {
           console.log('if #4');
           document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
           document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-          document.getElementById(id).style.transform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
-          document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
+          document.getElementById(id).style.transform = "translate3d(" + (-scope.transferTypeNumber * 100) + '%' + ", 0, 0)";
+          document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.transferTypeNumber * 100) + '%' + ", 0, 0)";
         }
         scope.update();
       };
@@ -407,8 +407,8 @@
           }
           document.getElementById("transferType").style.transition = '0s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
           document.getElementById("transferType").style.webkitTransition = '0s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
-          document.getElementById("transferType").style.transform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
-          document.getElementById("transferType").style.webkitTransform = "translate3d(" + (-scope.transferTypeNumber * 720) * widthK + 'px' + ", 0, 0)";
+          document.getElementById("transferType").style.transform = "translate3d(" + (-scope.transferTypeNumber * 100) + '%' + ", 0, 0)";
+          document.getElementById("transferType").style.webkitTransform = "translate3d(" + (-scope.transferTypeNumber * 100) + '%' + ", 0, 0)";
         }
       };
 

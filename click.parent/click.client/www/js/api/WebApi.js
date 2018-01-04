@@ -105,7 +105,6 @@ window.api.initSocket = function () {
   this.socket.onmessage = function (event) {
     if (modeOfApp.offlineMode) return;
     var parsedData = JSON.parse(event.data);
-    console.log("Received data:", parsedData);
 
     try {
       var method = parsedData.data[0][0].method;
