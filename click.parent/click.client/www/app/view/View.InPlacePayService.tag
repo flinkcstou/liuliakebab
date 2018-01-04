@@ -17,7 +17,7 @@
         </div>
       </div>
 
-      <div class="inplace-pay-inner-container" id="servicesBodyContainerId" onscroll="servicesBodyContainerTouchMove()">
+      <div class="inplace-pay-service-inner-container" id="servicesBodyContainerId" onscroll="servicesBodyContainerTouchMove()">
         <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
           <li each="{i in serviceList}" style="overflow: hidden;">
             <div if="{!(modeOfApp.offlineMode)}" class="inplace-pay-service-containter" id="{i.id}"

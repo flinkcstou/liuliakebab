@@ -15844,13 +15844,25 @@ var css = {
   "}",
 
 
-  inPlacePayInnerContainer: ".inplace-pay-inner-container" +
+  inPlacePayCategoryInnerContainer: ".inplace-pay-category-inner-container" +
   "{" +
   "position: absolute;" +
   "height:100%; " +
   "width: 100%; " +
   // "top:15%; " +
   // "bottom:0; " +
+  "overflow-y: auto; " +
+  "overflow-x: hidden; " +
+  "-webkit-overflow-scrolling: touch; " +
+  "}",
+
+  inPlacePayServiceInnerContainer: ".inplace-pay-service-inner-container" +
+  "{" +
+  "position: absolute;" +
+  "height:85%; " +
+  "width: 100%; " +
+  "top:15%; " +
+  "bottom:0; " +
   "overflow-y: auto; " +
   "overflow-x: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
