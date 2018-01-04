@@ -417,8 +417,8 @@
             window.checkShowingComponent = null;
           }
 
-          riotTags.innerHTML = "<view-service-page-new>";
-          riot.mount("view-service-page-new", opts);
+          riotTags.innerHTML = "<view-pay-confirm-new>";
+          riot.mount("view-pay-confirm-new", opts);
 
           scope.update();
 //        scope.unmount()

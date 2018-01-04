@@ -8,7 +8,7 @@
 
     <div class="inplace-pay-category-container" id="categoriesContainerId">
 
-      <div class="inplace-pay-search-container">
+      <div class="inplace-pay-search-container" style="display:none;">
         <div class="inplace-pay-search-field" id="searchContainerId">
           <input class="inplace-pay-search-input-part" type="text" id="searchInputId"
                  placeholder="{window.languages.InPlaceSearchPlaceHolderText}"/>

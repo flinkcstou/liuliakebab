@@ -15847,10 +15847,10 @@ var css = {
   inPlacePayInnerContainer: ".inplace-pay-inner-container" +
   "{" +
   "position: absolute;" +
-  "height:85%; " +
+  "height:100%; " +
   "width: 100%; " +
-  "top:15%; " +
-  "bottom:0; " +
+  // "top:15%; " +
+  // "bottom:0; " +
   "overflow-y: auto; " +
   "overflow-x: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
