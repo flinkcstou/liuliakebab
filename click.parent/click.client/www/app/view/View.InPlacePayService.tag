@@ -36,6 +36,7 @@
             </div>
           </li>
         </ul>
+        <div if="{serviceList.length==0 && searchMode}" class="inplace-pay-search-no-match">Нет совпадений</div>
       </div>
     </div>
   </div>
@@ -63,6 +64,7 @@
     scope.pageNumber = 1;
     scope.serviceList = [];
     var pageToReturn = "view-inplace-pay-category";
+    scope.searchMode = false;
 
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-inplace-pay-service') {
@@ -276,6 +278,9 @@
 
         if (modeOfApp.onlineMode && searchWord) {
 
+          window.blurFields();
+          window.startSpinner();
+          scope.searchMode = false;
           scope.serviceList = [];
           scope.pageNumber = 1;
 
@@ -293,6 +298,8 @@
             onSuccess: function (result) {
               console.log('Clearing timer onSuccess', timeOutTimer);
               window.clearTimeout(timeOutTimer);
+              window.stopSpinner();
+              scope.searchMode = true;
 
               if (result[0][0].error == 0) {
                 if (result[1][0]) {

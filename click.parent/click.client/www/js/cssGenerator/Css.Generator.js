@@ -16087,7 +16087,19 @@ var css = {
   "-webkit-box-shadow: 0px " + 5 * widthK + "px " + 12 * widthK + "px " + -7 * widthK + "px " + "rgba(0,0,0,1);" +
   "-moz-box-shadow: 0px " + 5 * widthK + "px " + 12 * widthK + "px " + -7 * widthK + "px " + "rgba(0,0,0,1);" +
   "box-shadow:  0px " + 5 * widthK + "px " + 12 * widthK + "px " + -7 * widthK + "px " + "rgba(0,0,0,1);" +
-  "}"
+  "}",
+
+  inPlacePaySearchNoMatch: ".inplace-pay-search-no-match " +
+  "{" +
+  "position: relative;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "width:" + 240 * widthK + "px;" +
+  "bottom:" + 17 * widthK + "px;" +
+  "color: #515151;" +
+  "top: 25%;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "}",
 
 }
 
