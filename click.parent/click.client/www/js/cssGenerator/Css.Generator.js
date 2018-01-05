@@ -5801,9 +5801,10 @@ var css = {
   "margin-right: auto;" +
   "left: 4%;" +
   "margin-top:" + 12 * widthK + "px;" +
-  "width:" + 180 * widthK + "px;" +
+  "width:" + 190 * widthK + "px;" +
   "text-align: center;" +
   "word-wrap: break-word;" +
+  "margin-bottom: 0;" +
   "}",
 
   transferNewMenuLabelCard: ".transfer-new-menu-label-card" +
@@ -5811,9 +5812,10 @@ var css = {
   "margin-left: auto;" +
   "margin-right: auto;" +
   "margin-top:" + 14 * widthK + "px;" +
-  "width:" + 108 * widthK + "px;" +
+  "width:" + 115 * widthK + "px;" +
   "text-align: center;" +
   "word-wrap: break-word;" +
+  "margin-bottom: 0;" +
   "}",
 
   transferNewMenuLabelBetween: ".transfer-new-menu-label-between" +
@@ -5823,9 +5825,10 @@ var css = {
   "margin-right: auto;" +
   "right: 5%;" +
   "margin-top:" + 10 * widthK + "px;" +
-  "width:" + 175 * widthK + "px;" +
+  "width:" + 187 * widthK + "px;" +
   "text-align: center;" +
   "word-wrap: break-word;" +
+  "margin-bottom: 0;" +
   "}",
 
   transferNewContactPhoneIcon: ".transfer-new-contact-phone-icon" +
