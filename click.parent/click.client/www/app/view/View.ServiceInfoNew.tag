@@ -10,10 +10,10 @@
          style="background-image: url({serviceIcon})"></div>
   </div>
 
-  <div class="pincard-body-container">
+  <div class="serviceinfo-body-container">
     <div class="serviceinfo-options" if="{type==3}">
       <div class="serviceinfo-option-text-container">
-        <p class="serviceinfo-option-text">{optionsHeader}</p></div>
+        <p class="serviceinfo-option-text">{optionsHeader}: {opts.firstFieldText}</p></div>
 
       <div class="serviceinfo-option-containter" ontouchstart="optionOnTouchStart()"
            ontouchend="optionOnTouchEnd(this.id)"

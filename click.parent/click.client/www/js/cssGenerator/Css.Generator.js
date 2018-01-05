@@ -15290,6 +15290,18 @@ var css = {
 
   //VIEW SERVICE INFO
 
+  serviceInfoBodyContainer: ".serviceinfo-body-container" +
+  "{" +
+  "position: absolute;" +
+  "height: " + 1092 * heightK + "px; " +
+  "width: 100%; " +
+  "top: " + 140 * heightK + "px; " +
+  "background-color: #f2f2f1;" +
+  // "overflow-x: hidden;" +
+  // "overflow-y: scroll;" +
+  // "-webkit-overflow-scrolling: touch; " +
+  "}",
+
   serviceInfoOptions: ".serviceinfo-options" +
   "{" +
   "width: 100%;" +
@@ -15310,12 +15322,11 @@ var css = {
 
   serviceInfoOptionText: ".serviceinfo-option-text" +
   "{" +
-  "position: absolute;" +
   "font-size: " + 27 * widthK + "px; " +
-  "color: #c1c1c1;" +
+  "text-align: center;" +
+  "color: gray;" +
   "margin: 0;" +
-  "left: 8%;" +
-  "top:40%;" +
+  "padding-top: " + 22 * widthK + "px; " +
   "}",
 
   serviceInfoOptionContainer: ".serviceinfo-option-containter" +
@@ -15323,11 +15334,9 @@ var css = {
   "position: relative;" +
   //"height: auto;" +
   "min-height:" + 240 * widthK + "px; " +
-  "width: 91%;" +
-  "left: 4%;" +
+  "width: 100%;" +
   //"margin-top: 1%;" +
-  "border-bottom:" + 1 * widthK + "px solid gainsboro;" +
-  "background-color: transparent;" +
+  "background-color: white;" +
   "}",
 
   serviceInfoOptionInfoContainer: ".serviceinfo-option-info-container" +
@@ -15343,18 +15352,18 @@ var css = {
   "{" +
   "position: relative;" +
   "height: " + 150 * widthK + "px; " +
-  "width: 90%;" +
+  "width: 100%;" +
   //"border:" + 1 * widthK + "px solid red;" +
   "overflow:hidden;" +
+  "border-bottom:" + 1 * widthK + "px solid gainsboro;" +
   "}",
 
   serviceInfoOptionTitleText: ".serviceinfo-option-title-text" +
   "{" +
   "position: relative;" +
   "background-size: contain;" +
-  "top: " + 30 * widthK + "px; " +
-  "left: 4%;" +
-  "text-align: left;" +
+  "top: " + 25 * widthK + "px; " +
+  "text-align: center;" +
   "font-size:" + 29 * widthK + "px; " +
   "color: gray;" +
   "}",
@@ -15363,12 +15372,11 @@ var css = {
   "{" +
   "position: relative;" +
   "background-size: contain;" +
-  "top: " + 45 * widthK + "px; " +
-  "left: 4%;" +
-  "text-align: left;" +
+  "top: " + 35 * widthK + "px; " +
+  "text-align: center;" +
   "font-size:" + 29 * widthK + "px; " +
-  "color: gray;" +
-  "width: 80%;" +
+  "font-weight: bold;" +
+  "color: #35a8f1;" +
   "height: " + 70 * widthK + "px; " +
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
