@@ -509,6 +509,7 @@
         onPaste = false;
 
       }
+      console.log("ON INPUT");
     }
 
     var cursorPositionSelectionStart, cursorPositionSelectionEnd, oldValueOfNumber;
@@ -535,6 +536,8 @@
           firstFieldInput.selectionStart = cursorPositionSelectionStart + 1;
 
       }
+
+      console.log("ON KEY UP");
       checkFieldsToActivateNext();
     };
 
@@ -587,7 +590,7 @@
       }
 
       if (opts && opts.number) {
-        firstFieldInput.value = inputVerification.telVerificationWithSpace(opts.number);
+        firstFieldInput.value = inputVerification.telVerificationWithSpace(inputVerification.telVerification(opts.number));
         scope.update();
 
       }
@@ -608,7 +611,7 @@
 
       checkFieldsToActivateNext()
 
-
+      console.log("ON MOUNT")
     });
 
     scope.focusFieldAfterTourClosed = focusFieldAfterTourClosed = function () {
@@ -1166,12 +1169,7 @@
         console.log("Service ", scope.service)
         scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1" || scope.fieldArray[0].parameter_id == "65536" || scope.fieldArray[0].parameter_id == "128";
         scope.calcOn = scope.service.cost == 1;
-        console.log("scope.servicesParamsMapOne[opts.chosenServiceId]", scope.servicesParamsMapOne[opts.chosenServiceId])
-        console.log("scope.servicesParamsMapTwo[opts.chosenServiceId]", scope.servicesParamsMapTwo[opts.chosenServiceId])
-        console.log("scope.servicesParamsMapThree[opts.chosenServiceId]", scope.servicesParamsMapThree[opts.chosenServiceId])
-        console.log("scope.servicesParamsMapFour[opts.chosenServiceId]", scope.servicesParamsMapFour[opts.chosenServiceId])
-        console.log("scope.servicesParamsMapFive[opts.chosenServiceId]", scope.servicesParamsMapFive[opts.chosenServiceId])
-        console.log("scope.servicesParamsMapSix[opts.chosenServiceId]", scope.servicesParamsMapSix[opts.chosenServiceId])
+
         if (scope.phoneFieldBool) {
           scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telVerificationWithSpace(opts.firstFieldText);
         }
