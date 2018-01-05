@@ -6036,7 +6036,8 @@ var css = {
   "{" +
   "position: relative;" +
   "margin: 0;" +
-  "left:" + 59 * widthK + "px;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
   "top:" + 20 * widthK + "px;" +
   "height:" + 345 * widthK + "px;" +
   "width:" + 607 * widthK + "px;" +
