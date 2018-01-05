@@ -241,13 +241,16 @@
         scope.transferTypeCount--;
       }
       transferType.addEventListener("webkitTransitionEnd", transitionEnd, true);
-      transferType.addEventListener("webkitTransitionRun", transitionRun, true);
       transferType.addEventListener("webkitTransitionStart", transitionStart, true);
       scope.update();
     });
 
     {
       transitionEnd = function () {
+        if (event.target.id != transferType.id) {
+          console.log(event.target.id, transferType.id);
+          return;
+        }
         console.log('transitionEnd', scope.transferTypeNumber);
         if (scope.transferTypeNumber === 0) {
           changeIconTransferByContact();
@@ -271,9 +274,6 @@
         setTimeout(function () {
           scope.transitionRunning = false;
         }, 500);
-      };
-      transitionRun = function () {
-        console.log('transitionRun');
       };
       transitionStart = function () {
         console.log('transitionStart');
@@ -310,7 +310,6 @@
       endTouchTransferTypeCarousel = function () {
         transferTouchEndX = event.changedTouches[0].pageX;
         if (Math.abs(transferTouchStartX - transferTouchEndX) > 0 && !scope.transitionRunning) {
-//          transitionStart();
           changePositionTransferTypeCarousel("transferType");
         }
       };
