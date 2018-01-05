@@ -97,7 +97,7 @@
       console.log("4 session_broken=", JSON.parse(localStorage.getItem('session_broken')));//
 
 
-      if (!JSON.parse(localStorage.getItem('click_client_authorized')) || JSON.parse(localStorage.getItem('session_broken')) || (JSON.parse(localStorage.getItem('settings_block')) === true && JSON.parse(localStorage.getItem('onResume')))) {
+      if ((!JSON.parse(localStorage.getItem('click_client_authorized')) && !modeOfApp.demoVersion) || JSON.parse(localStorage.getItem('session_broken')) || (JSON.parse(localStorage.getItem('settings_block')) === true && JSON.parse(localStorage.getItem('onResume')))) {
 
         console.log("AUTH MOUNT FROM NEWS");
 
