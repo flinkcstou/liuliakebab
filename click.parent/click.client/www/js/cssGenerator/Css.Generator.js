@@ -3355,6 +3355,7 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 200 * widthK + "px;" +
+  "z-index: 999999;" +
   "}",
 
   viewInfoOperationsIcon: ".view-info-operations-icon " +
@@ -10633,7 +10634,7 @@ var css = {
 
   //body
 
-  viewReportsPaymentsContainer: ".view-reports-payments-containter" +
+  viewReportsPaymentsContainer: ".view-reports-payments-container" +
   "{" +
   "position: relative;" +
   "width: 100%;" +
@@ -10643,7 +10644,7 @@ var css = {
   "{" +
   "position: relative;" +
   "height:" + 45 * widthK + "px; " +
-  "width: 100%;" +
+  "width: 98%;" +
   // "left: 4%;" +
   // "margin-top: 1%;" +
   //"border-bottom:" + 1 * widthK + "px solid gainsboro;" +
@@ -15836,7 +15837,7 @@ var css = {
   inPlacePayCategoryContainer: ".inplace-pay-category-container" +
   "{" +
   "position: absolute;" +
-  "height:93%; " +
+  "height:94%; " +
   "width: 100%; " +
   "top:" + 86 * widthK + "px; " +
   "bottom:0; " +
@@ -15848,11 +15849,11 @@ var css = {
   inPlacePayCategoryInnerContainer: ".inplace-pay-category-inner-container" +
   "{" +
   "position: absolute;" +
-  "height:100%; " +
+  // "height:100%; " +
   "width: 100%; " +
-  "top: -0.5%; " +
+  "top:" + -8 * widthK + "px; " +
   // "top:15%; " +
-  // "bottom:0; " +
+  "bottom:0; " +
   "overflow-y: auto; " +
   "overflow-x: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
@@ -15983,15 +15984,17 @@ var css = {
 
   // View InPlacePayService
 
-  inPlacePayServiceContainer: ".inplace-pay-service-containter" +
+  inPlacePayServiceContainer: ".inplace-pay-service-container" +
   "{" +
   "position: relative;" +
   "height:" + 190 * widthK + "px; " +
   "width: 92%;" +
   "left:4%;" +
+  "top:" + -4 * widthK + "px; " +
   "padding-top: 1%;" +
   "border-top:" + 0.5 + "px solid gainsboro;" +
   "background-color: transparent;" +
+  "z-index:9999999;" +
   "}",
 
 

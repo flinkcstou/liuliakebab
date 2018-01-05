@@ -20,7 +20,7 @@
       <div class="inplace-pay-service-inner-container" id="servicesBodyContainerId"
            onscroll="servicesBodyContainerTouchMove()">
 
-        <div each="{i in serviceList}" if="{!(modeOfApp.offlineMode)}" class="inplace-pay-service-containter"
+        <div each="{i in serviceList}" if="{!(modeOfApp.offlineMode)}" class="inplace-pay-service-container"
              id="{i.id}"
              ontouchstart="onTouchStartOfService(this.id)"
              ontouchend="onTouchEndOfService(this.id)">
@@ -678,7 +678,6 @@
 
         scope.pageNumber++;
         console.log("services container move pagenumber=", scope.pageNumber)
-        window.startSpinner();
         getServiceList(latitude, longitude);
       }
     };
