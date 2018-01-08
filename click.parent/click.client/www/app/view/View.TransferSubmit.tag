@@ -198,6 +198,7 @@
           scope.maxLimit = opts.maxLimit;
           scope.minLimit = opts.minLimit;
           scope.transferType = 1;
+          scope.receiverBank = opts.receiverbank;
           if (modeOfApp.offlineMode) {
             scope.showReceiver = false;
           }
@@ -318,10 +319,55 @@
       };
     }
 
+    checkLimits = function (cardNumber) {
+      //Check for limit of chosen card
+      if (JSON.parse(localStorage.getItem('click_client_issuer_list'))) {
+        if (scope.issuerList !== JSON.parse(localStorage.getItem('click_client_issuer_list')))
+          scope.issuerList = JSON.parse(localStorage.getItem('click_client_issuer_list'));
+
+        var currentIssuer = {};
+        var issuerPercent = 0;
+        var issuerMinLimit = 5000;
+        var issuerMaxLimit = 99999999999;
+
+        processingFound = false;
+        scope.issuerList.forEach(function (issuer) {
+          processingIdInInput = cardNumber.replace(/\s/g, '').substring(0, parseInt(issuer.prefix_length));
+          if (issuer.prefix === processingIdInInput) {
+            processingFound = true;
+            currentIssuer = issuer;
+          }
+        });
+
+        if (processingFound) {
+          bankIdInInput = cardNumber.replace(/\s/g, '').substring(parseInt(currentIssuer.code_start) - 1,
+            parseInt(currentIssuer.code_start) + parseInt(currentIssuer.code_length) - 1);
+          currentIssuer.item.forEach(function (bank) {
+            if (bank.code === bankIdInInput) {
+              issuerMinLimit = parseInt(bank.p2p_min_limit);
+              issuerMaxLimit = parseInt(bank.p2p_send_once_max_limit);
+              issuerPercent = parseInt(bank.p2p_percent);
+              if (scope.transferType === 1) {
+                scope.taxPercent = issuerPercent;
+                if (issuerMaxLimit > scope.receiverBank.p2p_receipt_once_max_limit){
+                  scope.maxLimit = scope.receiverBank.p2p_receipt_once_max_limit;
+                } else {
+                  scope.maxLimit = issuerMaxLimit;
+                }
+                if (bank.code)
+              }
+            }
+          });
+        }
+      }
+    };
+
     scope.cardChangedTop = cardChangedTop = function (cardNumber) {
       for (var i in scope.cardsarray) {
         if (scope.cardsarray[i].countCard === cardNumber) {
           scope.chosenCard = scope.cardsarray[i];
+          console.log('card changed !');
+          checkLimits(scope.chosenCard.numberPartOne + scope.chosenCard.numberMiddleTwo);
         }
       }
       if (scope.chosenCard === undefined) {

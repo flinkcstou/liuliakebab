@@ -256,6 +256,7 @@
             parseInt(currentIssuer.code_start) + parseInt(currentIssuer.code_length) - 1);
           currentIssuer.item.forEach(function (bank) {
             if (bank.code === bankIdInInput) {
+              scope.bank = bank;
               scope.bankImage = bank.image;
               bankIconId.style.display = 'block';
               bankIconFound = true;
@@ -418,6 +419,7 @@
           cardsarray: scope.cardsarray,
           cardcounter: scope.cardCounter,
           idcardfrommycards: scope.idCardFromMyCards,
+          receiverbank: scope.bank,
         };
         riotTags.innerHTML = "<view-transfer-submit>";
         riot.mount('view-transfer-submit', params);
