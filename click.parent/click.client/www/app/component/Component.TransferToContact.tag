@@ -267,6 +267,7 @@
         && Math.abs(transferContactTouchStartY - transferContactTouchEndY) <= 20) {
         try {
           window.plugins.PickContact.chooseContact(function (contactInfo) {
+            window.pickContactFromNativeChecker = true;
             setTimeout(function () {
               var phoneNumber;
               if (device.platform === 'iOS')
