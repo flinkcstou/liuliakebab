@@ -354,7 +354,6 @@
                 } else {
                   scope.maxLimit = issuerMaxLimit;
                 }
-                if (bank.code)
               }
             }
           });
