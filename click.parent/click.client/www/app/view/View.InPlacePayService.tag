@@ -389,8 +389,6 @@
         }
         if (device.platform != 'BrowserStand') {
           window.pickContactFromNativeChecker = true;
-          window.scannerCanBeAsked = false;
-
 
           cordova.plugins.barcodeScanner.scan(
             function (result) {
