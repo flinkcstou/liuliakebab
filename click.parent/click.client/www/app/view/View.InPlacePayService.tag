@@ -17,25 +17,25 @@
         </div>
       </div>
 
-      <div class="inplace-pay-service-inner-container" id="servicesBodyContainerId" onscroll="servicesBodyContainerTouchMove()">
-        <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
-          <li each="{i in serviceList}" style="overflow: hidden;">
-            <div if="{!(modeOfApp.offlineMode)}" class="inplace-pay-service-containter" id="{i.id}"
-                 ontouchstart="onTouchStartOfService(this.id)"
-                 ontouchend="onTouchEndOfService(this.id)">
-              <div class="inplace-pay-service-icon" style="background-image: url({i.image})"></div>
-              <div class="inplace-pay-service-info">
-                <div class="inplace-pay-service-name-field">{i.name}</div>
-                <div class="inplace-pay-service-address-field">{i.address}</div>
-                <div class="inplace-pay-service-distance-container" if="{i.distance && i.distance!=null}">
-                  <div class="inplace-pay-service-distance-icon"></div>
-                  <div class="inplace-pay-service-distance-field">{i.distance}</div>
-                </div>
-              </div>
-              <div class="inplace-pay-service-icon-tick"></div>
+      <div class="inplace-pay-service-inner-container" id="servicesBodyContainerId"
+           onscroll="servicesBodyContainerTouchMove()">
+
+        <div each="{i in serviceList}" if="{!(modeOfApp.offlineMode)}" class="inplace-pay-service-container"
+             id="{i.id}"
+             ontouchstart="onTouchStartOfService(this.id)"
+             ontouchend="onTouchEndOfService(this.id)">
+          <div class="inplace-pay-service-icon" style="background-image: url({i.image})"></div>
+          <div class="inplace-pay-service-info">
+            <div class="inplace-pay-service-name-field">{i.name}</div>
+            <div class="inplace-pay-service-address-field">{i.address}</div>
+            <div class="inplace-pay-service-distance-container" if="{i.distance && i.distance!=null}">
+              <div class="inplace-pay-service-distance-icon"></div>
+              <div class="inplace-pay-service-distance-field">{i.distance}</div>
             </div>
-          </li>
-        </ul>
+          </div>
+          <div class="inplace-pay-service-icon-tick"></div>
+        </div>
+
         <div if="{serviceList.length==0 && searchMode}" class="inplace-pay-search-no-match">Нет совпадений</div>
       </div>
     </div>
@@ -676,7 +676,6 @@
 
         scope.pageNumber++;
         console.log("services container move pagenumber=", scope.pageNumber)
-        window.startSpinner();
         getServiceList(latitude, longitude);
       }
     };
