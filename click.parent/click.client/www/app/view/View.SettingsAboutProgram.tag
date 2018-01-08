@@ -123,12 +123,11 @@
 
       if (Math.abs(rankButtonStartX - rankButtonEndX) <= 20 && Math.abs(rankButtonStartY - rankButtonEndY) <= 20) {
 
+        window.scannerCanBeAsked = false;
         if (device.platform === "iOS") {
-
           window.open('https://itunes.apple.com/us/app/click-uzbekistan/id768132591?mt=8');
         } else {
-
-          window.open('https://play.google.com/store/apps/details?id=air.com.ssdsoftwaresolutions.clickuz');
+          window.open('market://details?id=air.com.ssdsoftwaresolutions.clickuz', '_system');
         }
       }
     }
