@@ -18,6 +18,10 @@
            ontouchstart="transferTypeTouchStart(this.id)">
         <div id="contactIconId"
              class="transfer-new-menu-contact-icon">
+          <img id="contactIcon1" src="resources/icons/ViewTransfer/touser1.png"
+               class="transfer-new-menu-contact-icon-img-1">
+          <img id="contactIcon2" src="resources/icons/ViewTransfer/touser2.png"
+               class="transfer-new-menu-contact-icon-img-2">
         </div>
         <p id="contactLabelId" class="transfer-new-menu-label-contact">
           {window.languages.ViewPayTransferNewContactName}</p>
@@ -26,6 +30,10 @@
            ontouchend="transferTypeTouchEnd(this.id)"
            ontouchstart="transferTypeTouchStart(this.id)">
         <div id="cardIconId" class="transfer-new-menu-card-icon">
+          <img id="cardIcon1" src="resources/icons/ViewTransfer/tofriend1.png"
+               class="transfer-new-menu-card-icon-img-1">
+          <img id="cardIcon2" src="resources/icons/ViewTransfer/tofriend2.png"
+               class="transfer-new-menu-card-icon-img-2">
         </div>
         <p id="cardLabelId" class="transfer-new-menu-label-card">
           {window.languages.ViewPayTransferNewCardName}</p>
@@ -34,6 +42,10 @@
            ontouchend="transferTypeTouchEnd(this.id)"
            ontouchstart="transferTypeTouchStart(this.id)">
         <div id="betweenIconId" class="transfer-new-menu-between-icon">
+          <img id="betweenIcon1" src="resources/icons/ViewTransfer/toown1.png"
+               class="transfer-new-menu-between-icon-img-1">
+          <img id="betweenIcon2" src="resources/icons/ViewTransfer/toown2.png"
+               class="transfer-new-menu-between-icon-img-2">
         </div>
         <p id="betweenLabelId" class="transfer-new-menu-label-between">
           {window.languages.ViewPayTransferNewBetweenName}</p>
@@ -427,9 +439,15 @@
         contactLabelId.style.color = "#989898";
         cardLabelId.style.color = "#989898";
         betweenLabelId.style.color = "#989898";
-        contactIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/touser2.png)';
-        cardIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/tofriend2.png)';
-        betweenIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/toown2.png)';
+        contactIcon1.style.visibility = 'hidden';
+        contactIcon2.style.visibility = 'visible';
+        cardIcon1.style.visibility = 'hidden';
+        cardIcon2.style.visibility = 'visible';
+        betweenIcon1.style.visibility = 'hidden';
+        betweenIcon2.style.visibility = 'visible';
+//        contactIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/touser2.png)';
+//        cardIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/tofriend2.png)';
+//        betweenIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/toown2.png)';
       };
 
       //change icon transfer by contact
@@ -437,7 +455,9 @@
         makeAllGrey();
         checkPhoneNumberLength();
         contactLabelId.style.color = "black";
-        contactIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/touser1.png)';
+        contactIcon1.style.visibility = 'visible';
+        contactIcon2.style.visibility = 'hidden';
+//        contactIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/touser1.png)';
       };
 
       //change icon transfer by card
@@ -445,14 +465,18 @@
         makeAllGrey();
         checkCardNumberLength();
         cardLabelId.style.color = "black";
-        cardIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/tofriend1.png)';
+        cardIcon1.style.visibility = 'visible';
+        cardIcon2.style.visibility = 'hidden';
+//        cardIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/tofriend1.png)';
       };
 
       //change icon transfer by between
       changeIconTransferByBetween = function () {
         makeAllGrey();
         betweenLabelId.style.color = "black";
-        betweenIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/toown1.png)';
+        betweenIcon1.style.visibility = 'visible';
+        betweenIcon2.style.visibility = 'hidden';
+//        betweenIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/toown1.png)';
       };
     }
 
