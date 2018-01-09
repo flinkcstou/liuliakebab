@@ -55,7 +55,6 @@
         cardcounter="{cardCounter}"
         usefor="p2p"
         style="position: relative;
-        right:{16 * widthK}px;
         top:{16 * widthK}px">
       </component-transfer-card-carousel-top>
     </div>
