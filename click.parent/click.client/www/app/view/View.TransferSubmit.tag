@@ -314,7 +314,11 @@
           scope.showPlaceHolderError = false;
           scope.showCommission = false;
         }
-        scope.update()
+        scope.update();
+        if (event.keyCode === input_codes.ENTER){
+          if (device.platform !== 'BrowserStand')
+            cordova.plugins.Keyboard.close();
+        }
       };
     }
 

@@ -285,6 +285,10 @@
         transferTouchStartX = event.changedTouches[0].pageX;
         scope.leftTransferType = -(window.innerWidth * scope.transferTypeNumber) - transferTouchStartX;
         scope.deltaTransferType = scope.leftTransferType;
+
+        contactPhoneNumberId.readOnly = false;
+        cardInputId.readOnly = false;
+        betweenAmountId.readOnly = false;
       };
 
       moveTouchTransferTypeCarousel = function () {

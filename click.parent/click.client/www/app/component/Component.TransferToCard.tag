@@ -12,7 +12,9 @@
              oninput="cardBlurAndChange()"
              onchange="cardBlurAndChange()"
              onkeydown="cardOnKeyDown(this)"
-             onkeyup="searchCard()"/>
+             onkeyup="searchCard()"
+             onfocus="cardFocus()"
+             onblur="cardBlur()"/>
     </div>
 
     <div id="cardSuggestions" class="transfer-new-card-suggestions-container">
@@ -112,7 +114,18 @@
     //SearchCard owner
     cardOnKeyDown = function (input) {
       cardStopChanging = input.value.length >= 19 && event.keyCode !== input_codes.BACKSPACE_CODE
-        && event.keyCode !== input_codes.NEXT;
+        && event.keyCode !== input_codes.NEXT
+        && event.keyCode !== input_codes.ENTER;
+    };
+
+    cardFocus = function(){
+      betweenAmountId.readOnly = true;
+      contactPhoneNumberId.readOnly = true;
+    };
+
+    cardBlur = function(){
+      betweenAmountId.readOnly = false;
+      contactPhoneNumberId.readOnly = false;
     };
 
     //Work with card number input: cursour, spacedeleter
@@ -180,6 +193,10 @@
       checkForIcons();
       checkCardNumberLength();
       scope.update();
+      if (event.keyCode === input_codes.ENTER){
+        if (device.platform !== 'BrowserStand')
+          cordova.plugins.Keyboard.close();
+      }
     };
 
     cardOwnerFunction = function () {

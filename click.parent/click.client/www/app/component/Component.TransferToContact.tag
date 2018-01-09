@@ -9,7 +9,10 @@
            oninput="contactPhoneBlurAndChange()"
            onchange="contactPhoneBlurAndChange()"
            onkeyup="searchContacts()"
-           onkeydown="telTransferVerificationKeyDown(this)"/>
+           onkeydown="telTransferVerificationKeyDown(this)"
+           onfocus="contactPhoneFocus()"
+           onblur="contactPhoneBlur()"/>
+
     <div class="transfer-new-contact-phone-icon"
          role="button"
          aria-label="{window.languages.ChooseFromContacts}"
@@ -210,13 +213,28 @@
       });
       checkPhoneNumberLength();
       scope.update();
+      if (event.keyCode === input_codes.ENTER){
+        if (device.platform !== 'BrowserStand')
+          cordova.plugins.Keyboard.close();
+      }
     };
 
     //Check changing contact input
     telTransferVerificationKeyDown = function (input) {
       contactStopChanging = input.value.length >= scope.numberLength
         && event.keyCode !== input_codes.BACKSPACE_CODE
-        && event.keyCode !== input_codes.NEXT;
+        && event.keyCode !== input_codes.NEXT
+        && event.keyCode !== input_codes.ENTER;
+    };
+
+    contactPhoneFocus = function(){
+      betweenAmountId.readOnly = true;
+      cardInputId.readOnly = true;
+    };
+
+    contactPhoneBlur = function(){
+      betweenAmountId.readOnly = false;
+      cardInputId.readOnly = false;
     };
 
     onPasteTrigger = function () {

@@ -139,6 +139,8 @@
     amountOnBlur = function () {
       event.preventDefault();
       event.stopPropagation();
+      contactPhoneNumberId.readOnly = false;
+      cardInputId.readOnly = false;
     };
 
     amountFocus = function () {
@@ -147,6 +149,8 @@
       if (betweenAmountId.value.length === 1 && betweenAmountId.value[0] === '0') {
         betweenAmountId.value = '';
       }
+      contactPhoneNumberId.readOnly = true;
+      cardInputId.readOnly = true;
     };
 
     amountKeyUp = function () {
@@ -203,8 +207,11 @@
         scope.showPlaceHolderError = false;
         scope.showCommission = false;
       }
-      console.log(scope);
       scope.update();
+      if (event.keyCode === input_codes.ENTER){
+        if (device.platform !== 'BrowserStand')
+          cordova.plugins.Keyboard.close();
+      }
     };
 
     scope.cardChangedTop = cardChangedTop = function (cardNumber) {
