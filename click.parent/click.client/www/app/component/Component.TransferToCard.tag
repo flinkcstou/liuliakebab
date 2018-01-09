@@ -397,20 +397,6 @@
           scope.update();
           return;
         }
-        if (!scope.bankIdentified && !modeOfApp.demoVersion) {
-          cardInputId.blur();
-          scope.errorNote = 'Неверный номер карты';
-
-          window.common.alert.show("componentAlertId", {
-            parent: scope,
-            clickpinerror: scope.clickPinError,
-            errornote: scope.errorNote,
-            pathtosettings: scope.pathToSettings,
-            permissionerror: scope.permissionError,
-          });
-          scope.update();
-          return;
-        }
         if (scope.p2pStatusOfBank === 0){
             cardInputId.blur();
             scope.errorNote = 'Карта "' + scope.nameOfBank + '" банка временно недоступна для перевода средств';
