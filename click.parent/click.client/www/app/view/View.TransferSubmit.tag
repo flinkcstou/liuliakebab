@@ -199,6 +199,7 @@
           scope.minLimit = opts.minLimit;
           scope.transferType = 1;
           scope.receiverBank = opts.receiverbank;
+          scope.receiverBank.procType = opts.proctype;
           if (modeOfApp.offlineMode) {
             scope.showReceiver = false;
           }
@@ -340,6 +341,7 @@
           if (issuer.prefix === processingIdInInput) {
             processingFound = true;
             currentIssuer = issuer;
+            issuerProcType = currentIssuer.prefix;
           }
         });
 
@@ -351,6 +353,7 @@
               issuerMinLimit = parseInt(bank.p2p_min_limit);
               issuerMaxLimit = parseInt(bank.p2p_send_once_max_limit);
               issuerPercent = parseInt(bank.p2p_percent);
+              issuerInBankLimit = parseInt(bank.p2p_in_bank_limit);
               if (scope.transferType === 1) {
                 scope.taxPercent = issuerPercent;
                 scope.receiverBank.p2p_min_limit = parseInt(scope.receiverBank.p2p_min_limit);
@@ -365,6 +368,13 @@
                   scope.minLimit = issuerMinLimit;
                 } else {
                   scope.minLimit = scope.receiverBank.p2p_min_limit;
+                }
+                if (issuerInBankLimit === 0) {
+                  if (issuerProcType === scope.receiverBank.procType) {
+                    if (bank.code === scope.receiverBank.code) {
+                      scope.maxLimit = 99999999999;
+                    }
+                  }
                 }
                 if (scope.sumForTransfer > 0) {
                   scope.showBottomButton = true;

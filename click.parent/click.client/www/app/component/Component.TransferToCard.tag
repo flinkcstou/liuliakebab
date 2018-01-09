@@ -265,6 +265,7 @@
             processingIconId.style.display = 'block';
             processingIconFound = true;
             currentIssuer = issuer;
+            scope.procType = issuer.prefix;
           }
         });
 
@@ -398,20 +399,6 @@
           scope.update();
           return;
         }
-        if (!scope.bankIdentified && !modeOfApp.demoVersion) {
-          cardInputId.blur();
-          scope.errorNote = 'Неверный номер карты';
-
-          window.common.alert.show("componentAlertId", {
-            parent: scope,
-            clickpinerror: scope.clickPinError,
-            errornote: scope.errorNote,
-            pathtosettings: scope.pathToSettings,
-            permissionerror: scope.permissionError,
-          });
-          scope.update();
-          return;
-        }
         if (scope.p2pStatusOfBank === 0){
             cardInputId.blur();
             scope.errorNote = 'Карта "' + scope.nameOfBank + '" банка временно недоступна для перевода средств';
@@ -437,6 +424,7 @@
           cardcounter: scope.cardCounter,
           idcardfrommycards: scope.idCardFromMyCards,
           receiverbank: scope.bank,
+          proctype: scope.procType,
         };
         riotTags.innerHTML = "<view-transfer-submit>";
         riot.mount('view-transfer-submit', params);

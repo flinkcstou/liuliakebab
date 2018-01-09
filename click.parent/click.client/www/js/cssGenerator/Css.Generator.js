@@ -5873,7 +5873,33 @@ var css = {
   "margin-right: auto;" +
   "margin-top:" + 12 * widthK + "px;" +
   "background: transparent;" +
-  "background-image: url('resources/icons/ViewTransfer/touser2.png');" +
+  "background-repeat: no-repeat;" +
+  "background-size:" + 61 * widthK + "px;" +
+  "background-position: center;" +
+  "}",
+
+  transferNewMenuContactIconImg1: ".transfer-new-menu-contact-icon-img-1" +
+  "{" +
+  "position: relative;" +
+  "height:" + 51 * widthK + "px;" +
+  "width:" + 62 * widthK + "px;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "background: transparent;" +
+  "background-repeat: no-repeat;" +
+  "background-size:" + 61 * widthK + "px;" +
+  "background-position: center;" +
+  "}",
+
+  transferNewMenuContactIconImg2: ".transfer-new-menu-contact-icon-img-2" +
+  "{" +
+  "position: absolute;" +
+  "height:" + 51 * widthK + "px;" +
+  "width:" + 62 * widthK + "px;" +
+  "margin-top:-" + 58 * widthK + "px;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "background: transparent;" +
   "background-repeat: no-repeat;" +
   "background-size:" + 61 * widthK + "px;" +
   "background-position: center;" +
@@ -5888,7 +5914,34 @@ var css = {
   "margin-left: auto;" +
   "margin-right: auto;" +
   "background: transparent;" +
-  "background-image: url('resources/icons/ViewTransfer/tofriend2.png');" +
+  "background-repeat: no-repeat;" +
+  "background-size:" + 58 * widthK + "px;" +
+  "background-position: center;" +
+  "}",
+
+  transferNewMenuCardIconImg1: ".transfer-new-menu-card-icon-img-1" +
+  "{" +
+  "position: relative;" +
+  "height:" + 43 * widthK + "px;" +
+  "width:" + 61 * widthK + "px;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "background: transparent;" +
+  "background-repeat: no-repeat;" +
+  "background-size:" + 58 * widthK + "px;" +
+  "background-position: center;" +
+  "}",
+
+
+  transferNewMenuCardIconImg2: ".transfer-new-menu-card-icon-img-2" +
+  "{" +
+  "position: absolute;" +
+  "height:" + 43 * widthK + "px;" +
+  "width:" + 61 * widthK + "px;" +
+  "margin-top: -" + 49 * widthK + "px;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "background: transparent;" +
   "background-repeat: no-repeat;" +
   "background-size:" + 58 * widthK + "px;" +
   "background-position: center;" +
@@ -5902,10 +5955,35 @@ var css = {
   "right: 5%;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
-  "right: 5%;" +
   "margin-top:" + 12 * widthK + "px;" +
   "background: transparent;" +
-  "background-image: url('resources/icons/ViewTransfer/toown2.png');" +
+  "background-repeat: no-repeat;" +
+  "background-size:" + 50 * widthK + "px;" +
+  "background-position: center;" +
+  "}",
+
+  transferNewMenuBetweenIconImg1: ".transfer-new-menu-between-icon-img-1" +
+  "{" +
+  "position: relative;" +
+  "height:" + 53 * widthK + "px;" +
+  "width:" + 52 * widthK + "px;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "background: transparent;" +
+  "background-repeat: no-repeat;" +
+  "background-size:" + 50 * widthK + "px;" +
+  "background-position: center;" +
+  "}",
+
+  transferNewMenuBetweenIconImg2: ".transfer-new-menu-between-icon-img-2" +
+  "{" +
+  "position: absolute;" +
+  "height:" + 53 * widthK + "px;" +
+  "width:" + 52 * widthK + "px;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "margin-top: -" + 60 * widthK + "px;" +
+  "background: transparent;" +
   "background-repeat: no-repeat;" +
   "background-size:" + 50 * widthK + "px;" +
   "background-position: center;" +
