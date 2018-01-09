@@ -315,7 +315,11 @@
           scope.showPlaceHolderError = false;
           scope.showCommission = false;
         }
-        scope.update()
+        scope.update();
+        if (event.keyCode === input_codes.ENTER){
+          if (device.platform !== 'BrowserStand')
+            cordova.plugins.Keyboard.close();
+        }
       };
     }
 
@@ -349,10 +353,58 @@
               issuerPercent = parseInt(bank.p2p_percent);
               if (scope.transferType === 1) {
                 scope.taxPercent = issuerPercent;
+                scope.receiverBank.p2p_min_limit = parseInt(scope.receiverBank.p2p_min_limit);
+                scope.receiverBank.p2p_receipt_once_max_limit = parseInt(scope.receiverBank.p2p_receipt_once_max_limit);
+                scope.receiverBank.p2p_min_limit = parseInt(scope.receiverBank.p2p_min_limit);
                 if (issuerMaxLimit > scope.receiverBank.p2p_receipt_once_max_limit){
                   scope.maxLimit = scope.receiverBank.p2p_receipt_once_max_limit;
                 } else {
                   scope.maxLimit = issuerMaxLimit;
+                }
+                if (issuerMinLimit > scope.receiverBank.p2p_min_limit){
+                  scope.minLimit = issuerMinLimit;
+                } else {
+                  scope.minLimit = scope.receiverBank.p2p_min_limit;
+                }
+                if (scope.sumForTransfer > 0) {
+                  scope.showBottomButton = true;
+                  scope.showPlaceHolderError = false;
+                  scope.showCommission = false;
+                  if (scope.sumForTransfer > scope.maxLimit) {
+                    scope.placeHolderText = 'Максимальная сумма ' + window.amountTransform(scope.maxLimit);
+                    scope.showPlaceHolderError = true;
+                    scope.showBottomButton = false;
+                  }
+                  if (scope.sumForTransfer < scope.minLimit) {
+                    scope.placeHolderText = "Минимальная сумма " + window.amountTransform(scope.minLimit);
+                    scope.showPlaceHolderError = true;
+                    scope.showBottomButton = false;
+                  }
+                  scope.tax = scope.sumForTransfer * scope.taxPercent / 100;
+                  scope.showCommission = true;
+                } else {
+                  scope.tax = 0
+                }
+              }
+              if (scope.transferType === 2) {
+                scope.maxLimit = issuerMaxLimit;
+                scope.minLimit = issuerMinLimit;
+                if (scope.sumForTransfer > 0) {
+                  scope.showBottomButton = true;
+                  scope.showPlaceHolderError = false;
+                  scope.showCommission = false;
+                  if (scope.sumForTransfer > scope.maxLimit) {
+                    scope.placeHolderText = 'Максимальная сумма ' + window.amountTransform(scope.maxLimit);
+                    scope.showPlaceHolderError = true;
+                    scope.showBottomButton = false;
+                  }
+                  if (scope.sumForTransfer < scope.minLimit) {
+                    scope.placeHolderText = "Минимальная сумма " + window.amountTransform(scope.minLimit);
+                    scope.showPlaceHolderError = true;
+                    scope.showBottomButton = false;
+                  }
+                  scope.tax = scope.sumForTransfer * scope.taxPercent / 100;
+                  scope.showCommission = true;
                 }
               }
             }
@@ -365,7 +417,6 @@
       for (var i in scope.cardsarray) {
         if (scope.cardsarray[i].countCard === cardNumber) {
           scope.chosenCard = scope.cardsarray[i];
-          console.log('card changed !');
           checkLimits(scope.chosenCard.numberPartOne + scope.chosenCard.numberMiddleTwo);
         }
       }

@@ -180,6 +180,10 @@
       checkForIcons();
       checkCardNumberLength();
       scope.update();
+      if (event.keyCode === input_codes.ENTER){
+        if (device.platform !== 'BrowserStand')
+          cordova.plugins.Keyboard.close();
+      }
     };
 
     cardOwnerFunction = function () {

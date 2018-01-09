@@ -210,6 +210,10 @@
       });
       checkPhoneNumberLength();
       scope.update();
+      if (event.keyCode === input_codes.ENTER){
+        if (device.platform !== 'BrowserStand')
+          cordova.plugins.Keyboard.close();
+      }
     };
 
     //Check changing contact input

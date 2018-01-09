@@ -254,6 +254,7 @@ invoiceActions.DECLINE = 2;
 window.input_codes = {};
 input_codes.BACKSPACE_CODE = 8;
 input_codes.NEXT = 9;
+input_codes.ENTER = 13;
 
 window.componentMenu = {};
 componentMenu.check = false;
