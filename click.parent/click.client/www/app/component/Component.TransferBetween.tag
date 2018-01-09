@@ -143,6 +143,8 @@
     amountOnBlur = function () {
       event.preventDefault();
       event.stopPropagation();
+      contactPhoneNumberId.readOnly = false;
+      cardInputId.readOnly = false;
     };
 
     amountFocus = function () {
@@ -151,6 +153,8 @@
       if (betweenAmountId.value.length === 1 && betweenAmountId.value[0] === '0') {
         betweenAmountId.value = '';
       }
+      contactPhoneNumberId.readOnly = true;
+      cardInputId.readOnly = true;
     };
 
     amountKeyUp = function () {
