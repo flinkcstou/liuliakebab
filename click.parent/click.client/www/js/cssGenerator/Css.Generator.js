@@ -3355,6 +3355,7 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 200 * widthK + "px;" +
+  "z-index: 999999;" +
   "}",
 
   viewInfoOperationsIcon: ".view-info-operations-icon " +
@@ -5872,7 +5873,33 @@ var css = {
   "margin-right: auto;" +
   "margin-top:" + 12 * widthK + "px;" +
   "background: transparent;" +
-  "background-image: url('resources/icons/ViewTransfer/touser2.png');" +
+  "background-repeat: no-repeat;" +
+  "background-size:" + 61 * widthK + "px;" +
+  "background-position: center;" +
+  "}",
+
+  transferNewMenuContactIconImg1: ".transfer-new-menu-contact-icon-img-1" +
+  "{" +
+  "position: relative;" +
+  "height:" + 51 * widthK + "px;" +
+  "width:" + 62 * widthK + "px;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "background: transparent;" +
+  "background-repeat: no-repeat;" +
+  "background-size:" + 61 * widthK + "px;" +
+  "background-position: center;" +
+  "}",
+
+  transferNewMenuContactIconImg2: ".transfer-new-menu-contact-icon-img-2" +
+  "{" +
+  "position: absolute;" +
+  "height:" + 51 * widthK + "px;" +
+  "width:" + 62 * widthK + "px;" +
+  "margin-top:-" + 58 * widthK + "px;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "background: transparent;" +
   "background-repeat: no-repeat;" +
   "background-size:" + 61 * widthK + "px;" +
   "background-position: center;" +
@@ -5887,7 +5914,34 @@ var css = {
   "margin-left: auto;" +
   "margin-right: auto;" +
   "background: transparent;" +
-  "background-image: url('resources/icons/ViewTransfer/tofriend2.png');" +
+  "background-repeat: no-repeat;" +
+  "background-size:" + 58 * widthK + "px;" +
+  "background-position: center;" +
+  "}",
+
+  transferNewMenuCardIconImg1: ".transfer-new-menu-card-icon-img-1" +
+  "{" +
+  "position: relative;" +
+  "height:" + 43 * widthK + "px;" +
+  "width:" + 61 * widthK + "px;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "background: transparent;" +
+  "background-repeat: no-repeat;" +
+  "background-size:" + 58 * widthK + "px;" +
+  "background-position: center;" +
+  "}",
+
+
+  transferNewMenuCardIconImg2: ".transfer-new-menu-card-icon-img-2" +
+  "{" +
+  "position: absolute;" +
+  "height:" + 43 * widthK + "px;" +
+  "width:" + 61 * widthK + "px;" +
+  "margin-top: -" + 49 * widthK + "px;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "background: transparent;" +
   "background-repeat: no-repeat;" +
   "background-size:" + 58 * widthK + "px;" +
   "background-position: center;" +
@@ -5901,10 +5955,35 @@ var css = {
   "right: 5%;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
-  "right: 5%;" +
   "margin-top:" + 12 * widthK + "px;" +
   "background: transparent;" +
-  "background-image: url('resources/icons/ViewTransfer/toown2.png');" +
+  "background-repeat: no-repeat;" +
+  "background-size:" + 50 * widthK + "px;" +
+  "background-position: center;" +
+  "}",
+
+  transferNewMenuBetweenIconImg1: ".transfer-new-menu-between-icon-img-1" +
+  "{" +
+  "position: relative;" +
+  "height:" + 53 * widthK + "px;" +
+  "width:" + 52 * widthK + "px;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "background: transparent;" +
+  "background-repeat: no-repeat;" +
+  "background-size:" + 50 * widthK + "px;" +
+  "background-position: center;" +
+  "}",
+
+  transferNewMenuBetweenIconImg2: ".transfer-new-menu-between-icon-img-2" +
+  "{" +
+  "position: absolute;" +
+  "height:" + 53 * widthK + "px;" +
+  "width:" + 52 * widthK + "px;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "margin-top: -" + 60 * widthK + "px;" +
+  "background: transparent;" +
   "background-repeat: no-repeat;" +
   "background-size:" + 50 * widthK + "px;" +
   "background-position: center;" +
@@ -6036,7 +6115,8 @@ var css = {
   "{" +
   "position: relative;" +
   "margin: 0;" +
-  "left:" + 59 * widthK + "px;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
   "top:" + 20 * widthK + "px;" +
   "height:" + 345 * widthK + "px;" +
   "width:" + 607 * widthK + "px;" +
@@ -10636,7 +10716,7 @@ var css = {
 
   //body
 
-  viewReportsPaymentsContainer: ".view-reports-payments-containter" +
+  viewReportsPaymentsContainer: ".view-reports-payments-container" +
   "{" +
   "position: relative;" +
   "width: 100%;" +
@@ -10646,7 +10726,7 @@ var css = {
   "{" +
   "position: relative;" +
   "height:" + 45 * widthK + "px; " +
-  "width: 100%;" +
+  "width: 98%;" +
   // "left: 4%;" +
   // "margin-top: 1%;" +
   //"border-bottom:" + 1 * widthK + "px solid gainsboro;" +
@@ -15290,6 +15370,18 @@ var css = {
 
   //VIEW SERVICE INFO
 
+  serviceInfoBodyContainer: ".serviceinfo-body-container" +
+  "{" +
+  "position: absolute;" +
+  "height: " + 1092 * heightK + "px; " +
+  "width: 100%; " +
+  "top: " + 140 * heightK + "px; " +
+  "background-color: #f2f2f1;" +
+  // "overflow-x: hidden;" +
+  // "overflow-y: scroll;" +
+  // "-webkit-overflow-scrolling: touch; " +
+  "}",
+
   serviceInfoOptions: ".serviceinfo-options" +
   "{" +
   "width: 100%;" +
@@ -15310,12 +15402,11 @@ var css = {
 
   serviceInfoOptionText: ".serviceinfo-option-text" +
   "{" +
-  "position: absolute;" +
   "font-size: " + 27 * widthK + "px; " +
-  "color: #c1c1c1;" +
+  "text-align: center;" +
+  "color: gray;" +
   "margin: 0;" +
-  "left: 8%;" +
-  "top:40%;" +
+  "padding-top: " + 22 * widthK + "px; " +
   "}",
 
   serviceInfoOptionContainer: ".serviceinfo-option-containter" +
@@ -15323,11 +15414,9 @@ var css = {
   "position: relative;" +
   //"height: auto;" +
   "min-height:" + 240 * widthK + "px; " +
-  "width: 91%;" +
-  "left: 4%;" +
+  "width: 100%;" +
   //"margin-top: 1%;" +
-  "border-bottom:" + 1 * widthK + "px solid gainsboro;" +
-  "background-color: transparent;" +
+  "background-color: white;" +
   "}",
 
   serviceInfoOptionInfoContainer: ".serviceinfo-option-info-container" +
@@ -15343,18 +15432,18 @@ var css = {
   "{" +
   "position: relative;" +
   "height: " + 150 * widthK + "px; " +
-  "width: 90%;" +
+  "width: 100%;" +
   //"border:" + 1 * widthK + "px solid red;" +
   "overflow:hidden;" +
+  "border-bottom:" + 1 * widthK + "px solid gainsboro;" +
   "}",
 
   serviceInfoOptionTitleText: ".serviceinfo-option-title-text" +
   "{" +
   "position: relative;" +
   "background-size: contain;" +
-  "top: " + 30 * widthK + "px; " +
-  "left: 4%;" +
-  "text-align: left;" +
+  "top: " + 25 * widthK + "px; " +
+  "text-align: center;" +
   "font-size:" + 29 * widthK + "px; " +
   "color: gray;" +
   "}",
@@ -15363,12 +15452,11 @@ var css = {
   "{" +
   "position: relative;" +
   "background-size: contain;" +
-  "top: " + 45 * widthK + "px; " +
-  "left: 4%;" +
-  "text-align: left;" +
+  "top: " + 35 * widthK + "px; " +
+  "text-align: center;" +
   "font-size:" + 29 * widthK + "px; " +
-  "color: gray;" +
-  "width: 80%;" +
+  "font-weight: bold;" +
+  "color: #35a8f1;" +
   "height: " + 70 * widthK + "px; " +
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
@@ -15839,7 +15927,7 @@ var css = {
   inPlacePayCategoryContainer: ".inplace-pay-category-container" +
   "{" +
   "position: absolute;" +
-  "height:93%; " +
+  "height:94%; " +
   "width: 100%; " +
   "top:" + 86 * widthK + "px; " +
   "bottom:0; " +
@@ -15851,11 +15939,11 @@ var css = {
   inPlacePayCategoryInnerContainer: ".inplace-pay-category-inner-container" +
   "{" +
   "position: absolute;" +
-  "height:100%; " +
+  // "height:100%; " +
   "width: 100%; " +
-  "top: -0.5%; " +
+  "top:" + -8 * widthK + "px; " +
   // "top:15%; " +
-  // "bottom:0; " +
+  "bottom:0; " +
   "overflow-y: auto; " +
   "overflow-x: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
@@ -15868,7 +15956,7 @@ var css = {
   "width: 100%; " +
   "top:15%; " +
   "bottom:0; " +
-  "overflow-y: auto; " +
+  "overflow-y: scroll; " +
   "overflow-x: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
   "}",
@@ -15986,15 +16074,17 @@ var css = {
 
   // View InPlacePayService
 
-  inPlacePayServiceContainer: ".inplace-pay-service-containter" +
+  inPlacePayServiceContainer: ".inplace-pay-service-container" +
   "{" +
   "position: relative;" +
   "height:" + 190 * widthK + "px; " +
   "width: 92%;" +
   "left:4%;" +
+  "top:" + -4 * widthK + "px; " +
   "padding-top: 1%;" +
   "border-top:" + 0.5 + "px solid gainsboro;" +
   "background-color: transparent;" +
+  "z-index:9999999;" +
   "}",
 
 

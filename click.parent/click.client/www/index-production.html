@@ -378,6 +378,7 @@
 
     if (componentMenu.check === true || window.pickContactFromNativeChecker === true || modeOfApp.offlineMode) {
       window.pickContactFromNativeChecker = false;
+      window.scannerCanBeAsked = false;
       componentMenu.check = false;
       return
     }
@@ -402,11 +403,10 @@
 
     if (modeOfApp.offlineMode) return
 
-    console.log('balance')
-
     if (modeOfApp.onlineMode && window.isConnected) {
-      console.log('HIDE CONFIRM')
+      console.log('HIDE CONFIRM and ALERT')
       window.common.alert.hide("componentConfirmId");
+      window.common.alert.hide("componentAlertId");
     }
 
     if (!checkFirstStarting && localStorage.getItem('click_client_token') && localStorage.getItem('click_client_loginInfo') &&
@@ -419,7 +419,7 @@
       if ((Math.abs(parseInt(waitingMinutes) - parseInt(nowMinutes)) > 5)) {
         console.log("5 minutes >");
         console.log("SESSION_BROKEN = TRUE");
-        localStorage.setItem('session_broken', true)
+        localStorage.setItem('session_broken', true);
         riotTags.innerHTML = "<view-authorization>";
         riot.mount('view-authorization');
         return

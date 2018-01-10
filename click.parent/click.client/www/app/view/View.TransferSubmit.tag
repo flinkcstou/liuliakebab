@@ -198,6 +198,8 @@
           scope.maxLimit = opts.maxLimit;
           scope.minLimit = opts.minLimit;
           scope.transferType = 1;
+          scope.receiverBank = opts.receiverbank;
+          scope.receiverBank.procType = opts.proctype;
           if (modeOfApp.offlineMode) {
             scope.showReceiver = false;
           }
@@ -314,14 +316,118 @@
           scope.showPlaceHolderError = false;
           scope.showCommission = false;
         }
-        scope.update()
+        scope.update();
+        if (event.keyCode === input_codes.ENTER){
+          if (device.platform !== 'BrowserStand')
+            cordova.plugins.Keyboard.close();
+        }
       };
     }
+
+    checkLimits = function (cardNumber) {
+      //Check for limit of chosen card
+      if (JSON.parse(localStorage.getItem('click_client_issuer_list'))) {
+        if (scope.issuerList !== JSON.parse(localStorage.getItem('click_client_issuer_list')))
+          scope.issuerList = JSON.parse(localStorage.getItem('click_client_issuer_list'));
+
+        var currentIssuer = {};
+        var issuerPercent = 0;
+        var issuerMinLimit = 5000;
+        var issuerMaxLimit = 99999999999;
+
+        processingFound = false;
+        scope.issuerList.forEach(function (issuer) {
+          processingIdInInput = cardNumber.replace(/\s/g, '').substring(0, parseInt(issuer.prefix_length));
+          if (issuer.prefix === processingIdInInput) {
+            processingFound = true;
+            currentIssuer = issuer;
+            issuerProcType = currentIssuer.prefix;
+          }
+        });
+
+        if (processingFound) {
+          bankIdInInput = cardNumber.replace(/\s/g, '').substring(parseInt(currentIssuer.code_start) - 1,
+            parseInt(currentIssuer.code_start) + parseInt(currentIssuer.code_length) - 1);
+          currentIssuer.item.forEach(function (bank) {
+            if (bank.code === bankIdInInput) {
+              issuerMinLimit = parseInt(bank.p2p_min_limit);
+              issuerMaxLimit = parseInt(bank.p2p_send_once_max_limit);
+              issuerPercent = parseInt(bank.p2p_percent);
+              issuerInBankLimit = parseInt(bank.p2p_in_bank_limit);
+              if (scope.transferType === 1) {
+                scope.taxPercent = issuerPercent;
+                scope.receiverBank.p2p_min_limit = parseInt(scope.receiverBank.p2p_min_limit);
+                scope.receiverBank.p2p_receipt_once_max_limit = parseInt(scope.receiverBank.p2p_receipt_once_max_limit);
+                scope.receiverBank.p2p_min_limit = parseInt(scope.receiverBank.p2p_min_limit);
+                if (issuerMaxLimit > scope.receiverBank.p2p_receipt_once_max_limit){
+                  scope.maxLimit = scope.receiverBank.p2p_receipt_once_max_limit;
+                } else {
+                  scope.maxLimit = issuerMaxLimit;
+                }
+                if (issuerMinLimit > scope.receiverBank.p2p_min_limit){
+                  scope.minLimit = issuerMinLimit;
+                } else {
+                  scope.minLimit = scope.receiverBank.p2p_min_limit;
+                }
+                if (issuerInBankLimit === 0) {
+                  if (issuerProcType === scope.receiverBank.procType) {
+                    if (bank.code === scope.receiverBank.code) {
+                      scope.maxLimit = 99999999999;
+                    }
+                  }
+                }
+                if (scope.sumForTransfer > 0) {
+                  scope.showBottomButton = true;
+                  scope.showPlaceHolderError = false;
+                  scope.showCommission = false;
+                  if (scope.sumForTransfer > scope.maxLimit) {
+                    scope.placeHolderText = 'Максимальная сумма ' + window.amountTransform(scope.maxLimit);
+                    scope.showPlaceHolderError = true;
+                    scope.showBottomButton = false;
+                  }
+                  if (scope.sumForTransfer < scope.minLimit) {
+                    scope.placeHolderText = "Минимальная сумма " + window.amountTransform(scope.minLimit);
+                    scope.showPlaceHolderError = true;
+                    scope.showBottomButton = false;
+                  }
+                  scope.tax = scope.sumForTransfer * scope.taxPercent / 100;
+                  scope.showCommission = true;
+                } else {
+                  scope.tax = 0
+                }
+              }
+              if (scope.transferType === 2) {
+                scope.maxLimit = issuerMaxLimit;
+                scope.minLimit = issuerMinLimit;
+                if (scope.sumForTransfer > 0) {
+                  scope.showBottomButton = true;
+                  scope.showPlaceHolderError = false;
+                  scope.showCommission = false;
+                  if (scope.sumForTransfer > scope.maxLimit) {
+                    scope.placeHolderText = 'Максимальная сумма ' + window.amountTransform(scope.maxLimit);
+                    scope.showPlaceHolderError = true;
+                    scope.showBottomButton = false;
+                  }
+                  if (scope.sumForTransfer < scope.minLimit) {
+                    scope.placeHolderText = "Минимальная сумма " + window.amountTransform(scope.minLimit);
+                    scope.showPlaceHolderError = true;
+                    scope.showBottomButton = false;
+                  }
+                  scope.tax = scope.sumForTransfer * scope.taxPercent / 100;
+                  scope.showCommission = true;
+                }
+              }
+            }
+          });
+        }
+      }
+    };
 
     scope.cardChangedTop = cardChangedTop = function (cardNumber) {
       for (var i in scope.cardsarray) {
         if (scope.cardsarray[i].countCard === cardNumber) {
           scope.chosenCard = scope.cardsarray[i];
+          checkLimits(scope.chosenCard.numberPartOne + scope.chosenCard.numberMiddleTwo);
         }
       }
       if (scope.chosenCard === undefined) {

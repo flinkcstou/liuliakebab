@@ -12,7 +12,9 @@
              oninput="cardBlurAndChange()"
              onchange="cardBlurAndChange()"
              onkeydown="cardOnKeyDown(this)"
-             onkeyup="searchCard()"/>
+             onkeyup="searchCard()"
+             onfocus="cardFocus()"
+             onblur="cardBlur()"/>
     </div>
 
     <div id="cardSuggestions" class="transfer-new-card-suggestions-container">
@@ -112,7 +114,18 @@
     //SearchCard owner
     cardOnKeyDown = function (input) {
       cardStopChanging = input.value.length >= 19 && event.keyCode !== input_codes.BACKSPACE_CODE
-        && event.keyCode !== input_codes.NEXT;
+        && event.keyCode !== input_codes.NEXT
+        && event.keyCode !== input_codes.ENTER;
+    };
+
+    cardFocus = function(){
+      betweenAmountId.readOnly = true;
+      contactPhoneNumberId.readOnly = true;
+    };
+
+    cardBlur = function(){
+      betweenAmountId.readOnly = false;
+      contactPhoneNumberId.readOnly = false;
     };
 
     //Work with card number input: cursour, spacedeleter
@@ -180,6 +193,10 @@
       checkForIcons();
       checkCardNumberLength();
       scope.update();
+      if (event.keyCode === input_codes.ENTER){
+        if (device.platform !== 'BrowserStand')
+          cordova.plugins.Keyboard.close();
+      }
     };
 
     cardOwnerFunction = function () {
@@ -248,6 +265,7 @@
             processingIconId.style.display = 'block';
             processingIconFound = true;
             currentIssuer = issuer;
+            scope.procType = issuer.prefix;
           }
         });
 
@@ -256,6 +274,7 @@
             parseInt(currentIssuer.code_start) + parseInt(currentIssuer.code_length) - 1);
           currentIssuer.item.forEach(function (bank) {
             if (bank.code === bankIdInInput) {
+              scope.bank = bank;
               scope.bankImage = bank.image;
               bankIconId.style.display = 'block';
               bankIconFound = true;
@@ -380,20 +399,6 @@
           scope.update();
           return;
         }
-        if (!scope.bankIdentified && !modeOfApp.demoVersion) {
-          cardInputId.blur();
-          scope.errorNote = 'Неверный номер карты';
-
-          window.common.alert.show("componentAlertId", {
-            parent: scope,
-            clickpinerror: scope.clickPinError,
-            errornote: scope.errorNote,
-            pathtosettings: scope.pathToSettings,
-            permissionerror: scope.permissionError,
-          });
-          scope.update();
-          return;
-        }
         if (scope.p2pStatusOfBank === 0){
             cardInputId.blur();
             scope.errorNote = 'Карта "' + scope.nameOfBank + '" банка временно недоступна для перевода средств';
@@ -418,6 +423,8 @@
           cardsarray: scope.cardsarray,
           cardcounter: scope.cardCounter,
           idcardfrommycards: scope.idCardFromMyCards,
+          receiverbank: scope.bank,
+          proctype: scope.procType,
         };
         riotTags.innerHTML = "<view-transfer-submit>";
         riot.mount('view-transfer-submit', params);
