@@ -3989,7 +3989,7 @@ var css = {
   "margin: 0;" +
   "color: gray;" +
   "font-size:" + 24 * widthK + "px;" +
-  "bottom: -50%;" +
+  "bottom: -55%;" +
   "}",
 
 
@@ -4137,6 +4137,7 @@ var css = {
   "background-color: #00a8f1;" +
   "border-radius: " + 10 * widthK + "px;" +
   "text-transform: capitalize;" +
+  "margin-top: " + 20 * widthK + "px;" +
   "top: " + 200 * widthK + "px;" +
   "padding: 0;" +
   "font-size: " + 32 * widthK + "px;" +
@@ -4156,6 +4157,7 @@ var css = {
   "background-color: #D2D2D2;" +
   "border-radius: " + 10 * widthK + "px;" +
   "text-transform: capitalize;" +
+  "margin-top: " + 20 * widthK + "px;" +
   "top: " + 200 * widthK + "px;" +
   "padding: 0;" +
   "font-size: " + 32 * widthK + "px;" +
@@ -15413,7 +15415,7 @@ var css = {
   "{" +
   "position: relative;" +
   //"height: auto;" +
-  "min-height:" + 240 * widthK + "px; " +
+  // "min-height:" + 240 * widthK + "px; " +
   "width: 100%;" +
   //"margin-top: 1%;" +
   "background-color: white;" +
@@ -15454,6 +15456,34 @@ var css = {
   "background-size: contain;" +
   "top: " + 35 * widthK + "px; " +
   "text-align: center;" +
+  "font-size:" + 29 * widthK + "px; " +
+  "font-weight: bold;" +
+  "color: #35a8f1;" +
+  "height: " + 70 * widthK + "px; " +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "}",
+
+  serviceInfoOptionTitleTextOption: ".serviceinfo-option-title-text-option" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "top: " + 25 * widthK + "px; " +
+  "left: 4%;" +
+  "text-align: left;" +
+  "width: 80%;" +
+  "font-size:" + 29 * widthK + "px; " +
+  "color: gray;" +
+  "}",
+
+  serviceInfoOptionValueTextOption: ".serviceinfo-option-value-text-option" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "top: " + 35 * widthK + "px; " +
+  "left: 4%;" +
+  "text-align: left;" +
+  "width: 80%;" +
   "font-size:" + 29 * widthK + "px; " +
   "font-weight: bold;" +
   "color: #35a8f1;" +

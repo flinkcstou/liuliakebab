@@ -13,7 +13,9 @@
   <div class="serviceinfo-body-container">
     <div class="serviceinfo-options" if="{type==3}">
       <div class="serviceinfo-option-text-container">
-        <p class="serviceinfo-option-text">{optionsHeader}: {opts.firstFieldText}</p></div>
+        <div class="serviceinfo-option-text">{optionsHeader}<p if="{!checkIconShow}" style="display:inline">:
+          {opts.firstFieldText}</p></div>
+      </div>
 
       <div class="serviceinfo-option-containter" ontouchstart="optionOnTouchStart()"
            ontouchend="optionOnTouchEnd(this.id)"
@@ -21,8 +23,12 @@
            id="{i.option_value}">
         <ul class="serviceinfo-option-info-container" style="list-style:none">
           <li class="serviceinfo-option-detail" each="{j in i.option_object}">
-            <div class="serviceinfo-option-title-text">{j.title}:</div>
-            <div class="serviceinfo-option-value-text">
+            <div
+              class="{serviceinfo-option-title-text-option:checkIconShow,serviceinfo-option-title-text:!checkIconShow}">
+              {j.title}:
+            </div>
+            <div
+              class="{serviceinfo-option-value-text-option:checkIconShow,serviceinfo-option-value-text:!checkIconShow}">
               {j.value}
             </div>
           </li>
@@ -31,12 +37,13 @@
       </div>
     </div>
 
-    <div class="serviceinfo-options" if="{type==1}">
-      <div class="serviceinfo-inform-field" each="{i in infoArray}">
-        <p class="serviceinfo-inform-field-title">{i.title}:</p>
-        <p class="serviceinfo-inform-field-value">{i.value}</p>
-      </div>
-
+    <div class="serviceinfo-option-containter">
+      <ul class="serviceinfo-option-info-container" if="{type==1}">
+        <li class="serviceinfo-option-detail" each="{i in infoArray}">
+          <div class="serviceinfo-option-title-text">{i.title}:</div>
+          <div class="serviceinfo-option-value-text">{i.value}</div>
+        </li>
+      </ul>
     </div>
 
     <button class="serviceinfo-button-next"
