@@ -750,7 +750,6 @@
         } else if (servicesBodyContainerId.scrollTop == 0) {
           console.log("end swipe");
 
-          scope.animating = false;
           document.getElementById('servicesBodyContainerId').style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 0)';
           document.getElementById('servicesBodyContainerId').style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 0)';
           document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0,0,0)";
