@@ -18,7 +18,8 @@
       </div>
 
       <div class="inplace-pay-service-inner-container" id="servicesBodyContainerId"
-           onscroll="servicesBodyContainerTouchMove()">
+           ontouchmove="servicesBodyContainerTouchMove()" ontouchstart="servicesBodyContainerTouchStart()"
+           ontouchend="servicesBodyContainerTouchEnd()">
 
         <div each="{i in serviceList}" if="{!(modeOfApp.offlineMode)}" class="inplace-pay-service-container"
              id="{i.id}"
@@ -55,6 +56,8 @@
     var onTouchEndY, onTouchEndX;
     var goBackButtonStartX, goBackButtonEndX,
       goBackButtonStartY, goBackButtonEndY;
+    var servicesStartX, servicesEndX,
+      servicesStartY, servicesEndY;
     var searchStartX, searchEndX, searchStartY, searchEndY;
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
     var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
@@ -667,17 +670,97 @@
 
 
     servicesBodyContainerTouchMove = function () {
-      event.preventDefault();
-      event.stopPropagation();
 
-      console.log("services container move")
+      if (device.platform == 'Android') {
 
-      if ((servicesBodyContainerId.scrollHeight - servicesBodyContainerId.scrollTop) == servicesBodyContainerId.offsetHeight && scope.serviceList.length % 20 == 0) {
+        event.stopPropagation();
 
-        scope.pageNumber++;
-        console.log("services container move pagenumber=", scope.pageNumber)
-        getServiceList(latitude, longitude);
+        if ((servicesBodyContainerId.scrollHeight - servicesBodyContainerId.scrollTop) == servicesBodyContainerId.offsetHeight && event.changedTouches[0].pageY < servicesStartY) {
+
+          console.log("START ANIMATION", event.changedTouches[0].pageY + top);
+
+          if (Math.abs(event.changedTouches[0].pageY + top) < 250 * widthK) {
+
+            document.getElementById('servicesBodyContainerId').style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 0)';
+            document.getElementById('servicesBodyContainerId').style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 0)';
+            document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
+            document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
+
+          }
+        } else if (servicesBodyContainerId.scrollTop == 0 && event.changedTouches[0].pageY > servicesStartY) {
+
+          console.log("upper swipe", event.changedTouches[0].pageY + top);
+          if (Math.abs(event.changedTouches[0].pageY + top) < 250 * widthK) {
+
+            document.getElementById('servicesBodyContainerId').style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 0)';
+            document.getElementById('servicesBodyContainerId').style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 0)';
+            document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
+            document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
+
+          }
+        } else {
+
+          console.log("RETURNING");
+          document.getElementById('servicesBodyContainerId').style.transition = '0s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('servicesBodyContainerId').style.webkitTransition = '0s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0,0,0)";
+          document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0,0,0)";
+        }
+
       }
+    };
+
+    var top;
+
+    servicesBodyContainerTouchStart = function () {
+
+      if (device.platform == 'Android') {
+
+        servicesStartX = event.changedTouches[0].pageX;
+        servicesStartY = event.changedTouches[0].pageY;
+
+        top = -servicesStartY;
+      }
+
+    };
+
+    servicesBodyContainerTouchEnd = function () {
+
+      if (device.platform == 'Android') {
+
+        servicesEndX = event.changedTouches[0].pageX;
+        servicesEndY = event.changedTouches[0].pageY;
+
+        if ((servicesBodyContainerId.scrollHeight - servicesBodyContainerId.scrollTop) == servicesBodyContainerId.offsetHeight) {
+
+          console.log("END ANIMATION");
+          document.getElementById('servicesBodyContainerId').style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('servicesBodyContainerId').style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0,0,0)";
+          document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0,0,0)";
+
+          setTimeout(function () {
+            if (scope.serviceList.length % 20 == 0) {
+              scope.pageNumber++;
+              console.log("services container move pagenumber=", scope.pageNumber)
+              getServiceList(latitude, longitude);
+            }
+          }, 300)
+
+        } else if (servicesBodyContainerId.scrollTop == 0) {
+          console.log("end swipe");
+
+          scope.animating = false;
+          document.getElementById('servicesBodyContainerId').style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('servicesBodyContainerId').style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0,0,0)";
+          document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0,0,0)";
+
+
+        }
+
+      }
+
     };
 
 
