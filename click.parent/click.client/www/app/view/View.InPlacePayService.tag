@@ -67,6 +67,7 @@
     scope.pageNumber = 1;
     scope.serviceList = [];
     var pageToReturn = "view-inplace-pay-category";
+    var stepBack = 1;
     scope.searchMode = false;
 
 
@@ -163,7 +164,9 @@
           } else {
             window.common.alert.show("componentAlertId", {
               parent: scope,
-              viewpage: pageToReturn,
+//              viewpage: pageToReturn,
+              step_amount: stepBack,
+              viewmount: true,
               errornote: result[0][0].error_note
             });
           }
@@ -174,7 +177,9 @@
           window.clearTimeout(timeOutTimer);
           window.common.alert.show("componentAlertId", {
             parent: scope,
-            viewpage: pageToReturn,
+//            viewpage: pageToReturn,
+            step_amount: stepBack,
+            viewmount: true,
             errornote: window.languages.ServiceUnavailableText
           });
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
@@ -184,7 +189,9 @@
           timeOutTimer = setTimeout(function () {
             window.common.alert.show("componentAlertId", {
               parent: scope,
-              viewpage: pageToReturn,
+//              viewpage: pageToReturn,
+              step_amount: stepBack,
+              viewmount: true,
               errornote: window.languages.WaitingTimeExpiredText
             });
           }, 20000);
@@ -319,7 +326,9 @@
               } else {
                 window.common.alert.show("componentAlertId", {
                   parent: scope,
-                  viewpage: pageToReturn,
+                  //              viewpage: pageToReturn,
+                  step_amount: stepBack,
+                  viewmount: true,
                   errornote: result[0][0].error_note,
                 });
               }
@@ -330,7 +339,9 @@
               window.clearTimeout(timeOutTimer);
               window.common.alert.show("componentAlertId", {
                 parent: scope,
-                viewpage: pageToReturn,
+                //              viewpage: pageToReturn,
+                step_amount: stepBack,
+                viewmount: true,
                 errornote: window.languages.ServiceUnavailableText
               });
               console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
@@ -340,7 +351,9 @@
               timeOutTimer = setTimeout(function () {
                 window.common.alert.show("componentAlertId", {
                   parent: scope,
-                  viewpage: pageToReturn,
+                  //              viewpage: pageToReturn,
+                  step_amount: stepBack,
+                  viewmount: true,
                   errornote: window.languages.WaitingTimeExpiredText
                 });
               }, 20000);

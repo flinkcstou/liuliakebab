@@ -55,6 +55,7 @@
     var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
     var sessionKey = loginInfo.session_key;
     var latitude, longitude;
+    var mainPageToReturn = "view-main-page";
 
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-inplace-pay-category') {
@@ -105,6 +106,7 @@
     else if (modeOfApp.onlineMode) {
 
       scope.categoryList = [];
+      window.startSpinner();
 
       window.api.call({
         method: 'get.indoor.category.list',
@@ -115,7 +117,11 @@
         scope: this,
 
         onSuccess: function (result) {
-          if (result[0][0].error == 0)
+          console.log('Clearing timer onSuccess', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
+          window.stopSpinner();
+
+          if (result[0][0].error == 0) {
             if (result[1][0]) {
 
 
@@ -126,13 +132,40 @@
               }
               sessionStorage.setItem('click_client_inPlacePayCategoryList', JSON.stringify(scope.categoryList));
               scope.update();
-
             }
+          } else {
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              viewpage: mainPageToReturn,
+              errornote: result[0][0].error_note
+            });
+          }
 
         },
         onFail: function (api_status, api_status_message, data) {
+          console.log('Clearing timer onFail', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            viewpage: mainPageToReturn,
+            errornote: window.languages.ServiceUnavailableText
+          });
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
+        },
+        onTimeOut: function () {
+          timeOutTimer = setTimeout(function () {
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              viewpage: mainPageToReturn,
+              errornote: window.languages.WaitingTimeExpiredText
+            });
+          }, 20000);
+          console.log('creating timeOut', timeOutTimer);
+        },
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
         }
       });
     }
