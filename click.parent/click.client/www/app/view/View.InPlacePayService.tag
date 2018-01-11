@@ -694,8 +694,8 @@
 
           if (Math.abs(event.changedTouches[0].pageY + top) < 250 * widthK) {
 
-            document.getElementById('servicesBodyContainerId').style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 0)';
-            document.getElementById('servicesBodyContainerId').style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 0)';
+            document.getElementById('servicesBodyContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+            document.getElementById('servicesBodyContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
             document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
             document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
 
@@ -705,8 +705,8 @@
           console.log("upper swipe", event.changedTouches[0].pageY + top);
           if (Math.abs(event.changedTouches[0].pageY + top) < 250 * widthK) {
 
-            document.getElementById('servicesBodyContainerId').style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 0)';
-            document.getElementById('servicesBodyContainerId').style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 0)';
+            document.getElementById('servicesBodyContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+            document.getElementById('servicesBodyContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
             document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
             document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
 
@@ -747,8 +747,8 @@
         if ((servicesBodyContainerId.scrollHeight - servicesBodyContainerId.scrollTop) == servicesBodyContainerId.offsetHeight) {
 
           console.log("END ANIMATION");
-          document.getElementById('servicesBodyContainerId').style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 0)';
-          document.getElementById('servicesBodyContainerId').style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('servicesBodyContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('servicesBodyContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
           document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0,0,0)";
           document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0,0,0)";
 
@@ -763,8 +763,8 @@
         } else if (servicesBodyContainerId.scrollTop == 0) {
           console.log("end swipe");
 
-          document.getElementById('servicesBodyContainerId').style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 0)';
-          document.getElementById('servicesBodyContainerId').style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('servicesBodyContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('servicesBodyContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
           document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0,0,0)";
           document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0,0,0)";
 
