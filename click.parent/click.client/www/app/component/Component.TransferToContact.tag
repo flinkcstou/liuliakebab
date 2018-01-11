@@ -1,5 +1,7 @@
 <component-transfer-to-contact>
-  <div class="transfer-new-contact-phone-field">
+  <div class="transfer-new-contact-phone-field"
+       ontouchstart="contactNumberFormTouchStart()"
+       ontouchend="contactNumberFormTouchEnd()">
     <p class="transfer-new-contact-text-field">{window.languages.ViewPayTransferNewContactTextField}</p>
     <p class="transfer-new-contact-number-first-part">+{window.languages.CodeOfCountry}</p>
     <input id="contactPhoneNumberId"
@@ -304,6 +306,15 @@
           console.error(e);
         }
       }
+    };
+
+    contactNumberFormTouchStart = function () {
+      scope.parent.transitionRunning = true;
+    };
+
+    contactNumberFormTouchEnd = function () {
+      event.stopPropagation();
+      scope.parent.transitionRunning = false;
     };
 
     checkPhoneNumberLength = function () {
