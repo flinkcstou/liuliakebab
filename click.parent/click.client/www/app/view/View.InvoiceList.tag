@@ -412,7 +412,7 @@
           params = {
             is_p2p: invoice.is_p2p,
             invoice_id: invoice.invoice_id,
-            inParameter: invoice.cntrg_info_param3, //????
+            inParameter: invoice.cntrg_info_param2, //????
             amount: invoice.amount,
             commission: invoice.p2p_comission_amount,
             transferCode: invoice.p2p_secret_code,
@@ -420,6 +420,9 @@
             date: invoice.date,
             status: invoice.status_note
           };
+
+          if (invoice.cntrg_info_param3)
+            params.inParameter = invoice.cntrg_info_param3;
 
           scope.showComponent = true;
           scope.showComponentHistory = true;
