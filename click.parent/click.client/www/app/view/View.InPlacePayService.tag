@@ -778,6 +778,12 @@
 
         }
 
+      } else {
+        if (scope.serviceList.length % 20 == 0) {
+          scope.pageNumber++;
+          console.log("services container move pagenumber=", scope.pageNumber)
+          getServiceList(latitude, longitude);
+        }
       }
 
     };
