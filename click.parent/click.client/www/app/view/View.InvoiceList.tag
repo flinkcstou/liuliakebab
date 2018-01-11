@@ -412,7 +412,7 @@
           params = {
             is_p2p: invoice.is_p2p,
             invoice_id: invoice.invoice_id,
-            inParameter: invoice.cntrg_info_param2, //????
+            inParameter: invoice.cntrg_info_param3, //????
             amount: invoice.amount,
             commission: invoice.p2p_comission_amount,
             transferCode: invoice.p2p_secret_code,
