@@ -4,7 +4,10 @@
     <div id="bankIconId" class="transfer-new-card-bankIcon" style="background-image: url({bankImage});"></div>
     <div id="processingIconId" class="transfer-new-card-processingIcon"
          style="background-image: url({processingImage});"></div>
-    <div id="cardInputContainer" class="transfer-new-card-number-input-container">
+    <div id="cardInputContainer"
+         class="transfer-new-card-number-input-container"
+         ontouchstart="cardNumberFormTouchStart()"
+         ontouchend="cardNumberFormTouchEnd()">
       <input id="cardInputId"
              class="transfer-new-card-number-input"
              type="tel"
@@ -94,6 +97,16 @@
       }
       scope.update();
     });
+
+    cardNumberFormTouchStart = function () {
+      scope.parent.transitionRunning = true;
+    };
+
+    cardNumberFormTouchEnd = function () {
+      event.stopPropagation();
+      scope.parent.transitionRunning = false;
+    };
+
 
     //Card number input handler
     cardBlurAndChange = function () {

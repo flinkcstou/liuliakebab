@@ -1,5 +1,7 @@
 <component-transfer-between>
-  <div class="transfer-new-between-amount-field">
+  <div class="transfer-new-between-amount-field"
+       ontouchstart="betweenAmountFormTouchStart()"
+       ontouchend="betweenAmountFormTouchEnd()">
     <p class="transfer-new-between-text-field">{window.languages.ViewTransferDetailTitleSum}</p>
     <input id="betweenAmountId"
            class="transfer-new-between-amount-input"
@@ -132,6 +134,16 @@
       }
       scope.update();
     });
+
+    betweenAmountFormTouchStart = function () {
+      scope.parent.transitionRunning = true;
+    };
+
+    betweenAmountFormTouchEnd = function () {
+      event.stopPropagation();
+      scope.parent.transitionRunning = false;
+    };
+
 
     amountMouseUp = function () {
       event.preventDefault();
