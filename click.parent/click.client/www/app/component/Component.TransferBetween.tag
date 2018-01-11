@@ -254,7 +254,7 @@
               currentIssuerTop.item.forEach(function (bank) {
                 if (bank.code === bankIdInInputTop) {
                   scope.minLimitTop = parseInt(bank.p2p_min_limit);
-                  scope.maxLimitTop = parseInt(bank.p2p_max_limit);
+                  scope.maxLimitTop = parseInt(bank.p2p_send_once_max_limit);
                   scope.inBankLimitTop = parseInt(bank.p2p_in_bank_limit);
                   scope.bankCodeTop = bank.code;
                   if (scope.minLimitTop > scope.minLimitBottom) {
@@ -337,9 +337,11 @@
               currentIssuer.item.forEach(function (bank) {
                 if (bank.code === bankIdInInput) {
                   scope.minLimitBottom = parseInt(bank.p2p_min_limit);
-                  scope.maxLimitBottom = parseInt(bank.p2p_max_limit);
+                  scope.maxLimitBottom = parseInt(bank.p2p_receipt_once_max_limit);
                   scope.inBankLimitBottom = parseInt(bank.p2p_in_bank_limit);
                   scope.bankCodeBottom = bank.code;
+                  if (scope.maxLimitBottom === 0)
+                    scope.maxLimitBottom = 99999999999;
                   if (scope.minLimitTop > scope.minLimitBottom) {
                     scope.minLimit = scope.minLimitTop;
                   } else {

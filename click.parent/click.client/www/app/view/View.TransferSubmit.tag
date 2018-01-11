@@ -197,8 +197,18 @@
           scope.maxLimit = opts.maxLimit;
           scope.minLimit = opts.minLimit;
           scope.transferType = 1;
-          scope.receiverBank = opts.receiverbank;
-          scope.receiverBank.procType = opts.proctype;
+          if (opts.receiverbank) {
+            scope.receiverBank = opts.receiverbank;
+          } else {
+            scope.receiverBank = {};
+            scope.receiverBank.p2p_min_limit = 5000;
+            scope.receiverBank.p2p_max_limit = 99999999999;
+          }
+          if (opts.proctype) {
+            scope.receiverBank.procType = opts.proctype;
+          } else {
+            scope.receiverBank.procType = '';
+          }
           if (modeOfApp.offlineMode) {
             scope.showReceiver = false;
           }
@@ -221,7 +231,7 @@
         if (opts.cardcounter) {
           scope.cardCounter = opts.cardcounter;
         }
-        console.log('scope in submit after mount', scope);
+        console.log('scope in submit after mount', JSON.stringify(scope.maxLimit));
       }
       setTimeout(function () {
         submitAmountId.focus();
@@ -315,6 +325,7 @@
           scope.showPlaceHolderError = false;
           scope.showCommission = false;
         }
+        console.log(JSON.stringify(scope.maxLimit));
         scope.update();
         if (event.keyCode === input_codes.ENTER){
           if (device.platform !== 'BrowserStand')
@@ -354,24 +365,34 @@
               issuerPercent = parseInt(bank.p2p_percent);
               issuerInBankLimit = parseInt(bank.p2p_in_bank_limit);
               if (scope.transferType === 1) {
+                console.log(JSON.stringify(scope.maxLimit));
                 scope.taxPercent = issuerPercent;
                 scope.receiverBank.p2p_min_limit = parseInt(scope.receiverBank.p2p_min_limit);
                 scope.receiverBank.p2p_receipt_once_max_limit = parseInt(scope.receiverBank.p2p_receipt_once_max_limit);
                 scope.receiverBank.p2p_min_limit = parseInt(scope.receiverBank.p2p_min_limit);
+                if (scope.receiverBank.p2p_receipt_once_max_limit === 0)
+                  scope.receiverBank.p2p_receipt_once_max_limit = 99999999999;
+                if (issuerMaxLimit === 0)
+                  issuerMaxLimit = 99999999999;
                 if (issuerMaxLimit > scope.receiverBank.p2p_receipt_once_max_limit){
                   scope.maxLimit = scope.receiverBank.p2p_receipt_once_max_limit;
                 } else {
                   scope.maxLimit = issuerMaxLimit;
                 }
+                console.log(JSON.stringify(scope.maxLimit),
+                  JSON.stringify(scope.receiverBank.p2p_receipt_once_max_limit),
+                  JSON.stringify(issuerMaxLimit));
                 if (issuerMinLimit > scope.receiverBank.p2p_min_limit){
                   scope.minLimit = issuerMinLimit;
                 } else {
                   scope.minLimit = scope.receiverBank.p2p_min_limit;
                 }
+                console.log('inbank', JSON.stringify(issuerInBankLimit));
                 if (issuerInBankLimit === 0) {
                   if (issuerProcType === scope.receiverBank.procType) {
                     if (bank.code === scope.receiverBank.code) {
                       scope.maxLimit = 99999999999;
+                      console.log('maxLimit by inbank', JSON.stringify(scope.maxLimit));
                     }
                   }
                 }
@@ -420,6 +441,7 @@
           });
         }
       }
+      scope.update();
     };
 
     scope.cardChangedTop = cardChangedTop = function (cardNumber) {
