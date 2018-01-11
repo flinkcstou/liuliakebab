@@ -35,6 +35,8 @@
     if (device.platform !== 'BrowserStand') {
       window.FirebasePlugin.onNotificationOpen(function (notification) {
 
+        window.scannerCanBeAsked = false;
+
         if (notification.message) {
           try {
             scope.notificationNew = JSON.parse(notification.message);

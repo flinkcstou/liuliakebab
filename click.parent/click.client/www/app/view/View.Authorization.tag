@@ -133,17 +133,6 @@
     }
 
 
-    if (JSON.parse(localStorage.getItem('settings_finger_print'))) {
-      console.log("AUTHORIZATION CALL new OF FINGERPRINT 191");
-
-      try {
-        fingerPrintAsk();
-      }
-      catch (e) {
-        console.log(e)
-      }
-    }
-
     var eyeInputShow = false;
 
     eyeClicked = function () {
@@ -415,6 +404,21 @@
         enter()
       }
     };
+
+    setTimeout(function () {
+      if (JSON.parse(localStorage.getItem('settings_finger_print')) && window.scannerCanBeAsked) {
+        console.log("AUTHORIZATION CALL new OF FINGERPRINT 191");
+
+        try {
+          fingerPrintAsk();
+        }
+        catch (e) {
+          console.log(e)
+        }
+      } else {
+        window.scannerCanBeAsked = true;
+      }
+    }, 500);
 
     enter = function () {
 
