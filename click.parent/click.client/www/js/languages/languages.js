@@ -80,6 +80,7 @@ var RU_LANGUAGES =
     //"ViewServicePageChooseRegion": "ВЫБЕРИТЕ РАЙОН",
     //"ViewServicePageChooseCity": "ВЫБЕРИТЕ ГОРОД",
     "ViewServicePageSaveLabel": "Сохранить",
+    "ViewServicePagePayLabel": "Оплатить",
     "ViewServicePageVoiceOverOpenCalculator": "Открыть калькулятор",
     "ViewServicePageAmountTextLabel": "Сумма оплаты:",
     "ViewServicePageAmountTaxText": "Комиссия: ",

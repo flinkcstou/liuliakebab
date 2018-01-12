@@ -119,7 +119,8 @@
             class="{servicepage-button-enter-enabled: enterButtonEnabled,servicepage-button-enter-disabled:!enterButtonEnabled}"
             ontouchstart="onTouchStartOfEnter()"
             ontouchend="onTouchEndOfEnter()">
-      {enterButton ? window.languages.ViewServicePageEnterLabel:window.languages.ViewServicePageSaveLabel}
+      {enterButton ? (modeOfApp.offlineMode ?window.languages.ViewServicePagePayLabel:
+      window.languages.ViewServicePageEnterLabel):window.languages.ViewServicePageSaveLabel}
     </button>
 
   </div>
@@ -355,13 +356,6 @@
     if (loginInfo)
       var sessionKey = loginInfo.session_key;
 
-    //var numberForPayTransaction;
-
-
-    //    console.log("click_client_servicesParamsMapTwo", localStorage.getItem("click_client_servicesParamsMapTwo"));
-    //    console.log("click_client_servicesParamsMapThree", localStorage.getItem("click_client_servicesParamsMapThree"));
-    //    console.log("click_client_servicesParamsMapFour", localStorage.getItem("click_client_servicesParamsMapFour"));
-    //    console.log("click_client_servicesParamsMapFive", localStorage.getItem("click_client_servicesParamsMapFive"));
 
     scope.update(scope.categoryNamesMap);
 
@@ -604,12 +598,12 @@
       else if (scope.formType != 2)
 //        amount.value = 0
 
-        if (modeOfApp.offlineMode) {
-          if (this.enterButtonId)
-            enterButtonId.innerText = 'Оплатить'
-        }
+//        if (modeOfApp.offlineMode) {
+//          if (this.enterButtonId)
+//            enterButtonId.innerText = 'Оплатить'
+//        }
 
-      checkFieldsToActivateNext()
+        checkFieldsToActivateNext()
 
       console.log("ON MOUNT")
     });
