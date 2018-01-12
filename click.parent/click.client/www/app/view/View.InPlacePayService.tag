@@ -13,8 +13,7 @@
           <input class="inplace-pay-search-input-part"
                  type="text"
                  id="searchInputId"
-                 placeholder="{window.languages.InPlaceSearchPlaceHolderText}"
-                 readonly/>
+                 placeholder="{window.languages.InPlaceSearchPlaceHolderText}"/>
           <div id="searchIcon" class="inplace-pay-search-icon" ontouchstart="onTouchStartOfSearchService()"
                ontouchend="onTouchEndOfSearchService()"></div>
         </div>
@@ -91,7 +90,7 @@
     scope.on('mount', function () {
 
       setTimeout(function () {
-        searchInputId.readOnly = false;
+        window.blurFields();
       }, 500);
       console.log("viewPay.serviceContainerScrollTop=", viewPay.serviceContainerScrollTop)
       if (viewPay.serviceContainerScrollTop) {

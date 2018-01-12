@@ -553,6 +553,9 @@
 
     scope.onTouchEndOfCategory = onTouchEndOfCategory = function (id, name) {
 
+      event.preventDefault();
+      event.stopPropagation();
+
       onTouchEndY = event.changedTouches[0].pageY;
       onTouchEndX = event.changedTouches[0].pageX;
 
@@ -573,6 +576,7 @@
             latitude: latitude,
             longitude: longitude
           });
+          riot.unmount();
         }, 50)
 
       }

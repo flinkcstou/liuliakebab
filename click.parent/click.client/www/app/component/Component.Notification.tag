@@ -203,11 +203,17 @@
     }
 
     onTouchEndNotificationAccept = function () {
+      event.preventDefault();
+      event.stopPropagation();
     };
     onTouchEndNotificationDecline = function () {
+      event.preventDefault();
+      event.stopPropagation();
     };
 
     onTouchStartNotificationDecline = function () {
+      event.preventDefault();
+      event.stopPropagation();
 
       window.FirebasePlugin.logEvent("DECLINE", {
         content_type: scope.notificationAction,
@@ -222,6 +228,10 @@
     };
 
     onTouchStartNotificationAccept = function () {
+
+      event.preventDefault();
+      event.stopPropagation();
+
       if (localStorage.getItem('click_client_phoneNumber')) {
         window.FirebasePlugin.setUserId(localStorage.getItem('click_client_phoneNumber'));
       }
