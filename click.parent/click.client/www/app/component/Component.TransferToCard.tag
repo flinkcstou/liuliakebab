@@ -30,8 +30,7 @@
           <div class="transfer-contact-found-text-one">{i.name}</div>
         </div>
         <div class="transfer-new-card-found-text-two">{i.cardNumber.substring(0,4)} **** ****
-          {i.cardNumber.substring(i.cardNumber.length-5,i.cardNumber.length)}
-        </div>
+          {i.cardNumber.substring(i.cardNumber.length-4,i.cardNumber.length)}</div>
       </div>
     </div>
     <div id="cardOwnerId" class="transfer-new-card-owner-container" hidden>

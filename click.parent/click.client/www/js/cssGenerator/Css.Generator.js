@@ -6235,6 +6235,10 @@ var css = {
   "color: gray;" +
   "font-size:" + 24 * widthK + "px;" +
   "top: 40%;" +
+  "max-width:" + 231 * widthK + "px;" +
+  "overflow: hidden;" +
+  "text-overflow: ellipsis;" +
+  "white-space: nowrap;" +
   "}",
 
   transferNewContactSuggestionsContainer: ".transfer-new-contact-suggestions-container" +
