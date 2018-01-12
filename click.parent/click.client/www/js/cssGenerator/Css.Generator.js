@@ -15991,6 +15991,13 @@ var css = {
   "-webkit-overflow-scrolling: touch; " +
   "}",
 
+  inPlacePayServiceInnerContainerScroll: ".inplace-pay-service-inner-container::-webkit-scrollbar" +
+  "{" +
+  "width: 20px; " +
+  "z-index: 99999999999;" +
+  "}",
+
+
   inPlacePayBlockContainer: ".inplace-pay-block-containter" +
   "{" +
   "position: relative;" +
@@ -16047,10 +16054,8 @@ var css = {
   "position: absolute;" +
   "height:15.5%; " +
   "width: 100%; " +
-  // "top:" + 86 * widthK + "px; " +
-  // "bottom:0; " +
   "background-color: white; " +
-  "z-index: 99999;" +
+  // "z-index: 99999;" +
   "}",
 
 
@@ -16209,13 +16214,22 @@ var css = {
   "top:46%;" +
   "}",
 
+  inPlacePayGoToQrContainer: ".inplace-pay-gotoqr-container" +
+  "{ " +
+  "position: absolute;" +
+  "width:" + 115 * widthK + "px;" +
+  "height:" + 160 * widthK + "px;" +
+  "bottom:" + 36 * widthK + "px;" +
+  "right:" + 54 * widthK + "px;" +
+  "}",
+
   inPlacePayGoToQrButton: ".inplace-pay-gotoqr-button" +
   "{ " +
   "position: absolute;" +
   "width:" + 115 * widthK + "px;" +
   "height:" + 115 * widthK + "px;" +
-  "bottom:" + 79 * widthK + "px;" +
-  "right:" + 54 * widthK + "px;" +
+  // "bottom:" + 79 * widthK + "px;" +
+  // "right:" + 54 * widthK + "px;" +
   "background-image: url(resources/icons/ViewInPlacePay/indoor_qr.png);" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
@@ -16224,6 +16238,17 @@ var css = {
   "-webkit-box-shadow: 0px " + 5 * widthK + "px " + 12 * widthK + "px " + -7 * widthK + "px " + "rgba(0,0,0,1);" +
   "-moz-box-shadow: 0px " + 5 * widthK + "px " + 12 * widthK + "px " + -7 * widthK + "px " + "rgba(0,0,0,1);" +
   "box-shadow:  0px " + 5 * widthK + "px " + 12 * widthK + "px " + -7 * widthK + "px " + "rgba(0,0,0,1);" +
+  "}",
+
+  inPlacePayGoToQrLabel: ".inplace-pay-gotoqr-label" +
+  "{" +
+  "position: absolute;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "width:" + 240 * widthK + "px;" +
+  "bottom:" + -3 * widthK + "px;" +
+  "color: #515151;" +
+  "font-size:" + 24 * widthK + "px;" +
   "}",
 
   inPlacePaySearchNoMatch: ".inplace-pay-search-no-match " +

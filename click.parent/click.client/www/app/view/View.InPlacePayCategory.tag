@@ -37,8 +37,12 @@
 
   </div>
 
-  <div id="qrButtonId" class="inplace-pay-gotoqr-button" ontouchstart="goToQrTouchStart()"
-       ontouchend="goToQrTouchEnd()"></div>
+  <div class="inplace-pay-gotoqr-container">
+    <div id="qrButtonId" class="inplace-pay-gotoqr-button" ontouchstart="goToQrTouchStart()"
+         ontouchend="goToQrTouchEnd()"></div>
+    <div class="inplace-pay-gotoqr-label">Сканер QR</div>
+  </div>
+
 
   <script>
 

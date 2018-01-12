@@ -40,13 +40,17 @@
           <div class="inplace-pay-service-icon-tick"></div>
         </div>
 
-        <div if="{serviceList.length==0 && searchMode}" class="inplace-pay-search-no-match">Нет совпадений</div>
+        <div if="{serviceList.length==0 && searchMode}" class="inplace-pay-search-no-match">
+          {window.languages.InPlaceSearchNoMatchText}
+        </div>
       </div>
     </div>
   </div>
 
-  <div id="qrButtonId" class="inplace-pay-gotoqr-button" ontouchstart="goToQrTouchStart()"
-       ontouchend="goToQrTouchEnd()"></div>
+  <div class="inplace-pay-gotoqr-container">
+    <div id="qrButtonId" class="inplace-pay-gotoqr-button" ontouchstart="goToQrTouchStart()"
+         ontouchend="goToQrTouchEnd()"></div>
+  </div>
 
   <script>
 

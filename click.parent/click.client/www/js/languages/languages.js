@@ -627,6 +627,7 @@ var RU_LANGUAGES =
 
   "ViewInPlacePayTitle": "ОПЛАТА НА МЕСТАХ",
   "InPlaceSearchPlaceHolderText": "Поиск",
+  "InPlaceSearchNoMatchText": "Нет совпадений",
   "InPlacePayGpsErrorText": "Пожалуйста, откройте настройки и разрешите CLICK Uzbekistan использовать ваше местонахождение и убедитесь что у вас включены геоданные"
 
 
