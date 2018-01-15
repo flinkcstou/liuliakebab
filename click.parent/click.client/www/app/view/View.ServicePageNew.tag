@@ -1165,7 +1165,8 @@
         scope.calcOn = scope.service.cost == 1;
 
         if (scope.phoneFieldBool) {
-          scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telVerificationWithSpace(opts.firstFieldText);
+          scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telVerificationWithSpace(inputVerification.telVerification(opts.firstFieldText));
+          console.log("PHONE FIELD", scope.defaultNumber);
         }
         scope.inputMaxLength = scope.fieldArray[0].max_len;
         scope.hasPrefixes = false;
@@ -1262,9 +1263,8 @@
           scope.secondLevelArray = scope.secondLevelMap[scope.firstLevelArray[0].id];
         }
 
-        checkFieldsToActivateNext();
-
       }
+      checkFieldsToActivateNext();
 
     }
 
