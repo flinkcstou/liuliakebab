@@ -247,6 +247,7 @@
 
     scope.onTouchStartOfService = onTouchStartOfService = function (id) {
       event.stopPropagation();
+      event.preventDefault();
       if (document.getElementById(id))
         document.getElementById(id).style.webkitTransform = 'scale(0.8)'
       onTouchStartY = event.changedTouches[0].pageY;
@@ -260,6 +261,7 @@
 
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {
       event.stopPropagation();
+      event.preventDefault();
 
       if (document.getElementById(id))
         document.getElementById(id).style.webkitTransform = 'scale(1)'
