@@ -174,7 +174,6 @@ window.api.initSocket = function () {
     console.log('number of attemps', window.numberOfAttemps)
     if (navigator.connection.type !== Connection.NONE && navigator.connection.type !== Connection.UNKNOWN) {
       if (window.numberOfAttemps == 3){
-        alert('attemps:', window.numberOfAttemps);
       showAlertComponent("Связь с сервером потеряна. Повторите попытку.");
         window.numberOfAttemps = 0;
       } else {
