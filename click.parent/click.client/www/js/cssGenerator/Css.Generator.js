@@ -7731,7 +7731,7 @@ var css = {
   "width:" + 270 * widthK + "px;" +
   "height:" + 250 * widthK + "px;" +
   // "left:" + 234 * widthK + "px;" +
-  "background-image: url(resources/icons/ViewSuccessUnsuccess/processing.png);" +
+  "background-image: url(resources/icons/ViewSuccessUnsuccess/processing2.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 93%;" +
   "background-position: center;" +
@@ -7805,7 +7805,7 @@ var css = {
   "width:" + 270 * widthK + "px;" +
   "height:" + 250 * widthK + "px;" +
   // "left:" + 234 * widthK + "px;" +
-  "background-image: url(resources/icons/ViewSuccessUnsuccess/ok.png);" +
+  "background-image: url(resources/icons/ViewSuccessUnsuccess/ok2.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 93%;" +
   "background-position: center;" +
@@ -12621,7 +12621,7 @@ var css = {
   "width:" + 270 * widthK + "px;" +
   "height:" + 250 * widthK + "px;" +
   // "left:" + 225 * widthK + "px;" +
-  "background-image: url(resources/icons/icon/alert_icon.png);" +
+  "background-image: url(resources/icons/icon/alert_icon2.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 85%;" +
   "background-position-x: center;" +
