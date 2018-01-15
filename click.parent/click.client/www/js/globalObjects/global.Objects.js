@@ -15,6 +15,7 @@ window.viewAuthorization = {};
 viewAuthorization.check = false;
 
 window.isConnected = false;
+window.numberOfAttemps = 0;
 window.scannerCanBeAsked = true;
 
 window.common = {};

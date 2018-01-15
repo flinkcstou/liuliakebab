@@ -287,12 +287,12 @@
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var deviceId = localStorage.getItem('click_client_deviceID');
       scope.tourData = {
-        mainpage: false,
-        transfer: false,
-        invoice: false,
-        autopaymethod: false,
-        calculator: false,
-        friendhelp: false
+        mainpage: true,
+        transfer: true,
+        invoice: true,
+        autopaymethod: true,
+        calculator: true,
+        friendhelp: true
       };
       localStorage.setItem("tour_data", JSON.stringify(scope.tourData));
       registrationConfirm(sms, phoneNumber, deviceId);
