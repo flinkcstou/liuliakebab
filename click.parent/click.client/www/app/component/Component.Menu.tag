@@ -348,6 +348,7 @@
         else {
           checkBoxChangeId.checked = true;
         }
+//        scope.update();
         changeMode()
       }
       else sideMenuTouchEnd()
@@ -382,6 +383,7 @@
         modeOfApp.offlineMode = true;
       }
       if (modeOfApp.onlineMode) {
+        scope.parent.tags['component-bank-operations-new'].updateOperations();
         scope.modeOfApplication = window.languages.ComponentMenuOnlineMode
         changeModeContainerId.style.backgroundColor = '#92bf3a'
         scope.checkModeOfApplication = true;
@@ -390,6 +392,7 @@
       if (modeOfApp.offlineMode) {
 
         scope.parent.tags['component-card-carousel'].switchToOfflineMode();
+        scope.parent.tags['component-bank-operations-new'].updateOperations();
 
         scope.modeOfApplication = window.languages.ComponentMenuOfflineMode
         scope.checkModeOfApplication = false;
@@ -397,7 +400,7 @@
         changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_ussd.png)';
       }
       scope.update()
-    }
+    };
 
     //    menuBackPageTouchEnd = function () {
     //      event.preventDefault();
