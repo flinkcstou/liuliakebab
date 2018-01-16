@@ -318,7 +318,7 @@
         cardSuggestions.style.display = 'none';
         cardContainer.style.background = '';
         cardInputContainer.style.border = '';
-        cardInputContainer.style.top = '';
+//        cardInputContainer.style.top = '';
         cardOwnerFunction();
       } else {
         scope.showBottomButton = false;
@@ -330,7 +330,7 @@
         cardContainer.style.backgroundSize = 'cover';
         cardContainer.style.backgroundRepeat = 'no-repeat';
         cardContainer.style.backgroundPosition = 'center';
-        cardInputContainer.style.top = '' + 133 * widthK + 'px';
+//        cardInputContainer.style.top = '' + 133 * widthK + 'px';
         cardInputContainer.style.border = '' + 3 * widthK + 'px solid #F0F1F4';
         cardOwnerId.style.display = 'none';
         scope.cardOwner = '';
@@ -339,7 +339,7 @@
         cardSuggestions.style.display = 'none';
         cardContainer.style.background = '';
         cardInputContainer.style.border = '';
-        cardInputContainer.style.top = '';
+//        cardInputContainer.style.top = '';
       }
       scope.parent.update();
       scope.update();
