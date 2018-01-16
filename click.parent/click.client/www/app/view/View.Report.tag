@@ -627,13 +627,13 @@
               step_amount: scope.stepAmount
             });
             window.stopSpinner();
-          }, 10000);
+          }, 30000);
         },
         onEmergencyStop: function () {
           console.log('Clearing timer emergencyStop', timeOutTimerPayment);
           window.clearTimeout(timeOutTimerPayment);
         }
-      }, 10000);
+      }, 30000);
     };
 
     scope.graphListUpdate = graphListUpdate = function () {
@@ -736,13 +736,13 @@
             });
             window.stopSpinner();
             scope.update();
-          }, 10000);
+          }, 30000);
         },
         onEmergencyStop: function () {
           console.log('Clearing timer emergencyStop', timeOutTimerData);
           window.clearTimeout(timeOutTimerData);
         }
-      }, 10000);
+      }, 30000);
 
     };
 

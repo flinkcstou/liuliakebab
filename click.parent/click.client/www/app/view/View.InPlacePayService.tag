@@ -366,14 +366,14 @@
                   viewmount: true,
                   errornote: window.languages.WaitingTimeExpiredText
                 });
-              }, 20000);
+              }, 30000);
               console.log('creating timeOut', timeOutTimer);
             },
             onEmergencyStop: function () {
               console.log('Clearing timer emergencyStop', timeOutTimer);
               window.clearTimeout(timeOutTimer);
             }
-          }, 20000);
+          }, 30000);
 
         }
       }
