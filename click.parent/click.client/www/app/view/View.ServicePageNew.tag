@@ -479,7 +479,7 @@
     telPayVerificationKeyDown = function (input) {
 
       if (scope.phoneFieldBool)
-        if (input.value.length >= 10 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
+        if (input.value.length > 10 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
 
           contactStopChanging = true;
         }
@@ -509,13 +509,16 @@
     var cursorPositionSelectionStart, cursorPositionSelectionEnd, oldValueOfNumber;
     telPayVerificationKeyUp = function () {
 
+      console.log("key up before =", firstFieldInput.value);
+
       if (contactStopChanging) {
         firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
+        console.log("1", firstFieldInput.value);
       }
 
       cursorPositionSelectionStart = firstFieldInput.selectionStart;
       cursorPositionSelectionEnd = firstFieldInput.selectionEnd;
-      oldValueOfNumber = firstFieldInput.value
+      oldValueOfNumber = firstFieldInput.value;
 
       if (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
         if (firstFieldInput.type != 'text' && scope.phoneFieldBool)
@@ -529,9 +532,11 @@
         if (oldValueOfNumber != firstFieldInput.value && cursorPositionSelectionStart == 3)
           firstFieldInput.selectionStart = cursorPositionSelectionStart + 1;
 
+        console.log("2", firstFieldInput.value);
+
       }
 
-      console.log("ON KEY UP");
+      console.log("ON KEY UP", firstFieldInput.value);
       checkFieldsToActivateNext();
     };
 
