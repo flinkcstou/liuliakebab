@@ -60,6 +60,7 @@
     var sessionKey = loginInfo.session_key;
     var latitude, longitude;
     var mainPageToReturn = "view-main-page";
+    var timeOutTimer = 0;
 
 
     if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-inplace-pay-category') {
@@ -382,6 +383,7 @@
                       scope: this,
 
                       onSuccess: function (result) {
+                        window.clearTimeout(timeOutTimer);
                         if (result[0][0].error == 0) {
                           if (result[1]) {
                             if (result[1][0]) {
@@ -452,6 +454,7 @@
                       },
 
                       onFail: function (api_status, api_status_message, data) {
+                        window.clearTimeout(timeOutTimer);
                         console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
                         console.error(data);
                       },

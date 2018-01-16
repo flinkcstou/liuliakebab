@@ -96,7 +96,10 @@ window.api.initSocket = function () {
     console.log(event);
     window.isConnected = false;
     if (navigator.connection.type !== Connection.NONE && navigator.connection.type !== Connection.UNKNOWN) {
-      window.api.init();
+      // console.log(window.numberOfAttemps);
+      // if (window.numberOfAttemps != 3) {
+      //   window.api.init();
+      // }
     }
   };
 
@@ -174,8 +177,8 @@ window.api.initSocket = function () {
     console.log('number of attemps', window.numberOfAttemps)
     if (navigator.connection.type !== Connection.NONE && navigator.connection.type !== Connection.UNKNOWN) {
       if (window.numberOfAttemps == 3){
+      window.numberOfAttemps = 0;
       showAlertComponent("Связь с сервером потеряна. Повторите попытку.");
-        window.numberOfAttemps = 0;
       } else {
         window.numberOfAttemps++;
         window.api.init();
