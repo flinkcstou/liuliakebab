@@ -132,7 +132,7 @@
 
           lastOperationMainContainerId.style.webkitTransform = "translate3d(0," + 85 * widthK + "px,0)"
 //          lastOperationMainContainerId.top = "0"
-          lastOperationContainerId.style.height = 1070 * widthK + "px";
+          lastOperationContainerId.style.height = 1232 * heightK - 172 * widthK + "px";
           document.getElementById('containerCard').style.webkitTransform = "scale(0.2)"
           document.getElementById('myCardLastOperationContainerIconId').style.webkitTransform = "rotate(180deg)"
           lastOperationCheck = true;
@@ -140,7 +140,7 @@
 
           lastOperationMainContainerId.style.webkitTransform = "translate3d(0," + 835 * widthK + "px,0)"
 //          lastOperationMainContainerId.top = "0"
-          lastOperationContainerId.style.height = 325 * widthK + "px";
+          lastOperationContainerId.style.height = 1232 * heightK - 922 * widthK + "px";
           document.getElementById('containerCard').style.webkitTransform = "scale(1)"
           document.getElementById('myCardLastOperationContainerIconId').style.webkitTransform = "rotate(0)"
           lastOperationCheck = false;

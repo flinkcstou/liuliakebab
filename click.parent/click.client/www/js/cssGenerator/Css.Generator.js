@@ -2835,7 +2835,7 @@ var css = {
   "background-color: white;" +
   "overflow-y: scroll;" +
   "overflow-x: hidden;" +
-  "height:" + 325 * widthK + "px;" +
+  "height:" + (1232 * heightK - 922 * widthK) + "px;" +
   "}",
 
   myCardsLastOperations: ".my-cards-last-operations " +
