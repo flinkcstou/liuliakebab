@@ -91,15 +91,7 @@
     }
     scope.showBottomButton = false;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-add-card') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-add-card',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-add-card', opts);
 
     doMainCardTouchEnd = function () {
       event.preventDefault();

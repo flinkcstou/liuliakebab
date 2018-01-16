@@ -76,16 +76,7 @@
     var stepBack = 1;
     scope.searchMode = false;
 
-
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-inplace-pay-service') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-inplace-pay-service',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-inplace-pay-service', opts);
 
     scope.on('mount', function () {
 
@@ -670,6 +661,8 @@
       onTouchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(onTouchStartY - onTouchEndY) <= 20 && Math.abs(onTouchStartX - onTouchEndX) <= 20) {
+        event.preventDefault();
+        event.stopPropagation();
 
         document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
 

@@ -1578,3 +1578,18 @@ window.blurFields = function () {
   }
   ;
 }
+
+
+window.saveHistory = function (viewName, viewOpts) {
+  console.log("SAVE HISTORY ", viewName, viewOpts);
+  history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
+  if (history.arrayOfHistory.length != 0 && history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== viewName) {
+    history.arrayOfHistory.push(
+      {
+        "view": viewName,
+        "params": viewOpts
+      }
+    );
+    sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+  }
+}

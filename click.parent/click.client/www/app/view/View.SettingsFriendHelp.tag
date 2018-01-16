@@ -41,15 +41,7 @@
 
     this.titleName = window.languages.ViewSecuritySettingsFriendHelpTitle;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-friend-help-settings') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-friend-help-settings',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-friend-help-settings', opts);
 
     scope.arrayOfFriends = [];
 
@@ -154,24 +146,24 @@
 
         onTimeOut: function () {
           timeOutTimer = setTimeout(function () {
-              window.common.alert.show("componentAlertId", {
-                parent: scope,
-                errornote: window.languages.WaitingTimeExpiredText,
-                step_amount: 0
-              });
-              scope.update();
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              errornote: window.languages.WaitingTimeExpiredText,
+              step_amount: 0
+            });
+            scope.update();
             window.stopSpinner();
           }, 30000);
         },
-        onEmergencyStop: function(){
-          console.log('Clearing timer emergencyStop',timeOutTimer);
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimer);
           window.clearTimeout(timeOutTimer);
         }
       }, 30000);
     }
 
     function onError(contactError) {
-      console.log('Clearing timer emergencyStop',timeOutTimer);
+      console.log('Clearing timer emergencyStop', timeOutTimer);
       window.clearTimeout(timeOutTimer);
       console.log('error', contactError)
     }

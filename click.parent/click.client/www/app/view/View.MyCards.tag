@@ -89,15 +89,7 @@
     var scope = this;
     viewMainPage.atMainPage = false;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-my-cards') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-my-cards',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-my-cards', opts);
 
     this.on('mount', function () {
       scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));

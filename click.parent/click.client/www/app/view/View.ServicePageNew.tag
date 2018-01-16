@@ -286,16 +286,7 @@
 
     console.log("opts in ServicePageNew", opts);
 
-
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page-new') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-service-page-new',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-service-page-new', opts);
 
     if (opts.id) {
       opts.chosenServiceId = opts.id;

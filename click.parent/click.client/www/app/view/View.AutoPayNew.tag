@@ -41,15 +41,7 @@
 
     this.titleName = window.languages.ViewAutoPayTitleName;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-auto-pay-new') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-auto-pay-new',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-auto-pay-new', opts);
 
     var backStartY, backStartX, backEndY, backEndX;
 

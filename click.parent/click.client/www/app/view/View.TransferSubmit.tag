@@ -168,15 +168,7 @@
     var pageToReturnIfError = 'view-main-page';
     var timeOutTimer = 0;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-transfer-submit') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-transfer-submit',
-          "params": opts,
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-transfer-submit', opts);
 
     if (JSON.parse(localStorage.getItem("click_client_p2p_all_bank_list"))) {
       scope.allBankList = JSON.parse(localStorage.getItem("click_client_p2p_all_bank_list"));

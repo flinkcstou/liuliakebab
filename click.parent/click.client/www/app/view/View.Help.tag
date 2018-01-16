@@ -14,15 +14,7 @@
     var scope = this;
     this.titleName = window.languages.ViewHelpTitle;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-help') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-help',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-help', opts);
 
     scope.helpText = '';
 

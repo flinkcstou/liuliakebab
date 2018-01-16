@@ -60,15 +60,7 @@
 
   <script>
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-pincards-new') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-service-pincards-new',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-service-pincards-new', opts);
 
     var scope = this;
 

@@ -99,15 +99,7 @@
     console.log("OPTS AutoPayMethod SCHEDULE NEW=", opts);
     var scope = this;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-autopay-schedule-method-new') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-autopay-schedule-method-new',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-autopay-schedule-method-new', opts);
 
     var backStartY, backStartX, backEndY, backEndX;
 

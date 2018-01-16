@@ -67,15 +67,7 @@
     scope.numberLength = 10;
     this.titleName = window.languages.ViewSettingsAddFriendTitleName;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-add-friend') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-add-friend',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-add-friend', opts);
 
     this.on('mount', function () {
 
@@ -197,7 +189,7 @@
           if (device.platform === 'iOS') {
             phoneNumber = contactInfo.phoneNr;
             contactNameId.value = contactInfo.displayName
-            if (contactNameId.value.length > 20){
+            if (contactNameId.value.length > 20) {
               contactNameId.value = contactNameId.value.substring(0, 21) + "...";
             }
           }
@@ -205,7 +197,7 @@
           if (device.platform === 'Android') {
             phoneNumber = contactInfo.nameFormated
             contactNameId.value = contactInfo.displayName
-            if (contactNameId.value.length > 20){
+            if (contactNameId.value.length > 20) {
               contactNameId.value = contactNameId.value.substring(0, 21) + "...";
             }
           }

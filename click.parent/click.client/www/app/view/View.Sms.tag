@@ -39,15 +39,7 @@
     scope.messageTitleTwo = '';
     scope.phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-sms') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-sms',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-sms', opts);
     scope.confirmSms = '';
 
     this.on('mount', function () {

@@ -141,16 +141,10 @@
 
     //    console.log("OPTS=", scope.opts);
 
-    if (scope.parent == null)
-      if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-report-service-new') {
-        history.arrayOfHistory.push(
-          {
-            "view": 'view-report-service-new',
-            "params": scope.opts
-          }
-        );
-        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-      }
+    if (scope.parent == null) {
+      window.saveHistory('view-report-service-new', opts);
+    }
+
 
     goToSupportTouchStart = function (id) {
 

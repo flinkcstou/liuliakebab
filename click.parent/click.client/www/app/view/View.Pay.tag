@@ -49,15 +49,7 @@
       this.titleName = window.languages.ViewAutoPayTitleName;
     else this.titleName = window.languages.ViewPayTitleName;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-pay') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-pay',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-pay', opts);
 
     scope.categoryList = (JSON.parse(localStorage.getItem("click_client_payCategoryList"))) ? (JSON.parse(localStorage.getItem("click_client_payCategoryList"))) : (offlinePayCategoryList);
     scope.serviceList = (JSON.parse(localStorage.getItem("click_client_payServiceList"))) ? (JSON.parse(localStorage.getItem("click_client_payServiceList"))) : (offlinePayServiceList);

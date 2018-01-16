@@ -156,15 +156,9 @@
     scope.transferTypeNumber = 0;
     scope.transferTypeCount = 2;
     scope.transitionRunning = false;
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-transfer-new') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-transfer-new',
-          "params": opts,
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+
+    window.saveHistory('view-transfer-new', opts);
+
     if (localStorage.getItem('click_client_loginInfo')) {
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));

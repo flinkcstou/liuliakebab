@@ -16,15 +16,7 @@
 
     this.titleName = window.languages.ViewSettingsUserAgreementTitle;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-settings-user-agreement') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-settings-user-agreement',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-settings-user-agreement', opts);
 
     scope.contentOfAgreement = '';
     //

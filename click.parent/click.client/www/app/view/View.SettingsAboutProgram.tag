@@ -32,15 +32,7 @@
     var scope = this;
     this.titleName = window.languages.ViewSettingsAboutProgramTitleName;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-about-program') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-about-program',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-about-program', opts);
 
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 

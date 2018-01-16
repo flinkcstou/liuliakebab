@@ -51,17 +51,7 @@
     else
       this.titleName = window.languages.ViewTransferThreeTitle + ' ' + transferTitle;
 
-
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-stepthree') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-transfer-stepthree',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
-
+    window.saveHistory('view-transfer-stepthree', opts);
 
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 

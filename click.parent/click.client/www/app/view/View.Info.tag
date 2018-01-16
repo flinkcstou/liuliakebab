@@ -236,16 +236,7 @@
       }
     }
 
-
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-info') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-info',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-info', opts);
 
     scope.leftOfOperations = 200 * widthK;
     scope.lastOperationContainer = [];

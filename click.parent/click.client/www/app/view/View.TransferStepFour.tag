@@ -80,15 +80,7 @@
 
   <script>
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-stepfour') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-transfer-stepfour',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-transfer-stepfour', opts);
 
     var scope = this;
     scope.backbuttoncheck = true;

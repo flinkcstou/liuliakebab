@@ -65,15 +65,7 @@
 
     opts = {};
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-favorites-new') {
-      history.arrayOfHistory.push(
-        {
-          "view"  : 'view-favorites-new',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-favorites-new', opts);
 
     componentMenu.check = false;
 

@@ -39,15 +39,7 @@
     var scope = this;
     this.titleName = window.languages.ViewQrTitle;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-qr') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-qr',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-qr', opts);
 
     this.on('mount', function () {
 

@@ -72,15 +72,7 @@
       scope.unmount()
     }
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-qr-pay-confirm') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-qr-pay-confirm',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-qr-pay-confirm', opts);
 
     this.viewPage = 'view-main-page';
 

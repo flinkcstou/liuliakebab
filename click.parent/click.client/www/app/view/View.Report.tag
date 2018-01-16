@@ -109,15 +109,7 @@
     var timeOutTimerData = 0;
     var timeOutTimerPayment = 0;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-report') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-report',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-report', opts);
 
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')

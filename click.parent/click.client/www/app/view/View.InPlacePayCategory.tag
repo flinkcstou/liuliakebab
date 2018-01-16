@@ -62,16 +62,7 @@
     var mainPageToReturn = "view-main-page";
     var timeOutTimer = 0;
 
-
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-inplace-pay-category') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-inplace-pay-category',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-inplace-pay-category', opts);
 
     findLocation = function () {
 

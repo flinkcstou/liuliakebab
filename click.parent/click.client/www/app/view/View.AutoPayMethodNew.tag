@@ -37,15 +37,7 @@
   <script>
     var scope = this;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-autopay-method-new') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-autopay-method-new',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-autopay-method-new', opts);
 
     var backStartY, backStartX, backEndY, backEndX;
 
