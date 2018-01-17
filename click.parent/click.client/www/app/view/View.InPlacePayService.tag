@@ -766,13 +766,13 @@
           document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0,0,0)";
           document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0,0,0)";
 
-          setTimeout(function () {
-            if (scope.serviceList.length % 20 == 0) {
-              scope.pageNumber++;
-              console.log("services container move pagenumber=", scope.pageNumber)
-              getServiceList(latitude, longitude);
-            }
-          }, 300)
+//          setTimeout(function () {
+//            if (scope.serviceList.length % 20 == 0) {
+//              scope.pageNumber++;
+//              console.log("services container move pagenumber=", scope.pageNumber)
+//              getServiceList(latitude, longitude);
+//            }
+//          }, 300)
 
         } else if (servicesBodyContainerId.scrollTop == 0) {
           console.log("end swipe");
@@ -792,21 +792,21 @@
 
     servicesScroll = function () {
       console.log("scroll");
-      if (device.platform == 'iOS') {
+//      if (device.platform == 'iOS') {
 
-        console.log("servicesBodyContainerId.scrollHeight=", servicesBodyContainerId.scrollHeight);
-        console.log("servicesBodyContainerId.scrollTop=", servicesBodyContainerId.scrollTop);
-        console.log("servicesBodyContainerId.offsetHeight=", servicesBodyContainerId.offsetHeight);
-        if ((servicesBodyContainerId.scrollHeight - servicesBodyContainerId.scrollTop) == servicesBodyContainerId.offsetHeight) {
-          console.log("Paging");
+      console.log("servicesBodyContainerId.scrollHeight=", servicesBodyContainerId.scrollHeight);
+      console.log("servicesBodyContainerId.scrollTop=", servicesBodyContainerId.scrollTop);
+      console.log("servicesBodyContainerId.offsetHeight=", servicesBodyContainerId.offsetHeight);
+      if ((servicesBodyContainerId.scrollHeight - servicesBodyContainerId.scrollTop) == servicesBodyContainerId.offsetHeight) {
+        console.log("Paging");
 
-          if (scope.serviceList.length % 20 == 0) {
-            scope.pageNumber++;
-            console.log("services container move pagenumber=", scope.pageNumber)
-            getServiceList(latitude, longitude);
-          }
+        if (scope.serviceList.length % 20 == 0) {
+          scope.pageNumber++;
+          console.log("services container move pagenumber=", scope.pageNumber)
+          getServiceList(latitude, longitude);
         }
       }
+//      }
     }
 
 
