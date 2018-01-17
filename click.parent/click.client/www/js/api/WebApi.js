@@ -108,10 +108,9 @@ window.api.initSocket = function () {
   this.socket.onmessage = function (event) {
     if (modeOfApp.offlineMode) return;
     var parsedData = JSON.parse(event.data);
-
+    console.log("Received data:", parsedData);
     try {
       var method = parsedData.data[0][0].method;
-      console.log("Received data:", method, parsedData);
       var callBack = me.callBacks[method];
       if (parsedData.api_status === 0)
         try {
@@ -176,9 +175,9 @@ window.api.initSocket = function () {
     }
     console.log('number of attemps', window.numberOfAttemps)
     if (navigator.connection.type !== Connection.NONE && navigator.connection.type !== Connection.UNKNOWN) {
-      if (window.numberOfAttemps == 3){
-      window.numberOfAttemps = 0;
-      showAlertComponent("Связь с сервером потеряна. Повторите попытку.");
+      if (window.numberOfAttemps == 3) {
+        window.numberOfAttemps = 0;
+        showAlertComponent("Связь с сервером потеряна. Повторите попытку.");
       } else {
         window.numberOfAttemps++;
         window.api.init();

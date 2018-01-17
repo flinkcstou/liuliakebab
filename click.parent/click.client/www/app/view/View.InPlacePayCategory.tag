@@ -562,6 +562,7 @@
           console.log(id, name);
 
           sessionStorage.setItem('click_client_inPlacePayServiceList', JSON.stringify(null));
+          window.clearTimeout(timeOutTimer);
 
           riotTags.innerHTML = "<view-inplace-pay-service>";
           riot.mount('view-inplace-pay-service', {

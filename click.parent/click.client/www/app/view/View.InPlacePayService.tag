@@ -20,6 +20,7 @@
       </div>
 
       <div class="inplace-pay-service-inner-container" id="servicesBodyContainerId"
+           onscroll="servicesScroll()"
            ontouchmove="servicesBodyContainerTouchMove()" ontouchstart="servicesBodyContainerTouchStart()"
            ontouchend="servicesBodyContainerTouchEnd()">
 
@@ -92,7 +93,7 @@
         viewPay.serviceContainerScrollTop = null;
       }
 
-    })
+    });
 
     findLocation = function () {
 
@@ -667,6 +668,7 @@
         event.stopPropagation();
 
         document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
+        window.clearTimeout(timeOutTimer);
 
         setTimeout(function () {
 
@@ -690,6 +692,10 @@
 
 
     servicesBodyContainerTouchMove = function () {
+
+      console.log("servicesBodyContainerId.scrollHeight=", servicesBodyContainerId.scrollHeight);
+      console.log("servicesBodyContainerId.scrollTop=", servicesBodyContainerId.scrollTop);
+      console.log("servicesBodyContainerId.offsetHeight=", servicesBodyContainerId.offsetHeight);
 
       if (device.platform == 'Android') {
 
@@ -727,17 +733,6 @@
           document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0,0,0)";
         }
 
-      } else {
-        console.log("Touch move ios");
-        if ((servicesBodyContainerId.scrollHeight - servicesBodyContainerId.scrollTop) == servicesBodyContainerId.offsetHeight) {
-          console.log("Paging");
-
-          if (scope.serviceList.length % 20 == 0) {
-            scope.pageNumber++;
-            console.log("services container move pagenumber=", scope.pageNumber)
-            getServiceList(latitude, longitude);
-          }
-        }
       }
     };
 
@@ -756,6 +751,7 @@
     };
 
     servicesBodyContainerTouchEnd = function () {
+
 
       if (device.platform == 'Android') {
 
@@ -792,6 +788,26 @@
       }
 
     };
+
+
+    servicesScroll = function () {
+      console.log("scroll");
+      if (device.platform == 'iOS') {
+
+        console.log("servicesBodyContainerId.scrollHeight=", servicesBodyContainerId.scrollHeight);
+        console.log("servicesBodyContainerId.scrollTop=", servicesBodyContainerId.scrollTop);
+        console.log("servicesBodyContainerId.offsetHeight=", servicesBodyContainerId.offsetHeight);
+        if ((servicesBodyContainerId.scrollHeight - servicesBodyContainerId.scrollTop) == servicesBodyContainerId.offsetHeight) {
+          console.log("Paging");
+
+          if (scope.serviceList.length % 20 == 0) {
+            scope.pageNumber++;
+            console.log("services container move pagenumber=", scope.pageNumber)
+            getServiceList(latitude, longitude);
+          }
+        }
+      }
+    }
 
 
   </script>
