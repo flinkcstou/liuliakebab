@@ -40,7 +40,7 @@
 
     <div ontouchstart="reportsBodyContainerTouchStart()" ontouchend="reportsBodyContainerTouchEnd()"
          class="view-reports-body-container" id="reportBodyContainerId" if="{firstReportView}"
-         onscroll="reportsBodyContainerTouchMove()">
+         onscroll="reportsBodyContainerScroll()">
       <div class="view-reports-payments-container" each="{i in paymentDates}">
         <div class="view-reports-payment-date-containter" id="{'id'+i}">
           <div class="view-reports-payment-date-field">{i}</div>
@@ -455,14 +455,17 @@
       return yyyy + '-' + (mmChars[1] ? mm : "0" + mmChars[0]) + '-' + (ddChars[1] ? dd : "0" + ddChars[0]);
     }
 
-    reportsBodyContainerTouchMove = function () {
-      event.preventDefault();
-      event.stopPropagation();
+    reportsBodyContainerScroll = function () {
 
-      if ((reportBodyContainerId.scrollHeight - reportBodyContainerId.scrollTop) == reportBodyContainerId.offsetHeight) {
+      if ((reportBodyContainerId.scrollHeight - reportBodyContainerId.scrollTop) == reportBodyContainerId.offsetHeight && reportBodyContainerId.scrollTop != 0) {
 
-        scope.pageNumberOptional++;
-        paymentListUpdate();
+        console.log("Payment list length = ", scope.paymentsList.length);
+        if (scope.paymentsList.length % 15 == 0) {
+          console.log("paging");
+          scope.pageNumberOptional++;
+          paymentListUpdate();
+        }
+
       }
     };
 
@@ -514,6 +517,7 @@
       scope.update();
 
       window.startSpinner();
+      window.clearTimeout(timeOutTimerPayment);
 
       if (window.fakedSocket)
         if (window.fakedSocket.readyState == 1) {
@@ -539,8 +543,7 @@
 
           console.log('Clearing timer onSuccess', timeOutTimerPayment);
           window.clearTimeout(timeOutTimerPayment);
-          console.log(result)
-          console.log(result[0][0])
+
           if (result[0][0].error == 0) {
 
             for (var i in result[1]) {
@@ -662,6 +665,7 @@
       }
 
       window.startSpinner();
+      window.clearTimeout(timeOutTimerData);
 
       scope.graphList = [];
       scope.paymentsSum = 0;
