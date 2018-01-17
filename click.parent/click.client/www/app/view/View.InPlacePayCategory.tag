@@ -570,7 +570,7 @@
             latitude: latitude,
             longitude: longitude
           });
-          riot.unmount();
+          scope.unmount();
         }, 50)
 
       }
