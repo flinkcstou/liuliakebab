@@ -143,6 +143,7 @@ var RU_LANGUAGES =
   "ViewPayConformEnterPhone": "Номер телефона:",
   "ViewPayConfirmAmountOfPay": "Сумма платежа:",
   "ViewPayConfirmCategory": "Категория:",
+  "ViewPayConfirmServiceId": "ID Сервиса:",
   "ViewPayConfirmMobileConnection": "Мобильная связь",
   "ViewPayConfirmPayFromCard": "Оплата с карты:",
   "ViewPayConfirmFriendHelp": "Помощь друга:",

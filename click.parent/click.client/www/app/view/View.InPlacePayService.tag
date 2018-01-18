@@ -509,37 +509,6 @@
                               scope.update();
                               iFrameExternalUrlId.src = result[0][0].error_url;
 
-//                               ref = cordova.InAppBrowser.open(result[0][0].error_url, '_blank', 'location=no');
-//
-//
-//                              //injecting the CSS
-//                              ref.addEventListener('loadstop', function () {
-//                                //injecting the CSS
-//                                ref.insertCSS({
-//                                  "code": ".youtube_done_button { position: absolute; width: 100%; background-color:#00a8f1; color: white; height:" + 140 * heightK + "px; top:" + -140 * heightK + "px; font-size:" + 50 * heightK + "px;}"
-//                                });
-//
-//                                ref.insertCSS({
-//                                  "code": "body{position:absolute; width:" + 720 * widthK + "px; height:" + 1072 * heightK + "px; top:" + 140 * heightK + "px;}"
-//                                });
-//
-//                                ref.insertCSS({
-//                                  "code": "html{position:absolute; width:" + 720 * widthK + "px; height:" + 1232 * widthK + "px; top:" + 0 * heightK + "px;}"
-//                                });
-//
-//                                //setting close to false when the InAppBrowser is opened
-//                                ref.executeScript({
-//                                  code: "localStorage.setItem('close', 'false');"
-//                                });
-//
-//                                //creating and attaching a button with click listener to the opened page
-//                                ref.executeScript({
-//                                  code: "(function () {var body = document.querySelector('body');var button = document.createElement('div');button.innerHTML = 'Назад в CLICK';button.classList.add('youtube_done_button');body.appendChild(button);button.addEventListener('click', function () {console.log('QWERTY'); ref.close()})})();"
-//                                });
-//
-//
-//
-//                              });
                               return
                             }
                           }
@@ -677,6 +646,7 @@
           for (var i in scope.serviceList) {
             if (scope.serviceList[i].id == id) {
               viewPay.serviceContainerScrollTop = servicesBodyContainerId.scrollTop;
+              scope.serviceList[i].location = latitude + " " + longitude;
               riotTags.innerHTML = "<view-qr>";
               riot.mount('view-qr', scope.serviceList[i]);
 
@@ -692,10 +662,6 @@
 
 
     servicesBodyContainerTouchMove = function () {
-
-      console.log("servicesBodyContainerId.scrollHeight=", servicesBodyContainerId.scrollHeight);
-      console.log("servicesBodyContainerId.scrollTop=", servicesBodyContainerId.scrollTop);
-      console.log("servicesBodyContainerId.offsetHeight=", servicesBodyContainerId.offsetHeight);
 
       if (device.platform == 'Android') {
 

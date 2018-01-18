@@ -23,9 +23,10 @@
           {objectCardForTransfer.currency}</p>
       </div>
       <div class="qr-payconfirm-field">
-        <p class="qr-payconfirm-text-field">{window.languages.ViewPayConfirmCategory}</p>
+        <p class="qr-payconfirm-text-field">{opts[2].location? window.languages.ViewPayConfirmServiceId
+          : window.languages.ViewPayConfirmCategory}</p>
         <p class="qr-payconfirm-phone-input" style="text-decoration: underline">
-          {categoryName}</p>
+          {opts[2].location? opts[2].id : categoryName}</p>
       </div>
       <div class="qr-payconfirm-card-field" if="{cardOrFriendBool}">
         <div class="qr-payconfirm-card-info-container">
@@ -65,21 +66,17 @@
     var scope = this;
     var pageToReturnIfError = 'view-main-page';
     var timeOutTimer = 0;
+
     goToBack = function () {
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
       scope.unmount()
-    }
+    };
 
     window.saveHistory('view-qr-pay-confirm', opts);
 
     this.viewPage = 'view-main-page';
-
-    this.on('mount', function () {
-
-    });
-
 
     var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
     scope.cardOrFriendBool = opts[0];
@@ -89,7 +86,6 @@
     scope.tax = opts[2].tax;
 
     scope.update();
-    console.log(opts[0]);
 
     var successStep = 3, errorStep = 0, waitingStep = 3, unsuccessStep = 2;
 
