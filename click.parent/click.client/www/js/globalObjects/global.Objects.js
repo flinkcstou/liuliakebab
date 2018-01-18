@@ -198,6 +198,9 @@ window.componentKeyboard = {};
 window.firstMount = {};
 
 window.viewPay = {};
+window.inPlacePay = {};
+inPlacePay.latitude = 0;
+inPlacePay.longitude = 0;
 
 window.viewServicePage = {};
 viewServicePage.amountText = '';
@@ -1594,7 +1597,7 @@ window.saveHistory = function (viewName, viewOpts) {
   }
 }
 
-window.getPosition = function(el) {
+window.getPosition = function (el) {
   var xPos = 0;
   var yPos = 0;
 
