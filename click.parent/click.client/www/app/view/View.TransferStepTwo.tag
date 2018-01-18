@@ -39,15 +39,7 @@
 
   <script>
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-steptwo') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-transfer-steptwo',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-transfer-steptwo', opts);
 
 
     this.on('mount', function () {

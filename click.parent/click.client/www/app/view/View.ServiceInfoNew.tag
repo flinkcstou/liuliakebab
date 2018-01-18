@@ -56,15 +56,7 @@
 
     console.log('OPTS in ServiceInfo NEW', opts);
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-info-new') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-service-info-new',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-service-info-new', opts);
 
     var scope = this;
 

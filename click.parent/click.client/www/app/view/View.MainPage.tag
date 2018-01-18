@@ -66,16 +66,7 @@
           viewNewsId.style.display = 'block';
           scope.tags['view-news'].showNewsFunction(1, opts.news_id);
 
-
-          if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-news') {
-            history.arrayOfHistory.push(
-              {
-                "view": 'view-news',
-                "params": opts
-              }
-            );
-            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-          }
+          window.saveHistory('view-news', opts);
           console.log("MOUNT MAIN news to history");
         }
       } else {
@@ -90,15 +81,8 @@
     localStorage.setItem('cardNumber', 1);
 
     history.arrayOfHistory = [];
-    history.arrayOfHistory.push(
-      {
-        "view": 'view-main-page',
-        "params": opts
-      }
-    );
 
-    console.log("main page to history");
-    sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+    window.saveHistory('view-main-page', opts);
 
 
     myCardListTouchStart = function () {

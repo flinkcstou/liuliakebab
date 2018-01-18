@@ -50,16 +50,7 @@
 
     console.log('OPTS', opts);
 
-
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-qr-pincards') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-qr-pincards',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-qr-pincards', opts);
 
     var scope = this;
 

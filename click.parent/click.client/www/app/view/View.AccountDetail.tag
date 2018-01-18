@@ -48,20 +48,7 @@
     var scope = this;
     this.titleName = window.languages.ViewAccountDetailTitle;
 
-    this.on('mount', function () {
-
-    })
-
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-account-detail') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-account-detail',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
-
+    window.saveHistory('view-account-detail', opts);
 
     goToBack = function () {
       event.preventDefault();

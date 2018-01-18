@@ -15,6 +15,7 @@ window.viewAuthorization = {};
 viewAuthorization.check = false;
 
 window.isConnected = false;
+window.numberOfAttemps = 0;
 window.scannerCanBeAsked = true;
 
 window.common = {};
@@ -1577,3 +1578,44 @@ window.blurFields = function () {
   }
   ;
 }
+
+
+window.saveHistory = function (viewName, viewOpts) {
+  console.log("SAVE HISTORY ", viewName, viewOpts);
+  history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
+  if (history.arrayOfHistory.length != 0 && history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== viewName) {
+    history.arrayOfHistory.push(
+      {
+        "view": viewName,
+        "params": viewOpts
+      }
+    );
+    sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+  }
+}
+
+window.getPosition = function(el) {
+  var xPos = 0;
+  var yPos = 0;
+
+  while (el) {
+    if (el.tagName == "BODY") {
+      // deal with browser quirks with body/window/document and page scroll
+      var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
+      var yScroll = el.scrollTop || document.documentElement.scrollTop;
+
+      xPos += (el.offsetLeft - xScroll + el.clientLeft);
+      yPos += (el.offsetTop - yScroll + el.clientTop);
+    } else {
+      // for all other non-BODY elements
+      xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+      yPos += (el.offsetTop - el.scrollTop + el.clientTop);
+    }
+
+    el = el.offsetParent;
+  }
+  return {
+    x: xPos,
+    y: yPos
+  };
+};

@@ -286,16 +286,7 @@
 
     console.log("opts in ServicePageNew", opts);
 
-
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page-new') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-service-page-new',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-service-page-new', opts);
 
     if (opts.id) {
       opts.chosenServiceId = opts.id;
@@ -479,7 +470,7 @@
     telPayVerificationKeyDown = function (input) {
 
       if (scope.phoneFieldBool)
-        if (input.value.length >= 10 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
+        if (input.value.length > 10 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
 
           contactStopChanging = true;
         }
@@ -509,13 +500,16 @@
     var cursorPositionSelectionStart, cursorPositionSelectionEnd, oldValueOfNumber;
     telPayVerificationKeyUp = function () {
 
+      console.log("key up before =", firstFieldInput.value);
+
       if (contactStopChanging) {
         firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
+        console.log("1", firstFieldInput.value);
       }
 
       cursorPositionSelectionStart = firstFieldInput.selectionStart;
       cursorPositionSelectionEnd = firstFieldInput.selectionEnd;
-      oldValueOfNumber = firstFieldInput.value
+      oldValueOfNumber = firstFieldInput.value;
 
       if (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
         if (firstFieldInput.type != 'text' && scope.phoneFieldBool)
@@ -529,9 +523,11 @@
         if (oldValueOfNumber != firstFieldInput.value && cursorPositionSelectionStart == 3)
           firstFieldInput.selectionStart = cursorPositionSelectionStart + 1;
 
+        console.log("2", firstFieldInput.value);
+
       }
 
-      console.log("ON KEY UP");
+      console.log("ON KEY UP", firstFieldInput.value);
       checkFieldsToActivateNext();
     };
 
@@ -1165,7 +1161,8 @@
         scope.calcOn = scope.service.cost == 1;
 
         if (scope.phoneFieldBool) {
-          scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telVerificationWithSpace(opts.firstFieldText);
+          scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telVerificationWithSpace(inputVerification.telVerification(opts.firstFieldText));
+          console.log("PHONE FIELD", scope.defaultNumber);
         }
         scope.inputMaxLength = scope.fieldArray[0].max_len;
         scope.hasPrefixes = false;
@@ -1262,9 +1259,8 @@
           scope.secondLevelArray = scope.secondLevelMap[scope.firstLevelArray[0].id];
         }
 
-        checkFieldsToActivateNext();
-
       }
+      checkFieldsToActivateNext();
 
     }
 

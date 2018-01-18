@@ -135,17 +135,7 @@
     scope.service = scope.servicesMap[opts.chosenServiceId][0];
     scope.isInFavorites = opts.isInFavorites;
 
-
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-pay-confirm-new') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-pay-confirm-new',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
-
+    window.saveHistory('view-pay-confirm-new', opts);
 
     scope.onTouchStartOfBack = onTouchStartOfBack = function () {
       event.stopPropagation();

@@ -98,15 +98,7 @@
     var scope = this;
     scope.enterButtonEnabled = false;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-autopay-event-method-new') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-autopay-event-method-new',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-autopay-event-method-new', opts);
 
     var backStartY, backStartX, backEndY, backEndX;
 

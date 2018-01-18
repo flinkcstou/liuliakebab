@@ -39,15 +39,7 @@
     scope.messageTitleTwo = '';
     scope.phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-sms') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-sms',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-sms', opts);
     scope.confirmSms = '';
 
     this.on('mount', function () {
@@ -287,12 +279,12 @@
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var deviceId = localStorage.getItem('click_client_deviceID');
       scope.tourData = {
-        mainpage: false,
-        transfer: false,
-        invoice: false,
-        autopaymethod: false,
-        calculator: false,
-        friendhelp: false
+        mainpage: true,
+        transfer: true,
+        invoice: true,
+        autopaymethod: true,
+        calculator: true,
+        friendhelp: true
       };
       localStorage.setItem("tour_data", JSON.stringify(scope.tourData));
       registrationConfirm(sms, phoneNumber, deviceId);

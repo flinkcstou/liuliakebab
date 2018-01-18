@@ -290,6 +290,18 @@
         } catch (error) {
           console.error(error);
         }
+        try {
+          if (this.cardInputContainer){
+            cardInputTop = window.getPosition(cardInputContainer).y + cardInputContainer.clientHeight;
+            keyBoardTop = document.documentElement.clientHeight - e.keyboardHeight;
+            if (cardInputTop > keyBoardTop){
+              keyBoardInputDelta = cardInputTop - keyBoardTop;
+              cardInputContainer.style.top = (cardInputContainer.offsetTop - keyBoardInputDelta) + 'px';
+            }
+          }
+        } catch (error){
+          console.error(error);
+        }
       }
 
       function keyboardHideHandler(e) {
@@ -316,6 +328,12 @@
         try {
           if (this.bottomButtonSubmitId)
             bottomButtonSubmitId.style.bottom = "0px";
+        } catch (error) {
+          console.error(error);
+        }
+        try {
+          if (this.cardInputContainer)
+            cardInputContainer.style.top = '';
         } catch (error) {
           console.error(error);
         }

@@ -20,6 +20,7 @@
       </div>
 
       <div class="inplace-pay-service-inner-container" id="servicesBodyContainerId"
+           onscroll="servicesScroll()"
            ontouchmove="servicesBodyContainerTouchMove()" ontouchstart="servicesBodyContainerTouchStart()"
            ontouchend="servicesBodyContainerTouchEnd()">
 
@@ -69,6 +70,8 @@
     var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
     var sessionKey = loginInfo.session_key;
     var timeOutTimer = 0;
+    var timeOutTimerTwo = 0;
+    var timeOutTimerThree = 0;
     var latitude = 0, longitude = 0;
     scope.pageNumber = 1;
     scope.serviceList = [];
@@ -76,16 +79,7 @@
     var stepBack = 1;
     scope.searchMode = false;
 
-
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-inplace-pay-service') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-inplace-pay-service',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-inplace-pay-service', opts);
 
     scope.on('mount', function () {
 
@@ -99,7 +93,7 @@
         viewPay.serviceContainerScrollTop = null;
       }
 
-    })
+    });
 
     findLocation = function () {
 
@@ -318,8 +312,8 @@
             scope: this,
 
             onSuccess: function (result) {
-              console.log('Clearing timer onSuccess', timeOutTimer);
-              window.clearTimeout(timeOutTimer);
+              console.log('Clearing timer onSuccess', timeOutTimerTwo);
+              window.clearTimeout(timeOutTimerTwo);
               window.stopSpinner();
               scope.searchMode = true;
 
@@ -345,8 +339,8 @@
 
             },
             onFail: function (api_status, api_status_message, data) {
-              console.log('Clearing timer onFail', timeOutTimer);
-              window.clearTimeout(timeOutTimer);
+              console.log('Clearing timer onFail', timeOutTimerTwo);
+              window.clearTimeout(timeOutTimerTwo);
               window.common.alert.show("componentAlertId", {
                 parent: scope,
                 //              viewpage: pageToReturn,
@@ -358,7 +352,7 @@
               console.error(data);
             },
             onTimeOut: function () {
-              timeOutTimer = setTimeout(function () {
+              timeOutTimerTwo = setTimeout(function () {
                 window.common.alert.show("componentAlertId", {
                   parent: scope,
                   //              viewpage: pageToReturn,
@@ -366,14 +360,14 @@
                   viewmount: true,
                   errornote: window.languages.WaitingTimeExpiredText
                 });
-              }, 20000);
-              console.log('creating timeOut', timeOutTimer);
+              }, 30000);
+              console.log('creating timeOut', timeOutTimerTwo);
             },
             onEmergencyStop: function () {
-              console.log('Clearing timer emergencyStop', timeOutTimer);
-              window.clearTimeout(timeOutTimer);
+              console.log('Clearing timer emergencyStop', timeOutTimerTwo);
+              window.clearTimeout(timeOutTimerTwo);
             }
-          }, 20000);
+          }, 30000);
 
         }
       }
@@ -492,6 +486,7 @@
                       scope: this,
 
                       onSuccess: function (result) {
+                        window.clearTimeout(timeOutTimerThree);
                         if (result[0][0].error == 0) {
                           if (result[1]) {
                             if (result[1][0]) {
@@ -562,18 +557,19 @@
                       },
 
                       onFail: function (api_status, api_status_message, data) {
+                        window.clearTimeout(timeOutTimerThree);
                         console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
                         console.error(data);
                       },
                       onTimeOut: function () {
-                        timeOutTimer = setTimeout(function () {
+                        timeOutTimerThree = setTimeout(function () {
                           window.stopSpinner();
                         }, 15000);
-                        console.log('creating timeOut', timeOutTimer);
+                        console.log('creating timeOut', timeOutTimerThree);
                       },
                       onEmergencyStop: function () {
-                        console.log('Clearing timer emergencyStop', timeOutTimer);
-                        window.clearTimeout(timeOutTimer);
+                        console.log('Clearing timer emergencyStop', timeOutTimerThree);
+                        window.clearTimeout(timeOutTimerThree);
                       }
                     }, 15000);
                   }
@@ -668,8 +664,11 @@
       onTouchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(onTouchStartY - onTouchEndY) <= 20 && Math.abs(onTouchStartX - onTouchEndX) <= 20) {
+        event.preventDefault();
+        event.stopPropagation();
 
         document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
+        window.clearTimeout(timeOutTimer);
 
         setTimeout(function () {
 
@@ -693,6 +692,10 @@
 
 
     servicesBodyContainerTouchMove = function () {
+
+      console.log("servicesBodyContainerId.scrollHeight=", servicesBodyContainerId.scrollHeight);
+      console.log("servicesBodyContainerId.scrollTop=", servicesBodyContainerId.scrollTop);
+      console.log("servicesBodyContainerId.offsetHeight=", servicesBodyContainerId.offsetHeight);
 
       if (device.platform == 'Android') {
 
@@ -730,17 +733,6 @@
           document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0,0,0)";
         }
 
-      } else {
-        console.log("Touch move ios");
-        if ((servicesBodyContainerId.scrollHeight - servicesBodyContainerId.scrollTop) == servicesBodyContainerId.offsetHeight) {
-          console.log("Paging");
-
-          if (scope.serviceList.length % 20 == 0) {
-            scope.pageNumber++;
-            console.log("services container move pagenumber=", scope.pageNumber)
-            getServiceList(latitude, longitude);
-          }
-        }
       }
     };
 
@@ -760,6 +752,7 @@
 
     servicesBodyContainerTouchEnd = function () {
 
+
       if (device.platform == 'Android') {
 
         servicesEndX = event.changedTouches[0].pageX;
@@ -773,13 +766,13 @@
           document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0,0,0)";
           document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0,0,0)";
 
-          setTimeout(function () {
-            if (scope.serviceList.length % 20 == 0) {
-              scope.pageNumber++;
-              console.log("services container move pagenumber=", scope.pageNumber)
-              getServiceList(latitude, longitude);
-            }
-          }, 300)
+//          setTimeout(function () {
+//            if (scope.serviceList.length % 20 == 0) {
+//              scope.pageNumber++;
+//              console.log("services container move pagenumber=", scope.pageNumber)
+//              getServiceList(latitude, longitude);
+//            }
+//          }, 300)
 
         } else if (servicesBodyContainerId.scrollTop == 0) {
           console.log("end swipe");
@@ -795,6 +788,26 @@
       }
 
     };
+
+
+    servicesScroll = function () {
+      console.log("scroll");
+//      if (device.platform == 'iOS') {
+
+      console.log("servicesBodyContainerId.scrollHeight=", servicesBodyContainerId.scrollHeight);
+      console.log("servicesBodyContainerId.scrollTop=", servicesBodyContainerId.scrollTop);
+      console.log("servicesBodyContainerId.offsetHeight=", servicesBodyContainerId.offsetHeight);
+      if ((servicesBodyContainerId.scrollHeight - servicesBodyContainerId.scrollTop) == servicesBodyContainerId.offsetHeight) {
+        console.log("Paging");
+
+        if (scope.serviceList.length % 20 == 0) {
+          scope.pageNumber++;
+          console.log("services container move pagenumber=", scope.pageNumber)
+          getServiceList(latitude, longitude);
+        }
+      }
+//      }
+    }
 
 
   </script>

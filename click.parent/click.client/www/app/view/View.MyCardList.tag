@@ -20,7 +20,8 @@
         <div class="mycardlist-card-salary-title">{i.name}</div>
 
         <div if="{!modeOfApp.offlineMode}" class="mycardlist-card-balance-currency-container">
-          <p class="mycardlist-card-balance">{i.salary}<span class="mycardlist-card-balance-fractional">{i.salary_fractional}</span></p>
+          <p class="mycardlist-card-balance">{i.salary}<span class="mycardlist-card-balance-fractional">{i.salary_fractional}</span>
+          </p>
           <p class="mycardlist-card-currency">{i.currency}</p>
         </div>
 
@@ -45,15 +46,7 @@
       goBackButtonEndY;
     scope.sortedCards = [];
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-mycard-list') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-mycard-list',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-mycard-list', opts);
 
     scope.cardsArray = localStorage.getItem("click_client_cards") ? JSON.parse(localStorage.getItem("click_client_cards")) : [];
 
