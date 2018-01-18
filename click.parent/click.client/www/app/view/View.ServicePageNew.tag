@@ -280,8 +280,10 @@
 
     window.checkShowingComponent = null;
     var scope = this;
-
+    var backStartY, backStartX, backEndY, backEndX;
+    var contactStopChanging = false;
     scope.showErrorOfLimit = false;
+    var onPaste = false;
 
 
     console.log("opts in ServicePageNew", opts);
@@ -293,41 +295,9 @@
     }
     if (opts.amountText) {
       opts.amountText = !opts.amountText ? 0 : window.amountTransform(opts.amountText.toString());
-      console.log("111", opts.amountText);
       scope.tax = opts.tax ? opts.tax : 0;
       scope.update();
     }
-
-    var backStartY, backStartX, backEndY, backEndX;
-
-    scope.onTouchStartOfBack = onTouchStartOfBack = function () {
-      event.stopPropagation();
-
-      servicePageBackButtonId.style.webkitTransform = 'scale(0.7)'
-
-      backStartY = event.changedTouches[0].pageY;
-      backStartX = event.changedTouches[0].pageX;
-    };
-
-
-    goToBack = function () {
-      event.stopPropagation();
-
-      servicePageBackButtonId.style.webkitTransform = 'scale(1)'
-
-      backEndY = event.changedTouches[0].pageY;
-      backEndX = event.changedTouches[0].pageX;
-
-      if (Math.abs(backStartY - backEndY) <= 20 && Math.abs(backStartX - backEndX) <= 20) {
-        window.viewServicePinCards = {};
-        event.preventDefault();
-        event.stopPropagation();
-        onBackParams.opts = JSON.parse(JSON.stringify(opts));
-        onBackKeyDown();
-        scope.unmount()
-      }
-    };
-
 
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
@@ -347,13 +317,41 @@
     if (loginInfo)
       var sessionKey = loginInfo.session_key;
 
-
     scope.update(scope.categoryNamesMap);
+
+
+    scope.onTouchStartOfBack = onTouchStartOfBack = function () {
+      event.stopPropagation();
+
+      servicePageBackButtonId.style.webkitTransform = 'scale(0.7)';
+
+      backStartY = event.changedTouches[0].pageY;
+      backStartX = event.changedTouches[0].pageX;
+    };
+
+
+    goToBack = function () {
+      event.stopPropagation();
+
+      servicePageBackButtonId.style.webkitTransform = 'scale(1)';
+
+      backEndY = event.changedTouches[0].pageY;
+      backEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(backStartY - backEndY) <= 20 && Math.abs(backStartX - backEndX) <= 20) {
+        window.viewServicePinCards = {};
+        event.preventDefault();
+        event.stopPropagation();
+        onBackParams.opts = JSON.parse(JSON.stringify(opts));
+        onBackKeyDown();
+        scope.unmount()
+      }
+    };
 
 
     checkFieldsToActivateNext = function (from) {
 
-      if (!scope.service['amount_editable']) return
+      if (!scope.service['amount_editable']) return;
 
       if (amountForPayTransaction < scope.service.min_pay_limit && from == 'sum' && amount.value.length != 0) {
         scope.showErrorOfLimit = true;
@@ -365,7 +363,6 @@
       }
       else if (from == 'sum' && amountField.length >= 1) {
         amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
-//        placeHolderSumId.style.color = '#515151';
         scope.showErrorOfLimit = false;
         scope.update()
       }
@@ -379,7 +376,6 @@
       }
       else if (from == 'sum') {
         amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
-//        placeHolderSumId.style.color = '#515151';
         scope.showErrorOfLimit = false;
         scope.update()
       }
@@ -402,14 +398,14 @@
       if (this.firstFieldInput) {
 
         if (scope.phoneFieldBool && firstFieldInput && opts.chosenServiceId != "mynumber") {
+
           if (firstFieldInput.value.length < 10) {
-            //console.log("Неправильно введён номер телефона");
 
             scope.enterButtonEnabled = false;
             scope.update(scope.enterButtonEnabled);
-
             return;
           }
+
         } else if (firstFieldInput && firstFieldInput.value.length == 0 && opts.chosenServiceId != "mynumber") {
           console.log("Нет значения первого поля");
           scope.enterButtonEnabled = false;
@@ -464,9 +460,9 @@
       scope.update(scope.enterButtonEnabled);
 
 
-    }
+    };
 
-    var contactStopChanging = false
+
     telPayVerificationKeyDown = function (input) {
 
       if (scope.phoneFieldBool)
@@ -479,32 +475,25 @@
         }
     };
 
-    var onPaste = false;
 
     telVerificationOnPaste = function () {
       onPaste = true;
-    }
+    };
 
     telVerificationOnInput = function () {
       if (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT && onPaste) {
         if (firstFieldInput.type != 'text' && scope.phoneFieldBool)
           firstFieldInput.value = inputVerification.telVerificationWithSpace(inputVerification.telVerification(firstFieldInput.value))
 
-
         onPaste = false;
-
       }
-      console.log("ON INPUT");
-    }
+    };
 
     var cursorPositionSelectionStart, cursorPositionSelectionEnd, oldValueOfNumber;
     telPayVerificationKeyUp = function () {
 
-      console.log("key up before =", firstFieldInput.value);
-
       if (contactStopChanging) {
         firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
-        console.log("1", firstFieldInput.value);
       }
 
       cursorPositionSelectionStart = firstFieldInput.selectionStart;
@@ -523,11 +512,8 @@
         if (oldValueOfNumber != firstFieldInput.value && cursorPositionSelectionStart == 3)
           firstFieldInput.selectionStart = cursorPositionSelectionStart + 1;
 
-        console.log("2", firstFieldInput.value);
-
       }
 
-      console.log("ON KEY UP", firstFieldInput.value);
       checkFieldsToActivateNext();
     };
 
@@ -592,16 +578,8 @@
         amountForPayTransaction = opts.amountWithoutSpace;
       }
       else if (scope.formType != 2)
-//        amount.value = 0
 
-//        if (modeOfApp.offlineMode) {
-//          if (this.enterButtonId)
-//            enterButtonId.innerText = 'Оплатить'
-//        }
-
-        checkFieldsToActivateNext()
-
-      console.log("ON MOUNT")
+        checkFieldsToActivateNext();
     });
 
     scope.focusFieldAfterTourClosed = focusFieldAfterTourClosed = function () {
@@ -640,7 +618,7 @@
       }
       scope.update()
 
-    }
+    };
 
     var searchContactStartY, searchContactStartX, searchContactEndY, searchContactEndX;
 
@@ -734,8 +712,7 @@
           return
         }
 
-//      if (!localStorage.getItem('click_client_currency_rate')) {
-//        console.log("no currency rate in localStorage");
+
         window.api.call({
           method: 'rate.convert',
           input: {

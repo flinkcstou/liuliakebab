@@ -61,10 +61,9 @@
       scope.unmount()
     };
 
-    this.titleName = opts.name
-    this.serviceIcon = opts.image
-
-    this.categoryName = opts.name
+    this.titleName = opts.name;
+    this.serviceIcon = opts.image;
+    this.categoryName = opts.location ? opts.category_name : "";
 
 
     goToQrPayConfirmView = function () {

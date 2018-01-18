@@ -2,7 +2,7 @@
 
   <div class="qr-pay-page-title" style="border-style: none;">
     <p class="qr-servicepage-title">{titleName}</p>
-    <p class="qr-servicepage-category-field">{categoryName}</p>
+    <p if="{opts[2].location}" class="qr-servicepage-category-field">{categoryName}</p>
     <div ontouchend="goToBack()"
          class="qr-servicepage-button-back" role="button" aria-label="{window.languages.Back}">
     </div>
@@ -66,6 +66,12 @@
     var scope = this;
     var pageToReturnIfError = 'view-main-page';
     var timeOutTimer = 0;
+    var qrCounter = 0;
+    var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+    var successStep = 3, errorStep = 0, waitingStep = 3, unsuccessStep = 2;
+    var qrPayButtonStartX, qrPayButtonEndX, qrPayButtonStartY,
+      qrPayButtonEndY;
 
     goToBack = function () {
       event.preventDefault();
@@ -82,16 +88,14 @@
     scope.cardOrFriendBool = opts[0];
     scope.titleName = opts[2].name;
     scope.serviceIcon = opts[2].image;
-    scope.categoryName = opts[2].name;
+    scope.categoryName = opts[2].location ? opts[2].category_name : opts[2].name;
     scope.tax = opts[2].tax;
 
     scope.update();
 
-    var successStep = 3, errorStep = 0, waitingStep = 3, unsuccessStep = 2;
 
     updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
       console.log("OPEN RESULT COMPONENT");
-//      scope.showResult = showResult;
 
       scope.stepAmount = stepAmount;
       scope.viewPage = viewPage;
@@ -125,10 +129,7 @@
       });
       scope.update();
     };
-    //
-    //    if (scope.isInFavorites)
-    //      this.viewPage = 'view-main-page';
-    //    else this.viewPage = 'view-pay';
+
     scope.amountTextCopy = window.amountTransform(opts[2].qrSum);
 
     if (scope.cardOrFriendBool) {
@@ -149,22 +150,6 @@
       scope.friendFirstLetterOfName = friendForHelp.firstLetterOfName;
       scope.friendPhoto = friendForHelp.photo;
 
-    }
-    scope.update();
-
-
-    if (scope.cardOrFriendBool) {
-      var chosenCardId = opts[1];
-      if (cardsArray[chosenCardId]) {
-        scope.cardName = cardsArray[chosenCardId].name;
-        scope.numberPartOne = cardsArray[chosenCardId].numberPartOne;
-        scope.numberPartTwo = cardsArray[chosenCardId].numberPartTwo;
-        scope.salary = cardsArray[chosenCardId].salary;
-        scope.currency = cardsArray[chosenCardId].currency;
-        scope.url = cardsArray[chosenCardId].url;
-      }
-    }
-    else {
       if (viewServicePinCards.friendHelpPaymentMode) {
 
         scope.friendHelpBool = true;
@@ -174,7 +159,7 @@
           scope.phoneNumber = viewServicePinCards.chosenFriendForHelp.number;
           scope.photo = viewServicePinCards.chosenFriendForHelp.photo;
         }
-        scope.update();
+
       } else {
 
         scope.friendHelpBool = false;
@@ -183,8 +168,6 @@
     }
     scope.update();
 
-    var qrPayButtonStartX, qrPayButtonEndX, qrPayButtonStartY,
-      qrPayButtonEndY;
 
     payServiceStart = function () {
 
@@ -192,7 +175,7 @@
       qrPayButtonStartY = event.changedTouches[0].pageY;
 
       qrPayButtonId.style.webkitTransform = 'scale(0.8)'
-    }
+    };
 
     payServiceEnd = function () {
 
@@ -244,15 +227,6 @@
           friend_phone: friendPhone
         };
 
-//        if (device.platform != 'BrowserStand') {
-//          var options = {dimBackground: true};
-//
-//          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-//            console.log("Started");
-//          }, function () {
-//            console.log("closed");
-//          });
-//        }
 
         window.common.alert.updateView("componentResultId", {
           parent: scope,
@@ -317,9 +291,6 @@
         }, 30000);
       }
     };
-    var qrCounter = 0;
-    var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
     function checkQrPaymentStatus(payment_id) {
 
