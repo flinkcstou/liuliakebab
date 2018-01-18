@@ -93,7 +93,7 @@
     scope.procTypeBottom = '';
     scope.inBankLimitTop = 1;
     scope.inBankLimitBottom = 0;
-    scope.stepAmount = 3;
+    scope.stepAmount = 1;
     scope.tax = 0;
     scope.taxPercent = 0;
     scope.sumForTransfer = 0;

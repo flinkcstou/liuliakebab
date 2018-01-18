@@ -158,7 +158,7 @@
     scope.taxPercent = 0;
     scope.maskOne = /[0-9]/g;
     scope.maskTwo = /[0-9' ']/g;
-    scope.stepAmount = 3;
+    scope.stepAmount = 2;
     scope.showPlaceHolderError = false;
     scope.showCommission = false;
     scope.noCards = false;
