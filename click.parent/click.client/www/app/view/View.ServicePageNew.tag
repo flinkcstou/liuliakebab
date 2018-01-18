@@ -470,7 +470,7 @@
     telPayVerificationKeyDown = function (input) {
 
       if (scope.phoneFieldBool)
-        if (input.value.length > 10 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
+        if (input.value.length >= 10 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
 
           contactStopChanging = true;
         }
