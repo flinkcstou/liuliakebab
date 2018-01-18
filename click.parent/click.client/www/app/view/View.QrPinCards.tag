@@ -1,7 +1,7 @@
 <view-qr-pincards class="view-service-pincards riot-tags-main-container">
 
   <div class="qr-pay-page-title" style="border-style: none;">
-    <p class="qr-servicepage-title">{titleName}</p>
+    <p class="qr-servicepage-title  {qr-servicepage-qr-title: !opts.location}">{titleName}</p>
     <p class="qr-servicepage-category-field">{categoryName}</p>
     <div ontouchend="touchStartTitle()"
          class="qr-servicepage-button-back" role="button" aria-label="{window.languages.Back}">

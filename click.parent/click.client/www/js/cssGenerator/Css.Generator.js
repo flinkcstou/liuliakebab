@@ -13301,6 +13301,11 @@ var css = {
   "width: 60%;" +
   "}",
 
+  qrServicePageQrTitle: ".qr-servicepage-qr-title" +
+  "{" +
+  "top: 57%;" +
+  "}",
+
   qrServicePageCategoryField: ".qr-servicepage-category-field" +
   "{" +
   "position: absolute;" +

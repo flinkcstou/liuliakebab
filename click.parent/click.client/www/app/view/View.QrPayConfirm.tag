@@ -1,7 +1,7 @@
 <view-qr-pay-confirm class="view-pay-confirm riot-tags-main-container">
 
   <div class="qr-pay-page-title" style="border-style: none;">
-    <p class="qr-servicepage-title">{titleName}</p>
+    <p class="qr-servicepage-title {qr-servicepage-qr-title: !opts[2].location}">{titleName}</p>
     <p if="{opts[2].location}" class="qr-servicepage-category-field">{categoryName}</p>
     <div ontouchend="goToBack()"
          class="qr-servicepage-button-back" role="button" aria-label="{window.languages.Back}">
