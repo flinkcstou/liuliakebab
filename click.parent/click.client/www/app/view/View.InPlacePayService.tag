@@ -72,7 +72,7 @@
     var timeOutTimer = 0;
     var timeOutTimerTwo = 0;
     var timeOutTimerThree = 0;
-    var latitude = 0, longitude = 0;
+    //    var latitude = 0, longitude = 0;
     scope.pageNumber = 1;
     scope.serviceList = [];
     var pageToReturn = "view-inplace-pay-category";
@@ -105,9 +105,9 @@
         var geoOptions = {timeout: 5000, enableHighAccuracy: true};
         var onGeoSuccess = function (position) {
           console.log("Success in getting position", position);
-          latitude = position.coords.latitude;
-          longitude = position.coords.longitude;
-          getServiceList(latitude, longitude);
+          inPlacePay.latitude = position.coords.latitude;
+          inPlacePay.longitude = position.coords.longitude;
+          getServiceList();
 
         };
 
@@ -115,14 +115,8 @@
         //
         function onGeoError(error) {
           console.log("Error in getting position", error);
-//        window.common.alert.show("componentAlertId", {
-//          parent: scope,
-//          viewpage: "view-inplace-pay-category",
-//          errornote: window.languages.InPlacePayGpsErrorText
-//        });
-          latitude = 0;
-          longitude = 0;
-          getServiceList(latitude, longitude);
+
+          getServiceList();
         }
 
         navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError, geoOptions);
@@ -133,7 +127,7 @@
     };
 
 
-    scope.getServiceList = getServiceList = function (lat, long) {
+    scope.getServiceList = getServiceList = function () {
 
 //      scope.serviceList = [];
       window.startSpinner();
@@ -144,7 +138,7 @@
           session_key: sessionKey,
           phone_num: phoneNumber,
           category_id: opts.categoryId,
-          location: lat + " " + long,
+          location: inPlacePay.latitude + " " + inPlacePay.longitude,
           page_number: parseInt(scope.pageNumber)
         },
         scope: this,
@@ -168,7 +162,6 @@
           } else {
             window.common.alert.show("componentAlertId", {
               parent: scope,
-//              viewpage: pageToReturn,
               step_amount: stepBack,
               viewmount: true,
               errornote: result[0][0].error_note
@@ -181,7 +174,6 @@
           window.clearTimeout(timeOutTimer);
           window.common.alert.show("componentAlertId", {
             parent: scope,
-//            viewpage: pageToReturn,
             step_amount: stepBack,
             viewmount: true,
             errornote: window.languages.ServiceUnavailableText
@@ -193,7 +185,6 @@
           timeOutTimer = setTimeout(function () {
             window.common.alert.show("componentAlertId", {
               parent: scope,
-//              viewpage: pageToReturn,
               step_amount: stepBack,
               viewmount: true,
               errornote: window.languages.WaitingTimeExpiredText
@@ -216,12 +207,10 @@
       scope.serviceList = JSON.parse(sessionStorage.getItem('click_client_inPlacePayServiceList'));
       scope.update();
 
-    } else if (opts.latitude && opts.longitude) {
+    } else if (inPlacePay.latitude && inPlacePay.longitude) {
 
       console.log('222');
-      latitude = opts.latitude;
-      longitude = opts.longitude;
-      getServiceList(opts.latitude, opts.longitude);
+      getServiceList();
 
     } else if (localStorage.getItem('location_find') && JSON.parse(localStorage.getItem('location_find'))) {
 
@@ -231,9 +220,7 @@
     } else {
 
       console.log('444');
-      latitude = 0;
-      longitude = 0;
-      getServiceList(latitude, longitude);
+      getServiceList();
 
     }
 
@@ -306,7 +293,7 @@
               session_key: sessionKey,
               phone_num: phoneNumber,
               category_id: opts.categoryId,
-              location: latitude + " " + longitude,
+              location: inPlacePay.latitude + " " + inPlacePay.longitude,
               search: searchWord
             },
             scope: this,
@@ -330,10 +317,9 @@
               } else {
                 window.common.alert.show("componentAlertId", {
                   parent: scope,
-                  //              viewpage: pageToReturn,
                   step_amount: stepBack,
                   viewmount: true,
-                  errornote: result[0][0].error_note,
+                  errornote: result[0][0].error_note
                 });
               }
 
@@ -343,7 +329,6 @@
               window.clearTimeout(timeOutTimerTwo);
               window.common.alert.show("componentAlertId", {
                 parent: scope,
-                //              viewpage: pageToReturn,
                 step_amount: stepBack,
                 viewmount: true,
                 errornote: window.languages.ServiceUnavailableText
@@ -355,7 +340,6 @@
               timeOutTimerTwo = setTimeout(function () {
                 window.common.alert.show("componentAlertId", {
                   parent: scope,
-                  //              viewpage: pageToReturn,
                   step_amount: stepBack,
                   viewmount: true,
                   errornote: window.languages.WaitingTimeExpiredText
@@ -509,37 +493,6 @@
                               scope.update();
                               iFrameExternalUrlId.src = result[0][0].error_url;
 
-//                               ref = cordova.InAppBrowser.open(result[0][0].error_url, '_blank', 'location=no');
-//
-//
-//                              //injecting the CSS
-//                              ref.addEventListener('loadstop', function () {
-//                                //injecting the CSS
-//                                ref.insertCSS({
-//                                  "code": ".youtube_done_button { position: absolute; width: 100%; background-color:#00a8f1; color: white; height:" + 140 * heightK + "px; top:" + -140 * heightK + "px; font-size:" + 50 * heightK + "px;}"
-//                                });
-//
-//                                ref.insertCSS({
-//                                  "code": "body{position:absolute; width:" + 720 * widthK + "px; height:" + 1072 * heightK + "px; top:" + 140 * heightK + "px;}"
-//                                });
-//
-//                                ref.insertCSS({
-//                                  "code": "html{position:absolute; width:" + 720 * widthK + "px; height:" + 1232 * widthK + "px; top:" + 0 * heightK + "px;}"
-//                                });
-//
-//                                //setting close to false when the InAppBrowser is opened
-//                                ref.executeScript({
-//                                  code: "localStorage.setItem('close', 'false');"
-//                                });
-//
-//                                //creating and attaching a button with click listener to the opened page
-//                                ref.executeScript({
-//                                  code: "(function () {var body = document.querySelector('body');var button = document.createElement('div');button.innerHTML = 'Назад в CLICK';button.classList.add('youtube_done_button');body.appendChild(button);button.addEventListener('click', function () {console.log('QWERTY'); ref.close()})})();"
-//                                });
-//
-//
-//
-//                              });
                               return
                             }
                           }
@@ -693,17 +646,11 @@
 
     servicesBodyContainerTouchMove = function () {
 
-      console.log("servicesBodyContainerId.scrollHeight=", servicesBodyContainerId.scrollHeight);
-      console.log("servicesBodyContainerId.scrollTop=", servicesBodyContainerId.scrollTop);
-      console.log("servicesBodyContainerId.offsetHeight=", servicesBodyContainerId.offsetHeight);
-
       if (device.platform == 'Android') {
 
         event.stopPropagation();
 
         if ((servicesBodyContainerId.scrollHeight - servicesBodyContainerId.scrollTop) == servicesBodyContainerId.offsetHeight && event.changedTouches[0].pageY < servicesStartY) {
-
-          console.log("START ANIMATION", event.changedTouches[0].pageY + top);
 
           if (Math.abs(event.changedTouches[0].pageY + top) < 250 * widthK) {
 
@@ -715,18 +662,13 @@
           }
         } else if (servicesBodyContainerId.scrollTop == 0 && event.changedTouches[0].pageY > servicesStartY) {
 
-          console.log("upper swipe", event.changedTouches[0].pageY + top);
           if (Math.abs(event.changedTouches[0].pageY + top) < 250 * widthK) {
-
             document.getElementById('servicesBodyContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
             document.getElementById('servicesBodyContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
             document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
             document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
-
           }
         } else {
-
-          console.log("RETURNING");
           document.getElementById('servicesBodyContainerId').style.transition = '0s cubic-bezier(0.2, 0.05, 0.39, 0)';
           document.getElementById('servicesBodyContainerId').style.webkitTransition = '0s cubic-bezier(0.2, 0.05, 0.39, 0)';
           document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0,0,0)";
@@ -739,7 +681,6 @@
     var top;
 
     servicesBodyContainerTouchStart = function () {
-
       if (device.platform == 'Android') {
 
         servicesStartX = event.changedTouches[0].pageX;
@@ -747,7 +688,6 @@
 
         top = -servicesStartY;
       }
-
     };
 
     servicesBodyContainerTouchEnd = function () {
@@ -760,28 +700,18 @@
 
         if ((servicesBodyContainerId.scrollHeight - servicesBodyContainerId.scrollTop) == servicesBodyContainerId.offsetHeight) {
 
-          console.log("END ANIMATION");
           document.getElementById('servicesBodyContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
           document.getElementById('servicesBodyContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
           document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0,0,0)";
           document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0,0,0)";
 
-//          setTimeout(function () {
-//            if (scope.serviceList.length % 20 == 0) {
-//              scope.pageNumber++;
-//              console.log("services container move pagenumber=", scope.pageNumber)
-//              getServiceList(latitude, longitude);
-//            }
-//          }, 300)
 
         } else if (servicesBodyContainerId.scrollTop == 0) {
-          console.log("end swipe");
 
           document.getElementById('servicesBodyContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
           document.getElementById('servicesBodyContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
           document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0,0,0)";
           document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0,0,0)";
-
 
         }
 
@@ -791,22 +721,15 @@
 
 
     servicesScroll = function () {
-      console.log("scroll");
-//      if (device.platform == 'iOS') {
 
-      console.log("servicesBodyContainerId.scrollHeight=", servicesBodyContainerId.scrollHeight);
-      console.log("servicesBodyContainerId.scrollTop=", servicesBodyContainerId.scrollTop);
-      console.log("servicesBodyContainerId.offsetHeight=", servicesBodyContainerId.offsetHeight);
       if ((servicesBodyContainerId.scrollHeight - servicesBodyContainerId.scrollTop) == servicesBodyContainerId.offsetHeight) {
-        console.log("Paging");
 
         if (scope.serviceList.length % 20 == 0) {
           scope.pageNumber++;
-          console.log("services container move pagenumber=", scope.pageNumber)
-          getServiceList(latitude, longitude);
+          getServiceList();
         }
       }
-//      }
+
     }
 
 

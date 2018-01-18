@@ -58,7 +58,7 @@
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
     var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
     var sessionKey = loginInfo.session_key;
-    var latitude, longitude;
+    //    var latitude, longitude;
     var mainPageToReturn = "view-main-page";
     var timeOutTimer = 0;
 
@@ -73,8 +73,8 @@
         var geoOptions = {timeout: 5000, enableHighAccuracy: true};
         var onGeoSuccess = function (position) {
           console.log("Success in getting position", position);
-          latitude = position.coords.latitude;
-          longitude = position.coords.longitude;
+          inPlacePay.latitude = position.coords.latitude;
+          inPlacePay.longitude = position.coords.longitude;
 
         };
 
@@ -271,7 +271,6 @@
 
     };
 
-
     goToQrTouchEnd = function (e) {
       event.preventDefault();
       event.stopPropagation();
@@ -396,38 +395,6 @@
                               window.checkShowingComponent = scope;
                               scope.update();
                               iFrameExternalUrlId.src = result[0][0].error_url;
-
-//                               ref = cordova.InAppBrowser.open(result[0][0].error_url, '_blank', 'location=no');
-//
-//
-//                              //injecting the CSS
-//                              ref.addEventListener('loadstop', function () {
-//                                //injecting the CSS
-//                                ref.insertCSS({
-//                                  "code": ".youtube_done_button { position: absolute; width: 100%; background-color:#00a8f1; color: white; height:" + 140 * heightK + "px; top:" + -140 * heightK + "px; font-size:" + 50 * heightK + "px;}"
-//                                });
-//
-//                                ref.insertCSS({
-//                                  "code": "body{position:absolute; width:" + 720 * widthK + "px; height:" + 1072 * heightK + "px; top:" + 140 * heightK + "px;}"
-//                                });
-//
-//                                ref.insertCSS({
-//                                  "code": "html{position:absolute; width:" + 720 * widthK + "px; height:" + 1232 * widthK + "px; top:" + 0 * heightK + "px;}"
-//                                });
-//
-//                                //setting close to false when the InAppBrowser is opened
-//                                ref.executeScript({
-//                                  code: "localStorage.setItem('close', 'false');"
-//                                });
-//
-//                                //creating and attaching a button with click listener to the opened page
-//                                ref.executeScript({
-//                                  code: "(function () {var body = document.querySelector('body');var button = document.createElement('div');button.innerHTML = 'Назад в CLICK';button.classList.add('youtube_done_button');body.appendChild(button);button.addEventListener('click', function () {console.log('QWERTY'); ref.close()})})();"
-//                                });
-//
-//
-//
-//                              });
                               return
                             }
                           }
@@ -567,9 +534,7 @@
           riotTags.innerHTML = "<view-inplace-pay-service>";
           riot.mount('view-inplace-pay-service', {
             categoryId: id,
-            categoryName: name,
-            latitude: latitude,
-            longitude: longitude
+            categoryName: name
           });
           scope.unmount();
         }, 50)
