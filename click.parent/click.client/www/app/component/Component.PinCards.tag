@@ -30,7 +30,7 @@
     var scope = this;
 
     scope.cardsArray = localStorage.getItem('click_client_cards') ? JSON.parse(localStorage.getItem('click_client_cards')) : [];
-    checkCardPermission();
+    checkCardPermissionAndBalance();
 
     scope.checked = false;
     scope.cardId = undefined;
@@ -159,9 +159,10 @@
       return scope.cardSum;
     };
 
-    function checkCardPermission() {
+    function checkCardPermissionAndBalance() {
       for (var i in scope.cardsArray) {
         scope.cardsArray[i].permission = false;
+        console.log(scope.cardsArray[i]);
         if (scope.opts.usefor == "p2p" && scope.cardsArray[i].p2p_allowed == 1) {
           scope.cardsArray[i].permission = true;
         }
@@ -170,6 +171,11 @@
         }
         if (scope.opts.usefor == "all") {
           scope.cardsArray[i].permission = true;
+        }
+
+        //cards with error balance is not allowed
+        if (scope.cardsArray[i].salary === null){
+          scope.cardsArray[i].permission = false;
         }
 
         if (scope.cardsArray[i].permission == false) {

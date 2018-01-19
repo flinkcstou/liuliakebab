@@ -324,7 +324,7 @@ var RU_LANGUAGES =
   "ViewAboutSettingsRateUsTitle": "Оцените нас в Google Play",
 
   "ViewSettingsAboutProgramTitleName": "О ПРОГРАММЕ",
-  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 5.8.2",
+  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 5.8.3",
   "ViewSettingsAboutProgramVersionTitleNamePartOneClick": "CLICK Uzbekistan",
   "ViewSettingsAboutProgramVersionTitleNamePartTwo": "18 января, 2018",
   "ViewSettingsAboutProgramUserAgreementTitleName": "Пользовательское соглашение",
@@ -611,6 +611,7 @@ var RU_LANGUAGES =
 
 
   "ComponentCardCarouselAddFirstCardtext": "Добавьте свою первую карту в CLICK",
+  "ComponentCardCarouselBalanceError": "Ошибка баланса",
 
   "ViewNewsDetails": "Подробнее",
   "ViewNewsFollowLink": "ПЕРЕЙТИ",
