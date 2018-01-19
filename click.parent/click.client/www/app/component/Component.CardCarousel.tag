@@ -720,8 +720,9 @@
                     scope.cardsarray[balances[i].account_id].salary = balances[i].balance;
                     scope.cardsarray[balances[i].account_id].salary_fractional = balances[i].balance_fractional;
                   } else {
-                    scope.cardsarray[i].salary = "0";
+                    scope.cardsarray[i].salary = null;
                     scope.cardsarray[i].salary_fractional = '';
+                    scope.cardsarray[i].error_message = window.languages.ComponentCardCarouselBalanceError;
                   }
                 }
 
@@ -736,7 +737,7 @@
           else {
             for (var i in scope.cardsarray) {
               scope.cardsarray[i].salary = null;
-              scope.cardsarray[i].error_message = "Ошибка баланса";
+              scope.cardsarray[i].error_message = window.languages.ComponentCardCarouselBalanceError;
             }
             localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
             scope.update();
