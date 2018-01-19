@@ -59,6 +59,12 @@ window.api.call = function (params, timeout) {
 window.api.init = function () {
   if (!window.isConnected) {
     try {
+      if (device.platform == 'Android') {
+        window.WebSocket.pluginOptions = {
+          maxConnectTime: 5000,
+          override: true
+        };
+      }
       window.api.socket = new WebSocket("wss://my.click.uz:8443");
       window.isConnected = true;
       console.log("SOCKET =", window.api.socket);
