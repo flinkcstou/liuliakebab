@@ -72,7 +72,6 @@
     var timeOutTimer = 0;
     var timeOutTimerTwo = 0;
     var timeOutTimerThree = 0;
-    //    var latitude = 0, longitude = 0;
     scope.pageNumber = 1;
     scope.serviceList = [];
     var pageToReturn = "view-inplace-pay-category";
@@ -630,7 +629,7 @@
           for (var i in scope.serviceList) {
             if (scope.serviceList[i].id == id) {
               viewPay.serviceContainerScrollTop = servicesBodyContainerId.scrollTop;
-              scope.serviceList[i].location = latitude + " " + longitude;
+              scope.serviceList[i].location = inPlacePay.latitude + " " + inPlacePay.longitude;
               riotTags.innerHTML = "<view-qr>";
               riot.mount('view-qr', scope.serviceList[i]);
 
