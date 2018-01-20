@@ -43,8 +43,9 @@
         <div class="add-card-carousel-text">
           {window.languages.ComponentCardCarouselAddFirstCardtext}
         </div>
-
       </div>
+
+      <img src="resources/gifs/1x1.gif" width="1" height="1">
 
       <component-card each="{i in cardsarray}"
                       countcard="{i.countCard}"

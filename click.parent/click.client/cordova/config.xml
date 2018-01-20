@@ -35,6 +35,7 @@
   <plugin name="cordova-plugin-appversion"/>
   <plugin name="cordova-open-native-settings"/>
   <plugin name="cordova-plugin-geolocation"/>
+  <plugin name="cordova-plugin-websocket"/>
   <access origin="*"/>
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>
