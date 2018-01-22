@@ -55,7 +55,7 @@
                       numbermiddletwo="{i.numberMiddleTwo}"
                       numberparttwo="{i.numberPartTwo}"
                       bankname="{i.bankName}" url="{i.url}"
-                      background="{(i.card_background_url)?(i.card_background_url):('resources/icons/cards/all.png')}"
+                      background="{(checkSumOfHash || i.card_cached)?(i.card_background_url):(i.card_background_local)}"
                       fontcolor="{i.font_color}"
                       error_message="{i.error_message}"></component-card>
 
@@ -207,7 +207,11 @@
 
         scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
 
+        console.log("CHECK SUM OF HASH = true");
+
       } else if (!scope.checkSumOfHash) {
+
+        console.log("CHECK SUM OF HASH = false");
 
         if (!loginInfo.update_account_cache) {
           scope.cardImageCachedLinks = {};
@@ -261,6 +265,8 @@
             numberPartTwo: numberOfCardPartTwo,
             url: getAccountsCards[i].image_url,
             card_background_url: getAccountsCards[i].card_background_url,
+            card_background_local: 'resources/icons/cards/' + getAccountsCards[i].card_background_url.substr(getAccountsCards[i].card_background_url.lastIndexOf('/') + 1),
+            card_cached: device.platform == "BrowserStand" ? true : false,
             chosenCard: defaultAccount,
             default_account: defaultAccount,
             access: getAccountsCards[i].access,
@@ -417,7 +423,6 @@
       });
     };
 
-
     //TODO: FIX THIS BUG WITH MANY CONTACTS ON PHONE !!!!!!
     //    function onSuccess(contacts) {
     //
@@ -449,7 +454,6 @@
     //      navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
     //    }
 
-
     cardImagesCaching = function (full) {
 
       if (device.platform != 'BrowserStand') {
@@ -462,6 +466,8 @@
 
               scope.cardsarray[i].card_background_url = scope.cardImageCachedLinks[i].cardBackgroundUrl;
               scope.cardsarray[i].url = scope.cardImageCachedLinks[i].url;
+              scope.cardsarray[i].card_cached = true;
+              console.log("CACHED CARD " + scope.cardsarray[i].countCard);
               count = count + 2;
 
               if (count == (Object.keys(scope.cardsarray).length * 2)) {
@@ -475,6 +481,9 @@
 
               var icon = scope.cardsarray[i].card_background_url;
               var filename = icon.substr(icon.lastIndexOf('/') + 1);
+//              document.getElementById('cardNumber' + scope.cardsarray[i].countCard).style.backgroundImage = "url(resources/icons/cards/" + filename + ")";
+              scope.cardsarray[i].card_background_url = 'resources/icons/cards/' + filename;
+              console.log("START CACHE CARD " + scope.cardsarray[i].countCard, icon);
               var newIconBool = checkImageURL;
               newIconBool('www/resources/icons/cards/', 'cards', filename, icon, i, function (bool, index, fileName) {
 
@@ -485,6 +494,10 @@
                   count++;
                   scope.cardsarray[index].card_background_url = 'resources/icons/cards/' + fileName;
                 }
+
+                console.log("START CACHE CARD " + scope.cardsarray[i].countCard, icon);
+
+                scope.cardsarray[index].card_cached = true;
 
                 var icon2 = scope.cardsarray[index].url;
                 var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);

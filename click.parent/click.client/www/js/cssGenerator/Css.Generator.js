@@ -1704,6 +1704,11 @@ var css = {
   "box-shadow:  0px " + 50 * widthK + "px " + 50 * widthK + "px " + -50 * widthK + "px " + "rgba(0,0,0,1);" +
   "}",
 
+  cardDefaultBackground: ".card-default-background " +
+  "{" +
+  "background-image: url(resources/icons/cards/all.png);" +
+  "}",
+
   invoiceCardPartOne: ".invoice-card-part-one " +
   "{" +
   "-webkit-appearance: none;" +

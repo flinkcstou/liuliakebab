@@ -34,10 +34,6 @@
       scope.update()
     }
 
-    scope.on("mount", function () {
-
-    });
-
 
     cardTouchStart = function (id) {
 

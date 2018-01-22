@@ -13,7 +13,7 @@
 
     <div class="mycardlist-container">
       <div class="mycardlist-card" each="{i in sortedCards}" id="{i.card_id}"
-           style="background-image: url({i.card_background_url}); color: rgb({i.font_color});"
+           style="background-image: url({i.card_cached? i.card_background_url:i.card_background_local}); color: rgb({i.font_color});"
            ontouchstart="goToCardPageTouchStart(this.id)" ontouchend="goToCardPageTouchEnd({i.card_id}, this.id)">
 
         <div class="mycardlist-card-bank-name"></div>
