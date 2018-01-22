@@ -81,6 +81,7 @@
     localStorage.setItem('cardNumber', 1);
 
     history.arrayOfHistory = [];
+    sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
     window.saveHistory('view-main-page', opts);
 
