@@ -81,8 +81,15 @@
     localStorage.setItem('cardNumber', 1);
 
     history.arrayOfHistory = [];
+    history.arrayOfHistory.push(
+      {
+        "view": 'view-main-page',
+        "params": opts
+      }
+    );
 
-    window.saveHistory('view-main-page', opts);
+    console.log("main page to history");
+    sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
 
     myCardListTouchStart = function () {
