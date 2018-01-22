@@ -223,6 +223,7 @@ var RU_LANGUAGES =
   "ComponentSuccessMessageForRemovingFromFavorites": "Платёж успешно удален из избранных",
 
   "ComponentInProcessingPartOne": "Перевод передан на обработку.",
+  "ComponentInProcessingPartOneWithoutDot": "Перевод передан на обработку",
   "ComponentInProcessingPartOneForTransfer": "Перевод отправлен",
   "ComponentInProcessingPartTwoForTransfer": "и ожидает подтверждения получателя",
   "ComponentInProcessingForTransfer": "Перевод отправлен и ожидает подтверждения получателя",

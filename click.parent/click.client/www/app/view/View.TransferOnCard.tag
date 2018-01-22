@@ -121,11 +121,11 @@
 
             if (result[0][0].error == 0) {
 
-              window.common.alert.show("componentSuccessId", {
+              window.common.alert.show("componentAlertId", {
                 parent: scope,
-                operationmessage: window.languages.ComponentSuccessMessage,
+                clickpinerror: false,
+                errornote: window.languages.ComponentInProcessingPartOneWithoutDot,
                 viewpage: 'view-invoice-list',
-                step_amount: 0
               });
               window.updateBalanceGlobalFunction();
             }
