@@ -101,12 +101,6 @@ window.api.initSocket = function () {
     console.log('Connection is closed');
     console.log(event);
     window.isConnected = false;
-    if (navigator.connection.type !== Connection.NONE && navigator.connection.type !== Connection.UNKNOWN) {
-      // console.log(window.numberOfAttemps);
-      // if (window.numberOfAttemps != 3) {
-      //   window.api.init();
-      // }
-    }
   };
 
   var me = this;
