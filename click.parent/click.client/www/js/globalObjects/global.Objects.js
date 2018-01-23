@@ -1622,3 +1622,40 @@ window.getPosition = function (el) {
     y: yPos
   };
 };
+
+window.sendToLog = function (data, page, opts) {
+
+  logStorage = localStorage.getItem("log_storage") ? JSON.parse(localStorage.getItem("log_storage")) : [];
+
+  new_log = {
+    id: 'id' + (new Date()).getTime(),
+    data: data,
+    page: page,
+  };
+
+  logStorage.push(new_log);
+
+  localStorage.setItem('log_storage', JSON.stringify(logStorage));
+
+
+  params = {
+    method: 'log.method.name',
+    input: data,
+    onSuccess: function (result) {
+      if (result[0][0].error === 0) {
+        console.log('all saved');
+        //clearing sessionStorage and etc
+      }
+      else {
+        console.log('something gone wrong');
+        //to do something else
+      }
+    },
+    onFail: function (api_status, api_status_message, data) {
+      console.log('cannot save logs to server');
+      console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+      console.error(data);
+    },
+  }
+  // window.api.send(params);
+};
