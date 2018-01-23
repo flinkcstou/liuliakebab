@@ -3178,10 +3178,19 @@ var css = {
   "width: 78%;" +
   "}",
 
+  viewInfoCardBalanceScaleContainer: ".view-info-card-balance-scale-container " +
+  "{" +
+  "position: relative;" +
+  "left:" + 0 + "px;" +
+  "margin: 0;" +
+  "float: left;" +
+  "padding: 0;" +
+  "}",
+
   viewInfoCardBalanceSum: ".view-info-card-balance-sum " +
   "{" +
   "position: relative;" +
-  "left:" + 25 * widthK + "px;" +
+  // "left:" + 25 * widthK + "px;" +
   "color: #585658;" +
   "font-size:" + 67 * widthK + "px;" +
   "margin: 0;" +
@@ -3189,9 +3198,9 @@ var css = {
   "float: left;" +
   "color: #91cc00;" +
   "padding: 0;" +
-  "max-width: 75%;" +
-  "overflow: hidden;" +
-  "text-overflow: ellipsis;" +
+  // "max-width: 75%;" +
+  // "overflow: hidden;" +
+  // "text-overflow: ellipsis;" +
   "white-space: nowrap;" +
   "}",
 
@@ -3202,15 +3211,15 @@ var css = {
 
   viewInfoCardCurrency: ".view-info-card-currency " +
   "{" +
-  "position: relative;" +
-  "margin-left:" + 30 * widthK + "px;" +
-  "color: #595759;" +
-  "top:" + 12 * widthK + "px;" +
+  // "position: relative;" +
+  // "margin-left:" + 30 * widthK + "px;" +
+  // "color: #595759;" +
+  // "top:" + 12 * widthK + "px;" +
   "font-size:" + 26 * widthK + "px;" +
-  "background-size: contain;" +
-  "float: left;" +
-  "color: #91cc00;" +
-  "width:" + 60 * widthK + "px;" +
+  // "background-size: contain;" +
+  // "float: left;" +
+  // "color: #91cc00;" +
+  // "width:" + 60 * widthK + "px;" +
   "}",
 
   viewInfoMyFinanceContainer: ".view-info-my-finance-container " +

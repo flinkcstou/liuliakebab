@@ -8,9 +8,12 @@
   <div class="view-info-balance-container">
     <p class="view-info-balance-label">{window.languages.ViewInfoBalanceTitle}</p>
     <div class="view-info-card-balance-currency-container">
-      <div if="{!modeOfApp.offlineMode}" class="view-info-card-balance">
-        <p class="view-info-card-balance-sum">{(fullBalanceCopy) ? (fullBalanceCopy) : (error_message)}<span class="view-info-card-balance-sum-fractional">{(fractionalPart) ? (fractionalPart) : ''}</span></p>
-        <p if="{!modeOfApp.offlineMode && fullBalanceCopy}" class="view-info-card-currency">сум</p>
+      <div if="{!modeOfApp.offlineMode}" class="view-info-card-balance" id="fullCardBalanceContainer">
+        <div class="view-info-card-balance-scale-container" id="fullCardBalanceScaleContainer">
+          <p class="view-info-card-balance-sum">{(fullBalanceCopy) ? (fullBalanceCopy) : (error_message)}<span
+            class="view-info-card-balance-sum-fractional">{(fractionalPart) ? (fractionalPart) : ''}</span> <span
+            if="{!modeOfApp.offlineMode && fullBalanceCopy}" class="view-info-card-currency">сум</span></p>
+        </div>
       </div>
 
       <a if="{modeOfApp.offlineMode}" class="offline-card-balance"
@@ -108,6 +111,18 @@
       }
     })
 
+    this.on('updated', function () {
+      console.log("full card balance container", fullCardBalanceContainer.offsetWidth);
+      console.log("full card balance", fullCardBalanceScaleContainer.offsetWidth);
+
+      if (fullCardBalanceScaleContainer.offsetWidth > fullCardBalanceContainer.offsetWidth) {
+        scaleK = fullCardBalanceContainer.offsetWidth / fullCardBalanceScaleContainer.offsetWidth;
+        left_d = (scaleK - 1) * fullCardBalanceScaleContainer.offsetWidth / 2;
+        fullCardBalanceScaleContainer.style.webkitTransform = 'scale(' + scaleK + ')';
+        fullCardBalanceScaleContainer.style.left = left_d + 'px';
+      }
+    });
+
     var balanceTouchStartX, balanceTouchStartY, balanceTouchEndX, balanceTouchEndY;
 
     reloadBalanceTouchStart = function () {
@@ -198,7 +213,6 @@
           console.error(data);
         }
       });
-
 
       scope.update();
     }

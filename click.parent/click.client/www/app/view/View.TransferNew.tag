@@ -207,7 +207,7 @@
           changeIconTransferByContact();
           setTimeout(function () {
             contactPhoneNumberId.focus();
-          }, 100);
+          }, 1);
         }
       }
 
