@@ -1623,14 +1623,13 @@ window.getPosition = function (el) {
   };
 };
 
-window.sendToLog = function (data, page, opts) {
+window.sendToLog = function (data) {
 
   logStorage = localStorage.getItem("log_storage") ? JSON.parse(localStorage.getItem("log_storage")) : [];
 
   new_log = {
     id: 'id' + (new Date()).getTime(),
     data: data,
-    page: page,
   };
 
   logStorage.push(new_log);
@@ -1640,7 +1639,7 @@ window.sendToLog = function (data, page, opts) {
 
   params = {
     method: 'log.method.name',
-    input: data,
+    input: new_log,
     onSuccess: function (result) {
       if (result[0][0].error === 0) {
         console.log('all saved');
