@@ -473,7 +473,7 @@
               if (count == (Object.keys(scope.cardsarray).length * 2)) {
 
                 localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
-                scope.update();
+//                scope.update();
 
               }
 
@@ -515,7 +515,7 @@
                   if (count == (Object.keys(scope.cardsarray).length * 2)) {
 
                     localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
-                    scope.update();
+//                    scope.update();
 
                   }
                 });
