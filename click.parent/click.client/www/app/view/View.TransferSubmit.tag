@@ -181,7 +181,6 @@
     scope.on('mount', function () {
 
       if (opts && JSON.stringify(opts) !== '{}') {
-        console.log('opts in submit', opts);
         if (opts.transferType === 'card') {
           scope.receiver = opts.cardNumber.replace(/\s/g, '');
           scope.receiverTitle = opts.cardOwner;
@@ -224,6 +223,12 @@
           scope.cardCounter = opts.cardcounter;
         }
         console.log('scope in submit after mount', JSON.stringify(scope.maxLimit));
+      } else {
+        log_info = {
+          comment: 'Transfer submit: opts is empty',
+          opts: opts
+        };
+        window.sendToLog(log_info);
       }
       setTimeout(function () {
         submitAmountId.focus();

@@ -170,6 +170,15 @@
       if (opts && JSON.stringify(opts) !== '{}') {
         console.log('opts in new transfers', opts);
         if (opts.transferType && opts.transferType === 'contact') {
+          if (opts.phoneNumber === undefined) {
+            log_info = {
+              comment: 'Transfers: phone number is undefined in opts',
+              opts: opts
+            };
+            window.sendToLog(log_info);
+            opts.phoneNumber = '';
+          }
+
           changeIconTransferByContact();
           scope.transferTypeNumber = 0;
           contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(opts.phoneNumber.substr(3, opts.phoneNumber.length));
@@ -177,6 +186,14 @@
         }
         if (opts.transferType && opts.transferType === 'card') {
           console.log('open transfers to card');
+          if (opts.cardNumber === undefined) {
+            log_info = {
+              comment: 'Transfers: card number is undefined in opts',
+              opts: opts
+            };
+            window.sendToLog(log_info);
+            opts.cardNumber = '';
+          }
           changeIconTransferByCard();
           scope.transferTypeNumber = 1;
           cardInputId.value = opts.cardNumber;
@@ -244,6 +261,15 @@
           card.style.width = '50%';
           contact.style.width = '50%';
         }
+      } else {
+        between.style.display = 'none';
+        betweenForm.style.display = 'none';
+        card.style.width = '50%';
+        contact.style.width = '50%';
+        log_info = {
+          comment: 'Transfers: click_client_cards is empty',
+        };
+        window.sendToLog(log_info);
       }
       if (between.style.display === 'none'){
         scope.transferTypeCount--;
