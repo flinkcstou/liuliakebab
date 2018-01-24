@@ -299,18 +299,17 @@
 
       }
 
-      scope.update();
-
-
       if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance &&
         !(sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true)) {
         writeBalance();
-//        scope.update()
       } else {
         if (invoice) {
           scope.update();
         }
       }
+
+      scope.update();
+
     }
     ;
 
