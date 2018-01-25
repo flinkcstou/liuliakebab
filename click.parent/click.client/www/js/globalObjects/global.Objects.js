@@ -1584,7 +1584,7 @@ window.blurFields = function () {
 
 
 window.saveHistory = function (viewName, viewOpts) {
-  console.log("SAVE HISTORY ", viewName, viewOpts);
+  // console.log("SAVE HISTORY ", viewName, viewOpts);
   history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
   if (history.arrayOfHistory.length != 0 && history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== viewName) {
     history.arrayOfHistory.push(
@@ -1593,8 +1593,37 @@ window.saveHistory = function (viewName, viewOpts) {
         "params": viewOpts
       }
     );
-    sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+    window.savePageLogs(viewName);
+    sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
   }
+
+
+  console.error('WINDOW.SAVE HISTORY');
+};
+
+window.savePageLogs = function (viewName) {
+  pageLogs = JSON.parse(sessionStorage.getItem('page_logs'));
+  if (pageLogs) {
+    if (pageLogs.length !== 0) {
+      for (var k in pageLogs) {
+        if (pageLogs[k] && pageLogs[k].view === viewName) {
+          pageLogs.splice(k, 1);
+        }
+      }
+      pageLogs.push(
+        {
+          view: viewName,
+          logs: []
+        }
+      );
+    }
+  } else {
+    pageLogs = [{
+      view: viewName,
+      logs: []
+    }];
+  }
+  sessionStorage.setItem('page_logs', JSON.stringify(pageLogs))
 };
 
 window.getPosition = function (el) {

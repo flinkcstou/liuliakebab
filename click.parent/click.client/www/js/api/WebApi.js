@@ -143,6 +143,7 @@ window.api.initSocket = function () {
               if (!error) {
                 riot.update();
                 showAlertComponent("Произошла непредвиденная ошибка. Свяжитесь с нашей службой поддержки +998 71 2310880")
+                window.sendToLog(ERROR);
               }
               else {
                 if (sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true)

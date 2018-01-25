@@ -49,6 +49,7 @@
 
 <script>
   var versionOfApp = '5.0.8';
+  sessionStorage.clear();
   if (localStorage.getItem('version') && localStorage.getItem('version') === versionOfApp) {
 
   }
@@ -56,9 +57,30 @@
 //    localStorage.clear()
     localStorage.setItem('version', versionOfApp)
   }
-  //    console.log = function() { return}
 
   api.init();
+
+  var _log = console.log;
+  var _error = console.error;
+  var _warn = console.warn;
+
+  console.error = function(errMessage){
+    _error.apply(console,arguments);
+  };
+
+  console.log = function(logMessage){
+    _log.apply(console,arguments);
+  };
+
+  console.warn = function(warnMessage){
+    pageLogs = JSON.parse(sessionStorage.getItem('page_logs'));
+    if (pageLogs && pageLogs.length > 0) {
+      pageLogs[pageLogs.length - 1].logs.push(warnMessage);
+      sessionStorage.setItem('page_logs', JSON.stringify(pageLogs));
+    }
+    _warn.apply(console,arguments);
+  };
+
   var scope = this;
   if (window.cordova) {
     document.addEventListener("deviceready", function () {

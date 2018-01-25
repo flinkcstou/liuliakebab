@@ -87,6 +87,7 @@
         "params": opts
       }
     );
+    window.savePageLogs('view-main-page');
 
     console.log("main page to history");
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
