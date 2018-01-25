@@ -1580,7 +1580,7 @@ window.blurFields = function () {
   catch (e) {
   }
   ;
-}
+};
 
 
 window.saveHistory = function (viewName, viewOpts) {
@@ -1595,7 +1595,7 @@ window.saveHistory = function (viewName, viewOpts) {
     );
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
   }
-}
+};
 
 window.getPosition = function (el) {
   var xPos = 0;
@@ -1673,7 +1673,7 @@ window.writeLog = function (logToSave) {
     }
   });
 
-}
+};
 
 
 function writeToFile(fileName, log) {
@@ -1700,12 +1700,7 @@ function writeToFile(fileName, log) {
         };
 
         var blob = new Blob([data], {type: 'text/plain'});
-        // try {
-        //   fileWriter.seek(fileWriter.length);
-        // }
-        // catch (e) {
-        //   console.log("file doesn't exist!");
-        // }
+
         fileWriter.write(blob);
       }, errorHandler.bind(null, fileName));
     }, errorHandler.bind(null, fileName));
