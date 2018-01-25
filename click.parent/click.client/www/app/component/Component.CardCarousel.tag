@@ -548,7 +548,7 @@
             onSuccess: function (result) {
 
               if (result[0][0].error == 0) {
-                if (JSON.parse(localStorage.getItem('click_client_cards'))) {
+                if (JSON.parse(localStorage.getItem('click_client_cards')) && !info.update_account_cache) {
                   var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
                   var countLocalStorageCard = Object.keys(cardsArray).length;
 
@@ -558,11 +558,13 @@
                         if (cardsArray[result[1][i].id].checksum != result[1][i].checksum) {
                           window.startSpinner();
                           scope.checkSumOfHash = false;
+                          break;
                         }
                       }
                       else {
                         window.startSpinner();
                         scope.checkSumOfHash = false;
+                        break;
                       }
                     }
                   }
