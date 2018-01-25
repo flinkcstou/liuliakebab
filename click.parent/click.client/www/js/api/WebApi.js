@@ -111,6 +111,7 @@ window.api.initSocket = function () {
     console.log("Received data:", parsedData);
     try {
       var method = parsedData.data[0][0].method;
+      console.log("Method:", method);
       var callBack = me.callBacks[method];
       if (parsedData.api_status === 0)
         try {
