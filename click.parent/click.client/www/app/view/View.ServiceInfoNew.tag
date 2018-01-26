@@ -71,20 +71,22 @@
     var payment_data, optionAttribute;
     var timeOutTimer = 0;
     scope.type = 0;
+    if (!opts.transactionId)
+      opts.transactionId = parseInt(Date.now() / 1000);
 
 
     if (opts.formtype == 1) {
       payment_data = {
         "param": opts.firstFieldId,
         "value": opts.firstFieldText,
-        "transaction_id": parseInt(Date.now() / 1000)
+        "transaction_id": opts.transactionId
       };
 
     }
     else if (opts.formtype == 2) {
       payment_data = {
         "pin_param": opts.cardTypeId,
-        "transaction_id": parseInt(Date.now() / 1000)
+        "transaction_id": opts.transactionId
       };
 
     }
@@ -93,7 +95,7 @@
         "param": opts.firstFieldId,
         "value": opts.firstFieldText,
         "communal_param": opts.communalParam,
-        "transaction_id": parseInt(Date.now() / 1000)
+        "transaction_id": opts.transactionId
       };
 
 
@@ -103,25 +105,19 @@
         "param": opts.firstFieldId,
         "value": opts.firstFieldText,
         "internet_package_param": opts.internetPackageParam,
-        "transaction_id": parseInt(Date.now() / 1000)
+        "transaction_id": opts.transactionId
       };
 
     }
 
-    if (device.platform != 'BrowserStand') {
-      var options = {dimBackground: true};
-
-      SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-        console.log("Started");
-      }, function () {
-        console.log("closed");
-      });
-    }
+    window.startSpinner();
 
     console.log("enable_information_cache", localStorage.getItem('click_client_infoCacheEnabled'))
 
-    if (!JSON.parse(localStorage.getItem('click_client_infoCacheEnabled')))
+    if (!JSON.parse(localStorage.getItem('click_client_infoCacheEnabled'))) {
+      console.log("get information")
       getInformation();
+    }
     else {
       scope.serviceData = JSON.parse(localStorage.getItem("click_client_infoCached"))
 

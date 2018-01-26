@@ -1890,7 +1890,7 @@
         opts.chosenPrefixTitle = scope.chosenPrefixTitle;
         opts.chosenPrefixId = scope.chosenPrefixId;
         opts.chosenPrefixName = scope.chosenPrefixName;
-        opts.transactionId = null;
+        opts.transactionId = parseInt(Date.now() / 1000);
 
         history.arrayOfHistory[history.arrayOfHistory.length - 1].params = opts;
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
@@ -2167,10 +2167,9 @@
         if (opts.mode == 'USUAL' || opts.mode == 'POPULAR' || !opts.mode) {
 
           opts.isInFavorites = !scope.enterButton;
-          date = parseInt(Date.now() / 1000);
-          opts.transactionId =
+          opts.transactionId = parseInt(Date.now() / 1000);
 
-            event.preventDefault();
+          event.preventDefault();
           event.stopPropagation();
 
           if (scope.service.additional_information_type == 0) {

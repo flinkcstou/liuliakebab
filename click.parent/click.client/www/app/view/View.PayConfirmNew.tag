@@ -647,8 +647,8 @@
           }, 30000);
           console.log('creating timeOut', timeOutTimer);
         },
-        onEmergencyStop: function(){
-          console.log('Clearing timer emergencyStop',timeOutTimer);
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimer);
           window.clearTimeout(timeOutTimer);
         }
       });
@@ -731,8 +731,8 @@
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         },
-        onEmergencyStop: function(){
-          console.log('Clearing timer emergencyStop',timeOutTimer);
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimer);
           window.clearTimeout(timeOutTimer);
         }
       });
