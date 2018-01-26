@@ -1694,14 +1694,15 @@ window.writeLog = function (logToSave) {
 
   log = logToSave;
 
-  readFromFile('log.txt', function (data) {
-    if (data) {
-      console.log("READ FILE BEFORE = ", JSON.parse(data));
-      fileData = JSON.parse(data);
-      writeToFile('log.txt', log);
-    }
-  });
-
+  if (device.platform !== 'BrowserStand') {
+    readFromFile('log.txt', function (data) {
+      if (data) {
+        console.log("READ FILE BEFORE = ", JSON.parse(data));
+        fileData = JSON.parse(data);
+        writeToFile('log.txt', log);
+      }
+    });
+  }
 };
 
 
