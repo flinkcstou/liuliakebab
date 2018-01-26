@@ -7,7 +7,7 @@
     <input id="contactPhoneNumberId"
            class="transfer-new-contact-number-input-part"
            type="tel"
-           onpaste="onPasteTrigger()"
+           onpaste="onPasteTriggerContact()"
            oninput="contactPhoneBlurAndChange()"
            onchange="contactPhoneBlurAndChange()"
            onkeyup="searchContacts()"
@@ -54,7 +54,7 @@
   <script>
 
     var scope = this;
-    var onPaste = false;
+    var onPasteContact = false;
     var contactStopChanging = false;
     var arrayOfContacts = [];
     var taxPercent = 0;
@@ -149,9 +149,9 @@
     contactPhoneBlurAndChange = function () {
       event.preventDefault();
       event.stopPropagation();
-      if (onPaste) {
+      if (onPasteContact) {
         contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(inputVerification.telVerification(contactPhoneNumberId.value));
-        onPaste = false;
+        onPasteContact = false;
       }
       checkPhoneNumberLength();
       scope.update();
@@ -239,8 +239,8 @@
       cardInputId.readOnly = false;
     };
 
-    onPasteTrigger = function () {
-      onPaste = true;
+    onPasteTriggerContact = function () {
+      onPasteContact = true;
     };
 
     phoneSuggestionTouchStart = function () {

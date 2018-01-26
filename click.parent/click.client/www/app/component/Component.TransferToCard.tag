@@ -11,7 +11,7 @@
       <input id="cardInputId"
              class="transfer-new-card-number-input"
              type="tel"
-             onpaste="onPasteTrigger()"
+             onpaste="onPasteTriggerCard()"
              oninput="cardBlurAndChange()"
              onchange="cardBlurAndChange()"
              onkeydown="cardOnKeyDown(this)"
@@ -49,7 +49,7 @@
   <script>
 
     var scope = this;
-    var onPaste = false;
+    var onPasteCard = false;
     var bankId = '';
     var processingId = '';
     var arrayOfCards = [];
@@ -112,10 +112,10 @@
       event.preventDefault();
       event.stopPropagation();
 
-      if (onPaste) {
+      if (onPasteCard) {
         cardWithoutSpace = inputVerification.spaceDeleter(event.target.value);
         cardInputId.value = inputVerification.cardVerification(cardWithoutSpace);
-        onPaste = false;
+        onPasteCard = false;
       }
 
       checkForIcons();
@@ -345,8 +345,8 @@
       scope.update();
     };
 
-    onPasteTrigger = function () {
-      onPaste = true;
+    onPasteTriggerCard = function () {
+      onPasteCard = true;
     };
 
     cardSuggestionTouchStart = function () {
