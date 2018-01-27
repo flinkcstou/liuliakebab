@@ -9,7 +9,7 @@
     <div class="pincard-payfrom-container">
       <p class="pincard-payfrom-field">{window.languages.ViewDefaultAccountSubTitle}</p></div>
 
-    <component-pincards clean="{true}" useFor="payment"></component-pincards>
+    <component-pincards clean="{true}" useFor="all"></component-pincards>
     <div class="pincard-bottom-container">
 
       <button id="enterPinCardButtonId" class="pincard-button-enter" ontouchstart="chooseDefaultTouchStart()"
@@ -50,6 +50,7 @@
       if (Math.abs(enterCardStartY - enterCardEndY) <= 20 && Math.abs(enterCardStartX - enterCardEndX) <= 20) {
 
         var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+        console.log("cards firstly default was set:", JSON.stringify(cardsArray));
         scope.update();
         console.log("cardsArray=", cardsArray);
         var accountId;
@@ -75,6 +76,8 @@
             scope: this,
 
             onSuccess: function (result) {
+              console.log("settings.change.default.account result:", result);
+              console.log("cards before default was set:", JSON.stringify(cardsArray));
               if (result[0][0].error == 0 && result[1][0]) {
                 var j = 2;
                 for (var i in cardsArray) {
@@ -87,7 +90,7 @@
                     cardsArray[i].countCard = j++;
                   }
                 }
-                console.log("cards after default was set", cardsArray);
+                console.log("cards after default was set", JSON.stringify(cardsArray));
                 localStorage.setItem('click_client_cards', JSON.stringify(cardsArray));
                 window.common.alert.show("componentSuccessId", {
                   parent: scope,

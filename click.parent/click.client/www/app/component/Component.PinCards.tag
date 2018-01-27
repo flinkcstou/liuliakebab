@@ -169,13 +169,14 @@
         if (scope.opts.usefor == "payment" && scope.cardsArray[i].payment_allowed == 1) {
           scope.cardsArray[i].permission = true;
         }
-        if (scope.opts.usefor == "all") {
-          scope.cardsArray[i].permission = true;
-        }
 
         //cards with error balance is not allowed
         if (scope.cardsArray[i].salary === null){
           scope.cardsArray[i].permission = false;
+        }
+
+        if (scope.opts.usefor == "all") {
+          scope.cardsArray[i].permission = true;
         }
 
         if (scope.cardsArray[i].permission == false) {
