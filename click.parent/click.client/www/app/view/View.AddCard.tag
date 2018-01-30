@@ -251,6 +251,10 @@
           },
           onTimeOut: function () {
             timeOutTimer = setTimeout(function () {
+              window.writeLog({
+                reason: 'Timeout',
+                method:'card.add',
+              });
               updateResultComponent(true, null, mainPageToReturn, 'waiting', window.languages.WaitingTimeExpiredText);
             }, 20000)
           },

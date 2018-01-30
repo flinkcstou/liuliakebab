@@ -187,6 +187,10 @@
         },
         onTimeOut: function () {
           timeOutTimer = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method:'account.remove',
+            });
               window.common.alert.show("componentAlertId", {
                 parent: scope,
                 viewpage: "view-main-page",

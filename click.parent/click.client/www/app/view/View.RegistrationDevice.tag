@@ -503,6 +503,10 @@
         },
         onTimeOut: function () {
           timeOutTimer = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method:'device.register.request',
+            });
               updateAlertComponent(true, null, 'view-registration-device', window.languages.WaitingTimeExpiredText);
               window.stopSpinner();
               window.api.forceClose();

@@ -146,6 +146,10 @@
 
         onTimeOut: function () {
           timeOutTimer = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method:'check.contact.list',
+            });
             window.common.alert.show("componentAlertId", {
               parent: scope,
               errornote: window.languages.WaitingTimeExpiredText,

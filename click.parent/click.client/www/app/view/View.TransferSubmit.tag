@@ -228,7 +228,7 @@
           comment: 'Transfer submit: opts is empty',
           opts: opts
         };
-        window.sendToLog(log_info);
+        window.writeLog(log_info);
       }
       setTimeout(function () {
         submitAmountId.focus();
@@ -594,6 +594,10 @@
         },
         onTimeOut: function () {
           timeOutTimer = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method:'p2p.payment',
+            });
             window.api.forceClose();
             updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
           }, 30000);

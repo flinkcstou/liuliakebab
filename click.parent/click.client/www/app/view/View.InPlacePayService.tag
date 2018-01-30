@@ -182,6 +182,10 @@
         },
         onTimeOut: function () {
           timeOutTimer = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method:'get.indoor.service.list',
+            });
             window.common.alert.show("componentAlertId", {
               parent: scope,
               step_amount: stepBack,
@@ -337,6 +341,10 @@
             },
             onTimeOut: function () {
               timeOutTimerTwo = setTimeout(function () {
+                window.writeLog({
+                  reason: 'Timeout',
+                  method:'get.indoor.service.list',
+                });
                 window.common.alert.show("componentAlertId", {
                   parent: scope,
                   step_amount: stepBack,

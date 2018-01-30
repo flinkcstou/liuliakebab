@@ -572,6 +572,10 @@
         },
         onTimeOut: function () {
           timeOutTimer = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method:'app.login',
+            });
             updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText);
             window.stopSpinner();
           }, 30000);

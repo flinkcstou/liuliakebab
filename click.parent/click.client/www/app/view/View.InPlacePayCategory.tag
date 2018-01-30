@@ -151,6 +151,10 @@
         },
         onTimeOut: function () {
           timeOutTimer = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method:'get.indoor.category.list',
+            });
             window.common.alert.show("componentAlertId", {
               parent: scope,
               viewpage: mainPageToReturn,

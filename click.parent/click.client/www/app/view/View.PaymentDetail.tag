@@ -226,6 +226,10 @@
           },
           onTimeOut: function () {
             timeOutTimer = setTimeout(function () {
+              window.writeLog({
+                reason: 'Timeout',
+                method:'invoice.action',
+              });
                 window.common.alert.show("componentAlertId", {
                   parent: scope,
                   clickpinerror: false,
@@ -331,6 +335,10 @@
           },
           onTimeOut: function () {
             timeOutTimer = setTimeout(function () {
+              window.writeLog({
+                reason: 'Timeout',
+                method:'invoice.action',
+              });
                 updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
             }, 40000);
             console.log('creating timeOut', timeOutTimer);

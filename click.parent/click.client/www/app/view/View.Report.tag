@@ -612,6 +612,10 @@
         },
         onTimeOut: function () {
           timeOutTimerPayment = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method:'get.payment.list',
+            });
             scope.errorNote = "Сервис временно недоступен";
             scope.stepAmount = 0;
             scope.update();
@@ -722,6 +726,10 @@
         },
         onTimeOut: function () {
           timeOutTimerData = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method:'history.char.data',
+            });
             scope.errorNote = "Сервис временно недоступен";
             scope.stepAmount = 0;
             window.common.alert.show("componentAlertId", {

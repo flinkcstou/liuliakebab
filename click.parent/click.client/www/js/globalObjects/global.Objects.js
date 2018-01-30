@@ -1653,29 +1653,21 @@ window.getPosition = function (el) {
 };
 
 window.sendToLog = function (data) {
-
-  logStorage = localStorage.getItem("log_storage") ? JSON.parse(localStorage.getItem("log_storage")) : [];
-
-  new_log = {
-    id: 'id' + (new Date()).getTime(),
-    data: data,
-  };
-
-  logStorage.push(new_log);
-
-  localStorage.setItem('log_storage', JSON.stringify(logStorage));
-
-
+  console.log("sending information");
   params = {
-    method: 'log.method.name',
-    input: new_log,
+    method: 'report.issue',
+    input: data,
     onSuccess: function (result) {
       if (result[0][0].error === 0) {
-        console.log('all saved');
-        //clearing sessionStorage and etc
+        if (result[1][0]) {
+          saved_log_id = result[1][0].report_id;
+          console.log('id of saved log:', saved_log_id);
+          deleteLog(saved_log_id);
+          //clearing sessionStorage and etc
+        }
       }
       else {
-        console.log('something gone wrong');
+        console.log('something gone wrong:', result);
         //to do something else
       }
     },
@@ -1685,32 +1677,60 @@ window.sendToLog = function (data) {
       console.error(data);
     },
   }
-  // window.api.send(params);
+  window.api.send(params);
 };
 
 var fileData = [], log;
 
 window.writeLog = function (logToSave) {
 
-  log = logToSave;
-
+  phoneNumber = localStorage.getItem('click_client_phoneNumber');
+  sign_time = (new Date()).getTime();
+  report_id = 'id' + sign_time + Math.random().toString(16).slice(2);
+  sign_string = hex_md5(sign_time + report_id + 'x-report');
+  console.log('sign_string before send', sign_string);
+  log = {
+    phone_num: phoneNumber,
+    report_id: report_id,
+    report_data: logToSave,
+    sign_time: sign_time,
+    sign_string: sign_string,
+  };
+  console.log('log before read', log);
   if (device.platform !== 'BrowserStand') {
     readFromFile('log.txt', function (data) {
       if (data) {
         console.log("READ FILE BEFORE = ", JSON.parse(data));
         fileData = JSON.parse(data);
-        writeToFile('log.txt', log);
+        fileData.push(log);
+        writeToFile('log.txt');
+        console.log('fileData before sending log', fileData);
+        window.sendToLog(log);
       }
     });
   }
 };
 
+function deleteLog(id){
+  if (device.platform !== 'BrowserStand') {
+    readFromFile('log.txt', function (data) {
+      if (data) {
+        console.log("READ FILE BEFORE = ", JSON.parse(data));
+        fileData = JSON.parse(data);
+        for (log_i in fileData){
+          if (fileData[log_i] && fileData[log_i].report_id === id){
+            fileData.splice(log_i, 1);
+          }
+        }
+        writeToFile('log.txt');
+      }
+    });
+  }
+}
 
-function writeToFile(fileName, log) {
 
-  console.log("log=", log);
-  fileData.push(log);
-  console.log("DATA TO WRITE = ", fileData);
+function writeToFile(fileName) {
+
 
   var data = JSON.stringify(fileData, null, '\t');
   window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (directoryEntry) {
@@ -1763,7 +1783,7 @@ var errorHandler = function (fileName, e) {
       break;
     case FileError.NOT_FOUND_ERR:
       msg = 'File not found';
-      writeToFile('log.txt', log);
+      writeToFile('log.txt');
       break;
     case FileError.SECURITY_ERR:
       msg = 'Security error';

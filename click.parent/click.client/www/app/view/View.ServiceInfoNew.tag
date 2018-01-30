@@ -206,6 +206,10 @@
         },
         onTimeOut: function () {
           timeOutTimer = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method:'get.additional.information',
+            });
             scope.errorNote = "Сервис временно недоступен";
             scope.stepAmount = 1;
             scope.update();

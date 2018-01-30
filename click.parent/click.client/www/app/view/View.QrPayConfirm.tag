@@ -271,6 +271,10 @@
           },
           onTimeOut: function () {
             timeOutTimer = setTimeout(function () {
+              window.writeLog({
+                reason: 'Timeout',
+                method:'app.payment (in qr)',
+              });
               scope.errorNote = window.languages.WaitingTimeExpiredText;
               scope.viewPage = pageToReturnIfError;
               scope.update();

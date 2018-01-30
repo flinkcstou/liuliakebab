@@ -143,7 +143,13 @@ window.api.initSocket = function () {
               if (!error) {
                 riot.update();
                 showAlertComponent("Произошла непредвиденная ошибка. Свяжитесь с нашей службой поддержки +998 71 2310880")
-                window.sendToLog(ERROR);
+                window.writeLog(
+                  {
+                    reason: 'unexpected error while working with onSuccess function',
+                    error:ERROR,
+                    parsedData: parsedData
+                  }
+                );
               }
               else {
                 if (sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true)
@@ -154,6 +160,12 @@ window.api.initSocket = function () {
             }
           } catch (error) {
             console.error("Error on parsing parsedData.data[0][0].error_note", error);
+            window.writeLog(
+              {
+                reason: 'Error on parsing parsedData.data[0][0].error_note',
+                error: error,
+              }
+            );
           }
         }
       try {
@@ -213,6 +225,7 @@ window.api.send = function (params) {
       window.stopSpinner();
       console.log("CONNECTION ERROR WEB SOCKET ON FAIL CALL");
       onFail.call(scope, api_status, api_status_message, data);
+      window.writeLog(scope, api_status, api_status_message, data);
     },
     socketErr: function () {
       window.stopSpinner();

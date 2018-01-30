@@ -245,6 +245,10 @@
         },
         onTimeOut: function () {
           timeOutTimerNews = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method:'get.news',
+            });
             window.common.alert.show("componentAlertId", {
               parent: scope,
               errornote: window.languages.WaitingTimeExpiredText,

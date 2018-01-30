@@ -157,6 +157,10 @@
           },
           onTimeOut: function () {
             timeOutTimer = setTimeout(function () {
+              window.writeLog({
+                reason: 'Timeout',
+                method:'invoice.action',
+              });
                 window.common.alert.show("componentAlertId", {
                   parent: scope,
                   errornote: window.languages.ViewTransferOnCardCardNotChosen,

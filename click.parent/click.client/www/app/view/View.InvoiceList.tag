@@ -210,6 +210,10 @@
         },
         onTimeOut: function () {
           timeOutTimerToUser = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method:'invoice.list',
+            });
             window.stopSpinner();
               window.common.alert.show("componentAlertId", {
                 parent: scope,
@@ -298,6 +302,10 @@
         },
         onTimeOut: function () {
           timeOutTimerFromUser = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method:'invoice.history',
+            });
             window.stopSpinner();
               window.common.alert.show("componentAlertId", {
                 parent: scope,
