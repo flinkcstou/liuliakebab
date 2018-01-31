@@ -125,14 +125,14 @@
                 parent: scope,
                 clickpinerror: false,
                 errornote: window.languages.ComponentInProcessingPartOneWithoutDot,
-                viewpage: 'view-invoice-list',
+                viewpage: 'view-main-page',
               });
               window.updateBalanceGlobalFunction();
             }
             else {
               window.common.alert.show("componentUnsuccessId", {
                 parent: scope,
-                viewpage: 'view-invoice-list',
+                viewpage: 'view-main-page',
                 operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
                 operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
                 operationmessagepartthree: result[0][0].error_note
@@ -147,7 +147,7 @@
             window.stopSpinner();
             window.common.alert.show("componentUnsuccessId", {
               parent: scope,
-              viewpage: 'view-invoice-list',
+              viewpage: 'view-main-page',
               operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
               operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
               operationmessagepartthree: api_status_message

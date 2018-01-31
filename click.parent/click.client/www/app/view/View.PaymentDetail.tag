@@ -68,7 +68,7 @@
     scope.commission_amount = scope.opts.amount * scope.opts.commission_percent / 100;
     scope.errorCode = 0;
 
-    var pageToReturnIfError = 'view-main-page', pageToReturnIfSuccess = 'view-report';
+    var pageToReturnIfError = 'view-main-page', pageToReturnIfSuccess = 'view-main-page';
     var paymentSuccessStep = 1, paymentWaitingStep = 0;
     var timeOutTimer = 0;
     //    scope.titleName = window.languages.ViewPaymentDetailTitle + scope.opts.invoiceId;

@@ -60,17 +60,7 @@
 
   api.init();
 
-  var _log = console.log;
-  var _error = console.error;
   var _warn = console.warn;
-
-  console.error = function(errMessage){
-    _error.apply(console,arguments);
-  };
-
-  console.log = function(logMessage){
-    _log.apply(console,arguments);
-  };
 
   console.warn = function(warnMessage){
     pageLogs = JSON.parse(sessionStorage.getItem('page_logs'));
