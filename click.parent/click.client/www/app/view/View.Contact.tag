@@ -69,6 +69,7 @@
     scope.firstLetter = opts.object.firstLetter;
     scope.arrayOfNumbers = opts.object.phoneNumbers[0];
     scope.contactId = opts.object.id;
+    scope.phoneForPayment = '';
 
     if (scope.arrayOfNumbers) {
 
@@ -129,13 +130,13 @@
             contactSelectContainerId.style.display = 'block'
           }
           else {
-            scope.arrayOfNumbers[0].value = scope.arrayOfNumbers[0].value.substring(scope.arrayOfNumbers[0].value.length - 9, scope.arrayOfNumbers[0].value.length)
-            var id = window.mOperators[scope.arrayOfNumbers[0].value.substring(0, 2)]
-            console.log('OPERATOR', scope.arrayOfNumbers[0].value.substring(0, 2))
+            scope.phoneForPayment = scope.arrayOfNumbers[0].value.substring(scope.arrayOfNumbers[0].value.length - 9, scope.arrayOfNumbers[0].value.length)
+            var id = window.mOperators[scope.phoneForPayment.substring(0, 2)]
+            console.log('OPERATOR', scope.phoneForPayment.substring(0, 2))
             console.log('ID', id)
             opts.chosenServiceId = id;
-            scope.arrayOfNumbers[0].value = scope.arrayOfNumbers[0].value.substring(scope.arrayOfNumbers[0].value.length - 9, scope.arrayOfNumbers[0].value.length);
-            opts.number = scope.arrayOfNumbers[0].value;
+            scope.phoneForPayment = scope.phoneForPayment.substring(scope.phoneForPayment.length - 9, scope.phoneForPayment.length);
+            opts.number = scope.phoneForPayment;
 
             console.log('ID', id)
             if (id) {
