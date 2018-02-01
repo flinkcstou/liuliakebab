@@ -39,7 +39,8 @@
 
     <div class="servicepage-second-dropdown-field" if="{hasFirstLevel && service.category_id!=11}"
          ontouchend="openDropDownTwo()" role="button" aria-label="{chosenFieldNameTwo}">
-      <p if="{formType==3 || formType==4}" class="servicepage-text-field servicepage-second-dropdown-field-text">
+      <p if="{formType==3 || formType==4 || formType==5}"
+         class="servicepage-text-field servicepage-second-dropdown-field-text">
         {(service.options_title)?(service.options_title):("")}</p>
       <p class="servicepage-dropdown-text-field">{chosenFieldNameTwo}</p>
       <div class="servicepage-dropdown-icon"></div>
@@ -94,7 +95,8 @@
       <div class="servicepage-dropdown-icon"></div>
     </div>
 
-    <div class="{servicepage-amount-field: !dropDownOn, servicepage-amount-field-two: dropDownOn}"
+    <div hidden="{formType==5}"
+         class="{servicepage-amount-field: !dropDownOn, servicepage-amount-field-two: dropDownOn}"
          id="amountField">
       <p class="servicepage-text-field">{amountFieldTitle}</p>
       <p if="{commissionPercent}" class="servicepage-amount-tax-text-field">
@@ -454,20 +456,21 @@
           scope.update(scope.enterButtonEnabled);
           return;
         }
-      }
+      } else if (scope.formType != 5) {
 
-      if (amountForPayTransaction < scope.service.min_pay_limit) {
-        console.log("amount=", amountForPayTransaction);
-        console.log(scope.service.lang_min_amount);
-        scope.enterButtonEnabled = false;
-        scope.update(scope.enterButtonEnabled);
-        return;
-      }
-      if (amountForPayTransaction > scope.service.max_pay_limit) {
-        console.log(scope.service.lang_max_amount);
-        scope.enterButtonEnabled = false;
-        scope.update(scope.enterButtonEnabled);
-        return;
+        if (amountForPayTransaction < scope.service.min_pay_limit) {
+          console.log("amount=", amountForPayTransaction);
+          console.log(scope.service.lang_min_amount);
+          scope.enterButtonEnabled = false;
+          scope.update(scope.enterButtonEnabled);
+          return;
+        }
+        if (amountForPayTransaction > scope.service.max_pay_limit) {
+          console.log(scope.service.lang_max_amount);
+          scope.enterButtonEnabled = false;
+          scope.update(scope.enterButtonEnabled);
+          return;
+        }
       }
       scope.enterButtonEnabled = true;
       scope.update(scope.enterButtonEnabled);
@@ -859,27 +862,8 @@
         console.log('FIELDARRAY', scope.fieldArray)
         opts.chosenServiceId = localStorage.getItem('myNumberOperatorId');
         scope.commissionPercent = scope.service.commission_percent;
+        scope.amountFieldTop = '7%';
 
-        scope.on('mount', function () {
-          firstField.style.display = 'none';
-          amountField.style.top = '7%';
-
-          console.log("opts.amountText", opts.amountText)
-
-          if (opts.amountText) {
-            if (opts.amountText.length > 0 && opts) {
-              amount.value = window.amountTransform(opts.amountText);
-              checkFirst = true;
-              amountForPayTransaction = opts.amountWithoutSpace;
-
-              if (!amountForPayTransaction) {
-                amountForPayTransaction = (opts.amountText) ? (opts.amountText) : (0);
-                amountForPayTransaction = parseInt(amountForPayTransaction);
-              }
-            }
-          }
-
-        });
       }
       else if (opts.chosenServiceId == 'mynumber') {
         console.log('scope.servicesMap', scope.servicesMap['mynumber']);
@@ -896,29 +880,31 @@
         opts.chosenServiceId = localStorage.getItem('myNumberOperatorId') ? localStorage.getItem('myNumberOperatorId') : 'mynumber';
 
         scope.amountFieldTitle = 'Сумма';
-
         scope.commissionPercent = scope.service.commission_percent;
+        scope.amountFieldTop = '5.5%';
+      }
 
-        this.on('mount', function () {
-          firstField.style.display = 'none';
-          amountField.style.top = '5.5%';
+      scope.on('mount', function () {
+        firstField.style.display = 'none';
+        amountField.style.top = scope.amountFieldTop;
 
+        console.log("opts.amountText", opts.amountText)
 
-          if (opts.amountText) {
-            if (opts.amountText.length > 0 && opts) {
-              amount.value = window.amountTransform(opts.amountText);
-              checkFirst = true;
-              amountForPayTransaction = opts.amountWithoutSpace;
+        if (opts.amountText) {
+          if (opts.amountText.length > 0 && opts) {
+            amount.value = window.amountTransform(opts.amountText);
+            checkFirst = true;
+            amountForPayTransaction = opts.amountWithoutSpace;
 
-              if (!amountForPayTransaction) {
-                amountForPayTransaction = (opts.amountText) ? (opts.amountText) : (0);
-                amountForPayTransaction = parseInt(amountForPayTransaction);
-              }
+            if (!amountForPayTransaction) {
+              amountForPayTransaction = (opts.amountText) ? (opts.amountText) : (0);
+              amountForPayTransaction = parseInt(amountForPayTransaction);
             }
           }
+        }
 
-        });
-      }
+      });
+
     } else {
 
       if (scope.servicesMap[opts.chosenServiceId]) {
@@ -931,8 +917,8 @@
       //Editing amount input for non editable situations
 
       if (!scope.service['amount_editable'] && scope.service['amount_value']) {
-        scope.defaultAmount = window.amountTransform(scope.service['amount_value'])
-        opts.amountText = scope.service['amount_value']
+        scope.defaultAmount = window.amountTransform(scope.service['amount_value']);
+        opts.amountText = scope.service['amount_value'];
         if (scope.service['amount_information_text']) {
           scope.showErrorOfLimit = true;
           scope.placeHolderText = scope.service['amount_information_text']
@@ -1052,7 +1038,6 @@
 
     }
 
-
     scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
     scope.formType = scope.service.form_type;
 
@@ -1064,7 +1049,7 @@
     // scope.prepareData = prepareData = function () {
     if (scope.formType != 2) {
 
-      console.log("Yahoo1 formType=", scope.formType, ", Rest=", scope.fieldArray, scope.servicesParamsMapOne[opts.chosenServiceId], scope.servicesParamsMapOne, opts.chosenServiceId);
+      console.log("Yahoo1 formType=", scope.formType);
 
       if (scope.fieldArray) {
         scope.dropDownOn = scope.fieldArray.length > 1;
@@ -1110,18 +1095,13 @@
         if (!scope.placeHolderText)
           scope.placeHolderText = "от " + window.amountTransform(scope.service.min_pay_limit) + " " + scope.service.lang_amount_currency + " до " + window.amountTransform(scope.service.max_pay_limit) + " " + scope.service.lang_amount_currency
 
-        console.log("CURRENCY", scope.service.lang_amount_currency)
-
-        console.log("after tranform amount=", scope.defaultAmount);
         scope.update();
         scope.inputMaxLength = scope.fieldArray[0].max_len;
-        console.log("INPUT LENGTH=", scope.inputMaxLength);
+
         if (scope.dropDownOn) {
           scope.chosenFieldParamId = opts.firstFieldId ? opts.firstFieldId : scope.fieldArray[0].parameter_id;
 //          scope.oldFieldParamId = scope.fieldArray[1].parameter_id;
         }
-
-        console.log("Yahoooo_1", scope.fieldArray, scope.fieldArray[0], scope.fieldArray[0].input_type);
 
         if (scope.fieldArray[0].input_type == '1' && modeOfApp.onlineMode) {
           scope.inputType = 'tel';
@@ -1138,8 +1118,10 @@
         scope.amountLength = ("" + scope.service.max_pay_limit).length;
       }
 
+      console.log("Yahoooo_1", scope.servicesParamsMapOne[scope.service.id], scope.servicesParamsMapTwo[scope.service.id],
+        scope.servicesParamsMapThree[scope.service.id], scope.servicesParamsMapFour[scope.service.id], scope.servicesParamsMapFive[scope.service.id]);
       scope.hasFirstLevel = false;
-      if (scope.formType == 3 && scope.servicesParamsMapTwo[scope.service.id]) {
+      if (scope.servicesParamsMapTwo[scope.service.id]) {
         scope.firstLevelArray = [];
         scope.secondLevelMap = {};
         scope.chosenFieldNameTwo = scope.servicesParamsMapTwo[scope.service.id][0].name;
@@ -1180,7 +1162,6 @@
       checkFieldsToActivateNext();
 
     }
-
 
     if (scope.formType == 2) {
       scope.pincardsMap = {};
@@ -1619,142 +1600,15 @@
     scope.onTouchEndOfEnter = onTouchEndOfEnter = function () {
       event.stopPropagation();
 
-      opts.cost = scope.service.cost
-      opts.lang_amount_title = scope.service.lang_amount_title
-
       if (this.enterButtonId && scope.enterButtonEnabled)
-        this.enterButtonId.style.webkitTransform = 'scale(1)'
+        this.enterButtonId.style.webkitTransform = 'scale(1)';
 
       enterEndY = event.changedTouches[0].pageY;
       enterEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(enterStartY - enterEndY) <= 20 && Math.abs(enterStartX - enterEndX) <= 20) {
 
-
-//        try {
-//          this.firstFieldInput.blur();
-//          this.amount.blur();
-//        } catch (error) {
-//
-//          console.log(error);
-//        }
-
         window.blurFields();
-
-        if (scope.phoneFieldBool && firstFieldInput.value.length < 10 && opts.chosenServiceId != "mynumber") {
-          scope.clickPinError = false;
-          scope.errorNote = "Неправильно введён номер телефона";
-
-          window.common.alert.show("componentAlertId", {
-            parent: scope,
-            clickpinerror: scope.clickPinError,
-            errornote: scope.errorNote,
-          });
-
-          scope.update();
-
-          return;
-        }
-//        else if (scope.phoneFieldBool && scope.service.validation != null && !phoneRegexp.test(inputVerification.spaceDeleter(firstFieldInput.value)) && opts.chosenServiceId != "mynumber") {
-//          console.log("scope.service.validation", scope.service.validation)
-//          scope.clickPinError = false;
-//          scope.errorNote = "Возможно вы ввели номер другого оператора";
-//          scope.showError = true;
-//          scope.update();
-//          return;
-//        }
-        else if (firstFieldInput.value.length == 0 && opts.chosenServiceId != "mynumber") {
-          scope.clickPinError = false;
-          if (scope.dropDownOn) {
-            for (var i = 0; i < scope.fieldArray.length; i++) {
-              if (scope.fieldArray[i].parameter_id == scope.chosenFieldParamId) {
-                scope.errorNote = scope.fieldArray[i].error_message;
-              }
-            }
-          } else {
-            scope.errorNote = scope.fieldArray[0].error_message;
-          }
-
-          window.common.alert.show("componentAlertId", {
-            parent: scope,
-            clickpinerror: scope.clickPinError,
-            errornote: scope.errorNote,
-          });
-
-          scope.update();
-          return;
-        }
-
-        if (scope.formType == 3) {
-
-          if (scope.hasSecondLevel)
-            opts.communalParam = scope.chosenFieldParamIdThree;
-          else
-            opts.communalParam = scope.chosenFieldParamIdTwo;
-
-          if (!opts.communalParam) {
-            if (scope.hasSecondLevel)
-              scope.errorNote = "Выберите город и район";
-            else
-              scope.errorNote = "Выберите район";
-
-            scope.clickPinError = false;
-
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote,
-            });
-
-            scope.update();
-            return;
-          }
-
-        } else if (scope.formType == 4) {
-          if (scope.chosenFieldParamIdThree)
-            opts.internetPackageParam = scope.chosenFieldParamIdThree;
-          else {
-            scope.clickPinError = false;
-            scope.errorNote = "Выберите интернет пакет";
-
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote,
-            });
-
-            scope.update();
-            return;
-          }
-        }
-
-        if (amountForPayTransaction < scope.service.min_pay_limit) {
-          console.log("amount=", amountForPayTransaction);
-          scope.clickPinError = false;
-          scope.errorNote = scope.service.lang_min_amount;
-
-          window.common.alert.show("componentAlertId", {
-            parent: scope,
-            clickpinerror: scope.clickPinError,
-            errornote: scope.errorNote,
-          });
-
-          scope.update();
-          return;
-        }
-        if (amountForPayTransaction > scope.service.max_pay_limit) {
-          scope.clickPinError = false;
-          scope.errorNote = scope.service.lang_max_amount;
-
-          window.common.alert.show("componentAlertId", {
-            parent: scope,
-            clickpinerror: scope.clickPinError,
-            errornote: scope.errorNote,
-          });
-
-          scope.update();
-          return;
-        }
 
         opts.formtype = scope.formType;
         opts.firstFieldId = scope.chosenFieldParamId;
@@ -1772,9 +1626,6 @@
 
         history.arrayOfHistory[history.arrayOfHistory.length - 1].params = opts;
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
-
-
-//      viewServicePage.phoneText = inputVerification.telLengthVerification(firstFieldInput.value, window.languages.PhoneNumberLength);
 
 
         if (opts.mode == 'USUAL' || opts.mode == 'POPULAR' || !opts.mode) {
