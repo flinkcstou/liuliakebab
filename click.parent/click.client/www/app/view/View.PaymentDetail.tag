@@ -69,7 +69,7 @@
     scope.errorCode = 0;
 
     var pageToReturnIfError = 'view-main-page', pageToReturnIfSuccess = 'view-main-page';
-    var paymentSuccessStep = 1, paymentWaitingStep = 0;
+    var paymentSuccessStep = 1, paymentWaitingStep = 1;
     var timeOutTimer = 0;
     //    scope.titleName = window.languages.ViewPaymentDetailTitle + scope.opts.invoiceId;
 
@@ -383,8 +383,7 @@
               history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1);
               console.log(history.arrayOfHistory);
               sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
-
-              updateResultComponent(true, paymentSuccessStep, null, 'unsuccess', result[1][0].error);
+              updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', result[1][0].error);
 
             } else if (result[1][0].state == 2) {
               console.log('Clearing timer onSuccess',timeOutTimer);
@@ -410,8 +409,7 @@
                 history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1);
                 console.log(history.arrayOfHistory);
                 sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
-
-                updateResultComponent(true, paymentWaitingStep, null, 'waiting', window.languages.ComponentInProcessingPartOneForPay);
+                updateResultComponent(true, null, pageToReturnIfSuccess, 'waiting', window.languages.ComponentInProcessingPartOneForPay);
               }
             }
           }
