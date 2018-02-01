@@ -16282,6 +16282,49 @@ var css = {
   "font-size:" + 30 * widthK + "px;" +
   "}",
 
+
+  //Service Additional Info
+
+  serviceAddInfoAmountField: ".service-addinfo-amount-field" +
+  "{position: relative;" +
+  "left: 10%;" +
+  "width: 79.5%;" +
+  "height: 10%;" +
+  "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
+  "color: white;" +
+  "top: 5%" +
+  "}",
+
+  serviceAddInfoFromField: ".service-addinfo-from-field" +
+  "{" +
+  "position: relative;" +
+  "left: 10%;" +
+  "width: 79.5%;" +
+  "height: 8%;" +
+  "border-bottom:  " + 3 * widthK + "px solid #01cfff;" +
+  "color: white;" +
+  "top: 8%;" +
+  "}",
+
+  serviceAddInfoFromInput: ".service-addinfo-from-input" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: relative;" +
+  "top: 25%;" +
+  "padding: 0;" +
+  "margin: 0;" +
+  "margin-left: 3%;" +
+  "width: 57%;" +
+  "font-size:" + 54 * widthK + "px; " +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
+
+  // "width: 96%;" +
+  // "margin-left: 0;" +
+  // "top: 25%;" +
+  "}",
+
 }
 
 

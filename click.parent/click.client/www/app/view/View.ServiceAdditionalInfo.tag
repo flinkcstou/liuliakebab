@@ -17,7 +17,7 @@
   <div class="servicepage-body-container">
 
 
-    <div class="servicepage-amount-field" id="amountField">
+    <div class="service-addinfo-amount-field" id="amountField">
       <p class="servicepage-text-field">Сумма</p>
       <p if="{commissionPercent}" class="servicepage-amount-tax-text-field">
         {window.languages.ViewServicePageAmountTaxText} {tax}
@@ -36,11 +36,14 @@
       <p if="{showErrorOfLimit}" id="placeHolderSumId" class="servicepage-limit-title">{placeHolderText}</p>
     </div>
 
-    <div class="servicepage-first-field">
-      <p class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
-
-      <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="autoPayNameInput"
-             autofocus="true" onkeyup="paymentNameVerificationKeyUp()"/>
+    <div class="service-addinfo-from-field">
+      <p class="servicepage-text-field">Выберите период:</p>
+      <input class="service-addinfo-from-input" type="tel" id="from"
+             onkeyup="paymentNameVerificationKeyUp()"/>
+    </div>
+    <div class="service-addinfo-from-field">
+      <input class="service-addinfo-from-input" type="tel" id="from"
+             onkeyup="paymentNameVerificationKeyUp()"/>
     </div>
 
 
@@ -133,8 +136,26 @@
     scope.service = scope.servicesMap[opts.chosenServiceId][0];
     scope.calcOn = scope.service.cost == 1;
     this.titleName = scope.service.name;
+    scope.serviceIcon = scope.service.image;
+    scope.commissionPercent = scope.service.commission_percent;
     if (loginInfo)
       var sessionKey = loginInfo.session_key;
+
+    if (!scope.service['amount_editable'] && scope.service['amount_value']) {
+      scope.defaultAmount = window.amountTransform(scope.service['amount_value']);
+      opts.amountText = scope.service['amount_value'];
+      if (scope.service['amount_information_text']) {
+        scope.showErrorOfLimit = true;
+        scope.placeHolderText = scope.service['amount_information_text']
+      }
+
+      scope.enterButtonEnabled = true;
+      scope.update();
+    }
+
+    if (!scope.placeHolderText)
+      scope.placeHolderText = "от " + window.amountTransform(scope.service.min_pay_limit) + " " + scope.service.lang_amount_currency + " до " + window.amountTransform(scope.service.max_pay_limit) + " " + scope.service.lang_amount_currency
+
 
     scope.update(scope.categoryNamesMap);
 
