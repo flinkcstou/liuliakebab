@@ -90,7 +90,7 @@
       };
 
     }
-    else if (opts.formtype == 3) {
+    else if (opts.formtype == 3 || opts.formtype == 5) {
       payment_data = {
         "param": opts.firstFieldId,
         "value": opts.firstFieldText,
@@ -208,7 +208,7 @@
           timeOutTimer = setTimeout(function () {
             window.writeLog({
               reason: 'Timeout',
-              method:'get.additional.information',
+              method: 'get.additional.information',
             });
             scope.errorNote = "Сервис временно недоступен";
             scope.stepAmount = 1;
@@ -302,14 +302,20 @@
           step_amount: scope.stepAmount,
           viewpage: scope.viewPage,
           viewmount: true,
-          errornote: scope.errorNote,
+          errornote: scope.errorNote
         });
 
         scope.update();
       } else {
-        this.riotTags.innerHTML = "<view-service-pincards-new>";
-        riot.mount('view-service-pincards-new', opts);
-        scope.unmount()
+        if (opts.formtype == 5) {
+          this.riotTags.innerHTML = "<view-service-additional-info>";
+          riot.mount('view-service-additional-info', opts);
+          scope.unmount()
+        } else {
+          this.riotTags.innerHTML = "<view-service-pincards-new>";
+          riot.mount('view-service-pincards-new', opts);
+          scope.unmount()
+        }
       }
 
     };
