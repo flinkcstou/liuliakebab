@@ -77,16 +77,13 @@
     var check = false;
     var scope = this;
 
-    //    scope.firstContactObject = {};
-    //    scope.firstContactObject.contactFname = 'Egor';
-    //    scope.firstContactObject.contactLname = 'Egorovi4';
-    //    scope.firstContactObject.id = '12345';
-    //    scope.firstContactObject.contactPhoto = "";
-    //    scope.firstContactObject.firstLetter = 'E';
-    //    scope.firstContactObject.phoneNumbers = [[{value: "998974647747"}]];
-    //    scope.firstContactObject.exist = true;
-    //    scope.firstContactObject.addContact = false;
-
+    scope.on('mount', function () {
+      if (device.platform === 'iOS') {
+        if (contactsId) {
+          contactsId.style.paddingBottom = 'calc(env(safe-area-inset-bottom) / 2)';
+        }
+      }
+    });
 
     scope.firstContactObject = {};
     scope.firstContactObject.contactFname = 'Добавить';
