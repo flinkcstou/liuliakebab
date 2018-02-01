@@ -581,7 +581,7 @@ var css = {
   "width: 100%;" +
   "height: 100%;" +
   "overflow: hidden;" +
-  "background-image: url('resources/icons/background/transparent.png');" +
+  // "background-image: url('resources/icons/background/transparent.png');" +
   "background-size: cover;" +
   "background-repeat: no-repeat;" +
   "}",
@@ -609,14 +609,15 @@ var css = {
   "left:" + 80 * widthK + "px;" +
   "width:" + 560 * widthK + "px;" +
   "height:" + 107 * widthK + "px;" +
-  "border-bottom:" + 3 * widthK + "px solid rgba(163, 222, 238, 0.95);" +
+  "border-bottom:" + 3 * widthK + "px solid #b0aeb2;" +
   "bottom:" + 210 * widthK + "px;" +
-  "color: white;" +
+  "color: #535b67;" +
   "}",
   registrationDeviceTextField: ".registration-device-text-field " +
   "{" +
   "position: absolute;" +
   "margin: 0;" +
+  "color: #b0aeb2;" +
   "}",
   registrationDevicePhoneInput: ".registration-device-phone-input " +
   "{" +
@@ -642,7 +643,7 @@ var css = {
   "font-size:" + 64 * widthK + "px;" +
   "border: none;" +
   "outline: none;" +
-  "color: white;" +
+  "color: #535b67;" +
   "left: " + 180 * widthK + "px;" +
   "padding: 0;" +
   "margin: 0;" +
@@ -659,7 +660,7 @@ var css = {
   "left:" + 180 * widthK + "px;" +
   "width:" + 2 * widthK + "px;" +
   "height:" + 60 * widthK + "px;" +
-  "background-color: white;" +
+  "background-color: #535b67;" +
   "-webkit-transition-property: width height background-color left top opacity transform -webkit-transform opacity;" +
   "-webkit-transition-duration: 0s;" +
   "-webkit-transition-timing-function: step(1,end);" +
@@ -674,7 +675,7 @@ var css = {
   "left:" + 180 * widthK + "px;" +
   "width:" + 2 * widthK + "px;" +
   "height:" + 60 * widthK + "px;" +
-  "background-color: white;" +
+  "background-color: #535b67;" +
   "opacity:0;" +
   "-webkit-transition-property: width height background-colorleft top opacity transform -webkit-transform opacity;" +
   "-webkit-transition-duration: 0s;" +
@@ -724,7 +725,7 @@ var css = {
   registrationDeviceRememberLabel: ".registration-device-remember-label " +
   "{" +
   "position: absolute;" +
-  "color: white;" +
+  "color: #b0aeb2;" +
   "top:" + 32 * widthK + "px;" +
   "width:" + 340 * widthK + "px;" +
   "margin: 0;" +
@@ -805,8 +806,8 @@ var css = {
   "margin-left: auto;" +
   //"margin-top: 10%;" +
   "top:" + 30 * widthK + "px;" +
-  "border-bottom:1px solid #b7f1ff;" +
-  "color:#b7f1ff;" +
+  // "border-bottom:1px solid #b7f1ff;" +
+  "color: #535b67;" +
   "}",
 
   keyboardField: ".keyboard-field " +
@@ -849,8 +850,8 @@ var css = {
   "position: absolute;" +
   "font-size:" + 34 * widthK + "px;" +
   "background-size: contain;" +
-  "color: white;" +
-  "border-bottom:" + 1 + "px solid white;" +
+  "color: #535b67;" +
+  // "border-bottom:" + 1 + "px solid white;" +
   "bottom:" + 40 * widthK + "px;" +
   "text-align: center;" +
   "margin-left: 0;" +
@@ -869,8 +870,8 @@ var css = {
   "position: absolute;" +
   "font-size:" + 34 * widthK + "px;" +
   "background-size: contain;" +
-  "color: #b7f1ff;" +
-  "border-bottom:" + 1 + "px solid #b7f1ff;" +
+  "color: #01cfff;" +
+  // "border-bottom:" + 1 + "px solid #b7f1ff;" +
   "bottom:" + 40 * widthK + "px;" +
   "margin-left:" + 80 * widthK + "px;" +
   "margin-bottom:" + 14 * widthK + "px;" +
@@ -885,8 +886,8 @@ var css = {
   "margin-right: auto;" +
   "width:" + 125 * widthK + "px;" +
   "background-size: contain;" +
-  "color: #b7f1ff;" +
-  "border-bottom:" + 1 + "px solid #b7f1ff;" +
+  "color: #535b67;" +
+  // "border-bottom:" + 1 + "px solid #535b67;" +
   "}",
   registrationButtonRegistration: ".registration-button-registration " +
   "{" +
@@ -962,7 +963,7 @@ var css = {
   "width:" + 140 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "top:" + 16 * widthK + "px;" +
-  "color: white;" +
+  "color: #535b67;" +
   "font-size:" + 70 * widthK + "px;" +
   "text-align: center;" +
   "}",
@@ -1042,7 +1043,7 @@ var css = {
   "{" +
   "position: relative;" +
   "text-align: center;" +
-  "color: #b7f1ff;" +
+  "color: #b0aeb2;" +
   "top:" + 120 * widthK + "px;" +
   "font-size:" + 30 * widthK + "px;" +
   "margin-left: auto;" +
@@ -1058,8 +1059,8 @@ var css = {
   // "left:" + 85 * widthK + "px;" +
   "width:" + 560 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
-  "border-bottom:" + 3 * widthK + "px solid rgba(163, 222, 238, 0.95);" +
-  "color: white;" +
+  "border-bottom:" + 3 * widthK + "px solid #b0aeb2;" +
+  "color: #b0aeb2;" +
   "}",
 
   smsTextFieldOne: ".sms-text-field-one " +
@@ -1069,7 +1070,7 @@ var css = {
   "top:" + -20 * widthK + "px;" +
   "left: 0;" +
   "text-align: center;" +
-  "color: #b7f1ff;" +
+  "color: #b0aeb2;" +
   "font-size:" + 30 * widthK + "px;" +
   "margin: 0;" +
   "}",
@@ -1082,7 +1083,7 @@ var css = {
   "font-size:" + 64 * widthK + "px;" +
   "border: none;" +
   "outline: none;" +
-  "color: white;" +
+  "color: #535b67;" +
   // "left: " + 180 * widthK + "px;" +
   "padding: 0;" +
   "margin: 0;" +
@@ -1124,7 +1125,7 @@ var css = {
   "width: 100%;" +
   "height: 100%;" +
   "overflow: hidden;" +
-  "background-image: url('resources/icons/background/transparent.png');" +
+  // "background-image: url('resources/icons/background/transparent.png');" +
   "background-size: cover;" +
   "background-repeat: no-repeat;" +
   "}",
@@ -1214,7 +1215,8 @@ var css = {
   "width:" + 34 * widthK + "px;" +
   "height:" + 34 * widthK + "px;" +
   "border-radius:" + 40 * widthK + "px;" +
-  "border:" + 4.5 * widthK + "px solid #01cfff;" +
+  "border:" + 4.5 * widthK + "px solid white;" +
+  "background-color: #b0aeb2;" +
   "}",
 
   authorizationPinTwo: ".authorization-pin-two " +
@@ -1267,9 +1269,9 @@ var css = {
   "font-size:" + 34 * widthK + "px;" +
   "left: 0;" +
   "background-size: contain;" +
-  "color: white;" +
+  "color: #535b67;" +
   //"border-bottom:" + 1 + "px solid #05eeff;" +
-  "border-bottom:" + 1 + "px solid white;" +
+  // "border-bottom:" + 1 + "px solid white;" +
   "}",
 
   authorizationButtonRegistration: ".authorization-button-registration " +
@@ -1277,9 +1279,9 @@ var css = {
   "position: absolute;" +
   "font-size:" + 34 * widthK + "px;" +
   "background-size: contain;" +
-  "color: white;" +
+  "color: #3598d0;" +
   "right: 0;" +
-  "border-bottom:" + 1 + "px solid white;" +
+  // "border-bottom:" + 1 + "px solid white;" +
   "}",
 
   authorizationButtonOffline: ".authorization-button-offline " +
@@ -1288,10 +1290,10 @@ var css = {
   "font-size:" + 34 * widthK + "px;" +
   "width:" + 240 * widthK + "px;" +
   "background-size: contain;" +
-  "color: white;" +
+  "color: #535b67;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
-  "border-bottom:" + 1 + "px solid white;" +
+  // "border-bottom:" + 1 + "px solid white;" +
   "text-align: center;" +
   "top:" + 550 * heightK + "px;" +
   // "left:" + 240 * widthK + "px;" +
@@ -1317,7 +1319,7 @@ var css = {
   "margin-right: auto;" +
   "background-size: contain;" +
   "width:" + 275 * widthK + "px;" +
-  "color: white;" +
+  "color: #b0aeb2;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
 
