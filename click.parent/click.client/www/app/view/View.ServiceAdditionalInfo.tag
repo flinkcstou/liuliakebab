@@ -16,14 +16,25 @@
 
   <div class="servicepage-body-container">
 
-    <p class="service-addinfo-choose-period-text">Выберите период:</p>
-    <div class="service-addinfo-period-containter" id="fromField" ontouchend="pickDateFrom()">
+
+    <p class="service-addinfo-choose-period-text">{(code)? ("Выберите период:"):("Введите показания счетчика:")}</p>
+    <div if="{code}" class="service-addinfo-period-containter" id="fromField" ontouchend="pickDateFrom()">
       <div class="service-addinfo-field">{languages.ComponentReportFilterByDateFrom} {from_dd}.{from_mm}.{from_yyyy}
       </div>
     </div>
-    <div class="service-addinfo-period-containter" id="toField" ontouchend="pickDateTo()">
+    <div if="{code}" class="service-addinfo-period-containter" id="toField" ontouchend="pickDateTo()">
       <div class="service-addinfo-field">{languages.ComponentReportFilterByDateTo} {to_dd}.{to_mm}.{to_yyyy}</div>
     </div>
+
+    <div if="{!code}" class="service-addinfo-period-containter" id="fromField">
+      <input class="service-addinfo-from-input" type="tel" id="fromInput" placeholder="С:"
+             onmouseup="periodFromInputMouseUp('from')"/>
+    </div>
+    <div if="{!code}" class="service-addinfo-period-containter" id="toField">
+      <input class="service-addinfo-from-input" type="tel" id="toinput" placeholder="По:"
+             onmouseup="periodFromInputMouseUp('to')"/>
+    </div>
+
 
     <div class="service-addinfo-amount-field" id="amountField">
       <p class="servicepage-text-field">Сумма</p>
@@ -108,6 +119,7 @@
     scope.showErrorOfLimit = false;
     scope.selectedId = '';
     var dateFrom, dateTo;
+    scope.code = false;
 
     console.log("opts in ServiceAdditionalInfo", opts);
 
@@ -278,6 +290,21 @@
 
       datePicker.show(options, onSuccess);
     };
+
+    periodFromInputMouseUp = function (source) {
+
+      if (source == 'from') {
+        fromField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+        toField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+        amountField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+      } else if (source == 'to') {
+        toField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+        fromField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+        amountField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+      }
+
+
+    }
 
     scope.onTouchStartOfAmountCalculator = onTouchStartOfAmountCalculator = function () {
       event.stopPropagation();

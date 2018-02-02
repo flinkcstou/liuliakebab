@@ -16297,20 +16297,20 @@ var css = {
   // "top: 8%;" +
   // "}",
   //
-  // serviceAddInfoFromInput: ".service-addinfo-from-input" +
-  // "{" +
-  // "border: none;" +
-  // "outline: none;" +
-  // "position: relative;" +
-  // "top: 25%;" +
-  // "padding: 0;" +
-  // "margin: 0;" +
-  // "margin-left: 3%;" +
-  // "width: 57%;" +
-  // "font-size:" + 54 * widthK + "px; " +
-  // "font-family: 'SFUIDisplay-Light';" +
-  // "color: #515151;" +
-  // "}",
+  serviceAddInfoFromInput: ".service-addinfo-from-input" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: relative;" +
+  "top: 20%;" +
+  "padding: 0;" +
+  "margin: 0;" +
+  "margin-left: 3%;" +
+  "width: 95%;" +
+  "font-size:" + 44 * widthK + "px; " +
+  "font-family: 'SFUIDisplay-Light';" +
+  "color: #515151;" +
+  "}",
 
   serviceAddInfoChoosePeriodText: ".service-addinfo-choose-period-text" +
   "{" +

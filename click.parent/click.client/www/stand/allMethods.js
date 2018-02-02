@@ -12889,7 +12889,19 @@ window.fakedSocket.register("get.additional.information", function (input) {
           information_type: 1,
           validation_result: null,
           options_header: null,
-          options: null,
+          // options: null,
+          options: [{
+            option_object: [{title: "Ф.И.О.", value: "Fayziyev Rustam Murodjonovich"},
+              {title: "Адрес", value: "Алиева Улица дом 128"},
+              {title: "Кадастр", value: "10:04:06:03:01:5123"},
+              {title: "Дата последнего платежа", value: "28.08.2017"},
+              {title: "Сумма последнего платежа", value: "103500"},
+              {title: "Остаток", value: "194538,81"}, [{title: "Код типа оплаты", value: "02"}]],
+            option_payment_attribute: "additional_param5",
+            payment_data_attributes: [{option: "region_id", parameter: "additional_param5"},
+              {option: "range_from", parameter: "additional_param3"},
+              {option: "range_to", parameter: "additional_param4"}]
+          }],
           enable_information_cache: true
         }
       ]];
