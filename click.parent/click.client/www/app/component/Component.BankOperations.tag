@@ -446,7 +446,7 @@
               showFlipCameraButton: false, // iOS and Android
               showTorchButton: true, // iOS and Android
               torchOn: false, // Android, launch with the torch switched on (if available)
-              prompt: "Наведите камеру к QR коду", // Android
+              prompt: window.languages.ViewQrLabelOnScanner, // Android
               resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
               formats: "QR_CODE", // default: all but PDF_417 and RSS_EXPANDED
               orientation: "portrait", // Android only (portrait|landscape), default unset so it rotates with the device

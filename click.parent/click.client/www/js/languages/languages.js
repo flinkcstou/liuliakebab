@@ -444,6 +444,7 @@ var RU_LANGUAGES =
   "ViewQrTitle": "ОПЛАТА ТОВАРОВ И УСЛУГ",
   "ViewQrTitleAccept": "Далее",
   "ViewQrTitleCancel": "Отменить",
+  "ViewQrLabelOnScanner": "Наведите камеру на QR код",
 
   "ViewReportServiceAmountOfPay": "Сумма платежа:",
   "ViewReportServicePayWithCard": "Оплата с карты:",
