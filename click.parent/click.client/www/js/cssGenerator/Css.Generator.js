@@ -1549,6 +1549,13 @@ var css = {
   // "top: 15%;" +
   "}",
 
+  bankOperationsContainers: ".bank-operations-containers " +
+  "{" +
+  "float: left;" +
+  "height: 137%;" +
+  "width: 33.33%;" +
+  "}",
+
   bankOperationIcon: ".bank-operation-icon " +
   "{" +
   "position: absolute;" +
