@@ -430,7 +430,7 @@
       }
 
 
-      if (scope.formType == 3) {
+      if (scope.formType == 3 || scope.formType == 5) {
 
         if (scope.hasSecondLevel)
           opts.communalParam = scope.chosenFieldParamIdThree;
