@@ -12889,7 +12889,8 @@ window.fakedSocket.register("get.additional.information", function (input) {
           information_type: 1,
           validation_result: null,
           options_header: null,
-          options: null
+          options: null,
+          enable_information_cache: true
         }
       ]];
 

@@ -16,19 +16,27 @@
 
   <div class="servicepage-body-container">
 
+    <p class="service-addinfo-choose-period-text">Выберите период:</p>
+    <div class="service-addinfo-period-containter" ontouchend="pickDateFrom()">
+      <div class="service-addinfo-field">{languages.ComponentReportFilterByDateFrom} {from_dd}.{from_mm}.{from_yyyy}
+      </div>
+    </div>
+    <div class="service-addinfo-period-containter" ontouchend="pickDateTo()">
+      <div class="service-addinfo-field">{languages.ComponentReportFilterByDateTo} {to_dd}.{to_mm}.{to_yyyy}</div>
+    </div>
 
     <div class="service-addinfo-amount-field" id="amountField">
       <p class="servicepage-text-field">Сумма</p>
       <p if="{commissionPercent}" class="servicepage-amount-tax-text-field">
         {window.languages.ViewServicePageAmountTaxText} {tax}
         {window.languages.Currency}</p>
-      <input class="servicepage-amount-input" type="tel" value="{defaultAmount}" maxlength="10"
+      <input class="service-addinfo-amount-input" type="tel" value="{defaultAmount}" maxlength="10"
              id="amount"
              readonly="{!service['amount_editable']}"
              pattern="[0-9]"
              placeholder="{placeHolderText}"
              onmouseup="eraseAmountDefault()" onkeyup="sumForPay()" oninput="sumForPay()"/>
-      <div if="{!modeOfApp.offlineMode && service['amount_editable'] && calcOn}" class="servicepage-amount-icon"
+      <div if="{!modeOfApp.offlineMode && service['amount_editable'] && calcOn}" class="service-addinfo-amount-icon"
            ontouchstart="onTouchStartOfAmountCalculator()" role="button"
            aria-label="{window.languages.ViewServicePageVoiceOverOpenCalculator}"
            ontouchend="onTouchEndOfAmountCalculator()"></div>
@@ -36,14 +44,19 @@
       <p if="{showErrorOfLimit}" id="placeHolderSumId" class="servicepage-limit-title">{placeHolderText}</p>
     </div>
 
-    <div class="service-addinfo-from-field">
-      <p class="servicepage-text-field">Выберите период:</p>
-      <input class="service-addinfo-from-input" type="tel" id="from"
-             onkeyup="paymentNameVerificationKeyUp()"/>
-    </div>
-    <div class="service-addinfo-from-field">
-      <input class="service-addinfo-from-input" type="tel" id="from"
-             onkeyup="paymentNameVerificationKeyUp()"/>
+
+    <div if="{false}">
+
+      <div class="service-addinfo-period-field">
+        <p class="servicepage-text-field">Выберите период:</p>
+        <input class="service-addinfo-from-input" type="tel" id="from" readonly="true"
+               ontouchend="pickDateFrom()"/>
+      </div>
+      <div class="service-addinfo-from-field">
+        <input class="service-addinfo-from-input" type="tel" id="to" readonly="true"
+               ontouchend="pickDateTo()"/>
+      </div>
+
     </div>
 
 
@@ -79,7 +92,8 @@
       </div>
 
       <div class="component-calc-buttons-container">
-        <div class="component-calc-button component-calc-cancel-button" ontouchstart="closeAmountComponentTouchStart()"
+        <div class="component-calc-button component-calc-cancel-button"
+             ontouchstart="closeAmountComponentTouchStart()"
              ontouchend="closeAmountComponentTouchEnd()">
           <p class="component-calc-button-label component-calc-cancel-button-label">
             {window.languages.ViewAmountCalculatorCancelText}</p>
@@ -185,6 +199,91 @@
         onBackKeyDown();
         scope.unmount()
       }
+    };
+
+    pickDateFrom = function () {
+
+      var currentDate = new Date(),
+        verifiedDate;
+
+      var options = {
+        date: new Date(),
+        doneButtonLabel: window.languages.ComponentReportFilterDoneButtonLabel,
+        cancelButtonLabel: window.languages.ComponentReportFilterCancelButtonLabel,
+        mode: 'date',
+        androidTheme: 5
+      };
+
+      function onSuccess(pickedDate) {
+
+        verifiedDate = pickedDate;
+
+        if (verifiedDate.getTime() > currentDate.getTime()) {
+
+          verifiedDate = currentDate;
+
+        }
+
+        if (dateTo) {
+
+          if (dateTo.getTime() < verifiedDate.getTime()) {
+
+            verifiedDate = dateTo;
+          }
+        }
+
+        dateFrom = verifiedDate;
+
+        scope.from_dd = dateFrom.getDate();
+        scope.from_mm = dateFrom.getMonth() + 1;
+        scope.from_yyyy = dateFrom.getFullYear();
+
+        scope.update();
+      }
+
+      datePicker.show(options, onSuccess);
+    };
+
+    pickDateTo = function () {
+
+      var currentDate = new Date(),
+        verifiedDate;
+
+      var options = {
+        date: new Date(),
+        doneButtonLabel: window.languages.ComponentReportFilterDoneButtonLabel,
+        cancelButtonLabel: window.languages.ComponentReportFilterCancelButtonLabel,
+        mode: 'date',
+        androidTheme: 5
+      };
+
+      function onSuccess(pickedDate) {
+
+        verifiedDate = pickedDate;
+
+        if (verifiedDate.getTime() > currentDate.getTime()) {
+
+          verifiedDate = currentDate;
+        }
+
+        if (dateFrom) {
+
+          if (dateFrom.getTime() > verifiedDate.getTime()) {
+
+            verifiedDate = dateFrom;
+          }
+        }
+
+        dateTo = verifiedDate;
+
+        scope.to_dd = dateTo.getDate();
+        scope.to_mm = dateTo.getMonth() + 1;
+        scope.to_yyyy = dateTo.getFullYear();
+
+        scope.update();
+      };
+
+      datePicker.show(options, onSuccess);
     };
 
     scope.onTouchStartOfAmountCalculator = onTouchStartOfAmountCalculator = function () {

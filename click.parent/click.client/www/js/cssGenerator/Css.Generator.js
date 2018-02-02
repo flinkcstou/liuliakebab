@@ -16285,6 +16285,65 @@ var css = {
 
   //Service Additional Info
 
+
+  // serviceAddInfoPeriodField: ".service-addinfo-period-field" +
+  // "{" +
+  // "position: relative;" +
+  // "left: 10%;" +
+  // "width: 79.5%;" +
+  // "height: 8%;" +
+  // "border-bottom:  " + 3 * widthK + "px solid #01cfff;" +
+  // "color: white;" +
+  // "top: 8%;" +
+  // "}",
+  //
+  // serviceAddInfoFromInput: ".service-addinfo-from-input" +
+  // "{" +
+  // "border: none;" +
+  // "outline: none;" +
+  // "position: relative;" +
+  // "top: 25%;" +
+  // "padding: 0;" +
+  // "margin: 0;" +
+  // "margin-left: 3%;" +
+  // "width: 57%;" +
+  // "font-size:" + 54 * widthK + "px; " +
+  // "font-family: 'SFUIDisplay-Light';" +
+  // "color: #515151;" +
+  // "}",
+
+  serviceAddInfoChoosePeriodText: ".service-addinfo-choose-period-text" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "color: gray;" +
+  "font-size:" + 24 * widthK + "px; " +
+  "left: 10%;" +
+  // "top: 3%;" +
+  "}",
+
+  serviceAddInfoPeriodContainer: ".service-addinfo-period-containter" +
+  "{" +
+  "position: relative;" +
+  "height: 7%; " +
+  "width: 79.5%;" +
+  "left: 10%;" +
+  "border-bottom:" + 1 * widthK + "px solid gainsboro;" +
+  "background-color: transparent;" +
+  // "top: 6%;" +
+  "}",
+
+  serviceAddInfoField: ".service-addinfo-field" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "top: " + 26 * widthK + "px; " +
+  //"left: 3%;" +
+  "text-align: left;" +
+  "font-size:" + 29 * widthK + "px; " +
+  "color: gray;" +
+  "}",
+
   serviceAddInfoAmountField: ".service-addinfo-amount-field" +
   "{position: relative;" +
   "left: 10%;" +
@@ -16295,35 +16354,32 @@ var css = {
   "top: 5%" +
   "}",
 
-  serviceAddInfoFromField: ".service-addinfo-from-field" +
+  serviceAddInfoAmountIcon: ".service-addinfo-amount-icon" +
   "{" +
   "position: relative;" +
-  "left: 10%;" +
-  "width: 79.5%;" +
-  "height: 8%;" +
-  "border-bottom:  " + 3 * widthK + "px solid #01cfff;" +
-  "color: white;" +
-  "top: 8%;" +
+  "float: right;" +
+  "background-image: url('resources/icons/ViewService/calc.png');" +
+  "width: 7%;" +
+  "height: 50%;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 100%;" +
+  "top: 40%;" +
   "}",
 
-  serviceAddInfoFromInput: ".service-addinfo-from-input" +
+  serviceAddInfoAmountInput: ".service-addinfo-amount-input" +
   "{" +
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top: 25%;" +
-  "padding: 0;" +
-  "margin: 0;" +
-  "margin-left: 3%;" +
-  "width: 57%;" +
+  "top: 25%; " +
+  "width: 88%;" +
   "font-size:" + 54 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
-
-  // "width: 96%;" +
-  // "margin-left: 0;" +
-  // "top: 25%;" +
-  "}",
+  "padding: 0;" +
+  "margin: 0;" +
+  "}"
 
 }
 
