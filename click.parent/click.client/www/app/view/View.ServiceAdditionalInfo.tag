@@ -17,11 +17,11 @@
   <div class="servicepage-body-container">
 
     <p class="service-addinfo-choose-period-text">Выберите период:</p>
-    <div class="service-addinfo-period-containter" ontouchend="pickDateFrom()">
+    <div class="service-addinfo-period-containter" id="fromField" ontouchend="pickDateFrom()">
       <div class="service-addinfo-field">{languages.ComponentReportFilterByDateFrom} {from_dd}.{from_mm}.{from_yyyy}
       </div>
     </div>
-    <div class="service-addinfo-period-containter" ontouchend="pickDateTo()">
+    <div class="service-addinfo-period-containter" id="toField" ontouchend="pickDateTo()">
       <div class="service-addinfo-field">{languages.ComponentReportFilterByDateTo} {to_dd}.{to_mm}.{to_yyyy}</div>
     </div>
 
@@ -43,22 +43,6 @@
 
       <p if="{showErrorOfLimit}" id="placeHolderSumId" class="servicepage-limit-title">{placeHolderText}</p>
     </div>
-
-
-    <div if="{false}">
-
-      <div class="service-addinfo-period-field">
-        <p class="servicepage-text-field">Выберите период:</p>
-        <input class="service-addinfo-from-input" type="tel" id="from" readonly="true"
-               ontouchend="pickDateFrom()"/>
-      </div>
-      <div class="service-addinfo-from-field">
-        <input class="service-addinfo-from-input" type="tel" id="to" readonly="true"
-               ontouchend="pickDateTo()"/>
-      </div>
-
-    </div>
-
 
     <button id="enterButtonId"
             class="{servicepage-button-enter-enabled: enterButtonEnabled,servicepage-button-enter-disabled:!enterButtonEnabled}"
@@ -123,6 +107,7 @@
     var enterStartY, enterStartX, enterEndY, enterEndX;
     scope.showErrorOfLimit = false;
     scope.selectedId = '';
+    var dateFrom, dateTo;
 
     console.log("opts in ServiceAdditionalInfo", opts);
 
@@ -203,6 +188,10 @@
 
     pickDateFrom = function () {
 
+      fromField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+      toField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+      amountField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+
       var currentDate = new Date(),
         verifiedDate;
 
@@ -245,6 +234,10 @@
     };
 
     pickDateTo = function () {
+
+      toField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+      fromField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+      amountField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
 
       var currentDate = new Date(),
         verifiedDate;
@@ -464,7 +457,7 @@
         scope.showComponent = false;
         window.checkShowingComponent = null;
         scope.update();
-        checkFieldsToActivateNext();
+        checkFields();
       }
     };
 
@@ -492,10 +485,10 @@
       }
 
       amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
-      firstField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+      fromField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+      toField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
 
-      checkFieldsToActivateNext('sum')
-
+      checkFields('sum')
     };
 
     sumForPay = function () {
@@ -534,17 +527,44 @@
         opts.tax = scope.tax;
       }
       scope.update();
-      checkFieldsToActivateNext('sum');
+      checkFields('sum');
     };
 
-    bordersColor = function () {
 
-      event.preventDefault();
-      event.stopPropagation();
+    checkFields = function (from) {
 
+      if (!scope.service['amount_editable']) return;
 
-      firstField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
-      amountField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+      if (amountForPayTransaction < scope.service.min_pay_limit && from == 'sum') {
+        scope.showErrorOfLimit = true;
+        amountField.style.borderBottom = 3 * widthK + 'px solid red';
+        scope.enterButtonEnabled = false;
+        scope.update();
+        placeHolderSumId.style.color = 'red';
+        return;
+      }
+      else if (from == 'sum' && amountField.length >= 1) {
+        amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+        scope.showErrorOfLimit = false;
+        scope.update()
+      }
+      if (amountForPayTransaction > scope.service.max_pay_limit && from == 'sum') {
+        scope.showErrorOfLimit = true;
+        amountField.style.borderBottom = 3 * widthK + 'px solid red';
+        scope.enterButtonEnabled = false;
+        scope.update();
+        placeHolderSumId.style.color = 'red';
+        return;
+      }
+      else if (from == 'sum') {
+        amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+        scope.showErrorOfLimit = false;
+        scope.update()
+      }
+
+      scope.enterButtonEnabled = true;
+      scope.update(scope.enterButtonEnabled);
+
     };
 
     scope.onTouchStartOfEnter = onTouchStartOfEnter = function () {
@@ -750,155 +770,6 @@
 
         }
 
-      }
-    };
-
-    addToFavoritesinServicePage = function (array) {
-
-      var favoritePaymentsList, favoritePaymentsListForApi;
-
-      var id = Math.floor((Math.random() * 1000000) + 1);
-
-      favoritePaymentsList = localStorage.getItem('favoritePaymentsList') ? JSON.parse(localStorage.getItem('favoritePaymentsList')) : [];
-      favoritePaymentsListForApi = localStorage.getItem('favoritePaymentsListForApi') ? JSON.parse(localStorage.getItem('favoritePaymentsListForApi')) : [];
-
-
-      if (favoritePaymentsListForApi.length != favoritePaymentsList.length) {
-        favoritePaymentsListForApi = [];
-        for (var i in favoritePaymentsList) {
-          favoritePaymentsListForApi.push({
-            "id": favoritePaymentsList[i].id,
-            "type": 1,
-            "body": JSON.stringify(favoritePaymentsList[i])
-          })
-        }
-      }
-
-      var newfavorite = {
-        "params": array,
-        "service": scope.service,
-        "ussd": scope.fieldArray[0].ussd_query,
-        "id": id
-      };
-
-      favoritePaymentsList.push(newfavorite);
-      favoritePaymentsListForApi.push({
-        "id": id,
-        "type": 1,
-        "body": JSON.stringify(newfavorite)
-      });
-
-      localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
-      localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(favoritePaymentsListForApi));
-
-
-      window.api.call({
-        method: 'add.favourite',
-        input: {
-          session_key: sessionKey,
-          phone_num: phoneNumber,
-          wishlist_data: favoritePaymentsListForApi
-        },
-
-        scope: this,
-
-        onSuccess: function (result) {
-
-          if (result[0][0].error == 0) {
-
-            console.log("SUCCESSFULLY ADDED")
-
-          }
-          else {
-            scope.clickPinError = false;
-            scope.errorNote = result[0][0].error_note;
-
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote
-            });
-
-            scope.update();
-            console.log(result[0][0].error_note);
-          }
-        },
-
-        onFail: function (api_status, api_status_message, data) {
-          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
-        }
-      });
-
-
-    };
-
-    editFavorite = function (params) {
-
-      var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
-      var favoritePaymentsListForApi = JSON.parse(localStorage.getItem('favoritePaymentsListForApi'));
-
-      for (var i in favoritePaymentsList) {
-        if (favoritePaymentsList[i].id == opts.favoriteId) {
-          favoritePaymentsList[i].params = params;
-
-          var editedfavorite = {
-            "id": favoritePaymentsList[i].id,
-            "type": 1,
-            "body": JSON.stringify(favoritePaymentsList[i])
-          };
-
-          for (var j in favoritePaymentsListForApi) {
-            if (favoritePaymentsListForApi[i].id == opts.favoriteId) {
-              favoritePaymentsListForApi[i] = editedfavorite;
-              break;
-            }
-          }
-
-          window.api.call({
-            method: 'update.favourite',
-            input: {
-              session_key: sessionKey,
-              phone_num: phoneNumber,
-              wishlist_data: editedfavorite
-            },
-
-            scope: this,
-
-            onSuccess: function (result) {
-
-              if (result[0][0].error == 0) {
-
-                console.log("SUCCESSFULLY edited")
-
-              }
-              else {
-                scope.clickPinError = false;
-                scope.errorNote = result[0][0].error_note;
-
-                window.common.alert.show("componentAlertId", {
-                  parent: scope,
-                  clickpinerror: scope.clickPinError,
-                  errornote: scope.errorNote
-                });
-
-                scope.update();
-                console.log(result[0][0].error_note);
-              }
-            },
-
-            onFail: function (api_status, api_status_message, data) {
-              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-              console.error(data);
-            }
-          });
-
-          localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
-          localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(favoritePaymentsListForApi));
-
-          break;
-
-        }
       }
     };
 

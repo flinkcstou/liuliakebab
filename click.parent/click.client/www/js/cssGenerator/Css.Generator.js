@@ -16315,7 +16315,7 @@ var css = {
   serviceAddInfoChoosePeriodText: ".service-addinfo-choose-period-text" +
   "{" +
   "position: relative;" +
-  "margin: 0;" +
+  "margin-bottom: 0;" +
   "color: gray;" +
   "font-size:" + 24 * widthK + "px; " +
   "left: 10%;" +
@@ -16328,7 +16328,7 @@ var css = {
   "height: 7%; " +
   "width: 79.5%;" +
   "left: 10%;" +
-  "border-bottom:" + 1 * widthK + "px solid gainsboro;" +
+  "border-bottom:" + 3 * widthK + "px solid lightgrey;" +
   "background-color: transparent;" +
   // "top: 6%;" +
   "}",
