@@ -79,9 +79,9 @@ var css = {
   // "background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
   // "background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
   // "background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  "background: -moz-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
-  "background: -ms-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);" +
+  "background: #fafafa;" +
+  "background: #fafafa;" +
+  "background: #fafafa;" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -609,7 +609,7 @@ var css = {
   "left:" + 80 * widthK + "px;" +
   "width:" + 560 * widthK + "px;" +
   "height:" + 107 * widthK + "px;" +
-  "border-bottom:" + 3 * widthK + "px solid #b0aeb2;" +
+  "border-bottom:" + 3 * widthK + "px solid #aaabae;" +
   "bottom:" + 210 * widthK + "px;" +
   "color: #535b67;" +
   "}",
@@ -617,7 +617,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "color: #b0aeb2;" +
+  "color: #aaabae;" +
   "}",
   registrationDevicePhoneInput: ".registration-device-phone-input " +
   "{" +
@@ -660,7 +660,7 @@ var css = {
   "left:" + 180 * widthK + "px;" +
   "width:" + 2 * widthK + "px;" +
   "height:" + 60 * widthK + "px;" +
-  "background-color: #535b67;" +
+  "background-color: #565d6a;" +
   "-webkit-transition-property: width height background-color left top opacity transform -webkit-transform opacity;" +
   "-webkit-transition-duration: 0s;" +
   "-webkit-transition-timing-function: step(1,end);" +
@@ -675,7 +675,7 @@ var css = {
   "left:" + 180 * widthK + "px;" +
   "width:" + 2 * widthK + "px;" +
   "height:" + 60 * widthK + "px;" +
-  "background-color: #535b67;" +
+  "background-color: #565d6a;" +
   "opacity:0;" +
   "-webkit-transition-property: width height background-colorleft top opacity transform -webkit-transform opacity;" +
   "-webkit-transition-duration: 0s;" +
@@ -725,7 +725,7 @@ var css = {
   registrationDeviceRememberLabel: ".registration-device-remember-label " +
   "{" +
   "position: absolute;" +
-  "color: #b0aeb2;" +
+  "color: #aaabae;" +
   "top:" + 32 * widthK + "px;" +
   "width:" + 340 * widthK + "px;" +
   "margin: 0;" +
@@ -963,7 +963,7 @@ var css = {
   "width:" + 140 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "top:" + 16 * widthK + "px;" +
-  "color: #535b67;" +
+  "color: #565d6a;" +
   "font-size:" + 70 * widthK + "px;" +
   "text-align: center;" +
   "}",
@@ -1215,7 +1215,7 @@ var css = {
   "width:" + 34 * widthK + "px;" +
   "height:" + 34 * widthK + "px;" +
   "border-radius:" + 40 * widthK + "px;" +
-  "border:" + 4.5 * widthK + "px solid white;" +
+  "border:" + 4.5 * widthK + "px solid #fafafa;" +
   "background-color: #b0aeb2;" +
   "}",
 
@@ -1319,7 +1319,7 @@ var css = {
   "margin-right: auto;" +
   "background-size: contain;" +
   "width:" + 275 * widthK + "px;" +
-  "color: #b0aeb2;" +
+  "color: #aaabae;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
 
@@ -1370,7 +1370,7 @@ var css = {
   "left:" + 26 * widthK + "px;" +
   "height:" + 70 * widthK + "px;" +
   "background: transparent;" +
-  "border-bottom: 1px solid #4ae3ff;" +
+  "border-bottom: 1px solid #e8e8e8;" +
   "}",
 
   toolbarCircleContainer: ".toolbar-circle-container " +
@@ -1384,7 +1384,7 @@ var css = {
   "bottom:" + 22 * widthK + "px;" +
   "border-radius:" + 100 * widthK + "px;" +
   "background-color: white;" +
-  "border:" + 8 * widthK + "px solid #00a8f1;" +
+  "border:" + 8 * widthK + "px solid #ffffff;" +
   "background-image: url(resources/icons/bank-operations/circleReport.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 75%;" +
@@ -1402,7 +1402,7 @@ var css = {
   "margin-right: auto;" +
   "width:" + 117 * widthK + "px;" +
   "bottom:" + 17 * widthK + "px;" +
-  "color: white;" +
+  "color: #a9abaf;" +
   "font-size:" + 30 * widthK + "px;" +
   "}",
 
@@ -1497,7 +1497,7 @@ var css = {
 
   bankOperationButtonTransfer: ".bank-operation-button-transfer " +
   "{" +
-  "left:" + 280 * widthK + "px;" +
+  "left:" + 290 * widthK + "px;" +
   "overflow: hidden;" +
   "border: none;" +
   "outline: none;" +
@@ -1534,7 +1534,7 @@ var css = {
 
   bankOperationButtonQr: ".bank-operation-button-qr " +
   "{" +
-  "left:" + 511 * widthK + "px;" +
+  "left:" + 521 * widthK + "px;" +
   "}",
 
   topOperationsButtons: ".top-operations-buttons " +
@@ -1582,7 +1582,7 @@ var css = {
   "position: absolute;" +
   "left:" + 27 * widthK + "px;" +
   "right:" + 27 * widthK + "px;" +
-  "border-bottom: 1px solid #4ae3ff;" +
+  "border-bottom: 1px solid #e8e8e8;" +
   "text-align: center;" +
   "top:" + 473 * widthK + "px;" +
   "height:" + 100 * heightK + "px;" +
@@ -1591,10 +1591,10 @@ var css = {
   bankOperationButtonMyCardsIcon: ".bank-operation-button-my-cards-icon " +
   "{" +
   "position: absolute;" +
-  "width:" + 71 * widthK + "px;" +
-  "height:" + 70 * widthK + "px;" +
-  "left:" + 20 * widthK + "px;" +
-  "top:" + -3 * widthK + "px;" +
+  "width:" + 40 * widthK + "px;" +
+  "height:" + 35 * widthK + "px;" +
+  "left:" + 16 * widthK + "px;" +
+  "top:" + 8 * widthK + "px;" +
   "background-size: 70%;" +
   "background-repeat: no-repeat;" +
   "background-image: url(resources/icons/bank-operations/allcards.png);" +
@@ -1607,7 +1607,7 @@ var css = {
   "top:" + 1 * widthK + "px;" +
   "position: absolute;" +
   "font-size:" + 28 * widthK + "px;" +
-  "color: #ffffff;" +
+  "color: #565d6a;" +
   "}",
 
   bankOperationButtonContainer: ".bank-operation-button-container" +
@@ -1623,7 +1623,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "bottom:" + -25 * widthK + "px;" +
-  "color: #ffffff;" +
+  "color: #565d6a;" +
   "text-align: center;" +
   "font-size:" + 29 * widthK + "px;" +
   "}",
@@ -1635,7 +1635,7 @@ var css = {
 
   bankOperationLabelTransfer: ".bank-operation-label-transfer " +
   "{" +
-  "left:" + 277 * widthK + "px;" +
+  "left:" + 286 * widthK + "px;" +
   "}",
 
   bankOperationLabelAutoPay: ".bank-operation-label-autopay " +
@@ -1650,7 +1650,7 @@ var css = {
 
   bankOperationLabelInPlacePay: ".bank-operation-label-inplace-pay " +
   "{" +
-  "left:" + 457 * widthK + "px;" +
+  "left:" + 467 * widthK + "px;" +
   "width:" + 250 * widthK + "px;" +
   "bottom:" + -50 * widthK + "px;" +
   "height:" + 66 * widthK + "px;" +
@@ -1672,7 +1672,7 @@ var css = {
   operationQrIcon: ".operation-qr-icon " +
   "{" +
   "background-image: url(resources/icons/bank-operations/qr.png);" +
-  "background-size: 70%;" +
+  "background-size: 56%;" +
   "}",
 
   //CAROUSEL COMPONENT
@@ -1708,9 +1708,9 @@ var css = {
   "border-radius:" + 14 * widthK + "px;" +
   "background-size: cover;" +
   "color: white;" +
-  "-webkit-box-shadow: 0px " + 50 * widthK + "px " + 50 * widthK + "px " + -50 * widthK + "px " + "rgba(0,0,0,1);" +
-  "-moz-box-shadow: 0px " + 50 * widthK + "px " + 50 * widthK + "px " + -50 * widthK + "px " + "rgba(0,0,0,1);" +
-  "box-shadow:  0px " + 50 * widthK + "px " + 50 * widthK + "px " + -50 * widthK + "px " + "rgba(0,0,0,1);" +
+  "-webkit-box-shadow: " + 50 * widthK + "px " +  50 * widthK + "px " + 75 * widthK + "px " + -65 * widthK + "px " + "rgba(0,0,0,1);" +
+  "-moz-box-shadow: " + 50 * widthK + "px " + 50 * widthK + "px " + 75 * widthK + "px " + -65 * widthK + "px " + "rgba(0,0,0,1);" +
+  "box-shadow: " + 50 * widthK + "px " + 50 * widthK + "px " + 75 * widthK + "px " + -65 * widthK + "px " + "rgba(0,0,0,1);" +
   "background-color: #BDC7D0;" +
   "}",
 
@@ -2151,7 +2151,7 @@ var css = {
   "-webkit-transform: translate3d(-100%, 0,0);" +
   "-ms-transform: translate3d(-100%, 0,0);" +
   // "background-color: #22a0e0;" +
-  "background-color: #00a8f1;" +
+  "background-color: #ffffff;" +
   "z-index: 1;" +
   //"top:" + topOfIos + "px;" +
   "}",
@@ -2159,11 +2159,11 @@ var css = {
   sideMenuInsideButton: ".side-menu-inside-button " +
   "{" +
   "position: absolute;" +
-  "height: 6%;" +
-  "width: 15%;" +
-  "top: 2%;" +
-  "left: 4%;" +
-  "background-image: url(resources/icons/back/back.png);" +
+  "height: 5%;" +
+  "width: 23%;" +
+  "top: 1%;" +
+  // "left: 4%;" +
+  "background-image: url(resources/icons/toolbar/menus.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 30%;" +
   "background-position: center;" +
@@ -2198,7 +2198,7 @@ var css = {
   "padding: 0;" +
   "bottom:" + 21 * widthK + "px;" +
   "right: 14%;" +
-  "color: white;" +
+  "color: #565d6a;" +
   "width: 100%;" +
   "overflow: hidden;" +
   "text-overflow: ellipsis;" +
@@ -2216,7 +2216,7 @@ var css = {
   "width: 100%;" +
   "overflow: hidden;" +
   "text-overflow: ellipsis;" +
-  "color: white;" +
+  "color: #565d6a;" +
   "text-align: right;" +
   "white-space: nowrap;" +
   "}",
@@ -2228,7 +2228,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #2dadf0;" +
+  "border-bottom: 1px solid #f2f2f2;" +
   // "border-bottom: 1px solid #43aee5;" +
   "}",
 
@@ -2239,7 +2239,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #2dadf0;" +
+  "border-bottom: 1px solid #f2f2f2;" +
   "}",
 
   sideMenuAutoPayContainer: ".side-menu-auto-pay-container " +
@@ -2249,7 +2249,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #2dadf0;" +
+  "border-bottom: 1px solid #f2f2f2;" +
   "}",
 
   sideMenuScannerQrContainer: ".side-menu-scanner-qr-container " +
@@ -2259,7 +2259,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #2dadf0;" +
+  // "border-bottom: 1px solid #2dadf0;" +
   "}",
 
   sideMenuSettingsContainer: ".side-menu-settings-container " +
@@ -2269,7 +2269,7 @@ var css = {
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #2dadf0;" +
+  "border-bottom: 1px solid #f2f2f2;" +
   "}",
 
 
@@ -2281,25 +2281,25 @@ var css = {
   "width: 77%;" +
   "left: 8%;" +
   //"margin-top: 2%;" +
-  "border-bottom: 1px solid #2dadf0;" +
+  "border-bottom: 1px solid #f2f2f2;" +
   "}",
 
   sideMenuExitContainer: ".side-menu-exit-container " +
   "{" +
-  "position: relative;" +
-  "top: 39.4%;" +
+  "position: absolute;" +
+  "bottom: 1.4%;" +
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #2dadf0;" +
+  // "border-bottom: 1px solid #2dadf0;" +
   "}",
 
   sideMenuContainersIcon: ".side-menu-containers-icon " +
   "{" +
   "position: absolute;" +
-  "width: 9%;" +
+  "width: 7%;" +
   "height: 81%;" +
-  "top: 7%;" +
+  "top: 12%;" +
   "left: 0%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
@@ -2338,9 +2338,11 @@ var css = {
 
   sideMenuContainersIconExit: ".side-menu-containers-icon-exit" +
   "{" +
-  "background-image: url(resources/icons/menu/menu_exit.png);" +
+  "background-image: url(resources/icons/back/back.png);" +
   "background-size: 100%;" +
-  "top: 22%;" +
+  "top: 39%;" +
+  "height: 36%;" +
+  "width: 4%;" +
   "}",
 
   sideMenuContainersIconFavorite: ".side-menu-containers-icon-favorite" +
@@ -2356,7 +2358,7 @@ var css = {
   "top: 25.5%;" +
   "left: 16%;" +
   "font-size:" + 29 * widthK + "px;" +
-  "color: white;" +
+  "color: #565d6a;" +
   "}",
 
   sideMenuContainersNameAutopayment: ".side-menu-containers-name-autopayment " +
@@ -2516,7 +2518,7 @@ var css = {
   "left: 12.5%;" +
   "top: 27%;" +
   "margin: 0;" +
-  "color: #fffaf9;" +
+  "color: #565d6a;" +
   "}",
 
   backButton: ".back-button " +
@@ -3493,7 +3495,7 @@ var css = {
   "left:" + 85 * widthK + "px; " +
   "top:" + 26 * widthK + "px; " +
   "margin: 0;  " +
-  "color: #fffaf9;" +
+  "color: #565d6a;" +
   "}",
 
   payBackButton: ".pay-back-button " +
@@ -3741,7 +3743,7 @@ var css = {
   "left: 13%;" +
   "top: 36%;" +
   "margin: 0;" +
-  "color: #fffaf9;" +
+  "color: #565d6a;" +
   "white-space: nowrap;" +
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
@@ -3765,7 +3767,7 @@ var css = {
   "left: 13%;" +
   "top: 87%;" +
   "margin: 0;" +
-  "color: lavender;" +
+  "color: #565d6a;" +
   "}",
 
   servicePageServiceIcon: ".servicepage-service-icon" +
@@ -6789,7 +6791,7 @@ var css = {
   "left: 12.7%;" +
   "top: 25.5%;" +
   "margin: 0;" +
-  "color: #fffaf9;" +
+  "color: #565d6a;" +
   "}",
 
   transferPageTitle: ".transfer-page-title " +
@@ -10294,7 +10296,7 @@ var css = {
   "position: absolute;" +
   "top: 10%;" +
   "margin: 0;" +
-  "color: white;" +
+  "color: #565d6a;" +
   "font-size: " + 30 * widthK + "px; " +
   "width: 100%;" +
   "}",
