@@ -1018,7 +1018,7 @@ var css = {
   "width: 100%;" +
   "height: 100%;" +
   "overflow: hidden;" +
-  "background-image: url('resources/icons/background/transparent.png');" +
+  // "background-image: url('resources/icons/background/transparent.png');" +
   "background-size: cover;" +
   "background-repeat: no-repeat;" +
   "}",
@@ -2576,9 +2576,12 @@ var css = {
   "right: 0;" +
   "height:" + 85 * widthK + "px;" +
   "width: 100%;" +
-  "border-top:" + 2 + "px solid #00b3fd;" +
-  "color: rgb(197, 233, 239);" +
-  "background-color: #00b3fd;" +
+  // "border-top:" + 2 + "px solid #00b3fd;" +
+  // "color: rgb(197, 233, 239);" +
+  // "background-color: #00b3fd;" +
+  "background: -moz-linear-gradient(left, rgb(86,93,106) 20%,rgb(87,132,169));" +
+  "background: -webkit-linear-gradient(left, rgb(86,93,106) 20%,rgb(87,132,169));" +
+  "background: -ms-linear-gradient(left, rgb(86,93,106) 20%,rgb(87,132,169));" +
   "}",
 
   footerIconTick: ".footer-icon-tick " +
@@ -2815,7 +2818,7 @@ var css = {
   "width: 80%;" +
   "left: 20%;" +
   "font-size:" + 30 * widthK + "px;" +
-  "color: white;" +
+  "color: #565d6a;" +
   "top:" + 30 * widthK + "px;" +
   "border-bottom: 1px solid #95e6fd;" +
   "}",
@@ -3533,6 +3536,7 @@ var css = {
   //"height:" + 1150 * widthK + "px; " +
   "width: 100%; " +
   "top:" + 86 * widthK + "px; " +
+  "z-index: 3; " +
   "bottom:0; " +
   "background-color: white; " +
   "overflow-y: scroll; " +
@@ -3728,10 +3732,13 @@ var css = {
   "{" +
   "position: absolute;" +
   "top:" + 0 * widthK + "px;" +
-  "right:" + 28 * widthK + "px;" +
-  "left:" + 25 * widthK + "px;" +
-  "height:" + 88 * widthK + "px;" +
-  "background: transparent;" +
+  "width: 100%;" +
+  "height:" + 140 * heightK + "px;" +
+  "background: white;" +
+  "z-index: 2;" +
+  "-webkit-box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
+  "-moz-box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
+  "box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
   //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
   "}",
 
@@ -3740,8 +3747,8 @@ var css = {
   "position: absolute;" +
   "background-size: contain;" +
   "font-size: " + 38 * widthK + "px; " +
-  "left: 13%;" +
-  "top: 36%;" +
+  "left: 16%;" +
+  "top: 22%;" +
   "margin: 0;" +
   "color: #565d6a;" +
   "white-space: nowrap;" +
@@ -3764,8 +3771,8 @@ var css = {
   "position: absolute;" +
   "background-size: contain;" +
   "font-size: " + 29 * widthK + "px; " +
-  "left: 13%;" +
-  "top: 87%;" +
+  "left: 16%;" +
+  "top: 55%;" +
   "margin: 0;" +
   "color: #565d6a;" +
   "}",
@@ -3793,7 +3800,7 @@ var css = {
   "height: " + 1092 * heightK + "px; " +
   "width: 100%; " +
   "top: " + 140 * heightK + "px; " +
-  "background-color: white;" +
+  "background-color: #fafafa;" +
   "overflow-x: hidden;" +
   "overflow-y: scroll;" +
   "-webkit-overflow-scrolling: touch; " +
@@ -4060,6 +4067,7 @@ var css = {
   "color: #515151;" +
   "padding: 0;" +
   "margin: 0;" +
+  "background-color: transparent;" +
   "}",
 
   // servicePageAmountInputPlaceHolder: ".servicepage-amount-input::-webkit-input-placeholder" +
@@ -4093,6 +4101,7 @@ var css = {
   "font-size:" + 54 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
+  "background-color: transparent;" +
   "}",
 
   servicePageNumberInputPartPlaceHolder: ".servicepage-number-input-part::-webkit-input-placeholder" +
@@ -4137,6 +4146,7 @@ var css = {
   "font-size:" + 56 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
+  "background-color: transparent;" +
   "}",
 
 
@@ -4218,17 +4228,17 @@ var css = {
 
   servicePageButtonBack: ".servicepage-button-back" +
   "{" +
-  "top: 13%;" +
+  "top: 33%;" +
   "position: absolute;" +
-  "width: 17%;" +
-  "height: 140%;" +
+  "width: 15%;" +
+  "height: 39%;" +
   "background-image: url('resources/icons/back/back.png');" +
   "background-repeat: no-repeat;" +
   "-webkit-background-size: 20%;" +
   "background-position-y: center;" +
   "background-position-x: center;" +
   "background-size: 20%;" +
-  "left: -4%;" +
+  "left: 0%;" +
   "}",
 
   servicePageFormTypeTwoContainer: ".servicepage-formtype-two-container" +
@@ -5731,7 +5741,10 @@ var css = {
   "height:" + 155 * widthK + "px;" +
   "width: 100%;" +
   "top: 0;" +
-  "background-color: #f1f1f1;" +
+  "background-color: #fafafa;" +
+  "-webkit-box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
+  "-moz-box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
+  "box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
   "}",
 
   transferNewContactPhoneField: ".transfer-new-contact-phone-field" +
@@ -5899,6 +5912,27 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size:" + 61 * widthK + "px;" +
   "background-position: center;" +
+  "}",
+
+  transferNewMenuBorderRight: ".transfer-new-menu-border-right" +
+  "{" +
+  "position: absolute;" +
+  "height: 80%;" +
+  "width: 33.31%;" +
+  "top: 10%;" +
+  "border-right:" + 1 * widthK + "px solid #e8e8e8;" +
+  "background: transparent;" +
+  "}",
+
+  transferNewMenuBorderLeft: ".transfer-new-menu-border-left" +
+  "{" +
+  "position: absolute;" +
+  "height: 80%;" +
+  "width: 33.31%;" +
+  "top: 10%;" +
+  "left: 66.66%;" +
+  "border-left:" + 1 * widthK + "px solid #e8e8e8;" +
+  "background: transparent;" +
   "}",
 
   transferNewMenuContactIconImg1: ".transfer-new-menu-contact-icon-img-1" +
@@ -12243,7 +12277,7 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 340 * widthK + "px;" +
-  "background-color: #00a8f1;" +
+  "background-color: white;" +
   "}",
 
   viewQrContainer: ".view-qr-container" +
@@ -12277,7 +12311,7 @@ var css = {
   "left:" + 77 * widthK + "px; " +
   "top:" + 26 * widthK + "px; " +
   "margin: 0;  " +
-  "color: #fffaf9;" +
+  "color: ##565d6a;" +
   "}",
 
   viewQrCompanyName: ".view-qr-company-name " +
@@ -12290,7 +12324,7 @@ var css = {
   "margin-left: auto; " +
   "margin-right: auto; " +
   "top: 22%; " +
-  "color: white;" +
+  "color: #565d6a;" +
   "text-overflow: ellipsis;" +
   "white-space: nowrap;" +
   "overflow: hidden;" +
@@ -12307,7 +12341,7 @@ var css = {
   "margin-left: auto; " +
   "margin-right: auto; " +
   "top: 22%; " +
-  "color: white;" +
+  "color: #565d6a;" +
   "text-overflow: ellipsis;" +
 
   //"white-space: nowrap;" +
@@ -15991,6 +16025,7 @@ var css = {
   "width: 100%; " +
   "top:" + 86 * widthK + "px; " +
   "bottom:0; " +
+  "z-index:3; " +
   "overflow:hidden; " +
   "background-color: white; " +
   "}",

@@ -13,6 +13,10 @@
 
   <div class="transfer-body-container">
     <div id="menuContainerId" class="transfer-new-menu-container">
+      <div id="borderRightLineId" class="transfer-new-menu-border-right">
+      </div>
+      <div id="borderLeftLineId" class="transfer-new-menu-border-left">
+      </div>
       <div id="contact" class="transfer-new-menu-item"
            ontouchend="transferTypeTouchEnd(this.id)"
            ontouchstart="transferTypeTouchStart(this.id)">
