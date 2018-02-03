@@ -1365,12 +1365,16 @@ var css = {
   toolbar: ".toolbar " +
   "{" +
   "position: absolute;" +
-  "top:" + 20 * widthK + "px;" +
-  "right:" + 26 * widthK + "px;" +
-  "left:" + 26 * widthK + "px;" +
-  "height:" + 70 * widthK + "px;" +
+  // "top:" + 20 * widthK + "px;" +
+  // "right:" + 26 * widthK + "px;" +
+  // "left:" + 26 * widthK + "px;" +
+  "height:" + 90 * widthK + "px;" +
+  "width: 100%;" +
   "background: transparent;" +
   "border-bottom: 1px solid #e8e8e8;" +
+  "-webkit-box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
+  "-moz-box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
+  "box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
   "}",
 
   toolbarCircleContainer: ".toolbar-circle-container " +
@@ -1381,7 +1385,7 @@ var css = {
   "width:" + 105 * widthK + "px;" +
   "height:" + 105 * widthK + "px;" +
   // "left:" + 272 * widthK + "px;" +
-  "bottom:" + 22 * widthK + "px;" +
+  "bottom:" + 2 * widthK + "px;" +
   "border-radius:" + 100 * widthK + "px;" +
   "background-color: white;" +
   "border:" + 8 * widthK + "px solid #ffffff;" +
@@ -1390,9 +1394,9 @@ var css = {
   "background-size: 75%;" +
   "background-position-x: 50%;" +
   "background-position-y: 50%;" +
-  "-webkit-box-shadow: 0px 10px 5px -7px rgba(0,0,0,0.45);" +
-  "-moz-box-shadow: 0px 10px 5px -7px rgba(0,0,0,0.45);" +
-  "box-shadow: 0px 10px 5px -7px rgba(0,0,0,0.45);" +
+  "-webkit-box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
+  "-moz-box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
+  "box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
   "}",
 
   toolbarCircleContainerTitle: ".toolbar-circle-container-title " +
@@ -1401,7 +1405,7 @@ var css = {
   "margin-left: auto;" +
   "margin-right: auto;" +
   "width:" + 117 * widthK + "px;" +
-  "bottom:" + 17 * widthK + "px;" +
+  "top:" + 3 * widthK + "px;" +
   "color: #a9abaf;" +
   "font-size:" + 30 * widthK + "px;" +
   "}",
@@ -1425,10 +1429,10 @@ var css = {
   "width:" + 100 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "background-size: 35%;" +
-  "top:" + -28 * widthK + "px;" +
+  "top:" + -8 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
-  "left:" + -16 * widthK + "px;" +
+  "left:" + 10 * widthK + "px;" +
   "}",
 
   bellButton: ".bell-button " +
@@ -1467,8 +1471,8 @@ var css = {
   "background-size: 40%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
-  "right:" + -20 * widthK + "px;" +
-  "top:" + -25 * widthK + "px;" +
+  "right:" + 6 * widthK + "px;" +
+  "top:" + -5 * widthK + "px;" +
   "}",
 
   //BANK OPERATION COMPONENT
