@@ -560,7 +560,7 @@
         window.blurFields();
         componentTourId.style.display = "block";
         if (device.platform != 'BrowserStand')
-          StatusBar.backgroundColorByHexString("#004663");
+          StatusBar.backgroundColorByHexString("#fafafa");
       }
       else {
         focusFieldAfterTourClosed();

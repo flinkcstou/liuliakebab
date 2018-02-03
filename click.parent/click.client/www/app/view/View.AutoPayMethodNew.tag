@@ -91,7 +91,7 @@
 
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).autopaymethod) {
         componentTourId.style.display = "block";
-        StatusBar.backgroundColorByHexString("#004663");
+        StatusBar.backgroundColorByHexString("#fafafa");
       }
     });
 

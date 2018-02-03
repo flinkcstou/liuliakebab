@@ -222,7 +222,7 @@
           componentTourId.style.display = "block";
           scope.tourClosed = false;
           if (device.platform !== 'BrowserStand')
-            StatusBar.backgroundColorByHexString("#004663");
+            StatusBar.backgroundColorByHexString("#fafafa");
         }
         else {
           changeIconTransferByContact();
@@ -235,6 +235,8 @@
       if (modeOfApp.offlineMode) {
         between.style.display = 'none';
         betweenForm.style.display = 'none';
+        borderLeftLineId.style.display = 'none';
+        borderRightLineId.style.width = '50%';
         card.style.width = '50%';
         contact.style.width = '50%';
       }
@@ -243,6 +245,8 @@
         if (scope.countCard < 3) {
           between.style.display = 'none';
           betweenForm.style.display = 'none';
+          borderLeftLineId.style.display = 'none';
+          borderRightLineId.style.width = '50%';
           card.style.width = '50%';
           contact.style.width = '50%';
         }
@@ -262,12 +266,16 @@
         if (scope.cardCounter < 2) {
           between.style.display = 'none';
           betweenForm.style.display = 'none';
+          borderLeftLineId.style.display = 'none';
+          borderRightLineId.style.width = '50%';
           card.style.width = '50%';
           contact.style.width = '50%';
         }
       } else {
         between.style.display = 'none';
         betweenForm.style.display = 'none';
+        borderLeftLineId.style.display = 'none';
+        borderRightLineId.style.width = '50%';
         card.style.width = '50%';
         contact.style.width = '50%';
         log_info = {

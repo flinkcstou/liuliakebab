@@ -52,12 +52,12 @@
 
     this.on('mount', function () {
       if (device.platform !== 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#00a8f1");
+        StatusBar.backgroundColorByHexString("#fafafa");
 
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).mainpage) {
         componentTourId.style.display = "block";
         if (device.platform !== 'BrowserStand')
-          StatusBar.backgroundColorByHexString("#004663");
+          StatusBar.backgroundColorByHexString("#fafafa");
       }
 
       if (opts) {

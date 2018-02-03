@@ -45,7 +45,7 @@
     this.on('mount', function () {
 
       if (device.platform !== 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#00b0eb");
+        StatusBar.backgroundColorByHexString("#fafafa");
     });
 
 
@@ -187,7 +187,7 @@
 
         componentTourId.style.display = "block";
         if (device.platform !== 'BrowserStand')
-          StatusBar.backgroundColorByHexString("#024361");
+          StatusBar.backgroundColorByHexString("#fafafa");
 
 
       }

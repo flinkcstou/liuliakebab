@@ -82,7 +82,7 @@
         componentTourId.style.display = "block";
         scope.tourClosed = false;
         if (device.platform != 'BrowserStand')
-          StatusBar.backgroundColorByHexString("#004663");
+          StatusBar.backgroundColorByHexString("#fafafa");
       }
     })
 

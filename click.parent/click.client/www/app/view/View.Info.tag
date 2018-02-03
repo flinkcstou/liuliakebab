@@ -103,7 +103,7 @@
 
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#e5e5e5");
+        StatusBar.backgroundColorByHexString("#fafafa");
       var accountsForBalance = [];
       var objectAccount = {};
       if (!modeOfApp.offlineMode) {
