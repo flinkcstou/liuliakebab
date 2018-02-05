@@ -270,7 +270,7 @@ var css = {
   "left: 11.7%;" +
   "top: 25.5%;" +
   "margin: 0;" +
-  "color: #fffaf9;" +
+  "color: #565d6a;" +
   "}",
 
   invoiceListBackButton: ".invoice-list-back-button" +
@@ -1331,7 +1331,7 @@ var css = {
   "background-size: contain;" +
   "width:" + 275 * widthK + "px;" +
   "top:" + -200 * widthK + "px;" +
-  "color: white;" +
+  "color: #b0aeb2;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
 
@@ -8707,7 +8707,7 @@ var css = {
   "left:" + 85 * widthK + "px; " +
   "top:" + 27 * widthK + "px; " +
   "margin: 0;  " +
-  "color: #fffaf9;" +
+  "color: #565d6a;" +
   "}",
 
   settingsBackButton: ".settings-back-button " +
