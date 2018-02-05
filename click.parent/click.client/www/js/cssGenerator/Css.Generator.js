@@ -2631,7 +2631,9 @@ var css = {
   "width: 100%;" +
   "height:" + 240 * widthK + "px;" +
   "bottom:" + -40 * widthK + "px;" +
-  "background-color: #00b3fd;" +
+  "background: -moz-linear-gradient(left, rgb(86,93,106) 20%,rgb(87,132,169));" +
+  "background: -webkit-linear-gradient(left, rgb(86,93,106) 20%,rgb(87,132,169));" +
+  "background: -ms-linear-gradient(left, rgb(86,93,106) 20%,rgb(87,132,169));" +
   "}",
 
   footerFavouriteContactsContainer: ".footer-favourite-contacts-container " +
@@ -8785,14 +8787,14 @@ var css = {
   "{" +
   "position: absolute;" +
   "width:" + 120 * widthK + "px;" +
-  "height:" + 100 * widthK + "px;" +
+  "height:" + 81 * widthK + "px;" +
   "background-image: url(resources/icons/back/back.png);" +
   "background-repeat: no-repeat;" +
   "-webkit-background-size: 19%;" +
-  "background-position-y:" + 31 * widthK + "px; " +
-  "background-position-x:" + 41 * widthK + "px; " +
-  "background-size: 16%;" +
-  "left: -3%;" +
+  "background-position-y:" + 25 * widthK + "px; " +
+  "background-position-x:" + 9 * widthK + "px; " +
+  "background-size: 37%;" +
+  // "left: -3%;" +
   "top: 0;" +
   "}",
 
