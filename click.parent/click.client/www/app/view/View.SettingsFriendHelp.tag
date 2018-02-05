@@ -1,6 +1,6 @@
 <view-friend-help-settings>
   <div class="riot-tags-main-container">
-    <div class="pay-page-title">
+    <div class="settings-page-title">
       <p class="pay-name-title">{titleName}</p>
       <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchstart="goToBackStart()"
            ontouchend="goToBackEnd()" class="pay-back-button"></div>

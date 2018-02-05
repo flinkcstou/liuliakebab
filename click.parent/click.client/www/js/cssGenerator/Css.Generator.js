@@ -283,8 +283,8 @@ var css = {
   "-webkit-background-size: 19%;" +
   "background-position-y: center;" +
   "background-position-x:" + 47 * widthK + "px;" +
-  "background-size: 17%;" +
-  "left:" + -25 * widthK + "px;" +
+  "background-size: 42%;" +
+  "left:" + -39 * widthK + "px;" +
   "top: 0;" +
   "}",
 
@@ -1370,11 +1370,11 @@ var css = {
   // "left:" + 26 * widthK + "px;" +
   "height:" + 90 * widthK + "px;" +
   "width: 100%;" +
-  "background: transparent;" +
+  "background: white;" +
   "border-bottom: 1px solid #e8e8e8;" +
-  "-webkit-box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
-  "-moz-box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
-  "box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
+  "-webkit-box-shadow: 0 0px 40px 8px rgba(0,0,0, .05);" +
+  "-moz-box-shadow: 0 0px 40px 8px rgba(0,0,0, .05);" +
+  "box-shadow: 0 0px 40px 8px rgba(0,0,0, .05);" +
   "}",
 
   toolbarCircleContainer: ".toolbar-circle-container " +
@@ -1385,7 +1385,7 @@ var css = {
   "width:" + 105 * widthK + "px;" +
   "height:" + 105 * widthK + "px;" +
   // "left:" + 272 * widthK + "px;" +
-  "bottom:" + 2 * widthK + "px;" +
+  // "bottom:" + 2 * widthK + "px;" +
   "border-radius:" + 100 * widthK + "px;" +
   "background-color: white;" +
   "border:" + 8 * widthK + "px solid #ffffff;" +
@@ -1394,9 +1394,9 @@ var css = {
   "background-size: 75%;" +
   "background-position-x: 50%;" +
   "background-position-y: 50%;" +
-  "-webkit-box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
-  "-moz-box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
-  "box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
+  "-webkit-box-shadow: 10px 10px 30px 0px rgba(0,0,0, .05);" +
+  "-moz-box-shadow: 10px 10px 30px 0px rgba(0,0,0, .05);" +
+  "box-shadow: 10px 10px 30px 0px rgba(0,0,0, .05);" +
   "}",
 
   toolbarCircleContainerTitle: ".toolbar-circle-container-title " +
@@ -3515,7 +3515,7 @@ var css = {
   "-webkit-background-size: 19%;" +
   "background-position-y: 45%;" +
   "background-position-x: center;" +
-  "background-size: 17%;" +
+  "background-size: 42%;" +
   "right: 87%;" +
   "}",
 
@@ -4241,7 +4241,7 @@ var css = {
   "-webkit-background-size: 20%;" +
   "background-position-y: center;" +
   "background-position-x: center;" +
-  "background-size: 20%;" +
+  "background-size: 55%;" +
   "left: 0%;" +
   "}",
 
@@ -6852,8 +6852,8 @@ var css = {
   "-webkit-background-size: 19%;" +
   "background-position-y: center;" +
   "background-position-x:" + 47 * widthK + "px;" +
-  "background-size: 17%;" +
-  "left:" + -25 * widthK + "px;" +
+  "background-size: 42%;" +
+  "left:" + -39 * widthK + "px;" +
   "top: 0;" +
   "}",
 
@@ -8720,7 +8720,7 @@ var css = {
   "-webkit-background-size: 19%;" +
   "background-position-y: 43%;" +
   "background-position-x: center;" +
-  "background-size: 17%;" +
+  "background-size: 42%;" +
   "right: 87%;" +
   "}",
 
