@@ -397,7 +397,7 @@
 
       if (Math.abs(transferCardTouchStartX - transferCardTouchEndX) <= 20
         && Math.abs(transferCardTouchStartY - transferCardTouchEndY) <= 20) {
-        if (scope.issuerList.length === 0 && !modeOfApp.demoVersion){
+        if (scope.issuerList.length === 0 && !modeOfApp.demoVersion && !modeOfApp.offlineMode){
           cardInputId.blur();
           scope.errorNote = 'Подождите, данные для обработки информации еще не прогрузились';
 
