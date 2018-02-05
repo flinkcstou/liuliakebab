@@ -121,7 +121,7 @@
                 scope.cardsArray[scope.card.card_id].name = newCardName;
 
                 //TODO: CHANGED - COMMENTED
-                if (isMain == scope.card.default_account) {
+                if (isMain == scope.card.default_account || scope.onlyOneCard) {
                   localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
                   onBackKeyDown();
                 }
