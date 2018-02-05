@@ -1,5 +1,5 @@
 <view-auto-pay-new class="riot-tags-main-container">
-  <div class="pay-page-title">
+  <div class="settings-page-title">
     <p class="pay-name-title">{titleName}</p>
     <div id="autoPayBackButtonId" role="button" aria-label="{window.languages.Back}" ontouchstart="onTouchStartOfBack()"
          ontouchend="goToBack()"
