@@ -2,11 +2,13 @@
 
   <div class="transfer-detail-title-container">
 
-    <div class="page-title transfer-detail-page-title">
+    <div class="page-title">
       <p class="name-title">{titleName}</p>
       <div id="transferDetailBackButtonId" role="button" aria-label="{window.languages.Back}"
            ontouchstart="goToBackStart()" ontouchend="goToBackEnd()"
-           class="settings-general-back-button"></div>
+           class="back-button"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
     <div class="transfer-detail-transfer-icon"></div>
     <p class="transfer-detail-transfer-icon-title-part-one">

@@ -1,13 +1,15 @@
 <view-transfer-submit class="riot-tags-main-container">
-  <div class="transfer-page-title">
-    <p class="transfer-name-title">{window.languages.ViewPayTransferNewSubmitTitle}</p>
+  <div class="page-title">
+    <p class="name-title">{window.languages.ViewPayTransferNewSubmitTitle}</p>
     <div id="backButton" ontouchend="goToBackFromTransferTouchEnd()" ontouchstart="goToBackFromTransferTouchStart()"
-         class="transfer-back-button" role="button" aria-label="{window.languages.Back}">
+         class="back-button" role="button" aria-label="{window.languages.Back}">
     </div>
     <div if="{modeOfApp.onlineMode}" id="rightButton" role="button"
          aria-label="{window.languages.ViewBankListTitleName}" type="button"
          class="transfer-i-button"
          ontouchend="openBanksListPageTouchEnd()" ontouchstart="openBanksListPageTouchStart()">
+    </div>
+    <div class="title-bottom-border">
     </div>
   </div>
 

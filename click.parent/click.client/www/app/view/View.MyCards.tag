@@ -6,6 +6,8 @@
     </div>
     <div id="rightButton" type="button" class="{settings-button: rightbuttoncheck}" ontouchstart="editCardStart()"
          ontouchend="editCardEnd()" role="button" aria-label="{window.languages.ViewMyCardAriaLabelCardSettings}"></div>
+    <div class="title-bottom-border">
+    </div>
   </div>
 
   <div class="my-cards-carousel">

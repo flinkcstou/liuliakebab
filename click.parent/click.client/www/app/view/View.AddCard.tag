@@ -1,9 +1,11 @@
 <view-add-card class="riot-tags-main-container">
 
-  <div class="add-card-page-title">
-    <p class="add-card-name-title">{titleName}</p>
+  <div class="page-title">
+    <p class="name-title">{titleName}</p>
     <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchend="goToBack()"
-         class="add-card-back-button"></div>
+         class="back-button"></div>
+    <div class="title-bottom-border">
+    </div>
   </div>
 
   <div class="view-add-card">

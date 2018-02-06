@@ -1,11 +1,12 @@
 <view-invoice-list class="riot-tags-main-container">
 
-  <div class="invoice-list-page-title">
-    <p class="invoice-list-name-title">{titleName}</p>
+  <div class="page-title">
+    <p class="name-title">{titleName}</p>
     <div id="invoiceListBackButtonId" role="button" aria-label="{window.languages.Back}"
          ontouchstart="invoiceGoToBackStart()" ontouchend="invoiceGoToBackEnd()"
-         class="invoice-list-back-button">
-
+         class="back-button">
+    </div>
+    <div class="title-bottom-border">
     </div>
   </div>
 
@@ -22,6 +23,8 @@
              src="{(toUser)?('resources/icons/invoice/invoices_out_off.png'):('resources/icons/invoice/invoices_out_on.png')}">
         <p class="invoice-list-nav-buttons-title {invoice-list-nav-button-not-selected: toUser}">
           {languages.ViewInvoiceListFromUser}</p>
+      </div>
+      <div id="borderRightLineId" class="invoice-list-nav-buttons-border">
       </div>
     </div>
     <div id="invoiceListInvoicesId" class="invoice-list-invoices-holder" onscroll="invoiceListInvoicesTouchMove()"
@@ -103,7 +106,7 @@
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).invoice) {
         componentTourId.style.display = "block";
         if (device.platform != 'BrowserStand')
-          StatusBar.backgroundColorByHexString("#fafafa");
+          StatusBar.backgroundColorByHexString("#ffffff");
       }
     });
 

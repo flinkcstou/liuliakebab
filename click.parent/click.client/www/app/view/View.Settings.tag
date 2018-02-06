@@ -1,10 +1,12 @@
 <view-settings>
   <div class="riot-tags-main-container">
-    <div class="settings-page-title">
-      <p class="settings-name-title">{titleName}</p>
+    <div class="page-title">
+      <p class="name-title">{titleName}</p>
       <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchstart="settingsGoToBackStart()"
            ontouchend="settingsGoToBackEnd()"
-           class="settings-back-button"></div>
+           class="back-button"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
     <div class="settings-container">
       <div id="mainSettingsButtonId" class="settings-block-containter" ontouchstart="goToMainSettingsTouchStart()"

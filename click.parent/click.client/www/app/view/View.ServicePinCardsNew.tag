@@ -12,6 +12,8 @@
     </div>
     <div type="button" class="servicepage-service-icon" if="{opts.mode=='ADDAUTOPAY'}"
          style="background-image: url({serviceIcon})"></div>
+    <div class="title-bottom-border">
+    </div>
   </div>
 
   <div class="pincard-body-container">
@@ -99,7 +101,7 @@
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).friendhelp) {
         componentTourId.style.display = "block";
         if (device.platform != 'BrowserStand')
-          StatusBar.backgroundColorByHexString("#fafafa");
+          StatusBar.backgroundColorByHexString("#ffffff");
       }
     });
 

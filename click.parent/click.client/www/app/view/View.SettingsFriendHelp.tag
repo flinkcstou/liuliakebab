@@ -1,13 +1,15 @@
 <view-friend-help-settings>
   <div class="riot-tags-main-container">
-    <div class="settings-page-title">
-      <p class="pay-name-title">{titleName}</p>
+    <div class="page-title">
+      <p class="name-title">{titleName}</p>
       <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchstart="goToBackStart()"
-           ontouchend="goToBackEnd()" class="pay-back-button"></div>
+           ontouchend="goToBackEnd()" class="back-button"></div>
       <div id="rightButton" role="button" aria-label="{window.languages.ViewFriendHelpSettingsVoiceOverAddFriend}"
            ontouchstart="goToAddFriendViewStart()"
            ontouchend="goToAddFriendViewEnd()"
            class="settings-friend-help-add-button"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
     <div id="mainContainerId" class="settings-container">
       <div each="{i in arrayOfFriends}" id="{'id'+i.id}" class="settings-friend-help-contact-container">

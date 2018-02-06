@@ -8,6 +8,8 @@
       </div>
       <div type="button" class="servicepage-service-icon autopay-method-service-icon"
            style="background-image: url({serviceIcon})"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
 
 

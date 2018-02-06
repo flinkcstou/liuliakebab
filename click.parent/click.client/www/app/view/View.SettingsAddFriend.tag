@@ -4,6 +4,8 @@
       <p class="pay-name-title">{titleName}</p>
       <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchstart="goToBackStart()"
            ontouchend="goToBackEnd()" class="pay-back-button"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
     <div class="settings-container">
 

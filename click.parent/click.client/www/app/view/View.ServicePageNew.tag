@@ -1,5 +1,5 @@
 <view-service-page-new class="view-service-page riot-tags-main-container">
-  <div class="pay-page-title" style="border-style: none;">
+  <div class="pay-page-title page-title-shadow" style="border-style: none;">
     <p class="{servicepage-title :opts.mode!='ADDAUTOPAY', autopay-method-page-title:opts.mode=='ADDAUTOPAY'}">
       {(opts.mode=='ADDAUTOPAY')?(window.languages.ViewAutoPayTitleName):("")}
       {titleName}</p>
@@ -11,6 +11,8 @@
     </div>
     <div type="button" class="servicepage-service-icon" if="{opts.mode=='ADDAUTOPAY'}"
          style="background-image: url({serviceIcon})"></div>
+    <div class="title-bottom-border">
+    </div>
   </div>
 
 
@@ -560,7 +562,7 @@
         window.blurFields();
         componentTourId.style.display = "block";
         if (device.platform != 'BrowserStand')
-          StatusBar.backgroundColorByHexString("#fafafa");
+          StatusBar.backgroundColorByHexString("#ffffff");
       }
       else {
         focusFieldAfterTourClosed();

@@ -1,12 +1,14 @@
 <view-favorites-new>
   <div class="riot-tags-main-container">
-    <div class="settings-page-title">
-      <p class="pay-name-title">{titleName}</p>
+    <div class="page-title">
+      <p class="name-title">{titleName}</p>
       <div id="favouriteBackButtonId" ontouchend="favouriteGoToBackEnd()" ontouchstart="onTouchStartOfBack()"
-           class="pay-back-button" role="button" aria-label="{window.languages.Back}"></div>
+           class="back-button" role="button" aria-label="{window.languages.Back}"></div>
       <div id="favouriteRightButtonId" ontouchend="addFavorite()" ontouchstart="onTouchStartOfAddSign()"
-           class="settings-friend-help-add-button" role="button"
+           class="add-button" role="button"
            aria-label="{window.languages.ViewFavoriteAriaLabelAddOperation}"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
 
     <div class="view-favorites-container" if="{favoriteListShow}">

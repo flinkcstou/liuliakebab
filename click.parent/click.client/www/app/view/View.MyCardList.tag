@@ -7,8 +7,10 @@
            class="back-button">
       </div>
       <div id="myCardListButtonAddId" role="button" aria-label="{window.languages.ViewMyCardListVoiceOverAddCard}"
-           class="mycardlist-add-button" ontouchstart="addCardTouchStart()"
+           class="add-button" ontouchstart="addCardTouchStart()"
            ontouchend="addCardTouchEnd()"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
 
     <div class="mycardlist-container">

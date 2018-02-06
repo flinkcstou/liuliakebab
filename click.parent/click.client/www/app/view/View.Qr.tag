@@ -1,9 +1,11 @@
 <view-qr class="riot-tags-main-container">
   <div class="view-qr-blue-container">
-    <div class="view-qr-page-title">
-      <p class="view-qr-name-title">{titleName}</p>
+    <div class="page-title">
+      <p class="name-title">{titleName}</p>
       <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchend="goToBack()"
-           class="pay-back-button"></div>
+           class="back-button"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
     <div class="view-qr-company-icon" style="background-image: url({opts.image})"></div>
     <p class="view-qr-company-name">

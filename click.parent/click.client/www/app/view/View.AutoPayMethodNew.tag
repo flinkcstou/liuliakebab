@@ -7,6 +7,8 @@
       </div>
       <div type="button" class="servicepage-service-icon autopay-method-service-icon"
            style="background-image: url({serviceIcon})"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
 
 
@@ -91,7 +93,7 @@
 
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).autopaymethod) {
         componentTourId.style.display = "block";
-        StatusBar.backgroundColorByHexString("#fafafa");
+        StatusBar.backgroundColorByHexString("#ffffff");
       }
     });
 

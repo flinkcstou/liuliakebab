@@ -14,6 +14,8 @@
       </div>
       <div id="graphButtonId" role="button" aria-label="{window.languages.ViewReportAriaLabelToggleGraphic}"
            type="button" class="view-reports-graph-button" ontouchend="graphView()"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
 
 
@@ -113,7 +115,7 @@
 
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#fafafa");
+        StatusBar.backgroundColorByHexString("#ffffff");
 
       if (!modeOfApp.offlineMode) {
         writeBalance();

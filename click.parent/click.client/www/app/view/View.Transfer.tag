@@ -250,7 +250,7 @@
         scope.tourClosed = false;
 
         if (device.platform != 'BrowserStand')
-          StatusBar.backgroundColorByHexString("#fafafa");
+          StatusBar.backgroundColorByHexString("#ffffff");
       }
 
       if (opts && opts.number) {

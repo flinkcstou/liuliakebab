@@ -6,6 +6,8 @@
     </div>
     <div id="rightButton" type="button" class="{check-button: rightbuttoncheck}" ontouchstart="saveEditStart()"
          ontouchend="saveEditEnd()"></div>
+    <div class="title-bottom-border">
+    </div>
   </div>
   <div class="card-edit-body-container">
     <div class="card-edit-field">

@@ -2,13 +2,15 @@
   <div class="riot-tags-main-container">
     <div class="settings-general-user-info-container">
 
-      <div class="page-title settings-general-page-title">
+      <div class="page-title">
         <p class="name-title">{titleName}</p>
         <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()"
-             class="settings-general-back-button" role="button" aria-label="{window.languages.Back}"></div>
+             class="back-button" role="button" aria-label="{window.languages.Back}"></div>
         <div id="rightButton" type="button" role="button" aria-label="{window.languages.Save}"
-             class="settings-general-check-button"
+             class="check-button"
              ontouchend="saveEditedNameTouchEnd()"></div>
+        <div class="title-bottom-border">
+        </div>
       </div>
 
       <img src="resources/icons/ViewSettingsGeneral/general_avatar.png" id="imageUserAvatarId"

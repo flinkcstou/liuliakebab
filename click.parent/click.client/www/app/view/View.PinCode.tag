@@ -45,7 +45,7 @@
 
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#fafafa");
+        StatusBar.backgroundColorByHexString("#ffffff");
     })
 
     window.saveHistory('view-pin-code', opts);

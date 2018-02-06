@@ -88,7 +88,7 @@
         demoContainer.style.left = 100 * widthK + 'px';
 
       if (device.platform != "BrowserStand")
-        StatusBar.backgroundColorByHexString("#fafafa");
+        StatusBar.backgroundColorByHexString("#ffffff");
     })
 
     var scope = this;

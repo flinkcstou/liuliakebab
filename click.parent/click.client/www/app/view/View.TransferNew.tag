@@ -1,13 +1,15 @@
 <view-transfer-new class="riot-tags-main-container">
-  <div class="transfer-page-title">
-    <p class="transfer-name-title">{window.languages.ViewPayTransferNewTitle}</p>
+  <div class="page-title">
+    <p class="name-title">{window.languages.ViewPayTransferNewTitle}</p>
     <div id="backButton" ontouchend="goToBackFromTransferTouchEnd()" ontouchstart="goToBackFromTransferTouchStart()"
-         class="transfer-back-button" role="button" aria-label="{window.languages.Back}">
+         class="back-button" role="button" aria-label="{window.languages.Back}">
     </div>
     <div if="{modeOfApp.onlineMode}" id="rightButton" role="button"
          aria-label="{window.languages.ViewBankListTitleName}" type="button"
          class="transfer-i-button"
          ontouchend="openBanksListPageTouchEnd()" ontouchstart="openBanksListPageTouchStart()">
+    </div>
+    <div class="title-bottom-border">
     </div>
   </div>
 
@@ -93,9 +95,11 @@
 
   <div hidden="{!showComponent}" id="componentBankListId" class="component-bank-list">
     <div class="page-title" style="border: none;">
-      <p class="component-banklist-name-title">{window.languages.ViewBankListTitleName}</p>
+      <p class="name-title">{window.languages.ViewBankListTitleName}</p>
       <div id="closeBankListButtonId" type="button" class="component-banklist-close-button"
            ontouchend="closeComponentBankListTouchEnd()" ontouchstart="closeComponentBankListTouchStart()"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
     <img src="resources/gifs/1x1.gif" width="1" height="1">
     <div id="bankListContainerId" class="component-banklist-container" onscroll="bankListTouchMove()">
@@ -222,7 +226,7 @@
           componentTourId.style.display = "block";
           scope.tourClosed = false;
           if (device.platform !== 'BrowserStand')
-            StatusBar.backgroundColorByHexString("#fafafa");
+            StatusBar.backgroundColorByHexString("#ffffff");
         }
         else {
           changeIconTransferByContact();

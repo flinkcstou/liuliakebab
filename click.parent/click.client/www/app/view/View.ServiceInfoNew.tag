@@ -8,6 +8,8 @@
     </div>
     <div type="button" class="servicepage-service-icon"
          style="background-image: url({serviceIcon})"></div>
+    <div class="title-bottom-border">
+    </div>
   </div>
 
   <div class="serviceinfo-body-container">

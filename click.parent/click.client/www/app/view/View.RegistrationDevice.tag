@@ -72,7 +72,7 @@
       if (device.platform == 'iOS')
         demoContainer.style.left = 100 * widthK + 'px';
       if (device.platform != 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#fafafa");
+        StatusBar.backgroundColorByHexString("#ffffff");
       canvas = document.getElementById('canvas');
       ctx = canvas.getContext("2d");
     })
@@ -416,7 +416,7 @@
 
         componentTourId.style.display = "block";
         if (device.platform != 'BrowserStand')
-          StatusBar.backgroundColorByHexString("#fafafa");
+          StatusBar.backgroundColorByHexString("#ffffff");
 
       }
     }

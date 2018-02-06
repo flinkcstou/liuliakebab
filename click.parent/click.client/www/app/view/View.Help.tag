@@ -3,7 +3,8 @@
   <div class="pay-page-title">
     <p class="settings-user-agreement-name-title">{titleName}</p>
     <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>
-
+    <div class="title-bottom-border">
+    </div>
   </div>
 
   <div class="settings-container">

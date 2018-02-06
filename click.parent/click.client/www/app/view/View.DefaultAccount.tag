@@ -3,6 +3,8 @@
   <div class="pay-page-title" style="border-style: none;">
     <p class="default-account-title">
       {window.languages.ViewDefaultAccountTitle}</p>
+    <div class="title-bottom-border">
+    </div>
   </div>
 
   <div class="pincard-body-container">

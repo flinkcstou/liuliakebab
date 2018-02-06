@@ -256,8 +256,9 @@ var css = {
   "{" +
   "position: absolute;" +
   "top: 0;" +
-  "right:" + 28 * widthK + "px;" +
-  "left:" + 25 * widthK + "px;" +
+  // "right:" + 28 * widthK + "px;" +
+  // "left:" + 25 * widthK + "px;" +
+  "width: 100%;" +
   "height:" + 93 * widthK + "px;" +
   "background: transparent;" +
   "}",
@@ -276,25 +277,26 @@ var css = {
   invoiceListBackButton: ".invoice-list-back-button" +
   "{" +
   "position: absolute;" +
-  "width:" + 120 * widthK + "px;" +
-  "height:" + 91 * widthK + "px;" +
+  "width:" + 48 * widthK + "px;" +
+  "height:" + 36 * widthK + "px;" +
   "background-image: url(resources/icons/back/back.png);" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 19%;" +
+  "-webkit-background-size: 100%;" +
   "background-position-y: center;" +
-  "background-position-x:" + 47 * widthK + "px;" +
-  "background-size: 42%;" +
-  "left:" + -39 * widthK + "px;" +
-  "top: 0;" +
+  "background-position-x: center;" +
+  "background-size: 100%;" +
+  "left: 2%;" +
+  "top:" + 28 * widthK + "px;" +
   "}",
 
   invoiceListContentHolder: ".invoice-list-content-holder" +
   "{" +
   "position: absolute;" +
-  "top:" + 92 * widthK + "px;" +
+  "top:" + 87 * widthK + "px;" +
   "bottom: 0;" +
+  "z-index: 6;" +
   "width: 100%;" +
-  "background-color: #ffffff" +
+  "background-color: white" +
   "}",
 
   invoiceListNavButtonsHolder: ".invoice-list-nav-buttons-holder" +
@@ -302,16 +304,24 @@ var css = {
   "height:" + 120 * widthK + "px;" +
   "}",
 
+  invoiceListNavButtonsBorder: ".invoice-list-nav-buttons-border" +
+  "{" +
+  "position: absolute;" +
+  "height:" + 96 * widthK + "px;" +
+  "left: 50%;" +
+  "top:" + 12 * widthK + "px;" +
+  "border-right:" + 1 * widthK + "px solid #e8e8e8;" +
+  "background: transparent;" +
+  "}",
+
   invoiceListInvoicesIn: ".invoice-list-invoices-in" +
   "{" +
-  "background-image: url(resources/icons/invoice/invoices_in.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
   "}",
 
   invoiceListInvoicesOut: ".invoice-list-invoices-out" +
   "{" +
-  "background-image: url(resources/icons/invoice/invoices_out.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
   "}",
@@ -327,7 +337,7 @@ var css = {
 
   invoiceListNavButtonFromUser: ".invoice-list-nav-button-from-user" +
   "{" +
-  "width:" + 336 * widthK + "px;" +
+  "width:" + 286 * widthK + "px;" +
   "float: right;" +
   "height:" + 81 * widthK + "px;" +
   "padding-top:" + 26 * widthK + "px;" +
@@ -1384,16 +1394,17 @@ var css = {
   "margin-right: auto;" +
   "width:" + 105 * widthK + "px;" +
   "height:" + 105 * widthK + "px;" +
+  "top:" + 2 * widthK + "px;" +
   // "left:" + 272 * widthK + "px;" +
   // "bottom:" + 2 * widthK + "px;" +
   "border-radius:" + 100 * widthK + "px;" +
   "background-color: white;" +
-  "border:" + 8 * widthK + "px solid #ffffff;" +
+  "border: 1px solid #e8e8e8;" +
   "background-image: url(resources/icons/bank-operations/circleReport.png);" +
   "background-repeat: no-repeat;" +
-  "background-size: 75%;" +
+  "background-size: 70%;" +
   "background-position-x: 50%;" +
-  "background-position-y: 50%;" +
+  "background-position-y: 55%;" +
   "-webkit-box-shadow: 10px 10px 30px 0px rgba(0,0,0, .05);" +
   "-moz-box-shadow: 10px 10px 30px 0px rgba(0,0,0, .05);" +
   "box-shadow: 10px 10px 30px 0px rgba(0,0,0, .05);" +
@@ -1471,8 +1482,8 @@ var css = {
   "background-size: 40%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
-  "right:" + 6 * widthK + "px;" +
-  "top:" + -5 * widthK + "px;" +
+  "right:" + 14 * widthK + "px;" +
+  "top:" + -7 * widthK + "px;" +
   "}",
 
   //BANK OPERATION COMPONENT
@@ -2346,7 +2357,7 @@ var css = {
   "background-size: 100%;" +
   "top: 39%;" +
   "height: 36%;" +
-  "width: 4%;" +
+  "width: 8%;" +
   "}",
 
   sideMenuContainersIconFavorite: ".side-menu-containers-icon-favorite" +
@@ -2507,11 +2518,17 @@ var css = {
   "{" +
   "position: absolute;" +
   "top: 0px;" +
-  "right:" + 28 * widthK + "px;" +
-  "left:" + 25 * widthK + "px;" +
+  "width: 100%;" +
   "height:" + 87 * widthK + "px;" +
-  "background: transparent;" +
-  "border-bottom: 1px solid #4ae3ff;" +
+  "background: white;" +
+  "z-index: 5;" +
+  "}",
+
+  pageTitleShadow: ".page-title-shadow " +
+  "{" +
+  "-webkit-box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
+  "-moz-box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
+  "box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
   "}",
 
   nameTitle: ".name-title " +
@@ -2519,7 +2536,7 @@ var css = {
   "position: absolute;" +
   "background-size: contain;" +
   "font-size:" + 35 * widthK + "px;" +
-  "left: 12.5%;" +
+  "left: 13%;" +
   "top: 27%;" +
   "margin: 0;" +
   "color: #565d6a;" +
@@ -2528,16 +2545,25 @@ var css = {
   backButton: ".back-button " +
   "{" +
   "position: absolute;" +
-  "width:" + 120 * widthK + "px;" +
-  "height:" + 100 * widthK + "px;" +
+  "width:" + 43 * widthK + "px;" +
+  "height:" + 31 * widthK + "px;" +
   "background-image: url(resources/icons/back/back.png);" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 19%;" +
-  "background-position-y:" + 27 * widthK + "px;" +
-  "background-position-x:" + 44 * widthK + "px;" +
-  "background-size: 17%;" +
-  "left: -3%;" +
-  "top: 0;" +
+  "-webkit-background-size: 100%;" +
+  "background-position-y: center;" +
+  "background-position-x: center;" +
+  "background-size: 100%;" +
+  "left: 4.5%;" +
+  "top: 32%;" +
+  "}",
+
+  titleBottomBorder: ".title-bottom-border " +
+  "{" +
+  "position: absolute;" +
+  "width: 90%;" +
+  "left: 5%;" +
+  "bottom: 0%;" +
+  "border-bottom: 1px solid #e8e8e8;" +
   "}",
 
   settingsButton: ".settings-button " +
@@ -3050,16 +3076,16 @@ var css = {
   checkButton: ".check-button " +
   "{" +
   "position: absolute;" +
-  "width:" + 144 * widthK + "px;" +
-  "height:" + 92 * widthK + "px;" +
-  "right:" + -36 * widthK + "px;" +
+  "width:" + 44 * widthK + "px;" +
+  "height:" + 41 * widthK + "px;" +
+  "right: 5%;" +
   "background-image: url('resources/icons/ViewService/unchecked.png');" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 31%;" +
+  "-webkit-background-size: 100%;" +
   "background-position-y: center;" +
-  "background-position-x:" + 54 * widthK + "px;" +
-  "background-size: 31%;" +
-  "top: 0;" +
+  "background-position-x: center;" +
+  "background-size: 100%;" +
+  "top: 28%;" +
   "}",
 
   cardEditField: ".card-edit-field" +
@@ -3510,15 +3536,16 @@ var css = {
   payBackButton: ".pay-back-button " +
   "{" +
   "position: absolute;" +
-  "width:" + 113 * widthK + "px;" +
-  "height:" + 100 * widthK + "px;" +
+  "width:" + 48 * widthK + "px;" +
+  "height:" + 36 * widthK + "px;" +
   "background-image: url(resources/icons/back/back.png);" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 19%;" +
-  "background-position-y: 45%;" +
+  "-webkit-background-size: 100%;" +
+  "background-position-y: center;" +
   "background-position-x: center;" +
-  "background-size: 42%;" +
-  "right: 87%;" +
+  "background-size: 100%;" +
+  "left: 2%;" +
+  "top:" + 28 * widthK + "px; " +
   "}",
 
   paySearchButton: ".pay-search-button " +
@@ -3542,7 +3569,6 @@ var css = {
   //"height:" + 1150 * widthK + "px; " +
   "width: 100%; " +
   "top:" + 86 * widthK + "px; " +
-  "z-index: 3; " +
   "bottom:0; " +
   "background-color: white; " +
   "overflow-y: scroll; " +
@@ -3739,12 +3765,9 @@ var css = {
   "position: absolute;" +
   "top:" + 0 * widthK + "px;" +
   "width: 100%;" +
-  "height:" + 140 * heightK + "px;" +
+  "height:" + 130 * heightK + "px;" +
   "background: white;" +
   "z-index: 2;" +
-  "-webkit-box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
-  "-moz-box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
-  "box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
   //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
   "}",
 
@@ -3753,8 +3776,8 @@ var css = {
   "position: absolute;" +
   "background-size: contain;" +
   "font-size: " + 38 * widthK + "px; " +
-  "left: 16%;" +
-  "top: 22%;" +
+  "left: 13%;" +
+  "top: 15%;" +
   "margin: 0;" +
   "color: #565d6a;" +
   "white-space: nowrap;" +
@@ -3777,8 +3800,8 @@ var css = {
   "position: absolute;" +
   "background-size: contain;" +
   "font-size: " + 29 * widthK + "px; " +
-  "left: 16%;" +
-  "top: 55%;" +
+  "left: 13%;" +
+  "top: 52%;" +
   "margin: 0;" +
   "color: #565d6a;" +
   "}",
@@ -3803,9 +3826,9 @@ var css = {
   servicePageBodyContainer: ".servicepage-body-container" +
   "{" +
   "position: absolute;" +
-  "height: " + 1092 * heightK + "px; " +
+  "height: " + 1102 * heightK + "px; " +
   "width: 100%; " +
-  "top: " + 140 * heightK + "px; " +
+  "top: " + 130 * heightK + "px; " +
   "background-color: #fafafa;" +
   "overflow-x: hidden;" +
   "overflow-y: scroll;" +
@@ -3816,9 +3839,9 @@ var css = {
   pincardBodyContainer: ".pincard-body-container" +
   "{" +
   "position: absolute;" +
-  "height: " + 1092 * heightK + "px; " +
+  "height: " + 1102 * heightK + "px; " +
   "width: 100%; " +
-  "top: " + 140 * heightK + "px; " +
+  "top: " + 130 * heightK + "px; " +
   "background-color: white;" +
   // "overflow-x: hidden;" +
   // "overflow-y: scroll;" +
@@ -3828,9 +3851,9 @@ var css = {
   payconfirmBodyContainer: ".payconfirm-body-container" +
   "{" +
   "position: absolute;" +
-  "height: " + 1092 * heightK + "px; " +
+  "height: " + 1102 * heightK + "px; " +
   "width: 100%; " +
-  "top: " + 140 * heightK + "px; " +
+  "top: " + 130 * heightK + "px; " +
   "background-color: white;" +
   // "overflow-x: hidden;" +
   // "overflow-y: scroll;" +
@@ -4227,32 +4250,32 @@ var css = {
   "position: relative;" +
   "top:" + 8 * widthK + "px; " +
   "width: 36%;" +
-  "font-size:  " + 32 * widthK + "px; " +
+  "font-size: " + 32 * widthK + "px; " +
   "margin: auto;" +
   "color: white;" +
   "}",
 
   servicePageButtonBack: ".servicepage-button-back" +
   "{" +
-  "top: 33%;" +
+  "top: 21%;" +
   "position: absolute;" +
-  "width: 15%;" +
-  "height: 39%;" +
+  "width: " + 43 * widthK + "px; " +
+  "height: " + 31 * widthK + "px; " +
   "background-image: url('resources/icons/back/back.png');" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 20%;" +
+  "-webkit-background-size: 100%;" +
   "background-position-y: center;" +
   "background-position-x: center;" +
-  "background-size: 55%;" +
-  "left: 0%;" +
+  "background-size: 100%;" +
+  "left: 4.5%;" +
   "}",
 
   servicePageFormTypeTwoContainer: ".servicepage-formtype-two-container" +
   "{" +
   "position: absolute;" +
-  "height: " + 1092 * heightK + "px; " +
+  "height: " + 1102 * heightK + "px; " +
   "width: " + 720 * widthK + "px; " +
-  "top: " + 140 * heightK + "px; " +
+  "top: " + 130 * heightK + "px; " +
   "background-color: white;" +
   "}",
 
@@ -4396,6 +4419,7 @@ var css = {
   "opacity: 0.97;" +
   "height: 100%;" +
   "width: 100%;" +
+  "z-index: 15;" +
   "background-color: #f0f1f4;" +
   //"display: none;" +
   "}",
@@ -5382,19 +5406,19 @@ var css = {
   "border-bottom:" + 3 * widthK + "px solid rgb(149, 230, 253);" +
   "}",
 
-  mycardlistAddButton: ".mycardlist-add-button " +
+  mycardlistAddButton: ".add-button " +
   "{" +
   "position: absolute;" +
-  "width: 20%;" +
-  "height: 100%;" +
-  "right: -4%;" +
+  "width:" + 43 * widthK + "px;" +
+  "height:" + 43 * widthK + "px;" +
+  "right: 5.5%;" +
   "background-image: url(resources/icons/ViewSettingsFriendHelp/plus.png);" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 30%;" +
-  "background-position-y: 55%;" +
-  "background-position-x: 62%;" +
-  "background-size: 30%;" +
-  "top:0" +
+  "-webkit-background-size: 100%;" +
+  "background-position-y: center;" +
+  "background-position-x: center;" +
+  "background-size: 100%;" +
+  "top: 32%" +
   "}",
 
   myCardListNameTitle: ".mycardlist-name-title " +
@@ -5411,10 +5435,10 @@ var css = {
   myCardListContainer: ".mycardlist-container" +
   "{" +
   "position: absolute;" +
-  "background-color: transparent;" +
+  "background-color: white;" +
   "width: 100%;" +
   "height: 92%;" +
-  "top: 8%;" +
+  "top:" + 87 * widthK + "px;" +
   "bottom: 0;" +
   "overflow-y:scroll;" +
   "overflow-x:hidden;" +
@@ -5706,7 +5730,7 @@ var css = {
   "position: absolute;" +
   "bottom: 0;" +
   "width: 100%;" +
-  "top:" + 86 * widthK + "px;" +
+  "top:" + 87 * widthK + "px;" +
   "background-color: white;" +
   "overflow: hidden;" +
   "}",
@@ -5747,7 +5771,8 @@ var css = {
   "height:" + 155 * widthK + "px;" +
   "width: 100%;" +
   "top: 0;" +
-  "background-color: #fafafa;" +
+  "z-index: 10;" +
+  "background-color: white;" +
   "-webkit-box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
   "-moz-box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
   "box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
@@ -6870,16 +6895,16 @@ var css = {
   transferIButton: ".transfer-i-button " +
   "{" +
   "position: absolute;" +
-  "width: 20%;" +
-  "height: 100%;" +
-  "right: -4%;" +
+  "width:" + 33 * widthK + "px;" +
+  "height:" + 33 * widthK + "px;" +
+  "right:" + 41 * widthK + "px;" +
   "background-image: url(resources/icons/ViewTransfer/i.png);" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 30%;" +
-  "background-position-y: 46%;" +
-  "background-position-x: 62%;" +
-  "background-size: 30%;" +
-  "top:0" +
+  "-webkit-background-size: 100%;" +
+  "background-position-y: center;" +
+  "background-position-x: center;" +
+  "background-size: 100%;" +
+  "top: 31%" +
   "}",
 
   //VIEW TRANSFER TWO
@@ -8690,7 +8715,7 @@ var css = {
   "position: absolute;" +
   //"height:" + 1150 * widthK + "px; " +
   "width: 100%; " +
-  "top:" + 92 * widthK + "px; " +
+  "top:" + 87 * widthK + "px; " +
   "bottom:0; " +
   "background-color: white; " +
   "overflow-y: auto; " +
@@ -8702,9 +8727,10 @@ var css = {
   "{" +
   "position: absolute;" +
   "top: 0;" +
-  "right:" + 28 * widthK + "px;" +
-  "left:" + 25 * widthK + "px;" +
+  // "right:" + 28 * widthK + "px;" +
+  // "left:" + 25 * widthK + "px;" +
   "height:" + 92 * widthK + "px;" +
+  "width: 100%;" +
   "background: transparent;" +
   //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
   "}",
@@ -9414,7 +9440,7 @@ var css = {
   "position: absolute;" +
   "width: 20%;" +
   "height: 100%;" +
-  "right: -4%;" +
+  "right: 0%;" +
   "background-image: url(resources/icons/ViewSettingsFriendHelp/plus.png);" +
   "background-repeat: no-repeat;" +
   "-webkit-background-size: 30%;" +
@@ -10313,6 +10339,7 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "height: 100%;" +
+  "background: white;" +
   "}",
 
   viewReportsMonthsContainer: ".view-reports-months-container " +
@@ -10516,7 +10543,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "color: white;" +
+  "color: #565d6a;" +
   "top: 29%;" +
   "font-size:" + 29 * widthK + "px;" +
   "}",
@@ -11105,6 +11132,7 @@ var css = {
   "opacity: 0.97;" +
   "height: 100%;" +
   "width: 100%;" +
+  "z-index: 15;" +
   "background-color: #f0f1f4;" +
   //"display: none;" +
   "}",
@@ -11190,16 +11218,16 @@ var css = {
   componentBankListCloseButton: ".component-banklist-close-button " +
   "{" +
   "position: absolute;" +
-  "width:" + 144 * widthK + "px;" +
-  "height:" + 92 * widthK + "px;" +
-  "right:" + -36 * widthK + "px;" +
+  "width:" + 31 * widthK + "px;" +
+  "height:" + 31 * widthK + "px;" +
+  "right:" + 42 * widthK + "px;" +
   "background-image: url('resources/icons/ViewTransfer/banks_close.png');" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 22%;" +
+  "-webkit-background-size: 100%;" +
   "background-position-y: center;" +
-  "background-position-x:" + 54 * widthK + "px;" +
-  "background-size: 22%;" +
-  "top: 0;" +
+  "background-position-x: center;" +
+  "background-size: 100%;" +
+  "top: 34%;" +
   "}",
 
   componentBankListRotate: ".component-banklist-bank-rotate" +
@@ -11393,7 +11421,7 @@ var css = {
   "position: absolute;" +
   //"height:" + 1150 * widthK + "px; " +
   "width: 100%; " +
-  "top:" + 86 * widthK + "px; " +
+  "top:" + 87 * widthK + "px; " +
   "bottom:0; " +
   "background-color: white; " +
   "overflow-y: auto; " +
@@ -11522,7 +11550,7 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "bottom: 0;" +
-  "top:" + 92 * widthK + "px;" +
+  "top:" + 87 * widthK + "px;" +
   "overflow: hidden;" +
   "background-size: contain;" +
   "background-color: white;" +
@@ -13044,9 +13072,9 @@ var css = {
   qrPincardBodyContainer: ".qr-pincard-body-container" +
   "{" +
   "position: absolute;" +
-  "height: " + 1092 * heightK + "px; " +
+  "height: " + 1102 * heightK + "px; " +
   "width: 100%; " +
-  "top: " + 140 * heightK + "px; " +
+  "top: " + 130 * heightK + "px; " +
   "background-color: white;" +
   "overflow-x: hidden;" +
   "overflow-y: scroll;" +
@@ -13422,9 +13450,9 @@ var css = {
   qrPayconfirmBodyContainer: ".qr-payconfirm-body-container" +
   "{" +
   "position: absolute;" +
-  "height: " + 1092 * heightK + "px; " +
+  "height: " + 1102 * heightK + "px; " +
   "width: 100%; " +
-  "top: " + 140 * heightK + "px; " +
+  "top: " + 130 * heightK + "px; " +
   "background-color: white;" +
   "overflow-x: hidden;" +
   "overflow-y: scroll;" +
@@ -14802,9 +14830,9 @@ var css = {
   autopayMethodBodyContainer: ".autopay-method-body-container" +
   "{" +
   "position: absolute;" +
-  "height: " + 1092 * heightK + "px; " +
+  "height: " + 1102 * heightK + "px; " +
   "width: 100%; " +
-  "top:" + 140 * heightK + "px; " +
+  "top:" + 130 * heightK + "px; " +
   "bottom:0; " +
   "background-color: white; " +
   "overflow-y: auto; " +
@@ -15453,9 +15481,9 @@ var css = {
   serviceInfoBodyContainer: ".serviceinfo-body-container" +
   "{" +
   "position: absolute;" +
-  "height: " + 1092 * heightK + "px; " +
+  "height: " + 1102 * heightK + "px; " +
   "width: 100%; " +
-  "top: " + 140 * heightK + "px; " +
+  "top: " + 130 * heightK + "px; " +
   "background-color: #f2f2f1;" +
   // "overflow-x: hidden;" +
   // "overflow-y: scroll;" +
@@ -16050,7 +16078,7 @@ var css = {
   "position: absolute;" +
   // "height:100%; " +
   "width: 100%; " +
-  "top:" + -8 * widthK + "px; " +
+  "top: 0; " +
   // "top:15%; " +
   "bottom:0; " +
   "overflow-y: auto; " +

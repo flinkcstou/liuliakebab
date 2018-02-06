@@ -1,12 +1,14 @@
 <view-invoice-history-detail class="view-invoice-history riot-tags-main-container">
 
   <div class="invoice-history-detail-title-container">
-    <div class="page-title invoice-history-detail-title">
+    <div class="page-title">
       <p class="name-title">
         {(opts.is_p2p)?(languages.ViewInvoiceHistoryDetailTransferTitle):(languages.ViewInvoiceHistoryDetailPaymentTitle)}</p>
       <div id="backButton" role="button" aria-label="{window.languages.Back}"
            ontouchstart="invoiceHistoryGoToBackStart()" ontouchend="invoiceHistoryGoToBackEnd()"
-           class="invoice-history-detail-general-back-button"></div>
+           class="back-button"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
 
     <div

@@ -3,9 +3,11 @@
 
     <div class="report-service-upper-container">
 
-      <div class="page-title settings-general-page-title">
+      <div class="page-title">
         <div id="backButton" ontouchstart="reportServiceGoToBackStart()" ontouchend="reportServiceGoToBackEnd()"
-             class="settings-general-back-button"></div>
+             class="back-button"></div>
+        <div class="title-bottom-border">
+        </div>
       </div>
 
       <img src="{opts.image}" id="serviceIconId"
@@ -106,7 +108,7 @@
 
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#fafafa");
+        StatusBar.backgroundColorByHexString("#ffffff");
 
       scope.update()
 
