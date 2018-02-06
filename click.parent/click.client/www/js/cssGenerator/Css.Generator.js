@@ -5727,9 +5727,9 @@ var css = {
   "{" +
   "position: relative;" +
   "left: 10%;" +
-  "width: 68.5%;" +
+  "width: 81%;" +
   "height:" + 130 * widthK + "px;" +
-  "border-bottom:" + 3 * widthK + "px solid #01cfff;" +
+  // "border-bottom:" + 3 * widthK + "px solid #01cfff;" +
   "color: white;" +
   "padding-top: 8%;" +
   "}",
@@ -5854,7 +5854,15 @@ var css = {
   "background-size:" + 42 * widthK + "px;" +
   "background-position: center;" +
   "top: 56%;" +
-  "right: -19%;" +
+  "right: -2%;" +
+  "}",
+
+  transferNewContactPhoneBottom: ".transfer-new-contact-phone-bottom" +
+  "{" +
+  "position: relative;" +
+  "width: 85%;" +
+  "border-bottom:" + 3 * widthK + "px solid #01cfff;" +
+  "top:" + 16 * widthK + "px;" +
   "}",
 
   transferNewContactTextField: ".transfer-new-contact-text-field" +
