@@ -21,6 +21,8 @@
          ontouchstart="pickContactFromNativeTouchStart()"
          ontouchend="pickContactFromNativeTouchEnd()">
     </div>
+    <div id="contactPhoneBottomBorderId"
+         class="transfer-new-contact-phone-bottom"></div>
   </div>
   <div if="{!accessToContacts}" class="transfer-contact-access-container">
     <p class="transfer-contact-access-text">{window.languages.ViewPayTransferAccessToContacts}</p>
@@ -270,6 +272,7 @@
     };
 
     pickContactFromNativeTouchStart = function () {
+      scope.parent.transitionRunning = true;
       event.preventDefault();
       event.stopPropagation();
       transferContactTouchStartX = event.changedTouches[0].pageX;
@@ -277,6 +280,7 @@
     };
 
     pickContactFromNativeTouchEnd = function () {
+      scope.parent.transitionRunning = false;
       event.preventDefault();
       event.stopPropagation();
 
