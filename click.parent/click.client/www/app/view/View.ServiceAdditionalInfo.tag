@@ -27,12 +27,12 @@
     </div>
 
     <div if="{!code}" class="service-addinfo-period-containter" id="fromField">
-      <input class="service-addinfo-from-input" type="tel" id="fromInput" placeholder="С:"
-             onmouseup="periodFromInputMouseUp('from')"/>
+      <input class="service-addinfo-from-input" type="tel" pattern="[0-9]" id="fromInput" placeholder="С:"
+             onmouseup="periodFromInputMouseUp('from')" onkeyup="indicators()" oninput="indicators()"/>
     </div>
     <div if="{!code}" class="service-addinfo-period-containter" id="toField">
-      <input class="service-addinfo-from-input" type="tel" id="toinput" placeholder="По:"
-             onmouseup="periodFromInputMouseUp('to')"/>
+      <input class="service-addinfo-from-input" type="tel" pattern="[0-9]" id="toInput" placeholder="По:"
+             onmouseup="periodFromInputMouseUp('to')" onkeyup="indicators()" oninput="indicators()"/>
     </div>
 
 
@@ -119,6 +119,7 @@
     scope.showErrorOfLimit = false;
     scope.selectedId = '';
     var dateFrom, dateTo;
+    var indicatorFrom, indicatorTo;
     scope.code = false;
 
     console.log("opts in ServiceAdditionalInfo", opts);
@@ -198,11 +199,17 @@
       }
     };
 
+    indicators = function () {
+      checkFields();
+    }
+
     pickDateFrom = function () {
 
       fromField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
       toField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
       amountField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+
+      scope.showErrorOfLimit = false;
 
       var currentDate = new Date(),
         verifiedDate;
@@ -239,6 +246,7 @@
         scope.from_mm = dateFrom.getMonth() + 1;
         scope.from_yyyy = dateFrom.getFullYear();
 
+        checkFields();
         scope.update();
       }
 
@@ -250,6 +258,8 @@
       toField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
       fromField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
       amountField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+
+      scope.showErrorOfLimit = false;
 
       var currentDate = new Date(),
         verifiedDate;
@@ -285,6 +295,8 @@
         scope.to_mm = dateTo.getMonth() + 1;
         scope.to_yyyy = dateTo.getFullYear();
 
+        checkFields();
+
         scope.update();
       };
 
@@ -292,6 +304,8 @@
     };
 
     periodFromInputMouseUp = function (source) {
+
+      scope.showErrorOfLimit = false;
 
       if (source == 'from') {
         fromField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
@@ -303,6 +317,9 @@
         amountField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
       }
 
+      checkFields();
+
+      scope.update();
 
     }
 
@@ -589,6 +606,22 @@
         scope.update()
       }
 
+      if (scope.code) {
+        if (!dateFrom || !dateTo) {
+          console.log("dates ", dateFrom, dateTo)
+          scope.enterButtonEnabled = false;
+          scope.update(scope.enterButtonEnabled);
+          return;
+        }
+      } else {
+        if (!fromInput.value || !toInput.value) {
+          console.log("indicators ", fromInput.value, toInput.value)
+          scope.enterButtonEnabled = false;
+          scope.update(scope.enterButtonEnabled);
+          return;
+        }
+      }
+
       scope.enterButtonEnabled = true;
       scope.update(scope.enterButtonEnabled);
 
@@ -623,179 +656,9 @@
         history.arrayOfHistory[history.arrayOfHistory.length - 1].params = opts;
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
-
-        if (opts.mode == 'USUAL' || opts.mode == 'POPULAR' || !opts.mode) {
-
-          opts.isInFavorites = !scope.enterButton;
-
-          event.preventDefault();
-          event.stopPropagation();
-
-
-          if (modeOfApp.offlineMode) {
-
-            console.log('USSD TEMPLATE', scope.fieldArray[0].ussd_query)
-
-            var ussdQuery = scope.fieldArray[0].ussd_query;
-
-            console.log('opts.formtype', opts)
-            console.log("opts in ussd", JSON.stringify(opts))
-
-
-            if (opts.formtype == 1 && ussdQuery) {
-              if (opts.firstFieldText) {
-                ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
-              }
-              else {
-                ussdQuery = ussdQuery.replace('*{param}', opts.firstFieldText);
-              }
-//              ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
-              ussdQuery = ussdQuery.replace('{option}', opts.chosenPrefixId);
-              ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
-              ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
-              console.log(ussdQuery)
-            }
-
-            if (opts.formtype == 2 && ussdQuery) {
-//              ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
-              ussdQuery = ussdQuery.replace('{option}', opts.chosenPrefixId);
-              ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
-              ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
-              ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
-              console.log(ussdQuery)
-            }
-
-            if (opts.formtype == 3 && ussdQuery) {
-              ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
-              ussdQuery = ussdQuery.replace('{option}', opts.chosenPrefixId);
-              ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
-              ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
-              ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
-              console.log(ussdQuery)
-            }
-
-            if (opts.formtype == 4 && ussdQuery) {
-              console.log('ussdQuery', ussdQuery)
-//              ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
-              ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
-              ussdQuery = ussdQuery.replace('{option}', opts.chosenPrefixId);
-              ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
-              ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
-              console.log(ussdQuery)
-            }
-
-            if (ussdQuery === null) {
-              scope.clickPinError = false;
-              scope.errorNote = ("Сервис временно недоступен!");
-
-              window.common.alert.show("componentAlertId", {
-                parent: scope,
-                clickpinerror: scope.clickPinError,
-                errornote: scope.errorNote,
-              });
-
-              scope.update();
-              return
-            }
-
-            console.log('USSD', ussdQuery, opts)
-
-            console.log(ussdQuery)
-
-            phonedialer.dial(
-//              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
-              ussdQuery + "%23",
-              function (err) {
-                if (err == "empty") {
-                  scope.clickPinError = false;
-                  scope.errorNote = ("Unknown phone number");
-
-                  window.common.alert.show("componentAlertId", {
-                    parent: scope,
-                    clickpinerror: scope.clickPinError,
-                    errornote: scope.errorNote,
-                  });
-
-                  scope.update();
-                }
-                else console.log("Dialer Error:" + err);
-              },
-              function (success) {
-              }
-            );
-            return
-          }
-          else {
-
-            if (scope.service.additional_information_type == 0) {
-              this.riotTags.innerHTML = "<view-service-pincards-new>";
-              riot.mount('view-service-pincards-new', opts);
-              scope.unmount()
-            } else {
-              localStorage.setItem('click_client_infoCacheEnabled', null)
-              this.riotTags.innerHTML = "<view-service-info-new>";
-              riot.mount('view-service-info-new', opts);
-              scope.unmount()
-            }
-
-
-          }
-        } else if (opts.mode == 'ADDFAVORITE') {
-
-          console.log("isInFavorites=", opts.isInFavorites)
-
-          opts.favoriteName = favoriteNameInput.value;
-          viewServicePinCards.friendHelpPaymentMode = false;
-          viewServicePinCards.chosenFriendForHelp = null;
-
-          if (opts.isInFavorites) {
-            editFavorite(opts);
-            event.preventDefault();
-            event.stopPropagation();
-            onBackKeyDown();
-          }
-          else {
-            opts.isInFavorites = true;
-            addToFavoritesinServicePage(opts);
-            event.preventDefault();
-            event.stopPropagation();
-            onBackKeyDown();
-            onBackKeyDown();
-          }
-
-
-        } else if (opts.mode == 'ADDAUTOPAY') {
-
-          if (autoPayNameInput.value.length < 1) {
-            scope.clickPinError = false;
-            scope.errorNote = "Введите название автоплатежа";
-
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote,
-            });
-
-            scope.update();
-            return;
-          }
-
-          scope.autoPayData.name = autoPayNameInput.value;
-          localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-
-          if (scope.autoPayData.fromView == 'PAY') {
-            this.riotTags.innerHTML = "<view-service-pincards-new>";
-            riot.mount('view-service-pincards-new', opts);
-            scope.unmount()
-
-          } else if (scope.autoPayData.fromView == 'PAYCONFIRM') {
-            this.riotTags.innerHTML = "<view-pay-confirm-new>";
-            riot.mount('view-pay-confirm-new', opts);
-            scope.unmount()
-
-          }
-
-        }
+        this.riotTags.innerHTML = "<view-service-pincards-new>";
+        riot.mount('view-service-pincards-new', opts);
+        scope.unmount()
 
       }
     };
