@@ -1606,11 +1606,11 @@ var css = {
   bankOperationButtonMyCardsIcon: ".bank-operation-button-my-cards-icon " +
   "{" +
   "position: absolute;" +
-  "width:" + 40 * widthK + "px;" +
-  "height:" + 35 * widthK + "px;" +
+  "width:" + 28 * widthK + "px;" +
+  "height:" + 24 * widthK + "px;" +
   "left:" + 16 * widthK + "px;" +
   "top:" + 8 * widthK + "px;" +
-  "background-size: 70%;" +
+  "background-size: 100%;" +
   "background-repeat: no-repeat;" +
   "background-image: url(resources/icons/bank-operations/allcards.png);" +
   "}",
@@ -6085,7 +6085,7 @@ var css = {
   "background-position: center;" +
   "}",
 
-  transferNewButtonContainer: ".transfer-new-button-container" +
+  transferNewButtonContainer: ".bottom-button-container" +
   "{" +
   "height: " + 87 * widthK + "px;" +
   "font-size: " + 38 * widthK + "px;" +
@@ -11227,7 +11227,7 @@ var css = {
   "background-position-y: center;" +
   "background-position-x: center;" +
   "background-size: 100%;" +
-  "top: 34%;" +
+  "top:" + 29 * widthK + "px;" +
   "}",
 
   componentBankListRotate: ".component-banklist-bank-rotate" +
@@ -12318,7 +12318,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height:" + 340 * widthK + "px;" +
+  "z-index: 2;" +
+  "height:" + 410 * widthK + "px;" +
   "background-color: white;" +
   "}",
 
@@ -12331,7 +12332,7 @@ var css = {
   "bottom:0; " +
   "background-color: #f4f4f4; " +
   "overflow: hidden; " +
-  "top:" + 340 * widthK + "px;" +
+  "top:" + 410 * widthK + "px;" +
   "}",
 
   viewQrPageTitle: ".view-qr-page-title " +
@@ -12359,16 +12360,14 @@ var css = {
   viewQrCompanyName: ".view-qr-company-name " +
   "{" +
   "position: relative;" +
-  "font-size:" + 35 * widthK + "px; " +
-  "width: 90%; " +
-  "text-align: center; " +
+  "font-size:" + 40 * widthK + "px; " +
+  "width: 50%; " +
+  "text-align: left; " +
   "margin: 0; " +
-  "margin-left: auto; " +
-  "margin-right: auto; " +
-  "top: 22%; " +
+  "margin-left: 46%; " +
+  "margin-top:" + 172 * widthK + "px; " +
   "color: #565d6a;" +
   "text-overflow: ellipsis;" +
-  "white-space: nowrap;" +
   "overflow: hidden;" +
   "}",
 
@@ -12377,12 +12376,11 @@ var css = {
   "position: relative;" +
   "font-size:" + 24 * widthK + "px; " +
   "max-height:" + 60 * widthK + "px; " +
-  "width: 90%; " +
-  "text-align: center; " +
+  "width: 50%; " +
+  "text-align: left; " +
   "margin: 0; " +
-  "margin-left: auto; " +
-  "margin-right: auto; " +
-  "top: 22%; " +
+  "margin-left: 46%; " +
+  "margin-top:" + 8 * widthK + "px; " +
   "color: #565d6a;" +
   "text-overflow: ellipsis;" +
 
@@ -12392,13 +12390,11 @@ var css = {
 
   viewQrCompanyIcon: ".view-qr-company-icon" +
   "{" +
-  "position: relative;" +
-  "margin-left: auto;" +
-  "margin-right: auto;" +
-  "top: 21%;" +
-  "width:" + 150 * widthK + "px; " +
-  "height:" + 150 * widthK + "px; " +
-  "border-radius:" + 100 * widthK + "px; " +
+  "position: absolute;" +
+  "left:" + 29 * widthK + "px; " +
+  "top:" + 95 * widthK + "px; " +
+  "width:" + 285 * widthK + "px; " +
+  "height:" + 285 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-size: cover;" +
   "background-position: center;" +
@@ -12408,28 +12404,27 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height: 30%;" +
-  "background-color: white;" +
+  "height: 100%;" +
+  "background-color: #fafafa;" +
   "}",
 
   viewQrContactPhoneField: ".view-qr-contact-phone-field" +
   "{" +
   "position: absolute;" +
-  "left: 7.5%;" +
-  "width: 85%;" +
-  "height:" + 150 * widthK + "px;" +
-  "border-bottom:" + 3 * widthK + "px solid #01cfff;" +
+  "left: 10%;" +
+  "width: 80%;" +
+  "height:" + 140 * widthK + "px;" +
+  "border-bottom:" + 3 * widthK + "px solid #e8e8e8;" +
   "color: white;" +
-  "top:" + 5 * widthK + "px;" +
+  "top:" + 43 * widthK + "px;" +
   "}",
 
   viewQrContactTextField: ".view-qr-contact-text-field" +
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "color: gray;" +
-  "font-size:" + 24 * widthK + "px;" +
-  "top: 34%;" +
+  "color: #565d6a;" +
+  "font-size:" + 32 * widthK + "px;" +
   "}",
 
   viewQrContactNumberInputPart: ".view-qr-contact-number-input-part" +
@@ -12437,12 +12432,13 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top: 61%;" +
+  "top: 53%;" +
   "padding: 0;" +
   "margin: 0;" +
   "font-size:" + 40 * widthK + "px;" +
   "font-family: 'SFUIDisplay-Light';" +
-  "color: #515151;" +
+  "color: #565d6a;" +
+  "background: transparent;" +
   "}",
 
   viewQrContactNumberInputCommission: ".view-qr-contact-number-input-commission" +
@@ -13702,21 +13698,21 @@ var css = {
   reportServiceUpperContainer: ".report-service-upper-container" +
   "{" +
   "position: absolute;" +
-  "height:" + 382 * widthK + "px;" +
+  "height:" + 410 * widthK + "px;" +
   "width:100%;" +
-  "background-color: #00a8f1;" +
+  "background-color: white;" +
   "}",
 
   reportServiceIcon: ".report-service-icon" +
   "{" +
   "position: absolute;" +
-  "height:" + 140 * widthK + "px;" +
-  "width:" + 140 * widthK + "px;" +
-  "top:" + 64 * widthK + "px;" +
-  "left: 50%;" +
-  "-webkit-transform: translate3d(-50%, 0, 0);" +
+  "height:" + 285 * widthK + "px;" +
+  "width:" + 285 * widthK + "px;" +
+  "top:" + 95 * widthK + "px;" +
+  "left:" + 29 * widthK + "px;" +
+  // "-webkit-transform: translate3d(-50%, 0, 0);" +
   //"border:" + 4 * widthK + "px solid white;" +
-  "border-radius:" + 90 * widthK + "px;" +
+  // "border-radius:" + 90 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-size: cover;" +
   "background-position: center;" +
@@ -13733,27 +13729,27 @@ var css = {
   reportServiceTitle: ".report-service-title " +
   "{" +
   "position: relative;" +
-  "font-size:" + 35 * widthK + "px; " +
-  "width: 100%;" +
+  "font-size:" + 40 * widthK + "px; " +
+  "width: 50%;" +
   "margin: 0; " +
-  "margin-left: auto; " +
-  "margin-right: auto; " +
-  "top: " + 10 * widthK + "px; " +
-  "color: white;" +
-  "text-align: center;" +
+  "margin-left: 46%; " +
+  "margin-top:" + 172 * widthK + "px; " +
+  "margin-bottom:" + 8 * widthK + "px; " +
+  "text-align: left;" +
+  "text-overflow: ellipsis; " +
+  "overflow: hidden; " +
+  "color: #565d6a;" +
   "}",
 
   reportServicePaymentInfoText: ".report-service-payment-info-text " +
   "{" +
   "position: relative;" +
   "font-size:" + 24 * widthK + "px; " +
-  "width: 100%; " +
+  "width: 50%; " +
   "margin: 0; " +
-  "margin-left: auto; " +
-  "margin-right: auto; " +
-  "top: " + 18 * widthK + "px; " +
-  "color: white;" +
-  "text-align: center;" +
+  "margin-left: 46%; " +
+  "color: #565d6a;" +
+  "text-align: left;" +
   "}",
 
   reportServiceBodyContainer: ".report-service-body-container" +
@@ -13762,10 +13758,10 @@ var css = {
 //"height:" + 1150 * widthK + "px; " +
   "width: 100%; " +
   "bottom:0; " +
-  "background-color: #f4f4f4; " +
+  "background-color: white; " +
   "overflow-y: auto; " +
   "overflow-x: hidden; " +
-  "top:" + 382 * widthK + "px; " +
+  "top:" + 410 * widthK + "px; " +
   "}",
 
   reportServiceDataButtonInfoContainer: ".report-service-data-button-info-container" +
@@ -13783,7 +13779,6 @@ var css = {
   reportServiceBodyInfoContainer: ".report-service-body-info-container" +
   "{" +
   "position: relative;" +
-  "background-color: white;" +
   "top: 0;" +
   "height: 51%;" +
   "}",
@@ -13932,8 +13927,11 @@ var css = {
 
   reportServiceButtonInfoContainer: ".report-service-button-info-container" +
   "{" +
-  "height: 18.7%;" +
-  "margin: 0 2.8%;" +
+  "height: " + 50 * widthK + "px;" +
+  "margin-top: " + 20 * widthK + "px;" +
+  "margin-left: 4%;" +
+  "margin-right: 4%;" +
+  "margin-bottom: 0;" +
   "}",
 
   reportServiceButtonIcon: ".report-service-button-icon" +
@@ -16172,7 +16170,7 @@ var css = {
   "left: 10%;" +
   "width: 79.5%;" +
   "height: 64.5%;" +
-  "border-bottom:  " + 3 * widthK + "px solid #01cfff;" +
+  "border-bottom:  " + 3 * widthK + "px solid #e8e8e8;" +
   "color: white;" +
   // "top: 8%;" +
   "}",

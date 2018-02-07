@@ -41,7 +41,7 @@
   <button if="{showBottomButton}"
           id="bottomButtonCardId"
           style="bottom: {window.bottomButtonBottom}"
-          class="transfer-new-button-container"
+          class="bottom-button-container"
           ontouchstart="onTouchStartOfNextCard(this)"
           ontouchend="onTouchEndOfNextCard(this)">
     {window.languages.ViewPayTransferNewContinue}

@@ -47,7 +47,7 @@
   </div>
   <button if="{showBottomButton}"
           id="bottomButtonContactId"
-          class="transfer-new-button-container"
+          class="bottom-button-container"
           style="bottom: {window.bottomButtonBottom}"
           ontouchstart="onTouchStartOfNextContact(this)"
           ontouchend="onTouchEndOfNextContact(this)">

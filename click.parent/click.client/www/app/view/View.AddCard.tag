@@ -46,7 +46,7 @@
 
     <button if="{showBottomButton}"
             id="bottomButtonId"
-            class="transfer-new-button-container"
+            class="bottom-button-container"
             style="bottom: {window.bottomButtonBottom};"
             ontouchstart="createCardTouchStart(this.id)"
             ontouchend="createCardTouchEnd(this.id)">

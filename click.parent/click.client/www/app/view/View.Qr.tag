@@ -1,5 +1,5 @@
 <view-qr class="riot-tags-main-container">
-  <div class="view-qr-blue-container">
+  <div class="view-qr-blue-container page-title-shadow">
     <div class="page-title">
       <p class="name-title">{titleName}</p>
       <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchend="goToBack()"
@@ -28,11 +28,9 @@
       </div>
     </div>
 
-    <div class="view-qr-buttons-container">
-      <button class="view-qr-button-accept" ontouchend="onTouchEndAccept()" ontouchstart="onTouchStartAccept()">
-        {window.languages.ViewQrTitleAccept}
-      </button>
-    </div>
+    <button class="bottom-button-container" ontouchend="onTouchEndAccept()" ontouchstart="onTouchStartAccept()">
+      {window.languages.ViewQrTitleAccept}
+    </button>
 
   </div>
 
