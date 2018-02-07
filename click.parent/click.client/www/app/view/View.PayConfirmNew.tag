@@ -591,6 +591,11 @@
       if (opts.optionAttribute && opts.optionValue) {
         payment_data[opts.optionAttribute] = opts.optionValue;
       }
+      if (opts.paymentDataAttributes) {
+        for (var i in opts.paymentDataAttributes) {
+          payment_data[opts.paymentDataAttributes[i].attribute] = opts.paymentDataAttributes[i].value;
+        }
+      }
 
       initResultComponent();
       window.api.call({
@@ -645,7 +650,7 @@
           timeOutTimer = setTimeout(function () {
             window.writeLog({
               reason: 'Timeout',
-              method:'app.payment',
+              method: 'app.payment',
             });
             updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
           }, 30000);

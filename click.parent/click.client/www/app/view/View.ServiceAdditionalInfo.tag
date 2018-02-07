@@ -120,7 +120,7 @@
     scope.selectedId = '';
     var dateFrom, dateTo;
     var range_from, range_to;
-    scope.code = false;
+    scope.code = opts.code.value == "01";
 
     console.log("opts in ServiceAdditionalInfo", opts);
 
@@ -579,7 +579,7 @@
 
       if (!scope.service['amount_editable']) return;
 
-      if (amountForPayTransaction < scope.service.min_pay_limit && from == 'sum') {
+      if (amountForPayTransaction < scope.service.min_pay_limit) {
         scope.showErrorOfLimit = true;
         amountField.style.borderBottom = 3 * widthK + 'px solid red';
         scope.enterButtonEnabled = false;
@@ -592,7 +592,7 @@
         scope.showErrorOfLimit = false;
         scope.update()
       }
-      if (amountForPayTransaction > scope.service.max_pay_limit && from == 'sum') {
+      if (amountForPayTransaction > scope.service.max_pay_limit) {
         scope.showErrorOfLimit = true;
         amountField.style.borderBottom = 3 * widthK + 'px solid red';
         scope.enterButtonEnabled = false;
@@ -604,6 +604,7 @@
         amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
         scope.showErrorOfLimit = false;
         scope.update()
+        return;
       }
 
       if (scope.code) {

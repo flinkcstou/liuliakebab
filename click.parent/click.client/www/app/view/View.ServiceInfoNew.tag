@@ -126,7 +126,7 @@
         scope.checkIconShow = scope.serviceData.options.length > 1;
         optionAttribute = scope.serviceData.options[0].option_payment_attribute;
         opts.paymentDataAttributes = scope.serviceData.options[0].payment_data_attributes;
-        opts.code = scope.serviceData.options[0].options_object[6][0];
+        opts.code = scope.serviceData.options[0].option_object[6][0];
         opts.optionAttribute = optionAttribute;
         opts.optionValue = scope.checkIconShow ? null : scope.serviceData.options[0].option_value;
         scope.type = 3;
@@ -167,6 +167,7 @@
                 scope.checkIconShow = result[1][0].options.length > 1;
                 optionAttribute = result[1][0].options[0].option_payment_attribute;
                 opts.paymentDataAttributes = result[1][0].options[0].payment_data_attributes;
+                opts.code = result[1][0].options[0].option_object[6][0];
                 opts.optionAttribute = optionAttribute;
                 opts.optionValue = scope.checkIconShow ? null : result[1][0].options[0].option_value;
                 scope.type = 3;
