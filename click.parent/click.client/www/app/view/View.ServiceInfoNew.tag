@@ -68,7 +68,7 @@
     scope.serviceIcon = scope.service.image;
     scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-    var payment_data, optionAttribute, paymentDataAttribute;
+    var payment_data, optionAttribute;
     var timeOutTimer = 0;
     var goBackStartY, goBackStartX, goBackEndY, goBackEndX;
     var optionOnTouchStartY, optionOnTouchStartX, optionOnTouchEndY, optionOnTouchEndX;
@@ -125,7 +125,8 @@
         scope.optionsHeader = scope.serviceData.options_header;
         scope.checkIconShow = scope.serviceData.options.length > 1;
         optionAttribute = scope.serviceData.options[0].option_payment_attribute;
-        opts.code = scope.serviceData.options[0].option_object[6][0];
+        opts.paymentDataAttributes = scope.serviceData.options[0].payment_data_attributes;
+        opts.code = scope.serviceData.options[0].options_object[6][0];
         opts.optionAttribute = optionAttribute;
         opts.optionValue = scope.checkIconShow ? null : scope.serviceData.options[0].option_value;
         scope.type = 3;
@@ -165,8 +166,7 @@
                 scope.optionsHeader = result[1][0].options_header;
                 scope.checkIconShow = result[1][0].options.length > 1;
                 optionAttribute = result[1][0].options[0].option_payment_attribute;
-                paymentDataAttribute = result[1][0].options[0].payment_data_attributes;
-                opts.code = result[1][0].options[0].option_object[6][0];
+                opts.paymentDataAttributes = result[1][0].options[0].payment_data_attributes;
                 opts.optionAttribute = optionAttribute;
                 opts.optionValue = scope.checkIconShow ? null : result[1][0].options[0].option_value;
                 scope.type = 3;
@@ -303,6 +303,7 @@
         scope.update();
       } else {
         if (opts.formtype == 5) {
+          console.log("opts to send ", opts)
           this.riotTags.innerHTML = "<view-service-additional-info>";
           riot.mount('view-service-additional-info', opts);
           scope.unmount()

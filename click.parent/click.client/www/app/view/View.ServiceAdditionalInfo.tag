@@ -119,7 +119,7 @@
     scope.showErrorOfLimit = false;
     scope.selectedId = '';
     var dateFrom, dateTo;
-    var indicatorFrom, indicatorTo;
+    var range_from, range_to;
     scope.code = false;
 
     console.log("opts in ServiceAdditionalInfo", opts);
@@ -612,6 +612,9 @@
           scope.enterButtonEnabled = false;
           scope.update(scope.enterButtonEnabled);
           return;
+        } else {
+          range_from = dateFrom;
+          range_to = dateTo;
         }
       } else {
         if (!fromInput.value || !toInput.value) {
@@ -619,6 +622,9 @@
           scope.enterButtonEnabled = false;
           scope.update(scope.enterButtonEnabled);
           return;
+        } else {
+          range_from = fromInput.value;
+          range_to = toInput.value;
         }
       }
 
@@ -651,6 +657,15 @@
         window.blurFields();
 
         opts.amountText = amountForPayTransaction;
+
+        for (var i in opts.paymentDataAttributes) {
+          if (opts.paymentDataAttributes[i].value == 'region_id')
+            opts.paymentDataAttributes[i].value = opts.communalParam;
+          else if (opts.paymentDataAttributes[i].value == 'range_from')
+            opts.paymentDataAttributes[i].value = range_from;
+          else if (opts.paymentDataAttributes[i].value == 'range_to')
+            opts.paymentDataAttributes[i].value = range_to;
+        }
 
 
         history.arrayOfHistory[history.arrayOfHistory.length - 1].params = opts;
