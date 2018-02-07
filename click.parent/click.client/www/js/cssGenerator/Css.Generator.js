@@ -2569,16 +2569,16 @@ var css = {
   settingsButton: ".settings-button " +
   "{" +
   "position: absolute;" +
-  "width:" + 144 * widthK + "px;" +
-  "height:" + 92 * widthK + "px;" +
-  "right:" + -36 * widthK + "px;" +
+  "width:" + 43 * widthK + "px;" +
+  "height:" + 43 * widthK + "px;" +
+  "right: 5.5%;" +
   "background-image: url(resources/icons/ViewMyCards/cardsettings.png);" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 31%;" +
+  "-webkit-background-size: 100%;" +
   "background-position-y: center;" +
-  "background-position-x:" + 54 * widthK + "px;" +
-  "background-size: 31%;" +
-  "top: 0;" +
+  "background-position-x: center;" +
+  "background-size: 100%;" +
+  "top: 27%;" +
   "}",
 
   searchButton: ".search-button " +
@@ -2822,7 +2822,7 @@ var css = {
 
   myCardsButtonIconPayment: ".my-cards-button-icon-payment " +
   "{" +
-  "background-image: url(resources/icons/ViewMyCards/cardpaymens.png);" +
+  "background-image: url(resources/icons/ViewMyCards/cardpayments.png);" +
   "background-size: 25%;" +
   "background-position: center;" +
   "}",
@@ -2852,7 +2852,7 @@ var css = {
   "font-size:" + 30 * widthK + "px;" +
   "color: #565d6a;" +
   "top:" + 30 * widthK + "px;" +
-  "border-bottom: 1px solid #95e6fd;" +
+  "border-bottom: 1px solid #e8e8e8;" +
   "}",
 
   myCardsButtonBlockCard: ".my-cards-button-block-card " +
@@ -12393,10 +12393,10 @@ var css = {
   viewQrCompanyIcon: ".view-qr-company-icon" +
   "{" +
   "position: absolute;" +
-  "left:" + 29 * widthK + "px; " +
-  "top:" + 95 * widthK + "px; " +
-  "width:" + 285 * widthK + "px; " +
-  "height:" + 285 * widthK + "px; " +
+  "left:" + 55 * widthK + "px; " +
+  "top:" + 130 * widthK + "px; " +
+  "width:" + 235 * widthK + "px; " +
+  "height:" + 235 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-size: cover;" +
   "background-position: center;" +
