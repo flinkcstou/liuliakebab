@@ -1,13 +1,15 @@
 <view-qr-pincards class="view-service-pincards riot-tags-main-container">
 
-  <div class="qr-pay-page-title" style="border-style: none;">
-    <p class="qr-servicepage-title  {qr-servicepage-qr-title: !opts.location}">{titleName}</p>
-    <p class="qr-servicepage-category-field">{categoryName}</p>
+  <div class="pay-page-title" style="border-style: none;">
+    <p class="servicepage-title  {qr-servicepage-qr-title: !opts.location}">{titleName}</p>
+    <p class="servicepage-category-field">{categoryName}</p>
     <div ontouchend="touchStartTitle()"
-         class="qr-servicepage-button-back" role="button" aria-label="{window.languages.Back}">
+         class="servicepage-button-back" role="button" aria-label="{window.languages.Back}">
     </div>
     <div type="button" class="qr-servicepage-service-icon"
          style="background-image: url({serviceIcon})"></div>
+    <div class="title-bottom-border">
+    </div>
   </div>
 
   <div class="qr-pincard-body-container">

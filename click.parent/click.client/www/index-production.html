@@ -304,6 +304,12 @@
           console.error(error);
         }
         try {
+          if (this.bottomButtonContainer)
+            bottomButtonContainer.style.bottom = e.keyboardHeight + "px";
+        } catch (error) {
+          console.error(error);
+        }
+        try {
           if (this.cardInputContainer) {
             cardInputTop = window.getPosition(cardInputContainer).y + cardInputContainer.clientHeight;
             keyBoardTop = document.documentElement.clientHeight - e.keyboardHeight;
@@ -341,6 +347,12 @@
         try {
           if (this.bottomButtonSubmitId)
             bottomButtonSubmitId.style.bottom = "0px";
+        } catch (error) {
+          console.error(error);
+        }
+        try {
+          if (this.bottomButtonContainer)
+            bottomButtonContainer.style.bottom = "0px";
         } catch (error) {
           console.error(error);
         }

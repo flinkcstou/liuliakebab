@@ -3078,7 +3078,7 @@ var css = {
   "position: absolute;" +
   "width:" + 44 * widthK + "px;" +
   "height:" + 41 * widthK + "px;" +
-  "right: 5%;" +
+  "right: 6.5%;" +
   "background-image: url('resources/icons/ViewService/unchecked.png');" +
   "background-repeat: no-repeat;" +
   "-webkit-background-size: 100%;" +
@@ -8859,9 +8859,7 @@ var css = {
   "position: absolute;" +
   "height:" + 500 * widthK + "px;" +
   "width:100%;" +
-  "background: -moz-linear-gradient(rgb(0,168,241),rgb(76,212,255));" +
-  "background: -webkit-linear-gradient(rgb(0,168,241),rgb(76,212,255));" +
-  "background: -ms-linear-gradient(rgb(0,168,241),rgb(76,212,255));" +
+  "background: white;" +
   "}",
 
   settingsGeneralUserIcon: ".settings-general-user-icon" +
@@ -8901,7 +8899,7 @@ var css = {
   "font-family: 'SFUIDisplay-Light';" +
   "padding: 0;" +
   "margin: 0;" +
-  "color: white;" +
+  "color: #565d6a;" +
   "background: transparent;" +
   "text-align: center;" +
   "}",
@@ -8983,8 +8981,8 @@ var css = {
   "position: absolute;" +
   "left: 50%;" +
   "width: 1px;" +
-  "height: 55%;" +
-  "top: 40%;" +
+  "height: 60%;" +
+  "top: 28%;" +
   "background-color: lightgrey;" +
   "}",
 
@@ -9004,11 +9002,11 @@ var css = {
   settingsGeneralUserNameContainer: ".settings-general-user-name-container" +
   "{" +
   "position: absolute;" +
-  "width: 84.5%;" +
+  "width: 90%;" +
   "height: 17%;" +
   "bottom: 29%;" +
-  "border-bottom:" + 3 * widthK + "px solid #05d0ff;" +
-  "left: 8.5%;" +
+  "border-bottom: 1px solid #e8e8e8;" +
+  "left: 5%;" +
   "}",
 
   settingsGeneralUserNameSave: ".settings-general-user-name-save" +
@@ -9042,7 +9040,6 @@ var css = {
   "margin-left: 13%;" +
   "margin-right: 0%;" +
   "float: left;" +
-  "background-color: #09ceff;" +
   "}",
 
   settingsGeneralDownloadTitle: ".settings-general-download-title" +
@@ -9051,9 +9048,9 @@ var css = {
   "top: 20%;" +
   "left: 27%;" +
   "margin: 0;" +
-  "color: white;" +
+  "color: #565d6a;" +
   "font-size:" + 27 * widthK + "px;" +
-  "background-color: #09ceff;" +
+  "background-color: white;" +
   "}",
 
   settingsGeneralDownloadIcon: ".settings-general-download-icon" +
@@ -9084,7 +9081,7 @@ var css = {
   "top: 31%;" +
   "left: 26%;" +
   "margin: 0;" +
-  "color: white;" +
+  "color: #565d6a;" +
   "font-size:" + 27 * widthK + "px;" +
   "}",
 
@@ -12382,7 +12379,7 @@ var css = {
   "margin: 0; " +
   "margin-left: 46%; " +
   "margin-top:" + 8 * widthK + "px; " +
-  "color: #565d6a;" +
+  "color: #a9abaf;" +
   "text-overflow: ellipsis;" +
 
   //"white-space: nowrap;" +
@@ -16108,8 +16105,8 @@ var css = {
   "{" +
   "position: relative;" +
   "min-height:" + 95 * widthK + "px; " +
-  "width: 92%;" +
-  "left: 4%;" +
+  "width: 90%;" +
+  "left: 5%;" +
   "padding-top: 1%;" +
   "border-top:" + 0.5 + "px solid gainsboro;" +
   "background-color: transparent;" +
@@ -16181,7 +16178,7 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top: 37%;" +
+  "top: 25%;" +
   "padding: 0;" +
   "margin: 0;" +
   // "margin-left: 3%;" +
@@ -16230,13 +16227,13 @@ var css = {
   inPlacePayServiceIcon: ".inplace-pay-service-icon" +
   "{" +
   "position: absolute;" +
-  "width:" + 220 * widthK + "px; " +
-  "height:" + 220 * widthK + "px; " +
+  "width:" + 167 * widthK + "px; " +
+  "height:" + 167 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "float: left;" +
   "left: 1%;" +
-  "top: 1%;" +
+  "top:" + 31 * widthK + "px; " +
   "background-size: 100%;" +
   "}",
 
@@ -16270,7 +16267,7 @@ var css = {
   "top: " + 28 * widthK + "px; " +
   "text-align: left;" +
   "font-size:" + 24 * widthK + "px; " +
-  "color: darkgray;" +
+  "color: #a9abaf;" +
   // "height: " + 65 * widthK + "px; " +
   "width: 70%;" +
   "overflow: hidden;" +

@@ -28,7 +28,7 @@
       </div>
     </div>
 
-    <button class="bottom-button-container" ontouchend="onTouchEndAccept()" ontouchstart="onTouchStartAccept()">
+    <button id="bottomButtonContainer" class="bottom-button-container" ontouchend="onTouchEndAccept()" ontouchstart="onTouchStartAccept()">
       {window.languages.ViewQrTitleAccept}
     </button>
 
@@ -232,7 +232,10 @@
       else {
         scope.tax = 0
       }
-
+      if (event.keyCode === input_codes.ENTER){
+        if (device.platform !== 'BrowserStand')
+          cordova.plugins.Keyboard.close();
+      }
       scope.update()
     }
 
