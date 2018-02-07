@@ -1112,8 +1112,13 @@
           scope.isNumber = false;
         }
         else if (modeOfApp.offlineMode) {
-          scope.inputType = 'tel';
-          scope.isNumber = true;
+          if (scope.fieldArray[0] && scope.fieldArray[0].input_type && scope.fieldArray[0].input_type == '2') {
+            scope.inputType = 'text';
+            scope.isNumber = false;
+          } else {
+            scope.inputType = 'tel';
+            scope.isNumber = true;
+          }
         }
         scope.amountLength = ("" + scope.service.max_pay_limit).length;
       }
@@ -1277,8 +1282,14 @@
               scope.isNumber = false;
             }
             else if (modeOfApp.offlineMode) {
-              scope.inputType = 'tel';
-              scope.isNumber = true;
+              console.log('fieldArray at i', scope.fieldArray[i]);
+              if (scope.fieldArray[i] && scope.fieldArray[i].input_type && scope.fieldArray[i].input_type == '2') {
+                scope.inputType = 'text';
+                scope.isNumber = false;
+              } else {
+                scope.inputType = 'tel';
+                scope.isNumber = true;
+              }
             }
             scope.oldFieldParamId = scope.chosenFieldParamId;
             scope.chosenFieldParamId = id;
