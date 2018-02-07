@@ -1766,7 +1766,7 @@ var css = {
   "{" +
   "float: right;" +
   "background-color: #98cc1b;" +
-  "background-image: url(resources/icons/bank-operations/transfers.png);" +
+  "background-image: url(resources/icons/invoice/transfers_invoice.png);" +
   "color: white;" +
   "background-repeat: no-repeat;" +
   "background-size: 65%;" +
@@ -1841,7 +1841,7 @@ var css = {
   "{" +
   "float: right;" +
   "background-color: #fe7363;" +
-  "background-image: url(resources/icons/bank-operations/payment.png);" +
+  "background-image: url(resources/icons/invoice/payment_invoice.png);" +
   "color: white;" +
   "background-repeat: no-repeat;" +
   "background-size: 50%;" +
@@ -3867,6 +3867,7 @@ var css = {
   "opacity: 0.97;" +
   "height: 100%;" +
   "width: 100%;" +
+  "z-index: 15;" +
   "background-color: #353340;" +
   "display: none;" +
   "}",
@@ -4159,6 +4160,7 @@ var css = {
   "height: 69%;" +
   "font-size:" + 56 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
+  "background: transparent;" +
   "color: #515151;" +
   "}",
 
@@ -9662,7 +9664,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
   "background-position: center;" +
-  "background-image: url(resources/icons/bank-operations/transfers.png);" +
+  "background-image: url(resources/icons/invoice/transfers_invoice.png);" +
   "}",
 
   transferDetailTransferIconTitlePartOne: ".transfer-detail-transfer-icon-title-part-one " +
@@ -10254,7 +10256,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 71%;" +
   "background-position: center;" +
-  "background-image: url(resources/icons/bank-operations/payment.png);" +
+  "background-image: url(resources/icons/invoice/payment_invoice.png);" +
   "}",
 
   paymentDetailPaymentContainer: ".payment-detail-payment-container" +
