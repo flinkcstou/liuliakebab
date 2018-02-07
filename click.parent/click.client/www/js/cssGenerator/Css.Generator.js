@@ -2571,7 +2571,7 @@ var css = {
   "position: absolute;" +
   "width:" + 43 * widthK + "px;" +
   "height:" + 43 * widthK + "px;" +
-  "right: 5.5%;" +
+  "right: 5%;" +
   "background-image: url(resources/icons/ViewMyCards/cardsettings.png);" +
   "background-repeat: no-repeat;" +
   "-webkit-background-size: 100%;" +
@@ -9293,7 +9293,7 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 418 * widthK + "px;" +
-  "background-color: #00a8f1;" +
+  "background-color: white;" +
   "text-align: center;" +
   "}",
 
@@ -9302,23 +9302,22 @@ var css = {
   "position: relative;" +
   "width: 100%;" +
   "height: 12%;" +
-  "border-bottom:1px solid #f4f4f4;" +
   "}",
 
   settingsAboutProgramUserAgreementTitle: ".settings-about-program-user-agreement-title" +
   "{" +
   "position: relative;" +
   "margin: 0;" +
-  "margin-left: 6%;" +
-  "top: 36%;" +
-  "font-size:" + 30 * widthK + "px;" +
-  "color: #919191;" +
+  "margin-left: 7.5%;" +
+  "top: 33%;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "color: #565d6a;" +
   "}",
 
   settingsAboutProgramUserAgreementIcon: ".settings-about-program-user-agreement-icon" +
   "{" +
   "position: absolute;" +
-  "right: 0;" +
+  "right:" + 12 * widthK + "px;" +
   "width: 15%;" +
   "height: 100%;" +
   "top: 0;" +
@@ -9333,17 +9332,16 @@ var css = {
   "position: relative;" +
   "width: 100%;" +
   "height: 12%;" +
-  "border-bottom:1px solid #f4f4f4;" +
   "}",
 
   settingsAboutProgramRankTitle: ".settings-about-program-rank-title" +
   "{" +
   "position: relative;" +
   "margin: 0;" +
-  "margin-left: 6%;" +
-  "top: 36%;" +
-  "font-size:" + 30 * widthK + "px;" +
-  "color: #919191;" +
+  "margin-left: 7.2%;" +
+  "top: 25%;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "color: #565d6a;" +
   "background-repeat: no-repeat;" +
   "background-size: 10%;" +
   "background-position: center;" +
@@ -9352,7 +9350,7 @@ var css = {
   settingsAboutProgramRankIcon: ".settings-about-program-rank-icon" +
   "{" +
   "position: absolute;" +
-  "right: 0;" +
+  "right:" + 12 * widthK + "px;" +
   "width: 15%;" +
   "height: 100%;" +
   "top: 0;" +
@@ -9364,7 +9362,7 @@ var css = {
 
   settingsAboutProgramContainer: ".settings-about-program-container" +
   "{" +
-  "top:" + 417 * widthK + "px;" +
+  "top:" + 418 * widthK + "px;" +
   "}",
 
   settingsAboutProgramPageTitle: ".settings-about-program-page-title " +
@@ -9392,36 +9390,37 @@ var css = {
   settingsAboutProgramVersionTitlePartOne: ".settings-about-program-version-title-part-one " +
   "{" +
   "position: relative;" +
-  "font-size:" + 35 * widthK + "px; " +
-  "width:" + 330 * widthK + "px; " +
+  "font-size:" + 40 * widthK + "px; " +
+  "width: 50%; " +
   "margin: 0; " +
-  "margin-left: auto; " +
-  "margin-right: auto; " +
-  "margin-top: 5%; " +
-  "color: white;" +
+  "margin-left: 43%; " +
+  "margin-top:" + 182 * widthK + "px; " +
+  "text-align: left; " +
+  "color: #565d6a;" +
   "}",
 
   settingsAboutProgramVersionTitlePartTwo: ".settings-about-program-version-title-part-two " +
   "{" +
   "position: relative;" +
-  "font-size:" + 24 * widthK + "px; " +
+  "font-size:" + 26 * widthK + "px; " +
   // "width:" + 150 * widthK + "px; " +
-  "width: 100%; " +
+  "width: 50%; " +
   "margin: 0; " +
-  "margin-left: auto; " +
-  "margin-right: auto; " +
+  "margin-left: 43%; " +
+  "margin-top: -" + 4 * widthK + "px; " +
+  "text-align: left; " +
   //"top: 11%; " +
-  "color: white;" +
+  "color: #a9abaf;" +
   "}",
 
   settingsAboutProgramClickIcon: ".settings-about-program-click-icon" +
   "{" +
-  "position: relative;" +
-  "margin-left: auto;" +
-  "margin-right: auto;" +
-  "top: 14%;" +
-  "width: 21%;" +
-  "height: 60%;" +
+  "position: absolute;" +
+  "position: absolute;" +
+  "left:" + 90 * widthK + "px; " +
+  "top:" + 154 * widthK + "px; " +
+  "width:" + 165 * widthK + "px; " +
+  "height:" + 168 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-image: url(resources/icons/ViewSettingsAboutProgram/about_logo.png);" +
   "background-size: 100%;" +
@@ -16091,7 +16090,7 @@ var css = {
   "position: absolute;" +
   "height:85%; " +
   "width: 100%; " +
-  "top:15%; " +
+  "top:12%; " +
   "bottom:0; " +
   "overflow-y: auto; " +
   "overflow-x: hidden; " +
@@ -16159,7 +16158,7 @@ var css = {
   inPlacePaySearchContainer: ".inplace-pay-search-container" +
   "{" +
   "position: absolute;" +
-  "height:15.5%; " +
+  "height:12%; " +
   "width: 100%; " +
   "background-color: white; " +
   "z-index: 99999;" +
@@ -16171,7 +16170,7 @@ var css = {
   "position: relative;" +
   "left: 10%;" +
   "width: 79.5%;" +
-  "height: 64.5%;" +
+  "height: 74.5%;" +
   "border-bottom:  " + 3 * widthK + "px solid #e8e8e8;" +
   "color: white;" +
   // "top: 8%;" +
@@ -16204,13 +16203,12 @@ var css = {
   "position: relative;" +
   "float: right;" +
   "background-image: url(resources/icons/ViewInPlacePay/indoor_search.png);" +
-  "width: 13%;" +
-  "height: 65%;" +
+  "width:" + 35 * widthK + "px;" +
+  "height:" + 40 * widthK + "px;" +
   "background-repeat: no-repeat;" +
-  "background-size: 47%;" +
+  "background-size: 100%;" +
   "background-position: center;" +
-  "top: 32%;" +
-  "right: -3%;" +
+  "top: 42%;" +
   "}",
 
 
@@ -16219,11 +16217,10 @@ var css = {
   inPlacePayServiceContainer: ".inplace-pay-service-container" +
   "{" +
   "position: relative;" +
-  "height:" + 190 * widthK + "px; " +
-  "width: 92%;" +
-  "left:4%;" +
+  "height:" + 230 * widthK + "px; " +
+  "width: 90%;" +
+  "left: 5%;" +
   "top:" + -4 * widthK + "px; " +
-  "padding-top: 1%;" +
   "border-top:" + 0.5 + "px solid gainsboro;" +
   "background-color: transparent;" +
   "z-index:9999999;" +
@@ -16233,14 +16230,14 @@ var css = {
   inPlacePayServiceIcon: ".inplace-pay-service-icon" +
   "{" +
   "position: absolute;" +
-  "width:" + 125 * widthK + "px; " +
-  "height:" + 125 * widthK + "px; " +
+  "width:" + 220 * widthK + "px; " +
+  "height:" + 220 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "float: left;" +
   "left: 1%;" +
+  "top: 1%;" +
   "background-size: 100%;" +
-  "margin-top: 4%;" +
   "}",
 
   inPlacePayServiceInfo: ".inplace-pay-service-info" +
@@ -16248,7 +16245,8 @@ var css = {
   "position: absolute;" +
   "height:" + 190 * widthK + "px; " +
   "width: 70%;" +
-  "left: 25%;" +
+  "left: 38%;" +
+  "top: 9%;" +
   // "float: left;" +
   "background-color: transparent;" +
   "}",
@@ -16259,7 +16257,7 @@ var css = {
   "top: " + 20 * widthK + "px; " +
   // "left: 18%;" +
   "text-align: left;" +
-  "font-size:" + 35 * widthK + "px; " +
+  "font-size:" + 36 * widthK + "px; " +
   "color: rgb(45,45,45);" +
   "overflow: hidden;" +
   "text-overflow: ellipsis;" +
@@ -16271,9 +16269,10 @@ var css = {
   "position: relative;" +
   "top: " + 28 * widthK + "px; " +
   "text-align: left;" +
-  "font-size:" + 25 * widthK + "px; " +
+  "font-size:" + 24 * widthK + "px; " +
   "color: darkgray;" +
-  "height: " + 65 * widthK + "px; " +
+  // "height: " + 65 * widthK + "px; " +
+  "width: 70%;" +
   "overflow: hidden;" +
   "text-overflow: ellipsis;" +
   "}",
@@ -16281,7 +16280,8 @@ var css = {
   inPlacePayServiceDistanceContainer: ".inplace-pay-service-distance-container" +
   "{" +
   "position: relative;" +
-  "top: " + 25 * widthK + "px; " +
+  "top: " + 30 * widthK + "px; " +
+  "left: " + 2 * widthK + "px; " +
   "text-align: left;" +
   // "font-size:" + 26 * widthK + "px; " +
   // "color: #00a8f1;" +
@@ -16293,6 +16293,7 @@ var css = {
   // "top: " + 54 * widthK + "px; " +
   "text-align: left;" +
   "font-size:" + 26 * widthK + "px; " +
+  "left:" + 7 * widthK + "px; " +
   "color: #00a8f1;" +
   "}",
 
@@ -16312,13 +16313,13 @@ var css = {
   inPlacePayServiceIconTick: ".inplace-pay-service-icon-tick " +
   "{" +
   "position: absolute;" +
-  "left: 96%;" +
+  "right: 1.5%;" +
   "background-size: contain;" +
   "background-image: url(resources/icons/ViewInPlacePay/indoor_arrow.png);" +
   "background-repeat: no-repeat;" +
   "width:" + 19 * widthK + "px;" +
   "height:" + 18 * widthK + "px;" +
-  "top:46%;" +
+  "top: 47%;" +
   "}",
 
   inPlacePayGoToQrContainer: ".inplace-pay-gotoqr-container" +
