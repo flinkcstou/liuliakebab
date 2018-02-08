@@ -390,7 +390,7 @@ var RU_LANGUAGES =
   "ViewPaymentDetailTitlePayFrom": "Оплатить с:",
   "ViewPaymentDetailCardNotChosen": "Выберите карты",
 
-  "ViewTrustedDevicesTitle": "доверенные устройства",
+  "ViewTrustedDevicesTitle": "Доверенные устройства",
   "ViewTrustedDevicesVoiceOverRemove": "Удалить доверенное устройство",
 
   "ViewReportMonthsArray": [{"name": "Январь", "count": 1}, {"name": "Февраль", "count": 2}, {

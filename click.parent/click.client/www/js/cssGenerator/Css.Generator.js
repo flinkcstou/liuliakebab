@@ -8374,9 +8374,6 @@ var css = {
   "width: 100%;" +
   "height: 100%;" +
   "overflow: hidden;" +
-  "background-image: url('resources/icons/background/transparent.png');" +
-  "background-size: cover;" +
-  "background-repeat: no-repeat;" +
   "}",
 
   pinCodeFlexContainer: ".pincode-flex-container" +
@@ -8435,7 +8432,8 @@ var css = {
   "width:" + 34 * widthK + "px;" +
   "height:" + 34 * widthK + "px;" +
   "border-radius:" + 40 * widthK + "px;" +
-  "border:" + 4.5 * widthK + "px solid #01cfff;" +
+  "border:" + 4.5 * widthK + "px solid #fafafa;" +
+  "background-color: #b0aeb2;" +
   "}",
 
   pinCodePinTwo: ".pincode-pin-two " +
@@ -8523,7 +8521,7 @@ var css = {
   "background-size: contain;" +
   "text-align: center;" +
   "width:" + 320 * widthK + "px;" +
-  "color: white;" +
+  "color: #aaabae;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
 
@@ -8779,7 +8777,7 @@ var css = {
   "width: 91%;" +
   "left: 4%;" +
   "margin-top: 1%;" +
-  "border-bottom:" + 1 + "px solid gainsboro;" +
+  "border-bottom:" + 1 + "px solid #e8e8e8;" +
   "background-color: transparent;" +
   "}",
 
@@ -10479,7 +10477,7 @@ var css = {
 
   filterMainMenu: ".filter-main-menu" +
   "{" +
-  "background-color: #00A1DF;" +
+  "background-color: white;" +
   "}",
 
   filterMinorMenu: ".filter-minor-menu" +
@@ -10507,7 +10505,7 @@ var css = {
   "margin: 0;" +
   "float: left;" +
   "margin-left: " + 21 * widthK + "px;" +
-  "color: white;" +
+  "color: #565d6a;" +
   "}",
 
   reportFilterFilterPlusIcon: ".report-filter-filter-plus-icon" +
@@ -10527,7 +10525,7 @@ var css = {
   "height: " + 75 * widthK + "px;" +
   "float: left;" +
   //"margin-top: " + 15 * widthK + "px;" +
-  "border-top: 1px solid #00BCE8;" +
+  "border-top: 1px solid #e8e8e8;" +
   "padding: " + 13.5 * widthK + "px 0 0 4.3%;" +
   "}",
 
@@ -10535,8 +10533,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "width:" + 195 * widthK + "px;" +
-  "height:" + 92 * widthK + "px;" +
-  "right:" + 63 * widthK + "px;" +
+  "height: 100%;" +
+  "right: 12.6%;" +
   "top: 0;" +
   "z-index: 1;" +
   "}",
@@ -10546,14 +10544,14 @@ var css = {
   "position: absolute;" +
   "margin: 0;" +
   "color: #565d6a;" +
-  "top: 29%;" +
+  "top: 31%;" +
   "font-size:" + 29 * widthK + "px;" +
   "}",
 
   viewReportsDateFilterText: ".view-reports-date-filter-text" +
   "{" +
   "margin: 0;" +
-  "color: white;" +
+  "color: #565d6a;" +
   "top: " + 95 * widthK + "px;" +
   "position: absolute;" +
   "width: 100%;" +
@@ -10576,16 +10574,16 @@ var css = {
   viewReportsFilterButton: ".view-reports-filter-button " +
   "{" +
   "position: absolute;" +
-  "width:" + 60 * widthK + "px;" +
-  "height:" + 92 * widthK + "px;" +
-  "right:0;" +
+  "width:" + 25 * widthK + "px;" +
+  "height:" + 20 * widthK + "px;" +
+  "right:" + 26 * widthK + "px;" +
+  "top: 41%;" +
   "background-image: url('resources/icons/ViewReport/reports_filters.png');" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 44%;" +
+  "-webkit-background-size: 100%;" +
   "background-position-y: center;" +
-  "background-position-x:" + 9 * widthK + "px;" +
-  "background-size: 44%;" +
-  "top: 0;" +
+  "background-position-x: center;" +
+  "background-size: 100%;" +
   "}",
 
   reportFilterReadyButton: ".report-filter-ready-button" +
@@ -10655,7 +10653,7 @@ var css = {
   "top: 29%;" +
   "position: absolute;" +
   "font-size: " + 29 * widthK + "px;" +
-  "color: white;" +
+  "color: #565d6a;" +
   "}",
 
   reportFilterClearFiltersIcon: ".report-filter-clear-filters-icon" +
@@ -10712,7 +10710,7 @@ var css = {
 
   filterInsideButtonMain: ".filter-inside-button-main " +
   "{" +
-  "background-image: url('resources/icons/ViewReport/reports_filters_close_white.png');" +
+  "background-image: url('resources/icons/ViewReport/reports_filters_close.png');" +
   "}",
 
   filterMenuBodyContainer: ".filter-menu-body-container " +
@@ -10728,7 +10726,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "color: 	#00A1EA;" +
+  "color: 	#565d6a;" +
   "font-size:" + 32 * widthK + "px;" +
   "width: 35%;" +
   "top: 12%;" +
@@ -10806,16 +10804,16 @@ var css = {
   viewReportsGraphButton: ".view-reports-graph-button " +
   "{" +
   "position: absolute;" +
-  "width:" + 138 * widthK + "px;" +
-  "height:" + 92 * widthK + "px;" +
-  "right:" + -36 * widthK + "px;" +
+  "width:" + 30 * widthK + "px;" +
+  "height:" + 35 * widthK + "px;" +
+  "right: 5.1%;" +
+  "top: 32.1%;" +
   "background-image: url('resources/icons/ViewReport/reports_chart.png');" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 23%;" +
+  "-webkit-background-size: 100%;" +
   "background-position-y: center;" +
-  "background-position-x:" + 62 * widthK + "px;" +
-  "background-size: 23%;" +
-  "top: 0;" +
+  "background-position-x: center;" +
+  "background-size: 100%;" +
   "}",
 
   //body
@@ -12987,7 +12985,7 @@ var css = {
   "{" +
   "width: " + 661 * widthK + "px;" +
   "height: " + 123 * widthK + "px;" +
-  "border-bottom: 1px solid #f6f6f6;" +
+  "border-bottom: 1px solid #e8e8e8;" +
   "}",
 
   trustedDevicesDeviceInfoIconContainer: ".trusted-devices-device-info-icon-container" +

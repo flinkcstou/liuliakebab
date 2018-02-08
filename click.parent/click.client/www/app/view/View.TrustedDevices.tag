@@ -1,9 +1,11 @@
 <view-trusted-devices class="riot-tags-main-container">
 
-  <div class="trusted-devices-page-title">
-    <p class="trusted-devices-title">{languages.ViewTrustedDevicesTitle}</p>
+  <div class="page-title">
+    <p class="name-title">{languages.ViewTrustedDevicesTitle}</p>
     <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchstart="goToBackStart()"
-         ontouchend="goToBackEnd()" class="trusted-devices-back-button"></div>
+         ontouchend="goToBackEnd()" class="back-button"></div>
+    <div class="title-bottom-border">
+    </div>
   </div>
 
   <div class="trusted-devices-content-container">

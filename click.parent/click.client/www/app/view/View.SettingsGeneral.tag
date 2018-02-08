@@ -35,19 +35,6 @@
       </div>
     </div>
     <div class="settings-container settings-general-container">
-      <div class="settings-general-gender-container">
-        <div class="settings-general-male-container" ontouchend="maleTouchEnd()">
-          <div id="maleIconId" class="settings-general-male-icon"></div>
-          <p id="maleTitleId" class="settings-general-gender-text">
-            {window.languages.ViewSettingsGeneralGenderMaleTitle}</p>
-        </div>
-        <div class="settings-general-line-between"></div>
-        <div class="settings-general-female-container" ontouchend="femaleTouchEnd()">
-          <div id="femaleIconId" class="settings-general-female-icon"></div>
-          <p id="femaleTitleId" class="settings-general-gender-text">
-            {window.languages.ViewSettingsGeneralGenderFemaleTitle}</p>
-        </div>
-      </div>
       <div class="settings-general-languages-container" if="{langChangeBool}">
         <div class="settings-general-lang-container" ontouchend="MakeMainCheck()">
           <p class="settings-general-lang-text">{window.languages.ViewSettingsGeneralLanguageRussian}</p>

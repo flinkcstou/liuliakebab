@@ -4,6 +4,8 @@
       <p class="name-title">{titleName}</p>
       <div id="backButton" ontouchstart="securityGoToBackStart()" ontouchend="securityGoToBackEnd()"
            class="back-button" role="button" aria-label="{window.languages.Back}"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
     <div class="settings-container">
 

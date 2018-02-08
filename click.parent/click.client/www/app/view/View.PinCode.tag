@@ -30,7 +30,7 @@
     <component-keyboard></component-keyboard>
   </div>
 
-  <div if="{device.platform != 'iOS'}" id="pinOfflineButtonId" class="pincode-button-offline"
+  <div if="{device.platform != 'iOS'}" id="pinOfflineButtonId" class="authorization-button-offline"
        ontouchstart="offlineModeTouchStart()"
        ontouchend="offlineModeTouchEnd()">
     {window.languages.ViewAuthorizationOfflineModeLabel}
@@ -252,33 +252,33 @@
 
 
       if (enteredPin.length == 0) {
-        circleOne.style.backgroundColor = 'transparent';
-        circleTwo.style.backgroundColor = 'transparent';
-        circleThree.style.backgroundColor = 'transparent';
-        circleFour.style.backgroundColor = 'transparent';
-        circleFive.style.backgroundColor = 'transparent';
+        circleOne.style.backgroundColor = '#b0aeb2';
+        circleTwo.style.backgroundColor = '#b0aeb2';
+        circleThree.style.backgroundColor = '#b0aeb2';
+        circleFour.style.backgroundColor = '#b0aeb2';
+        circleFive.style.backgroundColor = '#b0aeb2';
       }
       if (enteredPin.length == 1) {
         circleOne.style.backgroundColor = '#01cfff';
-        circleTwo.style.backgroundColor = 'transparent';
-        circleThree.style.backgroundColor = 'transparent';
-        circleFour.style.backgroundColor = 'transparent';
-        circleFive.style.backgroundColor = 'transparent';
+        circleTwo.style.backgroundColor = '#b0aeb2';
+        circleThree.style.backgroundColor = '#b0aeb2';
+        circleFour.style.backgroundColor = '#b0aeb2';
+        circleFive.style.backgroundColor = '#b0aeb2';
       }
       if (enteredPin.length == 2) {
         circleOne.style.backgroundColor = '#01cfff';
         circleTwo.style.backgroundColor = '#01cfff';
-        circleThree.style.backgroundColor = 'transparent';
-        circleFour.style.backgroundColor = 'transparent';
-        circleFive.style.backgroundColor = 'transparent';
+        circleThree.style.backgroundColor = '#b0aeb2';
+        circleFour.style.backgroundColor = '#b0aeb2';
+        circleFive.style.backgroundColor = '#b0aeb2';
       }
 
       if (enteredPin.length == 3) {
         circleOne.style.backgroundColor = '#01cfff';
         circleTwo.style.backgroundColor = '#01cfff';
         circleThree.style.backgroundColor = '#01cfff';
-        circleFour.style.backgroundColor = 'transparent';
-        circleFive.style.backgroundColor = 'transparent';
+        circleFour.style.backgroundColor = '#b0aeb2';
+        circleFive.style.backgroundColor = '#b0aeb2';
       }
 
       if (enteredPin.length == 4) {
@@ -286,7 +286,7 @@
         circleTwo.style.backgroundColor = '#01cfff';
         circleThree.style.backgroundColor = '#01cfff';
         circleFour.style.backgroundColor = '#01cfff';
-        circleFive.style.backgroundColor = 'transparent';
+        circleFive.style.backgroundColor = '#b0aeb2';
       }
 
       if (enteredPin.length == 5) {
