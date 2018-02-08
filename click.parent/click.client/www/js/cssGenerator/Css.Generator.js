@@ -2617,13 +2617,13 @@ var css = {
   footerIconTick: ".footer-icon-tick " +
   "{" +
   "position: absolute;" +
-  "left:" + 185 * widthK + "px;" +
+  "left:" + 192 * widthK + "px;" +
   "background-size: contain;" +
   "background-image: url(resources/icons/footer/contacts.png);" +
   "background-repeat: no-repeat;" +
-  "width:" + 33 * widthK + "px;" +
-  "height:" + 18 * widthK + "px;" +
-  "top:" + 27 * widthK + "px;" +
+  "width:" + 30 * widthK + "px;" +
+  "height:" + 15 * widthK + "px;" +
+  "top:" + 29 * widthK + "px;" +
   "transition: 0.8s;" +
   "}",
 
@@ -2823,7 +2823,7 @@ var css = {
   myCardsButtonIconPayment: ".my-cards-button-icon-payment " +
   "{" +
   "background-image: url(resources/icons/ViewMyCards/cardpayments.png);" +
-  "background-size: 25%;" +
+  "background-size: 35%;" +
   "background-position: center;" +
   "}",
 
@@ -3170,7 +3170,7 @@ var css = {
   "right:" + 30 * widthK + "px;" +
   "left:" + 30 * widthK + "px;" +
   "height:" + 89 * widthK + "px;" +
-  "border-bottom:" + 1 + "px solid #f4f4f4;" +
+  "border-bottom:" + 1 + "px solid #e8e8e8;" +
   "}",
 
   viewInfoBackButton: ".view-info-back-button " +
@@ -3582,7 +3582,7 @@ var css = {
   "min-height:" + 100 * widthK + "px; " +
   "width: 100%;" +
   "padding-top: 1%;" +
-  "border-bottom:" + 1 + "px solid gainsboro;" +
+  // "border-bottom:" + 1 + "px solid gainsboro;" +
   "background-color: transparent;" +
   "}",
 
@@ -4576,7 +4576,7 @@ var css = {
   "background-color: transparent;" +
   "width: 100%;" +
   "height: 7.5%;" +
-  "border-bottom: 1px solid lightgray;" +
+  // "border-bottom: 1px solid lightgray;" +
   "}",
 
   pincardPayfromField: ".pincard-payfrom-field" +
@@ -4618,7 +4618,7 @@ var css = {
   "width: 100%;" +
   "height: " + 162 * widthK + "px; " +
   "background-color: transparent;" +
-  "border-bottom:  " + 1 + "px solid lightgray;" +
+  // "border-bottom:  " + 1 + "px solid lightgray;" +
   "}",
 
   pincardCardLogoContainer: ".pincard-card-logo-container" +
@@ -4926,7 +4926,7 @@ var css = {
   "position: relative;" +
   "width: 100%;" +
   "height: 24%;" +
-  "border-bottom: 1px solid lightgray;" +
+  // "border-bottom: 1px solid lightgray;" +
   "color: white;" +
   "}",
 
@@ -4966,7 +4966,7 @@ var css = {
   "position: relative;" +
   "width: 100%;" +
   "height: 22.5%;" +
-  "border-bottom:  " + 1 + "px solid lightgray;" +
+  // "border-bottom:  " + 1 + "px solid lightgray;" +
   "color: white;" +
   //"top: 23%;" +
   "}",
@@ -4976,7 +4976,7 @@ var css = {
   "position: relative;" +
   "width: 100%;" +
   "height: 24.5%;" +
-  "border-bottom:  " + 1 + "px solid lightgray;" +
+  // "border-bottom:  " + 1 + "px solid lightgray;" +
   "color: white;" +
   //"top: 23%;" +
   "}",
@@ -5026,7 +5026,7 @@ var css = {
   "position: relative;" +
   "width: 100%;" +
   "height: 32%;" +
-  "border-bottom:1px solid lightgray;" +
+  // "border-bottom:1px solid lightgray;" +
   "color: white;" +
   //"top: 23%;" +
   "}",
@@ -5420,7 +5420,7 @@ var css = {
   "background-position-y: center;" +
   "background-position-x: center;" +
   "background-size: 100%;" +
-  "top: 32%" +
+  "top: 29%" +
   "}",
 
   myCardListNameTitle: ".mycardlist-name-title " +
@@ -8851,13 +8851,13 @@ var css = {
 
   settingsGeneralContainer: ".settings-general-container" +
   "{" +
-  "top:" + 500 * widthK + "px; " +
+  "top:" + 582 * widthK + "px; " +
   "}",
 
   settingsGeneralUserInfoContainer: ".settings-general-user-info-container" +
   "{" +
   "position: absolute;" +
-  "height:" + 500 * widthK + "px;" +
+  "height:" + 582 * widthK + "px;" +
   "width:100%;" +
   "background: white;" +
   "}",
@@ -8865,12 +8865,12 @@ var css = {
   settingsGeneralUserIcon: ".settings-general-user-icon" +
   "{" +
   "position: absolute;" +
-  "height:" + 169 * widthK + "px;" +
-  "width:" + 169 * widthK + "px;" +
-  "top:" + 90 * widthK + "px;" +
-  "left: 37.5%;" +
+  "height:" + 179 * widthK + "px;" +
+  "width:" + 179 * widthK + "px;" +
+  "top:" + 149 * widthK + "px;" +
+  "left:" + 271 * widthK + "px;" +
   //"border:" + 4 * widthK + "px solid white;" +
-  "border-radius:" + 90 * widthK + "px;" +
+  "border-radius:" + 100 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-size: cover;" +
   "background-position: center;" +
@@ -8893,9 +8893,9 @@ var css = {
   "outline: none;" +
   "position: absolute;" +
   "top: 25%;" +
-  "left: 8%;" +
+  "left: 10.5%;" +
   "width: 80%;" +
-  "font-size:" + 42 * widthK + "px; " +
+  "font-size:" + 38.5 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
   "padding: 0;" +
   "margin: 0;" +
@@ -8909,7 +8909,7 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "height: 25%;" +
-
+  "top: 5%;" +
   "}",
 
   settingsGeneralLanguagesContainer: ".settings-general-languages-container " +
@@ -8925,53 +8925,52 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 20%;" +
-  "height: 100%;" +
-  "left: 26%;" +
+  "height:" + 162 * widthK + "px;" +
+  "left: 25%;" +
   "}",
 
   settingsGeneralFemaleContainer: ".settings-general-female-container" +
   "{" +
   "position: absolute;" +
   "width: 20%;" +
-  "height: 100%;" +
+  "height:" + 162 * widthK + "px;" +
   "left: 54%;" +
   "}",
 
   settingsGeneralMaleIcon: ".settings-general-male-icon" +
   "{" +
   "position: relative;" +
-  "width: 80%;" +
-  "height: 92%;" +
-  "/*top: 20%;*/" +
-  "left: 11%;" +
+  "width:" + 89 * widthK + "px;" +
+  "height:" + 94 * widthK + "px;" +
+  "left: 21%;" +
+  "top: 17%;" +
   "background-repeat: no-repeat;" +
-  "background-size: 70%;" +
   "background-position: center;" +
+  "background-size: 100%;" +
   "background-image: url('resources/icons/ViewSettingsGeneral/general_male_inactive.png');" +
   "}",
 
   settingsGeneralFemaleIcon: ".settings-general-female-icon" +
   "{" +
   "position: relative;" +
-  "width: 80%;" +
-  "height: 92%;" +
-  "top: 0%;" +
-  "left: 11%;" +
+  "width:" + 89 * widthK + "px;" +
+  "height:" + 94 * widthK + "px;" +
+  "top: 17%;" +
+  "left: 18%;" +
   "background-repeat: no-repeat;" +
-  "background-size: 74%;" +
   "background-position: center;" +
+  "background-size: 100%;" +
   "background-image: url('resources/icons/ViewSettingsGeneral/general_female_inactive.png');" +
   "}",
 
   settingsGeneralGenderText: ".settings-general-gender-text" +
   "{" +
   "position: relative;" +
-  "margin: 0;" +
+  "margin-top:" + 30 * widthK + "px;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
   "text-align: center;" +
   "padding: 0;" +
-  "bottom: 12%;" +
   "color: lightgray;" +
   "font-size:" + 24 * widthK + "px;" +
   "}",
@@ -8982,7 +8981,7 @@ var css = {
   "left: 50%;" +
   "width: 1px;" +
   "height: 60%;" +
-  "top: 28%;" +
+  "top: 18%;" +
   "background-color: lightgrey;" +
   "}",
 
@@ -9003,8 +9002,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 90%;" +
-  "height: 17%;" +
-  "bottom: 29%;" +
+  "height:" + 97 * widthK + "px;" +
+  "top: 60%;" +
   "border-bottom: 1px solid #e8e8e8;" +
   "left: 5%;" +
   "}",
@@ -9012,12 +9011,12 @@ var css = {
   settingsGeneralUserNameSave: ".settings-general-user-name-save" +
   "{" +
   "position: absolute;" +
-  "width: 9%;" +
-  "height: 85%;" +
-  "top: 13%;" +
-  "right: 0;" +
+  "width:" + 32 * widthK + "px;" +
+  "height:" + 32 * widthK + "px;" +
+  "top: 34%;" +
+  "right: 3.3%;" +
   "background-repeat: no-repeat;" +
-  "background-size: 70%;" +
+  "background-size: 100%;" +
   "background-position: center;" +
   "background-image: url('resources/icons/ViewSettingsGeneral/general_edit.png');" +
   //"background-image: url('resources/icons/ViewSettingsGeneral/general_save.png');" +
@@ -9037,7 +9036,7 @@ var css = {
   "width: 41%;" +
   "height: 50%;" +
   "top: 13%;" +
-  "margin-left: 13%;" +
+  "margin-left: 11%;" +
   "margin-right: 0%;" +
   "float: left;" +
   "}",
@@ -9045,24 +9044,23 @@ var css = {
   settingsGeneralDownloadTitle: ".settings-general-download-title" +
   "{" +
   "position: absolute;" +
-  "top: 20%;" +
+  "top: 32%;" +
   "left: 27%;" +
   "margin: 0;" +
   "color: #565d6a;" +
   "font-size:" + 27 * widthK + "px;" +
-  "background-color: white;" +
   "}",
 
   settingsGeneralDownloadIcon: ".settings-general-download-icon" +
   "{" +
   "position: absolute;" +
-  "width: 9%;" +
-  "height: 85%;" +
-  "top: 13%;" +
-  "left: 13%;" +
+  "width:" + 17 * widthK + "px;" +
+  "height:" + 30 * widthK + "px;" +
+  "top: 29%;" +
+  "left: 11%;" +
   "background-repeat: no-repeat;" +
-  "background-size: 75%;" +
   "background-position: center;" +
+  "background-size: 100%;" +
   "background-image: url('resources/icons/ViewSettingsGeneral/general_upload.png');" +
   "}",
 
@@ -9088,13 +9086,13 @@ var css = {
   settingsGeneralDeleteIcon: ".settings-general-delete-icon" +
   "{" +
   "position: absolute;" +
-  "width: 9%;" +
-  "height: 85%;" +
-  "top: 13%;" +
-  "left: 13%;" +
+  "width:" + 25 * widthK + "px;" +
+  "height:" + 24 * widthK + "px;" +
+  "top: 36%;" +
+  "left: 10%;" +
   "background-repeat: no-repeat;" +
-  "background-size: 75%;" +
   "background-position: center;" +
+  "background-size: 100%;" +
   "background-image: url('resources/icons/ViewSettingsGeneral/general_delete.png');" +
   "}",
 
@@ -12373,7 +12371,6 @@ var css = {
   "{" +
   "position: relative;" +
   "font-size:" + 24 * widthK + "px; " +
-  "max-height:" + 60 * widthK + "px; " +
   "width: 50%; " +
   "text-align: left; " +
   "margin: 0; " +
@@ -13080,7 +13077,7 @@ var css = {
   "background-color: transparent;" +
   "width: 100%;" +
   "height: 7.5%;" +
-  "border-bottom: 1px solid lightgray;" +
+  // "border-bottom: 1px solid lightgray;" +
   "}",
 
   qrPincardPayfromField: ".qr-pincard-payfrom-field" +
@@ -13506,7 +13503,7 @@ var css = {
   "position: relative;" +
   "width: 100%;" +
   "height: 24.5%;" +
-  "border-bottom:  " + 1 + "px solid lightgray;" +
+  // "border-bottom:  " + 1 + "px solid lightgray;" +
   "color: white;" +
   //"top: 23%;" +
   "}",
@@ -13516,7 +13513,7 @@ var css = {
   "position: relative;" +
   "width: 100%;" +
   "height: 32%;" +
-  "border-bottom:1px solid lightgray;" +
+  // "border-bottom:1px solid lightgray;" +
   "color: white;" +
   //"top: 23%;" +
   "}",
@@ -13704,10 +13701,10 @@ var css = {
   reportServiceIcon: ".report-service-icon" +
   "{" +
   "position: absolute;" +
-  "height:" + 285 * widthK + "px;" +
-  "width:" + 285 * widthK + "px;" +
-  "top:" + 95 * widthK + "px;" +
-  "left:" + 29 * widthK + "px;" +
+  "height:" + 235 * widthK + "px;" +
+  "width:" + 235 * widthK + "px;" +
+  "top:" + 130 * widthK + "px;" +
+  "left:" + 55 * widthK + "px;" +
   // "-webkit-transform: translate3d(-50%, 0, 0);" +
   //"border:" + 4 * widthK + "px solid white;" +
   // "border-radius:" + 90 * widthK + "px;" +
@@ -13732,7 +13729,6 @@ var css = {
   "margin: 0; " +
   "margin-left: 46%; " +
   "margin-top:" + 172 * widthK + "px; " +
-  "margin-bottom:" + 8 * widthK + "px; " +
   "text-align: left;" +
   "text-overflow: ellipsis; " +
   "overflow: hidden; " +
@@ -13746,8 +13742,11 @@ var css = {
   "width: 50%; " +
   "margin: 0; " +
   "margin-left: 46%; " +
-  "color: #565d6a;" +
+  "margin-top:" + 8 * widthK + "px; " +
+  "color: #a9abaf;" +
   "text-align: left;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
   "}",
 
   reportServiceBodyContainer: ".report-service-body-container" +
@@ -13778,7 +13777,7 @@ var css = {
   "{" +
   "position: relative;" +
   "top: 0;" +
-  "height: 51%;" +
+  "height: 55%;" +
   "}",
 
   reportServiceDataContainer: ".report-service-data-container" +
@@ -13794,9 +13793,9 @@ var css = {
   reportServicePhoneField: ".report-service-phone-field" +
   "{" +
   "position: relative;" +
-  "width: 92%;" +
-  "margin: 0 4%;" +
-  "height: 23.5%;" +
+  "width: 90%;" +
+  "margin: 0 5%;" +
+  "height: " + 110 * widthK + "px; " +
   "border-bottom: 1px solid lightgray;" +
   "color: white;" +
   "}",
@@ -13807,17 +13806,17 @@ var css = {
   "margin: 0;" +
   "color: darkgray;" +
   "font-size: " + 23 * widthK + "px; " +
-  "left: 4%;" +
-  "top: " + 13 * widthK + "px; " +
+  "left: 3%;" +
+  "top: 9%; " +
   "}",
 
   reportServicePhoneInput: ".report-service-phone-input" +
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "left: 4%;" +
-  "top: 56%;" +
-  "font-size: " + 28 * widthK + "px; " +
+  "left: 3%;" +
+  "top: 52%;" +
+  "font-size: " + 29 * widthK + "px; " +
   "color: gray;" +
   "}",
 
@@ -13825,13 +13824,13 @@ var css = {
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "left: 4%;" +
-  "top: " + 40 * widthK + "px; " +
-  "font-size: " + 28 * widthK + "px; " +
+  "left: 3%;" +
+  "top: " + 49 * widthK + "px; " +
+  "font-size: " + 29 * widthK + "px; " +
   "color: gray;" +
   "text-overflow: ellipsis;" +
   "width: " + 625 * widthK + "px;" +
-  "max-height: " + 73 * widthK + "px;" +
+  "max-height: " + 110 * widthK + "px;" +
   "overflow: hidden;" +
   "word-wrap: break-word;" +
   "}",
@@ -13840,9 +13839,9 @@ var css = {
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "left: 4%;" +
-  "top: 45%;" +
-  "font-size: " + 28 * widthK + "px; " +
+  "left: 3%;" +
+  "top: " + 49 * widthK + "px; " +
+  "font-size: " + 29 * widthK + "px; " +
   "text-overflow: ellipsis;" +
   "width: " + 625 * widthK + "px;" +
   "max-height: " + 80 * widthK + "px;" +
@@ -13868,9 +13867,9 @@ var css = {
   reportServiceField: ".report-service-field" +
   "{" +
   "position: relative;" +
-  "width: 92%;" +
-  "margin: 0 4% 0 4%;" +
-  "height: 20.5%;" +
+  "width: 90%;" +
+  "margin: 0 5%;" +
+  "height: " + 94 * widthK + "px; " +
   "border-bottom:  " + 1 + "px solid lightgray;" +
   "color: white;" +
   //"top: 23%;" +
@@ -13884,7 +13883,7 @@ var css = {
   reportServiceLastField: ".report-service-last-field" +
   "{" +
   "border: none;" +
-  "height: 30%;" +
+  "height: 34%;" +
   "}",
 
   reportServiceStatusError: ".report-service-status-error" +
@@ -13926,9 +13925,8 @@ var css = {
   reportServiceButtonInfoContainer: ".report-service-button-info-container" +
   "{" +
   "height: " + 50 * widthK + "px;" +
-  "margin-top: " + 20 * widthK + "px;" +
-  "margin-left: 4%;" +
-  "margin-right: 4%;" +
+  "margin-top: " + 22 * widthK + "px;" +
+  "margin-left: 3%;" +
   "margin-bottom: 0;" +
   "}",
 

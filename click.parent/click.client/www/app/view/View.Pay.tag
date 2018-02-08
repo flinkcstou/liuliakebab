@@ -36,6 +36,8 @@
                 </div>
               </li>
             </ul>
+            <div class="title-bottom-border">
+            </div>
           </div>
         </li>
       </ul>

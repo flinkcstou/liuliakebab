@@ -1,7 +1,7 @@
 <view-settings-support id="settingsSupportId" class="view-settings-support riot-tags-main-container">
   <div class="settings-support-blue-container">
 
-    <div class="settings-support-page-title">
+    <div class="page-title">
       <div id="closeButtonId" role="button" aria-label="{window.languages.Close}" class="settings-support-x-button"
            ontouchstart="closeSettingsSupportTouchStart()" ontouchend="closeSettingsSupportTouchEnd()"></div>
     </div>

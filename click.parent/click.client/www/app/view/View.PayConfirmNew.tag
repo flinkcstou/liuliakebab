@@ -21,6 +21,8 @@
       <div class="payconfirm-phone-field" if="{formType!=2}">
         <p class="payconfirm-text-field">{firstFieldTitle}</p>
         <p class="payconfirm-phone-input">{firstFieldText}</p>
+        <div class="title-bottom-border">
+        </div>
       </div>
       <div class="payconfirm-amount-field">
         <p class="payconfirm-amount-text-field">{window.languages.ViewPayConfirmAmountOfPay}</p>
@@ -31,6 +33,8 @@
 
         <p if="{opts.cost > 1}" class="payconfirm-amount-count-field">{opts.lang_amount_title}:
           {window.amountTransform(opts.amountWithoutSpace)}</p>
+        <div class="title-bottom-border">
+        </div>
       </div>
       <div class="payconfirm-field">
         <p class="payconfirm-text-field">{(opts.mode=='ADDAUTOPAY')?
@@ -38,6 +42,8 @@
         <p class="{payconfirm-category-input:opts.mode!='ADDAUTOPAY',payconfirm-phone-input:opts.mode=='ADDAUTOPAY'}">
           {(opts.mode=='ADDAUTOPAY')?
           (autoPayConditionText):(categoryName)}</p>
+        <div class="title-bottom-border">
+        </div>
       </div>
       <div class="payconfirm-card-field" if="{cardOrFriendBool}">
         <div class="payconfirm-card-info-container">
@@ -48,6 +54,8 @@
         </div>
         <div class="payconfirm-card-logo-container"
              style="background-image: url({url})">
+        </div>
+        <div class="title-bottom-border">
         </div>
       </div>
       <div class="payconfirm-card-field" if="{!cardOrFriendBool}">

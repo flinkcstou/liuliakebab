@@ -1,9 +1,9 @@
 <view-security-settings>
   <div class="riot-tags-main-container">
-    <div class="settings-page-title">
-      <p class="pay-name-title">{titleName}</p>
+    <div class="page-title">
+      <p class="name-title">{titleName}</p>
       <div id="backButton" ontouchstart="securityGoToBackStart()" ontouchend="securityGoToBackEnd()"
-           class="pay-back-button" role="button" aria-label="{window.languages.Back}"></div>
+           class="back-button" role="button" aria-label="{window.languages.Back}"></div>
     </div>
     <div class="settings-container">
 

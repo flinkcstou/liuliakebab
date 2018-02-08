@@ -7,7 +7,7 @@
       <div id="rightButton" role="button" aria-label="{window.languages.ViewFriendHelpSettingsVoiceOverAddFriend}"
            ontouchstart="goToAddFriendViewStart()"
            ontouchend="goToAddFriendViewEnd()"
-           class="settings-friend-help-add-button"></div>
+           class="add-button"></div>
       <div class="title-bottom-border">
       </div>
     </div>

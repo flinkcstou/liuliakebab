@@ -22,6 +22,8 @@
       <div id="check{i.card_id}"
            class="{pincard-card-uncheckmark: 'check'+i.card_id != checkedId, pincard-card-checkmark: 'check'+i.card_id == checkedId}">
       </div>
+      <div class="title-bottom-border">
+      </div>
     </div>
 
   </div>

@@ -23,12 +23,16 @@
         <p class="qr-payconfirm-phone-input">{amountTextCopy} {currency}</p>
         <p if="{tax}" class="qr-payconfirm-tax-field">{window.languages.ViewTransferFourTax} {tax}
           {objectCardForTransfer.currency}</p>
+        <div class="title-bottom-border">
+        </div>
       </div>
       <div class="qr-payconfirm-field">
         <p class="qr-payconfirm-text-field">{opts[2].location? window.languages.ViewPayConfirmServiceId
           : window.languages.ViewPayConfirmCategory}</p>
         <p class="qr-payconfirm-phone-input" style="text-decoration: underline">
           {opts[2].location? opts[2].id : categoryName}</p>
+        <div class="title-bottom-border">
+        </div>
       </div>
       <div class="qr-payconfirm-card-field" if="{cardOrFriendBool}">
         <div class="qr-payconfirm-card-info-container">
@@ -39,6 +43,8 @@
         </div>
         <div class="qr-payconfirm-card-logo-container"
              style="background-image: url({url})">
+        </div>
+        <div class="title-bottom-border">
         </div>
       </div>
       <div class="qr-payconfirm-card-field" if="{!cardOrFriendBool}">
