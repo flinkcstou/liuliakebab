@@ -573,6 +573,15 @@
           "transaction_id": opts.transactionId
         };
       }
+      else if (opts.formtype == 5) {
+        payment_data = {
+          "value": firstFieldtext,
+          "additional_param3": opts.paymentDataAttributes[1],
+          "additional_param4": opts.paymentDataAttributes[2],
+          "additional_param5": opts.paymentDataAttributes[0],
+          "transaction_id": opts.transactionId
+        };
+      }
 
       if (opts.mode != 'ADDAUTOPAY') {
 
