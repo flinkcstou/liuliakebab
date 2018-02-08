@@ -1,11 +1,13 @@
 <view-payment-detail class="view-payment-detail riot-tags-main-container">
 
   <div class="transfer-to-card-title-container">
-    <div class="page-title account-detail-page-title">
+    <div class="page-title">
       <p class="name-title">{window.languages.ViewPaymentDetailTitle + opts.invoiceId}</p>
       <div id="paymentDetailBackButtonId" role="button" aria-label="{window.languages.Back}"
            ontouchstart="paymentDetailGoToBackStart()"
-           ontouchend="paymentDetailGoToBackEnd()" class="settings-general-back-button"></div>
+           ontouchend="paymentDetailGoToBackEnd()" class="back-button"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
 
     <div class="payment-detail-payment-icon"></div>
@@ -19,7 +21,8 @@
 
     <p class="transfer-to-card-transfer-title-phone" if="{opts.is_friend_help}">{opts.friend_name?opts.friend_name:
       ('+'+opts.phoneNumber)}</p>
-
+    <div class="title-bottom-border">
+    </div>
   </div>
 
   <div class="transfer-to-card-container">
@@ -37,9 +40,7 @@
 
     <component-pincards paymentdetail="{true}" clean="{true}" useFor="payment"></component-pincards>
 
-    <div class="account-detail-cover"></div>
-
-    <div class="account-detail-buttons-container">
+    <div class="account-detail-buttons-container upper-shadow">
       <button id="paymentAcceptButtonId" class="account-detail-button-accept"
               ontouchend="paymentDetailOnTouchEndAccept()"
               ontouchstart="paymentDetailOnTouchStartAccept()">

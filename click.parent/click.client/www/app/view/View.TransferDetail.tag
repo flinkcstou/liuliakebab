@@ -20,7 +20,8 @@
     <p class="transfer-detail-transfer-icon-title-phone">
       +{opts.phoneNumber.substring(0, 3) + ' ' +
       inputVerification.telVerificationWithSpace(opts.phoneNumber.substring(3, opts.phoneNumber.length))}</p>
-
+    <div class="title-bottom-border">
+    </div>
   </div>
 
   <div class="transfer-detail-container">
@@ -41,9 +42,7 @@
       <p class="transfer-detail-status">Ожидает подтверждения</p>
     </div>
 
-    <div class="transfer-detail-cover"></div>
-
-    <div class="transfer-detail-buttons-container">
+    <div class="transfer-detail-buttons-container upper-shadow">
       <button id="acceptTransferButtonId" class="transfer-detail-button-accept"
               ontouchend="transferDetailOnTouchEndAccept()"
               ontouchstart="transferDetailOnTouchStartAccept()">

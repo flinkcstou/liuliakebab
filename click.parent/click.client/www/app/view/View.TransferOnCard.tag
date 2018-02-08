@@ -1,13 +1,18 @@
 <view-transfer-on-card class="view-transfer-on-card riot-tags-main-container">
 
   <div class="view-transfer-on-card-title-container">
+    <div class="page-title">
+      <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()"
+           class="back-button"></div>
+      <div class="title-bottom-border">
+      </div>
+    </div>
     <p class="view-transfer-on-card-title-text-part-one">{languages.ViewTransferOnCardTitleTextPartOne}</p>
     <p class="view-transfer-on-card-title-text-part-two-sum">{opts.amount} сум</p>
     <p class="view-transfer-on-card-title-text-part-three">{languages.ViewTransferOnCardTitleTextPartTwo}</p>
+    <div class="title-bottom-border">
+    </div>
   </div>
-
-  <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()"
-       class="view-transfer-on-card-back-button"></div>
 
   <div class="view-transfer-on-card-content-container">
 

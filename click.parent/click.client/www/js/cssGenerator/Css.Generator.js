@@ -2531,6 +2531,13 @@ var css = {
   "box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
   "}",
 
+  upperShadow: ".upper-shadow " +
+  "{" +
+  "-webkit-box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
+  "-moz-box-shadow: 0 -8px 40px 8px rgba(0,0,0, .05);" +
+  "box-shadow: 0 -8px 40px 8px rgba(0,0,0, .05);" +
+  "}",
+
   nameTitle: ".name-title " +
   "{" +
   "position: absolute;" +
@@ -5272,38 +5279,40 @@ var css = {
 
   searchSearchIcon: ".search-search-icon " +
   "{" +
-  "position: relative;" +
-  "width: 13%;" +
-  "height: 100%;" +
-  "left: 3%;" +
+  "position: absolute;" +
+  "width:" + 36 * widthK + "px;" +
+  "height:" + 37 * widthK + "px;" +
+  "left: 5.5%;" +
+  "top: 29%;" +
   "background-repeat: no-repeat;" +
   "float: left;" +
-  "background-image: url(resources/icons/search/search.png);" +
+  "background-image: url(resources/icons/search/search_white.png);" +
   "background-position: center;" +
-  "background-size: 38%;" +
+  "background-size: 100%;" +
   "}",
 
   searchTitleName: ".search-title-name " +
   "{" +
-  "position: relative;" +
-  "float: left;" +
+  "position: absolute;" +
   "margin: 0;" +
   "margin-top:" + 25 * widthK + "px;" +
-  "left: 3%;" +
+  "font-size:" + 35 * widthK + "px;" +
+  "left: 13%;" +
   "color: white;" +
   "}",
 
   searchCancelIcon: ".search-cancel-icon " +
   "{" +
   "position: absolute;" +
-  "right: 0;" +
-  "width: 23%;" +
-  "height: 100%;" +
+  "right: 8%;" +
+  "top: 33%;" +
+  "width:" + 34 * widthK + "px;" +
+  "height:" + 34 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-image: url(resources/icons/search/close.png);" +
   "background-position-y: center;" +
-  "background-position-x: 70%;" +
-  "background-size: 20%;" +
+  "background-position-x: center;" +
+  "background-size: 100%;" +
   "z-index: 1;" +
   "}",
 
@@ -7407,6 +7416,7 @@ var css = {
   "height: 100%;" +
   "width: 100%;" +
   "background-color: #353340;" +
+  "z-index: 10;" +
   "display: none;" +
   "}",
 
@@ -9611,9 +9621,9 @@ var css = {
   "position: absolute;" +
   //"height:" + 1150 * widthK + "px; " +
   "width:100%; " +
-  "top:" + 380 * widthK + "px; " +
+  "top:" + 410 * widthK + "px; " +
   "bottom:0; " +
-  "background-color: #ffffff; " +
+  "background-color: white; " +
   "overflow-y: hidden; " +
   "overflow-x: hidden; " +
   "}",
@@ -9621,9 +9631,9 @@ var css = {
   transferDetailTitleContainer: ".transfer-detail-title-container" +
   "{" +
   "position: absolute;" +
-  "height:" + 380 * widthK + "px;" +
+  "height:" + 410 * widthK + "px;" +
   "width:100%;" +
-  "background-color: #00a8f1;" +
+  "background-color: white;" +
   "}",
 
   transferDetailPageTitle: ".transfer-detail-page-title " +
@@ -9642,71 +9652,67 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 90%;" +
-  "height: 11.5%;" +
+  "height:" + 147 * widthK + "px;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
-  "border-bottom: 1px solid lightgrey;" +
+  "border-bottom: 1px solid #e8e8e8;" +
   "}",
 
   transferDetailTransferIcon: ".transfer-detail-transfer-icon" +
   "{" +
   "position: absolute;" +
-  "height:" + 90 * widthK + "px;" +
-  "width:" + 90 * widthK + "px;" +
-  "top:" + 104 * widthK + "px;" +
-  "left: 44%;" +
+  "height:" + 142 * widthK + "px;" +
+  "width:" + 110 * widthK + "px;" +
+  "top:" + 169 * widthK + "px;" +
+  "left:" + 120 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
   "background-position: center;" +
-  "background-image: url(resources/icons/invoice/transfers_invoice.png);" +
+  "background-image: url(resources/icons/bank-operations/transfers.png);" +
   "}",
 
   transferDetailTransferIconTitlePartOne: ".transfer-detail-transfer-icon-title-part-one " +
   "{" +
   "position: relative;" +
   "width: 50%;" +
-  "top: 59%;" +
   "margin: 0;" +
-  "color: white;" +
-  "margin-left: auto;" +
-  "margin-right: auto;" +
-  "text-align: center;" +
-  "font-size:" + 34 * widthK + "px;" +
+  "color: #565d6a;" +
+  "margin-left: 46%;" +
+  "margin-top:" + 172 * widthK + "px;" +
+  "text-align: left;" +
+  "font-size:" + 40 * widthK + "px;" +
   "}",
 
   transferDetailTransferIconTitlePartTwo: ".transfer-detail-transfer-icon-title-part-two " +
   "{" +
   "position: relative;" +
   "width: 50%;" +
-  "top: 57%;" +
   "margin: 0;" +
-  "color: white;" +
-  "margin-left: auto;" +
-  "margin-right: auto;" +
-  "text-align: center;" +
-  "font-size:" + 34 * widthK + "px;" +
+  "color: #565d6a;" +
+  "margin-left: 46%;" +
+  "text-align: left;" +
+  "font-size:" + 40 * widthK + "px;" +
   "}",
 
   transferDetailTransferIconTitlePhone: ".transfer-detail-transfer-icon-title-phone " +
   "{" +
   "position: relative;" +
   "width: 50%;" +
-  "top: 56%;" +
   "margin: 0;" +
-  "color: white;" +
-  "margin-left: auto;" +
-  "margin-right: auto;" +
-  "text-align: center;" +
-  "font-size:" + 34 * widthK + "px;" +
+  "color: #a9abaf;" +
+  "margin-left: 46%;" +
+  "margin-top:" + 8 * widthK + "px;" +
+  "text-align: left;" +
+  "font-size:" + 24 * widthK + "px;" +
   "}",
 
   transferDetailTitle: ".transfer-detail-title " +
   "{" +
   "position: absolute;" +
-  "top: 28%;" +
-  "left: 3%;" +
-  "font-size:" + 25 * widthK + "px;" +
-  "color: #c1c1c1;" +
+  "top: 19%;" +
+  "left: 2.8%;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "color: #a9abaf;" +
   "margin: 0;" +
   "text-align: center;" +
   "}",
@@ -9714,10 +9720,10 @@ var css = {
   transferDetailSum: ".transfer-detail-sum " +
   "{" +
   "position: absolute;" +
-  "top: 57%;" +
-  "left: 3%;" +
-  "font-size:" + 30 * widthK + "px;" +
-  "color: #c1c1c1;" +
+  "top: 49%;" +
+  "left: 2.5%;" +
+  "font-size:" + 40 * widthK + "px;" +
+  "color: #a9abaf;" +
   "margin: 0;" +
   "text-align: center;" +
   "color: #9ec94a;" +
@@ -9763,12 +9769,10 @@ var css = {
   "{" +
   "position: absolute;" +
   "width:100%;" +
-  "height:" + 90 * widthK + "px;" +
+  "height:" + 105 * widthK + "px;" +
   "bottom: 0;" +
-  "background-image: url(resources/icons/invoice/invoice_footer.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
-  "padding-top:" + 33 * widthK + "px;" +
   "}",
 
   transferDetailButtonCancel: ".transfer-detail-button-cancel" +
@@ -9778,6 +9782,7 @@ var css = {
   "float: left;" +
   "text-align: center;" +
   "margin-left: 4%;" +
+  "margin-top: " + 15.5 * widthK + "px;" +
   "background-color: #f46b5b;" +
   "font-size: " + 29 * widthK + "px;" +
   "height: " + 74 * widthK + "px;" +
@@ -9785,7 +9790,6 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "width: 44%;" +
-  "border-radius: " + 10 * widthK + "px;" +
   "color: #ffffff;" +
   "text-transform: capitalize;" +
   "}",
@@ -9794,6 +9798,7 @@ var css = {
   "{" +
   "margin: 0;" +
   "margin-right: 4%;" +
+  "margin-top: " + 15.5 * widthK + "px;" +
   "background-color: #00a8f1;" +
   "font-size: " + 29 * widthK + "px;" +
   "position: relative;" +
@@ -9804,7 +9809,6 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "width: 44%;" +
-  "border-radius: " + 10 * widthK + "px;" +
   "color: #ffffff;" +
   "text-transform: capitalize;" +
   "}",
@@ -9815,6 +9819,7 @@ var css = {
   "opacity: 0.95;" +
   "height: 100%;" +
   "width: 100%;" +
+  "z-index: 10;" +
   "background-color: #353340;" +
   "}",
 
@@ -10076,12 +10081,10 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height:" + 90 * widthK + "px;" +
+  "height:" + 105 * widthK + "px;" +
   "bottom: 0;" +
-  "background-image: url(resources/icons/invoice/invoice_footer.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
-  "padding-top:" + 33 * widthK + "px;" +
   "}",
 
   //accountDetailButtonAccept: ".account-detail-button-accept" +
@@ -10125,12 +10128,13 @@ var css = {
   "margin-left: 4%;" +
   "background-color: #f46b5b;" +
   "font-size: " + 29 * widthK + "px;" +
+  "margin-top: " + 15.5 * widthK + "px;" +
   "height: " + 74 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
   "width: 44%;" +
-  "border-radius: " + 10 * widthK + "px;" +
+  // "border-radius: " + 10 * widthK + "px;" +
   "color: #ffffff;" +
   "text-transform: capitalize;" +
   "}",
@@ -10144,12 +10148,13 @@ var css = {
   "position: relative;" +
   "float: right;" +
   "text-align: center;" +
+  "margin-top: " + 15.5 * widthK + "px;" +
   "height: " + 74 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
   "width: 44%;" +
-  "border-radius: " + 10 * widthK + "px;" +
+  // "border-radius: " + 10 * widthK + "px;" +
   "color: #ffffff;" +
   "text-transform: capitalize;" +
   "}",
@@ -10168,7 +10173,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%; " +
-  "top:" + 380 * widthK + "px; " +
+  "top:" + 410 * widthK + "px; " +
   "bottom:0; " +
   "background-color: #ffffff; " +
   "overflow-y: hidden; " +
@@ -10178,48 +10183,50 @@ var css = {
   transferToCardTitleContainer: ".transfer-to-card-title-container" +
   "{" +
   "position: absolute;" +
-  "height:" + 380 * widthK + "px;" +
+  "height:" + 410 * widthK + "px;" +
   "width:100%;" +
-  "background-color: #00a8f1;" +
+  "background-color: white;" +
   "}",
 
   transferToCardTransferTitlePartOne: ".transfer-to-card-transfer-title-part-one " +
   "{" +
   "position: relative;" +
   "width: 50%;" +
-  "top: 59%;" +
   "margin: 0;" +
-  "color: white;" +
-  "margin-left: auto;" +
-  "margin-right: auto;" +
-  "text-align: center;" +
-  "font-size:" + 34 * widthK + "px;" +
+  "color: #565d6a;" +
+  "margin-left: 46%;" +
+  "margin-top:" + 172 * widthK + "px;" +
+  "text-align: left;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "font-size:" + 40 * widthK + "px;" +
   "}",
 
   transferToCardTransferTitlePartTwo: ".transfer-to-card-transfer-title-part-two " +
   "{" +
   "position: relative;" +
   "width: 50%;" +
-  "top: 57%;" +
   "margin: 0;" +
-  "color: white;" +
-  "margin-left: auto;" +
-  "margin-right: auto;" +
-  "text-align: center;" +
-  "font-size:" + 34 * widthK + "px;" +
+  "color: #565d6a;" +
+  "margin-left: 46%;" +
+  "text-align: left;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "font-size:" + 40 * widthK + "px;" +
   "}",
 
   transferToCardTransferTitlePhone: ".transfer-to-card-transfer-title-phone " +
   "{" +
   "position: relative;" +
   "width: 50%;" +
-  "top: 56%;" +
   "margin: 0;" +
-  "color: white;" +
-  "margin-left: auto;" +
-  "margin-right: auto;" +
-  "text-align: center;" +
-  "font-size:" + 34 * widthK + "px;" +
+  "color: #a9abaf;" +
+  "margin-left: 46%;" +
+  "margin-top:" + 8 * widthK + "px;" +
+  "text-align: left;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "font-size:" + 24 * widthK + "px;" +
   "}",
 
   changedHeightForPaymentDetail: ".changed-height-for-payment-detail" +
@@ -10243,24 +10250,24 @@ var css = {
   paymentDetailPaymentIcon: ".payment-detail-payment-icon" +
   "{" +
   "position: absolute;" +
-  "height:" + 90 * widthK + "px;" +
-  "width:" + 90 * widthK + "px;" +
-  "top:" + 104 * widthK + "px;" +
-  "left: 44%;" +
+  "height:" + 142 * widthK + "px;" +
+  "width:" + 110 * widthK + "px;" +
+  "top:" + 169 * widthK + "px;" +
+  "left:" + 120 * widthK + "px;" +
   "background-repeat: no-repeat;" +
-  "background-size: 71%;" +
+  "background-size: 100%;" +
   "background-position: center;" +
-  "background-image: url(resources/icons/invoice/payment_invoice.png);" +
+  "background-image: url(resources/icons/bank-operations/payment.png);" +
   "}",
 
   paymentDetailPaymentContainer: ".payment-detail-payment-container" +
   "{" +
   "position: relative;" +
   "width: 90%;" +
-  "height: 11.5%;" +
+  "height:" + 148 * widthK + "px;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
-  "border-bottom: 1px solid lightgrey;" +
+  "border-bottom: 1px solid #e8e8e8;" +
   "}",
 
   paymentDetailPaymentContainerPayFrom: ".payment-detail-payment-container-pay-from" +
@@ -10275,10 +10282,10 @@ var css = {
   paymentDetailTitle: ".payment-detail-title " +
   "{" +
   "position: absolute;" +
-  "top: 28%;" +
-  "left: 3%;" +
-  "font-size:" + 25 * widthK + "px;" +
-  "color: #c1c1c1;" +
+  "top: 19%;" +
+  "left: 2.8%;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "color: #a9abaf;" +
   "margin: 0;" +
   "text-align: center;" +
   "}",
@@ -10307,13 +10314,12 @@ var css = {
   paymentDetailSum: ".payment-detail-sum " +
   "{" +
   "position: absolute;" +
-  "top: 57%;" +
-  "left: 3%;" +
-  "font-size:" + 30 * widthK + "px;" +
-  "color: #c1c1c1;" +
+  "top: 49%;" +
+  "left: 2.5%;" +
+  "font-size:" + 40 * widthK + "px;" +
+  "color: #a9abaf;" +
   "margin: 0;" +
   "text-align: center;" +
-  "color: #f46b5b;" +
   "}",
 
   paymentDetailNumber: ".payment-detail-number " +
@@ -12523,23 +12529,23 @@ var css = {
   "{" +
   "position: absolute;" +
   "top: 0;" +
-  "height:" + 220 * widthK + "px;" +
+  "height:" + 300 * widthK + "px;" +
   "width: 100%;" +
-  "background-color: #00a8f1;" +
+  "background-color: white;" +
   "}",
 
   viewTransferOnCardTitleTextPartOne: ".view-transfer-on-card-title-text-part-one" +
   "{" +
-  "color: white;" +
+  "color: #565d6a;" +
   "position: relative;" +
-  "margin:" + 50 * widthK + "px 0 0 " + 120 * widthK + "px;" +
+  "margin:" + 130 * widthK + "px 0 0 " + 120 * widthK + "px;" +
   "font-size:" + 34 * widthK + "px;" +
   "word-spacing:" + 3 * widthK + "px;" +
   "}",
 
   viewTransferOnCardTitleTextPartTwoSum: ".view-transfer-on-card-title-text-part-two-sum" +
   "{" +
-  "color: white;" +
+  "color: #565d6a;" +
   "position: relative;" +
   "margin: " + 2 * widthK + "px 0 0 " + 250 * widthK + "px;" +
   "font-size: " + 40 * widthK + "px;" +
@@ -12548,7 +12554,7 @@ var css = {
 
   viewTransferOnCardTitleTextPartThree: ".view-transfer-on-card-title-text-part-three" +
   "{" +
-  "color: white;" +
+  "color: #565d6a;" +
   "position: relative;" +
   "margin:" + (-9) * widthK + "px 0 0 " + 291 * widthK + "px;" +
   "font-size:" + 34 * widthK + "px;" +
@@ -12558,7 +12564,7 @@ var css = {
   viewTransferOnCardContentContainer: ".view-transfer-on-card-content-container" +
   "{" +
   "position: absolute;" +
-  "top: " + 220 * widthK + "px;" +
+  "top: " + 300 * widthK + "px;" +
   "width: 100%;" +
   "bottom: 0;" +
   "background: white;" +
