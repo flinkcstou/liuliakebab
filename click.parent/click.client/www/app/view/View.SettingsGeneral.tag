@@ -68,20 +68,20 @@
       }
 
       settingsUserNameId.value = scope.firstName + ' ' + scope.lastName;
-      if (scope.gender == 'M') {
-        maleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_male_active.png)'
-        maleTitleId.style.color = 'black'
-
-        femaleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_female_inactive.png)'
-        femaleTitleId.style.color = 'lightgrey'
-      }
-      else {
-        maleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_male_inactive.png)'
-        maleTitleId.style.color = 'lightgrey'
-
-        femaleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_female_active.png)'
-        femaleTitleId.style.color = 'black'
-      }
+//      if (scope.gender == 'M') {
+//        maleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_male_active.png)'
+//        maleTitleId.style.color = 'black'
+//
+//        femaleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_female_inactive.png)'
+//        femaleTitleId.style.color = 'lightgrey'
+//      }
+//      else {
+//        maleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_male_inactive.png)'
+//        maleTitleId.style.color = 'lightgrey'
+//
+//        femaleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_female_active.png)'
+//        femaleTitleId.style.color = 'black'
+//      }
 
       scope.update();
 

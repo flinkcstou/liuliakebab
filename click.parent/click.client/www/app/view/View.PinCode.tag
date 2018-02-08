@@ -1,9 +1,9 @@
 <view-pin-code class="view-pincode riot-tags-main-container">
-
   <div class="pincode-flex-container">
-
+    <div class="page-title">
     <div id="backButton" ontouchend="goToBackFromPinCodeTouchEnd()" ontouchstart="goToBackFromPinCodeTouchStart()"
-         class="{pincode-back-button: backbuttoncheck}">
+         class="{back-button: backbuttoncheck}">
+    </div>
     </div>
 
     <div class="pincode-unchangable-container">
@@ -244,6 +244,10 @@
       backFromPinCodeTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(backFromPinCodeTouchStartX - backFromPinCodeTouchEndX) <= 20 && Math.abs(backFromPinCodeTouchStartY - backFromPinCodeTouchEndY) <= 20) {
+        if (fromPayOrTransfer) {
+          console.log('opts on backkeydown', opts[1]);
+          onBackParams.opts = opts[1];
+        }
         onBackKeyDown();
       }
     };

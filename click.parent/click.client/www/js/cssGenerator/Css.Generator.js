@@ -8532,7 +8532,7 @@ var css = {
   "margin-right: auto;" +
   "background-size: contain;" +
   "width:" + 350 * widthK + "px;" +
-  "color: white;" +
+  "color: #565d6a;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
 
