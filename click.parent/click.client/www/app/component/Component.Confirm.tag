@@ -99,6 +99,7 @@
         if (opts.parent) {
           console.log("Confirm from parent");
           window.common.alert.hide("componentConfirmId");
+          return;
         }
 
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view === 'view-registration-device') {
