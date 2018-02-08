@@ -1,13 +1,13 @@
 <view-service-page-new class="view-service-page riot-tags-main-container">
   <div class="pay-page-title page-title-shadow" style="border-style: none;">
-    <p class="{servicepage-title :opts.mode!='ADDAUTOPAY', autopay-method-page-title:opts.mode=='ADDAUTOPAY'}">
+    <p class="servicepage-title">
       {(opts.mode=='ADDAUTOPAY')?(window.languages.ViewAutoPayTitleName):("")}
       {titleName}</p>
     <p class="servicepage-category-field">{(opts.mode=='ADDAUTOPAY')?
       (window.languages.ViewAutoPayMethodSchedulerText):(categoryName)}</p>
     <div id="servicePageBackButtonId" role="button" aria-label="{window.languages.Back}" ontouchend="onTouchEndOfBack()"
          ontouchstart="onTouchStartOfBack()"
-         class="{servicepage-button-back:opts.mode!='ADDAUTOPAY', autopay-method-back-button:opts.mode=='ADDAUTOPAY'}">
+         class="servicepage-button-back">
     </div>
     <div type="button" class="servicepage-service-icon" if="{opts.mode=='ADDAUTOPAY'}"
          style="background-image: url({serviceIcon})"></div>

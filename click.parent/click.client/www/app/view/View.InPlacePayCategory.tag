@@ -4,8 +4,6 @@
       <p class="name-title">{titleName}</p>
       <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchstart="goToBackStart()"
            ontouchend="goToBackEnd()" class="back-button"></div>
-      <div class="title-bottom-border">
-      </div>
     </div>
 
     <div class="inplace-pay-category-container" id="categoriesContainerId">

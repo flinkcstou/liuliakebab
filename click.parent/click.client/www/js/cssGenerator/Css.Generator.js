@@ -13783,7 +13783,7 @@ var css = {
   "{" +
   "position: relative;" +
   "top: 0;" +
-  "height: 55%;" +
+  "height: " + 452 * widthK + "px; " +
   "}",
 
   reportServiceDataContainer: ".report-service-data-container" +
@@ -16065,7 +16065,7 @@ var css = {
   "position: absolute;" +
   "height:94%; " +
   "width: 100%; " +
-  "top:" + 86 * widthK + "px; " +
+  "top:" + 88 * widthK + "px; " +
   "bottom:0; " +
   "z-index:3; " +
   "overflow:hidden; " +
@@ -16112,7 +16112,7 @@ var css = {
   "width: 90%;" +
   "left: 5%;" +
   "padding-top: 1%;" +
-  "border-top:" + 0.5 + "px solid gainsboro;" +
+  "border-top: 1px solid gainsboro;" +
   "background-color: transparent;" +
   "}",
 

@@ -1,14 +1,14 @@
 <view-service-pincards-new class="view-service-pincards riot-tags-main-container">
 
   <div class="pay-page-title" style="border-style: none;">
-    <p class="{servicepage-title :opts.mode!='ADDAUTOPAY', autopay-method-page-title:opts.mode=='ADDAUTOPAY'}">
+    <p class="servicepage-title">
       {(opts.mode=='ADDAUTOPAY')?(window.languages.ViewAutoPayTitleName):("")}
       {titleName}</p>
     <p class="servicepage-category-field">{(opts.mode=='ADDAUTOPAY')?
       (autoPayTypeText):(categoryName)}</p>
     <div id="pinCardBackButtonId" role="button" aria-label="{window.languages.Back}" ontouchend="touchStartTitle()"
          ontouchstart="onTouchStartOfBack()"
-         class="{servicepage-button-back:opts.mode!='ADDAUTOPAY', autopay-method-back-button:opts.mode=='ADDAUTOPAY'}">
+         class="servicepage-button-back">
     </div>
     <div type="button" class="servicepage-service-icon" if="{opts.mode=='ADDAUTOPAY'}"
          style="background-image: url({serviceIcon})"></div>

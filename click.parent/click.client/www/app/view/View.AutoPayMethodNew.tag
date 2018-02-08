@@ -1,9 +1,9 @@
 <view-autopay-method-new>
   <div class="riot-tags-main-container">
     <div class="pay-page-title" style="border-style: none;">
-      <p class="autopay-method-page-title">{titleName} {serviceName}</p>
+      <p class="servicepage-title">{titleName} {serviceName}</p>
       <div ontouchend="goToBack()" ontouchstart="onTouchStartOfBack()"
-           class="autopay-method-back-button">
+           class="servicepage-button-back">
       </div>
       <div type="button" class="servicepage-service-icon autopay-method-service-icon"
            style="background-image: url({serviceIcon})"></div>
