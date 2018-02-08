@@ -1165,16 +1165,17 @@ var css = {
   "{" +
   "position: absolute;" +
   "height:" + 110 * widthK + "px;" +
-  "bottom: 50%;" +
+  "top: 22.8%;" +
   "width: 100%;" +
   "}",
 
   authorizationPinContainer: ".authorization-pin-container " +
   "{" +
   "position: relative;" +
-  "width:" + 320 * widthK + "px;" +
+  "width:" + 350 * widthK + "px;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
+  "margin-top:" + 60 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "}",
 
@@ -1182,7 +1183,7 @@ var css = {
   "{" +
   "position: relative;" +
   "height:" + 40 * widthK + "px;" +
-  "width:" + 320 * widthK + "px;" +
+  "width:" + 350 * widthK + "px;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
   "margin-top:" + 20 * widthK + "px;" +
@@ -1231,22 +1232,22 @@ var css = {
 
   authorizationPinTwo: ".authorization-pin-two " +
   "{" +
-  "left:" + 70 * widthK + "px;" +
+  "left:" + 80 * widthK + "px;" +
   "}",
 
   authorizationPinThree: ".authorization-pin-three " +
   "{" +
-  "left:" + 140 * widthK + "px;" +
+  "left:" + 160 * widthK + "px;" +
   "}",
 
   authorizationPinFour: ".authorization-pin-four " +
   "{" +
-  "left:" + 210 * widthK + "px;" +
+  "left:" + 240 * widthK + "px;" +
   "}",
 
   authorizationPinFive: ".authorization-pin-five " +
   "{" +
-  "left:" + 280 * widthK + "px;" +
+  "left:" + 320 * widthK + "px;" +
   "}",
 
   authorizationKeyboardField: ".authorization-keyboard-field " +
@@ -12142,7 +12143,7 @@ var css = {
   "position: relative;" +
   "width: 90%;" +
   "margin-left: auto;" +
-  "border-top: 1px solid #f3f3f3;" +
+  "border-top: 1px solid #e8e8e8;" +
   "margin-right: auto;" +
   "height:" + 105 * widthK + "px;" +
   "}",
@@ -12152,7 +12153,7 @@ var css = {
   "position: relative;" +
   "width: 90%;" +
   "margin-left: auto;" +
-  "border-top: 1px solid #f3f3f3;" +
+  "border-top: 1px solid #e8e8e8;" +
   "margin-right: auto;" +
   "height:" + 105 * widthK + "px;" +
   "}",
@@ -12240,7 +12241,7 @@ var css = {
   "height: 100%;" +
   "width: 101%;" +
   "display: none;" +
-  "background-color: #efeff1;" +
+  "background-color: white;" +
   "}",
 
   viewContactSelectInfoTitle: ".view-contact-select-info-title " +

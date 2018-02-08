@@ -1,9 +1,11 @@
 <view-contact class="riot-tags-main-container">
 
-  <div class="view-contact-page-title">
-    <p class="view-contact-name-title">{titleName}</p>
+  <div class="page-title">
+    <p class="name-title">{titleName}</p>
     <div id="backButton" ontouchstart="goToBackStart()" role="button" aria-label="{window.languages.Back}"
-         ontouchend="goToBackEnd()" class="view-contact-back-button"></div>
+         ontouchend="goToBackEnd()" class="back-button"></div>
+    <div class="title-bottom-border">
+    </div>
   </div>
 
   <div class="view-contact">
