@@ -3551,16 +3551,16 @@ var css = {
   paySearchButton: ".pay-search-button " +
   "{" +
   "position: absolute;" +
-  "width:" + 127 * widthK + "px;" +
-  "height:" + 86 * widthK + "px;" +
-  "left:85%;" +
+  "width:" + 39 * widthK + "px;" +
+  "height:" + 40 * widthK + "px;" +
+  "right: 7.5%;" +
   "background-image: url(resources/icons/search/search.png);" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 55%;" +
+  "-webkit-background-size: 100%;" +
   "background-position-y: center;" +
   "background-position-x:center;" +
-  "background-size: 27%;" +
-  "top:" + 0 * widthK + "px;" +
+  "background-size: 100%;" +
+  "top: 30%;" +
   "}",
 
   payCategoryContainer: ".pay-category-container" +
@@ -10803,7 +10803,7 @@ var css = {
   "width:" + 138 * widthK + "px;" +
   "height:" + 92 * widthK + "px;" +
   "right:" + -36 * widthK + "px;" +
-  "background-image: url('resources/icons/ViewReport/reports_chart_off.png');" +
+  "background-image: url('resources/icons/ViewReport/reports_chart.png');" +
   "background-repeat: no-repeat;" +
   "-webkit-background-size: 23%;" +
   "background-position-y: center;" +
