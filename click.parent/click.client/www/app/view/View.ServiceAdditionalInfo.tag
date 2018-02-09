@@ -245,6 +245,8 @@
         scope.from_dd = dateFrom.getDate();
         scope.from_mm = dateFrom.getMonth() + 1;
         scope.from_yyyy = dateFrom.getFullYear();
+        console.log(dateFrom, 'dateFrom');
+        console.log(scope.from_dd, 'from_dd');
 
         checkFields();
         scope.update();
@@ -294,6 +296,9 @@
         scope.to_dd = dateTo.getDate();
         scope.to_mm = dateTo.getMonth() + 1;
         scope.to_yyyy = dateTo.getFullYear();
+
+        console.log(dateTo, 'dateTo');
+        console.log(scope.to_dd, 'to_dd');
 
         checkFields();
 
@@ -576,10 +581,9 @@
 
 
     checkFields = function (from) {
-
       if (!scope.service['amount_editable']) return;
 
-      if (amountForPayTransaction < scope.service.min_pay_limit) {
+      if (from == 'sum' && amountForPayTransaction < scope.service.min_pay_limit) {
         scope.showErrorOfLimit = true;
         amountField.style.borderBottom = 3 * widthK + 'px solid red';
         scope.enterButtonEnabled = false;
@@ -603,8 +607,7 @@
       else if (from == 'sum') {
         amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
         scope.showErrorOfLimit = false;
-        scope.update()
-        return;
+        scope.update();
       }
 
       if (scope.code) {
@@ -614,8 +617,8 @@
           scope.update(scope.enterButtonEnabled);
           return;
         } else {
-          range_from = dateFrom;
-          range_to = dateTo;
+          range_from = scope.from_dd + '.' + scope.from_mm + '.' + scope.from_yyyy;
+          range_to = scope.to_dd + '.' + scope.to_mm + '.' + scope.to_yyyy;
         }
       } else {
         if (!fromInput.value || !toInput.value) {
