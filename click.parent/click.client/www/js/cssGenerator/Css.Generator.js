@@ -1328,6 +1328,22 @@ var css = {
   "border-top: 1px solid #e8e8e8;" +
   "}",
 
+  authorizationFooterContainerFirst: ".authorization-footer-button-container-first " +
+  "{" +
+  "position: absolute;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "color: #535b67;" +
+  "width: 90%;" +
+  "height:" + 87 * widthK + "px;" +
+  "margin-left: 5%;" +
+  "bottom:" + 87 * widthK + "px;" +
+  "padding: 0;" +
+  "border: none;" +
+  "background-color: white;" +
+  "border-top: 1px solid #e8e8e8;" +
+  "}",
+
   authorizationButtonOfflineFirstEnter: ".authorization-button-offline-first-enter " +
   "{" +
   "position: absolute;" +

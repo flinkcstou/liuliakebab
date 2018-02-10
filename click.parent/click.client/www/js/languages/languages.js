@@ -51,7 +51,7 @@ var RU_LANGUAGES =
     "ViewAuthorizationFirstEnterAriaLabelShowPass": "Показать введённый пароль",
     "ViewAuthorizationClickPinLabel": "Введите CLICK-PIN",
     "ViewAuthorizationForgetPinLabel": "Забыли CLICK-PIN?",
-    "ViewAuthorizationFirstEnterLabel": "Войти",
+    "ViewAuthorizationFirstEnterLabel": "ВОЙТИ",
     "ViewAuthorizationResetLocalStorageLabel": "Очистить данные",
     "ViewAuthorizationOfflineModeLabel": "Офлайн режим",
 

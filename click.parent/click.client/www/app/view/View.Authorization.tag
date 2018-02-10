@@ -56,10 +56,10 @@
   </div>
 
   <button id="authOfflineButtonId" hidden="{device.platform == 'iOS'}"
+          class="{authorization-footer-button-container : !firstEnter, authorization-footer-button-container-first : firstEnter}"
           class="authorization-footer-button-container"
           ontouchstart="offlineModeTouchStart()"
-          ontouchend="offlineModeTouchEnd()"
-          style="bottom:{87 * widthK}px;">
+          ontouchend="offlineModeTouchEnd()">
     {window.languages.ViewAuthorizationOfflineModeLabel}
   </button>
   <component-pin-reset></component-pin-reset>
