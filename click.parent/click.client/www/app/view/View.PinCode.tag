@@ -30,11 +30,11 @@
     <component-keyboard></component-keyboard>
   </div>
 
-  <div if="{device.platform != 'iOS'}" id="pinOfflineButtonId" class="authorization-button-offline"
+  <button if="{device.platform != 'iOS'}" id="pinOfflineButtonId" class="authorization-footer-button-container"
        ontouchstart="offlineModeTouchStart()"
        ontouchend="offlineModeTouchEnd()">
     {window.languages.ViewAuthorizationOfflineModeLabel}
-  </div>
+  </button>
 
   <script>
 

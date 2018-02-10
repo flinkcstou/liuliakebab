@@ -79,9 +79,7 @@ var css = {
   // "background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
   // "background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
   // "background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  "background: #fafafa;" +
-  "background: #fafafa;" +
-  "background: #fafafa;" +
+  "background: #white;" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -599,36 +597,40 @@ var css = {
   "{" +
   "position: absolute;" +
   "top: 0;" +
-  "bottom:" + 645 * widthK + "px;" +
+  "height:" + 500 * widthK + "px;" +
   "width: 100%;" +
   "display: flex;" +
   "}",
+
   registrationDeviceUnchanbgableContainer: ".registration-device-unchangable-container " +
   "{" +
-  "width:" + 720 * widthK + "px;" +
+  "width: 100%;" +
   "position: relative;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
   "height:" + 320 * widthK + "px;" +
   //"top:" + 155 * heightK + "px;" +
-  "bottom:" + -80 * heightK + "px;" +
+  "top:" + 194 * heightK + "px;" +
   "}",
+
   registrationDevicePhoneField: ".registration-device-phone-field " +
   "{" +
   "position: absolute;" +
-  "left:" + 80 * widthK + "px;" +
+  "left:" + 73 * widthK + "px;" +
   "width:" + 560 * widthK + "px;" +
-  "height:" + 107 * widthK + "px;" +
-  "border-bottom:" + 3 * widthK + "px solid #aaabae;" +
-  "bottom:" + 210 * widthK + "px;" +
+  "height:" + 142 * widthK + "px;" +
+  "border-bottom:" + 3 * widthK + "px solid #e8e8e8;" +
+  // "bottom:" + 210 * widthK + "px;" +
   "color: #535b67;" +
   "}",
+
   registrationDeviceTextField: ".registration-device-text-field " +
   "{" +
   "position: absolute;" +
   "margin: 0;" +
   "color: #aaabae;" +
   "}",
+
   registrationDevicePhoneInput: ".registration-device-phone-input " +
   "{" +
   "position: absolute;" +
@@ -641,20 +643,19 @@ var css = {
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "top:" + 30 * widthK + "px;" +
+  "bottom:" + 12 * widthK + "px;" +
   "font-size:" + 64 * widthK + "px;" +
   "}",
 
   registrationDevicePhoneInputPart: ".registration-device-phone-input-part " +
   "{" +
   "position: absolute;" +
-  "margin: 0;" +
-  "top:" + 30 * widthK + "px;" +
+  "bottom:" + 12 * widthK + "px;" +
   "font-size:" + 64 * widthK + "px;" +
   "border: none;" +
   "outline: none;" +
   "color: #535b67;" +
-  "left: " + 180 * widthK + "px;" +
+  "left: " + 163 * widthK + "px;" +
   "padding: 0;" +
   "margin: 0;" +
   "width: 65%;" +
@@ -666,8 +667,8 @@ var css = {
   registrationCaret: ".registration-caret " +
   "{" +
   "position: absolute;" +
-  "top:" + 40 * widthK + "px;" +
-  "left:" + 180 * widthK + "px;" +
+  "bottom:" + 18 * widthK + "px;" +
+  "left:" + 170 * widthK + "px;" +
   "width:" + 2 * widthK + "px;" +
   "height:" + 60 * widthK + "px;" +
   "background-color: #565d6a;" +
@@ -681,7 +682,7 @@ var css = {
   registrationCaretTwo: ".registration-caret-two " +
   "{" +
   "position: absolute;" +
-  "top:" + 40 * widthK + "px;" +
+  "bottom:" + 18 * widthK + "px;" +
   "left:" + 180 * widthK + "px;" +
   "width:" + 2 * widthK + "px;" +
   "height:" + 60 * widthK + "px;" +
@@ -697,11 +698,11 @@ var css = {
   SmsCaret: ".sms-caret " +
   "{" +
   "position: absolute;" +
-  "top:" + 40 * widthK + "px;" +
+  "bottom:" + 18 * widthK + "px;" +
   // "left:" + 180 * widthK + "px;" +
   "width:" + 2 * widthK + "px;" +
   "height:" + 60 * widthK + "px;" +
-  "background-color: white;" +
+  "background-color: #565d6a;" +
   "-webkit-transition-property: width height background-color left top opacity transform -webkit-transform opacity;" +
   "-webkit-transition-duration: 0s;" +
   "-webkit-transition-timing-function: step(1,end);" +
@@ -712,11 +713,11 @@ var css = {
   SmsCaretTwo: ".sms-caret-two " +
   "{" +
   "position: absolute;" +
-  "top:" + 40 * widthK + "px;" +
+  "bottom:" + 18 * widthK + "px;" +
   // "left:" + 180 * widthK + "px;" +
   "width:" + 2 * widthK + "px;" +
   "height:" + 60 * widthK + "px;" +
-  "background-color: white;" +
+  "background-color: #565d6a;" +
   "opacity:0;" +
   "-webkit-transition-property: width height background-color left top opacity transform -webkit-transform opacity;" +
   "-webkit-transition-duration: 0s;" +
@@ -728,10 +729,11 @@ var css = {
   registrationDeviceRemember: ".registration-device-remember " +
   "{" +
   "position: absolute;" +
-  "top:" + 110 * widthK + "px;" +
+  "top:" + 155 * widthK + "px;" +
   "width: 100%;" +
   "height:" + 100 * widthK + "px;" +
   "}",
+
   registrationDeviceRememberLabel: ".registration-device-remember-label " +
   "{" +
   "position: absolute;" +
@@ -741,6 +743,7 @@ var css = {
   "margin: 0;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
+
   registrationRememberIcon: ".registration-device-remember-icon " +
   "{" +
   "position: absolute;" +
@@ -748,10 +751,10 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
   "background-position: center;" +
-  "width:" + 55 * widthK + "px;" +
-  "height:" + 55 * widthK + "px;" +
-  "left:" + 490 * widthK + "px;" +
-  "top:" + 30 * widthK + "px;" +
+  "width:" + 48 * widthK + "px;" +
+  "height:" + 48 * widthK + "px;" +
+  "left:" + 508 * widthK + "px;" +
+  "top:" + 28 * widthK + "px;" +
   "opacity: 1;" +
   "}",
 
@@ -808,23 +811,18 @@ var css = {
   smsButtonEnter: ".sms-button-enter " +
   "{" +
   "position: relative;" +
-  "width:" + 315 * widthK + "px;" +
-  //"height:" + 100 * widthK + "px;" +
-  //"background-color: #01cfff;" +
+  "width: 90%;" +
   "margin-right: auto;" +
-  //"border-radius:" + 80 * widthK + "px;" +
   "margin-left: auto;" +
-  //"margin-top: 10%;" +
-  "top:" + 30 * widthK + "px;" +
-  // "border-bottom:1px solid #b7f1ff;" +
+  "margin-top:" + 15 * widthK + "px;" +
   "color: #535b67;" +
   "}",
 
   keyboardField: ".keyboard-field " +
   "{" +
   "position: absolute;" +
-  "width:" + 500 * widthK + "px;" +
-  "height:" + 570 * heightK + "px;" +
+  "width:" + 540 * widthK + "px;" +
+  "height:" + 473 * heightK + "px;" +
   // "left:" + 110 * widthK + "px" +
   "}",
 
@@ -834,70 +832,67 @@ var css = {
   "margin-left: auto;" +
   "margin-right: auto;" +
   // "bottom:" + 150 * widthK + "px;" +
-  "top:" + 500 * heightK + "px;" +
+  "top:" + 490 * heightK + "px;" +
   // "left:" + 110 * widthK + "px;" +
   "}",
+
   registrationButtonsContainer: ".registration-buttons-container " +
   "{" +
-  "position: relative;" +
-  "margin-left: auto;" +
-  "margin-right: auto;" +
-  "width:" + 560 * widthK + "px;" +
-  "height:" + 130 * heightK + "px;" +
-  "bottom:" + -535 * heightK + "px;" +
-  // "left:" + 84 * widthK + "px;" +
+  "position: absolute;" +
+  "margin-left: 5%;" +
+  "width: 90%;" +
+  "height:" + 87 * widthK + "px;" +
+  "bottom:" + 88 * widthK + "px;" +
+  "border-top: 1px solid #e8e8e8;" +
   "}",
   registrationContainerOffline: ".registration-container-offline " +
   "{" +
   "position: absolute;" +
   "width:" + 300 * widthK + "px;" +
-  "height:" + 130 * widthK + "px;" +
+  "height:" + 110 * widthK + "px;" +
   "top: 0;" +
   "left: 0;" +
   "}",
   registrationButtonOffline: ".registration-button-offline " +
   "{" +
   "position: absolute;" +
-  "font-size:" + 34 * widthK + "px;" +
+  "font-size:" + 33 * widthK + "px;" +
   "background-size: contain;" +
   "color: #535b67;" +
   // "border-bottom:" + 1 + "px solid white;" +
-  "bottom:" + 40 * widthK + "px;" +
+  "bottom:" + 32 * widthK + "px;" +
   "text-align: center;" +
-  "margin-left: 0;" +
+  "margin-left:" + 30 * widthK + "px;" +
   "margin-bottom:" + 14 * widthK + "px;" +
   "}",
   registrationContainerDemoVersion: ".registration-container-demo-version " +
   "{" +
   "position: absolute;" +
   "width:" + 300 * widthK + "px;" +
-  "height:" + 130 * widthK + "px;" +
+  "height:" + 110 * widthK + "px;" +
   "top: 0;" +
   "right: 0;" +
   "}",
   RegistrationButtonDemoVersion: ".registration-button-demo-version " +
   "{" +
   "position: absolute;" +
-  "font-size:" + 34 * widthK + "px;" +
+  "font-size:" + 33 * widthK + "px;" +
   "background-size: contain;" +
-  "color: #01cfff;" +
+  "color: #535b67;" +
   // "border-bottom:" + 1 + "px solid #b7f1ff;" +
-  "bottom:" + 40 * widthK + "px;" +
+  "bottom:" + 32 * widthK + "px;" +
   "margin-left:" + 80 * widthK + "px;" +
   "margin-bottom:" + 14 * widthK + "px;" +
   "text-align: center;" +
   "}",
   registrationButtonHelp: ".registration-button-help " +
   "{" +
-  "position: relative;" +
-  "font-size:" + 34 * widthK + "px;" +
-  "top:" + -18 * widthK + "px;" +
-  "margin-left: auto;" +
-  "margin-right: auto;" +
-  "width:" + 125 * widthK + "px;" +
+  "position: absolute;" +
+  "font-size:" + 33 * widthK + "px;" +
+  "top: 29%;" +
+  "right: 6.5%;" +
   "background-size: contain;" +
   "color: #535b67;" +
-  // "border-bottom:" + 1 + "px solid #535b67;" +
   "}",
   registrationButtonRegistration: ".registration-button-registration " +
   "{" +
@@ -926,8 +921,8 @@ var css = {
   keyboardContainer: ".keyboard-container " +
   "{" +
   "position: absolute;" +
-  "width:" + 500 * widthK + "px;" +
-  "height:" + 400 * widthK + "px;" +
+  "width:" + 540 * widthK + "px;" +
+  "height:" + 473 * widthK + "px;" +
   "}",
   keyboardFieldOne: ".keyboard-field-one " +
   "{" +
@@ -948,14 +943,14 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
-  "top:" + 240 * widthK + "px;" +
+  "top:" + 236 * widthK + "px;" +
   "}",
   keyboardFieldFour: ".keyboard-field-four " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
-  "top:" + 360 * widthK + "px;" +
+  "top:" + 353 * widthK + "px;" +
   "}",
   keyboardFieldFive: ".keyboard-field-five " +
   "{" +
@@ -970,28 +965,28 @@ var css = {
   keyboardButtons: ".keyboard-buttons " +
   "{" +
   "position: absolute;" +
-  "width:" + 140 * widthK + "px;" +
+  "width:" + 134 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
-  "top:" + 16 * widthK + "px;" +
+  "top:" + 15 * widthK + "px;" +
   "color: #565d6a;" +
-  "font-size:" + 70 * widthK + "px;" +
+  "font-size:" + 75 * widthK + "px;" +
   "text-align: center;" +
   "}",
   keyboardButtonsLabel: ".keyboard-buttons-label " +
   "{" +
   "position: absolute;" +
-  "left:" + 54 * widthK + "px;" +
-  "top:" + 16 * widthK + "px;" +
+  "left:" + 40 * widthK + "px;" +
+  "top:" + 13 * widthK + "px;" +
   "margin: 0;" +
   "}",
   keyboardButtonOne: ".keyboard-button-one {left: 0;}",
-  keyboardButtonTwo: ".keyboard-button-two {left:" + 180 * widthK + "px;}",
+  keyboardButtonTwo: ".keyboard-button-two {left:" + 202 * widthK + "px;}",
   keyboardButtonThree: ".keyboard-button-three {right: 0;}",
   keyboardButtonFour: ".keyboard-button-four {left: 0;}",
-  keyboardButtonFive: ".keyboard-button-five {left:" + 180 * widthK + "px;}",
+  keyboardButtonFive: ".keyboard-button-five {left:" + 202 * widthK + "px;}",
   keyboardButtonSix: ".keyboard-button-six {right: 0;}",
   keyboardButtonSeven: ".keyboard-button-seven {left: 0;}",
-  keyboardButtonEight: ".keyboard-button-eight {left:" + 180 * widthK + "px;}",
+  keyboardButtonEight: ".keyboard-button-eight {left:" + 202 * widthK + "px;}",
   keyboardButtonNine: ".keyboard-button-nine {right: 0;}",
   keyboardSpace: ".keyboard-space {" +
   "left: 0; " +
@@ -1001,7 +996,7 @@ var css = {
   "background-position-y:" + 25 * widthK + "px;" +
   "background-position-x: center;" +
   "}",
-  keyboardButtonZero: ".keyboard-button-zero {left:" + 180 * widthK + "px;}",
+  keyboardButtonZero: ".keyboard-button-zero {left:" + 202 * widthK + "px;}",
   keyboardButtonEnter: ".keyboard-button-enter {position: absolute;}",
 
   //keyboardButtonsActive: ".keyboard-buttons:active " +
@@ -1045,8 +1040,10 @@ var css = {
   "{" +
   "width: 100%;" +
   "position: absolute;" +
-  "height:" + 275 * widthK + "px;" +
-  "bottom:" + 30 + "%" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "height:" + 320 * widthK + "px;" +
+  "top:" + 194 * heightK + "px;" +
   "}",
 
   smsTextField: ".sms-text-field " +
@@ -1054,7 +1051,7 @@ var css = {
   "position: relative;" +
   "text-align: center;" +
   "color: #b0aeb2;" +
-  "top:" + 120 * widthK + "px;" +
+  "top:" + 142 * widthK + "px;" +
   "font-size:" + 30 * widthK + "px;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
@@ -1062,22 +1059,19 @@ var css = {
 
   smsPhoneField: ".sms-phone-field " +
   "{" +
-  "position: relative;" +
-  "margin-left: auto;" +
-  "margin-right: auto;" +
-  // "top:" + 15 * widthK + "px;" +
-  // "left:" + 85 * widthK + "px;" +
+  "position: absolute;" +
+  "left:" + 73 * widthK + "px;" +
   "width:" + 560 * widthK + "px;" +
-  "height:" + 100 * widthK + "px;" +
-  "border-bottom:" + 3 * widthK + "px solid #b0aeb2;" +
-  "color: #b0aeb2;" +
+  "height:" + 142 * widthK + "px;" +
+  "border-bottom:" + 3 * widthK + "px solid #e8e8e8;" +
+  // "bottom:" + 210 * widthK + "px;" +
+  "color: #535b67;" +
   "}",
 
   smsTextFieldOne: ".sms-text-field-one " +
   "{" +
   "position: absolute;" +
   "background-size: contain;" +
-  "top:" + -20 * widthK + "px;" +
   "left: 0;" +
   "text-align: center;" +
   "color: #b0aeb2;" +
@@ -1088,13 +1082,11 @@ var css = {
   smsPhoneInput: ".sms-phone-input " +
   "{" +
   "position: absolute;" +
-  "margin: 0;" +
-  "top:" + 30 * widthK + "px;" +
+  "bottom:" + 12 * widthK + "px;" +
   "font-size:" + 64 * widthK + "px;" +
   "border: none;" +
   "outline: none;" +
   "color: #535b67;" +
-  // "left: " + 180 * widthK + "px;" +
   "padding: 0;" +
   "margin: 0;" +
   "width: 65%;" +
@@ -1107,9 +1099,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "width:" + 160 * widthK + "px;" +
-  "height:" + 80 * widthK + "px;" +
+  "height:" + 60 * widthK + "px;" +
   "margin: 0;" +
-  "top:" + 40 * widthK + "px;" +
   "right:" + -40 * widthK + "px;" +
   "bottom: 0;" +
   "}",
@@ -1125,6 +1116,17 @@ var css = {
   "margin: 0;" +
   "left:" + 70 * widthK + "px;" +
   "top:" + -4 * widthK + "px;" +
+  "}",
+
+  smsKeyboardField: ".sms-keyboard-field " +
+  "{" +
+  "position: relative;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "margin-top:" + 10 * heightK + "px;" +
+  // "bottom:" + 150 * widthK + "px;" +
+  "top:" + 550 * heightK + "px;" +
+  // "left:" + 110 * widthK + "px;" +
   "}",
 
   //VIEW AUTHORIZATION
@@ -1145,7 +1147,7 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "top: 0;" +
-  "bottom:" + 610 * widthK + "px;" +
+  "height:" + 300 * widthK + "px;" +
   "}",
 
   authorizationButtonFirstEnter: ".authorization-button-first-enter " +
@@ -1164,15 +1166,15 @@ var css = {
   authorizationUnchangableContainer: ".authorization-unchangable-container " +
   "{" +
   "position: absolute;" +
-  "height:" + 110 * widthK + "px;" +
-  "top: 22.8%;" +
+  "height:" + 170 * widthK + "px;" +
+  "top:" + 130 * widthK + "px;" +
   "width: 100%;" +
   "}",
 
   authorizationPinContainer: ".authorization-pin-container " +
   "{" +
   "position: relative;" +
-  "width:" + 350 * widthK + "px;" +
+  "width:" + 365 * widthK + "px;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
   "margin-top:" + 60 * widthK + "px;" +
@@ -1183,7 +1185,7 @@ var css = {
   "{" +
   "position: relative;" +
   "height:" + 40 * widthK + "px;" +
-  "width:" + 350 * widthK + "px;" +
+  "width:" + 365 * widthK + "px;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
   "margin-top:" + 20 * widthK + "px;" +
@@ -1191,15 +1193,16 @@ var css = {
 
   authorizationPinInputFirstEnterContainer: ".authorization-pin-input-first-enter-container " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "height:" + 90 * widthK + "px;" +
-  "top:" + -120 * widthK + "px;" +
-  "width:" + 620 * widthK + "px;" +
-  "left:" + -20 * widthK + "px;" +
+  "width: 90%;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "margin-top:" + 40 * widthK + "px;" +
   "font-size:" + 100 * widthK + "px;" +
-  "border-radius:" + 60 * widthK + "px;" +
   "background-color: white;" +
   "border: none;" +
+  "border-bottom: 1px solid #e8e8e8;" +
   "text-align: center;" +
   "outline: none;" +
   "padding: 0;" +
@@ -1211,20 +1214,18 @@ var css = {
   // "height:" + 80 * widthK + "px;" +
   //"top:" + 5 * widthK + "px;" +
   "width:" + 470 * widthK + "px;" +
-  "left:" + 70 * widthK + "px;" +
+  "left: 0;" +
   "font-size:" + 62 * widthK + "px;" +
   "border: none;" +
-  "margin-top: 1%;" +
-  "text-align: center;" +
-  "padding: 0;" +
+  "bottom:" + 12 * widthK + "px;" +
   "outline: none;" +
   "}",
 
   authorizationPinCircle: ".authorization-pin-circles " +
   "{" +
   "position: absolute;" +
-  "width:" + 34 * widthK + "px;" +
-  "height:" + 34 * widthK + "px;" +
+  "width:" + 38 * widthK + "px;" +
+  "height:" + 38 * widthK + "px;" +
   "border-radius:" + 40 * widthK + "px;" +
   "border:" + 4.5 * widthK + "px solid #fafafa;" +
   "background-color: #b0aeb2;" +
@@ -1253,7 +1254,6 @@ var css = {
   authorizationKeyboardField: ".authorization-keyboard-field " +
   "{" +
   "position: relative;" +
-  "top:" + 550 * heightK + "px;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
   "}",
@@ -1268,30 +1268,33 @@ var css = {
   "position: relative;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
-  "width:" + 580 * widthK + "px;" +
+  "width: 100%;" +
   // "left:" + 70 * widthK + "px;" +
-  "bottom:" + 100 * widthK + "px;" +
-  "height:" + 45 * widthK + "px;" +
+  "margin-top:" + 330 * widthK + "px;" +
+  "height:" + 180 * widthK + "px;" +
   "}",
 
   authorizationButtonForgetPin: ".authorization-button-forget-pin " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
+  "margin-top:" + 30 * widthK + "px;" +
+  "margin-left: 5%;" +
+  "padding-bottom:" + 30 * widthK + "px;" +
+  "width: 90%;" +
   "font-size:" + 34 * widthK + "px;" +
-  "left: 0;" +
+  "text-align: center;" +
   "background-size: contain;" +
   "color: #535b67;" +
-  //"border-bottom:" + 1 + "px solid #05eeff;" +
-  // "border-bottom:" + 1 + "px solid white;" +
   "}",
 
   authorizationButtonRegistration: ".authorization-button-registration " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
+  "top:" + 30 * widthK + "px;" +
   "font-size:" + 34 * widthK + "px;" +
   "background-size: contain;" +
   "color: #3598d0;" +
-  "right: 0;" +
+  "text-align: center;" +
   // "border-bottom:" + 1 + "px solid white;" +
   "}",
 
@@ -1306,8 +1309,23 @@ var css = {
   "margin-right: auto;" +
   // "border-bottom:" + 1 + "px solid white;" +
   "text-align: center;" +
-  "top:" + 550 * heightK + "px;" +
   // "left:" + 240 * widthK + "px;" +
+  "}",
+
+  authorizationFooterContainer: ".authorization-footer-button-container " +
+  "{" +
+  "position: absolute;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "color: #535b67;" +
+  "width: 90%;" +
+  "height:" + 87 * widthK + "px;" +
+  "margin-left: 5%;" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "border: none;" +
+  "background-color: white;" +
+  "border-top: 1px solid #e8e8e8;" +
   "}",
 
   authorizationButtonOfflineFirstEnter: ".authorization-button-offline-first-enter " +
@@ -2574,6 +2592,15 @@ var css = {
   "border-bottom: 1px solid #e8e8e8;" +
   "}",
 
+  verLineBorder: ".hor-line-border " +
+  "{" +
+  "position: relative;" +
+  "width: 90%;" +
+  "left: 5%;" +
+  "bottom: 0%;" +
+  "border-bottom: 1px solid #e8e8e8;" +
+  "}",
+
   settingsButton: ".settings-button " +
   "{" +
   "position: absolute;" +
@@ -2688,8 +2715,7 @@ var css = {
   "height:" + 100 * widthK + "px;" +
   "border-radius:" + 100 * widthK + "px;" +
   "border: none;" +
-  "color: #027ee3;" +
-  "background-color: #7ae4ff;" +
+  "color: white;" +
   "top: 0;" +
   "background-repeat: no-repeat;" +
   "background-size: cover;" +

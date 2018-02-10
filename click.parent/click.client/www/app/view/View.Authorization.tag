@@ -15,44 +15,53 @@
     </div>
   </div>
 
-  <div if="{!firstEnter}" class="authorization-keyboard-field keyboard-field">
-    <component-keyboard fingerprint="{JSON.parse(localStorage.getItem('settings_finger_print'))}"></component-keyboard>
+  <div if="{firstEnter}" class="authorization-flex-container">
+    <div class="authorization-unchangable-container">
+      <div class="authorization-enter-pin-label">
+        {window.languages.ViewAuthorizationClickPinLabel}
+      </div>
+      <div class="authorization-pin-input-first-enter-container">
+        <input autofocus="true" type="password" class="authorization-pin-input-first-enter" onblur="inputPinBlur()"
+               id="firstPinInputId"/>
+        <div class="authorization-input-eye-button" role="button"
+             aria-label="{window.languages.ViewAuthorizationFirstEnterAriaLabelShowPass}"
+             onclick="eyeClicked()"></div>
+      </div>
+    </div>
   </div>
 
-
   <div id="authorizationButtonsContainerId" class="authorization-buttons-container">
-    <div if="{firstEnter}" class="authorization-first-enter-pin-label">
-      {window.languages.ViewAuthorizationClickPinLabel}
-    </div>
-    <div if="{firstEnter}" class="authorization-pin-input-first-enter-container">
-      <input autofocus="true" type="password" class="authorization-pin-input-first-enter" onblur="inputPinBlur()"
-             id="firstPinInputId"/>
-      <div class="authorization-input-eye-button" role="button"
-           aria-label="{window.languages.ViewAuthorizationFirstEnterAriaLabelShowPass}"
-           onclick="eyeClicked()"></div>
-    </div>
-    <div if="{firstEnter}" id="firstEnterButtonId" class="authorization-button-first-enter"
-         ontouchend="firstPinEnterTouchEnd()"
-         ontouchstart="firstPinEnterTouchStart()">
-      <div class="button-enter-label">{window.languages.ViewAuthorizationFirstEnterLabel}</div>
-    </div>
+
 
     <div id="forgetPinButtonId" class="authorization-button-forget-pin" ontouchstart="pinResetTouchStart()"
          ontouchend="pinResetTouchEnd()">
       {window.languages.ViewAuthorizationForgetPinLabel}
+    </div>
+    <div class="hor-line-border">
     </div>
     <div id="resetLocalButtonId" class="authorization-button-registration" ontouchstart="resetLocalStorageTouchStart()"
          ontouchend="resetLocalStorageTouchEnd()">
       {window.languages.ViewAuthorizationResetLocalStorageLabel}
     </div>
   </div>
-  <div id="authOfflineButtonId" hidden="{device.platform == 'iOS'}"
-       class="{authorization-button-offline : !firstEnter, authorization-button-offline-first-enter : firstEnter}"
-       ontouchstart="offlineModeTouchStart()"
-       ontouchend="offlineModeTouchEnd()">
-    {window.languages.ViewAuthorizationOfflineModeLabel}
+
+  <div if="{!firstEnter}" class="authorization-keyboard-field keyboard-field">
+    <component-keyboard fingerprint="{JSON.parse(localStorage.getItem('settings_finger_print'))}"></component-keyboard>
   </div>
 
+  <div if="{firstEnter}" id="firstEnterButtonId" class="bottom-button-container"
+       ontouchend="firstPinEnterTouchEnd()"
+       ontouchstart="firstPinEnterTouchStart()">
+    <div class="button-enter-label">{window.languages.ViewAuthorizationFirstEnterLabel}</div>
+  </div>
+
+  <button id="authOfflineButtonId" hidden="{device.platform == 'iOS'}"
+          class="authorization-footer-button-container"
+          ontouchstart="offlineModeTouchStart()"
+          ontouchend="offlineModeTouchEnd()"
+          style="bottom:{87 * widthK}px;">
+    {window.languages.ViewAuthorizationOfflineModeLabel}
+  </button>
   <component-pin-reset></component-pin-reset>
 
   <script>
@@ -72,7 +81,7 @@
 
       if (scope.firstEnter) {
 
-        authorizationButtonsContainerId.style.top = 400 * widthK + 'px';
+//        authorizationButtonsContainerId.style.top = 400 * widthK + 'px';
 
         inputPinFocus();
       }
@@ -549,7 +558,7 @@
           timeOutTimer = setTimeout(function () {
             window.writeLog({
               reason: 'Timeout',
-              method:'app.login',
+              method: 'app.login',
             });
             updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText);
             window.stopSpinner();

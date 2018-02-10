@@ -1,5 +1,14 @@
 <view-registration-device class="view-registration-device riot-tags-main-container">
   <div class="registration-device-flex-container">
+    <div class="page-title">
+
+      <div id="registrationHelpButtonId" class="registration-button-help" ontouchend="helpTouchEnd()"
+           ontouchstart="helpTouchStart()">
+        {window.languages.ViewRegistrationDeviceButtonHelp}
+      </div>
+      <div class="title-bottom-border">
+      </div>
+    </div>
     <div class="registration-device-unchangable-container">
       <div class="registration-device-phone-field">
         <component-canvas></component-canvas>
@@ -17,20 +26,11 @@
             {window.languages.ViewRegistrationDeviceRememberLabel}</p>
           <div id="rememberIcon" class="registration-device-remember-icon"></div>
         </div>
-        <div id="registrationNextButtonId" class="registration-button-enter button-enter"
-             ontouchend="getPhoneNumberTouchEnd()"
-             ontouchstart="getPhoneNumberTouchStart()">
-          <div class="button-enter-label">{window.languages.ViewRegistrationDeviceButtonEnterLabel}</div>
-        </div>
       </div>
     </div>
   </div>
 
   <div class="registration-keyboard-field keyboard-field">
-    <div id="registrationHelpButtonId" class="registration-button-help" ontouchend="helpTouchEnd()"
-         ontouchstart="helpTouchStart()">
-      {window.languages.ViewRegistrationDeviceButtonHelp}
-    </div>
     <component-keyboard></component-keyboard>
   </div>
 
@@ -46,6 +46,12 @@
       <div class="registration-button-demo-version">{window.languages.ViewRegistrationDeviceButtonDemoVersion}
       </div>
     </a>
+  </div>
+
+  <div id="registrationNextButtonId" class="bottom-button-container"
+       ontouchend="getPhoneNumberTouchEnd()"
+       ontouchstart="getPhoneNumberTouchStart()">
+    <div class="button-enter-label">{window.languages.ViewRegistrationDeviceButtonEnterLabel}</div>
   </div>
 
   <component-tour view="registration"></component-tour>
@@ -185,7 +191,7 @@
     };
 
     var regNumberTouchEndX;
-    var inputStartX = 260 * widthK;
+    var inputStartX = 250 * widthK;
     var inputLocalStartX = inputStartX - 80 * widthK;
     var inputFocusIndex = 0;
     var canvas;

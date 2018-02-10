@@ -1,5 +1,13 @@
 <view-sms class="view-sms riot-tags-main-container">
   <div class="sms-flex-container">
+    <div class="page-title">
+      <div id="smsButtonHelpId" class="registration-button-help" ontouchend="helpTouchEndSms()"
+           ontouchstart="helpTouchStartSms()">
+        {window.languages.ViewSmsButtonHelp}
+      </div>
+      <div class="title-bottom-border">
+      </div>
+    </div>
     <div class="sms-unchangable-container">
       <div class="sms-phone-field">
         <p class="sms-text-field-one">{window.languages.ViewSmsFieldOne}</p>
@@ -8,25 +16,23 @@
         <div class="sms-timer" ontouchend="touchEndResend()" ontouchstart="touchStartResend()">{time}
           <div class="sms-resend-icon" role="button" aria-label="{window.languages.ViewSmsAriaLabelResendSms}"></div>
         </div>
-
-        <div class="sms-text-field">
-          <p style="margin-bottom: 4px">{messageTitle}<br>{messageTitleTwo}</p>
-          <p id="deliveredPhoneNumber" style="margin: 0">{phoneNumber.substring(0, 3)}
-            {phoneNumber.substring(3, phoneNumber.length)}</p>
-          <div id="changeNumberButtonId" class="sms-button-enter" ontouchend="goToBackRegistrationEnd()"
-               ontouchstart="goToBackRegistrationStart()">{window.languages.ViewSmsButtonEnterLabel}
-          </div>
+      </div>
+      <div class="sms-text-field">
+        <p style="margin-bottom: {4 * widthK}px;
+         margin-top: {15 * widthK}px;">{messageTitle}<br>{messageTitleTwo}</p>
+        <p id="deliveredPhoneNumber" style="margin: 0; margin-bottom: {15 * widthK}px;">{phoneNumber.substring(0, 3)}
+          {phoneNumber.substring(3, phoneNumber.length)}</p>
+        <div class="hor-line-border">
+        </div>
+        <div id="changeNumberButtonId" class="sms-button-enter" ontouchend="goToBackRegistrationEnd()"
+             ontouchstart="goToBackRegistrationStart()">{window.languages.ViewSmsButtonEnterLabel}
         </div>
       </div>
     </div>
   </div>
 
 
-  <div class="registration-keyboard-field keyboard-field" style="bottom: {150*widthK}px">
-    <div id="smsButtonHelpId" class="registration-button-help" ontouchend="helpTouchEndSms()"
-         ontouchstart="helpTouchStartSms()"
-         style="top: {560*widthK}px">{window.languages.ViewSmsButtonHelp}
-    </div>
+  <div class="sms-keyboard-field keyboard-field" style="bottom: {150*widthK}px">
     <component-keyboard></component-keyboard>
   </div>
 

@@ -34,7 +34,7 @@ var RU_LANGUAGES =
 
     "ViewRegistrationTextField": "Введите номер телефона",
     "ViewRegistrationDeviceRememberLabel": "Запомнить устройство",
-    "ViewRegistrationDeviceButtonEnterLabel": "Далее",
+    "ViewRegistrationDeviceButtonEnterLabel": "ДАЛЕЕ",
     "ViewRegistrationDeviceButtonHelp": "Помощь",
     "ViewRegistrationDeviceButtonOffline": "Офлайн режим",
     "ViewRegistrationDeviceButtonDemoVersion": "Демо версия",
