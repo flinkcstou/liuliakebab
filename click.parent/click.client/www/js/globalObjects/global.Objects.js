@@ -828,7 +828,7 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
                 }
 
                 if (device.platform != 'BrowserStand')
-                  StatusBar.backgroundColorByHexString("#00a8f1");
+                  StatusBar.backgroundColorByHexString("#ffffff");
 
                 if (JSON.parse(localStorage.getItem('settings_block')) === true) {
                   localStorage.setItem('onResume', false);

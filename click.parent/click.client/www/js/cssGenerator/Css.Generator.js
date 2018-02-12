@@ -2589,16 +2589,15 @@ var css = {
   backButton: ".back-button " +
   "{" +
   "position: absolute;" +
-  "width:" + 43 * widthK + "px;" +
-  "height:" + 31 * widthK + "px;" +
+  "width:" + 87 * widthK + "px;" +
+  "height:" + 87 * widthK + "px;" +
   "background-image: url(resources/icons/back/back.png);" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 100%;" +
+  "-webkit-background-size: 50%;" +
   "background-position-y: center;" +
   "background-position-x: center;" +
-  "background-size: 100%;" +
-  "left: 4.5%;" +
-  "top: 32%;" +
+  "background-size: 50%;" +
+  "left: 1.5%;" +
   "}",
 
   titleBottomBorder: ".title-bottom-border " +
@@ -2622,16 +2621,15 @@ var css = {
   settingsButton: ".settings-button " +
   "{" +
   "position: absolute;" +
-  "width:" + 43 * widthK + "px;" +
-  "height:" + 43 * widthK + "px;" +
-  "right: 5%;" +
+  "width:" + 87 * widthK + "px;" +
+  "height:" + 87 * widthK + "px;" +
+  "right: 2%;" +
   "background-image: url(resources/icons/ViewMyCards/cardsettings.png);" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 100%;" +
+  "-webkit-background-size: 50%;" +
   "background-position-y: center;" +
   "background-position-x: center;" +
-  "background-size: 100%;" +
-  "top: 27%;" +
+  "background-size: 50%;" +
   "}",
 
   searchButton: ".search-button " +
@@ -3603,16 +3601,16 @@ var css = {
   paySearchButton: ".pay-search-button " +
   "{" +
   "position: absolute;" +
-  "width:" + 39 * widthK + "px;" +
-  "height:" + 40 * widthK + "px;" +
-  "right: 7.5%;" +
+  "width:" + 84 * widthK + "px;" +
+  "height:" + 87 * widthK + "px;" +
+  "right: 4.5%;" +
+  "top: 4%;" +
   "background-image: url(resources/icons/search/search.png);" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 100%;" +
+  "-webkit-background-size: 50%;" +
   "background-position-y: center;" +
   "background-position-x:center;" +
-  "background-size: 100%;" +
-  "top: 30%;" +
+  "background-size: 50%;" +
   "}",
 
   payCategoryContainer: ".pay-category-container" +
@@ -4324,17 +4322,16 @@ var css = {
 
   servicePageButtonBack: ".servicepage-button-back" +
   "{" +
-  "top: 21%;" +
   "position: absolute;" +
-  "width: " + 43 * widthK + "px; " +
-  "height: " + 31 * widthK + "px; " +
+  "width: " + 87 * widthK + "px; " +
+  "height: " + 87 * widthK + "px; " +
   "background-image: url('resources/icons/back/back.png');" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 100%;" +
+  "-webkit-background-size: 50%;" +
   "background-position-y: center;" +
   "background-position-x: center;" +
-  "background-size: 100%;" +
-  "left: 4.5%;" +
+  "background-size: 50%;" +
+  "left: 1.5%;" +
   "}",
 
   servicePageFormTypeTwoContainer: ".servicepage-formtype-two-container" +
@@ -5362,15 +5359,15 @@ var css = {
   searchCancelIcon: ".search-cancel-icon " +
   "{" +
   "position: absolute;" +
-  "right: 8%;" +
-  "top: 33%;" +
-  "width:" + 34 * widthK + "px;" +
-  "height:" + 34 * widthK + "px;" +
+  "right: 4.5%;" +
+  "width:" + 87 * widthK + "px;" +
+  "height:" + 87 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-image: url(resources/icons/search/close.png);" +
+  "-webkit-background-size: 40%;" +
   "background-position-y: center;" +
   "background-position-x: center;" +
-  "background-size: 100%;" +
+  "background-size: 40%;" +
   "z-index: 1;" +
   "}",
 
@@ -5478,16 +5475,16 @@ var css = {
   mycardlistAddButton: ".add-button " +
   "{" +
   "position: absolute;" +
-  "width:" + 43 * widthK + "px;" +
-  "height:" + 43 * widthK + "px;" +
-  "right: 5.5%;" +
+  "width:" + 87 * widthK + "px;" +
+  "height:" + 87 * widthK + "px;" +
+  "right: 2.5%;" +
   "background-image: url(resources/icons/ViewSettingsFriendHelp/plus.png);" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 100%;" +
+  "-webkit-background-size: 50%;" +
   "background-position-y: center;" +
   "background-position-x: center;" +
-  "background-size: 100%;" +
-  "top: 29%" +
+  "background-size: 50%;" +
+  "top: 5%" +
   "}",
 
   myCardListNameTitle: ".mycardlist-name-title " +
@@ -6967,16 +6964,15 @@ var css = {
   transferIButton: ".transfer-i-button " +
   "{" +
   "position: absolute;" +
-  "width:" + 33 * widthK + "px;" +
-  "height:" + 33 * widthK + "px;" +
-  "right:" + 41 * widthK + "px;" +
+  "width:" + 87 * widthK + "px;" +
+  "height:" + 87 * widthK + "px;" +
+  "right: 1.5%;" +
   "background-image: url(resources/icons/ViewTransfer/i.png);" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 100%;" +
+  "-webkit-background-size: 35%;" +
   "background-position-y: center;" +
   "background-position-x: center;" +
-  "background-size: 100%;" +
-  "top: 31%" +
+  "background-size: 35%;" +
   "}",
 
   //VIEW TRANSFER TWO
@@ -10354,8 +10350,8 @@ var css = {
   "position: absolute;" +
   "bottom: 0%;" +
   "left: 3%;" +
-  "font-size:" + 25 * widthK + "px;" +
-  "color: #c1c1c1;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "color: #a9abaf;" +
   "margin: 0;" +
   "text-align: center;" +
   "}",
@@ -10865,16 +10861,16 @@ var css = {
   viewReportsGraphButton: ".view-reports-graph-button " +
   "{" +
   "position: absolute;" +
-  "width:" + 30 * widthK + "px;" +
-  "height:" + 35 * widthK + "px;" +
-  "right: 5.1%;" +
-  "top: 32.1%;" +
+  "width:" + 74 * widthK + "px;" +
+  "height:" + 87 * widthK + "px;" +
+  "right: 2.1%;" +
+  "top: 3%;" +
   "background-image: url('resources/icons/ViewReport/reports_chart.png');" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 100%;" +
+  "-webkit-background-size: 41%;" +
   "background-position-y: center;" +
   "background-position-x: center;" +
-  "background-size: 100%;" +
+  "background-size: 41%;" +
   "}",
 
   //body
@@ -11279,16 +11275,15 @@ var css = {
   componentBankListCloseButton: ".component-banklist-close-button " +
   "{" +
   "position: absolute;" +
-  "width:" + 31 * widthK + "px;" +
-  "height:" + 31 * widthK + "px;" +
-  "right:" + 42 * widthK + "px;" +
+  "width:" + 87 * widthK + "px;" +
+  "height:" + 87 * widthK + "px;" +
+  "right: 1.5%;" +
   "background-image: url('resources/icons/ViewTransfer/banks_close.png');" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 100%;" +
+  "-webkit-background-size: 30%;" +
   "background-position-y: center;" +
   "background-position-x: center;" +
-  "background-size: 100%;" +
-  "top:" + 29 * widthK + "px;" +
+  "background-size: 30%;" +
   "}",
 
   componentBankListRotate: ".component-banklist-bank-rotate" +
@@ -11921,9 +11916,9 @@ var css = {
   invoiceHistoryDetailTitleContainer: ".invoice-history-detail-title-container" +
   "{" +
   "position: absolute;" +
-  "height:" + 340 * widthK + "px;" +
+  "height:" + 410 * widthK + "px;" +
   "width:100%;" +
-  "background-color: #00a8f1;" +
+  "background-color: white;" +
   "}",
 
   invoiceHistoryDetailTitle: ".invoice-history-detail-title" +
@@ -11940,12 +11935,12 @@ var css = {
   invoiceHistoryDetailIcon: ".invoice-history-detail-icon" +
   "{" +
   "position: absolute;" +
-  "height:" + 90 * widthK + "px;" +
-  "width:" + 90 * widthK + "px;" +
-  "top:" + 104 * widthK + "px;" +
-  "left: 44%;" +
+  "height:" + 142 * widthK + "px;" +
+  "width:" + 110 * widthK + "px;" +
+  "top:" + 169 * widthK + "px;" +
+  "left:" + 120 * widthK + "px;" +
   "background-repeat: no-repeat;" +
-  "background-size: 71%;" +
+  "background-size: 100%;" +
   "background-position: center;" +
   "}",
 
@@ -11978,60 +11973,58 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 50%;" +
-  "top:" + 221 * widthK + "px;" +
   "margin: 0;" +
-  "color: white;" +
-  "margin-left: auto;" +
-  "margin-right: auto;" +
-  "text-align: center;" +
-  "font-size:" + 34 * widthK + "px;" +
+  "color: #565d6a;" +
+  "margin-left: 46%;" +
+  "margin-top:" + 172 * widthK + "px;" +
+  "text-align: left;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "font-size:" + 40 * widthK + "px;" +
   "}",
 
   invoiceHistoryDetailTitlePhoneNumber: ".invoice-history-detail-title-phone-number" +
   "{" +
   "position: relative;" +
   "width: 50%;" +
-  "top:" + 217 * widthK + "px;" +
   "margin: 0;" +
-  "color: white;" +
-  "margin-left: auto;" +
-  "margin-right: auto;" +
-  "text-align: center;" +
-  "font-size:" + 34 * widthK + "px;" +
+  "color: #a9abaf;" +
+  "margin-left: 46%;" +
+  "margin-top:" + 8 * widthK + "px;" +
+  "text-align: left;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "font-size:" + 24 * widthK + "px;" +
   "}",
 
   invoiceHistoryDetailContainer: ".invoice-history-detail-container" +
   "{" +
   "position: absolute;" +
   "width: 100%; " +
-  "top:" + 340 * widthK + "px; " +
+  "top:" + 410 * widthK + "px; " +
   "bottom:0; " +
   "background-color: #ffffff; " +
   "overflow-y: hidden; " +
   "overflow-x: hidden; " +
-  "background-image: url(resources/icons/invoice/invoice_footer.png);" +
-  "background-repeat: no-repeat;" +
-  "background-position-y:" + 750 * widthK + "px;" +
-  "background-size: 100%;" +
   "}",
 
   invoiceHistoryDetailInvoiceContainer: ".invoice-history-detail-invoice-container" +
   "{" +
   "position: relative;" +
   "width: 90%;" +
-  "height:" + 96 * widthK + "px;" +
+  "height:" + 120 * heightK + "px;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
-  "border-bottom: 1px solid lightgrey;" +
+  "border-bottom: 1px solid #e8e8e8;" +
   "}",
 
   invoiceHistoryDetailInvoiceTitle: ".invoice-history-detail-invoice-title" +
   "{" +
   "position: absolute;" +
-  "top: 28%;" +
-  "left: 3%;" +
-  "font-size:" + 25 * widthK + "px;" +
-  "color: #c1c1c1;" +
+  "top: 19%;" +
+  "left: 2.8%;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "color: #a9abaf;" +
   "margin: 0;" +
   "text-align: center;" +
   "}",
@@ -12087,10 +12080,10 @@ var css = {
   invoiceHistoryDetailSum: ".invoice-history-detail-sum " +
   "{" +
   "position: absolute;" +
-  "top: 57%;" +
-  "left: 3%;" +
-  "font-size:" + 30 * widthK + "px;" +
-  "color: #c1c1c1;" +
+  "top: 49%;" +
+  "left: 2.5%;" +
+  "font-size:" + 40 * widthK + "px;" +
+  "color: #a9abaf;" +
   "margin: 0;" +
   "text-align: center;" +
   "color: #9ec94a;" +
@@ -16262,13 +16255,15 @@ var css = {
   "{" +
   "position: relative;" +
   "float: right;" +
+  "right: -4%;" +
   "background-image: url(resources/icons/ViewInPlacePay/indoor_search.png);" +
-  "width:" + 35 * widthK + "px;" +
-  "height:" + 40 * widthK + "px;" +
+  "width:" + 76 * widthK + "px;" +
+  "height:" + 87 * widthK + "px;" +
+  "-webkit-background-size: 50%;" +
   "background-repeat: no-repeat;" +
-  "background-size: 100%;" +
+  "background-size: 50%;" +
   "background-position: center;" +
-  "top: 42%;" +
+  "top: 22%;" +
   "}",
 
 

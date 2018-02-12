@@ -19,6 +19,8 @@
 
     <p class="invoice-history-detail-title-phone-number">
       {(opts.is_p2p)?("+"):("")} {opts.inParameter}</p>
+    <div class="title-bottom-border">
+    </div>
   </div>
 
   <div class="invoice-history-detail-container" if="{opts.is_p2p}">
@@ -50,8 +52,6 @@
         {opts.status}</p>
     </div>
 
-    <div class="invoice-history-detail-cover invoice-history-detail-cover-transfer"></div>
-
   </div>
 
   <div class="invoice-history-detail-container" if="{!opts.is_p2p}">
@@ -74,8 +74,6 @@
                                                invoice-history-detail-status-success: opts.status == 'Успешно проведен'}">
         {opts.status}</p>
     </div>
-
-    <div class="invoice-history-detail-cover invoice-history-detail-cover-payment"></div>
 
   </div>
 
