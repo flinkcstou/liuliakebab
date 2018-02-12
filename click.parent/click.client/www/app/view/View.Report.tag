@@ -249,11 +249,11 @@
       lastDay = new Date(scope.mArray[scope.mNumber].year, scope.mArray[scope.mNumber].month + 1, 0);
 
       if (scope.firstReportView) {
-//        graphButtonId.style.backgroundImage = "url(resources/icons/ViewReport/reports_chart_off.png)";
+        graphButtonId.style.backgroundImage = "url(resources/icons/ViewReport/reports_chart_off.png)";
         paymentListUpdate('fromGraph');
       }
       else {
-//        graphButtonId.style.backgroundImage = "url(resources/icons/ViewReport/reports_chart_on.png)";
+        graphButtonId.style.backgroundImage = "url(resources/icons/ViewReport/reports_chart_on.png)";
         graphListUpdate();
       }
     };

@@ -1,9 +1,9 @@
 <view-settings-user-agreement class="riot-tags-main-container">
 
-  <div class="pay-page-title">
-    <p class="settings-user-agreement-name-title">{titleName}</p>
+  <div class="page-title">
+    <p class="name-title">{titleName}</p>
     <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchstart="goToBackStart()"
-         ontouchend="goToBackEnd()" class="pay-back-button"></div>
+         ontouchend="goToBackEnd()" class="back-button"></div>
     <div class="title-bottom-border">
     </div>
   </div>

@@ -9657,7 +9657,7 @@ var css = {
   "top:" + 26 * widthK + "px; " +
   "margin: 0;  " +
   "width: 100%;  " +
-  "color: #fffaf9;" +
+  "color: #565d6a;" +
   "}",
 
   //TRANSFER DETAIL VIEW
@@ -10678,7 +10678,7 @@ var css = {
   "float: left;" +
   "margin-left: " + 20 * widthK + "px;" +
   "margin-top: " + 3 * widthK + "px;" +
-  "color: #979797;" +
+  "color: #565d6a;" +
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "max-width: " + 400 * widthK + "px;" +
@@ -10691,7 +10691,7 @@ var css = {
   "padding-left: " + 26 * widthK + "px;" +
   "padding-right: " + 13 * widthK + "px;" +
   "padding-bottom: " + 11 * widthK + "px;" +
-  "padding-top: " + 10 * widthK + "px;" +
+  "padding-top: " + 12 * widthK + "px;" +
   "}",
 
   reportFilterClearFiltersContainer: ".report-filter-clear-filters-container" +
@@ -10865,7 +10865,7 @@ var css = {
   "height:" + 87 * widthK + "px;" +
   "right: 2.1%;" +
   "top: 3%;" +
-  "background-image: url('resources/icons/ViewReport/reports_chart.png');" +
+  "background-image: url('resources/icons/ViewReport/reports_chart_off.png');" +
   "background-repeat: no-repeat;" +
   "-webkit-background-size: 41%;" +
   "background-position-y: center;" +
