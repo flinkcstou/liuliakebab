@@ -20,10 +20,14 @@
       <div class="authorization-enter-pin-label">
         {window.languages.ViewAuthorizationClickPinLabel}
       </div>
-      <div class="authorization-pin-input-first-enter-container">
-        <input autofocus="true" type="password" class="authorization-pin-input-first-enter" onblur="inputPinBlur()"
+      <div class="authorization-pin-input-first-enter-container" id="firstPinContainerId">
+        <input autofocus="true"
+               type="password"
+               class="authorization-pin-input-first-enter"
+               onfocus="focusColor()"
+               onblur="inputPinBlur()"
                id="firstPinInputId"/>
-        <div class="authorization-input-eye-button" role="button"
+        <div id="eyeButtonId" class="authorization-input-eye-button" role="button"
              aria-label="{window.languages.ViewAuthorizationFirstEnterAriaLabelShowPass}"
              onclick="eyeClicked()"></div>
       </div>
@@ -53,6 +57,7 @@
        ontouchend="firstPinEnterTouchEnd()"
        ontouchstart="firstPinEnterTouchStart()">
     <div class="button-enter-label">{window.languages.ViewAuthorizationFirstEnterLabel}</div>
+    <div class="button-enter-icon"></div>
   </div>
 
   <button id="authOfflineButtonId" hidden="{device.platform == 'iOS'}"
@@ -150,19 +155,25 @@
 
       if (!eyeInputShow) {
         firstPinInputId.type = "text";
+        eyeButtonId.style.backgroundImage = 'url(resources/icons/authorization/pin_show.png)';
         eyeInputShow = true;
       }
       else {
         firstPinInputId.type = "password";
+        eyeButtonId.style.backgroundImage = 'url(resources/icons/authorization/pin_hide.png)';
         eyeInputShow = false;
       }
 
     };
 
     inputPinBlur = function () {
-
+      document.getElementById("firstPinContainerId").style.borderColor = "#e8e8e8";
       firstPinInputId.blur();
     };
+
+    focusColor = function () {
+      document.getElementById("firstPinContainerId").style.borderColor = "#00a8f1";
+    }
 
     inputPinFocus = function () {
       console.log("ALert is shown? ", window.common.alert.isShown("componentAlertId"));

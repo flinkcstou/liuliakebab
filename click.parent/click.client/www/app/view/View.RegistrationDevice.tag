@@ -52,6 +52,7 @@
        ontouchend="getPhoneNumberTouchEnd()"
        ontouchstart="getPhoneNumberTouchStart()">
     <div class="button-enter-label">{window.languages.ViewRegistrationDeviceButtonEnterLabel}</div>
+    <div class="button-enter-icon"></div>
   </div>
 
   <component-tour view="registration"></component-tour>

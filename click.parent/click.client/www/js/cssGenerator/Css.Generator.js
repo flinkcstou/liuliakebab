@@ -615,8 +615,9 @@ var css = {
 
   registrationDevicePhoneField: ".registration-device-phone-field " +
   "{" +
-  "position: absolute;" +
-  "left:" + 73 * widthK + "px;" +
+  "position: relative;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
   "width:" + 560 * widthK + "px;" +
   "height:" + 142 * widthK + "px;" +
   "border-bottom:" + 3 * widthK + "px solid #e8e8e8;" +
@@ -783,12 +784,13 @@ var css = {
 
   buttonEnterLabel: ".button-enter-label " +
   "{" +
-  "position: relative;" +
+  "position: absolute;" +
   "top: 19%;" +
   "width:" + 120 * widthK + "px;" +
   "height:" + 40 * widthK + "px;" +
-  "font-size:" + 44 * widthK + "px;" +
+  "font-size:" + 41 * widthK + "px;" +
   "margin: auto;" +
+  "margin-left:" + 260 * widthK + "px;" +
   "color: white;" +
   "}",
   registrationButtonEnter: ".registration-button-enter " +
@@ -1195,7 +1197,7 @@ var css = {
   "{" +
   "position: relative;" +
   "height:" + 90 * widthK + "px;" +
-  "width: 90%;" +
+  "width: 80%;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
   "margin-top:" + 40 * widthK + "px;" +
@@ -1293,7 +1295,7 @@ var css = {
   "top:" + 30 * widthK + "px;" +
   "font-size:" + 34 * widthK + "px;" +
   "background-size: contain;" +
-  "color: #3598d0;" +
+  "color: #00a8f1;" +
   "text-align: center;" +
   // "border-bottom:" + 1 + "px solid white;" +
   "}",
@@ -1383,14 +1385,14 @@ var css = {
   AuthorizationInputEyeButton: ".authorization-input-eye-button " +
   "{" +
   "position: absolute;" +
-  "background-image: url(resources/icons/authorization/eye.png);" +
+  "background-image: url(resources/icons/authorization/pin_hide.png);" +
   "background-size: contain;" +
   "background-position: center;" +
   "background-repeat: no-repeat;" +
-  "width:" + 50 * widthK + "px;" +
-  "height:" + 50 * widthK + "px;" +
+  "width:" + 48 * widthK + "px;" +
+  "height:" + 48 * widthK + "px;" +
   "top:" + 20 * widthK + "px;" +
-  "right:" + 20 * widthK + "px;" +
+  "right:" + 10 * widthK + "px;" +
   "}",
 
 
@@ -2655,7 +2657,7 @@ var css = {
   "bottom:" + 190 * widthK + "px;" +
   "left: 0;" +
   "right: 0;" +
-  "height:" + 85 * widthK + "px;" +
+  "height:" + 87 * widthK + "px;" +
   "width: 100%;" +
   // "border-top:" + 2 + "px solid #00b3fd;" +
   // "color: rgb(197, 233, 239);" +
@@ -4305,6 +4307,19 @@ var css = {
   "font-size: " + 32 * widthK + "px; " +
   "margin: auto;" +
   "color: white;" +
+  "}",
+
+  buttonEnterIcon: ".button-enter-icon" +
+  "{" +
+  "position: absolute;" +
+  "margin-left:" + 458 * widthK + "px;" +
+  "background-size: contain;" +
+  "background-image: url(resources/icons/authorization/button_arrow.png);" +
+  "background-repeat: no-repeat;" +
+  "width:" + 56 * widthK + "px;" +
+  "height:" + 28 * widthK + "px;" +
+  "top:" + 29 * widthK + "px;" +
+  "transition: 0.8s;" +
   "}",
 
   servicePageButtonBack: ".servicepage-button-back" +
@@ -6149,6 +6164,9 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "background-color: #00a8f1;" +
+  "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
   "bottom: 0;" +
   "padding: 0;" +
   "left: 0;" +
