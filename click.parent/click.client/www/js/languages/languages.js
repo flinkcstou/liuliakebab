@@ -442,7 +442,7 @@ var RU_LANGUAGES =
 
 
   "ViewQrTitle": "ОПЛАТА ТОВАРОВ И УСЛУГ",
-  "ViewQrTitleAccept": "Далее",
+  "ViewQrTitleAccept": "ПРОДОЛЖИТЬ",
   "ViewQrTitleCancel": "Отменить",
   "ViewQrLabelOnScanner": "Наведите камеру на QR код",
 

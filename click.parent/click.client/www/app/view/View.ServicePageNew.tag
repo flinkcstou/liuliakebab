@@ -824,6 +824,7 @@
       acceptEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(acceptStartY - acceptEndY) <= 20 && Math.abs(acceptStartX - acceptEndX) <= 20) {
+        convertAmount();
         amount.value = scope.convertedAmount;
 
 

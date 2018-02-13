@@ -302,8 +302,8 @@
         }
         else {
           if (!opts.mode) opts.mode = 'USUAL';
-
-          if (modeOfApp.offlineMode && id.indexOf('mynumber') != -1) {
+          console.log("id in offline search", typeof id);
+          if (modeOfApp.offlineMode && typeof id === "string" && id.indexOf('mynumber') != -1) {
             opts.chosenServiceId = 'mynumber';
           }
           else {
