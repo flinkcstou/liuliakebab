@@ -22,7 +22,7 @@
            each="{i in optionsArray}"
            id="{i.option_value}">
         <ul class="serviceinfo-option-info-container" style="list-style:none">
-          <li class="serviceinfo-option-detail" each="{j in i.option_object}">
+          <li class="serviceinfo-option-detail" each="{j in i.option_object}" if="{j.title}">
             <div
               class="{serviceinfo-option-title-text-option:checkIconShow,serviceinfo-option-title-text:!checkIconShow}">
               {j.title}:
