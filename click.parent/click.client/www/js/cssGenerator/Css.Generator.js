@@ -10691,7 +10691,7 @@ var css = {
   "padding-left: " + 26 * widthK + "px;" +
   "padding-right: " + 13 * widthK + "px;" +
   "padding-bottom: " + 11 * widthK + "px;" +
-  "padding-top: " + 12 * widthK + "px;" +
+  "padding-top: " + 10 * widthK + "px;" +
   "}",
 
   reportFilterClearFiltersContainer: ".report-filter-clear-filters-container" +
