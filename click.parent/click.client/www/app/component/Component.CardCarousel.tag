@@ -674,8 +674,8 @@
 
     this.on("mount", function () {
 
-      cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-      cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+      cards.style.transition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+      cards.style.webkitTransition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
 
       cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
@@ -838,8 +838,8 @@
           if (sendChosenCardId !== undefined) {
             riotTags.innerHTML = "<view-my-cards>";
             riot.mount("view-my-cards", [sendChosenCardId]);
-            document.getElementById('cards').style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-            document.getElementById('cards').style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+            document.getElementById('cards').style.transition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+            document.getElementById('cards').style.webkitTransition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
             document.getElementById('cards').style.transform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
             document.getElementById('cards').style.webkitTransform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
           }
