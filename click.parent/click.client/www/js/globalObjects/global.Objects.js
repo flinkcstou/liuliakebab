@@ -5,7 +5,6 @@ viewMainPage.addFirstCardBool = false;
 window.onBackParams = {};
 onBackParams.opts = null;
 
-
 window.viewMyCards = {};
 viewMyCards.check = false;
 viewMyCards.chosenCardId = '';
@@ -1711,14 +1710,14 @@ window.writeLog = function (logToSave) {
   }
 };
 
-function deleteLog(id){
+function deleteLog(id) {
   if (device.platform !== 'BrowserStand') {
     readFromFile('log.txt', function (data) {
       if (data) {
         console.log("READ FILE BEFORE = ", JSON.parse(data));
         fileData = JSON.parse(data);
-        for (log_i in fileData){
-          if (fileData[log_i] && fileData[log_i].report_id === id){
+        for (log_i in fileData) {
+          if (fileData[log_i] && fileData[log_i].report_id === id) {
             fileData.splice(log_i, 1);
           }
         }

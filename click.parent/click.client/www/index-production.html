@@ -378,16 +378,11 @@
     }, false);
   }
 
-  //  if (JSON.parse(localStorage.getItem('demo_version')) === true) {
-  //    this.closeDemo();
-  //  }
 
   var tempOpts;
   function onBackKeyDown() {
 
-    if (device.platform != 'BrowserStand') {
-      SpinnerPlugin.activityStop();
-    }
+    window.stopSpinner();
 
     if (window.checkShowingComponent) {
       if (window.checkShowingComponent.parent) {
@@ -421,7 +416,9 @@
           riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, tempOpts);
         } else {
           riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
+
         }
+
       }
     }
   }
