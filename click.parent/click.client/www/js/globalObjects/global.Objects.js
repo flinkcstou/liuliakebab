@@ -5,7 +5,6 @@ viewMainPage.addFirstCardBool = false;
 window.onBackParams = {};
 onBackParams.opts = null;
 
-
 window.viewMyCards = {};
 viewMyCards.check = false;
 viewMyCards.chosenCardId = '';

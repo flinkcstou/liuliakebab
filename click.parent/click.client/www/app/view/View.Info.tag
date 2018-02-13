@@ -101,6 +101,7 @@
       objectAccount = {};
     }
 
+
     console.log("GETACCOUNTS", accountsForBalance);
 
     for (var i in cards) {
