@@ -456,7 +456,7 @@
 
       if (Math.abs(onTouchStartX - onTouchEndX) <= 20) {
         console.log("chosen id in service carousel NEW=", id);
-        if (modeOfApp.offlineMode && id.indexOf('mynumber') != -1) {
+        if (modeOfApp.offlineMode && typeof id === "string" && id.indexOf('mynumber') != -1) {
           opts.chosenServiceId = 'mynumber';
         }
         else {
