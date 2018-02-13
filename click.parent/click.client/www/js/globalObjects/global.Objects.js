@@ -4,7 +4,6 @@ viewMainPage.addFirstCardBool = false;
 
 window.onBackParams = {};
 onBackParams.opts = null;
-onBackParams.unmount = {}
 
 window.viewMyCards = {};
 viewMyCards.check = false;

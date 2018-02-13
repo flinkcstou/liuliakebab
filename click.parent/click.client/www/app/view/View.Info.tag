@@ -118,10 +118,6 @@
       if (!modeOfApp.offlineMode) {
         writeBalanceInfo(accountsForBalance);
       }
-      console.log("Unmount setting new")
-      setTimeout(function () {
-        onBackParams.unmount = {'bool': true, 'scope': scope, 'page': "view-info"};
-      }, 500);
 
     });
 
