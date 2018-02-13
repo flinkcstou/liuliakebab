@@ -353,16 +353,11 @@
     }, false);
   }
 
-  //  if (JSON.parse(localStorage.getItem('demo_version')) === true) {
-  //    this.closeDemo();
-  //  }
 
   var tempOpts;
   function onBackKeyDown() {
 
-    if (device.platform != 'BrowserStand') {
-      SpinnerPlugin.activityStop();
-    }
+    window.stopSpinner();
 
     if (window.checkShowingComponent) {
       if (window.checkShowingComponent.parent) {
@@ -387,6 +382,10 @@
         navigator.app.exitApp();
       }
       else {
+        if (onBackParams.unmount && history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== onBackParams.unmount.page) {
+          console.log("resetting unmount params", onBackParams.unmount.page, history.arrayOfHistory[history.arrayOfHistory.length - 1].view);
+          onBackParams.unmount = null;
+        }
         history.arrayOfHistory.pop();
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
         riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
@@ -396,6 +395,12 @@
           riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, tempOpts);
         } else {
           riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
+        }
+
+        if (onBackParams.unmount && onBackParams.unmount.bool) {
+          console.log("unmounting");
+          onBackParams.unmount.scope.unmount();
+          onBackParams.unmount = null;
         }
       }
     }

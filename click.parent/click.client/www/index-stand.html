@@ -62,21 +62,21 @@
   var _error = console.error;
   var _warn = console.warn;
 
-  console.error = function(errMessage){
-    _error.apply(console,arguments);
+  console.error = function (errMessage) {
+    _error.apply(console, arguments);
   };
 
-  console.log = function(logMessage){
-    _log.apply(console,arguments);
+  console.log = function (logMessage) {
+    _log.apply(console, arguments);
   };
 
-  console.warn = function(warnMessage){
+  console.warn = function (warnMessage) {
     pageLogs = JSON.parse(sessionStorage.getItem('page_logs'));
     if (pageLogs && pageLogs.length > 0) {
       pageLogs[pageLogs.length - 1].logs.push(warnMessage);
       sessionStorage.setItem('page_logs', JSON.stringify(pageLogs));
     }
-    _warn.apply(console,arguments);
+    _warn.apply(console, arguments);
   };
 
 
@@ -217,6 +217,10 @@
         navigator.app.exitApp();
       }
       else {
+        if (onBackParams.unmount && history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== onBackParams.unmount.page) {
+          console.log("resetting unmount params", onBackParams.unmount.page, history.arrayOfHistory[history.arrayOfHistory.length - 1].view);
+          onBackParams.unmount = null;
+        }
         history.arrayOfHistory.pop();
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
         riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
@@ -227,6 +231,12 @@
           riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, tempOpts);
         } else {
           riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
+        }
+
+        if (onBackParams.unmount && onBackParams.unmount.bool) {
+          console.log("unmounting");
+          onBackParams.unmount.scope.unmount();
+          onBackParams.unmount = null;
         }
       }
     }
