@@ -90,6 +90,7 @@
     scope.leftOfOperations = 200 * widthK;
     scope.lastOperationContainer = [];
 
+
     window.saveHistory('view-info', opts);
 
 
@@ -117,6 +118,11 @@
       if (!modeOfApp.offlineMode) {
         writeBalanceInfo(accountsForBalance);
       }
+      console.log("Unmount setting new")
+      setTimeout(function () {
+        onBackParams.unmount = {'bool': true, 'scope': scope, 'page': "view-info"};
+      }, 500);
+
     });
 
     scope.on('updated', function () {
@@ -277,7 +283,7 @@
       if (Math.abs(goBackTouchStartX - goBackTouchEndX) <= 20 && Math.abs(goBackTouchStartY - goBackTouchEndY) <= 20) {
 
         onBackKeyDown();
-        scope.unmount()
+//        scope.unmount()
       }
     };
 
