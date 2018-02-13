@@ -125,7 +125,7 @@
       scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
       console.log('scope.parent', scope);
       scope.lastOperationsHidden = true;
-      riot.update()
+      scope.update()
     });
 
     lastOperationsTouchStart = function () {
