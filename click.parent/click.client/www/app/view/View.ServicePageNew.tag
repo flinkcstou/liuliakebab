@@ -16,20 +16,20 @@
 
   <div class="servicepage-body-container" if="{formType!=2}">
 
-    <div class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDAUTOPAY'}">
-      <p class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
+    <div id="autopayField" class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDAUTOPAY'}">
+      <p id="autoPayNameTitle" class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
 
       <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="autoPayNameInput"
-             autofocus="true" onkeyup="paymentNameVerificationKeyUp()"/>
+             autofocus="true" onkeyup="paymentNameVerificationKeyUp()" onfocus="colorField('autopay')"/>
     </div>
 
-    <div class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDFAVORITE'}">
-      <p class="servicepage-text-field">{window.languages.ViewServicePageFavoriteNameField}</p>
+    <div id="favoriteField" class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDFAVORITE'}">
+      <p id="favoriteNameTitle" class="servicepage-text-field">{window.languages.ViewServicePageFavoriteNameField}</p>
 
       <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="favoriteNameInput"
              placeholder="{window.languages.ViewServicePageFavoriteNamePlaceholder}" autofocus="true"
              value="{opts.favoriteName}"
-             onkeyup="paymentNameVerificationKeyUp()"/>
+             onkeyup="paymentNameVerificationKeyUp()" onfocus="colorField('favorite')"/>
     </div>
 
     <div class="servicepage-fields-dropdown" if="{dropDownOn}" ontouchend="openDropDown()" id="firstFieldChoiceId">
@@ -54,7 +54,7 @@
 
     <div class="servicepage-first-field" id="firstField"
          hidden="{modeOfApp.offlineMode && opts.chosenServiceId == 'mynumber'}">
-      <p class="servicepage-text-field">{chosenFieldName}</p>
+      <p id="firstFieldTitle" class="servicepage-text-field">{chosenFieldName}</p>
       <p class="servicepage-number-first-part" if="{phoneFieldBool}">+{window.languages.CodeOfCountry}</p>
 
       <div class="servicepage-prefix-dropdown" if="{!phoneFieldBool && hasPrefixes}" ontouchend="openPrefixesDropDown()"
@@ -67,7 +67,7 @@
                            servicepage-number-input-part-three: !phoneFieldBool && !isNumber && !hasPrefixes}"
              type="{inputType}"
              id="firstFieldInput"
-             onfocus="bordersColor()"
+             onfocus="colorField('firstField')"
              value="{defaultNumber || opts.first_field_value}"
              oninput="telVerificationOnInput()"
              onpaste="telVerificationOnPaste()"
@@ -96,7 +96,7 @@
 
     <div class="{servicepage-amount-field: !dropDownOn, servicepage-amount-field-two: dropDownOn}"
          id="amountField">
-      <p class="servicepage-text-field">{amountFieldTitle}</p>
+      <p id="amountFieldTitle" class="servicepage-text-field">{amountFieldTitle}</p>
       <p if="{commissionPercent}" class="servicepage-amount-tax-text-field">
         {window.languages.ViewServicePageAmountTaxText} {tax}
         {window.languages.Currency}</p>
@@ -105,6 +105,7 @@
              readonly="{!service['amount_editable']}"
              pattern="[0-9]"
              placeholder="{placeHolderText}"
+             onfocus="colorField('amount')"
              onmouseup="eraseAmountDefault()" onkeyup="sumForPay()" oninput="sumForPay()"/>
       <div if="{!modeOfApp.offlineMode && service['amount_editable'] && calcOn}" class="servicepage-amount-icon"
            ontouchstart="onTouchStartOfAmountCalculator()" role="button"
@@ -200,14 +201,14 @@
   <div class="servicepage-formtype-two-container" if="{formType==2}">
 
     <div class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDAUTOPAY'}">
-      <p class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
+      <p id="autoPayNameTitle" class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
 
       <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="autoPayNameInput"
              autofocus="true" onkeyup="paymentNameVerificationKeyUp()"/>
     </div>
 
     <div class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDFAVORITE'}">
-      <p class="servicepage-text-field">{window.languages.ViewServicePageFavoriteNameField}</p>
+      <p id="favoriteNameTitle" class="servicepage-text-field">{window.languages.ViewServicePageFavoriteNameField}</p>
 
       <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="favoriteNameInput"
              placeholder="{window.languages.ViewServicePageFavoriteNamePlaceholder}" autofocus="true"
@@ -369,6 +370,7 @@
       if (amountForPayTransaction < scope.service.min_pay_limit && from == 'sum' && amount.value.length != 0) {
         scope.showErrorOfLimit = true;
         amountField.style.borderBottom = 3 * widthK + 'px solid red';
+        amountFieldTitle.style.color = 'red';
         scope.enterButtonEnabled = false;
         scope.update();
         placeHolderSumId.style.color = 'red';
@@ -376,12 +378,14 @@
       }
       else if (from == 'sum' && amountField.length >= 1) {
         amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+        amountFieldTitle.style.color = '#01cfff';
         scope.showErrorOfLimit = false;
         scope.update()
       }
       if (amountForPayTransaction > scope.service.max_pay_limit && from == 'sum' && amount.value.length != 0) {
         scope.showErrorOfLimit = true;
         amountField.style.borderBottom = 3 * widthK + 'px solid red';
+        amountFieldTitle.style.color = 'red';
         scope.enterButtonEnabled = false;
         scope.update();
         placeHolderSumId.style.color = 'red';
@@ -389,6 +393,7 @@
       }
       else if (from == 'sum') {
         amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+        amountFieldTitle.style.color = '#01cfff';
         scope.showErrorOfLimit = false;
         scope.update()
       }
@@ -616,8 +621,51 @@
         }
       }
       scope.update()
+    };
+
+    colorField = function (field) {
+      if (field == 'firstField') {
+        firstField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+        firstFieldTitle.style.color = '#01cfff';
+        amountField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+        amountFieldTitle.style.color = 'gray';
+        if (opts.mode == 'ADDAUTOPAY') {
+          autopayField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+          autoPayNameTitle.style.color = 'gray';
+        } else if (opts.mode == 'ADDFAVORITE') {
+          favoriteField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+          favoriteNameTitle.style.color = 'gray';
+        }
+      } else if (field == 'amount') {
+        amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+        amountFieldTitle.style.color = '#01cfff';
+        firstField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+        firstFieldTitle.style.color = 'gray';
+        if (opts.mode == 'ADDAUTOPAY') {
+          autopayField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+          autoPayNameTitle.style.color = 'gray';
+        } else if (opts.mode == 'ADDFAVORITE') {
+          favoriteField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+          favoriteNameTitle.style.color = 'gray';
+        }
+      } else if (field == 'autopay') {
+        autopayField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+        autoPayNameTitle.style.color = '#01cfff';
+        firstField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+        firstFieldTitle.style.color = 'gray';
+        amountField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+        amountFieldTitle.style.color = 'gray';
+      } else if (field == 'favorite') {
+        favoriteField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+        favoriteNameTitle.style.color = '#01cfff';
+        firstField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+        firstFieldTitle.style.color = 'gray';
+        amountField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+        amountFieldTitle.style.color = 'gray';
+      }
 
     };
+
 
     scope.onTouchStartOfSearchContact = onTouchStartOfSearchContact = function () {
       event.stopPropagation();
@@ -1551,9 +1599,6 @@
         amount.selectionEnd = 0;
       }
 
-      amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
-      firstField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
-
       checkFieldsToActivateNext('sum')
 
     };
@@ -1597,15 +1642,12 @@
       checkFieldsToActivateNext('sum');
     };
 
-    bordersColor = function () {
-
-      event.preventDefault();
-      event.stopPropagation();
-
-
-      firstField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
-      amountField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
-    };
+    //    bordersColor = function () {
+    //
+    //      event.preventDefault();
+    //      event.stopPropagation();
+    //
+    //    };
 
     scope.onTouchStartOfEnter = onTouchStartOfEnter = function () {
       event.stopPropagation();
