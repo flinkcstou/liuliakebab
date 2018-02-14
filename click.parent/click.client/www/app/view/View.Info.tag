@@ -9,10 +9,13 @@
     <p class="view-info-balance-label">{window.languages.ViewInfoBalanceTitle}</p>
     <div class="view-info-card-balance-currency-container">
       <div if="{!modeOfApp.offlineMode}" class="view-info-card-balance" id="fullCardBalanceContainer">
+        <canvas id="fullScaleCanvas" style="display: none;"></canvas>
+        <canvas id="fractionalScaleCanvas" style="display: none;"></canvas>
+        <canvas id="currencyScaleCanvas" style="display: none;"></canvas>
         <div class="view-info-card-balance-scale-container" id="fullCardBalanceScaleContainer">
           <p class="view-info-card-balance-sum">{(fullBalanceCopy) ? (fullBalanceCopy) : (error_message)}<span
             class="view-info-card-balance-sum-fractional">{(fractionalPart) ? (fractionalPart) : ''}</span> <span
-            if="{!modeOfApp.offlineMode && fullBalanceCopy}" class="view-info-card-currency">сум</span></p>
+            if="{!modeOfApp.offlineMode && fullBalanceCopy}" class="view-info-card-currency">{window.languages.ViewReportServiceCommissionCurrency}</span></p>
         </div>
       </div>
 
@@ -89,6 +92,12 @@
     }
     scope.leftOfOperations = 200 * widthK;
     scope.lastOperationContainer = [];
+    var canvasFull;
+    var contextFull;
+    var canvasFractional;
+    var contextFractional;
+    var canvasCurrency;
+    var contextCurrency;
 
 
     window.saveHistory('view-info', opts);
@@ -111,6 +120,15 @@
     }
 
     scope.on('mount', function () {
+      canvasFull = document.getElementById('fullScaleCanvas');
+      contextFull = canvasFull.getContext('2d');
+      canvasFractional = document.getElementById('fractionalScaleCanvas');
+      contextFractional = canvasFractional.getContext('2d');
+      canvasCurrency = document.getElementById('currencyScaleCanvas');
+      contextCurrency = canvasCurrency.getContext('2d');
+      contextFull.font = 67 * widthK + "px SFUIDisplay-Light";
+      contextFractional.font = 51 * widthK + "px SFUIDisplay-Light";
+      contextCurrency.font = 26 * widthK + "px SFUIDisplay-Light";
       if (device.platform != 'BrowserStand')
         StatusBar.backgroundColorByHexString("#e5e5e5");
       var accountsForBalance = [];
@@ -120,19 +138,6 @@
       }
 
     });
-
-    scope.on('updated', function () {
-      console.log("full card balance container", fullCardBalanceContainer.offsetWidth);
-      console.log("full card balance", fullCardBalanceScaleContainer.offsetWidth);
-
-      if (fullCardBalanceScaleContainer.offsetWidth > fullCardBalanceContainer.offsetWidth) {
-        scaleK = fullCardBalanceContainer.offsetWidth / fullCardBalanceScaleContainer.offsetWidth;
-        left_d = (scaleK - 1) * fullCardBalanceScaleContainer.offsetWidth / 2;
-        fullCardBalanceScaleContainer.style.webkitTransform = 'scale(' + scaleK + ')';
-        fullCardBalanceScaleContainer.style.left = left_d + 'px';
-      }
-    });
-
 
     reloadBalanceTouchStart = function () {
 
@@ -185,20 +190,21 @@
 
                 scope.fullBalanceCopy = scope.fullBalanceCopy.toFixed(0).toString();
                 scope.fullBalanceCopy = window.amountTransform(scope.fullBalanceCopy);
-                scope.update()
-//                if (getAccountsCards[j].currency_name.trim() == defaultAccount.currency.trim()) {
-//                  scope.fullBalance = parseInt(scope.fullBalance);
-//                  scope.fullBalance += result[1][0].balance;
-//                  scope.fullBalanceCopy = scope.fullBalance;
-//
-//                  scope.fullBalanceCopy = scope.fullBalanceCopy.toFixed(0).toString();
-//                  scope.fullBalanceCopy = window.amountTransform(scope.fullBalanceCopy);
-//
-////                    console.log('INFO BALANCEE', )
-//                  scope.update();
-//                }
-//                else
-//                  scope.attention = true;
+                scope.update();
+                textWidthFull = contextFull.measureText(scope.fullBalanceCopy + ' ').width;
+                textWidthFractional = contextFractional.measureText(scope.fractionalPart).width;
+                textWidthCurrency = contextCurrency.measureText(window.languages.ViewReportServiceCommissionCurrency).width;
+                totalTextWidth = textWidthFull + textWidthFractional + textWidthCurrency;
+
+                console.log("full card balance container", fullCardBalanceContainer.offsetWidth);
+                console.log("full card balance", fullCardBalanceScaleContainer.offsetWidth);
+
+                if (totalTextWidth > fullCardBalanceContainer.offsetWidth) {
+                  scaleK = fullCardBalanceContainer.offsetWidth / totalTextWidth;
+                  left_d = (scaleK - 1) * totalTextWidth / 2;
+                  fullCardBalanceScaleContainer.style.webkitTransform = 'scale(' + scaleK + ')';
+                  fullCardBalanceScaleContainer.style.left = left_d + 'px';
+                }
               } catch (Error) {
 
                 console.log("VIEW INFO WRITE BALANCE", Error);
