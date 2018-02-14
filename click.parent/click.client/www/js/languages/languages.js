@@ -410,7 +410,7 @@ var RU_LANGUAGES =
   "ViewReportServiceRemoveFromFavorites": "Удалить из избранных",
   "ViewReportServiceAddToAutoPayment": "Добавить в автоплатеж",
   "ViewReportServiceGetSupportHelp": "Получить помощь поддержки",
-  "ViewReportServiceRepeatButtonLabel": "повторить",
+  "ViewReportServiceRepeatButtonLabel": "ПОВТОРИТЬ",
   "ViewReportServiceShowQrButtonLabel": "Показать QR-Код",
 
   "ViewBankListTitleName": "ЛИМИТЫ НА ПЕРЕВОДЫ",
