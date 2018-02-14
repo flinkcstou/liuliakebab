@@ -14,7 +14,7 @@
         <div class="inplace-pay-search-field" id="searchContainerId">
           <input class="inplace-pay-search-input-part"
                  type="text"
-                 id="searchInputId"
+                 id="searchInputId" onfocus="colorFieldInplaceSearch()" onblur="blurFieldInplaceSearch()"
                  placeholder="{window.languages.InPlaceSearchPlaceHolderText}"/>
           <div id="searchIcon" class="inplace-pay-search-icon" ontouchstart="onTouchStartOfSearchService()"
                ontouchend="onTouchEndOfSearchService()"></div>
@@ -186,7 +186,7 @@
           timeOutTimer = setTimeout(function () {
             window.writeLog({
               reason: 'Timeout',
-              method:'get.indoor.service.list',
+              method: 'get.indoor.service.list',
             });
             window.common.alert.show("componentAlertId", {
               parent: scope,
@@ -255,6 +255,14 @@
         onBackKeyDown();
         scope.unmount()
       }
+    };
+
+    colorFieldInplaceSearch = function () {
+      searchContainerId.style.borderBottom = "" + 3 * widthK + "px solid #01cfff";
+    };
+
+    blurFieldInplaceSearch = function () {
+      searchContainerId.style.borderBottom = "" + 3 * widthK + "px solid #cbcbcb";
     };
 
     onTouchStartOfSearchService = function () {
@@ -345,7 +353,7 @@
               timeOutTimerTwo = setTimeout(function () {
                 window.writeLog({
                   reason: 'Timeout',
-                  method:'get.indoor.service.list',
+                  method: 'get.indoor.service.list',
                 });
                 window.common.alert.show("componentAlertId", {
                   parent: scope,
