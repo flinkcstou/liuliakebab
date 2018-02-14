@@ -591,6 +591,7 @@ var css = {
   "overflow: hidden;" +
   // "background-image: url('resources/icons/background/transparent.png');" +
   "background-size: cover;" +
+  "background: white;" +
   "background-repeat: no-repeat;" +
   "}",
   registrationDeviceFlexContainer: ".registration-device-flex-container " +
@@ -1141,6 +1142,7 @@ var css = {
   "overflow: hidden;" +
   // "background-image: url('resources/icons/background/transparent.png');" +
   "background-size: cover;" +
+  "background: white;" +
   "background-repeat: no-repeat;" +
   "}",
 
