@@ -29,7 +29,7 @@
           <p class="settings-add-friend-contact-text-field"></p>
           <p class="settings-add-friend-contact-number-first-part"></p>
           <input maxlength="20" id="contactNameId" onfocus="colorFieldAddFriend('name')"
-                 class="settings-add-friend-name-number-input-part"
+                 class="settings-add-friend-name-number-input-part" oninput="checkFieldsInAddFriend()"
                  type="text"/>
         </div>
       </div>
@@ -151,6 +151,22 @@
       }
     };
 
+    checkFieldsInAddFriend = function () {
+
+      console.log("contactNameId.value.length", contactNameId.value.length)
+
+      if (contactPhoneNumberId.value.length == scope.numberLength && !contactNameId.value.length < 1) {
+        console.log("qqq")
+        nextButtonId.style.display = 'block';
+        firstSuggestionBlockId.style.display = 'none';
+        secondSuggestionBlockId.style.display = 'none';
+      }
+      else {
+        console.log("ddd")
+        nextButtonId.style.display = 'none'
+      }
+    };
+
     contactPhoneBlurAndChange = function () {
       event.preventDefault();
       event.stopPropagation();
@@ -160,15 +176,7 @@
         scope.onPaste = false;
       }
 
-      if (contactPhoneNumberId.value.length == scope.numberLength) {
-        nextButtonId.style.display = 'block';
-        firstSuggestionBlockId.style.display = 'none';
-        secondSuggestionBlockId.style.display = 'none';
-      }
-      else {
-        nextButtonId.style.display = 'none'
-      }
-
+      checkFieldsInAddFriend();
       colorFieldAddFriend('phone');
       scope.update();
     };
@@ -211,14 +219,7 @@
           contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(phone.substring(phone.length - 9, phone.length));
           if (contactPhoneNumberId.value.length != 0) {
 
-            if (contactPhoneNumberId.value.length == scope.numberLength) {
-              nextButtonId.style.display = 'block'
-
-              firstSuggestionBlockId.style.display = 'none';
-              secondSuggestionBlockId.style.display = 'none';
-            }
-            else
-              nextButtonId.style.display = 'none'
+            checkFieldsInAddFriend();
 
           }// use time-out to fix iOS alert problem
         }, 0);
@@ -299,26 +300,15 @@
           contactPhoneNumberId.selectionStart = cursorPositionSelectionStart + 1;
       }
 
-      if (contactPhoneNumberId.value.length == scope.numberLength) {
-        nextButtonId.style.display = 'block';
 
+      if (contactPhoneNumberId.value.length == 0) {
 
         firstSuggestionBlockId.style.display = 'none';
         secondSuggestionBlockId.style.display = 'none';
+        scope.update();
         return
-
       }
-      else {
-        nextButtonId.style.display = 'none';
 
-        if (contactPhoneNumberId.value.length == 0) {
-
-          firstSuggestionBlockId.style.display = 'none';
-          secondSuggestionBlockId.style.display = 'none';
-          scope.update();
-          return
-        }
-      }
 
       event.preventDefault();
       event.stopPropagation();
@@ -469,15 +459,6 @@
           }
         }
 
-        if (contactPhoneNumberId.value.length == scope.numberLength) {
-          nextButtonId.style.display = 'block';
-
-          firstSuggestionBlockId.style.display = 'none';
-          secondSuggestionBlockId.style.display = 'none';
-        }
-        else
-          nextButtonId.style.display = 'none';
-
         scope.update()
       }
     };
@@ -513,15 +494,6 @@
             contactNameId.value = scope.suggestionTwo.lName;
           }
         }
-
-
-        if (contactPhoneNumberId.value.length == scope.numberLength) {
-          nextButtonId.style.display = 'block';
-          firstSuggestionBlockId.style.display = 'none';
-          secondSuggestionBlockId.style.display = 'none';
-        }
-        else
-          nextButtonId.style.display = 'none';
 
         scope.update()
       }
