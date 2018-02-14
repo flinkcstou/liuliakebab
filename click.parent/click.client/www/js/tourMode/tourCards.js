@@ -22,20 +22,20 @@ tourCards.registration =
     icon_size: 68, icon_y: 100, check: "resources/3.png"
   }, {
     counter: 4,
-    image: "resources/icons/ComponentTour/registration/4.png",
+    image: "resources/icons/ComponentTour/registration/5.png",
     title: "ШАГ 4",
-    text: "Введите 16-тизначный номер карты и срок её действия",
+    text: "Установите CLICK-PIN из 5 цифр для подтверждения операций в системе CLICK",
+    back_color: "transparent", title_color: "#8b8b8b",
+    icon_size: 66, icon_y: 110, check: "resources/5.png"
+  },  {
+    counter: 5,
+    image: "resources/icons/ComponentTour/registration/4.png",
+    title: "ШАГ 5",
+    text: "Добавьте свою первую карту в CLICK",
     back_color: "transparent", title_color: "#8b8b8b",
     icon_size: 75, icon_y: 86, check: "resources/4.png"
-  },
-    {
-      counter: 5,
-      image: "resources/icons/ComponentTour/registration/5.png",
-      title: "ШАГ 5",
-      text: "Установите CLICK-PIN из 5 цифр для подтверждения операций в системе CLICK",
-      back_color: "transparent", title_color: "#8b8b8b",
-      icon_size: 66, icon_y: 110, check: "resources/5.png"
-    }
+  }
+
   ];
 
 tourCards.mainpage = [{

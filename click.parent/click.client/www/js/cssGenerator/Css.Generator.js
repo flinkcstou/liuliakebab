@@ -15728,7 +15728,7 @@ var css = {
   "top: 0;" +
   "width: 100%;" +
   "overflow: hidden;" +
-  "overflow: hidden;" +
+  "z-index: 900;" +
   "transform: translate3d(0, 0,0);" +
   "-webkit-transform: translate3d(0, 0,0);" +
   "-ms-transform: translate3d(0, 0,0);" +
