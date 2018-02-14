@@ -200,20 +200,20 @@
 
   <div class="servicepage-formtype-two-container" if="{formType==2}">
 
-    <div class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDAUTOPAY'}">
+    <div id="autopayField" class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDAUTOPAY'}">
       <p id="autoPayNameTitle" class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
 
       <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="autoPayNameInput"
-             autofocus="true" onkeyup="paymentNameVerificationKeyUp()"/>
+             autofocus="true" onkeyup="paymentNameVerificationKeyUp()" onfocus="colorFieldFormTypeTwo('autopay')"/>
     </div>
 
-    <div class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDFAVORITE'}">
+    <div id="favoriteField" class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDFAVORITE'}">
       <p id="favoriteNameTitle" class="servicepage-text-field">{window.languages.ViewServicePageFavoriteNameField}</p>
 
       <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="favoriteNameInput"
              placeholder="{window.languages.ViewServicePageFavoriteNamePlaceholder}" autofocus="true"
              value="{opts.favoriteName}"
-             onkeyup="paymentNameVerificationKeyUp()"/>
+             onkeyup="paymentNameVerificationKeyUp()" onfocus="colorFieldFormTypeTwo('favorite')"/>
     </div>
 
     <div
@@ -664,6 +664,16 @@
         amountFieldTitle.style.color = 'gray';
       }
 
+    };
+
+    colorFieldFormTypeTwo = function (field) {
+      if (field == 'autopay') {
+        autopayField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+        autoPayNameTitle.style.color = '#01cfff';
+      } else if (field == 'favorite') {
+        favoriteField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+        favoriteNameTitle.style.color = '#01cfff';
+      }
     };
 
 
@@ -1642,12 +1652,6 @@
       checkFieldsToActivateNext('sum');
     };
 
-    //    bordersColor = function () {
-    //
-    //      event.preventDefault();
-    //      event.stopPropagation();
-    //
-    //    };
 
     scope.onTouchStartOfEnter = onTouchStartOfEnter = function () {
       event.stopPropagation();
@@ -2014,9 +2018,22 @@
         opts.cardTypeId = cardId;
         opts.amountText = nominal;
 
-        if (opts.mode == 'ADDAUTOPAY' && this.autoPayNameInput.value.length < 1) {
-          console.log("Введите название автоплатежа");
-          return;
+        if (opts.mode == 'ADDAUTOPAY') {
+          autopayField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+          autoPayNameTitle.style.color = 'gray';
+
+          if (this.autoPayNameInput.value.length < 1) {
+            console.log("Введите название автоплатежа");
+            return;
+          }
+        } else if (opts.mode == 'ADDFAVORITE') {
+          favoriteField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+          favoriteNameTitle.style.color = 'gray';
+
+          if (this.favoriteNameInput.value.length < 1) {
+            console.log("Введите название избранного");
+            return;
+          }
         }
 
         formTypeTwoBtnId.style.pointerEvents = 'auto';
