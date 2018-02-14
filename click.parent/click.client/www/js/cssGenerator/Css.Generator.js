@@ -79,7 +79,7 @@ var css = {
   // "background-image: -moz-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
   // "background-image: -webkit-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
   // "background-image: -ms-linear-gradient(rgb(1,124,227) 0%, rgb(21,181,243) 50%, rgb(21,181,243) 100%);" +
-  "background: #white;" +
+  "background: #fafafa;" +
   "font-family: SFUIDisplay-Light;" +
   "margin: 0;" +
   "overflow: hidden;" +
@@ -1760,9 +1760,9 @@ var css = {
   "border-radius:" + 14 * widthK + "px;" +
   "background-size: cover;" +
   "color: white;" +
-  "-webkit-box-shadow: " + 50 * widthK + "px " +  50 * widthK + "px " + 75 * widthK + "px " + -65 * widthK + "px " + "rgba(0,0,0,1);" +
-  "-moz-box-shadow: " + 50 * widthK + "px " + 50 * widthK + "px " + 75 * widthK + "px " + -65 * widthK + "px " + "rgba(0,0,0,1);" +
-  "box-shadow: " + 50 * widthK + "px " + 50 * widthK + "px " + 75 * widthK + "px " + -65 * widthK + "px " + "rgba(0,0,0,1);" +
+  "-webkit-box-shadow: " + 9 * widthK + "px " + 9 * widthK + "px " + 29.4 * widthK + "px " + "rgba(0,0,0, 0.08);" +
+  "-moz-box-shadow: " + 9 * widthK + "px " + 9 * widthK + "px " + 29.4 * widthK + "px " + "rgba(0,0,0, 0.08);" +
+  "box-shadow: " + 9 * widthK + "px " + 9 * widthK + "px " + 29.4 * widthK + "px " + "rgba(0,0,0, 0.08);" +
   "background-color: #BDC7D0;" +
   "}",
 
@@ -2048,10 +2048,14 @@ var css = {
   "{" +
   "position: absolute;" +
   "width:" + 620 * widthK + "px;" +
+  "height:" + 255 * heightK + "px;" +
   //"height:" + 338 * heightK + "px;" +
   "top:" + -1 * heightK + "px;" +
   "bottom:" + 5 * widthK + "px;" +
   "background-color: #fefefe;" +
+  "-webkit-box-shadow: " + 9 * widthK + "px " + 9 * widthK + "px " + 29.4 * widthK + "px " + "rgba(0,0,0, 0.08);" +
+  "-moz-box-shadow: " + 9 * widthK + "px " + 9 * widthK + "px " + 29.4 * widthK + "px " + "rgba(0,0,0, 0.08);" +
+  "box-shadow: " + 9 * widthK + "px " + 9 * widthK + "px " + 29.4 * widthK + "px " + "rgba(0,0,0, 0.08);" +
   "}",
 
   serviceComponentOpenIcon: ".service-component-open-icon " +
@@ -2180,7 +2184,7 @@ var css = {
   "margin-right: auto;" +
   "background: transparent;" +
   "background-size: contain;" +
-  "color: #585858;" +
+  "color: #565d6a;" +
   "font-size:" + 24 * widthK + "px;" +
   "}",
 
@@ -6969,10 +6973,10 @@ var css = {
   "right: 1.5%;" +
   "background-image: url(resources/icons/ViewTransfer/i.png);" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 35%;" +
+  "-webkit-background-size: 48%;" +
   "background-position-y: center;" +
   "background-position-x: center;" +
-  "background-size: 35%;" +
+  "background-size: 48%;" +
   "}",
 
   //VIEW TRANSFER TWO
@@ -11178,7 +11182,7 @@ var css = {
   "top:70%;" +
   "text-align: center;" +
   "font-size: " + 28 * widthK + "px;" +
-  "color: white;" +
+  "color: #565d6a;" +
   "}",
 
 //  VIEW BANK LIST
@@ -11280,10 +11284,10 @@ var css = {
   "right: 1.5%;" +
   "background-image: url('resources/icons/ViewTransfer/banks_close.png');" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 30%;" +
+  "-webkit-background-size: 40%;" +
   "background-position-y: center;" +
   "background-position-x: center;" +
-  "background-size: 30%;" +
+  "background-size: 40%;" +
   "}",
 
   componentBankListRotate: ".component-banklist-bank-rotate" +
