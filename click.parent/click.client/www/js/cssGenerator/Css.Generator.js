@@ -4200,7 +4200,7 @@ var css = {
   servicePageAmountInputPlaceholder: ".servicepage-amount-input::-webkit-input-placeholder" +
   "{" +
   "font-size:" + 30 * widthK + "px;" +
-  "color: gainsboro;" +
+  "color: #8b8b8b;" +
   "padding: " + 20 * widthK + "px 0 0 0;" +
   "}",
 
@@ -16270,7 +16270,6 @@ var css = {
   "background-position: center;" +
   "top: 22%;" +
   "}",
-
 
   // View InPlacePayService
 
