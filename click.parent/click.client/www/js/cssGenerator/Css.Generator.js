@@ -16017,11 +16017,15 @@ var css = {
   "-webkit-overflow-scrolling: touch; " +
   "}",
 
-  // inPlacePayServiceInnerContainerScroll: ".inplace-pay-service-inner-container::-webkit-scrollbar" +
-  // "{" +
-  // "width: 20px; " +
-  // "z-index: 99999999999;" +
-  // "}",
+  inPlacePayServiceInnerContainerScroll: ".inplace-pay-service-inner-container::-webkit-scrollbar" +
+  "{" +
+  "width:" + 10 * widthK + "px; " +
+  "}",
+
+  inPlacePayServiceInnerContainerScrollThumb: ".inplace-pay-service-inner-container::-webkit-scrollbar-thumb" +
+  "{" +
+  "background-color: rgba(0, 0, 0, .1); " +
+  "}",
 
 
   inPlacePayBlockContainer: ".inplace-pay-block-containter" +
