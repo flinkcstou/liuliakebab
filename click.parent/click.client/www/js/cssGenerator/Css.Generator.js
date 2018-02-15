@@ -9104,7 +9104,6 @@ var css = {
   "top: 28%;" +
   "padding: 0;" +
   "margin: 0;" +
-  "margin-left: 3%;" +
   "width: 93%;" +
   "font-size:" + 51 * widthK + "px;" +
   "font-family: 'SFUIDisplay-Light';" +
@@ -9119,7 +9118,7 @@ var css = {
   "height:" + 100 * widthK + "px;" +
   "border-bottom:" + 3 * widthK + "px solid #01cfff;" +
   "color: white;" +
-  "top: 36%" +
+  "top: 30%" +
   "}",
 
   settingsAddFriendContactTextField: ".settings-add-friend-contact-text-field" +
