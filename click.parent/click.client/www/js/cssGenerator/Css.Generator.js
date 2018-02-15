@@ -4200,7 +4200,7 @@ var css = {
   servicePageAmountInputPlaceholder: ".servicepage-amount-input::-webkit-input-placeholder" +
   "{" +
   "font-size:" + 30 * widthK + "px;" +
-  "color: gainsboro;" +
+  "color: #8b8b8b;" +
   "padding: " + 20 * widthK + "px 0 0 0;" +
   "}",
 
@@ -9249,7 +9249,6 @@ var css = {
   "top: 28%;" +
   "padding: 0;" +
   "margin: 0;" +
-  "margin-left: 3%;" +
   "width: 93%;" +
   "font-size:" + 51 * widthK + "px;" +
   "font-family: 'SFUIDisplay-Light';" +
@@ -9264,7 +9263,7 @@ var css = {
   "height:" + 100 * widthK + "px;" +
   "border-bottom:" + 3 * widthK + "px solid #01cfff;" +
   "color: white;" +
-  "top: 36%" +
+  "top: 30%" +
   "}",
 
   settingsAddFriendContactTextField: ".settings-add-friend-contact-text-field" +
@@ -16156,11 +16155,15 @@ var css = {
   "-webkit-overflow-scrolling: touch; " +
   "}",
 
-  // inPlacePayServiceInnerContainerScroll: ".inplace-pay-service-inner-container::-webkit-scrollbar" +
-  // "{" +
-  // "width: 20px; " +
-  // "z-index: 99999999999;" +
-  // "}",
+  inPlacePayServiceInnerContainerScroll: ".inplace-pay-service-inner-container::-webkit-scrollbar" +
+  "{" +
+  "width:" + 10 * widthK + "px; " +
+  "}",
+
+  inPlacePayServiceInnerContainerScrollThumb: ".inplace-pay-service-inner-container::-webkit-scrollbar-thumb" +
+  "{" +
+  "background-color: rgba(0, 0, 0, .1); " +
+  "}",
 
 
   inPlacePayBlockContainer: ".inplace-pay-block-containter" +
@@ -16271,7 +16274,6 @@ var css = {
   "background-position: center;" +
   "top: 22%;" +
   "}",
-
 
   // View InPlacePayService
 
