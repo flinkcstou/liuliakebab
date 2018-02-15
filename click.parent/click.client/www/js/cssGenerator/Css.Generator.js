@@ -16024,7 +16024,7 @@ var css = {
 
   inPlacePayServiceInnerContainerScrollThumb: ".inplace-pay-service-inner-container::-webkit-scrollbar-thumb" +
   "{" +
-  "background-color: rgba(0, 0, 0, .1); " +
+  "background-color: rgba(0, 0, 0, .15); " +
   "}",
 
 
