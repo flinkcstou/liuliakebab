@@ -187,6 +187,12 @@
   var tempOpts;
   function onBackKeyDown() {
 
+    for (var i in window.common.alert.tags){
+      if (window.common.alert.isShown(i)) {
+        return;
+      }
+    }
+
     console.log("OPTS in ONBackKeyDown", onBackParams.opts)
 
     if (device.platform != 'BrowserStand') {
