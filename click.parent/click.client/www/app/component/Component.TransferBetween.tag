@@ -1,8 +1,8 @@
 <component-transfer-between>
-  <div class="transfer-new-between-amount-field"
+  <div id="amountField" class="transfer-new-between-amount-field"
        ontouchstart="betweenAmountFormTouchStart()"
        ontouchend="betweenAmountFormTouchEnd()">
-    <p class="transfer-new-between-text-field">{window.languages.ViewTransferDetailTitleSum}</p>
+    <p id="amountFieldTitle" class="transfer-new-between-text-field">{window.languages.ViewTransferDetailTitleSum}</p>
     <input id="betweenAmountId"
            class="transfer-new-between-amount-input"
            type="tel"
@@ -163,11 +163,18 @@
       event.stopPropagation();
       contactPhoneNumberId.readOnly = false;
       cardInputId.readOnly = false;
+
+      amountFieldTitle.style.color = 'gray';
+      amountField.style.borderBottom = "" + 3 * widthK + "px solid #cbcbcb";
     };
 
     amountFocus = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      amountFieldTitle.style.color = '#01cfff';
+      amountField.style.borderBottom = "" + 3 * widthK + "px solid #01cfff";
+
       if (betweenAmountId.value.length === 1 && betweenAmountId.value[0] === '0') {
         betweenAmountId.value = '';
       }
@@ -230,7 +237,7 @@
         scope.showCommission = false;
       }
       scope.update();
-      if (event.keyCode === input_codes.ENTER){
+      if (event.keyCode === input_codes.ENTER) {
         if (device.platform !== 'BrowserStand')
           cordova.plugins.Keyboard.close();
       }
@@ -277,7 +284,7 @@
                   } else {
                     scope.minLimit = scope.minLimitBottom;
                   }
-                  if (scope.maxLimitTop > scope.maxLimitBottom){
+                  if (scope.maxLimitTop > scope.maxLimitBottom) {
                     scope.maxLimit = scope.maxLimitBottom;
                   } else {
                     scope.maxLimit = scope.maxLimitTop;
@@ -285,9 +292,9 @@
                   if (bank.p2p_status == 1) {
                     scope.statusOfBankToP2PTop = true;
                   }
-                  if (scope.inBankLimitTop === 0){
-                    if (scope.procTypeTop === scope.procTypeBottom){
-                      if (scope.bankCodeTop === scope.bankCodeBottom){
+                  if (scope.inBankLimitTop === 0) {
+                    if (scope.procTypeTop === scope.procTypeBottom) {
+                      if (scope.bankCodeTop === scope.bankCodeBottom) {
                         scope.maxLimit = 99999999999;
                       }
                     }
@@ -363,7 +370,7 @@
                   } else {
                     scope.minLimit = scope.minLimitBottom;
                   }
-                  if (scope.maxLimitTop > scope.maxLimitBottom){
+                  if (scope.maxLimitTop > scope.maxLimitBottom) {
                     scope.maxLimit = scope.maxLimitBottom;
                   } else {
                     scope.maxLimit = scope.maxLimitTop;
@@ -372,9 +379,9 @@
                   if (bank.p2p_status == 1) {
                     scope.statusOfBankToP2PBottom = true;
                   }
-                  if (scope.inBankLimitBottom === 0){
-                    if (scope.procTypeBottom === scope.procTypeTop){
-                      if (scope.bankCodeBottom === scope.bankCodeTop){
+                  if (scope.inBankLimitBottom === 0) {
+                    if (scope.procTypeBottom === scope.procTypeTop) {
+                      if (scope.bankCodeBottom === scope.bankCodeTop) {
                         scope.maxLimit = 99999999999;
                       }
                     }
@@ -533,7 +540,7 @@
           timeOutTimer = setTimeout(function () {
             window.writeLog({
               reason: 'Timeout',
-              method:'p2p.account',
+              method: 'p2p.account',
             });
             updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
           }, 30000);

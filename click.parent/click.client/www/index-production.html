@@ -382,6 +382,13 @@
   var tempOpts;
   function onBackKeyDown() {
 
+
+    for (var i in window.common.alert.tags){
+      if (window.common.alert.isShown(i)) {
+        return;
+      }
+    }
+
     window.stopSpinner();
 
     if (window.checkShowingComponent) {

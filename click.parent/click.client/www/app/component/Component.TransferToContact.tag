@@ -2,7 +2,8 @@
   <div class="transfer-new-contact-phone-field"
        ontouchstart="contactNumberFormTouchStart()"
        ontouchend="contactNumberFormTouchEnd()">
-    <p class="transfer-new-contact-text-field">{window.languages.ViewPayTransferNewContactTextField}</p>
+    <p id="contactPhoneTitle" class="transfer-new-contact-text-field">
+      {window.languages.ViewPayTransferNewContactTextField}</p>
     <p class="transfer-new-contact-number-first-part">+{window.languages.CodeOfCountry}</p>
     <input id="contactPhoneNumberId"
            class="transfer-new-contact-number-input-part"
@@ -117,19 +118,20 @@
       function error(message) {
         scope.accessToContacts = false;
       }
+
       if (device.platform == 'Android') {
         var permissions = cordova.plugins.permissions;
-        permissions.checkPermission(permissions.READ_CONTACTS, function(status) {
-          if (status.hasPermission) {
-            scope.accessToContacts = true;
-          }
-          else {
+        permissions.checkPermission(permissions.READ_CONTACTS, function (status) {
+            if (status.hasPermission) {
+              scope.accessToContacts = true;
+            }
+            else {
+              scope.accessToContacts = false;
+            }
+          },
+          function () {
             scope.accessToContacts = false;
-          }
-        },
-        function() {
-          scope.accessToContacts = false;
-        });
+          });
       }
       scope.update();
     };
@@ -217,7 +219,7 @@
       });
       checkPhoneNumberLength();
       scope.update();
-      if (event.keyCode === input_codes.ENTER){
+      if (event.keyCode === input_codes.ENTER) {
         if (device.platform !== 'BrowserStand')
           cordova.plugins.Keyboard.close();
       }
@@ -231,14 +233,18 @@
         && event.keyCode !== input_codes.ENTER;
     };
 
-    contactPhoneFocus = function(){
+    contactPhoneFocus = function () {
       betweenAmountId.readOnly = true;
       cardInputId.readOnly = true;
+      contactPhoneTitle.style.color = '#01cfff';
+      contactPhoneBottomBorderId.style.borderBottom = "" + 3 * widthK + "px solid #01cfff";
     };
 
-    contactPhoneBlur = function(){
+    contactPhoneBlur = function () {
       betweenAmountId.readOnly = false;
       cardInputId.readOnly = false;
+      contactPhoneTitle.style.color = 'gray';
+      contactPhoneBottomBorderId.style.borderBottom = "" + 3 * widthK + "px solid #cbcbcb";
     };
 
     onPasteTriggerContact = function () {
@@ -369,7 +375,7 @@
           idcardfrommycards: scope.idCardFromMyCards,
           taxPercent: taxPercent,
           maxLimit: 9999999999999,
-          minLimit: 5000,
+          minLimit: 5000
         };
         if (scope.parent.countCardFromMain)
           params.countCardFromMain = scope.parent.countCardFromMain;
