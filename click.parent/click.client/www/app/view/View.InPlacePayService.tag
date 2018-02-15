@@ -259,10 +259,12 @@
 
     colorFieldInplaceSearch = function () {
       searchContainerId.style.borderBottom = "" + 3 * widthK + "px solid #01cfff";
+      searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search_blue.png)';
     };
 
     blurFieldInplaceSearch = function () {
       searchContainerId.style.borderBottom = "" + 3 * widthK + "px solid #cbcbcb";
+      searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search.png)';
     };
 
     onTouchStartOfSearchService = function () {
