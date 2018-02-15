@@ -2,6 +2,13 @@
   <div class="registration-device-flex-container">
     <div class="page-title">
 
+      <div class="registration-button-offline"
+             if="{device.platform != 'iOS'}"
+             id="registrationOfflineButtonId"
+             ontouchstart="registrationOfflineTouchStart()"
+             ontouchend="registrationOfflineTouchEnd()">{window.languages.ViewRegistrationDeviceButtonOffline}
+      </div>
+
       <div id="registrationHelpButtonId" class="registration-button-help" ontouchend="helpTouchEnd()"
            ontouchstart="helpTouchStart()">
         {window.languages.ViewRegistrationDeviceButtonHelp}
@@ -32,20 +39,6 @@
 
   <div class="registration-keyboard-field keyboard-field">
     <component-keyboard></component-keyboard>
-  </div>
-
-
-  <div class="registration-buttons-container">
-    <div if="{device.platform != 'iOS'}" id="registrationOfflineButtonId" class="registration-container-offline"
-         ontouchstart="registrationOfflineTouchStart()"
-         ontouchend="registrationOfflineTouchEnd()">
-      <div class="registration-button-offline">{window.languages.ViewRegistrationDeviceButtonOffline}</div>
-    </div>
-    <a id="demoContainer" class="registration-container-demo-version" ontouchend="goToDemoTouchEnd()"
-       ontouchstart="goToDemoTouchStart()">
-      <div class="registration-button-demo-version">{window.languages.ViewRegistrationDeviceButtonDemoVersion}
-      </div>
-    </a>
   </div>
 
   <div id="registrationNextButtonId" class="bottom-button-container"

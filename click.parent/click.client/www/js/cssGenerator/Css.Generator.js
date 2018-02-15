@@ -859,14 +859,10 @@ var css = {
   registrationButtonOffline: ".registration-button-offline " +
   "{" +
   "position: absolute;" +
-  "font-size:" + 33 * widthK + "px;" +
-  "background-size: contain;" +
   "color: #535b67;" +
-  // "border-bottom:" + 1 + "px solid white;" +
-  "bottom:" + 32 * widthK + "px;" +
+  "top: 29%;" +
+  "left: 6.5%;" +
   "text-align: center;" +
-  "margin-left:" + 30 * widthK + "px;" +
-  "margin-bottom:" + 14 * widthK + "px;" +
   "}",
   registrationContainerDemoVersion: ".registration-container-demo-version " +
   "{" +
