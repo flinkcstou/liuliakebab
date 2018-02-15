@@ -102,8 +102,8 @@ var RU_LANGUAGES =
   "ComponentReportFilterByDate": "По дате",
   "ComponentReportFilterByAccount": "По карте",
 
-  "ComponentReportFilterByDateFrom": "C",
-  "ComponentReportFilterByDateTo": "По",
+  "ComponentReportFilterByDateFrom": "C:",
+  "ComponentReportFilterByDateTo": "По:",
 
   "ComponentReportFilterReadyButton": "готово",
 

@@ -16341,13 +16341,24 @@ var css = {
   // "top: 6%;" +
   "}",
 
-  serviceAddInfoField: ".service-addinfo-field" +
+  serviceAddInfoFieldTitle: ".service-addinfo-field-title" +
   "{" +
-  "position: relative;" +
+  "position: absolute;" +
   "background-size: contain;" +
-  "top: " + 26 * widthK + "px; " +
+  "bottom: " + 15 * widthK + "px; " +
   //"left: 3%;" +
   "text-align: left;" +
+  "font-size:" + 29 * widthK + "px; " +
+  "color: gray;" +
+  "}",
+
+  serviceAddInfoFieldDate: ".service-addinfo-field-date" +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "bottom: " + 15 * widthK + "px; " +
+  "right: 0;" +
+  "text-align: right;" +
   "font-size:" + 29 * widthK + "px; " +
   "color: gray;" +
   "}",

@@ -19,11 +19,12 @@
 
     <p class="service-addinfo-choose-period-text">{(code)? ("Выберите период:"):("Введите показания счетчика:")}</p>
     <div if="{code}" class="service-addinfo-period-containter" id="fromField" ontouchend="pickDateFrom()">
-      <div class="service-addinfo-field">{languages.ComponentReportFilterByDateFrom} {from_dd}.{from_mm}.{from_yyyy}
-      </div>
+      <div class="service-addinfo-field-title">{languages.ComponentReportFilterByDateFrom}</div>
+      <div class="service-addinfo-field-date"> {dateFrom}</div>
     </div>
     <div if="{code}" class="service-addinfo-period-containter" id="toField" ontouchend="pickDateTo()">
-      <div class="service-addinfo-field">{languages.ComponentReportFilterByDateTo} {to_dd}.{to_mm}.{to_yyyy}</div>
+      <div class="service-addinfo-field-title">{languages.ComponentReportFilterByDateTo} </div>
+      <div class="service-addinfo-field-date">{dateTo}</div>
     </div>
 
     <div if="{!code}" class="service-addinfo-period-containter" id="fromField">
@@ -121,6 +122,8 @@
     var dateFrom, dateTo;
     var range_from, range_to;
     scope.code = opts.code.value == "01";
+    scope.dateTo = '';
+    scope.dateFrom = '';
 
     console.log("opts in ServiceAdditionalInfo", opts);
 
@@ -245,6 +248,7 @@
         scope.from_dd = dateFrom.getDate();
         scope.from_mm = dateFrom.getMonth() + 1;
         scope.from_yyyy = dateFrom.getFullYear();
+        scope.dateFrom = scope.from_dd + '.' + scope.from_mm + '.' + scope.from_yyyy;
         console.log(dateFrom, 'dateFrom');
         console.log(scope.from_dd, 'from_dd');
 
@@ -296,6 +300,7 @@
         scope.to_dd = dateTo.getDate();
         scope.to_mm = dateTo.getMonth() + 1;
         scope.to_yyyy = dateTo.getFullYear();
+        scope.dateTo = scope.to_dd + '.' + scope.to_mm + '.' + scope.to_yyyy;
 
         console.log(dateTo, 'dateTo');
         console.log(scope.to_dd, 'to_dd');
