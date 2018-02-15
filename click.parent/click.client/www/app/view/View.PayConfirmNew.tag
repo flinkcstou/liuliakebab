@@ -583,6 +583,15 @@
           "transaction_id": opts.transactionId
         };
       }
+      else if (opts.formtype == 5) {
+        payment_data = {
+          "value": firstFieldtext,
+          "additional_param3": opts.paymentDataAttributes[1],
+          "additional_param4": opts.paymentDataAttributes[2],
+          "additional_param5": opts.paymentDataAttributes[0],
+          "transaction_id": opts.transactionId
+        };
+      }
 
       if (opts.mode != 'ADDAUTOPAY') {
 
@@ -600,6 +609,11 @@
 
       if (opts.optionAttribute && opts.optionValue) {
         payment_data[opts.optionAttribute] = opts.optionValue;
+      }
+      if (opts.paymentDataAttributes) {
+        for (var i in opts.paymentDataAttributes) {
+          payment_data[opts.paymentDataAttributes[i].attribute] = opts.paymentDataAttributes[i].value;
+        }
       }
 
       initResultComponent();
@@ -655,7 +669,7 @@
           timeOutTimer = setTimeout(function () {
             window.writeLog({
               reason: 'Timeout',
-              method:'app.payment',
+              method: 'app.payment',
             });
             updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
           }, 30000);

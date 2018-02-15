@@ -10051,6 +10051,40 @@ window.fakedSocket.register("get.service.list", function (input) {
       "amount_information_text": null
     },
       {
+        additional_information_type: 3,
+        amount_editable: true,
+        amount_information_text: null,
+        amount_value: null,
+        autopay_available: 0,
+        autopay_available_amounts: null,
+        autopay_available_steps: null,
+        category_id: 8,
+        commission_percent: 0,
+        cost: 1,
+        disable_cache: false,
+        form_type: 5,
+        id: 79,
+        image: "https://m.click.uz/static/merchant/logo/logo_79.png",
+        is_mobile: 0,
+        is_visible: 1,
+        lang_amount_currency: "сум",
+        lang_amount_hint: null,
+        lang_amount_placeholder: "Введите сумму оплаты",
+        lang_amount_title: "Сумма",
+        lang_max_amount: "Максимальная сумма для оплаты 1000000.00 сум ",
+        lang_min_amount: "Минимальная сумма для оплаты 500.00 сум",
+        max_pay_limit: 1000000,
+        min_pay_limit: 500,
+        name: "Suvsoz",
+        options_title: null,
+        priority: 0,
+        service_parameters: "16",
+        service_short_name: "Suvsoz",
+        show_calc: 0,
+        status: 1,
+        validation: null
+      },
+      {
         "name": "Мой номер",
         "image": "resources/icons/ViewPay/myphone.png",
         "id": "mynumber"
@@ -11105,6 +11139,16 @@ window.fakedSocket.register("get.service.parameters.list", function (input) {
     "min_len": "0",
     "max_len": "999999999999999",
     "ussd_query": null
+  }, {
+    error_message: "Неверно набран лицевой счет",
+    input_type: 2,
+    max_len: "50",
+    min_len: "0",
+    parameter_id: "16",
+    placeholder: "Введите лицевой счет абонента",
+    service_id: 79,
+    title: "Лицевой счет абонента",
+    ussd_query: null
   }]);
 
 
@@ -12845,7 +12889,20 @@ window.fakedSocket.register("get.additional.information", function (input) {
           information_type: 1,
           validation_result: null,
           options_header: null,
-          options: null
+          // options: null,
+          options: [{
+            option_object: [{title: "Ф.И.О.", value: "Fayziyev Rustam Murodjonovich"},
+              {title: "Адрес", value: "Алиева Улица дом 128"},
+              {title: "Кадастр", value: "10:04:06:03:01:5123"},
+              {title: "Дата последнего платежа", value: "28.08.2017"},
+              {title: "Сумма последнего платежа", value: "103500"},
+              {title: "Остаток", value: "194538,81"}, [{title: "Код типа оплаты", value: "02"}]],
+            option_payment_attribute: "additional_param5",
+            payment_data_attributes: [{option: "region_id", parameter: "additional_param5"},
+              {option: "range_from", parameter: "additional_param3"},
+              {option: "range_to", parameter: "additional_param4"}]
+          }],
+          enable_information_cache: true
         }
       ]];
 

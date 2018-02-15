@@ -24,7 +24,7 @@
            each="{i in optionsArray}"
            id="{i.option_value}">
         <ul class="serviceinfo-option-info-container" style="list-style:none">
-          <li class="serviceinfo-option-detail" each="{j in i.option_object}">
+          <li class="serviceinfo-option-detail" each="{j in i.option_object}" if="{j.title}">
             <div
               class="{serviceinfo-option-title-text-option:checkIconShow,serviceinfo-option-title-text:!checkIconShow}">
               {j.title}:
@@ -66,16 +66,20 @@
     scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
     console.log("servicesMap=", scope.servicesMap);
     scope.service = scope.servicesMap[opts.chosenServiceId][0];
-    this.titleName = scope.service.name;
-    this.serviceIcon = scope.service.image;
-    this.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
+    scope.titleName = scope.service.name;
+    scope.serviceIcon = scope.service.image;
+    scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
     var payment_data, optionAttribute;
     var timeOutTimer = 0;
+    var goBackStartY, goBackStartX, goBackEndY, goBackEndX;
+    var optionOnTouchStartY, optionOnTouchStartX, optionOnTouchEndY, optionOnTouchEndX;
     scope.type = 0;
-    if (!opts.transactionId)
+    scope.index = -1;
+    if (!opts.transactionId) {
       opts.transactionId = parseInt(Date.now() / 1000);
-
+      console.log('TRANSACTION_ID FROM OPTS', JSON.stringify(opts))
+    }
 
     if (opts.formtype == 1) {
       payment_data = {
@@ -83,24 +87,20 @@
         "value": opts.firstFieldText,
         "transaction_id": opts.transactionId
       };
-
     }
     else if (opts.formtype == 2) {
       payment_data = {
         "pin_param": opts.cardTypeId,
         "transaction_id": opts.transactionId
       };
-
     }
-    else if (opts.formtype == 3) {
+    else if (opts.formtype == 3 || opts.formtype == 5) {
       payment_data = {
         "param": opts.firstFieldId,
         "value": opts.firstFieldText,
         "communal_param": opts.communalParam,
         "transaction_id": opts.transactionId
       };
-
-
     }
     else if (opts.formtype == 4) {
       payment_data = {
@@ -109,14 +109,13 @@
         "internet_package_param": opts.internetPackageParam,
         "transaction_id": opts.transactionId
       };
-
     }
 
     window.startSpinner();
 
     console.log("enable_information_cache", localStorage.getItem('click_client_infoCacheEnabled'))
 
-    if (!JSON.parse(localStorage.getItem('click_client_infoCacheEnabled'))) {
+    if (localStorage.getItem('click_client_infoCacheEnabled') && !JSON.parse(localStorage.getItem('click_client_infoCacheEnabled'))) {
       console.log("get information")
       getInformation();
     }
@@ -129,6 +128,8 @@
         scope.optionsHeader = scope.serviceData.options_header;
         scope.checkIconShow = scope.serviceData.options.length > 1;
         optionAttribute = scope.serviceData.options[0].option_payment_attribute;
+        opts.paymentDataAttributes = scope.serviceData.options[0].payment_data_attributes;
+        opts.code = scope.serviceData.options[0].option_object[6][0];
         opts.optionAttribute = optionAttribute;
         opts.optionValue = scope.checkIconShow ? null : scope.serviceData.options[0].option_value;
         scope.type = 3;
@@ -168,6 +169,8 @@
                 scope.optionsHeader = result[1][0].options_header;
                 scope.checkIconShow = result[1][0].options.length > 1;
                 optionAttribute = result[1][0].options[0].option_payment_attribute;
+                opts.paymentDataAttributes = result[1][0].options[0].payment_data_attributes;
+                opts.code = result[1][0].options[0].option_object[6][0];
                 opts.optionAttribute = optionAttribute;
                 opts.optionValue = scope.checkIconShow ? null : result[1][0].options[0].option_value;
                 scope.type = 3;
@@ -210,7 +213,7 @@
           timeOutTimer = setTimeout(function () {
             window.writeLog({
               reason: 'Timeout',
-              method:'get.additional.information',
+              method: 'get.additional.information',
             });
             scope.errorNote = "Сервис временно недоступен";
             scope.stepAmount = 1;
@@ -235,13 +238,12 @@
       }, 10000);
     }
 
-    var goBackStartY, goBackStartX, goBackEndY, goBackEndX;
 
     goToBackServiceInfoStart = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      document.getElementById("goBackServiceInfoButtonId").style.webkitTransform = 'scale(0.7)'
+      document.getElementById("goBackServiceInfoButtonId").style.webkitTransform = 'scale(0.7)';
 
       goBackStartY = event.changedTouches[0].pageY;
       goBackStartX = event.changedTouches[0].pageX;
@@ -252,19 +254,17 @@
       event.preventDefault();
       event.stopPropagation();
 
-      document.getElementById("goBackServiceInfoButtonId").style.webkitTransform = 'scale(1)'
+      document.getElementById("goBackServiceInfoButtonId").style.webkitTransform = 'scale(1)';
 
       goBackEndY = event.changedTouches[0].pageY;
       goBackEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(goBackStartY - goBackEndY) <= 20 && Math.abs(goBackStartX - goBackEndX) <= 20) {
 
-        onBackKeyDown()
+        onBackKeyDown();
         scope.unmount()
       }
     };
-
-    var optionOnTouchStartY, optionOnTouchStartX, optionOnTouchEndY, optionOnTouchEndX;
 
     optionOnTouchStart = function () {
       event.stopPropagation();
@@ -272,8 +272,6 @@
       optionOnTouchStartX = event.changedTouches[0].pageX;
     };
 
-
-    scope.index = -1;
     optionOnTouchEnd = function (id) {
       event.stopPropagation();
 
@@ -290,7 +288,6 @@
       }
     };
 
-
     goToNextPage = function () {
 
       if (scope.index == -1 && scope.serviceData.information_type == 3 && scope.checkIconShow) {
@@ -304,14 +301,21 @@
           step_amount: scope.stepAmount,
           viewpage: scope.viewPage,
           viewmount: true,
-          errornote: scope.errorNote,
+          errornote: scope.errorNote
         });
 
         scope.update();
       } else {
-        this.riotTags.innerHTML = "<view-service-pincards-new>";
-        riot.mount('view-service-pincards-new', opts);
-        scope.unmount()
+        if (opts.formtype == 5) {
+          console.log("opts to send ", opts)
+          this.riotTags.innerHTML = "<view-service-additional-info>";
+          riot.mount('view-service-additional-info', opts);
+          scope.unmount()
+        } else {
+          this.riotTags.innerHTML = "<view-service-pincards-new>";
+          riot.mount('view-service-pincards-new', opts);
+          scope.unmount()
+        }
       }
 
     };
