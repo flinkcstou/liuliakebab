@@ -240,7 +240,7 @@
 
           if (result[0][0].error == 0) {
 
-            if (result[1].length != 0 && !localStorage.getItem('favoritePaymentsList')) {
+            if (result[1].length != 0 && !localStorage.getItem('favoritePaymentsList') && localStorage.getItem('click_client_servicesMap')) {
               scope.favoritePaymentsList = [];
 
               for (var j in result[1]) {

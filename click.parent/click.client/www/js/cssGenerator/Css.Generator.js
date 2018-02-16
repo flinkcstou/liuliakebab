@@ -657,6 +657,7 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "color: #535b67;" +
+  "-webkit-text-fill-color: #535b67;" +
   "left: " + 163 * widthK + "px;" +
   "padding: 0;" +
   "margin: 0;" +
@@ -1086,6 +1087,7 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "color: #535b67;" +
+  "-webkit-text-fill-color: #535b67;" +
   "padding: 0;" +
   "margin: 0;" +
   "width: 65%;" +

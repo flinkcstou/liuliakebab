@@ -1041,6 +1041,56 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
               localStorage.setItem('click_client_payServiceNamesMap', JSON.stringify(serviceNamesMap));
               localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(servicesMapByCategory));
               localStorage.setItem('click_client_servicesMap', JSON.stringify(servicesMap));
+
+
+              {
+                window.api.call({
+                  method: 'get.wishlist',
+                  input: {
+                    session_key: sessionKey,
+                    phone_num: phoneNumber,
+                    type: 1
+                  },
+                  scope: this,
+                  onSuccess: function (result) {
+
+                    if (result[0][0].error == 0) {
+                      if (result[1].length != 0) {
+                        var favoritePaymentsList = [];
+                        var favoritePaymentsListForApi = [];
+                        for (var j in result[1]) {
+                          var fav = JSON.parse(result[1][j].body);
+                          fav.service.image = servicesMap[fav.service.id][0].image;
+                          favoritePaymentsList.push(fav);
+                        }
+                        for (var i in favoritePaymentsList)
+                          favoritePaymentsListForApi.push({
+                            "id": favoritePaymentsList[i].id,
+                            "type": 1,
+                            "body": JSON.stringify(favoritePaymentsList[i])
+                          })
+
+                        localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(favoritePaymentsListForApi));
+                        localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+                        console.log("favs processed", favoritePaymentsList);
+                      }
+                    }
+                    else {
+                      window.common.alert.show("componentAlertId", {
+                        parent: scope,
+                        clickpinerror: false,
+                        errornote: result[0][0].error_note
+                      });
+                      console.log(result[0][0].error_note);
+                    }
+                  },
+                  onFail: function (api_status, api_status_message, data) {
+                    console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                    console.error(data);
+                  }
+                });
+              }
+
               serviceImagesCaching();
             }
           servicesParamsInit();

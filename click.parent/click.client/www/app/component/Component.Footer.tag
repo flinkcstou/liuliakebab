@@ -186,31 +186,22 @@
         else {
           window.pickContactFromNativeChecker = true;
 
-          navigator.contacts.pickContact(function (contact) {
-            console.log('CONTACT PICK', contact)
+          try {
+            navigator.contacts.pickContact(function (contact) {
+              console.log('CONTACT PICK', contact)
 
-            window.common.alert.hide("componentAlertId");
+              window.common.alert.hide("componentAlertId");
 
-            if (!contact.phoneNumbers) {
-              window.common.alert.show("componentAlertId", {
-                parent: scope,
-                errornote: 'Отсутствует номер контакта'
-              });
-              scope.update();
-              return;
-            }
+              if (!contact.phoneNumbers) {
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  errornote: 'Отсутствует номер контакта'
+                });
+                scope.update();
+                return;
+              }
 
-            if (!contact.name) {
-              window.common.alert.show("componentAlertId", {
-                parent: scope,
-                errornote: 'Отсутствует имя контакта'
-              });
-              scope.update();
-              return;
-            }
-
-            if (!contact.name.givenName) {
-              if (!contact.name.familyName) {
+              if (!contact.name) {
                 window.common.alert.show("componentAlertId", {
                   parent: scope,
                   errornote: 'Отсутствует имя контакта'
@@ -218,21 +209,31 @@
                 scope.update();
                 return;
               }
-            }
 
-            for (var i in arrayToSend) {
-              if (arrayToSend[i].id == contact.id) {
-                window.common.alert.show("componentAlertId", {
-                  parent: scope,
-                  errornote: 'Этот контакт уже добавлен'
-                });
-                scope.update();
-                return;
+              if (!contact.name.givenName) {
+                if (!contact.name.familyName) {
+                  window.common.alert.show("componentAlertId", {
+                    parent: scope,
+                    errornote: 'Отсутствует имя контакта'
+                  });
+                  scope.update();
+                  return;
+                }
               }
-            }
 
-            arrayToSend.push(contact)
-            writeContactsFooter(arrayToSend)
+              for (var i in arrayToSend) {
+                if (arrayToSend[i].id == contact.id) {
+                  window.common.alert.show("componentAlertId", {
+                    parent: scope,
+                    errornote: 'Этот контакт уже добавлен'
+                  });
+                  scope.update();
+                  return;
+                }
+              }
+
+              arrayToSend.push(contact)
+              writeContactsFooter(arrayToSend)
 //            console.log('The following contact has been selected:', contact);
 //            scope.arrayOfPhotos[0].contactFname = contact.name.givenName;
 //            scope.arrayOfPhotos[0].contactLname = contact.name.familyName;
@@ -249,9 +250,12 @@
 //            scope.arrayOfPhotos[0].exist = true;
 //            scope.arrayOfPhotos[0].addContact = false;
 //            scope.update();
-          }, function (err) {
-            console.log('Error: ' + err);
-          });
+            }, function (err) {
+              console.log('Error: ' + err);
+            });
+          } catch (error){
+            console.log('cannot choose error', error);
+          }
 
 //          window.plugins.PickContact.chooseContact(function (contactInfo) {
 //            alert(contactInfo)
