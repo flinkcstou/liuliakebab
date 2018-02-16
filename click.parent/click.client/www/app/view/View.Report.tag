@@ -890,10 +890,14 @@
                 scope.tags['view-report-service-new'].isInFavorites = false;
               }
 
-              if (servicesMap[scope.paymentsList[i].service_id])
-                scope.paymentsList[i].canAddToFavorite = true;
-              else
+              if (servicesMap) {
+                if (servicesMap[scope.paymentsList[i].service_id])
+                  scope.paymentsList[i].canAddToFavorite = true;
+                else
+                  scope.paymentsList[i].canAddToFavorite = false;
+              } else {
                 scope.paymentsList[i].canAddToFavorite = false;
+              }
 
               scope.paymentsList[i].favoriteId = scope.favoriteId;
               scope.showComponent = true;

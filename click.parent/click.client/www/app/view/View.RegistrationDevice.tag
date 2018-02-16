@@ -69,8 +69,6 @@
   <script>
 
     this.on('mount', function () {
-      if (device.platform == 'iOS')
-        demoContainer.style.left = 100 * widthK + 'px';
       if (device.platform != 'BrowserStand')
         StatusBar.backgroundColorByHexString("#ffffff");
       canvas = document.getElementById('canvas');
