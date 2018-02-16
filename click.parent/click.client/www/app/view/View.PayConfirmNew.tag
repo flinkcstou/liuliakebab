@@ -619,70 +619,70 @@
 
       console.log("Payment data", payment_data);
 
-//      initResultComponent();
-//      window.api.call({
-//        method: 'app.payment',
-//        input: {
-//          session_key: sessionKey,
-//          phone_num: phoneNumber,
-//          service_id: Number(serviceId),
-//          account_id: Number(accountId),
-//          amount: Number(amount),
-//          payment_data: payment_data,
-//          datetime: date,
-//          friend_phone: friendPhone
-//        },
-//
-//        scope: this,
-//
-//        onSuccess: function (result) {
-//
-//          if (result[0][0].error == 0) {
-//            if (result[1]) {
-//              if (result[1][0].payment_id && !result[1][0].invoice_id) {
-//                setTimeout(function () {
-//                  checkPaymentStatus(result[1][0].payment_id);
-//                }, 2000);
-//              }
-//              else if (result[1][0].invoice_id && !result[1][0].payment_id) {
-//                console.log('Clearing timer onSuccess', timeOutTimer);
-//                window.clearTimeout(timeOutTimer);
-//                viewServicePinCards.friendHelpPaymentMode = false;
-//                viewServicePinCards.chosenFriendForHelp = null;
-//                updateResultComponent(true, getPaymentSuccessStep, null, 'success', result[0][0].error_note);
-//              }
-//            }
-//          }
-//          else {
-//            console.log('Clearing timer onSuccess ERROR', timeOutTimer);
-//            window.clearTimeout(timeOutTimer);
-//            updateResultComponent(true, appPaymentErrorStep, null, 'unsuccess', result[0][0].error_note);
-//          }
-//        },
-//
-//        onFail: function (api_status, api_status_message, data) {
-//          console.log('Clearing timer onFail', timeOutTimer);
-//          window.clearTimeout(timeOutTimer);
-//          updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
-//
-//          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-//          console.error(data);
-//        },
-//        onTimeOut: function () {
-//          timeOutTimer = setTimeout(function () {
-//            window.writeLog({
-//              reason: 'Timeout',
-//              method: 'app.payment',
-//            });
-//            updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
-//          }, 30000);
-//          console.log('creating timeOut', timeOutTimer);
-//        },
-//        onEmergencyStop: function () {
-//          console.log('Clearing timer emergencyStop', timeOutTimer);
-//          window.clearTimeout(timeOutTimer);
-//        }
-//      });
+      initResultComponent();
+      window.api.call({
+        method: 'app.payment',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          service_id: Number(serviceId),
+          account_id: Number(accountId),
+          amount: Number(amount),
+          payment_data: payment_data,
+          datetime: date,
+          friend_phone: friendPhone
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+
+          if (result[0][0].error == 0) {
+            if (result[1]) {
+              if (result[1][0].payment_id && !result[1][0].invoice_id) {
+                setTimeout(function () {
+                  checkPaymentStatus(result[1][0].payment_id);
+                }, 2000);
+              }
+              else if (result[1][0].invoice_id && !result[1][0].payment_id) {
+                console.log('Clearing timer onSuccess', timeOutTimer);
+                window.clearTimeout(timeOutTimer);
+                viewServicePinCards.friendHelpPaymentMode = false;
+                viewServicePinCards.chosenFriendForHelp = null;
+                updateResultComponent(true, getPaymentSuccessStep, null, 'success', result[0][0].error_note);
+              }
+            }
+          }
+          else {
+            console.log('Clearing timer onSuccess ERROR', timeOutTimer);
+            window.clearTimeout(timeOutTimer);
+            updateResultComponent(true, appPaymentErrorStep, null, 'unsuccess', result[0][0].error_note);
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.log('Clearing timer onFail', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
+          updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
+
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        },
+        onTimeOut: function () {
+          timeOutTimer = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method: 'app.payment',
+            });
+            updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
+          }, 30000);
+          console.log('creating timeOut', timeOutTimer);
+        },
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
+        }
+      });
     }
 
     function checkPaymentStatus(payment_id) {

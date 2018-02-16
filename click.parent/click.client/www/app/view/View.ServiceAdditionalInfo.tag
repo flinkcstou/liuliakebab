@@ -17,7 +17,8 @@
   <div class="servicepage-body-container">
 
 
-    <p class="service-addinfo-choose-period-text">{(code)? ("Выберите период:"):("Введите показания счетчика:")}</p>
+    <p id="rangeFieldsTitle" class="service-addinfo-choose-period-text">{(code)? ("Выберите период:"):("Введите
+      показания счетчика:")}</p>
     <div if="{code}" class="service-addinfo-period-containter" id="fromField" ontouchend="pickDateFrom()">
       <div class="service-addinfo-field-title">{languages.ComponentReportFilterByDateFrom}</div>
       <div class="service-addinfo-field-date"> {dateFrom}</div>
@@ -38,7 +39,7 @@
 
 
     <div class="service-addinfo-amount-field" id="amountField">
-      <p class="servicepage-text-field">Сумма</p>
+      <p id="amountFieldTitle" class="servicepage-text-field">Сумма</p>
       <p if="{commissionPercent}" class="servicepage-amount-tax-text-field">
         {window.languages.ViewServicePageAmountTaxText} {tax}
         {window.languages.Currency}</p>
@@ -229,11 +230,11 @@
 
         verifiedDate = pickedDate;
 
-        if (verifiedDate.getTime() > currentDate.getTime()) {
-
-          verifiedDate = currentDate;
-
-        }
+//        if (verifiedDate.getTime() > currentDate.getTime()) {
+//
+//          verifiedDate = currentDate;
+//
+//        }
 
         if (dateTo) {
 
@@ -282,10 +283,10 @@
 
         verifiedDate = pickedDate;
 
-        if (verifiedDate.getTime() > currentDate.getTime()) {
-
-          verifiedDate = currentDate;
-        }
+//        if (verifiedDate.getTime() > currentDate.getTime()) {
+//
+//          verifiedDate = currentDate;
+//        }
 
         if (dateFrom) {
 
@@ -320,18 +321,20 @@
       if (source == 'from') {
         fromField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
         toField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
-        amountField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+
       } else if (source == 'to') {
         toField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
         fromField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
-        amountField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
       }
+      rangeFieldsTitle.style.color = '#01cfff';
+      amountField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+      amountFieldTitle.style.color = 'gray';
 
       checkFields();
 
       scope.update();
 
-    }
+    };
 
     scope.onTouchStartOfAmountCalculator = onTouchStartOfAmountCalculator = function () {
       event.stopPropagation();
@@ -539,8 +542,10 @@
       }
 
       amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+      amountFieldTitle.style.color = '#01cfff';
       fromField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
       toField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+      rangeFieldsTitle.style.color = 'gray';
 
       checkFields('sum')
     };
@@ -591,6 +596,7 @@
       if (from == 'sum' && amountForPayTransaction < scope.service.min_pay_limit) {
         scope.showErrorOfLimit = true;
         amountField.style.borderBottom = 3 * widthK + 'px solid red';
+        amountFieldTitle.style.color = 'red';
         scope.enterButtonEnabled = false;
         scope.update();
         placeHolderSumId.style.color = 'red';
@@ -598,12 +604,14 @@
       }
       else if (from == 'sum' && amountField.length >= 1) {
         amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+        amountFieldTitle.style.color = '#01cfff';
         scope.showErrorOfLimit = false;
         scope.update()
       }
       if (amountForPayTransaction > scope.service.max_pay_limit) {
         scope.showErrorOfLimit = true;
         amountField.style.borderBottom = 3 * widthK + 'px solid red';
+        amountFieldTitle.style.color = 'red';
         scope.enterButtonEnabled = false;
         scope.update();
         placeHolderSumId.style.color = 'red';
@@ -611,6 +619,7 @@
       }
       else if (from == 'sum') {
         amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+        amountFieldTitle.style.color = '#01cfff';
         scope.showErrorOfLimit = false;
         scope.update();
       }
