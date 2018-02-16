@@ -859,14 +859,10 @@ var css = {
   registrationButtonOffline: ".registration-button-offline " +
   "{" +
   "position: absolute;" +
-  "font-size:" + 33 * widthK + "px;" +
-  "background-size: contain;" +
   "color: #535b67;" +
-  // "border-bottom:" + 1 + "px solid white;" +
-  "bottom:" + 32 * widthK + "px;" +
+  "top: 29%;" +
+  "left: 6.5%;" +
   "text-align: center;" +
-  "margin-left:" + 30 * widthK + "px;" +
-  "margin-bottom:" + 14 * widthK + "px;" +
   "}",
   registrationContainerDemoVersion: ".registration-container-demo-version " +
   "{" +
@@ -16155,11 +16151,15 @@ var css = {
   "-webkit-overflow-scrolling: touch; " +
   "}",
 
-  // inPlacePayServiceInnerContainerScroll: ".inplace-pay-service-inner-container::-webkit-scrollbar" +
-  // "{" +
-  // "width: 20px; " +
-  // "z-index: 99999999999;" +
-  // "}",
+  inPlacePayServiceInnerContainerScroll: ".inplace-pay-service-inner-container::-webkit-scrollbar" +
+  "{" +
+  "width:" + 10 * widthK + "px; " +
+  "}",
+
+  inPlacePayServiceInnerContainerScrollThumb: ".inplace-pay-service-inner-container::-webkit-scrollbar-thumb" +
+  "{" +
+  "background-color: rgba(0, 0, 0, .1); " +
+  "}",
 
 
   inPlacePayBlockContainer: ".inplace-pay-block-containter" +
