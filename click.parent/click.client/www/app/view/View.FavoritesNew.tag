@@ -193,7 +193,6 @@
     var openFavouriteStarX, openFavouriteStarY, openFavouriteEndX, openFavouriteEndY
 
     openFavoritePaymentStart = function (id) {
-      event.preventDefault()
       event.stopPropagation();
 
       document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)'
@@ -203,7 +202,6 @@
     }
 
     openFavoritePaymentEnd = function (id) {
-      event.preventDefault()
       event.stopPropagation();
 
       document.getElementById(id).style.backgroundColor = 'transparent'
