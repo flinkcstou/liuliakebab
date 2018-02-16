@@ -3881,7 +3881,7 @@ var css = {
   "height: " + 1102 * heightK + "px; " +
   "width: 100%; " +
   "top: " + 130 * heightK + "px; " +
-  "background-color: #fafafa;" +
+  "background-color: white;" +
   "overflow-x: hidden;" +
   "overflow-y: scroll;" +
   "-webkit-overflow-scrolling: touch; " +
@@ -15555,7 +15555,7 @@ var css = {
   serviceInfoOptionTextContainer: ".serviceinfo-option-text-container" +
   "{" +
   "position: relative;" +
-  "background-color: transparent;" +
+  "background-color: white;" +
   "width: 100%;" +
   "height: 7.5%;" +
   //"border-bottom: 1px solid lightgray;" +
