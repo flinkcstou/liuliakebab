@@ -12886,7 +12886,7 @@ window.fakedSocket.register("get.additional.information", function (input) {
             title: "Вид нарушения",
             value: "TEZLIKNI OSHIRISH (20 - 40 KM ORALIGIDA BULGAN)"
           }],
-          information_type: 1,
+          information_type: 3,
           validation_result: null,
           options_header: null,
           // options: null,

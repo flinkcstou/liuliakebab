@@ -197,8 +197,8 @@
     scope.errorCode = 0;
 
     var pageToReturnIfError = 'view-main-page';
-    var getPaymentSuccessStep = 3,
-      getPaymentErrorStep = 2,
+    var getPaymentSuccessStep = scope.service.additional_information_type == 0 ? 3 : 4,
+      getPaymentErrorStep = scope.service.additional_information_type == 0 ? 2 : 3,
       appPaymentErrorStep = 3;
 
 
@@ -591,6 +591,12 @@
           "additional_param5": opts.paymentDataAttributes[0],
           "transaction_id": opts.transactionId
         };
+
+        getPaymentSuccessStep++;
+        getPaymentErrorStep++;
+        appPaymentErrorStep++;
+
+        console.log("STEPS CHANGED", getPaymentSuccessStep, getPaymentErrorStep)
       }
 
       if (opts.mode != 'ADDAUTOPAY') {
@@ -651,7 +657,7 @@
             }
           }
           else {
-            console.log('Clearing timer onSuccess', timeOutTimer);
+            console.log('Clearing timer onSuccess ERROR', timeOutTimer);
             window.clearTimeout(timeOutTimer);
             updateResultComponent(true, appPaymentErrorStep, null, 'unsuccess', result[0][0].error_note);
           }

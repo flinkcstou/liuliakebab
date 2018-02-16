@@ -16453,7 +16453,7 @@ var css = {
   "top: 20%;" +
   "padding: 0;" +
   "margin: 0;" +
-  "margin-left: 3%;" +
+  // "margin-left: 3%;" +
   "width: 95%;" +
   "font-size:" + 44 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +

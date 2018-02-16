@@ -23,7 +23,7 @@
       <div class="service-addinfo-field-date"> {dateFrom}</div>
     </div>
     <div if="{code}" class="service-addinfo-period-containter" id="toField" ontouchend="pickDateTo()">
-      <div class="service-addinfo-field-title">{languages.ComponentReportFilterByDateTo} </div>
+      <div class="service-addinfo-field-title">{languages.ComponentReportFilterByDateTo}</div>
       <div class="service-addinfo-field-date">{dateTo}</div>
     </div>
 
@@ -622,8 +622,8 @@
           scope.update(scope.enterButtonEnabled);
           return;
         } else {
-          range_from = scope.from_dd + '.' + scope.from_mm + '.' + scope.from_yyyy;
-          range_to = scope.to_dd + '.' + scope.to_mm + '.' + scope.to_yyyy;
+          range_from = representDashedDate(scope.from_yyyy, scope.from_mm, scope.from_dd);
+          range_to = representDashedDate(scope.to_yyyy, scope.to_mm, scope.to_dd);
         }
       } else {
         if (!fromInput.value || !toInput.value) {
