@@ -248,7 +248,7 @@
         scope.from_dd = dateFrom.getDate();
         scope.from_mm = dateFrom.getMonth() + 1;
         scope.from_yyyy = dateFrom.getFullYear();
-        scope.dateFrom = scope.from_dd + '.' + scope.from_mm + '.' + scope.from_yyyy;
+        scope.dateFrom = representDotedDate(scope.from_dd, scope.from_mm, scope.from_yyyy)
         console.log(dateFrom, 'dateFrom');
         console.log(scope.from_dd, 'from_dd');
 
@@ -300,7 +300,7 @@
         scope.to_dd = dateTo.getDate();
         scope.to_mm = dateTo.getMonth() + 1;
         scope.to_yyyy = dateTo.getFullYear();
-        scope.dateTo = scope.to_dd + '.' + scope.to_mm + '.' + scope.to_yyyy;
+        scope.dateTo = representDotedDate(scope.to_dd, scope.to_mm, scope.to_yyyy);
 
         console.log(dateTo, 'dateTo');
         console.log(scope.to_dd, 'to_dd');
@@ -622,8 +622,8 @@
           scope.update(scope.enterButtonEnabled);
           return;
         } else {
-          range_from = representDashedDate(scope.from_yyyy, scope.from_mm, scope.from_dd);
-          range_to = representDashedDate(scope.to_yyyy, scope.to_mm, scope.to_dd);
+          range_from = representDotedDate(scope.from_dd, scope.from_mm, scope.from_yyyy)
+          range_to = representDotedDate(scope.to_dd, scope.to_mm, scope.to_yyyy);
         }
       } else {
         if (!fromInput.value || !toInput.value) {
