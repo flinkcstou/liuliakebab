@@ -263,7 +263,6 @@
     var chooseButtonStartX, chooseButtonEndX, chooseButtonStartY, chooseButtonEndY;
 
     chooseFriendForHelpStart = function (id) {
-      event.preventDefault();
       event.stopPropagation();
 
       console.log("ID", id)
@@ -275,7 +274,6 @@
     }
 
     chooseFriendForHelpEnd = function (number, id) {
-      event.preventDefault();
       event.stopPropagation();
 
       document.getElementById(id).style.backgroundColor = 'transparent'
@@ -311,7 +309,6 @@
     var delButtonStartX, delButtonEndX, delButtonStartY, delButtonEndY;
 
     deleteFriendTouchStart = function (id) {
-      event.preventDefault();
       event.stopPropagation();
 
       delButtonStartX = event.changedTouches[0].pageX;
@@ -322,7 +319,6 @@
 
     deleteFriendTouchEnd = function (id, idWithoutPrefix, delId) {
 
-      event.preventDefault();
       event.stopPropagation();
 
       delButtonEndX = event.changedTouches[0].pageX;
