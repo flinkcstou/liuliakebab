@@ -303,6 +303,7 @@ var RU_LANGUAGES =
   "ViewInviteFriendSettingsTitle": "Пригласить друга",
   "ViewAboutSettingsTitle": "О программе",
   "ViewSupportSettingsTitle": "Служба поддержки",
+  "ViewSupportSettingsPageTitle": "СЛУЖБА ПОДДЕРЖКИ",
   "ViewCallCenterSettingsTitle": "Позвонить в Контактный центр",
   "ClearLocalStorage": "Очистить данные",
 

@@ -14056,6 +14056,7 @@ var css = {
   "width: 100%;" +
   "height: 100%;" +
   "opacity: 0.97;" +
+  "z-index: 10;" +
   "}",
 
   settingsSupportBlueContainer: ".settings-support-blue-container" +
