@@ -170,7 +170,8 @@
         doneButtonLabel: window.languages.ComponentReportFilterDoneButtonLabel,
         cancelButtonLabel: window.languages.ComponentReportFilterCancelButtonLabel,
         mode: 'date',
-        androidTheme: 5
+        androidTheme: 5,
+        locale: "ru_RU",
       };
 
       function onSuccess(pickedDate) {
@@ -213,7 +214,8 @@
         doneButtonLabel: window.languages.ComponentReportFilterDoneButtonLabel,
         cancelButtonLabel: window.languages.ComponentReportFilterCancelButtonLabel,
         mode: 'date',
-        androidTheme: 5
+        androidTheme: 5,
+        locale: "ru_RU",
       };
 
       function onSuccess(pickedDate) {

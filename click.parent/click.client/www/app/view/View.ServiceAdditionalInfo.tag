@@ -223,7 +223,8 @@
         doneButtonLabel: window.languages.ComponentReportFilterDoneButtonLabel,
         cancelButtonLabel: window.languages.ComponentReportFilterCancelButtonLabel,
         mode: 'date',
-        androidTheme: 5
+        androidTheme: 5,
+        locale: "ru_RU",
       };
 
       function onSuccess(pickedDate) {
@@ -262,6 +263,8 @@
 
     pickDateTo = function () {
 
+      console.log(navigator.language);
+
       toField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
       fromField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
       amountField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
@@ -276,7 +279,8 @@
         doneButtonLabel: window.languages.ComponentReportFilterDoneButtonLabel,
         cancelButtonLabel: window.languages.ComponentReportFilterCancelButtonLabel,
         mode: 'date',
-        androidTheme: 5
+        androidTheme: 5,
+        locale: "ru_RU",
       };
 
       function onSuccess(pickedDate) {

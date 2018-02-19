@@ -438,7 +438,7 @@
             changeIconTransferByContact();
             scope.transferTypeNumber = 0;
             setTimeout(function () {
-              if (scope.transferTypeNumber === 0 && !scope.transitionRunning)
+              if (scope.transferTypeNumber === 0 && !scope.transitionRunning && !scope.showComponent)
                 contactPhoneNumberId.focus();
             }, 500);
           }
@@ -446,7 +446,7 @@
             changeIconTransferByCard();
             scope.transferTypeNumber = 1;
             setTimeout(function () {
-              if (scope.transferTypeNumber === 1 && !scope.transitionRunning)
+              if (scope.transferTypeNumber === 1 && !scope.transitionRunning && !scope.showComponent)
                 cardInputId.focus();
             }, 500);
           }
@@ -454,7 +454,7 @@
             changeIconTransferByBetween();
             scope.transferTypeNumber = 2;
             setTimeout(function () {
-              if (scope.transferTypeNumber === 2 && !scope.transitionRunning)
+              if (scope.transferTypeNumber === 2 && !scope.transitionRunning && !scope.showComponent)
                 betweenAmountId.focus();
             }, 500);
           }
