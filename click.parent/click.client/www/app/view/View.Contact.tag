@@ -277,8 +277,9 @@
               }
             }
             localStorage.setItem('contactList', JSON.stringify(arrayOfContacts))
-            onBackKeyDown()
-            return
+            riotTags.innerHTML = "<view-main-page>";
+            riot.mount("view-main-page");
+            scope.unmount();
           }
         };
 
