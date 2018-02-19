@@ -168,7 +168,7 @@
         },
         scope: this,
         onSuccess: function (result) {
-          console.log('Clearing timer onSuccess',timeOutTimerToUser);
+          console.log('Clearing timer onSuccess', timeOutTimerToUser);
           window.clearTimeout(timeOutTimerToUser);
 
           if (result[0][0].error == 0) {
@@ -215,20 +215,20 @@
           timeOutTimerToUser = setTimeout(function () {
             window.writeLog({
               reason: 'Timeout',
-              method:'invoice.list',
+              method: 'invoice.list',
             });
             window.stopSpinner();
-              window.common.alert.show("componentAlertId", {
-                parent: scope,
-                clickpinerror: false,
-                errornote: "Сервис временно недоступен"
-              });
-              scope.update();
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: false,
+              errornote: "Сервис временно недоступен"
+            });
+            scope.update();
           }, 10000);
           console.log('creating timeOutToUser', timeOutTimerToUser);
         },
-        onEmergencyStop: function(){
-          console.log('Clearing timer emergencyStop',timeOutTimerToUser);
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimerToUser);
           window.clearTimeout(timeOutTimerToUser);
         }
       }, 10000);
@@ -263,7 +263,7 @@
         },
         scope: this,
         onSuccess: function (result) {
-          console.log('Clearing timer onSuccess',timeOutTimerFromUser);
+          console.log('Clearing timer onSuccess', timeOutTimerFromUser);
           window.clearTimeout(timeOutTimerFromUser);
           if (result[0][0].error == 0) {
             if (result[1]) {
@@ -307,20 +307,20 @@
           timeOutTimerFromUser = setTimeout(function () {
             window.writeLog({
               reason: 'Timeout',
-              method:'invoice.history',
+              method: 'invoice.history',
             });
             window.stopSpinner();
-              window.common.alert.show("componentAlertId", {
-                parent: scope,
-                clickpinerror: false,
-                errornote: "Сервис временно недоступен"
-              });
-              scope.update();
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: false,
+              errornote: "Сервис временно недоступен"
+            });
+            scope.update();
           }, 10000);
           console.log('creating timeOutFromUser', timeOutTimerFromUser);
         },
-        onEmergencyStop: function(){
-          console.log('Clearing timer emergencyStop',timeOutTimerFromUser);
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimerFromUser);
           window.clearTimeout(timeOutTimerFromUser);
         }
       }, 10000);
@@ -369,24 +369,42 @@
       event.preventDefault();
       event.stopPropagation();
 
-      document.getElementById(id).style.backgroundColor = 'transparent'
 
       goToInvoiceHistoryDetailTouchEndX = event.changedTouches[0].pageX;
       goToInvoiceHistoryDetailTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(goToInvoiceHistoryDetailTouchEndX - goToInvoiceHistoryDetailTouchStartX) < 20 &&
         Math.abs(goToInvoiceHistoryDetailTouchEndY - goToInvoiceHistoryDetailTouchStartY) < 20) {
-        scope.showComponentPayment = false;
-        scope.showComponentHistory = false;
-        scope.showComponentTransfer = false;
+        document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
+        setTimeout(function () {
+          document.getElementById(id).style.backgroundColor = 'transparent';
+          scope.showComponentPayment = false;
+          scope.showComponentHistory = false;
+          scope.showComponentTransfer = false;
 
-        invoice = JSON.parse(invoice);
-        console.log("Invoice for view.invoice-history-details", invoice);
+          invoice = JSON.parse(invoice);
+          console.log("Invoice for view.invoice-history-details", invoice);
 
-        if (history.arrayOfHistory.length != 0) {
+          if (history.arrayOfHistory.length != 0) {
 
-          if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-invoice-list') {
-            history.arrayOfHistory.pop();
+            if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-invoice-list') {
+              history.arrayOfHistory.pop();
+
+              opts.toUser = scope.toUser;
+
+              history.arrayOfHistory.push(
+                {
+                  "view": 'view-invoice-list',
+                  "params": opts
+                }
+              );
+
+              console.log("HISTORY ARRAY_OF_HISTORY", history.arrayOfHistory);
+
+              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+            }
+          }
+          else {
 
             opts.toUser = scope.toUser;
 
@@ -397,50 +415,34 @@
               }
             );
 
-            console.log("HISTORY ARRAY_OF_HISTORY", history.arrayOfHistory);
-
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
           }
-        }
-        else {
 
-          opts.toUser = scope.toUser;
+          var params = {};
 
-          history.arrayOfHistory.push(
-            {
-              "view": 'view-invoice-list',
-              "params": opts
-            }
-          );
+          if (!scope.toUser) {
 
-          sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-        }
+            params = {
+              is_p2p: invoice.is_p2p,
+              invoice_id: invoice.invoice_id,
+              inParameter: invoice.cntrg_info_param2, //????
+              amount: invoice.amount,
+              commission: invoice.p2p_comission_amount,
+              transferCode: invoice.p2p_secret_code,
+              time: invoice.time,
+              date: invoice.date,
+              status: invoice.status_note
+            };
 
-        var params = {};
+            if (invoice.cntrg_info_param3)
+              params.inParameter = invoice.cntrg_info_param3;
 
-        if (!scope.toUser) {
+            scope.showComponent = true;
+            scope.showComponentHistory = true;
+            scope.tags['view-invoice-history-detail'].opts = params
+            window.checkShowingComponent = scope.tags['view-invoice-history-detail'];
 
-          params = {
-            is_p2p: invoice.is_p2p,
-            invoice_id: invoice.invoice_id,
-            inParameter: invoice.cntrg_info_param2, //????
-            amount: invoice.amount,
-            commission: invoice.p2p_comission_amount,
-            transferCode: invoice.p2p_secret_code,
-            time: invoice.time,
-            date: invoice.date,
-            status: invoice.status_note
-          };
-
-          if (invoice.cntrg_info_param3)
-            params.inParameter = invoice.cntrg_info_param3;
-
-          scope.showComponent = true;
-          scope.showComponentHistory = true;
-          scope.tags['view-invoice-history-detail'].opts = params
-          window.checkShowingComponent = scope.tags['view-invoice-history-detail'];
-
-          scope.update();
+            scope.update();
 
 //          history.arrayOfHistory.push({view: "view-invoice-history-detail"});
 //          sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
@@ -448,29 +450,29 @@
 //          riot.mount("view-invoice-history-detail", params);
 
 //          scope.unmount()
-        } else {
+          } else {
 
 
-          if (invoice.is_p2p) {
-            console.log("TRANSFER")
+            if (invoice.is_p2p) {
+              console.log("TRANSFER")
 
-            params = {
+              params = {
 
-              phoneNumber: invoice.parameter,
-              amount: invoice.amount,
-              invoiceId: invoice.invoice_id,
-              time: invoice.time,
-              date: invoice.date
-            };
+                phoneNumber: invoice.parameter,
+                amount: invoice.amount,
+                invoiceId: invoice.invoice_id,
+                time: invoice.time,
+                date: invoice.date
+              };
 
-            console.log('PARAMS IN INVOICE LIST', params)
+              console.log('PARAMS IN INVOICE LIST', params)
 
-            scope.showComponent = true;
-            scope.showComponentTransfer = true;
-            scope.tags['view-transfer-detail'].opts = params
-            console.log("scope.tags['view-transfer-detail'].opts", scope.tags['view-transfer-detail'].opts)
-            window.checkShowingComponent = scope.tags['view-transfer-detail'];
-            riot.update();
+              scope.showComponent = true;
+              scope.showComponentTransfer = true;
+              scope.tags['view-transfer-detail'].opts = params
+              console.log("scope.tags['view-transfer-detail'].opts", scope.tags['view-transfer-detail'].opts)
+              window.checkShowingComponent = scope.tags['view-transfer-detail'];
+              riot.update();
 
 //            history.arrayOfHistory.push({view: "view-transfer-detail"});
 //            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
@@ -478,27 +480,27 @@
 //            riot.mount('view-transfer-detail', params);
 //
 //            scope.unmount()
-          } else {
+            } else {
 
-            console.log("PAYMENT")
+              console.log("PAYMENT")
 
-            params = {
+              params = {
 
-              amount: invoice.amount,
-              invoiceId: invoice.invoice_id,
-              phoneNumber: invoice.merchant_phone,
-              accountNumber: invoice.parameter,
-              serviceName: invoice.service_name,
-              is_friend_help: invoice.is_friend_help
-            };
+                amount: invoice.amount,
+                invoiceId: invoice.invoice_id,
+                phoneNumber: invoice.merchant_phone,
+                accountNumber: invoice.parameter,
+                serviceName: invoice.service_name,
+                is_friend_help: invoice.is_friend_help
+              };
 
-            console.log("PAYMENT PARAMS", params)
+              console.log("PAYMENT PARAMS", params)
 
-            scope.showComponent = true;
-            scope.showComponentPayment = true;
-            scope.tags['view-payment-detail'].opts = params
-            window.checkShowingComponent = scope.tags['view-payment-detail'];
-            riot.update();
+              scope.showComponent = true;
+              scope.showComponentPayment = true;
+              scope.tags['view-payment-detail'].opts = params
+              window.checkShowingComponent = scope.tags['view-payment-detail'];
+              riot.update();
 
 //            history.arrayOfHistory.push({view: "view-payment-detail"});
 //            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
@@ -506,14 +508,13 @@
 //            riot.mount('view-payment-detail', params);
 //
 //            this.unmount()
+            }
           }
-        }
+        }, 100);
       }
     };
 
     goToInvoiceHistoryDetailTouchStart = function (id) {
-
-      document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)'
 
       goToInvoiceHistoryDetailTouchStartX = event.changedTouches[0].pageX;
       goToInvoiceHistoryDetailTouchStartY = event.changedTouches[0].pageY;

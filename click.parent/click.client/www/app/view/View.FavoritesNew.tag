@@ -195,8 +195,6 @@
     openFavoritePaymentStart = function (id) {
       event.stopPropagation();
 
-      document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)'
-
       openFavouriteStarX = event.changedTouches[0].pageX;
       openFavouriteStarY = event.changedTouches[0].pageY;
     }
@@ -204,103 +202,107 @@
     openFavoritePaymentEnd = function (id) {
       event.stopPropagation();
 
-      document.getElementById(id).style.backgroundColor = 'transparent'
-
       openFavouriteEndX = event.changedTouches[0].pageX;
       openFavouriteEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(openFavouriteStarX - openFavouriteEndX) <= 20 && Math.abs(openFavouriteStarY - openFavouriteEndY) <= 20) {
 
-        console.log("id=", id);
-        id = id.substring(1, id.length);
-        console.log("id2=", id);
+        document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
 
-        for (var i in scope.favoritePaymentsList) {
-          if (scope.favoritePaymentsList[i].id == id) {
-            console.log("scope.favoritePaymentsList[i].id", scope.favoritePaymentsList[i].id);
-            console.log("open favorite ", scope.favoritePaymentsList[i]);
-            scope.favoritePaymentsList[i].params.favoriteId = scope.favoritePaymentsList[i].id;
+        setTimeout(function () {
+          document.getElementById(id).style.backgroundColor = 'transparent';
 
-            if (modeOfApp.offlineMode) {
+          console.log("id=", id);
+          id = id.substring(1, id.length);
+          console.log("id2=", id);
 
-              var firstFieldText = inputVerification.spaceDeleter(scope.favoritePaymentsList[i].params.firstFieldText);
-              var amountText = inputVerification.spaceDeleter(scope.favoritePaymentsList[i].params.amountText);
-              var formtype = scope.favoritePaymentsList[i].params.formtype;
-              var communalParam = scope.favoritePaymentsList[i].params.communalParam;
-              var firstFieldId = scope.favoritePaymentsList[i].params.firstFieldId;
+          for (var i in scope.favoritePaymentsList) {
+            if (scope.favoritePaymentsList[i].id == id) {
+              console.log("scope.favoritePaymentsList[i].id", scope.favoritePaymentsList[i].id);
+              console.log("open favorite ", scope.favoritePaymentsList[i]);
+              scope.favoritePaymentsList[i].params.favoriteId = scope.favoritePaymentsList[i].id;
+
+              if (modeOfApp.offlineMode) {
+
+                var firstFieldText = inputVerification.spaceDeleter(scope.favoritePaymentsList[i].params.firstFieldText);
+                var amountText = inputVerification.spaceDeleter(scope.favoritePaymentsList[i].params.amountText);
+                var formtype = scope.favoritePaymentsList[i].params.formtype;
+                var communalParam = scope.favoritePaymentsList[i].params.communalParam;
+                var firstFieldId = scope.favoritePaymentsList[i].params.firstFieldId;
 
 
-              var ussdQuery = scope.favoritePaymentsList[i].ussd;
-              if (ussdQuery === null) {
-                scope.clickPinError = false;
-                scope.errorNote = ("Сервис временно недоступен!");
-                scope.showError = true;
-                scope.update();
+                var ussdQuery = scope.favoritePaymentsList[i].ussd;
+                if (ussdQuery === null) {
+                  scope.clickPinError = false;
+                  scope.errorNote = ("Сервис временно недоступен!");
+                  scope.showError = true;
+                  scope.update();
+                  return
+                }
+
+                if (formtype == 1) {
+                  if (firstFieldText) {
+                    ussdQuery = ussdQuery.replace('{param}', firstFieldText);
+                  }
+                  else {
+                    ussdQuery = ussdQuery.replace('*{param}', firstFieldText);
+                  }
+                  ussdQuery = ussdQuery.replace('{option}', firstFieldId);
+                  ussdQuery = ussdQuery.replace('{amount}', amountText);
+                  ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+                  console.log(ussdQuery)
+                }
+
+                if (formtype == 2) {
+                  ussdQuery = ussdQuery.replace('{param}', firstFieldText);
+                  ussdQuery = ussdQuery.replace('{amount}', amountText);
+                  ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+                  console.log(ussdQuery)
+                }
+
+                if (formtype == 3) {
+                  ussdQuery = ussdQuery.replace('{communal_para}', communalParam);
+                  ussdQuery = ussdQuery.replace('{param}', firstFieldText);
+                  ussdQuery = ussdQuery.replace('{amount}', amountText);
+                  ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+                  console.log(ussdQuery)
+                }
+
+                if (formtype == 4) {
+                  ussdQuery = ussdQuery.replace('{param}', firstFieldText);
+                  ussdQuery = ussdQuery.replace('{amount}', amountText);
+                  ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+                  console.log(ussdQuery)
+                }
+
+
+                console.log(ussdQuery)
+
+                phonedialer.dial(
+//              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
+                  ussdQuery + "%23",
+                  function (err) {
+                    if (err == "empty") {
+                      scope.clickPinError = false;
+                      scope.errorNote = ("Unknown phone number");
+                      scope.showError = true;
+                      scope.update();
+                    }
+                    else console.log("Dialer Error:" + err);
+                  },
+                  function (success) {
+                  }
+                );
                 return
               }
+              this.riotTags.innerHTML = "<view-service-pincards-new>";
+              riot.mount('view-service-pincards-new', scope.favoritePaymentsList[i].params);
 
-              if (formtype == 1) {
-                if (firstFieldText) {
-                  ussdQuery = ussdQuery.replace('{param}', firstFieldText);
-                }
-                else {
-                  ussdQuery = ussdQuery.replace('*{param}', firstFieldText);
-                }
-                ussdQuery = ussdQuery.replace('{option}', firstFieldId);
-                ussdQuery = ussdQuery.replace('{amount}', amountText);
-                ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
-                console.log(ussdQuery)
-              }
+              scope.unmount()
 
-              if (formtype == 2) {
-                ussdQuery = ussdQuery.replace('{param}', firstFieldText);
-                ussdQuery = ussdQuery.replace('{amount}', amountText);
-                ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
-                console.log(ussdQuery)
-              }
-
-              if (formtype == 3) {
-                ussdQuery = ussdQuery.replace('{communal_para}', communalParam);
-                ussdQuery = ussdQuery.replace('{param}', firstFieldText);
-                ussdQuery = ussdQuery.replace('{amount}', amountText);
-                ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
-                console.log(ussdQuery)
-              }
-
-              if (formtype == 4) {
-                ussdQuery = ussdQuery.replace('{param}', firstFieldText);
-                ussdQuery = ussdQuery.replace('{amount}', amountText);
-                ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
-                console.log(ussdQuery)
-              }
-
-
-              console.log(ussdQuery)
-
-              phonedialer.dial(
-//              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
-                ussdQuery + "%23",
-                function (err) {
-                  if (err == "empty") {
-                    scope.clickPinError = false;
-                    scope.errorNote = ("Unknown phone number");
-                    scope.showError = true;
-                    scope.update();
-                  }
-                  else console.log("Dialer Error:" + err);
-                },
-                function (success) {
-                }
-              );
-              return
             }
-            this.riotTags.innerHTML = "<view-service-pincards-new>";
-            riot.mount('view-service-pincards-new', scope.favoritePaymentsList[i].params);
-
-            scope.unmount()
-
           }
-        }
+        }, 100);
       }
 
     };
