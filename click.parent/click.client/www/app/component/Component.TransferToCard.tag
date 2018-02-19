@@ -350,6 +350,7 @@
     };
 
     cardSuggestionTouchStart = function () {
+      scope.parent.transitionRunning = true;
       event.preventDefault();
       event.stopPropagation();
       transferCardTouchStartX = event.changedTouches[0].pageX;
@@ -357,6 +358,7 @@
     };
 
     cardSuggestionTouchEnd = function (suggestionCard) {
+      scope.parent.transitionRunning = false;
       event.preventDefault();
       event.stopPropagation();
 
