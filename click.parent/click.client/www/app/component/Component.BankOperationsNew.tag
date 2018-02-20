@@ -528,49 +528,51 @@
           var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
           var sessionKey = info.session_key;
 
-          window.api.call({
-            method: 'get.indoor.service',
-            input: {
-              phone_num: phoneNumber,
-              session_key: sessionKey,
-              service_id: 1234,
+          if (!modeOfApp.offlineMode) {
+            window.api.call({
+              method: 'get.indoor.service',
+              input: {
+                phone_num: phoneNumber,
+                session_key: sessionKey,
+                service_id: 1234,
 
-            },
+              },
 
-            scope: this,
+              scope: this,
 
-            onSuccess: function (result) {
-              if (result[0][0].error == 0) {
-                if (result[1]) {
-                  if (result[1][0]) {
-                    closeMenu();
-                    riotTags.innerHTML = "<view-qr>";
-                    riot.mount('view-qr', result[1][0]);
+              onSuccess: function (result) {
+                if (result[0][0].error == 0) {
+                  if (result[1]) {
+                    if (result[1][0]) {
+                      closeMenu();
+                      riotTags.innerHTML = "<view-qr>";
+                      riot.mount('view-qr', result[1][0]);
 //                    scope.unmount()
+                    }
                   }
+                  console.log("QR PAY", result);
                 }
-                console.log("QR PAY", result);
-              }
-              else {
+                else {
 
-                scope.clickPinError = false;
-                scope.errorNote = result[0][0].error_note;
+                  scope.clickPinError = false;
+                  scope.errorNote = result[0][0].error_note;
 
-                window.common.alert.show("componentAlertId", {
-                  parent: scope,
-                  clickpinerror: scope.clickPinError,
-                  errornote: scope.errorNote
-                });
-                scope.update();
+                  window.common.alert.show("componentAlertId", {
+                    parent: scope,
+                    clickpinerror: scope.clickPinError,
+                    errornote: scope.errorNote
+                  });
+                  scope.update();
 //                alert(result[0][0].error_note);
-              }
-            },
+                }
+              },
 
-            onFail: function (api_status, api_status_message, data) {
-              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-              console.error(data);
-            }
-          });
+              onFail: function (api_status, api_status_message, data) {
+                console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                console.error(data);
+              }
+            });
+          }
         }
 //        scope.unmount();
 

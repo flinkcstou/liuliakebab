@@ -172,7 +172,7 @@
     }
   };
 
-  //  var checkFirstStarting = false;
+  var checkFirstStarting = false;
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
       api.init();
@@ -182,7 +182,7 @@
       window.FirebasePlugin.setBadgeNumber(0);
       MobileAccessibility.usePreferredTextZoom(false);
       window.cordova.plugins.Keyboard.disableScroll(true);
-//      checkFirstStarting = true;
+      checkFirstStarting = true;
 
       console.log("Версия приложения из плагина", AppVersion.version);
       console.log("Билд приложения из плагина", AppVersion.build);
@@ -476,7 +476,7 @@
       window.common.alert.hide("componentAlertId");
     }
 
-    if (localStorage.getItem('click_client_token') && localStorage.getItem('click_client_loginInfo') &&
+    if (!checkFirstStarting && localStorage.getItem('click_client_token') && localStorage.getItem('click_client_loginInfo') &&
       !(sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true)) {
       var nowMinutes = new Date().getMinutes();
       console.log("BEFORE MINUTES", waitingMinutes);
@@ -539,11 +539,9 @@
 //      }
       }, 0);
     }
-
-//
-//    else {
-//      checkFirstStarting = false;
-//    }
+    else {
+      checkFirstStarting = false;
+    }
   }
 
 
