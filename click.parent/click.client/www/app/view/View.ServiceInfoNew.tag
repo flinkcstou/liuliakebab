@@ -129,6 +129,13 @@
         scope.checkIconShow = scope.serviceData.options.length > 1;
         optionAttribute = scope.serviceData.options[0].option_payment_attribute;
         opts.paymentDataAttributes = scope.serviceData.options[0].payment_data_attributes;
+        //find array in cached data
+        for (var i in scope.serviceData.options[0].option_object){
+          if (scope.serviceData.options[0].option_object[i].constructor === Array){
+            console.log(scope.serviceData.options[0].option_object[i]);
+            opts.code = scope.serviceData.options[0].option_object[i][0];
+          }
+        }
         opts.code = scope.serviceData.options[0].option_object[6][0];
         opts.optionAttribute = optionAttribute;
         opts.optionValue = scope.checkIconShow ? null : scope.serviceData.options[0].option_value;
@@ -170,7 +177,13 @@
                 scope.checkIconShow = result[1][0].options.length > 1;
                 optionAttribute = result[1][0].options[0].option_payment_attribute;
                 opts.paymentDataAttributes = result[1][0].options[0].payment_data_attributes;
-                opts.code = result[1][0].options[0].option_object[6][0];
+                //find array in result
+                for (var i in result[1][0].options[0].option_object){
+                  if (result[1][0].options[0].option_object[i].constructor === Array){
+                    console.log(result[1][0].options[0].option_object[i]);
+                    opts.code = result[1][0].options[0].option_object[i][0];
+                  }
+                }
                 opts.optionAttribute = optionAttribute;
                 opts.optionValue = scope.checkIconShow ? null : result[1][0].options[0].option_value;
                 scope.type = 3;
