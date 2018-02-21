@@ -447,6 +447,8 @@ var RU_LANGUAGES =
   "ViewQrTitleCancel": "Отменить",
   "ViewQrLabelOnScanner": "Наведите камеру на QR код",
 
+  "ViewClickPassTitle": "CLICK PASS",
+
   "ViewReportServiceAmountOfPay": "Сумма платежа:",
   "ViewReportServicePayWithCard": "Оплата с карты:",
   "ViewReportServiceStatus": "Статус:",

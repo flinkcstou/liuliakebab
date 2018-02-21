@@ -8134,6 +8134,56 @@ var css = {
   "background-position: center;" +
   "}",
 
+  viewClickPass: ".view-click-pass" +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "width: 100%;" +
+  "background-color: white;" +
+  "}",
+
+  clickPassHelpButton: ".click-pass-help-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 87 * widthK + "px;" +
+  "height:" + 87 * widthK + "px;" +
+  "right: 4.2%;" +
+  "background-image: url('resources/icons/ViewClickPass/help.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 48%;" +
+  "background-position-y: center;" +
+  "background-position-x: center;" +
+  "background-size: 65%;" +
+  "}",
+
+  clickPassHelpMenu: ".click-pass-help-menu " +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "width:" + 538 * widthK + "px;" +
+  "right: 0;" +
+  "overflow: hidden;" +
+  "transform: translate3d(" + window.innerWidth + "px, 0, 0);" +
+  "-webkit-transform: translate3d(" + window.innerWidth + "px, 0, 0);" +
+  "-ms-transform: translate3d(" + window.innerWidth + "px, 0, 0);" +
+  "background-color: #ffffff;" +
+  "z-index: 1;" +
+  "}",
+
+  clickPassHelpMenuCloseButton: ".click-pass-help-menu-close-button " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 87 * widthK + "px;" +
+  "height:" + 87 * widthK + "px;" +
+  "right: 5.4%;" +
+  "background-image: url('resources/icons/ViewClickPass/close.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 40%;" +
+  "background-position-y: center;" +
+  "background-position-x: center;" +
+  "background-size: 40%;" +
+  "}",
+
   //COMPONENT Generated qr
   componentGeneratedQr: ".component-generated-qr " +
   "{" +

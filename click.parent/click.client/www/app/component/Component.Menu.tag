@@ -48,6 +48,12 @@
       <div class="side-menu-containers-name side-menu-containers-name-scanner-qr">Сканер QR-кода</div>
     </div>
 
+    <div id="clickPassButtonId" class="side-menu-scanner-qr-container" ontouchstart="goToClickPassStart()"
+         ontouchend="goToClickPassEnd()">
+      <div class="side-menu-containers-icon side-menu-containers-icon-scanner-qr"></div>
+      <div class="side-menu-containers-name side-menu-containers-name-scanner-qr">Click Pass</div>
+    </div>
+
     <div id="settingsButtonId" if="{!modeOfApp.offlineMode}" class="side-menu-settings-container"
          ontouchstart="goToSettingsStart()"
          ontouchend="goToSettingsEnd()">
@@ -753,6 +759,42 @@
       qrScannerTouchStartX = event.changedTouches[0].pageX;
       qrScannerTouchStartY = event.changedTouches[0].pageY;
     }
+
+    var clickPassTouchStartX, clickPassTouchStartY, clickPassTouchEndX, clickPassTouchEndY;
+
+    goToClickPassEnd = function () {
+      clickPassButtonId.style.backgroundColor = 'transparent';
+
+      clickPassTouchEndX = event.changedTouches[0].pageX;
+      clickPassTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(clickPassTouchStartX - clickPassTouchEndX) < 20 && Math.abs(clickPassTouchStartY - clickPassTouchEndY) < 20) {
+        if (modeOfApp.demoVersion) {
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: question
+          });
+          scope.update();
+          return;
+        }
+        console.log('button is working');
+        closeMenu();
+        riotTags.innerHTML = "<view-click-pass>";
+        riot.mount('view-click-pass');
+      }
+      else {
+        sideMenuTouchEnd();
+      }
+    };
+
+    goToClickPassStart = function () {
+
+      clickPassButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)'
+
+      clickPassTouchStartX = event.changedTouches[0].pageX;
+      clickPassTouchStartY = event.changedTouches[0].pageY;
+    };
 
     var settingsTouchStartX, settingsTouchStartY, settingsTouchEndX, settingsTouchEndY
 
