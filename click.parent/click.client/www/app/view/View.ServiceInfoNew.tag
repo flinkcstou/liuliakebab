@@ -136,7 +136,6 @@
             opts.code = scope.serviceData.options[0].option_object[i][0];
           }
         }
-        opts.code = scope.serviceData.options[0].option_object[6][0];
         opts.optionAttribute = optionAttribute;
         opts.optionValue = scope.checkIconShow ? null : scope.serviceData.options[0].option_value;
         scope.type = 3;
