@@ -8160,7 +8160,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: 100%;" +
-  "width:" + 538 * widthK + "px;" +
+  "width:" + 607 * widthK + "px;" +
   "right: 0;" +
   "overflow: hidden;" +
   "transform: translate3d(" + window.innerWidth + "px, 0, 0);" +
@@ -8175,7 +8175,7 @@ var css = {
   "position: absolute;" +
   "width:" + 87 * widthK + "px;" +
   "height:" + 87 * widthK + "px;" +
-  "right: 5.4%;" +
+  "right: 4.4%;" +
   "background-image: url('resources/icons/ViewClickPass/close.png');" +
   "background-repeat: no-repeat;" +
   "-webkit-background-size: 40%;" +
@@ -8183,6 +8183,95 @@ var css = {
   "background-position-x: center;" +
   "background-size: 40%;" +
   "}",
+
+  clickPassHelpMenuTextContainer: ".click-pass-help-menu-text-container " +
+  "{" +
+  "position: absolute;" +
+  "top:" + 123 * widthK + "px;" +
+  "left:" + 45 * widthK + "px;" +
+  "height:" + 103 * widthK + "px;" +
+  "width:" + 273 * widthK + "px;" +
+  "border-bottom: 1px solid #e8e8e8;" +
+  "color: #565d6a;" +
+  "}",
+
+  clickPassHelpMenuFirst: ".click-pass-help-menu-first " +
+  "{" +
+  "position: relative;" +
+  "text-align: left;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "margin: 0;" +
+  "}",
+
+  clickPassHelpMenuSecond: ".click-pass-help-menu-second " +
+  "{" +
+  "position: relative;" +
+  "text-align: left;" +
+  "margin: 0;" +
+  "font-size:" + 31.5 * widthK + "px;" +
+  "}",
+
+  clickPassHelpMenuHand: ".click-pass-help-menu-hand " +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "width:" + 310 * widthK + "px;" +
+  "height:" + 310 * widthK + "px;" +
+  "top:" + 83 * widthK + "px;" +
+  "left:" + 260 * widthK + "px;" +
+  "background-image: url('resources/icons/ViewClickPass/hand.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 100%;" +
+  "background-position-y: center;" +
+  "background-position-x: center;" +
+  "background-size: 100%;" +
+  "}",
+
+  clickPassHelpMenuProgress: ".click-pass-help-menu-progress " +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "width:" + 60 * widthK + "px;" +
+  "height:" + 425 * widthK + "px;" +
+  "top:" + 330 * widthK + "px;" +
+  "left:" + 38 * widthK + "px;" +
+  "background-image: url('resources/icons/ViewClickPass/step.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: contain;" +
+  "background-position-y: center;" +
+  "background-position-x: center;" +
+  "background-size: contain;" +
+  "}",
+
+  clickPassHelpMenuSteps: ".click-pass-help-menu-steps " +
+  "{" +
+  "position: absolute;" +
+  "top:" + 330 * widthK + "px;" +
+  "left:" + 137 * widthK + "px;" +
+  "height:" + 425 * widthK + "px;" +
+  "width:" + 450 * widthK + "px;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "color: #565d6a;" +
+  "}",
+
+  clickPassHelpMenuFirstStep: ".click-pass-help-menu-first-step " +
+  "{" +
+  "position: relative;" +
+  "margin-top:" + 104 * widthK + "px;" +
+  "}",
+
+  clickPassHelpMenuSecondStep: ".click-pass-help-menu-second-step " +
+  "{" +
+  "position: relative;" +
+  "margin-top:" + 93 * widthK + "px;" +
+  "}",
+
+  clickPassHelpMenuThirdStep: ".click-pass-help-menu-third-step " +
+  "{" +
+  "position: relative;" +
+  "margin-top:" + 56 * widthK + "px;" +
+  "}",
+
 
   //COMPONENT Generated qr
   componentGeneratedQr: ".component-generated-qr " +

@@ -448,6 +448,11 @@ var RU_LANGUAGES =
   "ViewQrLabelOnScanner": "Наведите камеру на QR код",
 
   "ViewClickPassTitle": "CLICK PASS",
+  "ViewClickPassHelpFirst": "КАК РАБОТАЕТ",
+  "ViewClickPassHelpSecond": "CLICK PASS",
+  "ViewClickPassHelpFirstStep": "Выберите карту для оплаты",
+  "ViewClickPassHelpSecondStep": "Позвольте продавцу отсканировать Ваш QR",
+  "ViewClickPassHelpThirdStep": "Нужная сумма автоматически спишется с выбранной карты",
 
   "ViewReportServiceAmountOfPay": "Сумма платежа:",
   "ViewReportServicePayWithCard": "Оплата с карты:",

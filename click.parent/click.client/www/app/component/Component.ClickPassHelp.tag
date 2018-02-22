@@ -18,6 +18,27 @@
            ontouchstart="closeClickPassHelpMenuStart()"
            ontouchend="closeClickPassHelpMenu()"></div>
     </div>
+    <div class="click-pass-help-menu-text-container">
+      <p class="click-pass-help-menu-first">
+        {window.languages.ViewClickPassHelpFirst}
+      </p>
+      <p class="click-pass-help-menu-second">
+        {window.languages.ViewClickPassHelpSecond}
+      </p>
+    </div>
+    <div class="click-pass-help-menu-hand"></div>
+    <div class="click-pass-help-menu-progress"></div>
+    <div class="click-pass-help-menu-steps">
+      <p class="click-pass-help-menu-first-step">
+        {window.languages.ViewClickPassHelpFirstStep}
+      </p>
+      <p class="click-pass-help-menu-second-step">
+        {window.languages.ViewClickPassHelpSecondStep}
+      </p>
+      <p class="click-pass-help-menu-third-step">
+        {window.languages.ViewClickPassHelpThirdStep}
+      </p>
+    </div>
   </div>
 
 
