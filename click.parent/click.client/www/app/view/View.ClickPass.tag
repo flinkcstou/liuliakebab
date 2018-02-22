@@ -31,6 +31,12 @@
       openHelpTouchEndX,
       openHelpTouchEndY;
 
+    var deviceId = localStorage.getItem('click_client_deviceID');
+    var cardsArray = {};
+    if (JSON.parse(localStorage.getItem('click_client_cards'))) {
+      cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+    }
+
 
     window.saveHistory('view-click-pass', opts);
 
@@ -96,6 +102,11 @@
         this.clickPassHelpMenuBackPageId.style.opacity = '1';
       }
     };
+
+
+    updateOtp(deviceId, 1519216905);
+    cardNumb_to_luna()
+
 
   </script>
 </view-click-pass>
