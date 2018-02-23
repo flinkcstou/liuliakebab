@@ -8272,6 +8272,120 @@ var css = {
   "margin-top:" + 56 * widthK + "px;" +
   "}",
 
+  clickPassQrCodeCanvas: ".click-pass-qr-code-canvas " +
+  "{" +
+  "position: absolute;" +
+  "margin: auto;" +
+  "margin-top:" + 200 * widthK + "px;" +
+  "left: 0;" +
+  "right: 0;" +
+  "}",
+
+  clickPassProgressBarContainer: ".click-pass-progress-bar-container " +
+  "{" +
+  "position: absolute;" +
+  "left: 0;" +
+  "right: 0;" +
+  "margin: auto;" +
+  "margin-top:" + 630 * widthK + "px;" +
+  "width:" + 410 * widthK + "px;" +
+  "height:" + 20 * widthK + "px;" +
+  "border-radius:" + 20 * widthK + "px;" +
+  "background-color: #e8e8e8;" +
+  "overflow: hidden;" +
+  "}",
+
+  clickPassProgressBarLine: ".click-pass-progress-bar-line" +
+  "{" +
+  "position: relative;" +
+  "right:" + 410 * widthK + "px;" +
+  "width:" + 410 * widthK + "px;" +
+  "height:" + 20 * widthK + "px;" +
+  "background-image: url(resources/icons/ViewClickPass/progress.png);" +
+  "background-size: cover;" +
+  "background-repeat: round;" +
+  "}",
+
+  clickPassBarCodeCanvas: ".click-pass-bar-code-canvas " +
+  "{" +
+  "position: absolute;" +
+  "margin: auto;" +
+  "margin-top:" + 700 * widthK + "px;" +
+  "width:" + 584 * widthK + "px;" +
+  "left: 0;" +
+  "right: 0;" +
+  "}",
+
+  clickPassChosenCardContainer: ".click-pass-chosen-card-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 90%;" +
+  "height: " + 140 * widthK + "px; " +
+  "margin: auto;" +
+  "bottom: " + 55 * widthK + "px; " +
+  "left: 0;" +
+  "right: 0;" +
+  "background-color: transparent;" +
+  "border-top: " + 1 + "px solid #e8e8e8;" +
+  "border-bottom: " + 1 + "px solid #e8e8e8;" +
+  "}",
+
+  clickPassChosenCardInfoContainer: ".click-pass-chosen-card-info-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 41%;" +
+  "height: 100%;" +
+  "left: 35%;" +
+  "background-color: transparent;" +
+  "}",
+
+  clickPassChosenCardInfoTextOne: ".click-pass-chosen-card-info-text-one" +
+  "{" +
+  "position: absolute;" +
+  "font-size: " + 24 * widthK + "px; " +
+  "color: gray;" +
+  "width: 110%;" +
+  "top: 22%;" +
+  "margin-top: 0;" +
+  "text-overflow: ellipsis;" +
+  "white-space: nowrap;" +
+  "overflow: hidden;" +
+  "}",
+
+  clickPassChosenCardInfoTextThree: ".click-pass-chosen-card-info-text-three" +
+  "{" +
+  "position: absolute;" +
+  "font-size: " + 23 * widthK + "px; " +
+  "color: gray;" +
+  "top: 48%;" +
+  "}",
+
+  clickPassChosenCardLogoContainer: ".click-pass-chosen-card-logo-container" +
+  "{" +
+  "width: 35%;" +
+  "height: 100%;" +
+  "left: 0;" +
+  "background-color: transparent;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: contain;" +
+  "float: left;" +
+  "position: absolute;" +
+  "}",
+
+  clickPassChosenCardNextIcon: ".click-pass-chosen-card-next-icon" +
+  "{" +
+  "position: absolute;" +
+  "right: 0;" +
+  "width: 10%;" +
+  "height: 100%;" +
+  "top: 0;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 17%;" +
+  "background-position: center;" +
+  "background-image: url(resources/icons/ViewClickPass/open.png);" +
+  "}",
+
 
   //COMPONENT Generated qr
   componentGeneratedQr: ".component-generated-qr " +

@@ -19,9 +19,29 @@
       <div class="title-bottom-border">
       </div>
     </div>
+
+    <canvas id="qr" class="click-pass-qr-code-canvas"></canvas>
+    <div class="click-pass-progress-bar-container">
+      <div id="progressBar" class="click-pass-progress-bar-line">
+      </div>
+    </div>
+    <canvas id="barcode" class="click-pass-bar-code-canvas"></canvas>
+
+    <div class="click-pass-chosen-card-container"
+         id="{chosenCard.card_id}" if="{chosenCard}">
+      <div class="click-pass-chosen-card-logo-container"
+           style="background-image: url({chosenCard.url})"></div>
+      <div class="click-pass-chosen-card-info-container">
+        <p class="click-pass-chosen-card-info-text-one">{chosenCard.name}</p>
+        <p class="click-pass-chosen-card-info-text-three">{chosenCard.numberPartOne} **** {chosenCard.numberPartTwo}</p>
+      </div>
+      <div class="click-pass-chosen-card-next-icon"></div>
+    </div>
   </div>
 
   <script>
+
+    var scope = this;
 
     var goBackButtonStartX, goBackButtonEndX,
       goBackButtonStartY, goBackButtonEndY;
@@ -36,9 +56,23 @@
     if (JSON.parse(localStorage.getItem('click_client_cards'))) {
       cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
     }
-
+    var codeData = '';
+    scope.chosenCard;
 
     window.saveHistory('view-click-pass', opts);
+
+    scope.on('mount', function () {
+      for (var i in cardsArray){
+        if (cardsArray[i].default_account){
+          scope.chosenCard = cardsArray[i];
+          console.log('default Card', scope.chosenCard);
+          codeData = prepareCodeData(scope.chosenCard.card_id);
+          generateQrCode(codeData);
+          generateBarCode(codeData);
+        }
+      }
+      scope.update();
+    });
 
     goToBackStart = function () {
       event.preventDefault();
@@ -103,10 +137,31 @@
       }
     };
 
+    generateQrCode = function (data) {
+      var qr = new QRious({
+        element: document.getElementById('qr'),
+        size: 410 * widthK,
+        value: data
+      });
+    };
 
-    updateOtp(deviceId, 1519216905);
-    cardNumb_to_luna()
+    generateBarCode = function (data) {
+      JsBarcode(barcode, data, {
+        format: "codabar",
+        displayValue: false,
+        width: 3.5,
+        height: 120 * widthK,
+      });
+    };
 
+    prepareCodeData = function (card_id) {
+      var currentTime = new Date().getTime() / 1000;
+      var OTP = updateOtp(deviceId, currentTime);
+      var luna = codeCheckLuna(card_id.toString() + OTP.toString());
+      var result = card_id.toString() + OTP.toString() + '1';
+      console.log('code data:', result);
+      return result;
+    }
 
   </script>
 </view-click-pass>

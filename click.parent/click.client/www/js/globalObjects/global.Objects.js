@@ -1739,7 +1739,7 @@ function updateOtp(deviceId, time) {
   return otp;
 }
 
-function cardNumb_to_luna(value) {
+function codeCheckLuna(value) {
   if (/[^0-9-\s]+/.test(value)) return false;
   var nCheck = 0, nDigit = 0, bEven = false;
   value = value.replace(/\D/g, "");
