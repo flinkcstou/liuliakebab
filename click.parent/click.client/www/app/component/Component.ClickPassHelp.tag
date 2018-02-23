@@ -53,6 +53,8 @@
 
       closeClickPassHelpMenuButtonId.style.webkitTransform = 'scale(1)';
 
+      this.clickPassCardsMenuBackPageId.style.zIndex = '';
+
       if (event) {
         event.preventDefault();
         event.stopPropagation();
@@ -73,6 +75,9 @@
     var width = window.innerWidth;
 
     clickPassHelpMenuTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
       clickPassHelpMenuId.style.webkitTransition = '0s';
       clickPassPageId.style.webkitTransition = '0s';
       clickPassHelpMenuBackPageId.style.webkitTransition = '0s';
@@ -82,6 +87,9 @@
     };
 
     clickPassHelpMenuTouchEnd = function (bool) {
+      event.preventDefault();
+      event.stopPropagation();
+
       touchEndX = event.changedTouches[0].pageX;
       timeEndX = event.timeStamp.toFixed(0);
 

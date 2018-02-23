@@ -286,6 +286,9 @@ window.bottomButtomBottom = 0;
 window.componentClickPassHelp = {};
 componentClickPassHelp.checkOpen = false;
 
+window.componentClickPassCards = {};
+componentClickPassCards.checkOpen = false;
+
 window.representDotedDate = function (left, middle, right) {
 
   return dateAddZero(left) + "." + dateAddZero(middle) + "." + dateAddZero(right);

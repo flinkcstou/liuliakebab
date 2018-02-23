@@ -1,6 +1,7 @@
 <view-click-pass class="riot-tags-main-container">
 
   <component-click-pass-help></component-click-pass-help>
+  <component-click-pass-cards></component-click-pass-cards>
 
   <div id="clickPassPageId" class="view-click-pass">
     <div class="page-title">
@@ -28,7 +29,9 @@
     <canvas id="barcode" class="click-pass-bar-code-canvas"></canvas>
 
     <div class="click-pass-chosen-card-container"
-         id="{chosenCard.card_id}" if="{chosenCard}">
+         ontouchstart="openCardsTouchStart()"
+         ontouchend="clickPassCardsMenuOpenTouchEnd()"
+         id="chosenCardId" if="{chosenCard}">
       <div class="click-pass-chosen-card-logo-container"
            style="background-image: url({chosenCard.url})"></div>
       <div class="click-pass-chosen-card-info-container">
@@ -50,6 +53,11 @@
       openHelpTouchStartY,
       openHelpTouchEndX,
       openHelpTouchEndY;
+
+    var openCardsTouchStartX,
+      openCardsTouchStartY,
+      openCardsTouchEndX,
+      openCardsTouchEndY;
 
     var deviceId = localStorage.getItem('click_client_deviceID');
     var cardsArray = {};
@@ -125,6 +133,8 @@
 
         componentClickPassHelp.checkOpen = true;
 
+        this.clickPassCardsMenuBackPageId.style.zIndex = '-1';
+
         this.clickPassHelpMenuBackPageId.style.webkitTransition = '0.3s';
         this.clickPassPageId.style.webkitTransition = '0.3s';
         this.clickPassPageId.style.zIndex = '-1';
@@ -134,6 +144,43 @@
         this.clickPassHelpMenuId.style.webkitTransform = "translate3d(0, 0, 0)";
 
         this.clickPassHelpMenuBackPageId.style.opacity = '1';
+      }
+    };
+
+    openCardsTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      chosenCardId.style.webkitTransform = 'scale(0.7)';
+
+      openCardsTouchStartX = event.changedTouches[0].pageX;
+      openCardsTouchStartY = event.changedTouches[0].pageY;
+    };
+
+    clickPassCardsMenuOpenTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      chosenCardId.style.webkitTransform = 'scale(1)';
+
+      openCardsTouchEndX = event.changedTouches[0].pageX;
+      openCardsTouchEndY = event.changedTouches[0].pageY;
+
+      if ((Math.abs(openCardsTouchStartX - openCardsTouchEndX) <= 20 && Math.abs(openCardsTouchStartY - openCardsTouchEndY) <= 20)) {
+
+        componentClickPassCards.checkOpen = true;
+
+        this.clickPassHelpMenuBackPageId.style.zIndex = '-1';
+
+        this.clickPassCardsMenuBackPageId.style.webkitTransition = '0.3s';
+        this.clickPassPageId.style.webkitTransition = '0.3s';
+        this.clickPassPageId.style.zIndex = '-1';
+        this.clickPassPageId.style.opacity = '0.1';
+        this.clickPassCardsMenuId.style.webkitTransition = '0.3s';
+        this.clickPassCardsMenuId.style.transform = "translate3d(0, 0, 0)";
+        this.clickPassCardsMenuId.style.webkitTransform = "translate3d(0, 0, 0)";
+
+        this.clickPassCardsMenuBackPageId.style.opacity = '1';
       }
     };
 
