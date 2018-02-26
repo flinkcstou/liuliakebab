@@ -826,8 +826,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width:" + 540 * widthK + "px;" +
-  "height:" + 473 * heightK + "px;" +
-  // "left:" + 110 * widthK + "px" +
+  "height:" + 472 * heightK + "px;" +
   "}",
 
   registrationKeyboardField: ".registration-keyboard-field " +
@@ -922,13 +921,13 @@ var css = {
   "{" +
   "position: absolute;" +
   "width:" + 540 * widthK + "px;" +
-  "height:" + 473 * widthK + "px;" +
+  "height:" + 472 * heightK + "px;" +
   "}",
   keyboardFieldOne: ".keyboard-field-one " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height:" + 120 * widthK + "px;" +
+  "height:" + 120 * heightK + "px;" +
   "top: 0;" +
   "}",
   keyboardFieldTwo: ".keyboard-field-two " +
@@ -936,21 +935,21 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
-  "top:" + 120 * widthK + "px;" +
+  "top:" + 120 * heightK + "px;" +
   "}",
   keyboardFieldThree: ".keyboard-field-three " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
-  "top:" + 236 * widthK + "px;" +
+  "top:" + 236 * heightK + "px;" +
   "}",
   keyboardFieldFour: ".keyboard-field-four " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
-  "top:" + 353 * widthK + "px;" +
+  "top:" + 353 * heightK + "px;" +
   "}",
   keyboardFieldFive: ".keyboard-field-five " +
   "{" +
@@ -1149,7 +1148,7 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "top: 0;" +
-  "height:" + 300 * widthK + "px;" +
+  "height:" + 255 * heightK + "px;" +
   "}",
 
   authorizationButtonFirstEnter: ".authorization-button-first-enter " +
@@ -1169,7 +1168,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "height:" + 170 * widthK + "px;" +
-  "top:" + 130 * widthK + "px;" +
+  "top:" + 85 * widthK + "px;" +
   "width: 100%;" +
   "}",
 
@@ -1258,6 +1257,17 @@ var css = {
   "position: relative;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
+  "margin-top:" + 50 * heightK + "px;" +
+  "}",
+
+  authorizationKeyboardCentringContainer: ".authorization-keyboard-centring-container " +
+  "{" +
+  "position: absolute;" +
+  "top:" + 455 * heightK + "px;" +
+  "height:" + 572 * heightK + "px;" +
+  "width: 100%;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
   "}",
 
   authorizationButtonEnter: ".authorization-button-enter " +
@@ -1272,8 +1282,8 @@ var css = {
   "margin-right: auto;" +
   "width: 100%;" +
   // "left:" + 70 * widthK + "px;" +
-  "margin-top:" + 330 * widthK + "px;" +
-  "height:" + 180 * widthK + "px;" +
+  "margin-top:" + 305 * heightK + "px;" +
+  "height:" + 150 * heightK + "px;" +
   "}",
 
   authorizationButtonForgetPin: ".authorization-button-forget-pin " +
@@ -1321,13 +1331,87 @@ var css = {
   "font-family: SFUIDisplay-Light;" +
   "color: #535b67;" +
   "width: 90%;" +
-  "height:" + 87 * widthK + "px;" +
+  "height:" + 205 * heightK + "px;" +
   "margin-left: 5%;" +
   "bottom: 0;" +
   "padding: 0;" +
   "border: none;" +
   "background-color: white;" +
   "border-top: 1px solid #e8e8e8;" +
+  "}",
+
+  authorizationFooterNotFirstButton: ".authorization-footer-not-first-button " +
+  "{" +
+  "position: relative;" +
+  "width: 50%;" +
+  "height: 100%;" +
+  "float: left;" +
+  "}",
+
+  authorizationFooterNotFirstOfflineIcon: ".authorization-footer-not-first-offline-icon " +
+  "{" +
+  "position: relative;" +
+  "width:" + 80 * widthK + "px ;" +
+  "height:" + 80 * widthK + "px ;" +
+  "right:" + 12 * widthK + "px ;" +
+  "margin-top:" + 40 * heightK + "px ;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "background-image: url(resources/icons/authorization/offline.png);" +
+  "background-size: contain;" +
+  "background-position: center;" +
+  "background-repeat: no-repeat;" +
+  "}",
+
+  authorizationFooterNotFirstOfflineLabel: ".authorization-footer-not-first-offline-label " +
+  "{" +
+  "position: absolute;" +
+  "left: 0;" +
+  "right: 0;" +
+  "width:" + 250 * widthK + "px ;" +
+  "margin-right: auto;" +
+  "margin-left:" + 28 * widthK + "px ;" +
+  "margin-top:" + 20 * widthK + "px ;" +
+  "text-align: center;" +
+  "font-weight: bold;" +
+  "}",
+
+  authorizationFooterNotFirstClickPassIcon: ".authorization-footer-not-first-click-pass-icon " +
+  "{" +
+  "position: relative;" +
+  "width:" + 80 * widthK + "px ;" +
+  "height:" + 80 * widthK + "px ;" +
+  "left:" + 19 * widthK + "px ;" +
+  "margin-top:" + 40 * heightK + "px ;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "background-image: url(resources/icons/authorization/scaner.png);" +
+  "background-size: contain;" +
+  "background-position: center;" +
+  "background-repeat: no-repeat;" +
+  "}",
+
+  authorizationFooterNotFirstClickPassLabel: ".authorization-footer-not-first-click-pass-label " +
+  "{" +
+  "position: absolute;" +
+  "left: 0;" +
+  "right: 0;" +
+  "width:" + 250 * widthK + "px ;" +
+  "margin-left: auto;" +
+  "margin-right:" + 25 * widthK + "px ;" +
+  "margin-top:" + 20 * widthK + "px ;" +
+  "text-align: center;" +
+  "font-weight: bold;" +
+  "}",
+
+  authorizationFooterNotFirstBorderRight: ".authorization-footer-not-first-border-right" +
+  "{" +
+  "position: absolute;" +
+  "height: 60%;" +
+  "left: 50%;" +
+  "top: 20%;" +
+  "border-right:" + 1 * widthK + "px solid #e8e8e8;" +
+  "background: transparent;" +
   "}",
 
   authorizationFooterContainerFirst: ".authorization-footer-button-container-first " +
@@ -2312,7 +2396,17 @@ var css = {
   "{" +
   "position: relative;" +
   "top: 32.7%;" +
-  "height: 6%;" +
+  "height: 12.5%;" +
+  "width: 77%;" +
+  "left: 8%;" +
+  // "border-bottom: 1px solid #2dadf0;" +
+  "}",
+
+  sideMenuClickPassContainer: ".side-menu-click-pass-container " +
+  "{" +
+  "position: relative;" +
+  "top: 32.7%;" +
+  "height: 12.5%;" +
   "width: 77%;" +
   "left: 8%;" +
   // "border-bottom: 1px solid #2dadf0;" +
@@ -2321,7 +2415,7 @@ var css = {
   sideMenuSettingsContainer: ".side-menu-settings-container " +
   "{" +
   "position: relative;" +
-  "top: 39.4%;" +
+  "top: 36.4%;" +
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
@@ -2332,7 +2426,7 @@ var css = {
   sideMenuCallContainer: ".side-menu-call-container " +
   "{" +
   "position: relative;" +
-  "top: 39.4%;" +
+  "top: 36.4%;" +
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
@@ -2381,8 +2475,16 @@ var css = {
 
   sideMenuContainersIconScannerQr: ".side-menu-containers-icon-scanner-qr" +
   "{" +
-  "background-image: url(resources/icons/menu/menu_qr.png);" +
+  "background-image: url(resources/icons/menu/qr_blue.png);" +
   "background-size: 100%;" +
+  "width: 18%;" +
+  "}",
+
+  sideMenuContainersIconClickPass: ".side-menu-containers-icon-click-pass" +
+  "{" +
+  "background-image: url(resources/icons/menu/scanner_blue.png);" +
+  "background-size: 100%;" +
+  "width: 18%;" +
   "}",
 
   sideMenuContainersIconCall: ".side-menu-containers-icon-call" +
@@ -2423,6 +2525,36 @@ var css = {
 
   sideMenuContainersNameScannerQr: ".side-menu-containers-name-scanner-qr " +
   "{" +
+  "left: 28%;" +
+  "top: 23%;" +
+  "font-weight: bold;" +
+  "}",
+
+  sideMenuContainersHintScannerQr: ".side-menu-containers-hint-scanner-qr " +
+  "{" +
+  "position: absolute;" +
+  "left: 28%;" +
+  "top: 50%;" +
+  "width: 80%;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "color: #aaabae;" +
+  "}",
+
+  sideMenuContainersNameClickPass: ".side-menu-containers-name-click-pass " +
+  "{" +
+  "left: 28%;" +
+  "top: 23%;" +
+  "font-weight: bold;" +
+  "}",
+
+  sideMenuContainersHintClickPass: ".side-menu-containers-hint-click-pass " +
+  "{" +
+  "position: absolute;" +
+  "left: 28%;" +
+  "top: 50%;" +
+  "width: 80%;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "color: #aaabae;" +
   "}",
 
   sideMenuContainersNameSettings: ".side-menu-containers-name-settings " +
@@ -8272,6 +8404,16 @@ var css = {
   "margin-top:" + 56 * widthK + "px;" +
   "}",
 
+  clickPassShowToSeller: ".view-click-pass-shot-to-seller " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "top:" + 123 * widthK + "px;" +
+  "text-align: center;" +
+  "font-size:" + 33 * widthK + "px;" +
+  "color: #01cfff;" +
+  "}",
+
   clickPassQrCodeCanvas: ".click-pass-qr-code-canvas " +
   "{" +
   "position: absolute;" +
@@ -8281,7 +8423,7 @@ var css = {
   "right: 0;" +
   "}",
 
-  clickPassProgressBarContainer: ".click-pass-progress-bar-container " +
+  clickPassProgressBarContainer: ".click-pass-progress-bar-container" +
   "{" +
   "position: absolute;" +
   "left: 0;" +
@@ -8292,7 +8434,21 @@ var css = {
   "height:" + 20 * widthK + "px;" +
   "border-radius:" + 20 * widthK + "px;" +
   "background-color: #e8e8e8;" +
+  "background-image: url(resources/icons/ViewClickPass/progress.png);" +
+  "background-repeat: no-repeat;" +
+  "background-position-x: -" + 694 * widthK + "px;" +
+  "background-size: cover;" +
   "overflow: hidden;" +
+  "}",
+
+  clickPassProgressBarContainerStart: ".progress-bar-start" +
+  "{" +
+  "background-position-x: -" + 220 * widthK + "px;" +
+  "}",
+
+  clickPassProgressBarContainerStop: ".progress-bar-stop" +
+  "{" +
+  "background-position-x: -" + 694 * widthK + "px;" +
   "}",
 
   clickPassProgressBarLine: ".click-pass-progress-bar-line" +
@@ -8384,6 +8540,37 @@ var css = {
   "background-size: 17%;" +
   "background-position: center;" +
   "background-image: url(resources/icons/ViewClickPass/open.png);" +
+  "}",
+
+  clickPassCardsListContainer: ".click-pass-cards-list-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "top: " + 88 * widthK + "px; " +
+  "margin: auto;" +
+  "}",
+
+  clickPassCardInList: ".click-pass-card-in-list" +
+  "{" +
+  "position: relative;" +
+  "width: 90%;" +
+  "height: " + 140 * widthK + "px; " +
+  "margin: auto;" +
+  "left: 0;" +
+  "right: 0;" +
+  "background-color: transparent;" +
+  "border-bottom: " + 1 + "px solid #e8e8e8;" +
+  "}",
+
+  clickPassChosenCardBackground: ".click-pass-chosen-card-background" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: " + 140 * widthK + "px; " +
+  "margin: auto;" +
+  "left: 0;" +
+  "right: 0;" +
+  "background-color: rgba(231,231,231,0.5);" +
   "}",
 
 
@@ -8688,6 +8875,7 @@ var css = {
   "width: 100%;" +
   "height: 100%;" +
   "overflow: hidden;" +
+  "background-color: #ffffff;" +
   "}",
 
   pinCodeFlexContainer: ".pincode-flex-container" +

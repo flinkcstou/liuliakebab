@@ -83,7 +83,6 @@
       clickPassHelpMenuBackPageId.style.webkitTransition = '0s';
       touchStartX = event.changedTouches[0].pageX;
       timeStartX = event.timeStamp.toFixed(0);
-      console.log('START', touchStartX);
     };
 
     clickPassHelpMenuTouchEnd = function (bool) {
@@ -97,7 +96,6 @@
         closeClickPassHelpMenu();
       }
       else {
-        console.log('END', touchEndX);
         if (Math.abs(touchStartX - touchEndX) < 20 && bool) {
           closeClickPassHelpMenu();
           return;
@@ -114,7 +112,6 @@
       event.preventDefault();
       event.stopPropagation();
       touchMoveX = event.changedTouches[0].pageX;
-      console.log('MOVE', touchMoveX);
       if (touchMoveX < touchStartX)
         return;
       var deltaForMainPage = Math.abs((touchStartX - touchMoveX).toFixed(0) / width * 2);

@@ -30,7 +30,8 @@
     <component-keyboard></component-keyboard>
   </div>
 
-  <button if="{device.platform != 'iOS'}" id="pinOfflineButtonId" class="authorization-footer-button-container"
+  <button if="{device.platform != 'iOS'}" id="pinOfflineButtonId" class="authorization-footer-button-container-first"
+          style="bottom: 0;"
        ontouchstart="offlineModeTouchStart()"
        ontouchend="offlineModeTouchEnd()">
     {window.languages.ViewAuthorizationOfflineModeLabel}
@@ -65,6 +66,7 @@
     var fromAuthorization = false;
     var fromSettings = false;
     var fromPayOrTransfer = false;
+    var toClickPass = false;
     var timeOutTimer = 0;
     scope.showRegistrationProcess = false;
     scope.nowCheckPinTitle = window.languages.ViewPinCodeNowClickPinLabel;
@@ -83,8 +85,7 @@
       fromAuthorization = false;
       fromRegistration = false;
       fromPayOrTransfer = false;
-    }
-    else if (opts[0] == 'view-pay-confirm' || opts[0] == 'view-transfer-submit') {
+    } else if (opts[0] == 'view-pay-confirm' || opts[0] == 'view-transfer-submit') {
       scope.nowCheckPinTitle = window.languages.ViewPinCodeConfirmPayTransferLabel;
       scope.backbuttoncheck = true;
       fromSettings = false;
@@ -92,12 +93,21 @@
       fromRegistration = false;
       fromPayOrTransfer = true;
       var errorPinTimesCounter = 0;
-    }
-    else if (opts[0] == 'view-authorization') {
+    } else if (opts[0] == 'view-authorization') {
       fromAuthorization = true;
       scope.checkPin = true;
       scope.nowCheckPin = false
       scope.labelOfTitle = "Для удобства пользования, просим установить новый CLICK-PIN из 5 цифр!"
+    } else if (opts[0] == 'view-click-pass') {
+      console.log('pin-code for view-click-pass');
+      scope.nowCheckPinTitle = window.languages.ViewPinCodeConfirmPayTransferLabel;
+      scope.backbuttoncheck = true;
+      fromSettings = false;
+      fromAuthorization = false;
+      fromRegistration = false;
+      fromPayOrTransfer = false;
+      toClickPass = true;
+      var errorPinTimesCounter = 0;
     }
 
     scope.update();
@@ -341,6 +351,11 @@
           else if (scope.nowCheckPin) {
             if (hex_md5(enteredPin) == localStorage.getItem('pinForStand')) {
 
+              if (toClickPass){
+                onBackKeyDown();
+                console.log('toClick is confirmed!');
+              }
+
               if (fromPayOrTransfer) {
                 sessionStorage.setItem('payTransferConfirmed', true);
                 onBackParams.opts = opts[1];
@@ -359,7 +374,7 @@
             else {
               scope.clickPinError = false;
 
-              if (fromPayOrTransfer) {
+              if (fromPayOrTransfer || toClickPass) {
                 scope.errorNote = window.languages.ViewPinCodeConfirmPayTransferErrorAlertText;
                 sessionStorage.setItem('payTransferConfirmed', false);
                 errorPinTimesCounter++;

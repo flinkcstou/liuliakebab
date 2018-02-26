@@ -49,8 +49,10 @@
     </div>
   </div>
 
-  <div if="{!firstEnter}" class="authorization-keyboard-field keyboard-field">
+  <div if="{!firstEnter}" class="authorization-keyboard-centring-container">
+  <div class="authorization-keyboard-field keyboard-field">
     <component-keyboard fingerprint="{JSON.parse(localStorage.getItem('settings_finger_print'))}"></component-keyboard>
+  </div>
   </div>
 
   <div if="{firstEnter}" id="firstEnterButtonId" class="bottom-button-container"
@@ -61,12 +63,36 @@
   </div>
 
   <button id="authOfflineButtonId" hidden="{device.platform == 'iOS'}"
-          class="{authorization-footer-button-container : !firstEnter, authorization-footer-button-container-first : firstEnter}"
-          class="authorization-footer-button-container"
+          if="{firstEnter}"
+          class="authorization-footer-button-container-first"
           ontouchstart="offlineModeTouchStart()"
           ontouchend="offlineModeTouchEnd()">
     {window.languages.ViewAuthorizationOfflineModeLabel}
   </button>
+
+  <div if="{!firstEnter}"
+          class="authorization-footer-button-container">
+    <div if="{device.platform != 'iOS'}"
+         id="authOfflineButtonId"
+         class="authorization-footer-not-first-button"
+         ontouchstart="offlineModeTouchStart()"
+         ontouchend="offlineModeTouchEnd()">
+      <div class="authorization-footer-not-first-offline-icon"></div>
+      <div class="authorization-footer-not-first-offline-label">
+        {window.languages.ViewAuthorizationOfflineModeLabel}
+      </div>
+    </div>
+    <div class="authorization-footer-not-first-border-right"></div>
+    <div id="authClickPassButtonId"
+         class="authorization-footer-not-first-button"
+         ontouchstart="clickPassTouchStart()"
+         ontouchend="clickPassTouchEnd()">
+      <div class="authorization-footer-not-first-click-pass-icon"></div>
+      <div class="authorization-footer-not-first-click-pass-label">
+        {window.languages.ViewAuthorizationClickScanLabel}
+      </div>
+    </div>
+  </div>
   <component-pin-reset></component-pin-reset>
 
   <script>
@@ -343,6 +369,37 @@
         this.riotTags.innerHTML = "<view-main-page>";
         riot.mount('view-main-page');
         scope.unmount()
+      }
+    };
+
+    var clickPassTouchStartX, clickPassTouchStartY, clickPassTouchEndX, clickPassTouchEndY;
+
+    clickPassTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      authClickPassButtonId.style.webkitTransform = 'scale(0.8)';
+
+      clickPassTouchStartX = event.changedTouches[0].pageX;
+      clickPassTouchStartY = event.changedTouches[0].pageY;
+
+    };
+    clickPassTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      authClickPassButtonId.style.webkitTransform = 'scale(1)';
+
+      clickPassTouchEndX = event.changedTouches[0].pageX;
+      clickPassTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(clickPassTouchStartX - clickPassTouchEndX) <= 20
+        && Math.abs(clickPassTouchStartY - clickPassTouchEndY) <= 20) {
+        optsForClickPass = {
+          fromAuth: true,
+        };
+        riotTags.innerHTML = "<view-click-pass>";
+        riot.mount('view-click-pass', optsForClickPass);
       }
     };
 

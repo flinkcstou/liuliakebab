@@ -21,10 +21,12 @@
       </div>
     </div>
 
+    <div class="view-click-pass-shot-to-seller">
+      {window.languages.ViewClickPassShowToSeller}
+    </div>
+
     <canvas id="qr" class="click-pass-qr-code-canvas"></canvas>
-    <div class="click-pass-progress-bar-container">
-      <div id="progressBar" class="click-pass-progress-bar-line">
-      </div>
+    <div id="statusBarId" class="click-pass-progress-bar-container">
     </div>
     <canvas id="barcode" class="click-pass-bar-code-canvas"></canvas>
 
@@ -45,6 +47,7 @@
   <script>
 
     var scope = this;
+    scope.codeInterval = 0;
 
     var goBackButtonStartX, goBackButtonEndX,
       goBackButtonStartY, goBackButtonEndY;
@@ -60,25 +63,49 @@
       openCardsTouchEndY;
 
     var deviceId = localStorage.getItem('click_client_deviceID');
-    var cardsArray = {};
+    scope.cardsArray;
     if (JSON.parse(localStorage.getItem('click_client_cards'))) {
-      cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+      scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
     }
-    var codeData = '';
     scope.chosenCard;
 
+    console.log('saving view-click-pass in history');
     window.saveHistory('view-click-pass', opts);
 
     scope.on('mount', function () {
-      for (var i in cardsArray){
-        if (cardsArray[i].default_account){
-          scope.chosenCard = cardsArray[i];
-          console.log('default Card', scope.chosenCard);
-          codeData = prepareCodeData(scope.chosenCard.card_id);
-          generateQrCode(codeData);
-          generateBarCode(codeData);
+      if (opts && opts.fromAuth === true){
+        onBackParams.opts = {
+          fromAuth: false,
+        };
+        riotTags.innerHTML = "<view-pin-code>";
+        riot.mount('view-pin-code', ['view-click-pass']);
+      }
+
+      checkCardsArray();
+      for (var i in scope.cardsArray){
+        if (scope.cardsArray[i].default_account){
+          scope.chosenCard = scope.cardsArray[i];
         }
       }
+      if (!scope.chosenCard && JSON.stringify(scope.cardsArray).length > 2){
+        for (var i in scope.cardsArray){
+          console.log("card", scope.cardsArray[i]);
+          if (scope.cardsArray[i]) {
+            scope.chosenCard = scope.cardsArray[i];
+          }
+        }
+      }
+      if (!scope.chosenCard){
+        scope.errorNote = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
+        window.common.alert.show("componentAlertId", {
+          parent: scope,
+          viewpage: "view-main-page",
+          errornote: scope.errorNote,
+        });
+        return;
+      }
+      updateCode();
+      scope.codeInterval = setInterval(updateCode, 30000);
       scope.update();
     });
 
@@ -105,8 +132,9 @@
       goBackButtonEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
+        clearInterval(scope.codeInterval);
         onBackKeyDown();
-        scope.unmount()
+        scope.unmount();
       }
     };
 
@@ -184,6 +212,19 @@
       }
     };
 
+    scope.changeChosenCard = changeChosenCard = function (id) {
+      id = parseInt(id);
+      for (var i in scope.cardsArray){
+        if (scope.cardsArray[i].card_id === id){
+          scope.chosenCard = scope.cardsArray[i];
+        }
+      }
+      updateCode();
+      clearInterval(scope.codeInterval);
+      scope.codeInterval = setInterval(updateCode, 30000);
+      scope.update();
+    };
+
     generateQrCode = function (data) {
       var qr = new QRious({
         element: document.getElementById('qr'),
@@ -194,10 +235,10 @@
 
     generateBarCode = function (data) {
       JsBarcode(barcode, data, {
-        format: "codabar",
+        format: "CODE128",
         displayValue: false,
-        width: 3.5,
-        height: 120 * widthK,
+        width: 4,
+        height: 90 * widthK,
       });
     };
 
@@ -205,10 +246,49 @@
       var currentTime = new Date().getTime() / 1000;
       var OTP = updateOtp(deviceId, currentTime);
       var luna = codeCheckLuna(card_id.toString() + OTP.toString());
-      var result = card_id.toString() + OTP.toString() + '1';
-      console.log('code data:', result);
+      var result = card_id.toString() + OTP.toString() + luna;
       return result;
+    };
+
+    updateCode = function(){
+      if (!document.getElementById("clickPassPageId")){
+        console.log("clearing interval for click pass", scope.codeInterval);
+        clearInterval(scope.codeInterval);
+        return;
+      }
+      var codeData = prepareCodeData(scope.chosenCard.card_id);
+      console.log('updating code', codeData);
+      generateQrCode(codeData);
+      generateBarCode(codeData);
+      setTimeout(clearTransitionStatus, 0);
+    };
+
+    clearTransitionStatus = function () {
+      statusBarId.style.webkitTransition = 'none';
+      statusBarId.style.backgroundPositionX = -694 * widthK + 'px';
+      setTimeout(restartTransitionStatus, 100);
+    };
+
+    restartTransitionStatus = function () {
+      statusBarId.style.webkitTransition = '29.9s linear';
+      statusBarId.style.backgroundPositionX = -230 * widthK + 'px';
+    };
+
+    function checkCardsArray() {
+      for (var i in scope.cardsArray){
+        scope.cardsArray[i].permission = true;
+        if (scope.cardsArray[i].access != 2) {
+          scope.cardsArray[i].permission = false;
+        }
+        if (scope.cardsArray[i].payment_allowed != 1) {
+          scope.cardsArray[i].permission = false;
+        }
+        if (!scope.cardsArray[i].permission){
+          delete scope.cardsArray[i];
+        }
+      }
     }
+
 
   </script>
 </view-click-pass>

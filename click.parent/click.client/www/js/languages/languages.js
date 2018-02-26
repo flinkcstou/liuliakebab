@@ -54,6 +54,7 @@ var RU_LANGUAGES =
     "ViewAuthorizationFirstEnterLabel": "ВОЙТИ",
     "ViewAuthorizationResetLocalStorageLabel": "Сбросить данные",
     "ViewAuthorizationOfflineModeLabel": "Офлайн режим",
+    "ViewAuthorizationClickScanLabel": "CLICK PASS",
 
     "ViewInfoBalanceTitle": "Общий баланс",
 
@@ -453,6 +454,8 @@ var RU_LANGUAGES =
   "ViewClickPassHelpFirstStep": "Выберите карту для оплаты",
   "ViewClickPassHelpSecondStep": "Позвольте продавцу отсканировать Ваш QR",
   "ViewClickPassHelpThirdStep": "Нужная сумма автоматически спишется с выбранной карты",
+  "ViewClickPassChoseCard": "Выберите карту",
+  "ViewClickPassShowToSeller": "Покажите QR код продавцу",
 
   "ViewReportServiceAmountOfPay": "Сумма платежа:",
   "ViewReportServicePayWithCard": "Оплата с карты:",

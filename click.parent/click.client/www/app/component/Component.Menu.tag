@@ -46,12 +46,18 @@
          ontouchend="goToQrScannerEnd()">
       <div class="side-menu-containers-icon side-menu-containers-icon-scanner-qr"></div>
       <div class="side-menu-containers-name side-menu-containers-name-scanner-qr">Сканер QR-кода</div>
+      <div class="side-menu-containers-hint-scanner-qr">
+        Отсканируйте QR-код продавца для быстрой оплаты
+      </div>
     </div>
 
-    <div id="clickPassButtonId" class="side-menu-scanner-qr-container" ontouchstart="goToClickPassStart()"
+    <div id="clickPassButtonId" class="side-menu-click-pass-container" ontouchstart="goToClickPassStart()"
          ontouchend="goToClickPassEnd()">
-      <div class="side-menu-containers-icon side-menu-containers-icon-scanner-qr"></div>
-      <div class="side-menu-containers-name side-menu-containers-name-scanner-qr">Click Pass</div>
+      <div class="side-menu-containers-icon side-menu-containers-icon-click-pass"></div>
+      <div class="side-menu-containers-name side-menu-containers-name-click-pass">CLICK PASS</div>
+      <div class="side-menu-containers-hint-click-pass">
+        Оплата по-личному QR-коду вашего аккаунта CLICK
+      </div>
     </div>
 
     <div id="settingsButtonId" if="{!modeOfApp.offlineMode}" class="side-menu-settings-container"

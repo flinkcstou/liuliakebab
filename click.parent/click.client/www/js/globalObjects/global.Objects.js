@@ -1717,14 +1717,13 @@ function leftpad(str, len, pad) {
   return str;
 }
 
-function updateOtp(deviceId, time) {
+function updateOtp(deviceId, otpTime) {
 
   var base = base32.encode(deviceId);
   var key = base32tohex(base);
-  var epoch = Math.round(time);
+  var epoch = Math.round(otpTime);
   var time = leftpad(dec2hex(Math.floor(epoch / 30)), 16, '0');
 
-  // updated for jsSHA v2.0.0 - http://caligatio.github.io/jsSHA/
   var shaObj = new jsSHA("SHA-1", "HEX");
   shaObj.setHMACKey(key, "HEX");
   shaObj.update(time);
@@ -1738,22 +1737,22 @@ function updateOtp(deviceId, time) {
 
   var otp = (hex2dec(hmac.substr(offset * 2, 8)) & hex2dec('7fffffff')) + '';
   otp = (otp).substr(otp.length - 6, 6);
-  console.log(otp);
   return otp;
 }
 
-function codeCheckLuna(value) {
-  if (/[^0-9-\s]+/.test(value)) return false;
-  var nCheck = 0, nDigit = 0, bEven = false;
-  value = value.replace(/\D/g, "");
-  for (var n = value.length - 1; n >= 0; n--) {
-    var cDigit = value.charAt(n),
-      nDigit = parseInt(cDigit, 10);
-    if (bEven) {
-      if ((nDigit *= 2) > 9) nDigit -= 9;
+function codeCheckLuna(number) {
+  var sum = 0;
+  for (var i = 0; i < number.length; i++) {
+    var digit = parseInt(number.substring(i, (i + 1)));
+    if ((i % 2) == 0) {
+      digit = digit * 2;
+      if (digit > 9) {
+        digit = (digit / 10) + (digit % 10);
+      }
     }
-    nCheck += nDigit;
-    bEven = !bEven;
+    sum += digit;
   }
-  return (nCheck % 10) == 0;
+
+  var mod = parseInt(sum % 10);
+  return ((mod == 0) ? 0 : 10 - mod);
 }

@@ -11,18 +11,72 @@
        class="click-pass-help-menu">
 
     <div class="page-title">
+      <p class="name-title">{window.languages.ViewClickPassChoseCard}</p>
       <div id="closeClickPassCardsMenuButtonId"
            role="button"
            aria-label="{window.languages.Close}"
            class="click-pass-help-menu-close-button"
            ontouchstart="closeClickPassCardsMenuStart()"
            ontouchend="closeClickPassCardsMenu()"></div>
+      <div class="title-bottom-border">
+      </div>
+    </div>
+    <div class="click-pass-cards-list-container">
+      <div class="click-pass-card-in-list" each="{i in cardsArray}"
+           id="{i.card_id}"
+           ontouchstart="changeCardTouchStart()"
+           ontouchend="changeCardTouchEnd(this.id)">
+        <div class="click-pass-chosen-card-logo-container"
+             style="background-image: url({i.url})"></div>
+        <div class="click-pass-chosen-card-info-container">
+          <p class="click-pass-chosen-card-info-text-one">{i.name}</p>
+          <p class="click-pass-chosen-card-info-text-three">{i.numberPartOne} **** {i.numberPartTwo}</p>
+        </div>
+        <div class="click-pass-chosen-card-background" if="{false}"></div>
+      </div>
     </div>
   </div>
 
 
   <script>
     var scope = this;
+    scope.chosenCard = {};
+
+    var changeCardStartX, changeCardStartY,
+      changeCardEndX, changeCardEndY;
+
+    scope.on('mount', function () {
+      scope.cardsArray = scope.parent.cardsArray;
+      scope.chosenCard = scope.parent.chosenCard;
+      scope.update();
+    });
+
+    changeCardTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      changeCardStartX = event.changedTouches[0].pageX;
+      changeCardStartY = event.changedTouches[0].pageY;
+    };
+
+    changeCardTouchEnd = function (id) {
+
+      console.log("ID", id);
+
+      event.preventDefault();
+      event.stopPropagation();
+
+      changeCardEndX = event.changedTouches[0].pageX;
+      changeCardEndY = event.changedTouches[0].pageY;
+      if (Math.abs(changeCardStartX - changeCardEndX) <= 20 && Math.abs(changeCardStartY - changeCardEndY) <= 20) {
+        document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
+        setTimeout(function () {
+          document.getElementById(id).style.backgroundColor = 'transparent';
+          scope.parent.changeChosenCard(id);
+          closeClickPassCardsMenu();
+        }, 100);
+      }
+    };
 
     closeClickPassCardsMenuStart = function () {
       closeClickPassCardsMenuButtonId.style.webkitTransform = 'scale(0.8)';
@@ -62,7 +116,6 @@
       clickPassCardsMenuBackPageId.style.webkitTransition = '0s';
       cardsTouchStartX = event.changedTouches[0].pageX;
       cardsTimeStartX = event.timeStamp.toFixed(0);
-      console.log('START', cardsTouchStartX);
     };
 
     clickPassCardsMenuTouchEnd = function (bool) {
@@ -76,7 +129,6 @@
         closeClickPassCardsMenu();
       }
       else {
-        console.log('END', cardsTouchEndX);
         if (Math.abs(cardsTouchStartX - cardsTouchEndX) < 20 && bool) {
           closeClickPassCardsMenu();
           return;
@@ -93,7 +145,6 @@
       event.preventDefault();
       event.stopPropagation();
       cardsTouchMoveX = event.changedTouches[0].pageX;
-      console.log('MOVE', cardsTouchMoveX);
       if (cardsTouchMoveX < cardsTouchStartX)
         return;
       var cardsDeltaForMainPage = Math.abs((cardsTouchStartX - cardsTouchMoveX).toFixed(0) / width * 2);
