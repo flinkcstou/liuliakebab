@@ -69,8 +69,13 @@
     }
     scope.chosenCard;
 
-    console.log('saving view-click-pass in history');
     window.saveHistory('view-click-pass', opts);
+
+    if (opts.pinChecked === false){
+      clearInterval(scope.codeInterval);
+      onBackKeyDown();
+      scope.unmount();
+    }
 
     scope.on('mount', function () {
       if (opts && opts.fromAuth === true){

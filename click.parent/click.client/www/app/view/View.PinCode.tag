@@ -258,6 +258,11 @@
           console.log('opts on backkeydown', opts[1]);
           onBackParams.opts = opts[1];
         }
+        if (toClickPass){
+          onBackParams.opts = {
+            pinChecked: false,
+          };
+        }
         onBackKeyDown();
       }
     };
@@ -352,8 +357,10 @@
             if (hex_md5(enteredPin) == localStorage.getItem('pinForStand')) {
 
               if (toClickPass){
+                onBackParams.opts = {
+                  pinChecked: true,
+                };
                 onBackKeyDown();
-                console.log('toClick is confirmed!');
               }
 
               if (fromPayOrTransfer) {
