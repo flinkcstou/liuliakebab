@@ -64,7 +64,7 @@
 
     var deviceId = localStorage.getItem('click_client_deviceID');
     scope.cardsArray;
-    if (JSON.parse(localStorage.getItem('click_client_cards'))) {
+    if (localStorage.getItem('click_client_cards')) {
       scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
     }
     scope.chosenCard;
@@ -82,8 +82,12 @@
         onBackParams.opts = {
           fromAuth: false,
         };
+        clearInterval(scope.codeInterval);
+        clearTransitionStatus();
         riotTags.innerHTML = "<view-pin-code>";
         riot.mount('view-pin-code', ['view-click-pass']);
+        scope.unmount();
+        return;
       }
 
       checkCardsArray();
@@ -110,6 +114,7 @@
         return;
       }
       updateCode();
+      clearTransitionStatus();
       scope.codeInterval = setInterval(updateCode, 30000);
       scope.update();
     });
@@ -138,6 +143,7 @@
 
       if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
         clearInterval(scope.codeInterval);
+        clearTransitionStatus();
         onBackKeyDown();
         scope.unmount();
       }
@@ -225,6 +231,7 @@
         }
       }
       updateCode();
+      clearTransitionStatus();
       clearInterval(scope.codeInterval);
       scope.codeInterval = setInterval(updateCode, 30000);
       scope.update();
@@ -269,14 +276,18 @@
     };
 
     clearTransitionStatus = function () {
-      statusBarId.style.webkitTransition = 'none';
-      statusBarId.style.backgroundPositionX = -694 * widthK + 'px';
-      setTimeout(restartTransitionStatus, 100);
+      if (statusBarId) {
+        statusBarId.style.webkitTransition = 'none';
+        statusBarId.style.backgroundPositionX = -694 * widthK + 'px';
+        setTimeout(restartTransitionStatus, 100);
+      }
     };
 
     restartTransitionStatus = function () {
-      statusBarId.style.webkitTransition = '29.9s linear';
-      statusBarId.style.backgroundPositionX = -230 * widthK + 'px';
+      if (statusBarId) {
+        statusBarId.style.webkitTransition = '29.9s linear';
+        statusBarId.style.backgroundPositionX = -230 * widthK + 'px';
+      }
     };
 
     function checkCardsArray() {
@@ -291,6 +302,13 @@
         if (!scope.cardsArray[i].permission){
           delete scope.cardsArray[i];
         }
+      }
+    }
+
+    function correctTime() {
+      if (localStorage.getItem('click_client_otp_time')) {
+        otpTime = JSON.parse(localStorage.getItem('click_client_otp_time'));
+
       }
     }
 
