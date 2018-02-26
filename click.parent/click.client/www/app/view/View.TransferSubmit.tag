@@ -537,6 +537,8 @@
         if (scope.payTransferBlocked && JSON.parse(sessionStorage.getItem('payTransferConfirmed')) !== true) {
           optsForPinCode = {
             fromPinCode: true,
+            cardsarray: scope.cardsarray,
+            idcardfrommycards: scope.chosenCard.id,
             receiver: scope.receiver,
             receiverTitle: scope.receiverTitle,
             taxPercent: scope.taxPercent,
