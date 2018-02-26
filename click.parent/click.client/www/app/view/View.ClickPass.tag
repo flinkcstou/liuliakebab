@@ -255,8 +255,8 @@
     };
 
     prepareCodeData = function (card_id) {
-      var currentTime = new Date().getTime() / 1000;
-      var OTP = updateOtp(deviceId, currentTime);
+      var timeForOtp = correctTime();
+      var OTP = updateOtp(deviceId, timeForOtp);
       var luna = codeCheckLuna(card_id.toString() + OTP.toString());
       var result = card_id.toString() + OTP.toString() + luna;
       return result;
@@ -307,8 +307,11 @@
 
     function correctTime() {
       if (localStorage.getItem('click_client_otp_time')) {
-        otpTime = JSON.parse(localStorage.getItem('click_client_otp_time'));
-
+        var otpTime = JSON.parse(localStorage.getItem('click_client_otp_time'));
+        var result = parseInt(new Date().getTime() / 1000) + otpTime.diffTime;
+        return result;
+      } else {
+        return parseInt(new Date().getTime() / 1000);
       }
     }
 
