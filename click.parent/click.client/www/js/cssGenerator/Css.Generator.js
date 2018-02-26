@@ -1340,12 +1340,37 @@ var css = {
   "border-top: 1px solid #e8e8e8;" +
   "}",
 
+  authorizationFooterContainerIOS: ".authorization-footer-button-container-ios " +
+  "{" +
+  "position: absolute;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "color: #535b67;" +
+  "width: 90%;" +
+  "height:" + 135 * heightK + "px;" +
+  "margin-left: 5%;" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "border: none;" +
+  "background-color: white;" +
+  "border-top: 1px solid #e8e8e8;" +
+  "}",
+
   authorizationFooterNotFirstButton: ".authorization-footer-not-first-button " +
   "{" +
   "position: relative;" +
   "width: 50%;" +
   "height: 100%;" +
   "float: left;" +
+  "}",
+
+  authorizationFooterNotFirstButtonIOS: ".authorization-footer-not-first-button-ios" +
+  "{" +
+  "position: relative;" +
+  "width: 50%;" +
+  "height: 100%;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
   "}",
 
   authorizationFooterNotFirstOfflineIcon: ".authorization-footer-not-first-offline-icon " +
@@ -1391,6 +1416,19 @@ var css = {
   "background-repeat: no-repeat;" +
   "}",
 
+  authorizationFooterNotFirstClickPassIconIos: ".authorization-footer-not-first-click-pass-icon-ios " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 65 * heightK + "px ;" +
+  "height:" + 65 * heightK + "px ;" +
+  "left:" + 19 * widthK + "px ;" +
+  "margin-top:" + 35 * heightK + "px ;" +
+  "background-image: url(resources/icons/authorization/scaner.png);" +
+  "background-size: contain;" +
+  "background-position: center;" +
+  "background-repeat: no-repeat;" +
+  "}",
+
   authorizationFooterNotFirstClickPassLabel: ".authorization-footer-not-first-click-pass-label " +
   "{" +
   "position: absolute;" +
@@ -1400,6 +1438,17 @@ var css = {
   "margin-left: auto;" +
   "margin-right:" + 25 * widthK + "px ;" +
   "margin-top:" + 20 * widthK + "px ;" +
+  "text-align: center;" +
+  "font-weight: bold;" +
+  "}",
+
+  authorizationFooterNotFirstClickPassLabelIos: ".authorization-footer-not-first-click-pass-label-ios " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 200 * widthK + "px ;" +
+  "height:" + 40 * widthK + "px ;" +
+  "top:" + 50 * heightK + "px ;" +
+  "right:" + 15 * heightK + "px ;" +
   "text-align: center;" +
   "font-weight: bold;" +
   "}",

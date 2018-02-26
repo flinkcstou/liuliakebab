@@ -70,10 +70,9 @@
     {window.languages.ViewAuthorizationOfflineModeLabel}
   </button>
 
-  <div if="{!firstEnter}"
+  <div if="{!firstEnter && device.platform != 'iOS'}"
           class="authorization-footer-button-container">
-    <div if="{device.platform != 'iOS'}"
-         id="authOfflineButtonId"
+    <div id="authOfflineButtonId"
          class="authorization-footer-not-first-button"
          ontouchstart="offlineModeTouchStart()"
          ontouchend="offlineModeTouchEnd()">
@@ -89,6 +88,18 @@
          ontouchend="clickPassTouchEnd()">
       <div class="authorization-footer-not-first-click-pass-icon"></div>
       <div class="authorization-footer-not-first-click-pass-label">
+        {window.languages.ViewAuthorizationClickScanLabel}
+      </div>
+    </div>
+  </div>
+  <div if="{!firstEnter && device.platform == 'iOS'}"
+       class="authorization-footer-button-container-ios">
+    <div id="authClickPassButtonId"
+         class="authorization-footer-not-first-button-ios"
+         ontouchstart="clickPassTouchStart()"
+         ontouchend="clickPassTouchEnd()">
+      <div class="authorization-footer-not-first-click-pass-icon-ios"></div>
+      <div class="authorization-footer-not-first-click-pass-label-ios">
         {window.languages.ViewAuthorizationClickScanLabel}
       </div>
     </div>
