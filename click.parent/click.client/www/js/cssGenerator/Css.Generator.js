@@ -14398,6 +14398,22 @@ var css = {
   "word-wrap: break-word;" +
   "}",
 
+  reportServiceInfoInputCardName: ".report-service-info-input-card-name" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "left: 3%;" +
+  "top: " + 49 * widthK + "px; " +
+  "font-size: " + 29 * widthK + "px; " +
+  "color: gray;" +
+  "text-overflow: ellipsis;" +
+  "width: " + 625 * widthK + "px;" +
+  "max-height: " + 110 * widthK + "px;" +
+  "overflow: hidden;" +
+  "word-wrap: break-word;" +
+  "white-space: nowrap;" +
+  "}",
+
   reportServiceInfoInputAmount: ".report-service-info-input-amount" +
   "{" +
   "position: absolute;" +
