@@ -50,9 +50,10 @@
   </div>
 
   <div if="{!firstEnter}" class="authorization-keyboard-centring-container">
-  <div class="authorization-keyboard-field keyboard-field">
-    <component-keyboard fingerprint="{JSON.parse(localStorage.getItem('settings_finger_print'))}"></component-keyboard>
-  </div>
+    <div class="authorization-keyboard-field keyboard-field">
+      <component-keyboard
+        fingerprint="{JSON.parse(localStorage.getItem('settings_finger_print'))}"></component-keyboard>
+    </div>
   </div>
 
   <div if="{firstEnter}" id="firstEnterButtonId" class="bottom-button-container"
@@ -70,8 +71,8 @@
     {window.languages.ViewAuthorizationOfflineModeLabel}
   </button>
 
-  <div if="{!firstEnter && device.platform != 'iOS'}"
-          class="authorization-footer-button-container">
+  <div if="{!firstEnter && device.platform == 'iOS'}"
+       class="authorization-footer-button-container">
     <div id="authOfflineButtonId"
          class="authorization-footer-not-first-button"
          ontouchstart="offlineModeTouchStart()"
@@ -92,15 +93,17 @@
       </div>
     </div>
   </div>
-  <div if="{!firstEnter && device.platform == 'iOS'}"
-       class="authorization-footer-button-container-ios">
-    <div id="authClickPassButtonId"
-         class="authorization-footer-not-first-button-ios"
+  <div if="{!firstEnter && device.platform != 'iOS'}"
+       class="authorization-footer-button-container-ios-for-border">
+    <div class="authorization-footer-button-container-ios"
+         id="authClickPassButtonId"
          ontouchstart="clickPassTouchStart()"
          ontouchend="clickPassTouchEnd()">
-      <div class="authorization-footer-not-first-click-pass-icon-ios"></div>
-      <div class="authorization-footer-not-first-click-pass-label-ios">
-        {window.languages.ViewAuthorizationClickScanLabel}
+      <div class="authorization-footer-not-first-button-ios">
+        <div class="authorization-footer-not-first-click-pass-icon-ios"></div>
+        <div class="authorization-footer-not-first-click-pass-label-ios">
+          {window.languages.ViewAuthorizationClickScanLabel}
+        </div>
       </div>
     </div>
   </div>

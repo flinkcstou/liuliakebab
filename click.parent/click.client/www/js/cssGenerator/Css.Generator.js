@@ -1346,6 +1346,18 @@ var css = {
   "font-size:" + 34 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "color: #535b67;" +
+  "width: 100%;" +
+  "height:" + 135 * heightK + "px;" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "border: none;" +
+  "background-color: white;" +
+  "}",
+
+  authorizationFooterContainerIOSForBorder: ".authorization-footer-button-container-ios-for-border " +
+  "{" +
+  "position: absolute;" +
+  "font-family: SFUIDisplay-Light;" +
   "width: 90%;" +
   "height:" + 135 * heightK + "px;" +
   "margin-left: 5%;" +
