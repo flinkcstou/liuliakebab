@@ -71,7 +71,7 @@
     {window.languages.ViewAuthorizationOfflineModeLabel}
   </button>
 
-  <div if="{!firstEnter && device.platform == 'iOS'}"
+  <div if="{!firstEnter && device.platform != 'iOS'}"
        class="authorization-footer-button-container">
     <div id="authOfflineButtonId"
          class="authorization-footer-not-first-button"
@@ -93,7 +93,7 @@
       </div>
     </div>
   </div>
-  <div if="{!firstEnter && device.platform != 'iOS'}"
+  <div if="{!firstEnter && device.platform == 'iOS'}"
        class="authorization-footer-button-container-ios-for-border">
     <div class="authorization-footer-button-container-ios"
          id="authClickPassButtonId"

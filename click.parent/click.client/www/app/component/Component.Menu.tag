@@ -784,6 +784,24 @@
           scope.update();
           return;
         }
+        if (!localStorage.getItem("click_client_loginInfo")){
+          var question = 'Для работы раздела CLICK PASS необходимо один раз зайти в онлайн режим';
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: question
+          });
+          scope.update();
+          return;
+        }
+        if (modeOfApp.offlineMode){
+          optsForClickPass = {
+            fromAuth: true,
+          };
+          riotTags.innerHTML = "<view-click-pass>";
+          riot.mount('view-click-pass', optsForClickPass);
+          scope.unmount();
+          return;
+        }
         console.log('button is working');
         closeMenu();
         riotTags.innerHTML = "<view-click-pass>";

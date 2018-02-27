@@ -79,11 +79,11 @@
 
     scope.on('mount', function () {
       if (opts && opts.fromAuth === true){
+        clearInterval(scope.codeInterval);
+        clearTransitionStatus();
         onBackParams.opts = {
           fromAuth: false,
         };
-        clearInterval(scope.codeInterval);
-        clearTransitionStatus();
         riotTags.innerHTML = "<view-pin-code>";
         riot.mount('view-pin-code', ['view-click-pass']);
         scope.unmount();
