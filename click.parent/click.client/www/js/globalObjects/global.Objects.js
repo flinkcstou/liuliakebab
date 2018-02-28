@@ -1718,7 +1718,6 @@ function leftpad(str, len, pad) {
 }
 
 function updateOtp(deviceId, otpTime) {
-
   var base = base32.encode(deviceId);
   var key = base32tohex(base);
   var epoch = Math.round(otpTime);

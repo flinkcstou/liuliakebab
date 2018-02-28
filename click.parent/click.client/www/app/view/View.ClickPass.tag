@@ -27,6 +27,8 @@
 
     <canvas id="qr" class="click-pass-qr-code-canvas"></canvas>
     <div id="statusBarId" class="click-pass-progress-bar-container">
+      <div id="statusBarLineId" class="click-pass-progress-bar-container-line">
+      </div>
     </div>
     <canvas id="barcode" class="click-pass-bar-code-canvas"></canvas>
 
@@ -279,16 +281,16 @@
 
     clearTransitionStatus = function () {
       if (statusBarId) {
-        statusBarId.style.webkitTransition = 'none';
-        statusBarId.style.backgroundPositionX = -694 * widthK + 'px';
+        statusBarLineId.style.webkitTransition = 'none';
+        statusBarLineId.style.width = 5 * widthK + 'px';
         setTimeout(restartTransitionStatus, 100);
       }
     };
 
     restartTransitionStatus = function () {
       if (statusBarId) {
-        statusBarId.style.webkitTransition = '29.9s linear';
-        statusBarId.style.backgroundPositionX = -230 * widthK + 'px';
+        statusBarLineId.style.webkitTransition = '29.9s linear';
+        statusBarLineId.style.width = 410 * widthK + 'px';
       }
     };
 

@@ -34,6 +34,15 @@ var css = {
   "font-style: normal;" +
   "}",
 
+  sfuiDisplaySemiBold: "@font-face " +
+  "{" +
+  "font-family: 'SFUIDisplay-Semibold';" +
+  "src: url('resources/font/SFUIDisplay/SFUIDisplay-Semibold.otf');" +
+  "format: ('opentype');" +
+  "font-weight: normal;" +
+  "font-style: normal;" +
+  "}",
+
   orator: "@font-face " +
   "{" +
   "font-family: 'Orator';" +
@@ -1410,7 +1419,7 @@ var css = {
   "margin-left:" + 28 * widthK + "px ;" +
   "margin-top:" + 20 * widthK + "px ;" +
   "text-align: center;" +
-  "font-weight: bold;" +
+  "font-family: SFUIDisplay-Semibold;" +
   "}",
 
   authorizationFooterNotFirstClickPassIcon: ".authorization-footer-not-first-click-pass-icon " +
@@ -1451,7 +1460,7 @@ var css = {
   "margin-right:" + 25 * widthK + "px ;" +
   "margin-top:" + 20 * widthK + "px ;" +
   "text-align: center;" +
-  "font-weight: bold;" +
+  "font-family: SFUIDisplay-Semibold;" +
   "}",
 
   authorizationFooterNotFirstClickPassLabelIos: ".authorization-footer-not-first-click-pass-label-ios " +
@@ -8497,7 +8506,20 @@ var css = {
   "background-color: #e8e8e8;" +
   "background-image: url(resources/icons/ViewClickPass/progress.png);" +
   "background-repeat: no-repeat;" +
-  "background-position-x: -" + 694 * widthK + "px;" +
+  "background-size: cover;" +
+  "overflow: hidden;" +
+  "}",
+
+  clickPassProgressBarContainerLine: ".click-pass-progress-bar-container-line" +
+  "{" +
+  "position: absolute;" +
+  "right: 0;" +
+  "margin: 0;" +
+  "width:" + 5 * widthK + "px;" +
+  "height:" + 20 * widthK + "px;" +
+  "border-radius:" + 20 * widthK + "px;" +
+  "background-color: #01cfff;" +
+  "background-repeat: no-repeat;" +
   "background-size: cover;" +
   "overflow: hidden;" +
   "}",
