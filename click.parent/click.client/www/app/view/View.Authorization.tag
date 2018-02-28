@@ -409,11 +409,9 @@
 
       if (Math.abs(clickPassTouchStartX - clickPassTouchEndX) <= 20
         && Math.abs(clickPassTouchStartY - clickPassTouchEndY) <= 20) {
-        optsForClickPass = {
-          fromAuth: true,
-        };
-        riotTags.innerHTML = "<view-click-pass>";
-        riot.mount('view-click-pass', optsForClickPass);
+        window.saveHistory('view-authorization');
+        riotTags.innerHTML = "<view-pin-code>";
+        riot.mount('view-pin-code', ['view-click-pass']);
       }
     };
 

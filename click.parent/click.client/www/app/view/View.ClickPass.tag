@@ -69,26 +69,28 @@
     }
     scope.chosenCard;
 
-    window.saveHistory('view-click-pass', opts);
-
-    if (opts.pinChecked === false){
-      clearInterval(scope.codeInterval);
-      onBackKeyDown();
-      scope.unmount();
+    if (opts && opts[0] !== 'fromPinCode') {
+      window.saveHistory('view-click-pass', opts);
     }
 
+//    if (opts.pinChecked === false){
+//      clearInterval(scope.codeInterval);
+//      onBackKeyDown();
+//      scope.unmount();
+//    }
+
     scope.on('mount', function () {
-      if (opts && opts.fromAuth === true){
-        clearInterval(scope.codeInterval);
-        clearTransitionStatus();
-        onBackParams.opts = {
-          fromAuth: false,
-        };
-        riotTags.innerHTML = "<view-pin-code>";
-        riot.mount('view-pin-code', ['view-click-pass']);
-        scope.unmount();
-        return;
-      }
+//      if (opts && opts.fromAuth === true){
+//        clearInterval(scope.codeInterval);
+//        clearTransitionStatus();
+//        onBackParams.opts = {
+//          fromAuth: false,
+//        };
+//        riotTags.innerHTML = "<view-pin-code>";
+//        riot.mount('view-pin-code', ['view-click-pass']);
+//        scope.unmount();
+//        return;
+//      }
 
       checkCardsArray();
       for (var i in scope.cardsArray){

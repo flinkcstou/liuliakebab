@@ -122,7 +122,7 @@
     scope.selectedId = '';
     var dateFrom, dateTo;
     var range_from, range_to;
-    scope.code = opts.code.value == "02";
+    scope.code = opts.code.value == "01";
     scope.dateTo = '';
     scope.dateFrom = '';
 

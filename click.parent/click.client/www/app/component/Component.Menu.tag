@@ -794,18 +794,14 @@
           return;
         }
         if (modeOfApp.offlineMode){
-          optsForClickPass = {
-            fromAuth: true,
-          };
-          riotTags.innerHTML = "<view-click-pass>";
-          riot.mount('view-click-pass', optsForClickPass);
-          scope.unmount();
+          riotTags.innerHTML = "<view-pin-code>";
+          riot.mount('view-pin-code', ['view-click-pass']);
           return;
+        } else {
+          closeMenu();
+          riotTags.innerHTML = "<view-click-pass>";
+          riot.mount('view-click-pass');
         }
-        console.log('button is working');
-        closeMenu();
-        riotTags.innerHTML = "<view-click-pass>";
-        riot.mount('view-click-pass');
       }
       else {
         sideMenuTouchEnd();
@@ -814,7 +810,7 @@
 
     goToClickPassStart = function () {
 
-      clickPassButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)'
+      clickPassButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
 
       clickPassTouchStartX = event.changedTouches[0].pageX;
       clickPassTouchStartY = event.changedTouches[0].pageY;

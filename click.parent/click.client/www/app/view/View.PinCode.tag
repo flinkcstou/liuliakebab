@@ -108,9 +108,6 @@
       fromPayOrTransfer = false;
       toClickPass = true;
       var errorPinTimesCounter = 0;
-      onBackParams.opts = {
-        pinChecked: false,
-      };
     }
 
     scope.update();
@@ -261,11 +258,11 @@
           console.log('opts on backkeydown', opts[1]);
           onBackParams.opts = opts[1];
         }
-        if (toClickPass){
-          onBackParams.opts = {
-            pinChecked: false,
-          };
-        }
+//        if (toClickPass){
+//          onBackParams.opts = {
+//            pinChecked: false,
+//          };
+//        }
         onBackKeyDown();
       }
     };
@@ -360,10 +357,9 @@
             if (hex_md5(enteredPin) == localStorage.getItem('pinForStand')) {
 
               if (toClickPass){
-                onBackParams.opts = {
-                  pinChecked: true,
-                };
-                onBackKeyDown();
+                var optsForClickPass = ['fromPinCode'];
+                riotTags.innerHTML = "<view-click-pass>";
+                riot.mount('view-click-pass', optsForClickPass);
               }
 
               if (fromPayOrTransfer) {
