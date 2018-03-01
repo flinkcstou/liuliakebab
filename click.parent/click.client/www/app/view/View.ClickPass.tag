@@ -64,6 +64,8 @@
       openCardsTouchEndX,
       openCardsTouchEndY;
 
+    scope.OTP = '';
+
     var deviceId = localStorage.getItem('click_client_deviceID');
     scope.cardsArray;
     if (localStorage.getItem('click_client_cards')) {
@@ -102,7 +104,7 @@
       }
       if (!scope.chosenCard && JSON.stringify(scope.cardsArray).length > 2){
         for (var i in scope.cardsArray){
-          console.log("card", scope.cardsArray[i]);
+//          console.log("card", scope.cardsArray[i]);
           if (scope.cardsArray[i]) {
             scope.chosenCard = scope.cardsArray[i];
           }
@@ -234,11 +236,12 @@
           scope.chosenCard = scope.cardsArray[i];
         }
       }
-      updateCode();
-      clearTransitionStatus();
-      clearInterval(scope.codeInterval);
-      scope.codeInterval = setInterval(updateCode, 30000);
+      updateOnlyCardId(scope.chosenCard.card_id);
       scope.update();
+//      updateCode();
+//      clearTransitionStatus();
+//      clearInterval(scope.codeInterval);
+//      scope.codeInterval = setInterval(updateCode, 30000);
     };
 
     generateQrCode = function (data) {
@@ -260,15 +263,15 @@
 
     prepareCodeData = function (card_id) {
       var timeForOtp = correctTime();
-      var OTP = updateOtp(deviceId, timeForOtp);
-      var luna = codeCheckLuna(card_id.toString() + OTP.toString());
-      var result = card_id.toString() + OTP.toString() + luna;
+      scope.OTP = updateOtp(deviceId, timeForOtp);
+      var luna = codeCheckLuna(card_id.toString() + scope.OTP.toString());
+      var result = card_id.toString() + scope.OTP.toString() + luna;
       return result;
     };
 
     updateCode = function(){
       if (!document.getElementById("clickPassPageId")){
-        console.log("clearing interval for click pass", scope.codeInterval);
+//        console.log("clearing interval for click pass", scope.codeInterval);
         clearInterval(scope.codeInterval);
         return;
       }
@@ -313,10 +316,21 @@
       if (localStorage.getItem('click_client_otp_time')) {
         var otpTime = JSON.parse(localStorage.getItem('click_client_otp_time'));
         var result = parseInt(new Date().getTime() / 1000) + otpTime.diffTime;
+        console.log('corrected time', result);
+        console.log('corrected time / 30', (result / 30));
         return result;
       } else {
+        console.log('not corrected time', result);
         return parseInt(new Date().getTime() / 1000);
       }
+    }
+
+    function updateOnlyCardId(card_id){
+      var luna = codeCheckLuna(card_id.toString() + scope.OTP.toString());
+      var result = card_id.toString() + scope.OTP.toString() + luna;
+      generateQrCode(result);
+      generateBarCode(result);
+//      console.log('Updating only card_id', result);
     }
 
 
