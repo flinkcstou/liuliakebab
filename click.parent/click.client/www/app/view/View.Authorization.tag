@@ -563,7 +563,7 @@
               var JsonInfo = JSON.stringify(result[1][0]);
               var otpTime = result[1][0].otp;
               otpTime.currentTime = parseInt(new Date().getTime() / 1000);
-              otpTime.diffTime = otpTime.currentTime - otpTime.response_time + otpTime.diff;
+              otpTime.diffTime = (otpTime.currentTime + otpTime.diff) - otpTime.response_time + otpTime.diff;
               console.log(JSON.stringify(otpTime));
               localStorage.setItem('click_client_otp_time', JSON.stringify(otpTime));
               localStorage.setItem('click_client_loginInfo', JsonInfo);

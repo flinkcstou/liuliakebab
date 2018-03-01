@@ -1471,7 +1471,7 @@ var css = {
   "top:" + 50 * heightK + "px ;" +
   "right:" + 15 * heightK + "px ;" +
   "text-align: center;" +
-  "font-weight: bold;" +
+  "font-family: SFUIDisplay-Semibold;" +
   "}",
 
   authorizationFooterNotFirstBorderRight: ".authorization-footer-not-first-border-right" +
