@@ -282,7 +282,7 @@
     clearTransitionStatus = function () {
       if (statusBarId) {
         statusBarLineId.style.webkitTransition = 'none';
-        statusBarLineId.style.width = 5 * widthK + 'px';
+        statusBarLineId.style.width = 410 * widthK + 'px';
         setTimeout(restartTransitionStatus, 100);
       }
     };
@@ -290,7 +290,7 @@
     restartTransitionStatus = function () {
       if (statusBarId) {
         statusBarLineId.style.webkitTransition = '29.9s linear';
-        statusBarLineId.style.width = 410 * widthK + 'px';
+        statusBarLineId.style.width = 0 * widthK + 'px';
       }
     };
 

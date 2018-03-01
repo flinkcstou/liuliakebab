@@ -8513,9 +8513,9 @@ var css = {
   clickPassProgressBarContainerLine: ".click-pass-progress-bar-container-line" +
   "{" +
   "position: absolute;" +
-  "right: 0;" +
+  "left: 0;" +
   "margin: 0;" +
-  "width:" + 5 * widthK + "px;" +
+  "width:" + 410 * widthK + "px;" +
   "height:" + 20 * widthK + "px;" +
   "border-radius:" + 20 * widthK + "px;" +
   "background-color: #01cfff;" +
