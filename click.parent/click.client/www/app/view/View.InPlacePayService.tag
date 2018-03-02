@@ -14,7 +14,10 @@
         <div class="inplace-pay-search-field" id="searchContainerId">
           <input class="inplace-pay-search-input-part"
                  type="text"
-                 id="searchInputId" onfocus="colorFieldInplaceSearch()" onblur="blurFieldInplaceSearch()"
+                 id="searchInputId"
+                 onfocus="colorFieldInplaceSearch()"
+                 onblur="blurFieldInplaceSearch()"
+                 onkeydown="keyDownFieldInplaceSearch()"
                  placeholder="{window.languages.InPlaceSearchPlaceHolderText}"/>
           <div id="searchIcon" class="inplace-pay-search-icon" ontouchstart="onTouchStartOfSearchService()"
                ontouchend="onTouchEndOfSearchService()"></div>
@@ -267,6 +270,13 @@
       searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search.png)';
     };
 
+    keyDownFieldInplaceSearch = function () {
+      if (event.keyCode === input_codes.ENTER){
+        setTimeout(searchInputId.blur(), 0);
+        searchServiceByWord();
+      }
+    };
+
     onTouchStartOfSearchService = function () {
       event.preventDefault();
       event.stopPropagation();
@@ -292,87 +302,7 @@
       if (Math.abs(searchStartX - searchEndX) <= 20 && Math.abs(searchStartY - searchEndY) <= 20) {
         console.log("string to search=", searchInputId.value);
 
-        var searchWord = searchInputId.value;
-
-        if (modeOfApp.onlineMode && searchWord) {
-
-          window.blurFields();
-          window.startSpinner();
-          scope.searchMode = false;
-          scope.serviceList = [];
-          scope.pageNumber = 1;
-
-          window.api.call({
-            method: 'get.indoor.service.list',
-            input: {
-              session_key: sessionKey,
-              phone_num: phoneNumber,
-              category_id: opts.categoryId,
-              location: inPlacePay.latitude + " " + inPlacePay.longitude,
-              search: searchWord
-            },
-            scope: this,
-
-            onSuccess: function (result) {
-              console.log('Clearing timer onSuccess', timeOutTimerTwo);
-              window.clearTimeout(timeOutTimerTwo);
-              window.stopSpinner();
-              scope.searchMode = true;
-
-              if (result[0][0].error == 0) {
-                if (result[1][0]) {
-
-                  for (var i in result[1]) {
-                    scope.serviceList.push(result[1][i]);
-                  }
-
-                }
-                console.log("Update");
-                scope.update();
-              } else {
-                window.common.alert.show("componentAlertId", {
-                  parent: scope,
-                  step_amount: stepBack,
-                  viewmount: true,
-                  errornote: result[0][0].error_note
-                });
-              }
-
-            },
-            onFail: function (api_status, api_status_message, data) {
-              console.log('Clearing timer onFail', timeOutTimerTwo);
-              window.clearTimeout(timeOutTimerTwo);
-              window.common.alert.show("componentAlertId", {
-                parent: scope,
-                step_amount: stepBack,
-                viewmount: true,
-                errornote: window.languages.ServiceUnavailableText
-              });
-              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-              console.error(data);
-            },
-            onTimeOut: function () {
-              timeOutTimerTwo = setTimeout(function () {
-                window.writeLog({
-                  reason: 'Timeout',
-                  method: 'get.indoor.service.list',
-                });
-                window.common.alert.show("componentAlertId", {
-                  parent: scope,
-                  step_amount: stepBack,
-                  viewmount: true,
-                  errornote: window.languages.WaitingTimeExpiredText
-                });
-              }, 30000);
-              console.log('creating timeOut', timeOutTimerTwo);
-            },
-            onEmergencyStop: function () {
-              console.log('Clearing timer emergencyStop', timeOutTimerTwo);
-              window.clearTimeout(timeOutTimerTwo);
-            }
-          }, 30000);
-
-        }
+        searchServiceByWord();
       }
     };
 
@@ -750,6 +680,90 @@
         }
       }
 
+    }
+
+    searchServiceByWord = function () {
+      var searchWord = searchInputId.value;
+
+      if (modeOfApp.onlineMode && searchWord) {
+
+        window.blurFields();
+        window.startSpinner();
+        scope.searchMode = false;
+        scope.serviceList = [];
+        scope.pageNumber = 1;
+
+        window.api.call({
+          method: 'get.indoor.service.list',
+          input: {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            category_id: opts.categoryId,
+            location: inPlacePay.latitude + " " + inPlacePay.longitude,
+            search: searchWord
+          },
+          scope: this,
+
+          onSuccess: function (result) {
+            console.log('Clearing timer onSuccess', timeOutTimerTwo);
+            window.clearTimeout(timeOutTimerTwo);
+            window.stopSpinner();
+            scope.searchMode = true;
+
+            if (result[0][0].error == 0) {
+              if (result[1][0]) {
+
+                for (var i in result[1]) {
+                  scope.serviceList.push(result[1][i]);
+                }
+
+              }
+              console.log("Update");
+              scope.update();
+            } else {
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                step_amount: stepBack,
+                viewmount: true,
+                errornote: result[0][0].error_note
+              });
+            }
+
+          },
+          onFail: function (api_status, api_status_message, data) {
+            console.log('Clearing timer onFail', timeOutTimerTwo);
+            window.clearTimeout(timeOutTimerTwo);
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              step_amount: stepBack,
+              viewmount: true,
+              errornote: window.languages.ServiceUnavailableText
+            });
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          },
+          onTimeOut: function () {
+            timeOutTimerTwo = setTimeout(function () {
+              window.writeLog({
+                reason: 'Timeout',
+                method: 'get.indoor.service.list',
+              });
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                step_amount: stepBack,
+                viewmount: true,
+                errornote: window.languages.WaitingTimeExpiredText
+              });
+            }, 30000);
+            console.log('creating timeOut', timeOutTimerTwo);
+          },
+          onEmergencyStop: function () {
+            console.log('Clearing timer emergencyStop', timeOutTimerTwo);
+            window.clearTimeout(timeOutTimerTwo);
+          }
+        }, 30000);
+
+      }
     }
 
 
