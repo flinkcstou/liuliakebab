@@ -34,25 +34,10 @@
             class="click-pass-bar-code-canvas"
             ontouchstart="openBarCodeStart()"
             ontouchend="openBarCodeEnd()"></canvas>
-    <div id="showCreatingTimeId"
-         class="view-click-pass-shot-to-seller"
-         style="top:{164 * widthK}px; background-color: white; color: black;">
-      corrected creating time: {showCreatingTime}
-    </div>
     <div id="showCodeDataId"
          class="view-click-pass-shot-to-seller"
          style="top:{204 * widthK}px; background-color: white; color: black;">
       code data: {showCodeData}
-    </div>
-    <div id="showOTPId"
-         class="view-click-pass-shot-to-seller"
-         style="top:{244 * widthK}px; background-color: white; color: black;">
-      OTP: {OTP}
-    </div>
-    <div id="showCorCurrentTimeId"
-         class="view-click-pass-shot-to-seller"
-         style="top:{284 * widthK}px; background-color: white; color: black;">
-      corrected current time: {showCorCurrentTime}
     </div>
 
     <div class="click-pass-chosen-card-container"
@@ -69,11 +54,13 @@
     </div>
 
     <div id="fullBarCodeId" class="click-pass-full-bar-code">
-      <canvas id="fullBarCodeCanvas"
-              class="click-pass-full-bar-code-canvas"
-              ontouchstart="closeBarCodeStart()"
-              ontouchend="closeBarCodeEnd()">
+      <canvas id="fullBarCodeCanvasId"
+              class="click-pass-full-bar-code-canvas">
       </canvas>
+      <img id="fullBarCodeImgId"
+           class="click-pass-full-bar-code-img"
+           ontouchstart="closeBarCodeStart()"
+           ontouchend="closeBarCodeEnd()">
     </div>
   </div>
 
@@ -125,7 +112,6 @@
     //    }
 
     scope.on('mount', function () {
-      scope.timerInterval = setInterval(updateCorCurrentTime, 1000);
 
       checkCardsArray();
       for (var i in scope.cardsArray) {
@@ -150,15 +136,20 @@
         });
         return;
       }
-      var restOfTime = 30 - correctTime() % 30;
-      setTimeout(function () {
-        updateRestTimeCode();
-        clearRestTransitionStatus(restOfTime);
-      }, 0);
-      setTimeout(function () {
+      if (correctTime() % 30 != 0) {
+        var restOfTime = 30 - correctTime() % 30;
+        setTimeout(function () {
+          updateRestTimeCode();
+          clearRestTransitionStatus(restOfTime);
+        }, 0);
+        setTimeout(function () {
+          updateCode();
+          scope.codeInterval = setInterval(updateCode, 30000);
+        }, restOfTime * 1000);
+      } else {
         updateCode();
         scope.codeInterval = setInterval(updateCode, 30000);
-      }, restOfTime * 1000);
+      }
       scope.update();
     });
 
@@ -339,11 +330,13 @@
         displayValue: false,
         height: 220 * widthK,
       });
-      JsBarcode(fullBarCodeCanvas, data, {
+      JsBarcode(fullBarCodeCanvasId, data, {
         format: "CODE128",
         displayValue: false,
         height: 1232 * heightK,
       });
+      var fullBarCodeImg = fullBarCodeCanvasId.toDataURL("image/png");
+      fullBarCodeImgId.src = fullBarCodeImg;
     };
 
     prepareCodeData = function (card_id) {
@@ -387,10 +380,6 @@
     };
 
     updateRestTimeCode = function () {
-      if (!document.getElementById("clickPassPageId")) {
-        clearInterval(scope.codeInterval);
-        return;
-      }
       var codeData = prepareCodeData(scope.chosenCard.card_id);
       generateQrCode(codeData);
       generateBarCode(codeData);
@@ -451,15 +440,6 @@
       scope.showCodeData = result;
       scope.update();
 //      console.log('Updating only card_id', result);
-    }
-
-    function updateCorCurrentTime() {
-      if (document.getElementById("showCorCurrentTimeId")) {
-        scope.showCorCurrentTime = correctTime();
-        scope.update();
-      } else {
-        clearInterval(scope.timerInterval);
-      }
     }
 
 

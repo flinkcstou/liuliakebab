@@ -8549,6 +8549,13 @@ var css = {
   clickPassFullBarCodeCanvas: ".click-pass-full-bar-code-canvas " +
   "{" +
   "position: absolute;" +
+  "width: 0;" +
+  "height: 0;" +
+  "}",
+
+  clickPassFullBarCodeImg: ".click-pass-full-bar-code-img " +
+  "{" +
+  "position: absolute;" +
   "left: 5%;" +
   "top: 5%;" +
   "width: 90%;" +
