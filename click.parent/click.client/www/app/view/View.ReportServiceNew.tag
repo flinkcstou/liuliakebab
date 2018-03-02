@@ -42,7 +42,7 @@
         </div>
         <div class="report-service-field">
           <p class="report-service-text-field">{window.languages.ViewReportServicePayWithCard}</p>
-          <p class="report-service-info-input">{(cards[opts.account_id])? (cards[opts.account_id].name+ " " +
+          <p class="report-service-info-input-card-name">{(cards[opts.account_id])? (cards[opts.account_id].name+ " " +
             cards[opts.account_id].numberPartOne + " **** **** " + cards[opts.account_id].numberPartTwo):"UNKNOWN"}</p>
         </div>
         <div class="report-service-field report-service-last-field">
