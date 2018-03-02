@@ -30,7 +30,30 @@
       <div id="statusBarLineId" class="click-pass-progress-bar-container-line">
       </div>
     </div>
-    <canvas id="barcode" class="click-pass-bar-code-canvas"></canvas>
+    <canvas id="barcode"
+            class="click-pass-bar-code-canvas"
+            ontouchstart="openBarCodeStart()"
+            ontouchend="openBarCodeEnd()"></canvas>
+    <div id="showCreatingTimeId"
+         class="view-click-pass-shot-to-seller"
+         style="top:{164 * widthK}px; background-color: white; color: black;">
+      corrected creating time: {showCreatingTime}
+    </div>
+    <div id="showCodeDataId"
+         class="view-click-pass-shot-to-seller"
+         style="top:{204 * widthK}px; background-color: white; color: black;">
+      code data: {showCodeData}
+    </div>
+    <div id="showOTPId"
+         class="view-click-pass-shot-to-seller"
+         style="top:{244 * widthK}px; background-color: white; color: black;">
+      OTP: {OTP}
+    </div>
+    <div id="showCorCurrentTimeId"
+         class="view-click-pass-shot-to-seller"
+         style="top:{284 * widthK}px; background-color: white; color: black;">
+      corrected current time: {showCorCurrentTime}
+    </div>
 
     <div class="click-pass-chosen-card-container"
          ontouchstart="openCardsTouchStart()"
@@ -44,12 +67,21 @@
       </div>
       <div class="click-pass-chosen-card-next-icon"></div>
     </div>
+
+    <div id="fullBarCodeId" class="click-pass-full-bar-code">
+      <canvas id="fullBarCodeCanvas"
+              class="click-pass-full-bar-code-canvas"
+              ontouchstart="closeBarCodeStart()"
+              ontouchend="closeBarCodeEnd()">
+      </canvas>
+    </div>
   </div>
 
   <script>
 
     var scope = this;
     scope.codeInterval = 0;
+    scope.timerInterval = 0;
 
     var goBackButtonStartX, goBackButtonEndX,
       goBackButtonStartY, goBackButtonEndY;
@@ -64,7 +96,16 @@
       openCardsTouchEndX,
       openCardsTouchEndY;
 
+    var barCodeTouchStartX,
+      barCodeTouchStartY,
+      barCodeTouchEndX,
+      barCodeTouchEndY;
+
     scope.OTP = '';
+
+    scope.showCreatingTime = '';
+    scope.showCorCurrentTime = '';
+    scope.showCodeData = '';
 
     var deviceId = localStorage.getItem('click_client_deviceID');
     scope.cardsArray;
@@ -77,40 +118,30 @@
       window.saveHistory('view-click-pass', opts);
     }
 
-//    if (opts.pinChecked === false){
-//      clearInterval(scope.codeInterval);
-//      onBackKeyDown();
-//      scope.unmount();
-//    }
+    //    if (opts.pinChecked === false){
+    //      clearInterval(scope.codeInterval);
+    //      onBackKeyDown();
+    //      scope.unmount();
+    //    }
 
     scope.on('mount', function () {
-//      if (opts && opts.fromAuth === true){
-//        clearInterval(scope.codeInterval);
-//        clearTransitionStatus();
-//        onBackParams.opts = {
-//          fromAuth: false,
-//        };
-//        riotTags.innerHTML = "<view-pin-code>";
-//        riot.mount('view-pin-code', ['view-click-pass']);
-//        scope.unmount();
-//        return;
-//      }
+      scope.timerInterval = setInterval(updateCorCurrentTime, 1000);
 
       checkCardsArray();
-      for (var i in scope.cardsArray){
-        if (scope.cardsArray[i].default_account){
+      for (var i in scope.cardsArray) {
+        if (scope.cardsArray[i].default_account) {
           scope.chosenCard = scope.cardsArray[i];
         }
       }
-      if (!scope.chosenCard && JSON.stringify(scope.cardsArray).length > 2){
-        for (var i in scope.cardsArray){
+      if (!scope.chosenCard && JSON.stringify(scope.cardsArray).length > 2) {
+        for (var i in scope.cardsArray) {
 //          console.log("card", scope.cardsArray[i]);
           if (scope.cardsArray[i]) {
             scope.chosenCard = scope.cardsArray[i];
           }
         }
       }
-      if (!scope.chosenCard){
+      if (!scope.chosenCard) {
         scope.errorNote = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
         window.common.alert.show("componentAlertId", {
           parent: scope,
@@ -119,9 +150,15 @@
         });
         return;
       }
-      updateCode();
-      clearTransitionStatus();
-      scope.codeInterval = setInterval(updateCode, 30000);
+      var restOfTime = 30 - correctTime() % 30;
+      setTimeout(function () {
+        updateRestTimeCode();
+        clearRestTransitionStatus(restOfTime);
+      }, 0);
+      setTimeout(function () {
+        updateCode();
+        scope.codeInterval = setInterval(updateCode, 30000);
+      }, restOfTime * 1000);
       scope.update();
     });
 
@@ -152,6 +189,54 @@
         clearTransitionStatus();
         onBackKeyDown();
         scope.unmount();
+      }
+    };
+
+    openBarCodeStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      barCodeTouchStartX = event.changedTouches[0].pageX;
+      barCodeTouchStartY = event.changedTouches[0].pageY;
+
+      barcode.style.webkitTransform = 'scale(0.7)';
+
+    };
+
+    openBarCodeEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      barCodeTouchEndX = event.changedTouches[0].pageX;
+      barCodeTouchEndY = event.changedTouches[0].pageY;
+
+      barcode.style.webkitTransform = 'scale(1)';
+
+      if (Math.abs(barCodeTouchStartX - barCodeTouchEndX) <= 20 && Math.abs(barCodeTouchStartY - barCodeTouchEndY) <= 20) {
+        fullBarCodeId.style.display = 'block';
+      }
+    };
+
+    closeBarCodeStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      barCodeTouchStartX = event.changedTouches[0].pageX;
+      barCodeTouchStartY = event.changedTouches[0].pageY;
+
+
+    };
+
+    closeBarCodeEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      barCodeTouchEndX = event.changedTouches[0].pageX;
+      barCodeTouchEndY = event.changedTouches[0].pageY;
+
+
+      if (Math.abs(barCodeTouchStartX - barCodeTouchEndX) <= 20 && Math.abs(barCodeTouchStartY - barCodeTouchEndY) <= 20) {
+        fullBarCodeId.style.display = 'none';
       }
     };
 
@@ -231,17 +316,13 @@
 
     scope.changeChosenCard = changeChosenCard = function (id) {
       id = parseInt(id);
-      for (var i in scope.cardsArray){
-        if (scope.cardsArray[i].card_id === id){
+      for (var i in scope.cardsArray) {
+        if (scope.cardsArray[i].card_id === id) {
           scope.chosenCard = scope.cardsArray[i];
         }
       }
       updateOnlyCardId(scope.chosenCard.card_id);
       scope.update();
-//      updateCode();
-//      clearTransitionStatus();
-//      clearInterval(scope.codeInterval);
-//      scope.codeInterval = setInterval(updateCode, 30000);
     };
 
     generateQrCode = function (data) {
@@ -256,22 +337,28 @@
       JsBarcode(barcode, data, {
         format: "CODE128",
         displayValue: false,
-        width: 4,
-        height: 90 * widthK,
+        height: 220 * widthK,
+      });
+      JsBarcode(fullBarCodeCanvas, data, {
+        format: "CODE128",
+        displayValue: false,
+        height: 1232 * heightK,
       });
     };
 
     prepareCodeData = function (card_id) {
       var timeForOtp = correctTime();
+      scope.showCreatingTime = timeForOtp;
       scope.OTP = updateOtp(deviceId, timeForOtp);
       var luna = codeCheckLuna(card_id.toString() + scope.OTP.toString());
       var result = card_id.toString() + scope.OTP.toString() + luna;
+      scope.showCodeData = result;
+      scope.update();
       return result;
     };
 
-    updateCode = function(){
-      if (!document.getElementById("clickPassPageId")){
-//        console.log("clearing interval for click pass", scope.codeInterval);
+    updateCode = function () {
+      if (!document.getElementById("clickPassPageId")) {
         clearInterval(scope.codeInterval);
         return;
       }
@@ -283,22 +370,56 @@
     };
 
     clearTransitionStatus = function () {
-      if (statusBarId) {
+      if (document.getElementById("statusBarId")) {
         statusBarLineId.style.webkitTransition = 'none';
+        statusBarLineId.style.transition = 'none';
         statusBarLineId.style.width = 410 * widthK + 'px';
         setTimeout(restartTransitionStatus, 100);
       }
     };
 
     restartTransitionStatus = function () {
-      if (statusBarId) {
+      if (document.getElementById("statusBarId")) {
         statusBarLineId.style.webkitTransition = '29.9s linear';
+        statusBarLineId.style.transition = '29.9s linear';
+        statusBarLineId.style.width = 0 * widthK + 'px';
+      }
+    };
+
+    updateRestTimeCode = function () {
+      if (!document.getElementById("clickPassPageId")) {
+        clearInterval(scope.codeInterval);
+        return;
+      }
+      var codeData = prepareCodeData(scope.chosenCard.card_id);
+      generateQrCode(codeData);
+      generateBarCode(codeData);
+    };
+
+    clearRestTransitionStatus = function (restTime) {
+      if (document.getElementById("statusBarId")) {
+        console.log(restTime);
+        statusBarLineId.style.webkitTransition = 'none';
+        statusBarLineId.style.transition = 'none';
+        statusBarLineId.style.width = 410 * (restTime / 30) * widthK + 'px';
+        setTimeout(function () {
+          restartRestTransitionStatus(restTime);
+        }, 100);
+      }
+    };
+
+    restartRestTransitionStatus = function (restTime) {
+
+      if (document.getElementById("statusBarId")) {
+        console.log((restTime - 1) + '.9s linear');
+        statusBarLineId.style.webkitTransition = (restTime - 1) + '.9s linear';
+        statusBarLineId.style.transition = (restTime - 1) + '.9s linear';
         statusBarLineId.style.width = 0 * widthK + 'px';
       }
     };
 
     function checkCardsArray() {
-      for (var i in scope.cardsArray){
+      for (var i in scope.cardsArray) {
         scope.cardsArray[i].permission = true;
         if (scope.cardsArray[i].access != 2) {
           scope.cardsArray[i].permission = false;
@@ -306,7 +427,7 @@
         if (scope.cardsArray[i].payment_allowed != 1) {
           scope.cardsArray[i].permission = false;
         }
-        if (!scope.cardsArray[i].permission){
+        if (!scope.cardsArray[i].permission) {
           delete scope.cardsArray[i];
         }
       }
@@ -316,21 +437,29 @@
       if (localStorage.getItem('click_client_otp_time')) {
         var otpTime = JSON.parse(localStorage.getItem('click_client_otp_time'));
         var result = parseInt(new Date().getTime() / 1000) + otpTime.diffTime;
-        console.log('corrected time', result);
-        console.log('corrected time / 30', (result / 30));
         return result;
       } else {
-        console.log('not corrected time', result);
         return parseInt(new Date().getTime() / 1000);
       }
     }
 
-    function updateOnlyCardId(card_id){
+    function updateOnlyCardId(card_id) {
       var luna = codeCheckLuna(card_id.toString() + scope.OTP.toString());
       var result = card_id.toString() + scope.OTP.toString() + luna;
       generateQrCode(result);
       generateBarCode(result);
+      scope.showCodeData = result;
+      scope.update();
 //      console.log('Updating only card_id', result);
+    }
+
+    function updateCorCurrentTime() {
+      if (document.getElementById("showCorCurrentTimeId")) {
+        scope.showCorCurrentTime = correctTime();
+        scope.update();
+      } else {
+        clearInterval(scope.timerInterval);
+      }
     }
 
 

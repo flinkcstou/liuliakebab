@@ -8524,35 +8524,35 @@ var css = {
   "overflow: hidden;" +
   "}",
 
-  clickPassProgressBarContainerStart: ".progress-bar-start" +
-  "{" +
-  "background-position-x: -" + 220 * widthK + "px;" +
-  "}",
-
-  clickPassProgressBarContainerStop: ".progress-bar-stop" +
-  "{" +
-  "background-position-x: -" + 694 * widthK + "px;" +
-  "}",
-
-  clickPassProgressBarLine: ".click-pass-progress-bar-line" +
-  "{" +
-  "position: relative;" +
-  "right:" + 410 * widthK + "px;" +
-  "width:" + 410 * widthK + "px;" +
-  "height:" + 20 * widthK + "px;" +
-  "background-image: url(resources/icons/ViewClickPass/progress.png);" +
-  "background-size: cover;" +
-  "background-repeat: round;" +
-  "}",
-
   clickPassBarCodeCanvas: ".click-pass-bar-code-canvas " +
   "{" +
   "position: absolute;" +
   "margin: auto;" +
   "margin-top:" + 700 * widthK + "px;" +
-  "width:" + 584 * widthK + "px;" +
+  "width:" + 684 * widthK + "px;" +
+  "height:" + 200 * heightK + "px;" +
   "left: 0;" +
   "right: 0;" +
+  "}",
+
+  clickPassFullBarCode: ".click-pass-full-bar-code " +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "width: 100%;" +
+  "height: 100%;" +
+  "z-index: 20;" +
+  "display: none;" +
+  "background-image: url('resources/icons/transparent.png');" +
+  "}",
+
+  clickPassFullBarCodeCanvas: ".click-pass-full-bar-code-canvas " +
+  "{" +
+  "position: absolute;" +
+  "left: 5%;" +
+  "top: 5%;" +
+  "width: 90%;" +
+  "height: 90%;" +
   "}",
 
   clickPassChosenCardContainer: ".click-pass-chosen-card-container" +
