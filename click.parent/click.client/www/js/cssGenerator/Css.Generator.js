@@ -9663,6 +9663,113 @@ var css = {
   "color: #565d6a;" +
   "}",
 
+  paymentMonitorContainer: ".payment-monitor-container " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%; " +
+  "top:" + 87 * widthK + "px; " +
+  "bottom:0; " +
+  "background-color: #f2f2f1; " +
+  "}",
+
+  paymentMonitorAboutContainer: ".payment-monitor-about-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%; " +
+  "height:" + 180 * widthK + "px; " +
+  "top: 0; " +
+  "background-color: white; " +
+  "}",
+
+  paymentMonitorAboutText: ".payment-monitor-about-text" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0; " +
+  "width: 90%; " +
+  "height: 90%; " +
+  "left: 6%; " +
+  "top:" + 30 * widthK + "px; " +
+  "font-size:" + 33 * widthK + "px; " +
+  "text-align: left; " +
+  "color: #565d6a; " +
+  "}",
+
+  paymentMonitorCostContainer: ".payment-monitor-cost-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%; " +
+  "height:" + 160 * widthK + "px; " +
+  "top:" + 180 * widthK + "px; " +
+  "background-color: transparent; " +
+  "}",
+
+  paymentMonitorCostText: ".payment-monitor-cost-text" +
+  "{" +
+  "position: relative;" +
+  "right: 7%; " +
+  "top:" + 30 * widthK + "px; " +
+  "font-size:" + 30 * widthK + "px; " +
+  "text-align: right; " +
+  "color: red; " +
+  "}",
+
+  paymentMonitorCostOffer: ".payment-monitor-cost-offer" +
+  "{" +
+  "position: relative;" +
+  "right: 7%; " +
+  "margin: 0; " +
+  "margin-top:" + 40 * widthK + "px; " +
+  "font-size:" + 30 * widthK + "px; " +
+  "text-align: right; " +
+  "text-decoration: underline; " +
+  "color: #565d6a; " +
+  "}",
+
+  paymentMonitorCardsContainer: ".payment-monitor-cards-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height:" + (1232 * heightK - 340 * widthK) + "px; " +
+  "top:" + 340 * widthK + "px; " +
+  "background-color: transparent;" +
+  "overflow-x: hidden;" +
+  "overflow-y: scroll;" +
+  "-webkit-overflow-scrolling: touch;" +
+  "}",
+
+  paymentMonitorCard: ".payment-monitor-card" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height: " + 162 * widthK + "px; " +
+  "background-color: white;" +
+  // "border-bottom:  " + 1 + "px solid lightgray;" +
+  "}",
+
+  paymentMonitorCardLogoContainer: ".payment-monitor-card-logo-container" +
+  "{" +
+  "width: 25%;" +
+  "height: 67%;" +
+  "top: 17%;" +
+  "left: 5%;" +
+  "background-color: transparent;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: contain;" +
+  "float: left;" +
+  "right: 61%;" +
+  "position: absolute;" +
+  "}",
+
+  paymentMonitorCardInfoContainer: ".payment-monitor-card-info-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 41%;" +
+  "height: 100%;" +
+  "left: 42%;" +
+  "background-color: transparent;" +
+  "}",
+
   //TRANSFER DETAIL VIEW
 
   transferDetailCover: ".transfer-detail-cover" +

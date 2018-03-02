@@ -349,6 +349,11 @@ var RU_LANGUAGES =
 
   "ViewSettingsUserAgreementTitle": "ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ",
 
+  "ViewPaymentMonitorTitle": "МОНИТОРИНГ ПЛАТЕЖЕЙ",
+  "ViewPaymentMonitorAbout": "Данный сервис позволяет отслеживать полную историю расходов и поступлений по вашей карте",
+  "ViewPaymentMonitorCost": "Стоимость услуги 1000 сум за каждую карту",
+  "ViewPaymentMonitorOffer": "Публичная оферта",
+
   "ViewTransferDetailTitle": "ДЕТАЛИ ПЕРЕВОДА",
   "ViewTransferDetailTransferIconTitleOne": "Получен перевод",
   "ViewTransferDetailTransferIconTitleTwo": "от пользователя CLICK",

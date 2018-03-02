@@ -25,6 +25,15 @@
         <div class="settings-block-next-icon"></div>
       </div>
 
+      <div id="paymentMonitoringButtonId" class="settings-block-containter"
+           ontouchstart="goToPaymentMonitoringTouchStart()"
+           ontouchend="goToPaymentMonitoringTouchEnd()">
+        <div class="settings-block-icon"
+             style="background-image: url('resources/icons/ViewSettings/settings_security.png')"></div>
+        <div class="settings-block-name-field">{window.languages.ViewPaymentMonitorTitle}</div>
+        <div class="settings-block-next-icon"></div>
+      </div>
+
       <div id="friendHelpSettingsButtonId" class="settings-block-containter"
            ontouchstart="goToFriendHelpSettingsTouchStart()" ontouchend="goToFriendHelpSettingsTouchEnd()">
         <div class="settings-block-icon"
@@ -179,6 +188,36 @@
         scope.unmount()
       }
     }
+
+    var paymentMonitoringButtonStartX, paymentMonitoringButtonEndX, paymentMonitoringButtonStartY,
+      paymentMonitoringButtonEndY;
+
+    goToPaymentMonitoringTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      paymentMonitoringButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)';
+
+      paymentMonitoringButtonStartX = event.changedTouches[0].pageX;
+      paymentMonitoringButtonStartY = event.changedTouches[0].pageY;
+    };
+
+    goToPaymentMonitoringTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      paymentMonitoringButtonId.style.backgroundColor = 'transparent';
+
+      paymentMonitoringButtonEndX = event.changedTouches[0].pageX;
+      paymentMonitoringButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(paymentMonitoringButtonStartX - paymentMonitoringButtonEndX) <= 20
+        && Math.abs(paymentMonitoringButtonStartY - paymentMonitoringButtonEndY) <= 20) {
+        riotTags.innerHTML = "<view-payment-monitor>";
+        riot.mount("view-payment-monitor");
+        scope.unmount()
+      }
+    };
 
     var friendHelpSettingsButtonStartX, friendHelpSettingsButtonEndX, friendHelpSettingsButtonStartY,
       friendHelpSettingsButtonEndY;
