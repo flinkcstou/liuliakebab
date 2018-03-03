@@ -9676,7 +9676,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%; " +
-  "height:" + 180 * widthK + "px; " +
+  "height:" + 155 * widthK + "px; " +
   "top: 0; " +
   "background-color: white; " +
   "}",
@@ -9685,11 +9685,11 @@ var css = {
   "{" +
   "position: absolute;" +
   "margin: 0; " +
-  "width: 90%; " +
+  "width: 77%; " +
   "height: 90%; " +
   "left: 6%; " +
   "top:" + 30 * widthK + "px; " +
-  "font-size:" + 33 * widthK + "px; " +
+  "font-size:" + 29 * widthK + "px; " +
   "text-align: left; " +
   "color: #565d6a; " +
   "}",
@@ -9699,7 +9699,7 @@ var css = {
   "position: absolute;" +
   "width: 100%; " +
   "height:" + 160 * widthK + "px; " +
-  "top:" + 180 * widthK + "px; " +
+  "top:" + 155 * widthK + "px; " +
   "background-color: transparent; " +
   "}",
 
@@ -9707,8 +9707,9 @@ var css = {
   "{" +
   "position: relative;" +
   "right: 7%; " +
-  "top:" + 30 * widthK + "px; " +
-  "font-size:" + 30 * widthK + "px; " +
+  "margin-bottom: 0; " +
+  "top:" + 14 * widthK + "px; " +
+  "font-size:" + 31 * widthK + "px; " +
   "text-align: right; " +
   "color: red; " +
   "}",
@@ -9718,7 +9719,7 @@ var css = {
   "position: relative;" +
   "right: 7%; " +
   "margin: 0; " +
-  "margin-top:" + 40 * widthK + "px; " +
+  "margin-top:" + 25 * widthK + "px; " +
   "font-size:" + 30 * widthK + "px; " +
   "text-align: right; " +
   "text-decoration: underline; " +
@@ -9730,7 +9731,7 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "height:" + (1232 * heightK - 340 * widthK) + "px; " +
-  "top:" + 340 * widthK + "px; " +
+  "top:" + 333 * widthK + "px; " +
   "background-color: transparent;" +
   "overflow-x: hidden;" +
   "overflow-y: scroll;" +
@@ -9741,23 +9742,24 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 100%;" +
-  "height: " + 162 * widthK + "px; " +
+  "height: " + 145 * widthK + "px; " +
+  "margin: auto;" +
+  "left: 0;" +
+  "right: 0;" +
   "background-color: white;" +
-  // "border-bottom:  " + 1 + "px solid lightgray;" +
+  "border-bottom: " + 1 + "px solid #e8e8e8;" +
   "}",
 
   paymentMonitorCardLogoContainer: ".payment-monitor-card-logo-container" +
   "{" +
-  "width: 25%;" +
-  "height: 67%;" +
-  "top: 17%;" +
-  "left: 5%;" +
+  "width: 35%;" +
+  "height: 100%;" +
+  "left: 0;" +
   "background-color: transparent;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "background-size: contain;" +
   "float: left;" +
-  "right: 61%;" +
   "position: absolute;" +
   "}",
 
@@ -9766,8 +9768,98 @@ var css = {
   "position: absolute;" +
   "width: 41%;" +
   "height: 100%;" +
-  "left: 42%;" +
+  "left: 35%;" +
   "background-color: transparent;" +
+  "}",
+
+  paymentMonitorCardInfoTextOne: ".payment-monitor-card-info-text-one" +
+  "{" +
+  "position: absolute;" +
+  "font-size: " + 30 * widthK + "px; " +
+  "width: 110%;" +
+  "top: 28%;" +
+  "margin: 0;" +
+  "text-overflow: ellipsis;" +
+  "white-space: nowrap;" +
+  "overflow: hidden;" +
+  "color: #565d6a;" +
+  "}",
+
+  paymentMonitorCardInfoTextThree: ".payment-monitor-card-info-text-three" +
+  "{" +
+  "position: absolute;" +
+  "font-size: " + 28 * widthK + "px; " +
+  "color: #565d6a;" +
+  "top: 32%;" +
+  "}",
+
+  paymentMonitorCardCheckBoxContainer: ".payment-monitor-card-checkbox-container" +
+  "{" +
+  "position: absolute;" +
+  "right: " + 32 * widthK + "px; " +
+  "top: " + 53 * widthK + "px; " +
+  "height: " + 40 * widthK + "px; " +
+  "width: " + 80 * widthK + "px; " +
+  "}",
+
+  paymentMonitorCardCheckBox: ".payment-monitor-card-checkbox" +
+  "{" +
+  "position: relative;" +
+  "height: " + 33 * widthK + "px; " +
+  "width: " + 78 * widthK + "px; " +
+  "line-height: " + 50 * widthK + "px; " +
+  "background-color: transparent;" +
+  "}",
+
+  paymentMonitorCardCheckBoxToggleRound: ".payment-monitor-card-checkbox .toggle-round" +
+  "{" +
+  "margin: 0;" +
+  "width: 75%; " +
+  "height: 100%; " +
+  "border: " + 3 * widthK + "px solid #00a8f1; " +
+  "-webkit-border-radius: " + 50 * widthK + "px; " +
+  "border-radius: " + 50 * widthK + "px; " +
+  "background-color: transparent;" +
+  "}",
+
+  paymentMonitorCardCheckBoxInputTypeCheckBox: ".payment-monitor-card-checkbox input[type='checkbox']" +
+  "{" +
+  "position: absolute;" +
+  "visibility: hidden; " +
+  "}",
+
+  paymentMonitorCardCheckBoxLabel: ".payment-monitor-card-checkbox label" +
+  "{" +
+  "display: block;" +
+  "position: absolute; " +
+  "width: 100%; " +
+  "height: 100%; " +
+  "cursor: pointer; " +
+  "}",
+
+  paymentMonitorCardCheckBoxToggleLabelBefore: ".payment-monitor-card-checkbox .toggle-round label:before " +
+  "{" +
+  "position: absolute; " +
+  "content: ' '; " +
+  "top: 50%; " +
+  "margin-top: -" + 12 * widthK + "px; " +
+  "margin-left: " + 5 * widthK + "px; " +
+  "display: inline-block; " +
+  "background: #00a8f1; " +
+  "width: " + 24 * widthK + "px; " +
+  "height: " + 24 * widthK + "px; " +
+  "-webkit-border-radius: " + 36 * widthK + "px; " +
+  "border-radius: " + 36 * widthK + "px; " +
+  "-webkit-transform: translate3d(0,0,0); " +
+  "transform: translate3d(0,0,0); " +
+  "-webkit-transition:  -webkit-transform 300ms cubic-bezier(0.390, 0.575, 0.565, 1.000); " +
+  "transition:  transform 300ms cubic-bezier(0.390, 0.575, 0.565, 1.000); " +
+  "}",
+
+  paymentMonitorCardCheckBoxCheckedBefore: ".payment-monitor-card-checkbox input[type='checkbox']:checked ~ label:before " +
+  "{" +
+  "-webkit-transform: translate3d(" + 26 * widthK + "px,0,0); " +
+  "transform: translate3d(" + 26 * widthK + "px,0,0); " +
   "}",
 
   //TRANSFER DETAIL VIEW

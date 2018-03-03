@@ -30,11 +30,16 @@
           <div class="payment-monitor-card-logo-container"
                style="background-image: url({i.url})"></div>
           <div class="payment-monitor-card-info-container">
-            <p class="pincard-card-info-text-one">{i.name}</p>
-            <p class="pincard-card-info-text-three">{i.numberPartOne} **** {i.numberPartTwo}</p>
+            <p class="payment-monitor-card-info-text-one">{i.name}</p>
+            <p class="payment-monitor-card-info-text-three">{i.numberPartOne} **** {i.numberPartTwo}</p>
           </div>
-          <div id="check{i.card_id}"
-               class="{pincard-card-uncheckmark: 'check'+i.card_id != checkedId, pincard-card-checkmark: 'check'+i.card_id == checkedId}">
+          <div class="payment-monitor-card-checkbox-container">
+            <div class="payment-monitor-card-checkbox">
+              <div class="toggle-round">
+                <input type="checkbox" name="check{i.card_id}" id="check{i.card_id}"/>
+                <label for="check{i.card_id}"></label>
+              </div>
+            </div>
           </div>
           <div class="title-bottom-border">
           </div>
@@ -43,37 +48,37 @@
 
     </div>
   </div>
- <script>
+  <script>
 
-   var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
+    var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 
-   window.saveHistory('view-payment-monitor', opts);
+    window.saveHistory('view-payment-monitor', opts);
 
-   scope.cardsArray = localStorage.getItem('click_client_cards') ? JSON.parse(localStorage.getItem('click_client_cards')) : [];
+    scope.cardsArray = localStorage.getItem('click_client_cards') ? JSON.parse(localStorage.getItem('click_client_cards')) : [];
 
-   goToBackStart = function () {
-     event.preventDefault();
-     event.stopPropagation();
-     if (backButton)
-       backButton.style.webkitTransform = 'scale(0.7)'
-     goBackButtonStartX = event.changedTouches[0].pageX;
-     goBackButtonStartY = event.changedTouches[0].pageY;
-   };
+    goToBackStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      if (backButton)
+        backButton.style.webkitTransform = 'scale(0.7)'
+      goBackButtonStartX = event.changedTouches[0].pageX;
+      goBackButtonStartY = event.changedTouches[0].pageY;
+    };
 
-   goToBackEnd = function () {
-     event.preventDefault();
-     event.stopPropagation();
+    goToBackEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
 
-     backButton.style.webkitTransform = 'scale(1)'
+      backButton.style.webkitTransform = 'scale(1)'
 
-     goBackButtonEndX = event.changedTouches[0].pageX;
-     goBackButtonEndY = event.changedTouches[0].pageY;
+      goBackButtonEndX = event.changedTouches[0].pageX;
+      goBackButtonEndY = event.changedTouches[0].pageY;
 
-     if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
-       onBackKeyDown();
-     }
-   };
- </script>
+      if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
+        onBackKeyDown();
+      }
+    };
+  </script>
 
 
 </view-payment-monitor>
