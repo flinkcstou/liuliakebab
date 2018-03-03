@@ -9687,8 +9687,8 @@ var css = {
   "margin: 0; " +
   "width: 77%; " +
   "height: 90%; " +
-  "left: 6%; " +
-  "top:" + 30 * widthK + "px; " +
+  "left: 5.5%; " +
+  "top:" + 23 * widthK + "px; " +
   "font-size:" + 29 * widthK + "px; " +
   "text-align: left; " +
   "color: #565d6a; " +
@@ -9754,7 +9754,7 @@ var css = {
 
   paymentMonitorCardLogoContainer: ".payment-monitor-card-logo-container" +
   "{" +
-  "width: 35%;" +
+  "width: 31%;" +
   "height: 100%;" +
   "left: 0;" +
   "background-color: transparent;" +
@@ -9770,7 +9770,7 @@ var css = {
   "position: absolute;" +
   "width: 41%;" +
   "height: 100%;" +
-  "left: 35%;" +
+  "left: 33%;" +
   "background-color: transparent;" +
   "}",
 
@@ -9779,7 +9779,7 @@ var css = {
   "position: absolute;" +
   "font-size: " + 30 * widthK + "px; " +
   "width: 110%;" +
-  "top: 28%;" +
+  "top: 27%;" +
   "margin: 0;" +
   "text-overflow: ellipsis;" +
   "white-space: nowrap;" +
@@ -9790,16 +9790,16 @@ var css = {
   paymentMonitorCardInfoTextThree: ".payment-monitor-card-info-text-three" +
   "{" +
   "position: absolute;" +
-  "font-size: " + 28 * widthK + "px; " +
+  "font-size: " + 29 * widthK + "px; " +
   "color: #565d6a;" +
   "margin: 0;" +
-  "top: 52%;" +
+  "top: 49%;" +
   "}",
 
   paymentMonitorCardCheckBox: ".payment-monitor-card-checkbox" +
   "{" +
   "position: absolute;" +
-  "right: " + 32 * widthK + "px; " +
+  "right: " + 53 * widthK + "px; " +
   "top: " + 53 * widthK + "px; " +
   "height: " + 33 * widthK + "px; " +
   "width: " + 60 * widthK + "px; " +

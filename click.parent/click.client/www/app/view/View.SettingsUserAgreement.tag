@@ -55,7 +55,7 @@
     };
 
     if (localStorage.getItem("click_client_agreement")) {
-      scope.contentOfAgreement = JSON.parse(localStorage.getItem("click_client_agreement")).content;
+      scope.contentOfAgreement = localStorage.getItem("click_client_agreement");
       scope.update();
     }
 
@@ -77,7 +77,7 @@
             if (result[1][0]) {
               scope.contentOfAgreement = result[1][0].content;
               console.log("from FTRDFTYFIYV");
-              localStorage.setItem("click_client_agreement", JSON.stringify(result[1][0]));
+              localStorage.setItem("click_client_agreement", scope.contentOfAgreement);
               scope.update();
             }
           }
