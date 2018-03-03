@@ -9731,11 +9731,13 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 100%;" +
-  "height:" + (1232 * heightK - 340 * widthK) + "px; " +
+  "height:" + (window.innerHeight - 420 * widthK) + "px; " +
   "top:" + 333 * widthK + "px; " +
   "background-color: transparent;" +
   "overflow-x: hidden;" +
   "overflow-y: scroll;" +
+  "-webkit-backface-visibility: hidden;" +
+  "backface-visibility: hidden;" +
   "-webkit-overflow-scrolling: touch;" +
   "}",
 
@@ -9748,7 +9750,6 @@ var css = {
   "left: 0;" +
   "right: 0;" +
   "background-color: white;" +
-  "border-bottom: " + 1 + "px solid #e8e8e8;" +
   "}",
 
   paymentMonitorCardLogoContainer: ".payment-monitor-card-logo-container" +
@@ -9791,36 +9792,17 @@ var css = {
   "position: absolute;" +
   "font-size: " + 28 * widthK + "px; " +
   "color: #565d6a;" +
-  "top: 32%;" +
-  "}",
-
-  paymentMonitorCardCheckBoxContainer: ".payment-monitor-card-checkbox-container" +
-  "{" +
-  "position: absolute;" +
-  "right: " + 32 * widthK + "px; " +
-  "top: " + 53 * widthK + "px; " +
-  "height: " + 40 * widthK + "px; " +
-  "width: " + 80 * widthK + "px; " +
+  "margin: 0;" +
+  "top: 52%;" +
   "}",
 
   paymentMonitorCardCheckBox: ".payment-monitor-card-checkbox" +
   "{" +
-  "position: relative;" +
+  "position: absolute;" +
+  "right: " + 32 * widthK + "px; " +
+  "top: " + 53 * widthK + "px; " +
   "height: " + 33 * widthK + "px; " +
-  "width: " + 78 * widthK + "px; " +
-  "line-height: " + 50 * widthK + "px; " +
-  "background-color: transparent;" +
-  "}",
-
-  paymentMonitorCardCheckBoxToggleRound: ".payment-monitor-card-checkbox .toggle-round" +
-  "{" +
-  "margin: 0;" +
-  "width: 75%; " +
-  "height: 100%; " +
-  "border: " + 3 * widthK + "px solid #00a8f1; " +
-  "-webkit-border-radius: " + 50 * widthK + "px; " +
-  "border-radius: " + 50 * widthK + "px; " +
-  "background-color: transparent;" +
+  "width: " + 60 * widthK + "px; " +
   "}",
 
   paymentMonitorCardCheckBoxInputTypeCheckBox: ".payment-monitor-card-checkbox input[type='checkbox']" +
@@ -9831,26 +9813,27 @@ var css = {
 
   paymentMonitorCardCheckBoxLabel: ".payment-monitor-card-checkbox label" +
   "{" +
-  "display: block;" +
   "position: absolute; " +
   "width: 100%; " +
-  "height: 100%; " +
+  "height: " + 33 * widthK + "px; " +
   "cursor: pointer; " +
+  "border: " + 3 * widthK + "px solid #f2f2f1; " +
+  "border-radius: " + 40 * widthK + "px; " +
+  "-webkit-border-radius: " + 40 * widthK + "px; " +
   "}",
 
-  paymentMonitorCardCheckBoxToggleLabelBefore: ".payment-monitor-card-checkbox .toggle-round label:before " +
+  paymentMonitorCardCheckBoxToggleLabelBefore: ".payment-monitor-card-checkbox label:before " +
   "{" +
   "position: absolute; " +
   "content: ' '; " +
-  "top: 50%; " +
-  "margin-top: -" + 12 * widthK + "px; " +
+  "top: " + 4 * widthK + "px; " +
   "margin-left: " + 5 * widthK + "px; " +
-  "display: inline-block; " +
-  "background: #00a8f1; " +
-  "width: " + 24 * widthK + "px; " +
-  "height: " + 24 * widthK + "px; " +
-  "-webkit-border-radius: " + 36 * widthK + "px; " +
-  "border-radius: " + 36 * widthK + "px; " +
+  "background: #f2f2f1; " +
+  "width: " + 23 * widthK + "px; " +
+  "height: " + 23 * widthK + "px; " +
+  "border: " + 1 * widthK + "px solid #f2f2f1; " +
+  "-webkit-border-radius: 100%; " +
+  "border-radius: 100%; " +
   "-webkit-transform: translate3d(0,0,0); " +
   "transform: translate3d(0,0,0); " +
   "-webkit-transition:  -webkit-transform 300ms cubic-bezier(0.390, 0.575, 0.565, 1.000); " +
@@ -9859,8 +9842,15 @@ var css = {
 
   paymentMonitorCardCheckBoxCheckedBefore: ".payment-monitor-card-checkbox input[type='checkbox']:checked ~ label:before " +
   "{" +
-  "-webkit-transform: translate3d(" + 26 * widthK + "px,0,0); " +
-  "transform: translate3d(" + 26 * widthK + "px,0,0); " +
+  "-webkit-transform: translate3d(" + 25 * widthK + "px,0,0); " +
+  "transform: translate3d(" + 25 * widthK + "px,0,0); " +
+  "background: #00a8f1; " +
+  "border: " + 1 * widthK + "px solid #00a8f1; " +
+  "}",
+
+  paymentMonitorCardCheckBoxCheckedBeforeToggle: ".payment-monitor-card-checkbox input[type='checkbox']:checked ~ label" +
+  "{" +
+  "border: " + 3 * widthK + "px solid #00a8f1; " +
   "}",
 
   //TRANSFER DETAIL VIEW

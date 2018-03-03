@@ -17,7 +17,7 @@
 
       <div class="payment-monitor-cost-container">
         <p class="payment-monitor-cost-text">
-          {window.languages.ViewPaymentMonitorCostFirstPart + info.monitoring_amount + window.languages.ViewPaymentMonitorCostSecondPart}
+          {window.languages.ViewPaymentMonitorCostFirstPart + monitoring_amount + window.languages.ViewPaymentMonitorCostSecondPart}
         </p>
         <p class="payment-monitor-cost-offer"
            ontouchend="openPublicOffer(&quot;{monitorOffer}&quot;)">
@@ -36,10 +36,8 @@
           </div>
           <div class="payment-monitor-card-checkbox-container">
             <div class="payment-monitor-card-checkbox">
-              <div class="toggle-round">
                 <input type="checkbox" name="check{i.card_id}" id="check{i.card_id}"/>
                 <label for="check{i.card_id}"></label>
-              </div>
             </div>
           </div>
           <div class="title-bottom-border">
@@ -56,7 +54,8 @@
     window.saveHistory('view-payment-monitor', opts);
 
     scope.cardsArray = localStorage.getItem('click_client_cards') ? JSON.parse(localStorage.getItem('click_client_cards')) : [];
-    scope.info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+    scope.monitoring_amount = window.amountTransform(
+      JSON.parse(localStorage.getItem("click_client_loginInfo")).monitoring_amount);
     if (localStorage.getItem("click_client_agreement")) {
       scope.monitorOffer = JSON.parse(localStorage.getItem("click_client_agreement")).monitoring_offer_url;
     } else {
