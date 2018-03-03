@@ -351,7 +351,8 @@ var RU_LANGUAGES =
 
   "ViewPaymentMonitorTitle": "МОНИТОРИНГ ПЛАТЕЖЕЙ",
   "ViewPaymentMonitorAbout": "Данный сервис позволяет отслеживать полную историю расходов и поступлений по вашей карте",
-  "ViewPaymentMonitorCost": "Стоимость услуги 1 000 сум за каждую карту",
+  "ViewPaymentMonitorCostFirstPart": "Стоимость услуги ",
+  "ViewPaymentMonitorCostSecondPart": " сум за каждую карту",
   "ViewPaymentMonitorOffer": "Публичная оферта",
 
   "ViewTransferDetailTitle": "ДЕТАЛИ ПЕРЕВОДА",

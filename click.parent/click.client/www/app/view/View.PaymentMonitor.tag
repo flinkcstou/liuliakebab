@@ -17,9 +17,10 @@
 
       <div class="payment-monitor-cost-container">
         <p class="payment-monitor-cost-text">
-          {window.languages.ViewPaymentMonitorCost}
+          {window.languages.ViewPaymentMonitorCostFirstPart + info.monitoring_amount + window.languages.ViewPaymentMonitorCostSecondPart}
         </p>
-        <p class="payment-monitor-cost-offer">
+        <p class="payment-monitor-cost-offer"
+           ontouchend="openPublicOffer(&quot;{monitorOffer}&quot;)">
           {window.languages.ViewPaymentMonitorOffer}
         </p>
       </div>
@@ -55,6 +56,12 @@
     window.saveHistory('view-payment-monitor', opts);
 
     scope.cardsArray = localStorage.getItem('click_client_cards') ? JSON.parse(localStorage.getItem('click_client_cards')) : [];
+    scope.info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+    if (localStorage.getItem("click_client_agreement")) {
+      scope.monitorOffer = JSON.parse(localStorage.getItem("click_client_agreement")).monitoring_offer_url;
+    } else {
+      scope.monitorOffer = '';
+    }
 
     goToBackStart = function () {
       event.preventDefault();
@@ -78,6 +85,12 @@
         onBackKeyDown();
       }
     };
+
+    openPublicOffer = function (LinkToPublicOffer) {
+      console.log("Link to Offer", LinkToPublicOffer);
+      window.open(LinkToPublicOffer, '_system', 'location=no');
+    }
+
   </script>
 
 

@@ -9716,13 +9716,14 @@ var css = {
 
   paymentMonitorCostOffer: ".payment-monitor-cost-offer" +
   "{" +
-  "position: relative;" +
+  "position: absolute;" +
+  "width:" + 255 * widthK + "px; " +
   "right: 7%; " +
   "margin: 0; " +
   "margin-top:" + 25 * widthK + "px; " +
   "font-size:" + 30 * widthK + "px; " +
-  "text-align: right; " +
-  "text-decoration: underline; " +
+  "border-bottom:" + 2 * widthK + "px solid #565d6a; " +
+  "text-align: center; " +
   "color: #565d6a; " +
   "}",
 
