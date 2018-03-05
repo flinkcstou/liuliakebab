@@ -61,6 +61,7 @@
     window.saveHistory('view-payment-monitor', opts);
 
     scope.accounts = localStorage.getItem('click_client_accountInfo') ? JSON.parse(localStorage.getItem('click_client_accountInfo')) : [];
+    scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
     scope.monitoring_amount = window.amountTransform(
       JSON.parse(localStorage.getItem("click_client_loginInfo")).monitoring_amount);
     if (localStorage.getItem("click_client_agreement")) {
@@ -169,6 +170,7 @@
           }
         },
         onFail: function (api_status, api_status_message, data) {
+          checkBox.checked = false;
           console.log('Clearing timer onFail', timeOutTimer);
           window.clearTimeout(timeOutTimer);
           updateResultComponent(true, scope.stepAmount, null, 'unsuccess', api_status_message);
@@ -181,7 +183,7 @@
               reason: 'Timeout',
               method: 'monitoring.on',
             });
-            window.api.forceClose();
+            checkBox.checked = false;
             updateResultComponent(true, scope.stepAmount, null, 'waiting', window.languages.WaitingTimeExpiredText);
           }, 30000);
           console.log('creating timeOut', timeOutTimer);
