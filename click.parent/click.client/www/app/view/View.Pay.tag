@@ -18,7 +18,8 @@
       <div class="pay-hint-icon-tick"></div>
     </div>
     <div class="pay-category-container" id="categoriesContainerId" onscroll="onTouchMoveOfCategory()">
-      <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
+
+      <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;" if="{opts.mode == 'ADDAUTOPAY'}">
         <li each="{i in categoryList}" style="overflow: hidden;">
           <div if="{!(modeOfApp.offlineMode && i.id == 11)}" class="pay-service-block-containter" id="{i.id}"
                ontouchstart="onTouchStartOfCategory(this.id)"
@@ -28,7 +29,8 @@
             </div>
             <div class="pay-icon-tick" id="tick{i.id}"></div>
             <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
-              <li class="pay-service-containter" each="{j in currentList}">
+              <li class="pay-service-containter"
+                  each="{j in currentList}" if="{j.autopay_available_schedule}">
                 <div class="pay-service-icon" style="background-image: url({j.image})" id="{j.id}" role="button"
                      aria-label="{j.name}"
                      ontouchend="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
@@ -41,6 +43,32 @@
           </div>
         </li>
       </ul>
+
+      <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;" if="{opts.mode != 'ADDAUTOPAY'}">
+        <li each="{i in categoryList}" style="overflow: hidden;">
+          <div if="{!(modeOfApp.offlineMode && i.id == 11)}" class="pay-service-block-containter" id="{i.id}"
+               ontouchstart="onTouchStartOfCategory(this.id)"
+               onclick="onTouchEndOfCategory(this.id)">
+            <div class="pay-category-icon" style="background-image: url({i.icon})"></div>
+            <div class="pay-category-name-field">{i.name}
+            </div>
+            <div class="pay-icon-tick" id="tick{i.id}"></div>
+            <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
+              <li class="pay-service-containter"
+                  each="{j in currentList}">
+                <div class="pay-service-icon" style="background-image: url({j.image})" id="{j.id}" role="button"
+                     aria-label="{j.name}"
+                     ontouchend="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
+                  <div class="pay-service-name-field">{j.name}</div>
+                </div>
+              </li>
+            </ul>
+            <div class="title-bottom-border">
+            </div>
+          </div>
+        </li>
+      </ul>
+
     </div>
   </div>
   <component-category-search></component-category-search>
@@ -116,7 +144,7 @@
     };
 
     scope.on('mount', function () {
-      console.log("OPTS in Pay", opts);
+      console.log("OPTS in Pay", opts, opts.mode);
       if (opts.categoryId) {
         document.getElementById("tick" + viewPay.categoryId).style.backgroundImage = "url(resources/icons/ViewPay/catclose.png)";
         hintUpdate(viewPay.categoryId);
@@ -179,6 +207,8 @@
 
           scope.currentList = scope.servicesMapByCategory[id];
 //        count = 1;
+
+          console.log("currentList=", scope.currentList);
 
 
           if (!scope.currentList) {
