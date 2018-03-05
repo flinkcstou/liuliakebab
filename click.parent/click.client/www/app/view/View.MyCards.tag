@@ -281,6 +281,7 @@
 
           if (cards[card].countCard == cardNumber) {
 
+            console.log(cards[card]);
             riotTags.innerHTML = "<view-report>";
             riot.mount('view-report', {
               show_graph: true,

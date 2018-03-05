@@ -275,7 +275,8 @@
             font_color: getAccountsCards[i].font_color,
             removable: getAccountsCards[i].removable,
             payment_allowed: getAccountsCards[i].payment_allowed,
-            p2p_allowed: getAccountsCards[i].p2p_allowed
+            p2p_allowed: getAccountsCards[i].p2p_allowed,
+            monitoring_token: getAccountsCards[i].monitoring_token,
           };
 
           scope.cardsarray[getAccountsCards[i].id] = card;

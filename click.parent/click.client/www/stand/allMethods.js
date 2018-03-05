@@ -128,6 +128,46 @@ window.fakedSocket.register("sms.resend", function (input) {
   ];
 });
 
+window.fakedSocket.register("monitoring.on", function (input) {
+  var array = [];
+  array.push([
+    {
+      "method": input.method,
+      "error": 0,
+      "error_note": "Мониторинг успешно включён",
+      "success": 1,
+      "check_id": 12,
+      "token": "abcdefg",
+    }]);
+  return array;
+});
+
+window.fakedSocket.register("monitoring.on.check", function (input) {
+  var array = [];
+  array.push([
+    {
+      "method": input.method,
+      "error": -1,
+      "error_note": "Мониторинг успешно включён",
+      "success": 1,
+      "check_id": 0,
+      "token": "abcdefg",
+    }]);
+  return array;
+});
+
+window.fakedSocket.register("monitoring.off", function (input) {
+  var array = [];
+  array.push([
+    {
+      "method": input.method,
+      "error": -1,
+      "error_note": "Мониторинг почему то  не выключен",
+      "success": 1,
+    }]);
+  return array;
+});
+
 window.fakedSocket.register("app.login", function (input) {
 
   if (localStorage.getItem("pinForStand") != "11111")
@@ -159,7 +199,8 @@ window.fakedSocket.register("app.login", function (input) {
         update_terms: false,
         update_account_cache: false,
         update_issuer_list: false,
-        visibility: false
+        visibility: false,
+        monitoring_amount: 1000,
       }]
     ];
 
@@ -236,7 +277,7 @@ window.fakedSocket.register("get.accounts", function (input) {
       currency_name: "сум                                               ",
       description: "Карта UZCARD-Online",
       expire_date: "1806",
-      id: 7487271,
+      id: 6870308,
       image_url: "resources/icons/cards/hitech.png",
       is_uzcard: 1,
       p2p_allowed: 1,
