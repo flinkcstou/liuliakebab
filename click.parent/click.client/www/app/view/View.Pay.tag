@@ -30,7 +30,7 @@
             <div class="pay-icon-tick" id="tick{i.id}"></div>
             <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
               <li class="pay-service-containter"
-                  each="{j in currentList}" if="{j.autopay_available_schedule}">
+                  each="{j in currentList}" if="{j.autopay_available_schedule || j.autopay_available}">
                 <div class="pay-service-icon" style="background-image: url({j.image})" id="{j.id}" role="button"
                      aria-label="{j.name}"
                      ontouchend="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
