@@ -132,8 +132,22 @@ window.fakedSocket.register("monitoring.on", function (input) {
   var array = [];
   array.push([
     {
-      "method": "monitoring.on",
+      "method": input.method,
       "error": 0,
+      "error_note": "Мониторинг успешно включён",
+      "success": 1,
+      "check_id": 12,
+      "token": "abcdefg",
+    }]);
+  return array;
+});
+
+window.fakedSocket.register("monitoring.on.check", function (input) {
+  var array = [];
+  array.push([
+    {
+      "method": input.method,
+      "error": -1,
       "error_note": "Мониторинг успешно включён",
       "success": 1,
       "check_id": 0,
@@ -146,7 +160,7 @@ window.fakedSocket.register("monitoring.off", function (input) {
   var array = [];
   array.push([
     {
-      "method": "monitoring.off",
+      "method": input.method,
       "error": -1,
       "error_note": "Мониторинг почему то  не выключен",
       "success": 1,

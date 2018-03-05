@@ -271,7 +271,7 @@
             if (result[0][0].error < 0) {
               console.log('Clearing timer onUnSuccess', timeOutTimer);
               window.clearTimeout(timeOutTimer);
-              updateResultComponent(true, scope.stepAmount, null, 'unsuccess', result[0][0].error);
+              updateResultComponent(true, scope.stepAmount, null, 'unsuccess', result[0][0].error_note);
             }
             if (result[0][0].error === 1) {
               counter++;
