@@ -4247,58 +4247,55 @@ var css = {
 
   servicePageButtonEnterEnabled: ".servicepage-button-enter-enabled" +
   "{" +
-  "position: relative;" +
-  "left: 28%;" +
-  "width: 44%;" +
-  "height: " + 74 * widthK + "px;" +
-  "background-color: #00a8f1;" +
-  "border-radius: " + 10 * widthK + "px;" +
-  "text-transform: capitalize;" +
-  "margin-top: " + 20 * widthK + "px;" +
-  "top: " + 200 * widthK + "px;" +
-  "padding: 0;" +
-  "font-size: " + 32 * widthK + "px;" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #00a8f1;" +
+  "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
   "color: #ffffff;" +
   "pointer-events: auto;" +
   "}",
 
   servicePageButtonEnterDisabled: ".servicepage-button-enter-disabled" +
   "{" +
-  "position: relative;" +
-  "left: 28%;" +
-  "width: 44%;" +
-  "height: " + 74 * widthK + "px;" +
-  "background-color: #D2D2D2;" +
-  "border-radius: " + 10 * widthK + "px;" +
-  "text-transform: capitalize;" +
-  "margin-top: " + 20 * widthK + "px;" +
-  "top: " + 200 * widthK + "px;" +
-  "padding: 0;" +
-  "font-size: " + 32 * widthK + "px;" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #D2D2D2;" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
   "color: #ffffff;" +
   "pointer-events: none;" +
   "}",
 
   servicePageButtonSave: ".servicepage-button-save" +
   "{" +
-  "position: absolute;" +
-  "left: 28%;" +
-  "width: 44%;" +
-  "height: " + 74 * widthK + "px;" +
-  "background-color: #D2D2D2;" +
-  "border-radius: " + 10 * widthK + "px;" +
-  "bottom: " + 55 * widthK + "px; " +
-  "font-size: " + 32 * widthK + "px;" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
-  "color: #ffffff;" +
   "border: none;" +
   "outline: none;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #D2D2D2;" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
+  "color: #ffffff;" +
   "pointer-events: none;" +
   "}",
 
@@ -4952,19 +4949,20 @@ var css = {
 
   pincardButtonEnter: " .pincard-button-enter" +
   "{" +
-  //"top: " + 230 * heightK + "px;" +
-  "height: " + 74 * widthK + "px;" +
-  "margin: 3% auto 0 auto;" +
-  "background-color: #00a8f1;" +
-  "padding: 0;" +
-  "font-size: " + 32 * widthK + "px;" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
-  "position: relative;" +
-  "left: 28%;" +
-  "width: 44%;" +
-  "border-radius: " + 10 * widthK + "px;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #00a8f1;" +
+  "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
   "color: #ffffff;" +
   "}",
 
@@ -5265,18 +5263,20 @@ var css = {
 
   payconfirmButtonEnter: ".payconfirm-button-enter" +
   "{" +
-  "height: " + 74 * widthK + "px;" +
-  "text-transform: capitalize;" +
-  "position: relative;" +
-  "background-color: #00a8f1;" +
-  "padding: 0;" +
-  "font-size: " + 32 * widthK + "px;" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
-  "left: 28%;" +
-  "width: 44%;" +
-  "border-radius: " + 10 * widthK + "px;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #00a8f1;" +
+  "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
   "color: #ffffff;" +
   "}",
 
@@ -5292,20 +5292,21 @@ var css = {
 
   payconfirmButtonDelete: ".payconfirm-button-delete" +
   "{" +
-  "height: " + 74 * widthK + "px;" +
-  "text-transform: capitalize;" +
-  "position: absolute;" +
-  "background-color: #ee4d3d;" +
-  "padding: 0;" +
-  "font-size: " + 32 * widthK + "px;" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
-  "left: 28%;" +
-  "width: 44%;" +
-  "border-radius: " + 10 * widthK + "px;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #ee4d3d;" +
+  "background: -moz-linear-gradient(left, #ee4d3d 20%, #76c1f4);" +
+  "background: -webkit-linear-gradient(left, #ee4d3d 20%, #76c1f4);" +
+  "background: -ms-linear-gradient(left, #ee4d3d 20%, #76c1f4);" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
   "color: #ffffff;" +
-  "bottom:" + 100 * widthK + "px;" +
   "}",
 
   //COMPONENT SEARCH
@@ -9302,20 +9303,20 @@ var css = {
 
   settingsAddFriendNextButtonInnerContainer: ".settings-add-friend-next-button-inner-container" +
   "{" +
-  "position: relative;" +
-  "height: " + 74 * widthK + "px;" +
-  "text-transform: capitalize;" +
-  "margin-right: auto;" +
-  "margin-left: auto;" +
-  "margin: 15% auto 0 auto;" +
-  "background-color: #00a8f1;" +
-  "padding: 0;" +
-  "font-size: " + 32 * widthK + "px;" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
-  "width: 44%;" +
-  "border-radius: " + 10 * widthK + "px;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #00a8f1;" +
+  // "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
   "color: #ffffff;" +
   "}",
 
@@ -13588,19 +13589,20 @@ var css = {
 
   qrPincardButtonEnter: " .qr-pincard-button-enter" +
   "{" +
-  "position: absolute;" +
-  "margin: 0;" +
-  "height: " + 74 * widthK + "px;" +
-  "font-size: " + 32 * widthK + "px;" +
-  "top: 60%;" +
-  "background-color: #00a8f1;" +
-  "padding: 0;" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
-  "left: 28%;" +
-  "width: 44%;" +
-  "border-radius: " + 10 * widthK + "px;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #00a8f1;" +
+  "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
   "color: #ffffff;" +
   "}",
 
@@ -13905,19 +13907,20 @@ var css = {
 
   qrPayconfirmButtonEnter: ".qr-payconfirm-button-enter" +
   "{" +
-  "position: absolute;" +
-  "margin: 0;" +
-  "height: " + 74 * widthK + "px;" +
-  "font-size: " + 32 * widthK + "px;" +
-  "top: 60%;" +
-  "background-color: #00a8f1;" +
-  "padding: 0;" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
-  "left: 28%;" +
-  "width: 44%;" +
-  "border-radius: " + 10 * widthK + "px;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #00a8f1;" +
+  "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
   "color: #ffffff;" +
   "}",
 
@@ -15391,38 +15394,40 @@ var css = {
 
   autopayEventButtonEnterEnabled: " .autopay-event-button-enter-enabled" +
   "{" +
-  "top:" + 400 * heightK + "px;" +
-  "height:" + 74 * widthK + "px;" +
-  "margin: 0 auto 0 auto;" +
-  "background-color: #00a8f1;" +
-  "padding: 0;" +
-  "font-size: " + 32 * widthK + "px;" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
-  "position: relative;" +
-  "left: 28%;" +
-  "width: 44%;" +
-  "border-radius: " + 10 * widthK + "px;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #00a8f1;" +
+  "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
   "color: #ffffff;" +
   "pointer-events: auto;" +
   "}",
 
   autopayEventButtonEnterDisabled: " .autopay-event-button-enter-disabled" +
   "{" +
-  "top:" + 400 * heightK + "px;" +
-  "height:" + 74 * widthK + "px;" +
-  "margin: 0 auto 0 auto;" +
-  "background-color: #D2D2D2;" +
-  "padding: 0;" +
-  "font-size: " + 32 * widthK + "px;" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
-  "position: relative;" +
-  "left: 28%;" +
-  "width: 44%;" +
-  "border-radius: " + 10 * widthK + "px;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #00a8f1;" +
+  "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
   "color: #ffffff;" +
   "pointer-events: none;" +
   "}",
