@@ -63,6 +63,11 @@ var RU_LANGUAGES =
     "ViewInfoReportsTitle": "Отчёты",
     "ViewInfoLastOperations": "Последние операции",
 
+    "ViewMonitoringReportNoTokenTitle": "ОТЧЁТЫ",
+    "ViewMonitoringReportYesTokenTitle": "МОНИТОРИНГ ЗА ",
+    "ViewMonitoringReportTurnOnTextOne": "Включите сервис \"Мониторинг платежей\"",
+    "ViewMonitoringReportTurnOnTextTwo": "и следите за передвижением Ваших средств",
+
     "ViewMyCardAriaLabelCardSettings": "Настройки карты",
     "ViewMyCardTransfer": "Переводы с карты на карту",
     "ViewMyCardTitleName": "ДЕЙСТВИЯ С КАРТОЙ",

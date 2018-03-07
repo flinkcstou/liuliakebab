@@ -151,6 +151,7 @@
           if (result[0][0].error === 0) {
             console.log('monitoring.on', result);
             if (result[0][0].check_id === 0) {
+              scope.cardsarray[id].monitoring_token = result.token;
               console.log('Clearing timer onSuccess', timeOutTimer);
               window.clearTimeout(timeOutTimer);
               updateResultComponent(true, scope.stepAmount, null, 'success', result[0][0].error_note);
@@ -214,6 +215,7 @@
             console.log('monitoring.on', result);
             console.log('Clearing timer onSuccess', timeOutTimer);
             window.clearTimeout(timeOutTimer);
+            scope.cardsarray[id].monitoring_token = '';
             updateResultComponent(true, scope.stepAmount, null, 'success', result[0][0].error_note);
           } else {
             if (result[0][0].error < 0) {
@@ -263,6 +265,7 @@
         scope: this,
         onSuccess: function (result) {
           if (result[0][0].error === 0) {
+            scope.cardsarray[id].monitoring_token = result.token;
             console.log('received_token', result[0][0].token);
             console.log('Clearing timer onSuccess', timeOutTimer);
             window.clearTimeout(timeOutTimer);

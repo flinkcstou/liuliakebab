@@ -10584,6 +10584,59 @@ var css = {
   "color: grey;" +
   "}",
 
+// VIEW MONITORING REPORT
+
+  viewMonitoringReportTypeAndTurnOnContainer: ".view-monitoring-report-type-and-turn-on-container" +
+  "{" +
+  "position: absolute;" +
+  "top:" + 87 * widthK + "px;" +
+  "width: 100%;" +
+  "}",
+
+  viewMonitoringReportTypeContainer: ".view-monitoring-report-type-container" +
+  "{" +
+  "position: relative;" +
+  "height:" + 100 * widthK + "px;" +
+  "width: 100%;" +
+  "top: 0;" +
+  "}",
+
+  viewMonitoringReportTurnOnContainer: ".view-monitoring-report-turnon-container" +
+  "{" +
+  "position: relative;" +
+  "height:" + 208 * widthK + "px;" +
+  "width: 100%;" +
+  "overflow: hidden;" +
+  "background-color: #00a8f1;" +
+  "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "}",
+
+  viewMonitoringReportTurnOnTextOne: ".view-monitoring-report-turnon-text-one" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "margin-top:" + 40 * widthK + "px;" +
+  "margin-left:" + 40 * widthK + "px;" +
+  "width: 90%;" +
+  "color: white;" +
+  "text-align: left;" +
+  "font-size:" + 31 * widthK + "px;" +
+  "}",
+
+  viewMonitoringReportTurnOnTextTwo: ".view-monitoring-report-turnon-text-two" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "margin-top:" + 10 * widthK + "px;" +
+  "margin-left:" + 40 * widthK + "px;" +
+  "width: 90%;" +
+  "color: white;" +
+  "text-align: left;" +
+  "font-size:" + 31 * widthK + "px;" +
+  "}",
+
 //  VIEW REPORTS
 
   viewReportsPage: ".view-reports-page " +
