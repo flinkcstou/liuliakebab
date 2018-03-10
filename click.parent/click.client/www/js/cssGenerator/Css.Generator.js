@@ -34,6 +34,15 @@ var css = {
   "font-style: normal;" +
   "}",
 
+  sfuiDisplaySemiBold: "@font-face " +
+  "{" +
+  "font-family: 'SFUIDisplay-Semibold';" +
+  "src: url('resources/font/SFUIDisplay/SFUIDisplay-Semibold.otf');" +
+  "format: ('opentype');" +
+  "font-weight: normal;" +
+  "font-style: normal;" +
+  "}",
+
   orator: "@font-face " +
   "{" +
   "font-family: 'Orator';" +
@@ -10601,6 +10610,23 @@ var css = {
   "top: 0;" +
   "}",
 
+  viewMonitoringReportType: ".view-monitoring-report-type" +
+  "{" +
+  "height: 100%;" +
+  "width: 50%;" +
+  "float: left;" +
+  "color: #c2c2c2;" +
+  "}",
+
+  viewMonitoringReportTypeTitle: ".view-monitoring-report-type-title" +
+  "{" +
+  "margin: 0;" +
+  "margin-top:" + 28 * widthK + "px;" +
+  "margin-left:" + 40 * widthK + "px;" +
+  "text-align: left;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "}",
+
   viewMonitoringReportTurnOnContainer: ".view-monitoring-report-turnon-container" +
   "{" +
   "position: relative;" +
@@ -10622,19 +10648,48 @@ var css = {
   "width: 90%;" +
   "color: white;" +
   "text-align: left;" +
-  "font-size:" + 31 * widthK + "px;" +
+  "font-family: 'SFUIDisplay-Semibold';" +
+  "font-size:" + 29 * widthK + "px;" +
   "}",
 
   viewMonitoringReportTurnOnTextTwo: ".view-monitoring-report-turnon-text-two" +
   "{" +
   "position: relative;" +
   "margin: 0;" +
-  "margin-top:" + 10 * widthK + "px;" +
   "margin-left:" + 40 * widthK + "px;" +
   "width: 90%;" +
   "color: white;" +
   "text-align: left;" +
-  "font-size:" + 31 * widthK + "px;" +
+  "font-family: 'SFUIDisplay-Semibold';" +
+  "font-size:" + 29 * widthK + "px;" +
+  "}",
+
+  viewMonitoringReportTurnOnTurnOn: ".view-monitoring-report-turnon-turnon" +
+  "{" +
+  "position: relative;" +
+  "margin:" + 23 * widthK + "px;" +
+  "margin-left:" + 293 * widthK + "px;" +
+  "width:" + 427 * widthK + "px;" +
+  "color: white;" +
+  "text-align: left;" +
+  "font-family: 'SFUIDisplay-Semibold';" +
+  "font-size:" + 33 * widthK + "px;" +
+  "}",
+
+  viewMonitoringReportTurnOnArrow: ".view-monitoring-report-turnon-arrow" +
+  "{" +
+  "position: absolute;" +
+  "top: 0;" +
+  "right:" + 52 * widthK + "px;" +
+  "height: 100%;" +
+  "width:" + 11 * widthK + "px;" +
+  "color: white;" +
+  "background-image: url('resources/icons/ViewReport/turnon_monitoring_arrow.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 100%;" +
+  "background-position-y: center;" +
+  "background-position-x: center;" +
+  "background-size: 100%;" +
   "}",
 
 //  VIEW REPORTS

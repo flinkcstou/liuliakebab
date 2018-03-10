@@ -109,6 +109,14 @@
       return result;
     };
 
+    changeTokenForAcc = function (id, token) {
+      for (var i in scope.accounts) {
+        if (scope.accounts[i].id == id) {
+          scope.accounts[i].monitoring_token = token;
+        }
+      }
+    };
+
     findAccountToken = function (id) {
       result = '';
       for (var i in scope.accounts) {
@@ -151,14 +159,19 @@
           if (result[0][0].error === 0) {
             console.log('monitoring.on', result);
             if (result[0][0].check_id === 0) {
-              scope.cardsarray[id].monitoring_token = result.token;
+
+              scope.cardsarray[id].monitoring_token = result[0][0].token;
+              changeTokenForAcc(id, result[0][0].token);
+              localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
+              localStorage.setItem('click_client_accountInfo', JSON.stringify(scope.accounts));
+
               console.log('Clearing timer onSuccess', timeOutTimer);
               window.clearTimeout(timeOutTimer);
               updateResultComponent(true, scope.stepAmount, null, 'success', result[0][0].error_note);
             }
             if (result[0][0].check_id > 0) {
               setTimeout(function () {
-                checkMonitoringStatus(result[0][0].check_id);
+                checkMonitoringStatus(id, result[0][0].check_id);
               }, 2000);
             }
           } else {
@@ -215,7 +228,12 @@
             console.log('monitoring.on', result);
             console.log('Clearing timer onSuccess', timeOutTimer);
             window.clearTimeout(timeOutTimer);
+
             scope.cardsarray[id].monitoring_token = '';
+            changeTokenForAcc(id, '');
+            localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
+            localStorage.setItem('click_client_accountInfo', JSON.stringify(scope.accounts));
+
             updateResultComponent(true, scope.stepAmount, null, 'success', result[0][0].error_note);
           } else {
             if (result[0][0].error < 0) {
@@ -252,7 +270,7 @@
       });
     };
 
-    checkMonitoringStatus = function (check_id) {
+    checkMonitoringStatus = function (id, check_id) {
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       window.api.call({
@@ -265,11 +283,16 @@
         scope: this,
         onSuccess: function (result) {
           if (result[0][0].error === 0) {
-            scope.cardsarray[id].monitoring_token = result.token;
+
+            scope.cardsarray[id].monitoring_token = result[0][0].token;
+            changeTokenForAcc(id, result[0][0].token);
+            localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
+            localStorage.setItem('click_client_accountInfo', JSON.stringify(scope.accounts));
+
             console.log('received_token', result[0][0].token);
             console.log('Clearing timer onSuccess', timeOutTimer);
             window.clearTimeout(timeOutTimer);
-            updateResultComponent(true, scope.stepAmount, null, 'success', window.languages.ComponentSuccessMessage);
+            updateResultComponent(true, scope.stepAmount, null, 'success', result[0][0].error_note);
           } else {
             if (result[0][0].error < 0) {
               console.log('Clearing timer onUnSuccess', timeOutTimer);
@@ -281,12 +304,12 @@
 
               if (counter < 5) {
                 setTimeout(function () {
-                  checkMonitoringStatus(check_id);
+                  checkMonitoringStatus(id, check_id);
                 }, 2000);
               } else {
                 console.log('Clearing timer onSuccess', timeOutTimer);
                 window.clearTimeout(timeOutTimer);
-                updateResultComponent(true, scope.stepAmount, null, 'waiting', window.languages.ComponentInProcessingPartOne);
+                updateResultComponent(true, scope.stepAmount, null, 'waiting', result[0][0].error_note);
               }
             }
           }

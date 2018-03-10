@@ -67,6 +67,10 @@ var RU_LANGUAGES =
     "ViewMonitoringReportYesTokenTitle": "МОНИТОРИНГ ЗА ",
     "ViewMonitoringReportTurnOnTextOne": "Включите сервис \"Мониторинг платежей\"",
     "ViewMonitoringReportTurnOnTextTwo": "и следите за передвижением Ваших средств",
+    "ViewMonitoringReportTurnOnTurnOn": "ВКЛЮЧИТЬ СЕРВИС",
+    "ViewMonitoringReportIncomeTypeTitle": "Поступление",
+    "ViewMonitoringReportOutgoTypeTitle": "Расход",
+    "ViewMonitoringReportFilterTitle": "ФИЛЬТРЫ",
 
     "ViewMyCardAriaLabelCardSettings": "Настройки карты",
     "ViewMyCardTransfer": "Переводы с карты на карту",
@@ -359,6 +363,7 @@ var RU_LANGUAGES =
   "ViewPaymentMonitorCostFirstPart": "Стоимость услуги ",
   "ViewPaymentMonitorCostSecondPart": " сум за каждую карту",
   "ViewPaymentMonitorOffer": "Публичная оферта",
+  "ViewPaymentMonitorSuccessTurningOn": "Публичная оферта",
 
   "ViewTransferDetailTitle": "ДЕТАЛИ ПЕРЕВОДА",
   "ViewTransferDetailTransferIconTitleOne": "Получен перевод",
