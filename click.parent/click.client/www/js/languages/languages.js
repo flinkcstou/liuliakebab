@@ -83,7 +83,7 @@ var RU_LANGUAGES =
     "ViewMyCardTransferDeniedAccess": "Извининте, вы не можете произвести перевод с этой карты",
     "ViewMyCardTransferDeniedP2p": "Первод средств с данной карты недоступен",
 
-    "ViewServicePageEnterLabel": "Далее",
+    "ViewServicePageEnterLabel": "Продолжить",
     "ViewServicePageChooseCityLabel": "Выберите город",
     "ViewServicePageChooseDistrictLabel": "Выберите район",
     //"ViewServicePageChooseRegion": "ВЫБЕРИТЕ РАЙОН",
@@ -166,7 +166,7 @@ var RU_LANGUAGES =
   "ViewPayTransferMenuNameCard": "КАРТА",
   "ViewPayTransferContactTextField": "Укажите номер телефона получателя:",
   "ViewPayTransferCardTextField": "Укажите номер карты получателя:",
-  "ViewPayTransferNext": "Далее",
+  "ViewPayTransferNext": "Продолжить",
   "ViewPayTransferTitle": "ПЕРЕВОДЫ",
   "ViewPayTransferCardOwnerTitle": "Владелец:",
   "ViewPayTransferAccessToContacts": "Для быстрого поиска в адресной книге, необходимо разрешить приложению доступ к контактам на Вашем устройстве",
@@ -195,13 +195,13 @@ var RU_LANGUAGES =
 
 
   "ViewTransferTwoTax": "Комиссия: ",
-  "ViewTransferTwoNext": "Далее",
+  "ViewTransferTwoNext": "Продолжить",
   "ViewTransferTwoTitle": "ПЕРЕВОД НА",
   "ViewTransferTwoSum": "Введите сумму",
 
   "ViewTransferThreeTitle": "ПЕРЕВОД НА",
   "ViewTransferThreeMenuTitle": "ПЕРЕВЕСТИ С КАРТЫ",
-  "ViewTransferThreeNext": "Далее",
+  "ViewTransferThreeNext": "Продолжить",
   "ViewTransferSubmitNoCards": "Нет карт доступных для переводов",
 
   "ViewTransferFourTitle": "ПЕРЕВОД НА",
@@ -592,7 +592,7 @@ var RU_LANGUAGES =
   "ViewAutoPayCreatedSuccessTextTwo": " успешно создан!",
   "ViewAutoPayDeletedSuccessText": "Автоплатеж успешно удален!",
 
-  "ViewServiceInfoButtonNextText": "Далее",
+  "ViewServiceInfoButtonNextText": "Продолжить",
   "ViewServiceInfoButtonGoToPaymentText": "ПЕРЕЙТИ К ОПЛАТЕ",
 
   "ComponentToolbarAriaLabelOpenSideMenu": "Открыть боковое меню",
