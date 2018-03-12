@@ -1,72 +1,90 @@
 <view-authorization class="view-authorization riot-tags-main-container">
 
-  <div if="{!firstEnter}" class="authorization-flex-container">
-    <div class="authorization-unchangable-container">
-      <div class="authorization-enter-pin-label">{window.languages.ViewAuthorizationClickPinLabel}</div>
-      <div class="authorization-pin-container">
-        <div class="authorization-pin-field">
-          <div id="circleOne" class="authorization-pin-circles authorization-pin-one"></div>
-          <div id="circleTwo" class="authorization-pin-circles authorization-pin-two"></div>
-          <div id="circleThree" class="authorization-pin-circles authorization-pin-three"></div>
-          <div id="circleFour" class="authorization-pin-circles authorization-pin-four"></div>
-          <div id="circleFive" class="authorization-pin-circles authorization-pin-five"></div>
+  <div class="view-authorization-inner-container" if="{!fingerprintMode}">
+
+    <div if="{!firstEnter}" class="authorization-flex-container">
+      <div class="authorization-unchangable-container">
+        <div class="authorization-enter-pin-label">{window.languages.ViewAuthorizationClickPinLabel}</div>
+        <div class="authorization-pin-container">
+          <div class="authorization-pin-field">
+            <div id="circleOne" class="authorization-pin-circles authorization-pin-one"></div>
+            <div id="circleTwo" class="authorization-pin-circles authorization-pin-two"></div>
+            <div id="circleThree" class="authorization-pin-circles authorization-pin-three"></div>
+            <div id="circleFour" class="authorization-pin-circles authorization-pin-four"></div>
+            <div id="circleFive" class="authorization-pin-circles authorization-pin-five"></div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div if="{firstEnter}" class="authorization-flex-container">
-    <div class="authorization-unchangable-container">
-      <div class="authorization-enter-pin-label">
-        {window.languages.ViewAuthorizationClickPinLabel}
+    <div if="{firstEnter}" class="authorization-flex-container">
+      <div class="authorization-unchangable-container">
+        <div class="authorization-enter-pin-label">
+          {window.languages.ViewAuthorizationClickPinLabel}
+        </div>
+        <div class="authorization-pin-input-first-enter-container" id="firstPinContainerId">
+          <input autofocus="true"
+                 type="password"
+                 class="authorization-pin-input-first-enter"
+                 onfocus="focusColor()"
+                 onblur="inputPinBlur()"
+                 id="firstPinInputId"/>
+          <div id="eyeButtonId" class="authorization-input-eye-button" role="button"
+               aria-label="{window.languages.ViewAuthorizationFirstEnterAriaLabelShowPass}"
+               onclick="eyeClicked()"></div>
+        </div>
       </div>
-      <div class="authorization-pin-input-first-enter-container" id="firstPinContainerId">
-        <input autofocus="true"
-               type="password"
-               class="authorization-pin-input-first-enter"
-               onfocus="focusColor()"
-               onblur="inputPinBlur()"
-               id="firstPinInputId"/>
-        <div id="eyeButtonId" class="authorization-input-eye-button" role="button"
-             aria-label="{window.languages.ViewAuthorizationFirstEnterAriaLabelShowPass}"
-             onclick="eyeClicked()"></div>
+    </div>
+
+    <div id="authorizationButtonsContainerId" class="authorization-buttons-container">
+
+
+      <div id="forgetPinButtonId" class="authorization-button-forget-pin" ontouchstart="pinResetTouchStart()"
+           ontouchend="pinResetTouchEnd()">
+        {window.languages.ViewAuthorizationForgetPinLabel}
+      </div>
+      <div class="hor-line-border">
+      </div>
+      <div id="resetLocalButtonId" class="authorization-button-registration"
+           ontouchstart="resetLocalStorageTouchStart()"
+           ontouchend="resetLocalStorageTouchEnd()">
+        {window.languages.ViewAuthorizationResetLocalStorageLabel}
       </div>
     </div>
-  </div>
 
-  <div id="authorizationButtonsContainerId" class="authorization-buttons-container">
-
-
-    <div id="forgetPinButtonId" class="authorization-button-forget-pin" ontouchstart="pinResetTouchStart()"
-         ontouchend="pinResetTouchEnd()">
-      {window.languages.ViewAuthorizationForgetPinLabel}
+    <div if="{!firstEnter}" class="authorization-keyboard-field keyboard-field">
+      <component-keyboard
+        fingerprint="{JSON.parse(localStorage.getItem('settings_finger_print'))}"></component-keyboard>
     </div>
-    <div class="hor-line-border">
+
+    <div if="{firstEnter}" id="firstEnterButtonId" class="bottom-button-container"
+         ontouchend="firstPinEnterTouchEnd()"
+         ontouchstart="firstPinEnterTouchStart()">
+      <div class="button-enter-label">{window.languages.ViewAuthorizationFirstEnterLabel}</div>
+      <div class="button-enter-icon"></div>
     </div>
-    <div id="resetLocalButtonId" class="authorization-button-registration" ontouchstart="resetLocalStorageTouchStart()"
-         ontouchend="resetLocalStorageTouchEnd()">
-      {window.languages.ViewAuthorizationResetLocalStorageLabel}
+
+    <button id="authOfflineButtonId" hidden="{device.platform == 'iOS'}"
+            class="{authorization-footer-button-container : !firstEnter, authorization-footer-button-container-first : firstEnter}"
+            class="authorization-footer-button-container"
+            ontouchstart="offlineModeTouchStart()"
+            ontouchend="offlineModeTouchEnd()">
+      {window.languages.ViewAuthorizationOfflineModeLabel}
+    </button>
+
+  </div>
+
+  <div class="view-authorization-inner-container" if="{fingerprintMode}">
+
+    <div id="switchModeButton" class="bottom-button-container"
+         ontouchend="firstPinEnterTouchEnd()"
+         ontouchstart="firstPinEnterTouchStart()">
+      <div class="button-auth-fingerprint-mode-label">{window.languages.ViewAuthFingerprintModeButtonLabel}</div>
+      <div class="button-enter-icon"></div>
     </div>
+
   </div>
 
-  <div if="{!firstEnter}" class="authorization-keyboard-field keyboard-field">
-    <component-keyboard fingerprint="{JSON.parse(localStorage.getItem('settings_finger_print'))}"></component-keyboard>
-  </div>
-
-  <div if="{firstEnter}" id="firstEnterButtonId" class="bottom-button-container"
-       ontouchend="firstPinEnterTouchEnd()"
-       ontouchstart="firstPinEnterTouchStart()">
-    <div class="button-enter-label">{window.languages.ViewAuthorizationFirstEnterLabel}</div>
-    <div class="button-enter-icon"></div>
-  </div>
-
-  <button id="authOfflineButtonId" hidden="{device.platform == 'iOS'}"
-          class="{authorization-footer-button-container : !firstEnter, authorization-footer-button-container-first : firstEnter}"
-          class="authorization-footer-button-container"
-          ontouchstart="offlineModeTouchStart()"
-          ontouchend="offlineModeTouchEnd()">
-    {window.languages.ViewAuthorizationOfflineModeLabel}
-  </button>
   <component-pin-reset></component-pin-reset>
 
   <script>
@@ -75,6 +93,8 @@
     var timeOutTimer = 0;
     scope.checkAndroid = false;
     scope.errorCode = 0;
+    scope.fingerprintMode = true;
+    //    scope.fingerprintMode = false;
 
 
     this.on('mount', function () {

@@ -1153,6 +1153,26 @@ var css = {
   "background-repeat: no-repeat;" +
   "}",
 
+  viewAuthorizationInnerContainer: ".view-authorization-inner-container " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 100%;" +
+  "overflow: hidden;" +
+  "}",
+
+  buttonAuthFingerPrintModeLabel: ".button-auth-fingerprint-mode-label " +
+  "{" +
+  "position: absolute;" +
+  "top: 27%;" +
+  "width:70%;" +
+  "height:" + 40 * widthK + "px;" +
+  "font-size:" + 36 * widthK + "px;" +
+  "margin: auto;" +
+  "margin-left:" + 65 * widthK + "px;" +
+  "color: white;" +
+  "}",
+
   authorizationFlexContainer: ".authorization-flex-container" +
   "{" +
   "position: absolute;" +

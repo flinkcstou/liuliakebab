@@ -55,6 +55,8 @@ var RU_LANGUAGES =
     "ViewAuthorizationResetLocalStorageLabel": "Сбросить данные",
     "ViewAuthorizationOfflineModeLabel": "Офлайн режим",
 
+    "ViewAuthFingerprintModeButtonLabel": "ВОЙТИ ИСПОЛЬЗУЯ CLICK-PIN",
+
     "ViewInfoBalanceTitle": "Общий баланс",
 
     "ViewInfoAriaLabelReloadAmount": "Обновить баланс",
