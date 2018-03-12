@@ -81,7 +81,7 @@
       if (scope.categoryList)
         arrayOfConnectedSuggestion = scope.categoryList.concat(scope.serviceList);
       if (device.platform != 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#353340");
+        StatusBar.backgroundColorByHexString("#ffffff");
     };
 
     searchCancelEnd = function () {
@@ -89,7 +89,7 @@
       event.stopPropagation();
       blockSearchId.style.display = 'none';
       if (device.platform != 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#007AE2");
+        StatusBar.backgroundColorByHexString("#ffffff");
       scope.searchWord = '';
       Keyboard.hide();
     };
@@ -256,7 +256,7 @@
 
       blockSearchId.style.display = 'none';
       if (device.platform != 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#007AE2");
+        StatusBar.backgroundColorByHexString("#ffffff");
       scope.searchWord = '';
       Keyboard.hide();
 
@@ -272,7 +272,7 @@
 
       blockSearchId.style.display = 'none';
       if (device.platform != 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#007AE2");
+        StatusBar.backgroundColorByHexString("#ffffff");
       scope.searchWord = '';
       Keyboard.hide();
 
@@ -286,7 +286,7 @@
 
       blockSearchId.style.display = 'none';
       if (device.platform != 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#007AE2");
+        StatusBar.backgroundColorByHexString("#ffffff");
       scope.searchWord = '';
       Keyboard.hide();
 
@@ -300,7 +300,7 @@
 
       blockSearchId.style.display = 'none';
       if (device.platform != 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#007AE2");
+        StatusBar.backgroundColorByHexString("#ffffff");
       scope.searchWord = '';
       Keyboard.hide();
 

@@ -14,10 +14,22 @@ window.api.forceClose = function () {
 };
 
 window.api.call = function (params, timeout) {
-  console.log("Function call:");
+  console.log("Function call:", params, timeout);
+
 
   if (timeout === undefined)
     timeout = 30000;
+  setTimeout(function () {
+    if (!stateCheckerCleared) {
+      clearInterval(stateChecker);
+      console.log('clearing interval-sender - time out', stateChecker);
+    }
+  }, timeout);
+
+  if (params.onTimeOut !== undefined) {
+    console.log('Calling onTimeOut in webApi');
+    params.onTimeOut.call();
+  }
 
   if (!window.isConnected) {
     window.api.init();
@@ -28,40 +40,37 @@ window.api.call = function (params, timeout) {
     if (window.api.socket.readyState === 1) {
       window.api.send(params);
       stateCheckerCleared = true;
-      console.log("Clearing interval-sender - request sent", stateChecker);
+      console.log("Clearing interval-sender - sending request", stateChecker);
       clearInterval(stateChecker);
     }
     if (window.api.socket.readyState === 0) {
       console.log("Connection in state 0, checking again");
     }
     if (window.api.socket.readyState === 3) {
-      console.log("Connection in state 3, opening new connection for next requests");
+      console.log("Connection in state 3");
       window.isConnected = false;
-      window.api.init();
       stateCheckerCleared = true;
       clearInterval(stateChecker);
     }
-  }, 200);
+  }, 300);
 
-  setTimeout(function () {
-    if (!stateCheckerCleared) {
-      clearInterval(stateChecker);
-      console.log('clearing interval-sender - time out', stateChecker);
-    }
-  }, timeout);
 };
 
 window.api.init = function () {
   if (!window.isConnected) {
     try {
+      // if (device.platform == 'Android') {
+      //   window.WebSocket.pluginOptions = {
+      //     maxConnectTime: 5000,
+      //     override: true
+      //   };
+      // }
       window.api.socket = new WebSocket("wss://my.click.uz:8443");
+      window.isConnected = true;
       console.log("SOCKET =", window.api.socket);
       window.api.initSocket();
-    }
-    catch (error) {
+    } catch (error) {
       console.error("error on establishing connection", error);
-      if (modeOfApp.onlineMode)
-        window.api.init();
     }
   }
 };
@@ -92,7 +101,6 @@ window.api.initSocket = function () {
     console.log('Connection is closed');
     console.log(event);
     window.isConnected = false;
-    window.api.init();
   };
 
   var me = this;
@@ -100,10 +108,10 @@ window.api.initSocket = function () {
   this.socket.onmessage = function (event) {
     if (modeOfApp.offlineMode) return;
     var parsedData = JSON.parse(event.data);
-
+    console.log("Received data:", parsedData);
     try {
       var method = parsedData.data[0][0].method;
-      console.log("Received data:", method, parsedData);
+      console.log("Method:", method);
       var callBack = me.callBacks[method];
       if (parsedData.api_status === 0)
         try {
@@ -135,6 +143,13 @@ window.api.initSocket = function () {
               if (!error) {
                 riot.update();
                 showAlertComponent("Произошла непредвиденная ошибка. Свяжитесь с нашей службой поддержки +998 71 2310880")
+                window.writeLog(
+                  {
+                    reason: 'unexpected error while working with onSuccess function',
+                    error:ERROR,
+                    parsedData: parsedData
+                  }
+                );
               }
               else {
                 if (sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true)
@@ -145,12 +160,17 @@ window.api.initSocket = function () {
             }
           } catch (error) {
             console.error("Error on parsing parsedData.data[0][0].error_note", error);
+            window.writeLog(
+              {
+                reason: 'Error on parsing parsedData.data[0][0].error_note',
+                error: error,
+              }
+            );
           }
         }
       try {
         callBack.err(parsedData.api_status, parsedData.api_status_message, parsedData.data);
-      }
-      catch (error) {
+      } catch (error) {
         console.error("Error on socket initializing: ", error);
       }
     } catch (error) {
@@ -162,9 +182,20 @@ window.api.initSocket = function () {
     console.error("Onerror event in InitSocket", error);
     window.isConnected = false;
     if (modeOfApp.offlineMode) return;
-    console.log('Error with socket ' + error.message);
-    if (navigator.connection.type !== Connection.NONE) {
-      showAlertComponent("Сервер временно недоступен");
+    try {
+      callBack.socketErr();
+    } catch (error) {
+      console.error("Error on call socketErr callBack: ", error);
+    }
+    console.log('number of attemps', window.numberOfAttemps)
+    if (navigator.connection.type !== Connection.NONE && navigator.connection.type !== Connection.UNKNOWN) {
+      if (window.numberOfAttemps == 3) {
+        window.numberOfAttemps = 0;
+        showAlertComponent("Связь с сервером потеряна. Повторите попытку.");
+      } else {
+        window.numberOfAttemps++;
+        window.api.init();
+      }
     }
     riot.update();
   };
@@ -186,20 +217,21 @@ window.api.send = function (params) {
     ok: function (data) {
       if (stopSpinner) {
         window.api.spinnerOn = false;
-        if (device.platform !== 'BrowserStand') {
-          console.log("Stopping spinner from webApi on answer of api")
-          SpinnerPlugin.activityStop();
-        }
+        window.stopSpinner();
       }
       onSuccess.call(scope, data);
     },
     err: function (api_status, api_status_message, data) {
-      if (device.platform !== 'BrowserStand') {
-        console.log("Spinner Stop in err function of WebApi");
-        SpinnerPlugin.activityStop();
-      }
+      window.stopSpinner();
       console.log("CONNECTION ERROR WEB SOCKET ON FAIL CALL");
       onFail.call(scope, api_status, api_status_message, data);
+      window.writeLog(scope, api_status, api_status_message, data);
+    },
+    socketErr: function () {
+      window.stopSpinner();
+      if (params.onEmergencyStop !== undefined) {
+        onEmergencyStop.call();
+      }
     }
   };
 
@@ -219,14 +251,13 @@ function onlineDetector() {
 }
 
 function offlineDetector() {
-  console.log("navigator connection", navigator.connection.type, Connection.NONE);
-  if (navigator.connection.type === Connection.NONE) {
-    window.isConnected = false;
-    console.log("Offline detector, window.isConnected:", window.isConnected);
-    if (device.platform === 'Android')
-      showConfirmComponent("Сервер временно недоступен.\nПерейти в оффлайн режим ?", 'internet');
-    else {
-      showAlertComponent("Сервер временно недоступен");
-    }
+  window.isConnected = false;
+  window.stopSpinner();
+  window.clearTimers();
+  if (device.platform === 'Android')
+    showConfirmComponent("Интернет-соединение отсутствует.\nПерейти в офлайн режим ?", 'internet');
+  else {
+    showAlertComponent("Интернет-соединение отсутствует. Проверьте подключение.");
   }
+  console.log("Offline detector, window.isConnected:", window.isConnected);
 }

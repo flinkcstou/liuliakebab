@@ -1,13 +1,13 @@
 <view-service-page-new class="view-service-page riot-tags-main-container">
-  <div class="pay-page-title" style="border-style: none;">
-    <p class="{servicepage-title :opts.mode!='ADDAUTOPAY', autopay-method-page-title:opts.mode=='ADDAUTOPAY'}">
+  <div class="pay-page-title page-title-shadow" style="border-style: none;">
+    <p class="servicepage-title">
       {(opts.mode=='ADDAUTOPAY')?(window.languages.ViewAutoPayTitleName):("")}
       {titleName}</p>
     <p class="servicepage-category-field">{(opts.mode=='ADDAUTOPAY')?
       (window.languages.ViewAutoPayMethodSchedulerText):(categoryName)}</p>
-    <div id="servicePageBackButtonId" role="button" aria-label="{window.languages.Back}" ontouchend="goToBack()"
+    <div id="servicePageBackButtonId" role="button" aria-label="{window.languages.Back}" ontouchend="onTouchEndOfBack()"
          ontouchstart="onTouchStartOfBack()"
-         class="{servicepage-button-back:opts.mode!='ADDAUTOPAY', autopay-method-back-button:opts.mode=='ADDAUTOPAY'}">
+         class="servicepage-button-back">
     </div>
     <div type="button" class="servicepage-service-icon" if="{opts.mode=='ADDAUTOPAY'}"
          style="background-image: url({serviceIcon})"></div>
@@ -16,20 +16,20 @@
 
   <div class="servicepage-body-container" if="{formType!=2}">
 
-    <div class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDAUTOPAY'}">
-      <p class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
+    <div id="autopayField" class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDAUTOPAY'}">
+      <p id="autoPayNameTitle" class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
 
       <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="autoPayNameInput"
-             autofocus="true" onkeyup="paymentNameVerificationKeyUp()"/>
+             autofocus="true" onkeyup="paymentNameVerificationKeyUp()" onfocus="colorField('autopay')"/>
     </div>
 
-    <div class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDFAVORITE'}">
-      <p class="servicepage-text-field">{window.languages.ViewServicePageFavoriteNameField}</p>
+    <div id="favoriteField" class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDFAVORITE'}">
+      <p id="favoriteNameTitle" class="servicepage-text-field">{window.languages.ViewServicePageFavoriteNameField}</p>
 
       <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="favoriteNameInput"
              placeholder="{window.languages.ViewServicePageFavoriteNamePlaceholder}" autofocus="true"
              value="{opts.favoriteName}"
-             onkeyup="paymentNameVerificationKeyUp()"/>
+             onkeyup="paymentNameVerificationKeyUp()" onfocus="colorField('favorite')"/>
     </div>
 
     <div class="servicepage-fields-dropdown" if="{dropDownOn}" ontouchend="openDropDown()" id="firstFieldChoiceId">
@@ -39,7 +39,8 @@
 
     <div class="servicepage-second-dropdown-field" if="{hasFirstLevel && service.category_id!=11}"
          ontouchend="openDropDownTwo()" role="button" aria-label="{chosenFieldNameTwo}">
-      <p if="{formType==3 || formType==4}" class="servicepage-text-field servicepage-second-dropdown-field-text">
+      <p if="{formType==3 || formType==4 || formType==5}"
+         class="servicepage-text-field servicepage-second-dropdown-field-text">
         {(service.options_title)?(service.options_title):("")}</p>
       <p class="servicepage-dropdown-text-field">{chosenFieldNameTwo}</p>
       <div class="servicepage-dropdown-icon"></div>
@@ -54,7 +55,7 @@
 
     <div class="servicepage-first-field" id="firstField"
          hidden="{modeOfApp.offlineMode && opts.chosenServiceId == 'mynumber'}">
-      <p class="servicepage-text-field">{chosenFieldName}</p>
+      <p id="firstFieldTitle" class="servicepage-text-field">{chosenFieldName}</p>
       <p class="servicepage-number-first-part" if="{phoneFieldBool}">+{window.languages.CodeOfCountry}</p>
 
       <div class="servicepage-prefix-dropdown" if="{!phoneFieldBool && hasPrefixes}" ontouchend="openPrefixesDropDown()"
@@ -67,7 +68,7 @@
                            servicepage-number-input-part-three: !phoneFieldBool && !isNumber && !hasPrefixes}"
              type="{inputType}"
              id="firstFieldInput"
-             onfocus="bordersColor()"
+             onfocus="colorField('firstField')"
              value="{defaultNumber || opts.first_field_value}"
              oninput="telVerificationOnInput()"
              onpaste="telVerificationOnPaste()"
@@ -94,9 +95,10 @@
       <div class="servicepage-dropdown-icon"></div>
     </div>
 
-    <div class="{servicepage-amount-field: !dropDownOn, servicepage-amount-field-two: dropDownOn}"
+    <div hidden="{formType==5}"
+         class="{servicepage-amount-field: !dropDownOn, servicepage-amount-field-two: dropDownOn}"
          id="amountField">
-      <p class="servicepage-text-field">{amountFieldTitle}</p>
+      <p id="amountFieldTitle" class="servicepage-text-field">{amountFieldTitle}</p>
       <p if="{commissionPercent}" class="servicepage-amount-tax-text-field">
         {window.languages.ViewServicePageAmountTaxText} {tax}
         {window.languages.Currency}</p>
@@ -105,6 +107,7 @@
              readonly="{!service['amount_editable']}"
              pattern="[0-9]"
              placeholder="{placeHolderText}"
+             onfocus="colorField('amount')"
              onmouseup="eraseAmountDefault()" onkeyup="sumForPay()" oninput="sumForPay()"/>
       <div if="{!modeOfApp.offlineMode && service['amount_editable'] && calcOn}" class="servicepage-amount-icon"
            ontouchstart="onTouchStartOfAmountCalculator()" role="button"
@@ -115,11 +118,12 @@
     </div>
 
 
-    <button id="enterButtonId"
+    <button id="enterButtonId" style="bottom: {window.bottomButtonBottom}"
             class="{servicepage-button-enter-enabled: enterButtonEnabled,servicepage-button-enter-disabled:!enterButtonEnabled}"
             ontouchstart="onTouchStartOfEnter()"
             ontouchend="onTouchEndOfEnter()">
-      {enterButton ? window.languages.ViewServicePageEnterLabel:window.languages.ViewServicePageSaveLabel}
+      {enterButton ? (modeOfApp.offlineMode ?window.languages.ViewServicePagePayLabel:
+      window.languages.ViewServicePageEnterLabel):window.languages.ViewServicePageSaveLabel}
     </button>
 
   </div>
@@ -198,20 +202,20 @@
 
   <div class="servicepage-formtype-two-container" if="{formType==2}">
 
-    <div class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDAUTOPAY'}">
-      <p class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
+    <div id="autopayField" class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDAUTOPAY'}">
+      <p id="autoPayNameTitle" class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
 
       <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="autoPayNameInput"
-             autofocus="true" onkeyup="paymentNameVerificationKeyUp()"/>
+             autofocus="true" onkeyup="paymentNameVerificationKeyUp()" onfocus="colorFieldFormTypeTwo('autopay')"/>
     </div>
 
-    <div class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDFAVORITE'}">
-      <p class="servicepage-text-field">{window.languages.ViewServicePageFavoriteNameField}</p>
+    <div id="favoriteField" class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDFAVORITE'}">
+      <p id="favoriteNameTitle" class="servicepage-text-field">{window.languages.ViewServicePageFavoriteNameField}</p>
 
       <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="favoriteNameInput"
              placeholder="{window.languages.ViewServicePageFavoriteNamePlaceholder}" autofocus="true"
              value="{opts.favoriteName}"
-             onkeyup="paymentNameVerificationKeyUp()"/>
+             onkeyup="paymentNameVerificationKeyUp()" onfocus="colorFieldFormTypeTwo('favorite')"/>
     </div>
 
     <div
@@ -228,7 +232,8 @@
       </div>
     </div>
 
-    <button id="formTypeTwoBtnId" class="servicepage-button-save" ontouchstart="onTouchStartOfEnter()"
+    <button id="formTypeTwoBtnId" style="bottom: {window.bottomButtonBottom}" class="servicepage-button-save"
+            ontouchstart="onTouchStartOfEnter()"
             ontouchend="formTypeTwoButtonFunction()">
       {!enterButton?window.languages.ViewServicePageSaveLabel:window.languages.ViewServicePageEnterLabel}
     </button>
@@ -236,8 +241,8 @@
 
   <div hidden="{!showComponent}" id="blockAmountCalculatorId" class="component-calc">
     <div id="rightButton" type="button" role="button" aria-label="{window.languages.Close}"
-         class="component-banklist-close-button" ontouchstart="onTouchStartOfCloseIcon()"
-         ontouchend="closeComponent()"></div>
+         class="component-banklist-close-button" ontouchstart="closeCalculatorTouchStart()"
+         ontouchend="closeCalculatorTouchEnd()"></div>
     <div class="component-calc-name-title">{window.languages.ViewAmountCalculatorNameTitle}</div>
 
     <div class="component-calc-fields-container">
@@ -255,13 +260,13 @@
       </div>
 
       <div class="component-calc-buttons-container">
-        <div class="component-calc-button component-calc-cancel-button" ontouchstart="onTouchStartOfClose()"
-             ontouchend="closeAmountComponent()">
+        <div class="component-calc-button component-calc-cancel-button" ontouchstart="closeAmountComponentTouchStart()"
+             ontouchend="closeAmountComponentTouchEnd()">
           <p class="component-calc-button-label component-calc-cancel-button-label">
             {window.languages.ViewAmountCalculatorCancelText}</p>
         </div>
-        <div id="acceptConvertedBtnId" class="component-calc-button" ontouchstart="onTouchStartOfAccept()"
-             ontouchend="acceptConvertedAmount()">
+        <div id="acceptConvertedBtnId" class="component-calc-button" ontouchstart="acceptConvertedAmountTouchStart()"
+             ontouchend="acceptConvertedAmountTouchEnd()">
           <p class="component-calc-button-label">{window.languages.ViewAmountCalculatorAcceptText}</p>
         </div>
       </div>
@@ -272,70 +277,46 @@
 
   <component-tour view="calculator" focusfield="{true}"></component-tour>
 
-
   </div>
 
   <script>
 
     window.checkShowingComponent = null;
     var scope = this;
-
+    var backStartY, backStartX, backEndY, backEndX;
+    var cursorPositionSelectionStart, cursorPositionSelectionEnd, oldValueOfNumber;
+    var searchContactStartY, searchContactStartX, searchContactEndY, searchContactEndX;
+    var amountCalcStartY, amountCalcStartX, amountCalcEndY, amountCalcEndX;
+    var closeIconStartY, closeIconStartX, closeIconEndY, closeIconEndX;
+    var closeStartY, closeStartX, closeEndY, closeEndX;
+    var acceptStartY, acceptStartX, acceptEndY, acceptEndX;
+    var servicePageTouchStartY, servicePageTouchEndY, servicePageTouchStartX, servicePageTouchEndX;
+    var closeFirstFieldDropdownTouchStartX, closeFirstFieldDropdownTouchStartY,
+      closeFirstFieldDropdownTouchEndX, closeFirstFieldDropdownTouchEndY;
+    var closePrefixDropdownTouchStartX, closePrefixDropdownTouchStartY,
+      closePrefixDropdownTouchEndX, closePrefixDropdownTouchEndY;
+    var closeFirstDropdownTouchStartX, closeFirstDropdownTouchStartY,
+      closeFirstDropdownTouchEndX, closeFirstDropdownTouchEndY;
+    var closeSecondDropdownTouchStartX, closeSecondDropdownTouchStartY,
+      closeSecondDropdownTouchEndX, closeSecondDropdownTouchEndY;
+    var enterStartY, enterStartX, enterEndY, enterEndX;
+    var contactStopChanging = false;
     scope.showErrorOfLimit = false;
-
+    var onPaste = false;
+    scope.selectedId = '';
 
     console.log("opts in ServicePageNew", opts);
 
-
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-page-new') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-service-page-new',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-service-page-new', opts);
 
     if (opts.id) {
       opts.chosenServiceId = opts.id;
     }
     if (opts.amountText) {
       opts.amountText = !opts.amountText ? 0 : window.amountTransform(opts.amountText.toString());
-      console.log("111", opts.amountText);
       scope.tax = opts.tax ? opts.tax : 0;
       scope.update();
     }
-
-    var backStartY, backStartX, backEndY, backEndX;
-
-    scope.onTouchStartOfBack = onTouchStartOfBack = function () {
-      event.stopPropagation();
-
-      servicePageBackButtonId.style.webkitTransform = 'scale(0.7)'
-
-      backStartY = event.changedTouches[0].pageY;
-      backStartX = event.changedTouches[0].pageX;
-    };
-
-
-    goToBack = function () {
-      event.stopPropagation();
-
-      servicePageBackButtonId.style.webkitTransform = 'scale(1)'
-
-      backEndY = event.changedTouches[0].pageY;
-      backEndX = event.changedTouches[0].pageX;
-
-      if (Math.abs(backStartY - backEndY) <= 20 && Math.abs(backStartX - backEndX) <= 20) {
-        window.viewServicePinCards = {};
-        event.preventDefault();
-        event.stopPropagation();
-        onBackParams.opts = JSON.parse(JSON.stringify(opts));
-        onBackKeyDown();
-        scope.unmount()
-      }
-    };
-
 
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
@@ -355,24 +336,44 @@
     if (loginInfo)
       var sessionKey = loginInfo.session_key;
 
-    //var numberForPayTransaction;
-
-
-    //    console.log("click_client_servicesParamsMapTwo", localStorage.getItem("click_client_servicesParamsMapTwo"));
-    //    console.log("click_client_servicesParamsMapThree", localStorage.getItem("click_client_servicesParamsMapThree"));
-    //    console.log("click_client_servicesParamsMapFour", localStorage.getItem("click_client_servicesParamsMapFour"));
-    //    console.log("click_client_servicesParamsMapFive", localStorage.getItem("click_client_servicesParamsMapFive"));
-
     scope.update(scope.categoryNamesMap);
 
 
+    scope.onTouchStartOfBack = onTouchStartOfBack = function () {
+      event.stopPropagation();
+
+      servicePageBackButtonId.style.webkitTransform = 'scale(0.7)';
+
+      backStartY = event.changedTouches[0].pageY;
+      backStartX = event.changedTouches[0].pageX;
+    };
+
+    scope.onTouchEndOfBack = onTouchEndOfBack = function () {
+      event.stopPropagation();
+
+      servicePageBackButtonId.style.webkitTransform = 'scale(1)';
+
+      backEndY = event.changedTouches[0].pageY;
+      backEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(backStartY - backEndY) <= 20 && Math.abs(backStartX - backEndX) <= 20) {
+        window.viewServicePinCards = {};
+        event.preventDefault();
+        event.stopPropagation();
+        onBackParams.opts = JSON.parse(JSON.stringify(opts));
+        onBackKeyDown();
+        scope.unmount()
+      }
+    };
+
     checkFieldsToActivateNext = function (from) {
 
-      if (!scope.service['amount_editable']) return
+      if (!scope.service['amount_editable']) return;
 
       if (amountForPayTransaction < scope.service.min_pay_limit && from == 'sum' && amount.value.length != 0) {
         scope.showErrorOfLimit = true;
         amountField.style.borderBottom = 3 * widthK + 'px solid red';
+        amountFieldTitle.style.color = 'red';
         scope.enterButtonEnabled = false;
         scope.update();
         placeHolderSumId.style.color = 'red';
@@ -380,13 +381,14 @@
       }
       else if (from == 'sum' && amountField.length >= 1) {
         amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
-//        placeHolderSumId.style.color = '#515151';
+        amountFieldTitle.style.color = '#01cfff';
         scope.showErrorOfLimit = false;
         scope.update()
       }
       if (amountForPayTransaction > scope.service.max_pay_limit && from == 'sum' && amount.value.length != 0) {
         scope.showErrorOfLimit = true;
         amountField.style.borderBottom = 3 * widthK + 'px solid red';
+        amountFieldTitle.style.color = 'red';
         scope.enterButtonEnabled = false;
         scope.update();
         placeHolderSumId.style.color = 'red';
@@ -394,7 +396,7 @@
       }
       else if (from == 'sum') {
         amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
-//        placeHolderSumId.style.color = '#515151';
+        amountFieldTitle.style.color = '#01cfff';
         scope.showErrorOfLimit = false;
         scope.update()
       }
@@ -417,14 +419,14 @@
       if (this.firstFieldInput) {
 
         if (scope.phoneFieldBool && firstFieldInput && opts.chosenServiceId != "mynumber") {
+
           if (firstFieldInput.value.length < 10) {
-            //console.log("Неправильно введён номер телефона");
 
             scope.enterButtonEnabled = false;
             scope.update(scope.enterButtonEnabled);
-
             return;
           }
+
         } else if (firstFieldInput && firstFieldInput.value.length == 0 && opts.chosenServiceId != "mynumber") {
           console.log("Нет значения первого поля");
           scope.enterButtonEnabled = false;
@@ -434,7 +436,7 @@
       }
 
 
-      if (scope.formType == 3) {
+      if (scope.formType == 3 || scope.formType == 5) {
 
         if (scope.hasSecondLevel)
           opts.communalParam = scope.chosenFieldParamIdThree;
@@ -460,28 +462,28 @@
           scope.update(scope.enterButtonEnabled);
           return;
         }
-      }
+      } else if (scope.formType != 5) {
 
-      if (amountForPayTransaction < scope.service.min_pay_limit) {
-        console.log("amount=", amountForPayTransaction);
-        console.log(scope.service.lang_min_amount);
-        scope.enterButtonEnabled = false;
-        scope.update(scope.enterButtonEnabled);
-        return;
-      }
-      if (amountForPayTransaction > scope.service.max_pay_limit) {
-        console.log(scope.service.lang_max_amount);
-        scope.enterButtonEnabled = false;
-        scope.update(scope.enterButtonEnabled);
-        return;
+        if (amountForPayTransaction < scope.service.min_pay_limit) {
+          console.log("amount=", amountForPayTransaction);
+          console.log(scope.service.lang_min_amount);
+          scope.enterButtonEnabled = false;
+          scope.update(scope.enterButtonEnabled);
+          return;
+        }
+        if (amountForPayTransaction > scope.service.max_pay_limit) {
+          console.log(scope.service.lang_max_amount);
+          scope.enterButtonEnabled = false;
+          scope.update(scope.enterButtonEnabled);
+          return;
+        }
       }
       scope.enterButtonEnabled = true;
       scope.update(scope.enterButtonEnabled);
 
 
-    }
+    };
 
-    var contactStopChanging = false
     telPayVerificationKeyDown = function (input) {
 
       if (scope.phoneFieldBool)
@@ -494,24 +496,19 @@
         }
     };
 
-    var onPaste = false;
-
     telVerificationOnPaste = function () {
       onPaste = true;
-    }
+    };
 
     telVerificationOnInput = function () {
       if (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT && onPaste) {
         if (firstFieldInput.type != 'text' && scope.phoneFieldBool)
           firstFieldInput.value = inputVerification.telVerificationWithSpace(inputVerification.telVerification(firstFieldInput.value))
 
-
         onPaste = false;
-
       }
-    }
+    };
 
-    var cursorPositionSelectionStart, cursorPositionSelectionEnd, oldValueOfNumber;
     telPayVerificationKeyUp = function () {
 
       if (contactStopChanging) {
@@ -520,96 +517,80 @@
 
       cursorPositionSelectionStart = firstFieldInput.selectionStart;
       cursorPositionSelectionEnd = firstFieldInput.selectionEnd;
-      oldValueOfNumber = firstFieldInput.value
+      oldValueOfNumber = firstFieldInput.value;
 
       if (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
         if (firstFieldInput.type != 'text' && scope.phoneFieldBool)
-          firstFieldInput.value = inputVerification.telVerificationWithSpace(inputVerification.telVerification(firstFieldInput.value))
+          firstFieldInput.value = inputVerification.telVerificationWithSpace(inputVerification.telVerification(firstFieldInput.value));
 
         if (!onPaste) {
-          firstFieldInput.selectionStart = cursorPositionSelectionStart
-          firstFieldInput.selectionEnd = cursorPositionSelectionEnd
+          firstFieldInput.selectionStart = cursorPositionSelectionStart;
+          firstFieldInput.selectionEnd = cursorPositionSelectionEnd;
         }
 
         if (oldValueOfNumber != firstFieldInput.value && cursorPositionSelectionStart == 3)
           firstFieldInput.selectionStart = cursorPositionSelectionStart + 1;
 
       }
+
       checkFieldsToActivateNext();
     };
 
     paymentNameVerificationKeyUp = function () {
 
-      if (scope.formType != 2)
+      if (scope.formType != 2) {
         checkFieldsToActivateNext();
+      }
       else {
-
         if (opts.mode == 'ADDAUTOPAY' && this.autoPayNameInput && this.autoPayNameInput.value.length < 1) {
-          console.log("Введите название автоплатежа");
           formTypeTwoBtnId.style.pointerEvents = 'none';
           formTypeTwoBtnId.style.backgroundColor = '#D2D2D2';
           scope.update(formTypeTwoBtnId);
           return;
         }
-
         if (opts.mode == 'ADDFAVORITE' && this.favoriteNameInput && this.favoriteNameInput.value.length < 1) {
-          console.log("Введите название избранного плтаежа");
           formTypeTwoBtnId.style.pointerEvents = 'none';
           formTypeTwoBtnId.style.backgroundColor = '#D2D2D2';
           scope.update(formTypeTwoBtnId);
           return;
         }
-
         if (opts.cardTypeId || opts.amountText) {
           formTypeTwoBtnId.style.pointerEvents = 'auto';
           formTypeTwoBtnId.style.backgroundColor = '#00a8f1';
           scope.update(formTypeTwoBtnId);
         }
-
       }
-
     };
-
 
     this.on('mount', function () {
 
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).calculator && scope.calcOn) {
-        if (firstFieldInput)
-          firstFieldInput.blur();
+
+        window.blurFields();
         componentTourId.style.display = "block";
         if (device.platform != 'BrowserStand')
-          StatusBar.backgroundColorByHexString("#004663");
+          StatusBar.backgroundColorByHexString("#ffffff");
       }
       else {
         focusFieldAfterTourClosed();
       }
 
       if (opts && opts.number) {
-        firstFieldInput.value = inputVerification.telVerificationWithSpace(opts.number);
+        firstFieldInput.value = inputVerification.telVerificationWithSpace(inputVerification.telVerification(opts.number));
         scope.update();
-
       }
-
 
       if (opts.amountWithoutSpace && opts.amountWithoutSpace.length > 0) {
         amount.value = opts.amountText;
         checkFirst = true;
         amountForPayTransaction = opts.amountWithoutSpace;
       }
-      else if (scope.formType != 2)
-//        amount.value = 0
-
-        if (modeOfApp.offlineMode) {
-          if (this.enterButtonId)
-            enterButtonId.innerText = 'Оплатить'
-        }
-
-      checkFieldsToActivateNext()
-
-
+      else if (scope.formType != 2) {
+        checkFieldsToActivateNext();
+      }
     });
 
-    focusFieldAfterTourClosed = function () {
+    scope.focusFieldAfterTourClosed = focusFieldAfterTourClosed = function () {
 
       if (opts.mode != 'ADDAUTOPAY' && opts.mode != 'ADDFAVORITE') {
         if (device.platform == 'iOS') {
@@ -644,10 +625,61 @@
         }
       }
       scope.update()
+    };
 
-    }
+    colorField = function (field) {
+      if (field == 'firstField') {
+        firstField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+        firstFieldTitle.style.color = '#01cfff';
+        amountField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+        amountFieldTitle.style.color = 'gray';
+        if (opts.mode == 'ADDAUTOPAY') {
+          autopayField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+          autoPayNameTitle.style.color = 'gray';
+        } else if (opts.mode == 'ADDFAVORITE') {
+          favoriteField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+          favoriteNameTitle.style.color = 'gray';
+        }
+      } else if (field == 'amount') {
+        amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+        amountFieldTitle.style.color = '#01cfff';
+        firstField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+        firstFieldTitle.style.color = 'gray';
+        if (opts.mode == 'ADDAUTOPAY') {
+          autopayField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+          autoPayNameTitle.style.color = 'gray';
+        } else if (opts.mode == 'ADDFAVORITE') {
+          favoriteField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+          favoriteNameTitle.style.color = 'gray';
+        }
+      } else if (field == 'autopay') {
+        autopayField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+        autoPayNameTitle.style.color = '#01cfff';
+        firstField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+        firstFieldTitle.style.color = 'gray';
+        amountField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+        amountFieldTitle.style.color = 'gray';
+      } else if (field == 'favorite') {
+        favoriteField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+        favoriteNameTitle.style.color = '#01cfff';
+        firstField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+        firstFieldTitle.style.color = 'gray';
+        amountField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+        amountFieldTitle.style.color = 'gray';
+      }
 
-    var searchContactStartY, searchContactStartX, searchContactEndY, searchContactEndX;
+    };
+
+    colorFieldFormTypeTwo = function (field) {
+      if (field == 'autopay') {
+        autopayField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+        autoPayNameTitle.style.color = '#01cfff';
+      } else if (field == 'favorite') {
+        favoriteField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+        favoriteNameTitle.style.color = '#01cfff';
+      }
+    };
+
 
     scope.onTouchStartOfSearchContact = onTouchStartOfSearchContact = function () {
       event.stopPropagation();
@@ -690,10 +722,7 @@
           console.log(e)
         }
       }
-    }
-
-
-    var amountCalcStartY, amountCalcStartX, amountCalcEndY, amountCalcEndX;
+    };
 
     scope.onTouchStartOfAmountCalculator = onTouchStartOfAmountCalculator = function () {
       event.stopPropagation();
@@ -709,28 +738,26 @@
 
       if (Math.abs(amountCalcStartY - amountCalcEndY) <= 20 && Math.abs(amountCalcStartX - amountCalcEndX) <= 20) {
         if (modeOfApp.demoVersion) {
-          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-//        confirm(question)
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
+
           scope.confirmNote = question;
           scope.confirmType = 'local';
 
           window.common.alert.show("componentConfirmId", {
             parent: scope,
             "confirmnote": scope.confirmNote,
-            "confirmtype": scope.confirmType,
+            "confirmtype": scope.confirmType
           });
 
           scope.result = function (bool) {
             if (bool) {
               localStorage.clear();
-              window.location = 'index.html'
-              scope.unmount()
+              window.location = 'index.html';
+              scope.unmount();
               return
             }
             else {
-
               window.common.alert.hide("componentConfirmId");
-
               return
             }
           };
@@ -739,8 +766,6 @@
           return
         }
 
-//      if (!localStorage.getItem('click_client_currency_rate')) {
-//        console.log("no currency rate in localStorage");
         window.api.call({
           method: 'rate.convert',
           input: {
@@ -754,20 +779,16 @@
           onSuccess: function (result) {
             console.log('rate.convert', result);
             if (result[0][0].error == 0) {
-              scope.currencyRate = result[1][0].current_rate;
-//              console.log("API returned = ", scope.currencyRate);
-//              localStorage.setItem('click_client_currency_rate', scope.currencyRate);
 
+              scope.currencyRate = result[1][0].current_rate;
               scope.update(scope.currencyRate);
             }
             else {
-              scope.clickPinError = false;
               scope.errorNote = result[0][0].error_note;
 
               window.common.alert.show("componentAlertId", {
                 parent: scope,
-                clickpinerror: scope.clickPinError,
-                errornote: scope.errorNote,
+                errornote: scope.errorNote
               });
 
               scope.update();
@@ -775,92 +796,68 @@
           },
 
           onFail: function (api_status, api_status_message, data) {
-            console.log('rate.convert');
-            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-            console.error(data);
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              errornote: api_status_message
+            });
           }
         });
-//      }
-//    else {
-        //        scope.currencyRate = localStorage.getItem('click_client_currency_rate');
-        //        console.log("currency rate is in localStorage=", scope.currencyRate);
-        //      }
 
-        try {
-          this.firstFieldInput.blur();
-        } catch (error) {
+        window.blurFields();
 
-          console.log(error);
-        }
-
-        scope.showComponent = true
+        scope.showComponent = true;
         window.checkShowingComponent = scope;
-//      blockAmountCalculatorId.style.display = 'block';
         amountCalcInputId.focus();
         scope.update();
       }
-    }
+    };
 
-    var closeIconStartY, closeIconStartX, closeIconEndY, closeIconEndX;
-
-    scope.onTouchStartOfCloseIcon = onTouchStartOfCloseIcon = function () {
+    scope.closeCalculatorTouchStart = closeCalculatorTouchStart = function () {
       event.stopPropagation();
       closeIconStartY = event.changedTouches[0].pageY;
       closeIconStartX = event.changedTouches[0].pageX;
     };
 
-
-    closeComponent = function () {
+    scope.closeCalculatorTouchEnd = closeCalculatorTouchEnd = function () {
       event.stopPropagation();
 
       closeIconEndY = event.changedTouches[0].pageY;
       closeIconEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(closeIconStartY - closeIconEndY) <= 20 && Math.abs(closeIconStartX - closeIconEndX) <= 20) {
-//      blockAmountCalculatorId.style.display = 'none';
         scope.showComponent = false;
         window.checkShowingComponent = null;
         scope.update();
       }
     };
 
-    var closeStartY, closeStartX, closeEndY, closeEndX;
-
-    scope.onTouchStartOfClose = onTouchStartOfClose = function () {
+    scope.closeAmountComponentTouchStart = closeAmountComponentTouchStart = function () {
       event.stopPropagation();
       closeStartY = event.changedTouches[0].pageY;
       closeStartX = event.changedTouches[0].pageX;
     };
 
-    closeAmountComponent = function () {
+    scope.closeAmountComponentTouchEnd = closeAmountComponentTouchEnd = function () {
       event.stopPropagation();
 
       closeEndY = event.changedTouches[0].pageY;
       closeEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(closeStartY - closeEndY) <= 20 && Math.abs(closeStartX - closeEndX) <= 20) {
-//      blockAmountCalculatorId.style.display = 'none';
         scope.showComponent = false;
         window.checkShowingComponent = null;
         scope.update();
       }
     };
 
-    var converted;
-    scope.convertedAmount = 0;
-
     convertAmount = function () {
+      var converted;
+      scope.convertedAmount = 0;
 
       scope.convertedAmount = Math.ceil(amountCalcInputId.value * scope.currencyRate);
-      converted = scope.convertedAmount.toString();
-
-      converted = window.amountTransform(converted);
-
-      console.log("after=", converted);
-
+      converted = window.amountTransform(scope.convertedAmount.toString());
 
       if (scope.convertedAmount > scope.service.max_pay_limit) {
-        console.log("max limit=", scope.service.max_pay_limit);
         convertedAmountFieldId.style.borderBottomColor = 'red';
         acceptConvertedBtnId.style.pointerEvents = 'none';
         scope.convertedAmount = converted;
@@ -873,21 +870,20 @@
       }
     };
 
-    var acceptStartY, acceptStartX, acceptEndY, acceptEndX;
-
-    scope.onTouchStartOfAccept = onTouchStartOfAccept = function () {
+    scope.acceptConvertedAmountTouchStart = acceptConvertedAmountTouchStart = function () {
       event.stopPropagation();
       acceptStartY = event.changedTouches[0].pageY;
       acceptStartX = event.changedTouches[0].pageX;
     };
 
-    acceptConvertedAmount = function () {
+    scope.acceptConvertedAmountTouchEnd = acceptConvertedAmountTouchEnd = function () {
       event.stopPropagation();
 
       acceptEndY = event.changedTouches[0].pageY;
       acceptEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(acceptStartY - acceptEndY) <= 20 && Math.abs(acceptStartX - acceptEndX) <= 20) {
+        convertAmount();
         amount.value = scope.convertedAmount;
 
 
@@ -904,15 +900,6 @@
 
         opts.amountText = amount.value;
         opts.amountWithoutSpace = amountForPayTransaction;
-
-
-//        if (amount.value.length > 0) {
-//          checkFirst = true;
-//          amountForPayTransaction = converted;
-//          opts.amountText = amount.value;
-//          opts.amountWithoutSpace = amountForPayTransaction;
-//        }
-//      blockAmountCalculatorId.style.display = 'none';
         scope.showComponent = false;
         window.checkShowingComponent = null;
         scope.update();
@@ -935,29 +922,8 @@
         console.log('FIELDARRAY', scope.fieldArray)
         opts.chosenServiceId = localStorage.getItem('myNumberOperatorId');
         scope.commissionPercent = scope.service.commission_percent;
+        scope.amountFieldTop = '7%';
 
-        scope.on('mount', function () {
-          firstField.style.display = 'none';
-          amountField.style.top = '7%';
-
-          console.log("opts.amountText", opts.amountText)
-
-          if (opts.amountText)
-            if (opts.amountText.length > 0 && opts) {
-              amount.value = window.amountTransform(opts.amountText);
-              checkFirst = true;
-              amountForPayTransaction = opts.amountWithoutSpace;
-
-              if (!amountForPayTransaction) {
-                amountForPayTransaction = (opts.amountText) ? (opts.amountText) : (0);
-                amountForPayTransaction = parseInt(amountForPayTransaction);
-              }
-            }
-//            else
-//              amount.value = 0;
-
-          console.log("amount=1 = ", opts.amountText);
-        });
       }
       else if (opts.chosenServiceId == 'mynumber') {
         console.log('scope.servicesMap', scope.servicesMap['mynumber']);
@@ -974,45 +940,45 @@
         opts.chosenServiceId = localStorage.getItem('myNumberOperatorId') ? localStorage.getItem('myNumberOperatorId') : 'mynumber';
 
         scope.amountFieldTitle = 'Сумма';
-
-        console.log('TTTTTT', scope.service, scope.titleName, scope.fieldArray, opts.chosenServiceId);
         scope.commissionPercent = scope.service.commission_percent;
-
-        this.on('mount', function () {
-          firstField.style.display = 'none';
-          amountField.style.top = '5.5%';
-
-
-          if (opts.amountText)
-            if (opts.amountText.length > 0 && opts) {
-              amount.value = window.amountTransform(opts.amountText);
-              checkFirst = true;
-              amountForPayTransaction = opts.amountWithoutSpace;
-
-              if (!amountForPayTransaction) {
-                amountForPayTransaction = (opts.amountText) ? (opts.amountText) : (0);
-                amountForPayTransaction = parseInt(amountForPayTransaction);
-              }
-            }
-//            else
-//              amount.value = 0;
-        });
+        scope.amountFieldTop = '5.5%';
       }
+
+      scope.on('mount', function () {
+        firstField.style.display = 'none';
+        amountField.style.top = scope.amountFieldTop;
+
+        console.log("opts.amountText", opts.amountText)
+
+        if (opts.amountText) {
+          if (opts.amountText.length > 0 && opts) {
+            amount.value = window.amountTransform(opts.amountText);
+            checkFirst = true;
+            amountForPayTransaction = opts.amountWithoutSpace;
+
+            if (!amountForPayTransaction) {
+              amountForPayTransaction = (opts.amountText) ? (opts.amountText) : (0);
+              amountForPayTransaction = parseInt(amountForPayTransaction);
+            }
+          }
+        }
+
+      });
+
     } else {
 
       if (scope.servicesMap[opts.chosenServiceId]) {
         scope.service = scope.servicesMap[opts.chosenServiceId][0];
         scope.titleName = scope.service.name;
         scope.serviceIcon = scope.service.image;
-        console.log("scope.service=", scope.service);
         scope.commissionPercent = scope.service.commission_percent;
       }
 
       //Editing amount input for non editable situations
 
       if (!scope.service['amount_editable'] && scope.service['amount_value']) {
-        scope.defaultAmount = window.amountTransform(scope.service['amount_value'])
-        opts.amountText = scope.service['amount_value']
+        scope.defaultAmount = window.amountTransform(scope.service['amount_value']);
+        opts.amountText = scope.service['amount_value'];
         if (scope.service['amount_information_text']) {
           scope.showErrorOfLimit = true;
           scope.placeHolderText = scope.service['amount_information_text']
@@ -1022,11 +988,10 @@
         scope.update();
       }
 
-
       scope.fieldArray = scope.servicesParamsMapOne[opts.chosenServiceId];
 
       if (scope.service.disable_cache && modeOfApp.onlineMode && !modeOfApp.demoVersion) {
-//        console.log("")
+
         window.api.call({
           method: 'get.service.parameters',
           input: {
@@ -1044,7 +1009,6 @@
               if (result[4]) {
                 scope.servicesParamsMapFour = {};
                 for (var i in result[4]) {
-//                    console.log("4. service id=", result[4][i].service_id, "element:", result[4][i]);
                   if (!scope.servicesParamsMapFour[result[4][i].service_id]) {
                     scope.servicesParamsMapFour[result[4][i].service_id] = [];
                     scope.servicesParamsMapFour[result[4][i].service_id].push(result[4][i]);
@@ -1056,7 +1020,6 @@
               if (result[5]) {
                 scope.servicesParamsMapFive = {};
                 for (var i in result[5]) {
-//                    console.log("5. service id=", result[5][i].service_id, "element:", result[5][i]);
                   if (!scope.servicesParamsMapFive[result[5][i].service_id]) {
                     scope.servicesParamsMapFive[result[5][i].service_id] = [];
                     scope.servicesParamsMapFive[result[5][i].service_id].push(result[5][i]);
@@ -1133,10 +1096,7 @@
         });
       }
 
-
     }
-
-    console.log('scope.categoryNamesMap', scope.categoryNamesMap)
 
     scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
     scope.formType = scope.service.form_type;
@@ -1144,13 +1104,12 @@
     var maskOne = /[0-9]/g,
       maskTwo = /[0-9' ']/g,
       amountForPayTransaction = 0,
-      checkFirst = false,
-      defaultAccount;
+      checkFirst = false;
 
     // scope.prepareData = prepareData = function () {
     if (scope.formType != 2) {
 
-      console.log("Yahoo1 formType=", scope.formType, ", Rest=", scope.fieldArray, scope.servicesParamsMapOne[opts.chosenServiceId], scope.servicesParamsMapOne, opts.chosenServiceId);
+      console.log("Yahoo1 formType=", scope.formType);
 
       if (scope.fieldArray) {
         scope.dropDownOn = scope.fieldArray.length > 1;
@@ -1162,14 +1121,10 @@
         console.log("Service ", scope.service)
         scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1" || scope.fieldArray[0].parameter_id == "65536" || scope.fieldArray[0].parameter_id == "128";
         scope.calcOn = scope.service.cost == 1;
-        console.log("scope.servicesParamsMapOne[opts.chosenServiceId]", scope.servicesParamsMapOne[opts.chosenServiceId])
-        console.log("scope.servicesParamsMapTwo[opts.chosenServiceId]", scope.servicesParamsMapTwo[opts.chosenServiceId])
-        console.log("scope.servicesParamsMapThree[opts.chosenServiceId]", scope.servicesParamsMapThree[opts.chosenServiceId])
-        console.log("scope.servicesParamsMapFour[opts.chosenServiceId]", scope.servicesParamsMapFour[opts.chosenServiceId])
-        console.log("scope.servicesParamsMapFive[opts.chosenServiceId]", scope.servicesParamsMapFive[opts.chosenServiceId])
-        console.log("scope.servicesParamsMapSix[opts.chosenServiceId]", scope.servicesParamsMapSix[opts.chosenServiceId])
+
         if (scope.phoneFieldBool) {
-          scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telVerificationWithSpace(opts.firstFieldText);
+          scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telVerificationWithSpace(inputVerification.telVerification(opts.firstFieldText));
+          console.log("PHONE FIELD", scope.defaultNumber);
         }
         scope.inputMaxLength = scope.fieldArray[0].max_len;
         scope.hasPrefixes = false;
@@ -1200,18 +1155,13 @@
         if (!scope.placeHolderText)
           scope.placeHolderText = "от " + window.amountTransform(scope.service.min_pay_limit) + " " + scope.service.lang_amount_currency + " до " + window.amountTransform(scope.service.max_pay_limit) + " " + scope.service.lang_amount_currency
 
-        console.log("CURRENCY", scope.service.lang_amount_currency)
-
-        console.log("after tranform amount=", scope.defaultAmount);
         scope.update();
         scope.inputMaxLength = scope.fieldArray[0].max_len;
-        console.log("INPUT LENGTH=", scope.inputMaxLength);
+
         if (scope.dropDownOn) {
           scope.chosenFieldParamId = opts.firstFieldId ? opts.firstFieldId : scope.fieldArray[0].parameter_id;
 //          scope.oldFieldParamId = scope.fieldArray[1].parameter_id;
         }
-
-        console.log("Yahoooo_1", scope.fieldArray, scope.fieldArray[0], scope.fieldArray[0].input_type);
 
         if (scope.fieldArray[0].input_type == '1' && modeOfApp.onlineMode) {
           scope.inputType = 'tel';
@@ -1228,8 +1178,10 @@
         scope.amountLength = ("" + scope.service.max_pay_limit).length;
       }
 
+      console.log("Yahoooo_1", scope.servicesParamsMapOne[scope.service.id], scope.servicesParamsMapTwo[scope.service.id],
+        scope.servicesParamsMapThree[scope.service.id], scope.servicesParamsMapFour[scope.service.id], scope.servicesParamsMapFive[scope.service.id]);
       scope.hasFirstLevel = false;
-      if (scope.formType == 3 && scope.servicesParamsMapTwo[scope.service.id]) {
+      if (scope.servicesParamsMapTwo[scope.service.id]) {
         scope.firstLevelArray = [];
         scope.secondLevelMap = {};
         scope.chosenFieldNameTwo = scope.servicesParamsMapTwo[scope.service.id][0].name;
@@ -1266,12 +1218,10 @@
           scope.secondLevelArray = scope.secondLevelMap[scope.firstLevelArray[0].id];
         }
 
-        checkFieldsToActivateNext();
-
       }
+      checkFieldsToActivateNext();
 
     }
-
 
     if (scope.formType == 2) {
       scope.pincardsMap = {};
@@ -1293,12 +1243,8 @@
 
 
     openDropDown = function () {
-      try {
-        this.firstFieldInput.blur();
-        this.amount.blur();
-      } catch (error) {
-        console.log(error);
-      }
+
+      window.blurFields();
       this.blockFirstFieldId.style.display = 'block';
       console.log("id=", scope.chosenFieldParamId);
       if (scope.oldFieldParamId) {
@@ -1310,12 +1256,8 @@
     };
 
     openDropDownTwo = function () {
-      try {
-        this.firstFieldInput.blur();
-        this.amount.blur();
-      } catch (error) {
-        console.log(error);
-      }
+
+      window.blurFields();
       this.blockFirstDropdownId.style.display = 'block';
       if (scope.oldFieldParamIdTwo) {
         document.getElementById(scope.oldFieldParamIdTwo).style.backgroundColor = 'white';
@@ -1328,12 +1270,8 @@
     };
 
     openDropDownThree = function () {
-      try {
-        this.firstFieldInput.blur();
-        this.amount.blur();
-      } catch (error) {
-        console.log(error);
-      }
+
+      window.blurFields();
       if (scope.secondLevelArray) {
         this.blockSecondDropdownId.style.display = 'block';
         if (scope.oldFieldParamIdThree) {
@@ -1354,12 +1292,8 @@
     };
 
     openPrefixesDropDown = function () {
-      try {
-        this.firstFieldInput.blur();
-        this.amount.blur();
-      } catch (error) {
-        console.log(error);
-      }
+
+      window.blurFields();
       this.blockPrefixId.style.display = 'block';
 
       if (scope.oldPrefixId) {
@@ -1387,10 +1321,10 @@
           if (scope.fieldArray[i].parameter_id == id) {
             scope.chosenFieldName = scope.fieldArray[i].title;
             scope.chosenFieldPlaceholder = scope.fieldArray[i].placeholder;
-            console.log("PARAMETER ID ", scope.fieldArray[i].parameter_id)
+            console.log("PARAMETER ID ", scope.fieldArray[i].parameter_id);
             scope.phoneFieldBool = scope.fieldArray[i].parameter_id == "1" || scope.fieldArray[0].parameter_id == "65536" || scope.fieldArray[0].parameter_id == "128";
             scope.inputMaxLength = scope.fieldArray[i].max_len;
-            console.log("INPUT LENGTH=", scope.inputMaxLength);
+
 
 //          console.log("Yahoooo_2", scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].input_type);
 
@@ -1449,25 +1383,18 @@
 
         for (var i = 0; i < scope.prefixesArray.length; i++) {
 
-//        console.log("Yahoo2", id, scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].parameter_id);
-
           if (scope.prefixesArray[i].option_id == id) {
             scope.chosenPrefixTitle = scope.prefixesArray[i].title;
             scope.chosenPrefixName = scope.prefixesArray[i].name;
 
-            console.log("option ID ", scope.prefixesArray[i].option_id)
-
             scope.oldPrefixId = scope.chosenPrefixId;
             scope.chosenPrefixId = id;
-            //firstFieldInput.value = '';
             scope.update(scope.chosenPrefixTitle);
             break;
           }
         }
       }
     };
-
-    var servicePageTouchStartY, servicePageTouchEndY, servicePageTouchStartX, servicePageTouchEndX;
 
     scope.onTouchStartOfDropdown = onTouchStartOfDropdown = function () {
       event.stopPropagation();
@@ -1524,15 +1451,6 @@
         checkFieldsToActivateNext();
       }
     };
-
-    var closeFirstFieldDropdownTouchStartX, closeFirstFieldDropdownTouchStartY, closeFirstFieldDropdownTouchEndX,
-      closeFirstFieldDropdownTouchEndY;
-    var closePrefixDropdownTouchStartX, closePrefixDropdownTouchStartY, closePrefixDropdownTouchEndX,
-      closePrefixDropdownTouchEndY;
-    var closeFirstDropdownTouchStartX, closeFirstDropdownTouchStartY, closeFirstDropdownTouchEndX,
-      closeFirstDropdownTouchEndY;
-    var closeSecondDropdownTouchStartX, closeSecondDropdownTouchStartY, closeSecondDropdownTouchEndX,
-      closeSecondDropdownTouchEndY;
 
     closeFirstFieldDropdownTouchStart = function () {
       event.preventDefault();
@@ -1614,7 +1532,6 @@
       }
     };
 
-
     scope.onTouchStartOfDropdownThree = onTouchStartOfDropdownThree = function () {
       event.stopPropagation();
       servicePageTouchStartY = event.changedTouches[0].pageY;
@@ -1657,13 +1574,6 @@
       }
     };
 
-
-    var cards = JSON.parse(localStorage.getItem('click_client_cards'));
-    for (var i in cards) {
-      if (cards[i].default_account === true)
-        defaultAccount = cards[i];
-    }
-
     eraseAmountDefault = function () {
       console.log("in erase amount default");
       event.preventDefault();
@@ -1681,9 +1591,6 @@
         amount.selectionEnd = 0;
       }
 
-      amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
-      firstField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
-
       checkFieldsToActivateNext('sum')
 
     };
@@ -1692,17 +1599,12 @@
       event.preventDefault();
       event.stopPropagation();
 
-
       if (amount.value.length == 1) {
         amount.value = window.amountTransform(amount.value)
       }
 
       if (event.keyCode == 8) {
         amountForPayTransaction = amountForPayTransaction.substring(0, amountForPayTransaction.length - 1)
-      }
-
-      if (amount.value.length == 1 && amount.value == 0) {
-//        amount.value = '';
       }
 
       if (amount.value.match(maskTwo) != null && amount.value.match(maskTwo).length != null) {
@@ -1724,36 +1626,14 @@
       opts.amountText = amount.value;
       opts.amountWithoutSpace = amountForPayTransaction;
 
-//      if (amount.value.length >= 1 && amount.value != 0) {
-//        enterButtonId.style.display = 'block';
-//      }
-//      else {
-//        enterButtonId.style.display = 'none';
-//      }
-
       if (amountForPayTransaction >= 1000) {
         scope.tax = amountForPayTransaction * scope.commissionPercent / 100;
         opts.tax = scope.tax;
       }
-      scope.update()
-
+      scope.update();
       checkFieldsToActivateNext('sum');
-
     };
 
-    bordersColor = function () {
-
-      event.preventDefault();
-      event.stopPropagation();
-
-
-      firstField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
-      amountField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
-    };
-
-
-    var enterStartY, enterStartX, enterEndY, enterEndX;
-    //var phoneRegexp = new RegExp(scope.service.validation);
 
     scope.onTouchStartOfEnter = onTouchStartOfEnter = function () {
       event.stopPropagation();
@@ -1768,140 +1648,15 @@
     scope.onTouchEndOfEnter = onTouchEndOfEnter = function () {
       event.stopPropagation();
 
-      opts.cost = scope.service.cost
-      opts.lang_amount_title = scope.service.lang_amount_title
-
       if (this.enterButtonId && scope.enterButtonEnabled)
-        this.enterButtonId.style.webkitTransform = 'scale(1)'
+        this.enterButtonId.style.webkitTransform = 'scale(1)';
 
       enterEndY = event.changedTouches[0].pageY;
       enterEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(enterStartY - enterEndY) <= 20 && Math.abs(enterStartX - enterEndX) <= 20) {
 
-
-        try {
-          this.firstFieldInput.blur();
-          this.amount.blur();
-        } catch (error) {
-
-          console.log(error);
-        }
-
-        if (scope.phoneFieldBool && firstFieldInput.value.length < 10 && opts.chosenServiceId != "mynumber") {
-          scope.clickPinError = false;
-          scope.errorNote = "Неправильно введён номер телефона";
-
-          window.common.alert.show("componentAlertId", {
-            parent: scope,
-            clickpinerror: scope.clickPinError,
-            errornote: scope.errorNote,
-          });
-
-          scope.update();
-
-          return;
-        }
-//        else if (scope.phoneFieldBool && scope.service.validation != null && !phoneRegexp.test(inputVerification.spaceDeleter(firstFieldInput.value)) && opts.chosenServiceId != "mynumber") {
-//          console.log("scope.service.validation", scope.service.validation)
-//          scope.clickPinError = false;
-//          scope.errorNote = "Возможно вы ввели номер другого оператора";
-//          scope.showError = true;
-//          scope.update();
-//          return;
-//        }
-        else if (firstFieldInput.value.length == 0 && opts.chosenServiceId != "mynumber") {
-          scope.clickPinError = false;
-          if (scope.dropDownOn) {
-            for (var i = 0; i < scope.fieldArray.length; i++) {
-              if (scope.fieldArray[i].parameter_id == scope.chosenFieldParamId) {
-                scope.errorNote = scope.fieldArray[i].error_message;
-              }
-            }
-          } else {
-            scope.errorNote = scope.fieldArray[0].error_message;
-          }
-
-          window.common.alert.show("componentAlertId", {
-            parent: scope,
-            clickpinerror: scope.clickPinError,
-            errornote: scope.errorNote,
-          });
-
-          scope.update();
-          return;
-        }
-
-        if (scope.formType == 3) {
-
-          if (scope.hasSecondLevel)
-            opts.communalParam = scope.chosenFieldParamIdThree;
-          else
-            opts.communalParam = scope.chosenFieldParamIdTwo;
-
-          if (!opts.communalParam) {
-            if (scope.hasSecondLevel)
-              scope.errorNote = "Выберите город и район";
-            else
-              scope.errorNote = "Выберите район";
-
-            scope.clickPinError = false;
-
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote,
-            });
-
-            scope.update();
-            return;
-          }
-
-        } else if (scope.formType == 4) {
-          if (scope.chosenFieldParamIdThree)
-            opts.internetPackageParam = scope.chosenFieldParamIdThree;
-          else {
-            scope.clickPinError = false;
-            scope.errorNote = "Выберите интернет пакет";
-
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote,
-            });
-
-            scope.update();
-            return;
-          }
-        }
-
-        if (amountForPayTransaction < scope.service.min_pay_limit) {
-          console.log("amount=", amountForPayTransaction);
-          scope.clickPinError = false;
-          scope.errorNote = scope.service.lang_min_amount;
-
-          window.common.alert.show("componentAlertId", {
-            parent: scope,
-            clickpinerror: scope.clickPinError,
-            errornote: scope.errorNote,
-          });
-
-          scope.update();
-          return;
-        }
-        if (amountForPayTransaction > scope.service.max_pay_limit) {
-          scope.clickPinError = false;
-          scope.errorNote = scope.service.lang_max_amount;
-
-          window.common.alert.show("componentAlertId", {
-            parent: scope,
-            clickpinerror: scope.clickPinError,
-            errornote: scope.errorNote,
-          });
-
-          scope.update();
-          return;
-        }
+        window.blurFields();
 
         opts.formtype = scope.formType;
         opts.firstFieldId = scope.chosenFieldParamId;
@@ -1915,13 +1670,10 @@
         opts.chosenPrefixTitle = scope.chosenPrefixTitle;
         opts.chosenPrefixId = scope.chosenPrefixId;
         opts.chosenPrefixName = scope.chosenPrefixName;
-        opts.transactionId = null;
+        opts.transactionId = parseInt(Date.now() / 1000);
 
         history.arrayOfHistory[history.arrayOfHistory.length - 1].params = opts;
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
-
-
-//      viewServicePage.phoneText = inputVerification.telLengthVerification(firstFieldInput.value, window.languages.PhoneNumberLength);
 
 
         if (opts.mode == 'USUAL' || opts.mode == 'POPULAR' || !opts.mode) {
@@ -2099,11 +1851,7 @@
         }
 
       }
-    }
-
-
-    scope.selectedId = '';
-
+    };
 
     scope.onTouchStartOfPincard = onTouchStartOfPincard = function () {
       event.stopPropagation();
@@ -2122,19 +1870,29 @@
         opts.cardTypeId = cardId;
         opts.amountText = nominal;
 
+        if (opts.mode == 'ADDAUTOPAY') {
+          autopayField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+          autoPayNameTitle.style.color = 'gray';
 
-        if (opts.mode == 'ADDAUTOPAY' && this.autoPayNameInput.value.length < 1) {
-          console.log("Введите название автоплатежа");
-          return;
+          if (this.autoPayNameInput.value.length < 1) {
+            console.log("Введите название автоплатежа");
+            return;
+          }
+        } else if (opts.mode == 'ADDFAVORITE') {
+          favoriteField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
+          favoriteNameTitle.style.color = 'gray';
+
+          if (this.favoriteNameInput.value.length < 1) {
+            console.log("Введите название избранного");
+            return;
+          }
         }
 
         formTypeTwoBtnId.style.pointerEvents = 'auto';
         formTypeTwoBtnId.style.backgroundColor = '#00a8f1';
         scope.update(formTypeTwoBtnId);
-
       }
     };
-
 
     formTypeTwoButtonFunction = function () {
       event.stopPropagation();
@@ -2192,10 +1950,9 @@
         if (opts.mode == 'USUAL' || opts.mode == 'POPULAR' || !opts.mode) {
 
           opts.isInFavorites = !scope.enterButton;
-          date = parseInt(Date.now() / 1000);
-          opts.transactionId =
+          opts.transactionId = parseInt(Date.now() / 1000);
 
-            event.preventDefault();
+          event.preventDefault();
           event.stopPropagation();
 
           if (scope.service.additional_information_type == 0) {
@@ -2280,9 +2037,9 @@
     };
 
     addToFavoritesinServicePage = function (array) {
-//      console.log('scope.fieldArray[0]', scope.fieldArray[0].ussd_query)
+
       var favoritePaymentsList, favoritePaymentsListForApi;
-      console.log("ID for favorite", Math.floor((Math.random() * 1000000) + 1))
+
       var id = Math.floor((Math.random() * 1000000) + 1);
 
       favoritePaymentsList = localStorage.getItem('favoritePaymentsList') ? JSON.parse(localStorage.getItem('favoritePaymentsList')) : [];
@@ -2291,12 +2048,13 @@
 
       if (favoritePaymentsListForApi.length != favoritePaymentsList.length) {
         favoritePaymentsListForApi = [];
-        for (var i in favoritePaymentsList)
+        for (var i in favoritePaymentsList) {
           favoritePaymentsListForApi.push({
             "id": favoritePaymentsList[i].id,
             "type": 1,
             "body": JSON.stringify(favoritePaymentsList[i])
           })
+        }
       }
 
       var newfavorite = {
@@ -2312,11 +2070,6 @@
         "type": 1,
         "body": JSON.stringify(newfavorite)
       });
-
-
-      console.log("favoritePaymentsList=", JSON.stringify(favoritePaymentsList));
-      console.log("favoritePaymentsListForApi=", JSON.stringify(favoritePaymentsListForApi));
-
 
       localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
       localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(favoritePaymentsListForApi));
@@ -2341,12 +2094,12 @@
           }
           else {
             scope.clickPinError = false;
-            scope.errorNote = result[0][0].error_note
+            scope.errorNote = result[0][0].error_note;
 
             window.common.alert.show("componentAlertId", {
               parent: scope,
               clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote,
+              errornote: scope.errorNote
             });
 
             scope.update();
@@ -2364,13 +2117,11 @@
     };
 
     editFavorite = function (params) {
-      console.log('edit favorite', params)
 
-      console.log("Id to edit=", scope.service.id);
       var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
       var favoritePaymentsListForApi = JSON.parse(localStorage.getItem('favoritePaymentsListForApi'));
 
-      for (var i in favoritePaymentsList)
+      for (var i in favoritePaymentsList) {
         if (favoritePaymentsList[i].id == opts.favoriteId) {
           favoritePaymentsList[i].params = params;
 
@@ -2380,12 +2131,12 @@
             "body": JSON.stringify(favoritePaymentsList[i])
           };
 
-          for (var j in favoritePaymentsListForApi)
+          for (var j in favoritePaymentsListForApi) {
             if (favoritePaymentsListForApi[i].id == opts.favoriteId) {
               favoritePaymentsListForApi[i] = editedfavorite;
               break;
             }
-
+          }
 
           window.api.call({
             method: 'update.favourite',
@@ -2406,12 +2157,12 @@
               }
               else {
                 scope.clickPinError = false;
-                scope.errorNote = result[0][0].error_note
+                scope.errorNote = result[0][0].error_note;
 
                 window.common.alert.show("componentAlertId", {
                   parent: scope,
                   clickpinerror: scope.clickPinError,
-                  errornote: scope.errorNote,
+                  errornote: scope.errorNote
                 });
 
                 scope.update();
@@ -2425,14 +2176,13 @@
             }
           });
 
-          console.log("UPDATED FAVORITE", favoritePaymentsList[i]);
           localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
           localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(favoritePaymentsListForApi));
 
           break;
 
         }
-
+      }
     };
 
 

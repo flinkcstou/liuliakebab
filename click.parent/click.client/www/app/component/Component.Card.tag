@@ -7,7 +7,7 @@
   <div class="card-salary-title">{opts.name}</div>
 
   <div class="card-balance-currency-container">
-    <p if="{!modeOfApp.offlineMode}" class="card-balance">{(opts.salary) ? (opts.salary) : (opts.error_message)}</p>
+    <p if="{!modeOfApp.offlineMode}" class="card-balance">{(opts.salary) ? (opts.salary) : (opts.error_message)}<span class="card-balance-fractional">{(opts.salary_fractional) ? (opts.salary_fractional) : ''}</span></p>
     <p if="{!modeOfApp.offlineMode && opts.salary}" class="card-currency">{opts.currency}</p>
 
     <a if="{modeOfApp.offlineMode}" style="color: rgb({opts.fontcolor});" class="offline-card-balance"
@@ -17,7 +17,8 @@
 
   <div class="card-number">
     <div class="card-number-part-one">{opts.numberpartone}</div>
-    <p class="number-stars" if="{opts.numberpartone && opts.numberparttwo}">**** ****</p>
+    <div class="card-number-middle-two">{opts.numbermiddletwo}</div>
+    <p class="number-stars" if="{opts.numberpartone && opts.numberparttwo}">** ****</p>
     <div class="card-number-part-two">{opts.numberparttwo}</div>
   </div>
 
@@ -32,10 +33,6 @@
       console.log('opts.background', opts.background);
       scope.update()
     }
-
-    scope.on("mount", function () {
-
-    });
 
 
     cardTouchStart = function (id) {

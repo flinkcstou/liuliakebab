@@ -1,12 +1,14 @@
 <view-invoice-history-detail class="view-invoice-history riot-tags-main-container">
 
   <div class="invoice-history-detail-title-container">
-    <div class="page-title invoice-history-detail-title">
+    <div class="page-title">
       <p class="name-title">
         {(opts.is_p2p)?(languages.ViewInvoiceHistoryDetailTransferTitle):(languages.ViewInvoiceHistoryDetailPaymentTitle)}</p>
       <div id="backButton" role="button" aria-label="{window.languages.Back}"
            ontouchstart="invoiceHistoryGoToBackStart()" ontouchend="invoiceHistoryGoToBackEnd()"
-           class="invoice-history-detail-general-back-button"></div>
+           class="back-button"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
 
     <div
@@ -17,6 +19,8 @@
 
     <p class="invoice-history-detail-title-phone-number">
       {(opts.is_p2p)?("+"):("")} {opts.inParameter}</p>
+    <div class="title-bottom-border">
+    </div>
   </div>
 
   <div class="invoice-history-detail-container" if="{opts.is_p2p}">
@@ -48,8 +52,6 @@
         {opts.status}</p>
     </div>
 
-    <div class="invoice-history-detail-cover invoice-history-detail-cover-transfer"></div>
-
   </div>
 
   <div class="invoice-history-detail-container" if="{!opts.is_p2p}">
@@ -72,8 +74,6 @@
                                                invoice-history-detail-status-success: opts.status == 'Успешно проведен'}">
         {opts.status}</p>
     </div>
-
-    <div class="invoice-history-detail-cover invoice-history-detail-cover-payment"></div>
 
   </div>
 

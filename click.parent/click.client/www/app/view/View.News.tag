@@ -41,10 +41,45 @@
 
   <script>
     var scope = this;
-    console.log("Is update running here ?");
     scope.newsArray = [];
     scope.newsOpened = false;
+    var touchStartY, touchEndY;
+    var openImage = false;
+    var pageNumber = 2;
 
+    scope.on('mount', function () {
+      console.log("MOUNT NEWS");
+    });
+
+    openNews = function (news) {
+      console.log("news to open", news);
+      var containerId = "newsContainerId" + news.news_id;
+      var textId = "newsTextId" + news.news_id;
+      var longText = news.news_content;
+      var shortText = news.content_short;
+      var imageId = "newsImageId" + news.news_id;
+      var newsId = news.news_id;
+
+
+      console.log("This post is not opened and its id is", newsId);
+      console.log("All posts", scope.newsArray);
+      for (var i in scope.newsArray) {
+        if (scope.newsArray[i].news_id === newsId) {
+          scope.newsArray[i].opened = true;
+        }
+      }
+      console.log(document.getElementById(imageId));
+      if (document.getElementById(imageId))
+        openImage = JSON.parse(document.getElementById(imageId).getAttribute('exist')) === true;
+      document.getElementById(containerId).style.paddingBottom = 100 * widthK + 'px';
+      document.getElementById(containerId).setAttribute('opened', true);
+      if (openImage)
+        document.getElementById(imageId).style.display = 'block';
+      document.getElementById(containerId).style.height = 'auto';
+      document.getElementById(textId).innerHTML = longText;
+
+      scope.update();
+    };
 
     closeNewsTouchEnd = function () {
       event.preventDefault();
@@ -56,14 +91,14 @@
         sessionStorage.setItem("push_news", false)
       }
 
-
       console.log("1 authorized=", JSON.parse(localStorage.getItem('click_client_authorized')));
       console.log("2 settings block=", JSON.parse(localStorage.getItem('settings_block')));
       console.log("3 onResume=", JSON.parse(localStorage.getItem('onResume')));
       console.log("4 session_broken=", JSON.parse(localStorage.getItem('session_broken')));//
-//
-      if (!JSON.parse(localStorage.getItem('click_client_authorized')) || JSON.parse(localStorage.getItem('session_broken')) || (JSON.parse(localStorage.getItem('settings_block')) === true && JSON.parse(localStorage.getItem('onResume')))) {
-//
+
+
+      if ((!JSON.parse(localStorage.getItem('click_client_authorized')) && !modeOfApp.demoVersion) || JSON.parse(localStorage.getItem('session_broken')) || (JSON.parse(localStorage.getItem('settings_block')) === true && JSON.parse(localStorage.getItem('onResume')))) {
+
         console.log("AUTH MOUNT FROM NEWS");
 
         riotTags.innerHTML = "<view-authorization>";
@@ -80,17 +115,12 @@
       scope.unmount()
     };
 
-    var pageNumber = 2;
     newsScrollFunction = function () {
       if ((newsMainContainerId.scrollHeight - newsMainContainerId.scrollTop) == newsMainContainerId.offsetHeight) {
         scope.showNewsFunction(pageNumber);
         pageNumber++;
       }
-
     };
-
-    var touchStartY, touchEndY;
-    var openImage = false;
 
     newsTouchStart = function () {
       touchStartY = event.changedTouches[0].pageY;
@@ -144,20 +174,14 @@
       }
     };
 
-    scope.showNewsFunction = function (pageNumber) {
+    scope.showNewsFunction = function (pageNumber, news_id) {
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var signString = hex_md5(phoneNumber.substring(0, 5) + "CLICK" + phoneNumber.substring(phoneNumber.length - 7, phoneNumber.length));
+      var timeOutTimerNews = 0;
+      var newsToOpen;
 
-      var answerFromServer = false;
+      window.startSpinner();
 
-      if (device.platform !== 'BrowserStand') {
-        var options = {dimBackground: true};
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Spinner start in news");
-        }, function () {
-          console.log("Spinner stop in news");
-        });
-      }
       window.api.call({
         method: 'get.news',
         input: {
@@ -170,7 +194,8 @@
         scope: this,
 
         onSuccess: function (result) {
-          answerFromServer = true;
+          console.log('Clearing timer onSuccess', timeOutTimerNews);
+          window.clearTimeout(timeOutTimerNews);
 
           if (result[0][0].error === 0) {
             for (var i in result[1]) {
@@ -185,9 +210,14 @@
                 if (result[1][i].news_content_short)
                   result[1][i].content_short = result[1][i].news_content_short.substring(0, 120) + '...';
               }
+
+              if (news_id && news_id == result[1][i].news_id)
+                newsToOpen = result[1][i];
               scope.newsArray.push(result[1][i])
             }
-            scope.update()
+            scope.update();
+            if (newsToOpen)
+              openNews(newsToOpen);
           }
           else {
             console.log("view news error 1");
@@ -202,7 +232,8 @@
         },
 
         onFail: function (api_status, api_status_message, data) {
-          answerFromServer = true;
+          console.log('Clearing timer onFail', timeOutTimerNews);
+          window.clearTimeout(timeOutTimerNews);
           window.common.alert.show("componentAlertId", {
             parent: scope,
             errornote: api_status_message,
@@ -211,25 +242,29 @@
           scope.update();
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
-        }
-      });
+        },
+        onTimeOut: function () {
+          timeOutTimerNews = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method:'get.news',
+            });
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              errornote: window.languages.WaitingTimeExpiredText,
+              viewpage: 'view-main-page'
+            });
+            scope.update();
+            window.stopSpinner();
 
-      setTimeout(function () {
-        if (!answerFromServer) {
-          answerFromServer = true;
-          window.common.alert.show("componentAlertId", {
-            parent: scope,
-            errornote: window.languages.WaitingTimeExpiredText,
-            viewpage: 'view-main-page'
-          });
-          scope.update();
-          if (device.platform !== 'BrowserStand') {
-            console.log("Spinner stop in authorization by timeout");
-            SpinnerPlugin.activityStop();
-          }
-          return
+          }, 30000);
+          console.log('creating timeOut', timeOutTimerNews);
+        },
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimerNews);
+          window.clearTimeout(timeOutTimerNews);
         }
-      }, 30000)
+      }, 30000);
     }
 
   </script>

@@ -46,8 +46,7 @@
 <component-notification id="notificationPushId">
 </component-notification>
 
-<div id="alertComponentBlockId" style="opacity: 0;"></div>
-
+<div id="alertTags"></div>
 <div id="riotTags" class="riotTags">
 </div>
 
@@ -56,6 +55,29 @@
 
   api.init();
   var scope = this;
+  sessionStorage.clear();
+
+
+  var _log = console.log;
+  var _error = console.error;
+  var _warn = console.warn;
+
+  console.error = function (errMessage) {
+    _error.apply(console, arguments);
+  };
+
+  console.log = function (logMessage) {
+    _log.apply(console, arguments);
+  };
+
+  console.warn = function (warnMessage) {
+    pageLogs = JSON.parse(sessionStorage.getItem('page_logs'));
+    if (pageLogs && pageLogs.length > 0) {
+      pageLogs[pageLogs.length - 1].logs.push(warnMessage);
+      sessionStorage.setItem('page_logs', JSON.stringify(pageLogs));
+    }
+    _warn.apply(console, arguments);
+  };
 
 
   permissionAccess = function () {
@@ -113,7 +135,7 @@
       MobileAccessibility.usePreferredTextZoom(false);
 
       localStorage.setItem('onResume', false);
-      StatusBar.backgroundColorByHexString("#00a8f1");
+      StatusBar.backgroundColorByHexString("#ffffff");
 
       if (device.platform == 'Android')
         permissionAccess();
@@ -165,6 +187,12 @@
   var tempOpts;
   function onBackKeyDown() {
 
+    for (var i in window.common.alert.tags){
+      if (window.common.alert.isShown(i)) {
+        return;
+      }
+    }
+
     console.log("OPTS in ONBackKeyDown", onBackParams.opts)
 
     if (device.platform != 'BrowserStand') {
@@ -205,7 +233,9 @@
           riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, tempOpts);
         } else {
           riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
+
         }
+
       }
     }
   }
@@ -232,21 +262,16 @@
   }
 
   function showAlertComponent(outerErrorNote) {
-    setTimeout(function () {
-      alertComponentBlockId.style.opacity = 1;
-    }, 500);
 
-    scope.alertComponentBlockId.innerHTML = "<component-alert>";
-    riot.mount('component-alert', {"errornote": outerErrorNote});
+    window.common.alert.show("componentAlertId", {"errornote": outerErrorNote});
   }
 
   function showConfirmComponent(outerConfirmNote, confirmType) {
-    setTimeout(function () {
-      alertComponentBlockId.style.opacity = 1;
-    }, 500);
 
-    scope.alertComponentBlockId.innerHTML = "<component-confirm>";
-    riot.mount('component-confirm', {"confirmnote": outerConfirmNote, "confirmtype": confirmType});
+    window.common.alert.show("componentConfirmId", {
+      "confirmnote": outerConfirmNote,
+      "confirmtype": confirmType
+    });
   }
 
 

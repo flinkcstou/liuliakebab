@@ -1,5 +1,21 @@
 <view-registration-device class="view-registration-device riot-tags-main-container">
   <div class="registration-device-flex-container">
+    <div class="page-title">
+
+      <div class="registration-button-offline"
+           if="{device.platform != 'iOS'}"
+           id="registrationOfflineButtonId"
+           ontouchstart="registrationOfflineTouchStart()"
+           ontouchend="registrationOfflineTouchEnd()">{window.languages.ViewRegistrationDeviceButtonOffline}
+      </div>
+
+      <div id="registrationHelpButtonId" class="registration-button-help" ontouchend="helpTouchEnd()"
+           ontouchstart="helpTouchStart()">
+        {window.languages.ViewRegistrationDeviceButtonHelp}
+      </div>
+      <div class="title-bottom-border">
+      </div>
+    </div>
     <div class="registration-device-unchangable-container">
       <div class="registration-device-phone-field">
         <component-canvas></component-canvas>
@@ -17,35 +33,19 @@
             {window.languages.ViewRegistrationDeviceRememberLabel}</p>
           <div id="rememberIcon" class="registration-device-remember-icon"></div>
         </div>
-        <div id="registrationNextButtonId" class="registration-button-enter button-enter"
-             ontouchend="getPhoneNumberTouchEnd()"
-             ontouchstart="getPhoneNumberTouchStart()">
-          <div class="button-enter-label">{window.languages.ViewRegistrationDeviceButtonEnterLabel}</div>
-        </div>
       </div>
     </div>
   </div>
 
   <div class="registration-keyboard-field keyboard-field">
-    <div id="registrationHelpButtonId" class="registration-button-help" ontouchend="helpTouchEnd()"
-         ontouchstart="helpTouchStart()">
-      {window.languages.ViewRegistrationDeviceButtonHelp}
-    </div>
     <component-keyboard></component-keyboard>
   </div>
 
-
-  <div class="registration-buttons-container">
-    <div if="{device.platform != 'iOS'}" id="registrationOfflineButtonId" class="registration-container-offline"
-         ontouchstart="registrationOfflineTouchStart()"
-         ontouchend="registrationOfflineTouchEnd()">
-      <div class="registration-button-offline">{window.languages.ViewRegistrationDeviceButtonOffline}</div>
-    </div>
-    <a id="demoContainer" class="registration-container-demo-version" ontouchend="goToDemoTouchEnd()"
-       ontouchstart="goToDemoTouchStart()">
-      <div class="registration-button-demo-version">{window.languages.ViewRegistrationDeviceButtonDemoVersion}
-      </div>
-    </a>
+  <div id="registrationNextButtonId" class="bottom-button-container"
+       ontouchend="getPhoneNumberTouchEnd()"
+       ontouchstart="getPhoneNumberTouchStart()">
+    <div class="button-enter-label">{window.languages.ViewRegistrationDeviceButtonEnterLabel}</div>
+    <div class="button-enter-icon"></div>
   </div>
 
   <component-tour view="registration"></component-tour>
@@ -69,15 +69,14 @@
   <script>
 
     this.on('mount', function () {
-      if (device.platform == 'iOS')
-        demoContainer.style.left = 100 * widthK + 'px';
       if (device.platform != 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#00b0eb");
+        StatusBar.backgroundColorByHexString("#ffffff");
       canvas = document.getElementById('canvas');
       ctx = canvas.getContext("2d");
     })
 
     var checkRemember = false;
+    var timeOutTimer = 0;
 
     var rememberTouchStartX, rememberTouchStartY, rememberTouchEndX, rememberTouchEndY;
     rememberTouchStart = function () {
@@ -184,7 +183,7 @@
     };
 
     var regNumberTouchEndX;
-    var inputStartX = 260 * widthK;
+    var inputStartX = 250 * widthK;
     var inputLocalStartX = inputStartX - 80 * widthK;
     var inputFocusIndex = 0;
     var canvas;
@@ -415,7 +414,7 @@
 
         componentTourId.style.display = "block";
         if (device.platform != 'BrowserStand')
-          StatusBar.backgroundColorByHexString("#024361");
+          StatusBar.backgroundColorByHexString("#ffffff");
 
       }
     }
@@ -428,27 +427,34 @@
       return device.model;
     }
 
+    var deviceImei;
+
     function deviceImei() {
-      return (device.uuid.substring(0, device.uuid.length / 2));
+
+      if (device.platform == "BrowserStand") {
+        deviceImei = (device.uuid.substring(0, device.uuid.length / 2));
+      } else {
+        window.plugins.imei.get(
+          function (imei) {
+            console.log("got imei: " + imei);
+            deviceImei = imei;
+          },
+          function () {
+            console.log("error loading imei");
+          }
+        );
+      }
+
     }
+
+    deviceImei();
 
     function deviceInfo() {
       return device.manufacturer + ' ' + device.version + ' ' + device.model;
     }
 
-    var answerFromServer;
-
     function registrationDevice(phoneNumber, date) {
-      answerFromServer = false;
-      if (device.platform != 'BrowserStand') {
-        var options = {dimBackground: true};
-
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Spinner start in device registration");
-        }, function () {
-          console.log("Spinner stop in device registration");
-        });
-      }
+      window.startSpinner();
 
       window.api.call({
         method: 'device.register.request',
@@ -459,24 +465,22 @@
           device_name: deviceName(),
           device_type: deviceType(),
           datetime: date,
-          imei: deviceImei(),
+          imei: deviceImei,
           app_version: AppVersion.version
         },
 
         scope: this,
 
         onSuccess: function (result) {
-          answerFromServer = true;
-          if (device.platform != 'BrowserStand') {
-            console.log("Spinner stop in device registration by timeout");
-            SpinnerPlugin.activityStop();
-          }
+          console.log('Clearing timer onSuccess', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
+          window.stopSpinner();
           console.log("Device.register.request method answer: fail");
 
           if (result[0][0].error == 0) {
             if (result[1][0]) {
 
-              localStorage.setItem('onResume', false)
+              localStorage.setItem('onResume', false);
 
               var deviceId = result[1][0].device_id;
               localStorage.setItem('click_client_deviceID', deviceId);
@@ -491,7 +495,7 @@
               else {
                 window.pushNotificationInitialize();
                 localStorage.setItem('confirm_needed', false);
-                localStorage.setItem('click_client_registered', true)
+                localStorage.setItem('click_client_registered', true);
                 this.riotTags.innerHTML = "<view-authorization>";
                 riot.mount('view-authorization');
                 scope.unmount()
@@ -505,29 +509,33 @@
         },
 
         onFail: function (api_status, api_status_message, data) {
-          answerFromServer = true;
+          console.log('Clearing timer onFail', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           console.log("Device.register.request method answer: fail");
-          if (device.platform != 'BrowserStand') {
-            console.log("Spinner stop in device registration by timeout");
-            SpinnerPlugin.activityStop();
-          }
+          window.stopSpinner();
           updateAlertComponent(true, null, 'view-registration-device', "Сервис временно не доступен");
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
+        },
+        onTimeOut: function () {
+          timeOutTimer = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method: 'device.register.request',
+            });
+            updateAlertComponent(true, null, 'view-registration-device', window.languages.WaitingTimeExpiredText);
+            window.stopSpinner();
+            window.api.forceClose();
+          }, 30000);
+          console.log('creating timeOut', timeOutTimer);
+        },
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
         }
       });
 
-      setTimeout(function () {
-        if (!answerFromServer) {
-          updateAlertComponent(true, null, 'view-registration-device', window.languages.WaitingTimeExpiredText);
-          if (device.platform != 'BrowserStand') {
-            console.log("Spinner stop in device registration by timeout");
-            SpinnerPlugin.activityStop();
-          }
-          window.api.forceClose();
-          return;
-        }
-      }, 30000)
+
     }
 
     updateAlertComponent = function (showError, stepAmount, viewPage, text) {

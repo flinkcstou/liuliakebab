@@ -77,16 +77,13 @@
     var check = false;
     var scope = this;
 
-    //    scope.firstContactObject = {};
-    //    scope.firstContactObject.contactFname = 'Egor';
-    //    scope.firstContactObject.contactLname = 'Egorovi4';
-    //    scope.firstContactObject.id = '12345';
-    //    scope.firstContactObject.contactPhoto = "";
-    //    scope.firstContactObject.firstLetter = 'E';
-    //    scope.firstContactObject.phoneNumbers = [[{value: "998974647747"}]];
-    //    scope.firstContactObject.exist = true;
-    //    scope.firstContactObject.addContact = false;
-
+    scope.on('mount', function () {
+      if (device.platform === 'iOS') {
+        if (contactsId) {
+          contactsId.style.paddingBottom = 'calc(env(safe-area-inset-bottom) / 2)';
+        }
+      }
+    });
 
     scope.firstContactObject = {};
     scope.firstContactObject.contactFname = 'Добавить';
@@ -236,102 +233,11 @@
 
             arrayToSend.push(contact)
             writeContactsFooter(arrayToSend)
-//            console.log('The following contact has been selected:', contact);
-//            scope.arrayOfPhotos[0].contactFname = contact.name.givenName;
-//            scope.arrayOfPhotos[0].contactLname = contact.name.familyName;
-//            scope.arrayOfPhotos[0].contactPhoto = contact.photos[0].value;
-//            if(!scope.arrayOfPhotos[0].contactPhoto) {
-//              if (contact.name.givenName) {
-//                scope.arrayOfPhotos[0].firstLetter = contact.name.givenName[0];
-//              }
-//              else if (contact.name.familyName) {
-//                scope.arrayOfPhotos[0].firstLetter = contact.name.familyName[0];
-//              }
-//            }
-//            scope.arrayOfPhotos[0].phoneNumbers.push(contact.phoneNumbers);
-//            scope.arrayOfPhotos[0].exist = true;
-//            scope.arrayOfPhotos[0].addContact = false;
-//            scope.update();
           }, function (err) {
             console.log('Error: ' + err);
           });
-
-//          window.plugins.PickContact.chooseContact(function (contactInfo) {
-//            alert(contactInfo)
-//            console.log('CONTACTINFO', contactInfo)
-//            setTimeout(function () {
-//              console.log("CONTACT INFO", contactInfo)
-//
-//              var fields = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name, navigator.contacts.fieldType.photos];
-//              navigator.contacts.find(fields, success, error, options);
-//
-//              function success(contacts) {
-//                //alert(JSON.stringify(contacts));
-//                for (var i = 0; i < contacts.length; i++) {
-//                  if (contacts[i].photos != null) {
-//                    if (contacts[i].photos[0].value != null && contacts[i].name != null && contacts[i].phoneNumbers != null) {
-//                      arrayOfPhotosContacts.push(contacts[i]);
-//
-//                      if (arrayOfPhotosContacts.length >= 5) break;
-//                    }
-//                  }
-//                  else if (contacts[i].name != null && contacts[i].phoneNumbers != null && arrayWithoutPhotosContacts.length <= 5)
-//                    arrayWithoutPhotosContacts.push(contacts[i])
-//                }
-//
-//                arrayOfConnectedContacts = arrayOfPhotosContacts.concat(arrayWithoutPhotosContacts);
-//
-//                writeContactsFooter(arrayOfConnectedContacts);
-//              }
-//
-//              function error(message) {
-//                scope.clickPinError = false;
-//                scope.errorNote = 'Failed because: ' + message;
-//                scope.showError = true;
-//                scope.update();
-//              }
-//
-////              var phoneNumber
-////              if (device.platform == 'iOS')
-////                phoneNumber = contactInfo.phoneNr;
-////
-////              if (device.platform == 'Android') {
-////                phoneNumber = contactInfo.nameFormated
-////              }
-////              var digits = phoneNumber.match(maskOne);
-////              var phone = '';
-////              for (var i in digits) {
-////                phone += digits[i]
-////              }
-////              contactPhoneNumberId.value = phone.substring(phone.length - 9, phone.length);
-////              if (contactPhoneNumberId.value.length != 0) {
-////                checkPhoneForTransfer = true;
-////                checkCardForTransfer = false;
-//////            console.log('contactPhoneNumberId.value', contactPhoneNumberId.value.length)
-//////                if (contactPhoneNumberId.value.length == 9) {
-//////                  nextButtonId.style.display = 'block'
-//////
-//////                  firstSuggestionBlockId.style.display = 'none';
-//////                  secondSuggestionBlockId.style.display = 'none';
-//////                  thirdSuggestionBlockId.style.display = 'none';
-//////                  fourthSuggestionBlockId.style.display = 'none';
-//////                  fifthSuggestionBlockId.style.display = 'none';
-//////
-//////                }
-//////                else
-//////                  nextButtonId.style.display = 'none'
-////
-////              }// use time-out to fix iOS alert problem
-//
-//            }, 0);
-//          }, function (error) {
-//            console.log('error', error)
-////            checkPhoneForTransfer = false;
-////            checkCardForTransfer = false;
-//          });
         }
       }
-//      scope.unmount()
     }
 
     var contactTwoTouchStartX,

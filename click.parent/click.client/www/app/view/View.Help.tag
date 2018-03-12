@@ -3,7 +3,8 @@
   <div class="pay-page-title">
     <p class="settings-user-agreement-name-title">{titleName}</p>
     <div id="backButton" ontouchend="goToBack()" class="pay-back-button"></div>
-
+    <div class="title-bottom-border">
+    </div>
   </div>
 
   <div class="settings-container">
@@ -14,15 +15,7 @@
     var scope = this;
     this.titleName = window.languages.ViewHelpTitle;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-help') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-help',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-help', opts);
 
     scope.helpText = '';
 

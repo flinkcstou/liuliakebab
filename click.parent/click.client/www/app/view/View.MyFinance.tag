@@ -7,15 +7,7 @@
 
     scope.titleName = 'МОИ ФИНАНСЫ';
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-my-finance') {
-      history.arrayOfHistory.push(
-          {
-            "view": 'view-my-finance',
-            "params": opts
-          }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-my-finance', opts);
 
     scope = this;
     scope.backbuttoncheck = true;

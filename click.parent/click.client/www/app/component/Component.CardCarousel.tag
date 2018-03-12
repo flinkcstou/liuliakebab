@@ -43,16 +43,19 @@
         <div class="add-card-carousel-text">
           {window.languages.ComponentCardCarouselAddFirstCardtext}
         </div>
-
       </div>
 
       <component-card each="{i in cardsarray}"
                       countcard="{i.countCard}"
-                      name="{i.name}" salary="{i.salary}" currency="{i.currency}"
+                      name="{i.name}"
+                      salary="{i.salary}"
+                      salary_fractional="{i.salary_fractional}"
+                      currency="{i.currency}"
                       numberpartone="{i.numberPartOne}"
+                      numbermiddletwo="{i.numberMiddleTwo}"
                       numberparttwo="{i.numberPartTwo}"
                       bankname="{i.bankName}" url="{i.url}"
-                      background="{(i.card_background_url)?(i.card_background_url):('resources/icons/cards/all.png')}"
+                      background="{(checkSumOfHash || i.card_cached)?(i.card_background_url):(i.card_background_local)}"
                       fontcolor="{i.font_color}"
                       error_message="{i.error_message}"></component-card>
 
@@ -203,14 +206,14 @@
       if (scope.checkSumOfHash) {
 
         scope.cardsarray = JSON.parse(localStorage.getItem("click_client_cards"));
-        console.log("scope.checkSumOfHash", scope.checkSumOfHash, " cards from storage", scope.cardsarray);
+
+        console.log("CHECK SUM OF HASH = true");
 
       } else if (!scope.checkSumOfHash) {
 
-        console.log("scope.checkSumOfHash ", scope.checkSumOfHash);
+        console.log("CHECK SUM OF HASH = false");
 
         if (!loginInfo.update_account_cache) {
-          console.log("updateAccountCache false");
           scope.cardImageCachedLinks = {};
           for (var j in scope.cardsarray) {
             scope.cardImageCachedLinks[j] = {
@@ -219,15 +222,15 @@
               "url": scope.cardsarray[j].url
             };
           }
-          console.log("SAVE CACHED LINKS", scope.cardImageCachedLinks)
         }
 
         scope.cardsarray = {};
+
         var numberOfCardPartOne;
+        var numberOfCardMiddleTwo;
         var numberOfCardPartTwo;
         var typeOfCard;
 
-        console.log("cards empty");
 
         count = 1;
         if (viewMainPage.addFirstCardBool) count = 2;
@@ -241,6 +244,7 @@
             defaultAccount = false;
 
           numberOfCardPartOne = getAccountsCards[i].accno.substring(0, 4);
+          numberOfCardMiddleTwo = getAccountsCards[i].accno.substring(5, 7);
           numberOfCardPartTwo = getAccountsCards[i].accno.substring(getAccountsCards[i].accno.length - 4, getAccountsCards[i].accno.length);
 
 
@@ -257,9 +261,12 @@
             countCard: getAccountsCards[i].countCard,
             currency: getAccountsCards[i].currency_name.trim(),
             numberPartOne: numberOfCardPartOne,
+            numberMiddleTwo: numberOfCardMiddleTwo,
             numberPartTwo: numberOfCardPartTwo,
             url: getAccountsCards[i].image_url,
             card_background_url: getAccountsCards[i].card_background_url,
+            card_background_local: 'resources/icons/cards/' + getAccountsCards[i].card_background_url.substr(getAccountsCards[i].card_background_url.lastIndexOf('/') + 1),
+            card_cached: device.platform == "BrowserStand" ? true : false,
             chosenCard: defaultAccount,
             default_account: defaultAccount,
             access: getAccountsCards[i].access,
@@ -269,6 +276,7 @@
             removable: getAccountsCards[i].removable,
             payment_allowed: getAccountsCards[i].payment_allowed,
             p2p_allowed: getAccountsCards[i].p2p_allowed,
+            monitoring_token: getAccountsCards[i].monitoring_token,
           };
 
           scope.cardsarray[getAccountsCards[i].id] = card;
@@ -292,21 +300,17 @@
 
       }
 
-
-      scope.parent.update();
-      scope.update(scope.cardsarray);
-
-      scope.update();
-
-
-      if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance) {
+      if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance &&
+        !(sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true)) {
         writeBalance();
-        scope.update()
       } else {
         if (invoice) {
           scope.update();
         }
       }
+
+      scope.update();
+
     }
     ;
 
@@ -330,62 +334,49 @@
         scope: this,
         onSuccess: function (result) {
           if (result[0][0].error == 0 && viewMainPage.atMainPage) {
-            if (result[1]) {
-              if (result[1][0]) {
-                if (result[1].length != 0) {
-                  try {
-                    cards.style.transition = '0s';
-                    cards.style.webkitTransition = '0s';
+            if (result[1] && result[1][0]) {
+              if (result[1].length != 0) {
 
-                    cards.style.transform = "translate3d(" + (-540) * widthK + 'px' + ", 0, 0)";
-                    cards.style.webkitTransform = "translate3d(" + (-540) * widthK + 'px' + ", 0, 0)";
-                  } catch (error) {
-                    console.log("INVOICE LIST ERROR", error);
-                  }
-                  scope.invoiceCheck = true;
-                  scope.cardNumber = 1;
-                }
+                scope.invoiceCheck = true;
 
                 var arrayOfInvoice = [];
                 for (var i = 0; i < result[1].length; i++) {
-
                   //TODO: FIX
-                  try {
-                    result[1][i].amount = window.amountTransform(result[1][i].amount.toString());
-                    scope.searchNumber = inputVerification.spaceDeleter(result[1][i].merchant_phone);
-                    arrayOfPhones = JSON.parse(sessionStorage.getItem('arrayOfPhones'));
-
-                    if (result[1][i].is_friend_help && arrayOfPhones && arrayOfPhones.length != 0) {
-
-                      arrayOfPhones.filter(function (wordOfFunction) {
-                        if (wordOfFunction.phoneNumbers) {
-                          for (var i in wordOfFunction.phoneNumbers) {
-                            index = wordOfFunction.phoneNumbers[i].value.indexOf(scope.searchNumber);
-                            if (index != -1) {
-                              result[1][i].friend_name = wordOfFunction.name.givenName;
-                            }
-                          }
-                        }
-                        else
-                          index = -1;
-
-                      });
-
-                    }
-
-
-                  } catch (error) {
-
-                    console.log(error);
-                  }
-
+//                  try {
+//                    result[1][i].amount = window.amountTransform(result[1][i].amount.toString());
+//                    scope.searchNumber = inputVerification.spaceDeleter(result[1][i].merchant_phone);
+//                    arrayOfPhones = JSON.parse(sessionStorage.getItem('arrayOfPhones'));
+//
+//                    if (result[1][i].is_friend_help && arrayOfPhones && arrayOfPhones.length != 0) {
+//
+//                      arrayOfPhones.filter(function (wordOfFunction) {
+//                        if (wordOfFunction.phoneNumbers) {
+//                          for (var i in wordOfFunction.phoneNumbers) {
+//                            index = wordOfFunction.phoneNumbers[i].value.indexOf(scope.searchNumber);
+//                            if (index != -1) {
+//                              result[1][i].friend_name = wordOfFunction.name.givenName;
+//                            }
+//                          }
+//                        }
+//                        else
+//                          index = -1;
+//
+//                      });
+//
+//                    }
+//
+//
+//                  } catch (error) {
+//
+//                    console.log(error);
+//                  }
                   arrayOfInvoice.push(result[1][i]);
+
                 }
 
                 localStorage.setItem('click_client_invoice_list', JSON.stringify(arrayOfInvoice));
 
                 if (scope.invoiceList) {
-
                   if (arrayOfInvoice[0]) {
                     scope.invoiceList.push(arrayOfInvoice[0]);
                   }
@@ -395,32 +386,33 @@
                   }
                 }
 
-                if (scope.invoiceList)
-                  setTimeout(function () {
-                    addCard()
-                  }, 0);
-              }
-              else {
-                scope.invoiceCheck = false;
-                scope.cardNumber = 1;
                 scope.update();
+
               }
+
+
+//              if (scope.invoiceList)
+//                setTimeout(function () {
+//                  addCard()
+//                }, 0);
+
             }
             else {
               scope.invoiceCheck = false;
-              scope.cardNumber = 1;
+              scope.update();
             }
           }
           else {
+            if (result[0][0].error != 0) {
+              scope.clickPinError = false;
+              scope.errorNote = result[0][0].error_note;
 
-            scope.clickPinError = false;
-            scope.errorNote = result[0][0].error_note;
-
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote
-            });
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote
+              });
+            }
             scope.update();
           }
         },
@@ -431,72 +423,70 @@
       });
     };
 
-
-    function onSuccess(contacts) {
-
-      for (var i = 0; i < contacts.length; i++) {
-        if (contacts[i].name)
-          if ((contacts[i].name.familyName != null || contacts[i].name.givenName != null) && contacts[i].phoneNumbers != null) {
-            for (var j = 0; j < contacts[i].phoneNumbers.length; j++) {
-              var phone = inputVerification.spaceDeleter(contacts[i].phoneNumbers[j].value);
-
-              contacts[i].phoneNumbers[j].value = phone;
-            }
-            arrayOfPhones.push(contacts[i])
-            sessionStorage.setItem('arrayOfPhones', JSON.stringify(arrayOfPhones));
-          }
-      }
-
-    }
-
-
-    function onError(contactError) {
-      console.log('error', contactError)
-    }
-
-
-    if (device.platform != 'BrowserStand' && !sessionStorage.getItem('arrayOfPhones')) {
-      var options = new ContactFindOptions();
-      options.multiple = true;
-      options.hasPhoneNumber = true;
-      navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
-    }
-
+    //TODO: FIX THIS BUG WITH MANY CONTACTS ON PHONE !!!!!!
+    //    function onSuccess(contacts) {
+    //
+    //      for (var i = 0; i < contacts.length; i++) {
+    //        if (contacts[i].name)
+    //          if ((contacts[i].name.familyName != null || contacts[i].name.givenName != null) && contacts[i].phoneNumbers != null) {
+    //            for (var j = 0; j < contacts[i].phoneNumbers.length; j++) {
+    //              var phone = inputVerification.spaceDeleter(contacts[i].phoneNumbers[j].value);
+    //
+    //              contacts[i].phoneNumbers[j].value = phone;
+    //            }
+    //            arrayOfPhones.push(contacts[i])
+    //            sessionStorage.setItem('arrayOfPhones', JSON.stringify(arrayOfPhones));
+    //          }
+    //      }
+    //
+    //    }
+    //
+    //
+    //    function onError(contactError) {
+    //      console.log('error', contactError)
+    //    }
+    //
+    //
+    //    if (device.platform != 'BrowserStand' && !sessionStorage.getItem('arrayOfPhones')) {
+    //      var options = new ContactFindOptions();
+    //      options.multiple = true;
+    //      options.hasPhoneNumber = true;
+    //      navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
+    //    }
 
     cardImagesCaching = function (full) {
-      console.log("FULL CACH? ", full);
+
       if (device.platform != 'BrowserStand') {
-        console.log("START CACHING CARDS");
 
         window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
           var count = 0;
           for (var i in scope.cardsarray) {
 
             if (!full && scope.cardImageCachedLinks[i]) {
-              console.log("card exists", i)
+
               scope.cardsarray[i].card_background_url = scope.cardImageCachedLinks[i].cardBackgroundUrl;
               scope.cardsarray[i].url = scope.cardImageCachedLinks[i].url;
+              scope.cardsarray[i].card_cached = true;
+              console.log("CACHED CARD " + scope.cardsarray[i].countCard);
               count = count + 2;
 
-              console.log("old icon", scope.cardsarray[i].card_background_url);
-              console.log("old icon 2", scope.cardsarray[i].url);
-
               if (count == (Object.keys(scope.cardsarray).length * 2)) {
-                console.log("FINISH CACH", scope.cardsarray);
+
                 localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
-                scope.update();
+//                scope.update();
+
               }
 
             } else {
 
               var icon = scope.cardsarray[i].card_background_url;
               var filename = icon.substr(icon.lastIndexOf('/') + 1);
-
-              console.log("icon1=", icon);
-
+//              document.getElementById('cardNumber' + scope.cardsarray[i].countCard).style.backgroundImage = "url(resources/icons/cards/" + filename + ")";
+              scope.cardsarray[i].card_background_url = 'resources/icons/cards/' + filename;
+              console.log("START CACHE CARD " + scope.cardsarray[i].countCard, icon);
               var newIconBool = checkImageURL;
               newIconBool('www/resources/icons/cards/', 'cards', filename, icon, i, function (bool, index, fileName) {
-                console.log("bool=", bool, "index=", index, "fileName=", fileName);
+
                 if (bool) {
                   count++;
                   scope.cardsarray[index].card_background_url = cordova.file.dataDirectory + fileName;
@@ -505,14 +495,15 @@
                   scope.cardsarray[index].card_background_url = 'resources/icons/cards/' + fileName;
                 }
 
-                console.log("new icon=", scope.cardsarray[index].card_background_url);
+                console.log("START CACHE CARD " + scope.cardsarray[i].countCard, icon);
+
+                scope.cardsarray[index].card_cached = true;
 
                 var icon2 = scope.cardsarray[index].url;
                 var filename2 = icon2.substr(icon2.lastIndexOf('/') + 1);
-                console.log("icon 2=", icon2);
                 var newIcon = checkImageURL;
                 newIcon('www/resources/icons/cards/logo/', 'logo', filename2, icon2, index, function (bool2, index2, fileName2) {
-                  console.log("bool=", bool2, "index=", index2, "fileName=", fileName2);
+
                   if (bool2) {
                     count++;
                     scope.cardsarray[index2].url = cordova.file.dataDirectory + fileName2;
@@ -521,12 +512,11 @@
                     scope.cardsarray[index2].url = 'resources/icons/cards/logo/' + fileName2;
                   }
 
-                  console.log("new icon 2=", scope.cardsarray[index2].url);
-
                   if (count == (Object.keys(scope.cardsarray).length * 2)) {
-                    console.log("FINISH CACH", scope.cardsarray);
+
                     localStorage.setItem("click_client_cards", JSON.stringify(scope.cardsarray));
-                    scope.update();
+//                    scope.update();
+
                   }
                 });
               });
@@ -541,7 +531,7 @@
 
     scope.onComponentCreated = onComponentCreated = function (cardNumberParameter) {
 
-      if (modeOfApp.onlineMode) {
+      if (modeOfApp.onlineMode && !(sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true)) {
         if (JSON.parse(localStorage.getItem("click_client_loginInfo"))) {
           var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
           var phoneNumber = localStorage.getItem("click_client_phoneNumber");
@@ -559,7 +549,7 @@
             onSuccess: function (result) {
 
               if (result[0][0].error == 0) {
-                if (localStorage.getItem('click_client_cards')) {
+                if (JSON.parse(localStorage.getItem('click_client_cards')) && !info.update_account_cache) {
                   var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
                   var countLocalStorageCard = Object.keys(cardsArray).length;
 
@@ -567,42 +557,20 @@
                     for (var i in result[1]) {
                       if (cardsArray[result[1][i].id]) {
                         if (cardsArray[result[1][i].id].checksum != result[1][i].checksum) {
-                          if (device.platform != 'BrowserStand') {
-                            var options = {dimBackground: true};
-
-                            SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-                              console.log("Spinner start in card carousel");
-                            }, function () {
-                              console.log("Spinner stop in card carousel");
-                            });
-                          }
+                          window.startSpinner();
                           scope.checkSumOfHash = false;
+                          break;
                         }
                       }
                       else {
-                        if (device.platform != 'BrowserStand') {
-                          var options = {dimBackground: true};
-
-                          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-                            console.log("Started");
-                          }, function () {
-                            console.log("closed");
-                          });
-                        }
+                        window.startSpinner();
                         scope.checkSumOfHash = false;
+                        break;
                       }
                     }
                   }
                   else {
-                    if (device.platform != 'BrowserStand') {
-                      var options = {dimBackground: true};
-
-                      SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-                        console.log("Started");
-                      }, function () {
-                        console.log("closed");
-                      });
-                    }
+                    window.startSpinner();
                     scope.checkSumOfHash = false;
                   }
                 }
@@ -648,17 +616,11 @@
                     addCard()
                   }, 0);
 
-                  if (device.platform !== 'BrowserStand') {
-                    console.log("Spinner Stop Component Card Carousel 650");
-                    SpinnerPlugin.activityStop();
-                  }
+                  window.stopSpinner();
                 }
                 else {
                   setTimeout(function () {
-                    if (device.platform !== 'BrowserStand') {
-                      console.log("Spinner Stop Component Card Carousel 657");
-                      SpinnerPlugin.activityStop();
-                    }
+                    window.stopSpinner();
                     addCard()
                   }, 0);
                 }
@@ -686,7 +648,7 @@
     };
 
 
-    if (viewMainPage.atMainPage && !modeOfApp.demoVersion && modeOfApp.onlineMode) {
+    if (viewMainPage.atMainPage && !modeOfApp.demoVersion && modeOfApp.onlineMode && !(sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true)) {
       invoiceCheckFunction();
     }
 
@@ -713,8 +675,8 @@
 
     this.on("mount", function () {
 
-      cards.style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-      cards.style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+      cards.style.transition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+      cards.style.webkitTransition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
 
       cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
@@ -734,9 +696,9 @@
       }
 
       for (var j in getAccountsCards) {
-        objectAccount.account_id = getAccountsCards[j].id
-        objectAccount.card_num_hash = getAccountsCards[j].card_num_hash
-        objectAccount.card_num_crypted = getAccountsCards[j].card_num_crypted
+        objectAccount.account_id = getAccountsCards[j].id;
+        objectAccount.card_num_hash = getAccountsCards[j].card_num_hash;
+        objectAccount.card_num_crypted = getAccountsCards[j].card_num_crypted;
         accountsForBalance.push(objectAccount);
         objectAccount = {};
       }
@@ -754,17 +716,33 @@
           if (result[0][0].error == 0) {
             if (result[1]) {
               try {
+
+                var balances = {};
                 for (var i in result[1]) {
-                  scope.cardsarray[result[1][i].account_id].salaryOriginal = result[1][i].balance.toFixed(0);
-                  result[1][i].balance = result[1][i].balance.toFixed(0).toString();
-
-                  if (result[1][i].balance !== 0)
-                    result[1][i].balance = window.amountTransform(result[1][i].balance.toString());
-
-                  scope.cardsarray[result[1][i].account_id].salary = result[1][i].balance;
-                  localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
+                  balances[result[1][i].account_id] = result[1][i];
                 }
+
+                for (var i in scope.cardsarray) {
+                  if (balances[i]) {
+                    scope.cardsarray[balances[i].account_id].salaryOriginal = balances[i].balance.toFixed(0);
+                    balances[i].balance_fractional = window.getFractionalPart(balances[i].balance.toString());
+                    balances[i].balance = Math.floor(balances[i].balance).toFixed(0).toString();
+
+                    if (balances[i].balance !== 0)
+                      balances[i].balance = window.amountTransform(balances[i].balance.toString());
+
+                    scope.cardsarray[balances[i].account_id].salary = balances[i].balance;
+                    scope.cardsarray[balances[i].account_id].salary_fractional = balances[i].balance_fractional;
+                  } else {
+                    scope.cardsarray[i].salary = null;
+                    scope.cardsarray[i].salary_fractional = '';
+                    scope.cardsarray[i].error_message = window.languages.ComponentCardCarouselBalanceError;
+                  }
+                }
+
+                localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
                 scope.update();
+
               } catch (Error) {
                 console.log("Error on parse result fro get.balance.multiple", Error);
               }
@@ -773,7 +751,7 @@
           else {
             for (var i in scope.cardsarray) {
               scope.cardsarray[i].salary = null;
-              scope.cardsarray[i].error_message = "Ошибка баланса";
+              scope.cardsarray[i].error_message = window.languages.ComponentCardCarouselBalanceError;
             }
             localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsarray));
             scope.update();
@@ -841,8 +819,10 @@
       else if (!viewMainPage.myCards && !(scope.invoiceCheck && scope.cardNumber == 0)) {
         if (!modeOfApp.offlineMode.balance && modeOfApp.onlineMode) {
 
-          if (scope.invoiceCheck && scope.cardNumber == 0)
+          if (scope.invoiceCheck && scope.cardNumber == 0) {
             scope.cardNumber = 1;
+            console.log("cardNumber set to 1")
+          }
 
           localStorage.setItem("cardNumber", scope.cardNumber);
 
@@ -859,8 +839,8 @@
           if (sendChosenCardId !== undefined) {
             riotTags.innerHTML = "<view-my-cards>";
             riot.mount("view-my-cards", [sendChosenCardId]);
-            document.getElementById('cards').style.transition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-            document.getElementById('cards').style.webkitTransition = '0.3s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+            document.getElementById('cards').style.transition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+            document.getElementById('cards').style.webkitTransition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
             document.getElementById('cards').style.transform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
             document.getElementById('cards').style.webkitTransform = "translate3d(" + (-pos) + 'px' + ", 0, 0)";
           }
@@ -957,6 +937,8 @@
         }
       }
 
+
+      console.log("cardNumber changed", scope.cardNumber.toString());
       localStorage.setItem('cardNumber', scope.cardNumber);
 
     }

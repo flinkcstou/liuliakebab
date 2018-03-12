@@ -1,13 +1,15 @@
 <view-pay>
   <div id="viewPayId" class="view-pay riot-tags-main-container">
-    <div class="pay-page-title">
-      <p class="pay-name-title">{titleName}</p>
+    <div class="page-title">
+      <p class="name-title">{titleName}</p>
       <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchstart="goToBackStart()"
-           ontouchend="goToBackEnd()" class="pay-back-button"></div>
+           ontouchend="goToBackEnd()" class="back-button"></div>
       <div id="rightButton" role="button" aria-label="{window.languages.ViewPayVoiceOverSearch}" type="button"
            class="pay-search-button" ontouchstart="searchStart()"
            ontouchend="searchEnd()"></div>
       <div style=""></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
     <div class="pay-service-hint-containter" id="hintContainerId" if="{hintShow}">
       <div class="pay-category-icon" style="background-image: url({showCategoryIcon})"></div>
@@ -16,7 +18,8 @@
       <div class="pay-hint-icon-tick"></div>
     </div>
     <div class="pay-category-container" id="categoriesContainerId" onscroll="onTouchMoveOfCategory()">
-      <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
+
+      <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;" if="{opts.mode == 'ADDAUTOPAY'}">
         <li each="{i in categoryList}" style="overflow: hidden;">
           <div if="{!(modeOfApp.offlineMode && i.id == 11)}" class="pay-service-block-containter" id="{i.id}"
                ontouchstart="onTouchStartOfCategory(this.id)"
@@ -26,7 +29,8 @@
             </div>
             <div class="pay-icon-tick" id="tick{i.id}"></div>
             <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
-              <li class="pay-service-containter" each="{j in currentList}">
+              <li class="pay-service-containter"
+                  each="{j in currentList}" if="{j.autopay_available_schedule || j.autopay_available || !j.form_type}">
                 <div class="pay-service-icon" style="background-image: url({j.image})" id="{j.id}" role="button"
                      aria-label="{j.name}"
                      ontouchend="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
@@ -34,9 +38,37 @@
                 </div>
               </li>
             </ul>
+            <div class="title-bottom-border">
+            </div>
           </div>
         </li>
       </ul>
+
+      <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;" if="{opts.mode != 'ADDAUTOPAY'}">
+        <li each="{i in categoryList}" style="overflow: hidden;">
+          <div if="{!(modeOfApp.offlineMode && i.id == 11)}" class="pay-service-block-containter" id="{i.id}"
+               ontouchstart="onTouchStartOfCategory(this.id)"
+               onclick="onTouchEndOfCategory(this.id)">
+            <div class="pay-category-icon" style="background-image: url({i.icon})"></div>
+            <div class="pay-category-name-field">{i.name}
+            </div>
+            <div class="pay-icon-tick" id="tick{i.id}"></div>
+            <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
+              <li class="pay-service-containter"
+                  each="{j in currentList}">
+                <div class="pay-service-icon" style="background-image: url({j.image})" id="{j.id}" role="button"
+                     aria-label="{j.name}"
+                     ontouchend="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
+                  <div class="pay-service-name-field">{j.name}</div>
+                </div>
+              </li>
+            </ul>
+            <div class="title-bottom-border">
+            </div>
+          </div>
+        </li>
+      </ul>
+
     </div>
   </div>
   <component-category-search></component-category-search>
@@ -49,15 +81,7 @@
       this.titleName = window.languages.ViewAutoPayTitleName;
     else this.titleName = window.languages.ViewPayTitleName;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-pay') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-pay',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-pay', opts);
 
     scope.categoryList = (JSON.parse(localStorage.getItem("click_client_payCategoryList"))) ? (JSON.parse(localStorage.getItem("click_client_payCategoryList"))) : (offlinePayCategoryList);
     scope.serviceList = (JSON.parse(localStorage.getItem("click_client_payServiceList"))) ? (JSON.parse(localStorage.getItem("click_client_payServiceList"))) : (offlinePayServiceList);
@@ -120,6 +144,7 @@
     };
 
     scope.on('mount', function () {
+      console.log("OPTS in Pay", opts, opts.mode);
       if (opts.categoryId) {
         document.getElementById("tick" + viewPay.categoryId).style.backgroundImage = "url(resources/icons/ViewPay/catclose.png)";
         hintUpdate(viewPay.categoryId);
@@ -182,6 +207,8 @@
 
           scope.currentList = scope.servicesMapByCategory[id];
 //        count = 1;
+
+          console.log("currentList=", scope.currentList);
 
 
           if (!scope.currentList) {
@@ -246,6 +273,7 @@
 
     scope.onTouchStartOfService = onTouchStartOfService = function (id) {
       event.stopPropagation();
+      event.preventDefault();
       if (document.getElementById(id))
         document.getElementById(id).style.webkitTransform = 'scale(0.8)'
       onTouchStartY = event.changedTouches[0].pageY;
@@ -259,6 +287,7 @@
 
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {
       event.stopPropagation();
+      event.preventDefault();
 
       if (document.getElementById(id))
         document.getElementById(id).style.webkitTransform = 'scale(1)'
@@ -307,8 +336,8 @@
         }
         else {
           if (!opts.mode) opts.mode = 'USUAL';
-
-          if (modeOfApp.offlineMode && id.indexOf('mynumber') != -1) {
+          console.log("id in offline search", typeof id);
+          if (modeOfApp.offlineMode && typeof id === "string" && id.indexOf('mynumber') != -1) {
             opts.chosenServiceId = 'mynumber';
           }
           else {

@@ -1,9 +1,9 @@
 <view-pin-code class="view-pincode riot-tags-main-container">
-
   <div class="pincode-flex-container">
-
+    <div class="page-title">
     <div id="backButton" ontouchend="goToBackFromPinCodeTouchEnd()" ontouchstart="goToBackFromPinCodeTouchStart()"
-         class="{pincode-back-button: backbuttoncheck}">
+         class="{back-button: backbuttoncheck}">
+    </div>
     </div>
 
     <div class="pincode-unchangable-container">
@@ -30,11 +30,11 @@
     <component-keyboard></component-keyboard>
   </div>
 
-  <div if="{device.platform != 'iOS'}" id="pinOfflineButtonId" class="pincode-button-offline"
+  <button if="{device.platform != 'iOS'}" id="pinOfflineButtonId" class="authorization-footer-button-container"
        ontouchstart="offlineModeTouchStart()"
        ontouchend="offlineModeTouchEnd()">
     {window.languages.ViewAuthorizationOfflineModeLabel}
-  </div>
+  </button>
 
   <script>
 
@@ -45,20 +45,10 @@
 
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#00a8f1");
+        StatusBar.backgroundColorByHexString("#ffffff");
     })
 
-    if (history.arrayOfHistory.length != 0) {
-      if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-pin-code') {
-        history.arrayOfHistory.push(
-          {
-            "view": 'view-pin-code',
-            "params": opts
-          }
-        );
-        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-      }
-    }
+    window.saveHistory('view-pin-code', opts);
 
 
     console.log("OPTS", opts)
@@ -75,6 +65,7 @@
     var fromAuthorization = false;
     var fromSettings = false;
     var fromPayOrTransfer = false;
+    var timeOutTimer = 0;
     scope.showRegistrationProcess = false;
     scope.nowCheckPinTitle = window.languages.ViewPinCodeNowClickPinLabel;
     scope.backbuttoncheck = false;
@@ -93,7 +84,7 @@
       fromRegistration = false;
       fromPayOrTransfer = false;
     }
-    else if (opts[0] == 'view-pay-confirm' || opts[0] == 'view-transfer-stepfour') {
+    else if (opts[0] == 'view-pay-confirm' || opts[0] == 'view-transfer-submit') {
       scope.nowCheckPinTitle = window.languages.ViewPinCodeConfirmPayTransferLabel;
       scope.backbuttoncheck = true;
       fromSettings = false;
@@ -253,6 +244,10 @@
       backFromPinCodeTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(backFromPinCodeTouchStartX - backFromPinCodeTouchEndX) <= 20 && Math.abs(backFromPinCodeTouchStartY - backFromPinCodeTouchEndY) <= 20) {
+        if (fromPayOrTransfer) {
+          console.log('opts on backkeydown', opts[1]);
+          onBackParams.opts = opts[1];
+        }
         onBackKeyDown();
       }
     };
@@ -261,33 +256,33 @@
 
 
       if (enteredPin.length == 0) {
-        circleOne.style.backgroundColor = 'transparent';
-        circleTwo.style.backgroundColor = 'transparent';
-        circleThree.style.backgroundColor = 'transparent';
-        circleFour.style.backgroundColor = 'transparent';
-        circleFive.style.backgroundColor = 'transparent';
+        circleOne.style.backgroundColor = '#b0aeb2';
+        circleTwo.style.backgroundColor = '#b0aeb2';
+        circleThree.style.backgroundColor = '#b0aeb2';
+        circleFour.style.backgroundColor = '#b0aeb2';
+        circleFive.style.backgroundColor = '#b0aeb2';
       }
       if (enteredPin.length == 1) {
         circleOne.style.backgroundColor = '#01cfff';
-        circleTwo.style.backgroundColor = 'transparent';
-        circleThree.style.backgroundColor = 'transparent';
-        circleFour.style.backgroundColor = 'transparent';
-        circleFive.style.backgroundColor = 'transparent';
+        circleTwo.style.backgroundColor = '#b0aeb2';
+        circleThree.style.backgroundColor = '#b0aeb2';
+        circleFour.style.backgroundColor = '#b0aeb2';
+        circleFive.style.backgroundColor = '#b0aeb2';
       }
       if (enteredPin.length == 2) {
         circleOne.style.backgroundColor = '#01cfff';
         circleTwo.style.backgroundColor = '#01cfff';
-        circleThree.style.backgroundColor = 'transparent';
-        circleFour.style.backgroundColor = 'transparent';
-        circleFive.style.backgroundColor = 'transparent';
+        circleThree.style.backgroundColor = '#b0aeb2';
+        circleFour.style.backgroundColor = '#b0aeb2';
+        circleFive.style.backgroundColor = '#b0aeb2';
       }
 
       if (enteredPin.length == 3) {
         circleOne.style.backgroundColor = '#01cfff';
         circleTwo.style.backgroundColor = '#01cfff';
         circleThree.style.backgroundColor = '#01cfff';
-        circleFour.style.backgroundColor = 'transparent';
-        circleFive.style.backgroundColor = 'transparent';
+        circleFour.style.backgroundColor = '#b0aeb2';
+        circleFive.style.backgroundColor = '#b0aeb2';
       }
 
       if (enteredPin.length == 4) {
@@ -295,7 +290,7 @@
         circleTwo.style.backgroundColor = '#01cfff';
         circleThree.style.backgroundColor = '#01cfff';
         circleFour.style.backgroundColor = '#01cfff';
-        circleFive.style.backgroundColor = 'transparent';
+        circleFive.style.backgroundColor = '#b0aeb2';
       }
 
       if (enteredPin.length == 5) {
@@ -348,6 +343,7 @@
 
               if (fromPayOrTransfer) {
                 sessionStorage.setItem('payTransferConfirmed', true);
+                onBackParams.opts = opts[1];
                 onBackKeyDown();
               } else {
                 scope.checkPin = true;
@@ -412,8 +408,10 @@
       //event.preventDefault();
       //event.stopPropagation();
 
+      console.log("Enter of PINCODE");
+
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-      localStorage.setItem("click_client_pin", JSON.stringify(hex_md5(pin)));
+      localStorage.setItem("click_client_pin", hex_md5(pin));
 
 
       window.api.call({
@@ -442,7 +440,7 @@
             var token = localStorage.getItem('click_client_token');
             console.log("pin before=", pin.toString());
             if (localStorage.getItem('click_client_pin')) {
-              pin = JSON.parse(localStorage.getItem('click_client_pin'));
+              pin = localStorage.getItem('click_client_pin');
               var password = hex_sha512(token + date + pin);
             }
             localStorage.setItem("pinForStand", pin);
@@ -473,7 +471,6 @@
     };
 
     //    scope.registrationSuccess = 0;
-    var answerFromServer;
 
     function authorizationPinCode(phoneNumber, deviceId, password, date) {
       scope.firstEnter = false;
@@ -481,16 +478,8 @@
 //        firstPinInputId.blur();
 
       var version = localStorage.getItem('version')
-      answerFromServer = false;
 
-      if (device.platform != 'BrowserStand') {
-        var options = {dimBackground: true};
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Spinner start in authorization");
-        }, function () {
-          console.log("Spinner stop in authorization");
-        });
-      }
+      window.startSpinner();
 
       window.api.call({
         method: 'app.login',
@@ -504,15 +493,17 @@
         },
         scope: this,
 
+
         onSuccess: function (result) {
-          answerFromServer = true;
+          console.log('Clearing timer onSuccess', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           console.log("App.login method answer: success");
 
           if (result[0][0].error == 0) {
             if (!result[1][0].error) {
               console.log("User is authorized");
 
-              localStorage.setItem('click_client_pin', pin)
+//              localStorage.setItem('click_client_pin', pin)
               localStorage.setItem('myNumberOperatorId', result[1][0].my_service_id);
               modeOfflineMode.check = false;
               var JsonInfo = JSON.stringify(result[1][0]);
@@ -534,25 +525,13 @@
                 localStorage.setItem('settings_finger_print', false)
               }
 
-              if (typeof window.fingerPrint.fingerPrintInitialize != undefined && window.fingerPrint.fingerPrintInitialize == false) {
-
-                try {
-                  fingerPrintTurnOn(true);
-                }
-                catch (e) {
-                  console.log(e)
-                }
-              }
 
               getAccount(checkSessionKey, scope.firstEnter);
               window.pushNotificationActions.retrievePushNotification();
             }
           }
           else {
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Authorization");
-              SpinnerPlugin.activityStop();
-            }
+            window.stopSpinner();
 
             if (result[0][0].error == -31) {
               console.log("click pin error");
@@ -573,7 +552,6 @@
               pin = '';
               enteredPin = '';
             }
-            console.log("qwert")
             scope.update();
 
             window.common.alert.show("componentAlertId", {
@@ -587,29 +565,31 @@
             enteredPin = '';
             if (!scope.firstEnter)
               updateEnteredPin();
-            return
           }
         },
         onFail: function (api_status, api_status_message, data) {
-          answerFromServer = true;
+          console.log('Clearing timer onFail', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           updateAlertComponent(true, null, 'view-authorization', "Сервис временно не доступен");
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error("Error data: ", data);
-          return;
+        },
+        onTimeOut: function () {
+          timeOutTimer = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method:'app.login',
+            });
+            updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText);
+            window.stopSpinner();
+          }, 30000);
+          console.log('creating timeOut', timeOutTimer);
+        },
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
         }
-      });
-
-      setTimeout(function () {
-        if (!answerFromServer) {
-          updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText);
-          answerFromServer = true;
-          if (device.platform != 'BrowserStand') {
-            console.log("Spinner stop in authorization by timeout");
-            SpinnerPlugin.activityStop();
-          }
-          return
-        }
-      }, 30000)
+      }, 30000);
     }
 
 
@@ -640,8 +620,10 @@
             if (!fromRegistration)
               scope.stepToBack = 1;
             if (fromAuthorization) {
-              scope.stepToBack = null
-              scope.viewpage = 'view-main-page'
+              scope.stepToBack = null;
+              scope.viewpage = 'view-main-page';
+              console.log("FIRST ENTER CHANGE PIN fingerprint init ");
+              fingerPrintInit();
             }
             localStorage.setItem('pinForStand', hex_md5(pin));
             scope.update();

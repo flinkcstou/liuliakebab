@@ -1,13 +1,15 @@
 <view-qr-pincards class="view-service-pincards riot-tags-main-container">
 
-  <div class="qr-pay-page-title" style="border-style: none;">
-    <p class="qr-servicepage-title">{titleName}</p>
-    <p class="qr-servicepage-category-field">{categoryName}</p>
+  <div class="pay-page-title" style="border-style: none;">
+    <p class="servicepage-title  {qr-servicepage-qr-title: !opts.location}">{titleName}</p>
+    <p class="servicepage-category-field">{categoryName}</p>
     <div ontouchend="touchStartTitle()"
-         class="qr-servicepage-button-back" role="button" aria-label="{window.languages.Back}">
+         class="servicepage-button-back" role="button" aria-label="{window.languages.Back}">
     </div>
     <div type="button" class="qr-servicepage-service-icon"
          style="background-image: url({serviceIcon})"></div>
+    <div class="title-bottom-border">
+    </div>
   </div>
 
   <div class="qr-pincard-body-container">
@@ -50,16 +52,7 @@
 
     console.log('OPTS', opts);
 
-
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-qr-pincards') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-qr-pincards',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-qr-pincards', opts);
 
     var scope = this;
 
@@ -70,10 +63,9 @@
       scope.unmount()
     };
 
-    this.titleName = opts.name
-    this.serviceIcon = opts.image
-
-    this.categoryName = opts.name
+    this.titleName = opts.name;
+    this.serviceIcon = opts.image;
+    this.categoryName = opts.location ? opts.category_name : "";
 
 
     goToQrPayConfirmView = function () {

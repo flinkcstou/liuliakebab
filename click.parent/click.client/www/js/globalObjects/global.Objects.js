@@ -5,7 +5,6 @@ viewMainPage.addFirstCardBool = false;
 window.onBackParams = {};
 onBackParams.opts = null;
 
-
 window.viewMyCards = {};
 viewMyCards.check = false;
 viewMyCards.chosenCardId = '';
@@ -15,6 +14,8 @@ window.viewAuthorization = {};
 viewAuthorization.check = false;
 
 window.isConnected = false;
+window.numberOfAttemps = 0;
+window.scannerCanBeAsked = true;
 
 window.common = {};
 window.common.alert = {
@@ -95,16 +96,18 @@ window.common.alert = {
 
     window.clearTimers();
 
-    console.log(id);
+    console.log(id, params);
 
     if (!window.common.alert.priorities[id]) return;
+
+    if (window.fingerPrint.fingerPrintInitialize) return;
 
     var show = true;
 
     try {
-      if (device.platform !== 'BrowserStand') {
-        SpinnerPlugin.activityStop();
-      }
+      window.stopSpinner();
+      window.blurFields();
+
     } catch (error) {
 
       console.error(error);
@@ -194,6 +197,9 @@ window.componentKeyboard = {};
 window.firstMount = {};
 
 window.viewPay = {};
+window.inPlacePay = {};
+inPlacePay.latitude = 0;
+inPlacePay.longitude = 0;
 
 window.viewServicePage = {};
 viewServicePage.amountText = '';
@@ -251,6 +257,7 @@ invoiceActions.DECLINE = 2;
 window.input_codes = {};
 input_codes.BACKSPACE_CODE = 8;
 input_codes.NEXT = 9;
+input_codes.ENTER = 13;
 
 window.componentMenu = {};
 componentMenu.check = false;
@@ -273,6 +280,8 @@ window.News.newsCounter = 0;
 window.fingerPrint = {};
 window.fingerPrint.check = false;
 window.fingerPrint.fingerPrintInitialize = false;
+
+window.bottomButtomBottom = 0;
 
 window.representDotedDate = function (left, middle, right) {
 
@@ -303,7 +312,7 @@ window.amountTransform = function (amount) {
     return amount
   }
   if (amount.length == 1 && amount == 0) {
-    return '';
+    return amount.toString();
   }
 
   amount = amount.replace(new RegExp('[^0-9.]', 'g'), '');
@@ -323,9 +332,22 @@ window.amountTransform = function (amount) {
       }
     }
   }
-
   return newAmount.split("").reverse().join("");
 }
+
+window.getFractionalPart = function (amount) {
+  var fractionalPartResult = '';
+  if (amount !== undefined && amount.indexOf('.') >= 0) {
+    fractionalPartResult = amount.slice(amount.indexOf('.'), amount.length);
+  }
+  if (fractionalPartResult.length > 3) {
+    fractionalPartResult = fractionalPartResult.slice(0, 3);
+  }
+  if (fractionalPartResult === '00') {
+    fractionalPartResult = '';
+  }
+  return fractionalPartResult;
+};
 
 
 window.inputVerification = {};
@@ -648,7 +670,7 @@ window.pushNotificationActions = {
     console.log('running news')
 
     riotTags.innerHTML = "<view-main-page>";
-    riot.mount("view-main-page", {view: "news"});
+    riot.mount("view-main-page", {view: "news", news_id: newsId});
   },
 
   refreshCardCarousel: function (cardId) {
@@ -678,7 +700,6 @@ window.pushNotificationActions = {
 };
 
 window.updateBalanceGlobalFunction = function () {
-
 
   if (localStorage.getItem('click_client_cards')) {
     var getAccountsCards = JSON.parse(localStorage.getItem('click_client_cards'))
@@ -744,10 +765,7 @@ window.updateBalanceGlobalFunction = function () {
   }
 }
 
-/////////
-
-
-window.getAccount = function (checkSessionKey, firstEnter) {
+window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
 
   if (checkSessionKey) {
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
@@ -765,8 +783,8 @@ window.getAccount = function (checkSessionKey, firstEnter) {
     var sessionKey = info.session_key;
 
     if (firstEnter) {
-      var lengthOfPin = firstPinInputId.value.length;
-      var compareLength = window.inputVerification.spaceDeleter(firstPinInputId.value);
+      var lengthOfPin = firstPinInputValue.length;
+      var compareLength = window.inputVerification.spaceDeleter(firstPinInputValue);
       console.log("First enter in account");
     }
 
@@ -775,11 +793,14 @@ window.getAccount = function (checkSessionKey, firstEnter) {
       riot.mount('view-pin-code', ['view-authorization']);
     }
     else if (!localStorage.getItem("click_client_accountInfo")) {
+      console.log("FIRST ENTER OR REGISTRATION fingerprint init ");
+      fingerPrintInit();
       this.riotTags.innerHTML = "<view-main-page>";
       riot.mount('view-main-page');
       //riot.unmount()
     }
     else {
+      console.log("GET ACCOUNT last else ");
       if (!JSON.parse(localStorage.getItem('onResume')) && !JSON.parse(localStorage.getItem('session_broken')) && !JSON.parse(sessionStorage.getItem("push_news"))) {
         this.riotTags.innerHTML = "<view-main-page>";
         riot.mount('view-main-page');
@@ -790,22 +811,19 @@ window.getAccount = function (checkSessionKey, firstEnter) {
             if (history.arrayOfHistory) {
               if (history.arrayOfHistory[history.arrayOfHistory.length - 1]) {
                 if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-news') {
-                  console.log("G.O. 798 mounting main-page 793");
                   this.riotTags.innerHTML = "<view-main-page>";
                   riot.mount("view-main-page");
                 }
                 else {
                   if (device.platform !== 'BrowserStand') {
-                    console.log("Spinner stop in G.O. 799");
                     SpinnerPlugin.activityStop();
                   }
-                  console.log("G.O. 798 mounting ", history.arrayOfHistory[history.arrayOfHistory.length - 1].view, ", history=", history.arrayOfHistory);
                   this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
                   riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
                 }
 
                 if (device.platform != 'BrowserStand')
-                  StatusBar.backgroundColorByHexString("#00a8f1");
+                  StatusBar.backgroundColorByHexString("#ffffff");
 
                 if (JSON.parse(localStorage.getItem('settings_block')) === true) {
                   localStorage.setItem('onResume', false);
@@ -816,7 +834,6 @@ window.getAccount = function (checkSessionKey, firstEnter) {
                   }
                   else {
                     if (JSON.parse(sessionStorage.getItem("push_news")) === true) {
-                      console.log("G.O. 815 push_news set to false");
                       sessionStorage.setItem("push_news", false)
                     }
                   }
@@ -826,15 +843,53 @@ window.getAccount = function (checkSessionKey, firstEnter) {
             }
           }
           else {
-            console.log("G.O. 825 main page mount");
             this.riotTags.innerHTML = "<view-main-page>";
             riot.mount('view-main-page');
           }
         }
         else {
-          console.log("G.O. 831 main page mount");
           this.riotTags.innerHTML = "<view-main-page>";
           riot.mount('view-main-page');
+        }
+      }
+    }
+
+    //get list of issuers and bank codes
+    {
+      if (!localStorage.getItem("click_client_issuer_list") || info.update_issuer_list) {
+        if (modeOfApp.onlineMode) {
+          window.api.call({
+            method: 'issuer.list',
+            input: {
+              session_key: sessionKey,
+              phone_num: phoneNumber
+            },
+            scope: this,
+
+            onSuccess: function (result) {
+              if (result[0][0].error == 0) {
+                scope.issuerList = [];
+                for (var i in result[1][0]) {
+                  scope.issuerList.push(result[1][0][i]);
+                }
+                localStorage.setItem('click_client_issuer_list', JSON.stringify(scope.issuerList));
+              } else {
+                scope.errorNote = result[0][0].error_note;
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: scope.clickPinError,
+                  errornote: scope.errorNote,
+                  pathtosettings: scope.pathToSettings,
+                  permissionerror: scope.permissionError,
+                });
+                scope.update();
+              }
+            },
+            onFail: function (api_status, api_status_message, data) {
+              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+              console.error(data);
+            }
+          });
         }
       }
     }
@@ -986,6 +1041,56 @@ window.getAccount = function (checkSessionKey, firstEnter) {
               localStorage.setItem('click_client_payServiceNamesMap', JSON.stringify(serviceNamesMap));
               localStorage.setItem('click_client_servicesMapByCategory', JSON.stringify(servicesMapByCategory));
               localStorage.setItem('click_client_servicesMap', JSON.stringify(servicesMap));
+
+
+              {
+                window.api.call({
+                  method: 'get.wishlist',
+                  input: {
+                    session_key: sessionKey,
+                    phone_num: phoneNumber,
+                    type: 1
+                  },
+                  scope: this,
+                  onSuccess: function (result) {
+
+                    if (result[0][0].error == 0) {
+                      if (result[1].length != 0) {
+                        var favoritePaymentsList = [];
+                        var favoritePaymentsListForApi = [];
+                        for (var j in result[1]) {
+                          var fav = JSON.parse(result[1][j].body);
+                          fav.service.image = servicesMap[fav.service.id][0].image;
+                          favoritePaymentsList.push(fav);
+                        }
+                        for (var i in favoritePaymentsList)
+                          favoritePaymentsListForApi.push({
+                            "id": favoritePaymentsList[i].id,
+                            "type": 1,
+                            "body": JSON.stringify(favoritePaymentsList[i])
+                          })
+
+                        localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(favoritePaymentsListForApi));
+                        localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
+                        console.log("favs processed", favoritePaymentsList);
+                      }
+                    }
+                    else {
+                      window.common.alert.show("componentAlertId", {
+                        parent: scope,
+                        clickpinerror: false,
+                        errornote: result[0][0].error_note
+                      });
+                      console.log(result[0][0].error_note);
+                    }
+                  },
+                  onFail: function (api_status, api_status_message, data) {
+                    console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                    console.error(data);
+                  }
+                });
+              }
+
               serviceImagesCaching();
             }
           servicesParamsInit();
@@ -1134,38 +1239,11 @@ window.getAccount = function (checkSessionKey, firstEnter) {
 
   }
 
-  if (device.platform != 'BrowserStand') {
-    console.log("Spinner Stop global objects getAccount");
-    SpinnerPlugin.activityStop();
-  }
+  window.stopSpinner();
 };
 
-window.fingerPrintTurnOff = function () {
-  console.log("G.O. fingerprint turn off");
-  if (device.platform == 'Android') {
-    if (localStorage.getItem('settings_finger_print') !== null && JSON.parse(localStorage.getItem("settings_finger_print")) === true && window.fingerPrint.fingerPrintInitialize && window.fingerPrint.check) {
-
-
-      function stopSuccess(result) {
-        console.log("FingerprintAuth stopped: " + JSON.stringify(result));
-
-      }
-
-      function stopError(message) {
-        console.log("stopError: " + message);
-
-      }
-
-      FingerprintAuth.stop(stopSuccess, stopError);
-
-    }
-  }
-}
-
-
-window.fingerPrintTurnOn = function (firstEnter) {
-  console.log("G.O. fingerprint, firstEnter=", firstEnter);
-  window.fingerPrint.fingerPrintInitialize = true;
+window.fingerPrintInit = function () {
+  console.log("G.O. fingerprint INIT");
   if (localStorage.getItem('settings_finger_print') !== null) {
     if (device.platform == 'Android') {
 
@@ -1173,74 +1251,127 @@ window.fingerPrintTurnOn = function (firstEnter) {
         console.log("FingerprintAuth available: " + JSON.stringify(result));
         if (result.isAvailable) {
           window.fingerPrint.check = true;
-          localStorage.setItem('settings_finger_print_enrolled', true)
+          localStorage.setItem('settings_finger_print_enrolled', true);
 
-          if (window.fingerPrint.check && !firstEnter && (!sessionStorage.getItem("push_news") || JSON.parse(sessionStorage.getItem("push_news")) !== true)) {
-            var encryptConfig = {
-              clientId: "myAppName",
-              clientSecret: "currentUser",
-              password: "currentUser",
-              token: "currentUser",
-              locale: "ru",
-              disableBackup: true
-            }; // See config object for required parameters
 
-            if (localStorage.getItem("settings_finger_print") !== null) {
-              if (JSON.parse(localStorage.getItem("settings_finger_print")) === true && localStorage.getItem('click_client_pin')) {
+          onConfirm = function (index) {
+            if (index == 1) {
+              localStorage.setItem('settings_finger_print', true)
 
-                FingerprintAuth.start(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
-              }
-              else {
-
-                onConfirm = function (index) {
-                  if (index == 1) {
-                    localStorage.setItem('settings_finger_print', true)
-
-                  }
-                  else {
-                    localStorage.setItem('settings_finger_print', false)
-                  }
-                }
-
-                navigator.notification.confirm(
-                  'Хотите использовать ее для CLICK?',  // message
-                  onConfirm,              // callback to invoke with index of button pressed
-                  'Устройтсво поддерживает технологию TouchID',            // title
-                  ['Да', 'Нет']          // buttonLabels
-                );
-
-              }
             }
-          }
+            else {
+              localStorage.setItem('settings_finger_print', false)
+            }
+          };
+
+          navigator.notification.confirm(
+            'Хотите использовать ее для CLICK?',  // message
+            onConfirm,              // callback to invoke with index of button pressed
+            'Устройтсво поддерживает технологию TouchID',            // title
+            ['Да', 'Нет']          // buttonLabels
+          );
+
         }
         else {
-          window.fingerPrint.check = false
+          window.fingerPrint.check = false;
           riot.update();
         }
       }
 
       function isAvailableError(message) {
         console.log("isAvailableError(): " + message);
+        localStorage.setItem('settings_finger_print_enrolled', false);
         window.fingerPrint.check = false;
         riot.update();
       }
 
       FingerprintAuth.isAvailable(isAvailableSuccess, isAvailableError);
 
+    }
+    else if (device.platform == 'iOS') {
+
+      function successCallback(success) {
+        window.fingerPrint.check = true;
+        localStorage.setItem('settings_finger_print_enrolled', true)
+        console.log('success', success)
+
+        onConfirm = function (index) {
+          if (index == 1) {
+            localStorage.setItem('settings_finger_print', true)
+          }
+          else {
+            localStorage.setItem('settings_finger_print', false)
+          }
+        }
+
+        navigator.notification.confirm(
+          'Хотите использовать ее для CLICK?',  // message
+          onConfirm,              // callback to invoke with index of button pressed
+          'Устройтсво поддерживает технологию TouchID',            // title
+          ['Да', 'Нет']          // buttonLabels
+        );
+
+      }
+
+      function notSupportedCallback(error) {
+        console.log('error', error)
+        window.fingerPrint.check = false;
+        localStorage.setItem('settings_finger_print_enrolled', false)
+      }
+
+      window.plugins.touchid.isAvailable(successCallback, notSupportedCallback);
+
+    }
+  }
+};
+
+window.fingerPrintAsk = function () {
+  console.log("G.O. fingerprint ASK");
+
+  if (localStorage.getItem('settings_finger_print') !== null) {
+
+    window.fingerPrint.fingerPrintInitialize = true;
+
+
+    if (device.platform == 'Android') {
+
+      window.fingerPrint.check = true;
+      localStorage.setItem('settings_finger_print_enrolled', true);
+
+      if (!sessionStorage.getItem("push_news") || JSON.parse(sessionStorage.getItem("push_news")) !== true) {
+        var encryptConfig = {
+          clientId: "myAppName",
+          clientSecret: "currentUser",
+          password: "currentUser",
+          token: "currentUser",
+          locale: "ru",
+          disableBackup: true,
+//              userAuthRequired: false,
+          dialogHint: "Повторите попытку",
+          dialogTitle: "Сканирование для CLICK"
+
+        }; // See config object for required parameters
+
+
+        if (JSON.parse(localStorage.getItem("settings_finger_print")) === true && localStorage.getItem('click_client_pin')) {
+
+          FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
+        }
+
+      }
+
 
       function encryptSuccessCallback(result) {
         window.fingerPrint.fingerPrintInitialize = false;
-        console.log("successCallback(): " + JSON.stringify(result));
+
         if (result.withFingerprint) {
-          console.log("Successfully encrypted credentials.");
-          console.log("Encrypted credentials: " + result.token);
+
           pin = localStorage.getItem('click_client_pin');
-          console.log('pin', pin)
           enter();
+
         } else if (result.withBackup) {
-          console.log("Authenticated with backup password");
+
           pin = localStorage.getItem('click_client_pin');
-          console.log('pin', pin)
           enter();
         }
       }
@@ -1257,53 +1388,22 @@ window.fingerPrintTurnOn = function (firstEnter) {
     }
     else if (device.platform == 'iOS') {
 
-      function successCallback(success) {
-        window.fingerPrint.check = true;
-        localStorage.setItem('settings_finger_print_enrolled', true)
-        console.log('success', success)
+      window.fingerPrint.check = true;
+      localStorage.setItem('settings_finger_print_enrolled', true);
 
-        if (window.fingerPrint.check && !firstEnter && (!sessionStorage.getItem("push_news") || JSON.parse(sessionStorage.getItem("push_news")) !== true)) {
-          if (localStorage.getItem("settings_finger_print") !== null) {
-            if (JSON.parse(localStorage.getItem("settings_finger_print")) === true && localStorage.getItem('click_client_pin')) {
-              var text = 'Приложите палец для сканирования';
-              window.plugins.touchid.verifyFingerprint(text, successCallbackOfAuth, failureCallbackOfAuth);
-            }
-            else {
+      if (!sessionStorage.getItem("push_news") || JSON.parse(sessionStorage.getItem("push_news")) !== true) {
 
-              onConfirm = function (index) {
-                if (index == 1) {
-                  localStorage.setItem('settings_finger_print', true)
-                }
-                else {
-                  localStorage.setItem('settings_finger_print', false)
-                }
-              }
-
-              navigator.notification.confirm(
-                'Хотите использовать ее для CLICK?',  // message
-                onConfirm,              // callback to invoke with index of button pressed
-                'Устройтсво поддерживает технологию TouchID',            // title
-                ['Да', 'Нет']          // buttonLabels
-              );
-
-            }
-          }
+        if (JSON.parse(localStorage.getItem("settings_finger_print")) === true && localStorage.getItem('click_client_pin')) {
+          var text = 'Приложите палец для сканирования';
+          window.plugins.touchid.verifyFingerprint(text, successCallbackOfAuth, failureCallbackOfAuth);
         }
+
       }
-
-      function notSupportedCallback(error) {
-        console.log('error', error)
-        window.fingerPrint.check = false;
-        localStorage.setItem('settings_finger_print_enrolled', false)
-      }
-
-
-      window.plugins.touchid.isAvailable(successCallback, notSupportedCallback);
 
 
       function successCallbackOfAuth(success) {
         window.fingerPrint.fingerPrintInitialize = false;
-        console.log(success)
+
         console.log('SUCCIESS FINGER PRINT')
         pin = localStorage.getItem('click_client_pin');
         enter();
@@ -1311,12 +1411,12 @@ window.fingerPrintTurnOn = function (firstEnter) {
 
       function failureCallbackOfAuth(error) {
         window.fingerPrint.fingerPrintInitialize = false;
-        console.log(error)
+
         console.log('FAIL FINGER PRINT')
       }
     }
   }
-}
+};
 
 window.clearTimers = function () {
   var id = window.setTimeout(function () {
@@ -1327,3 +1427,263 @@ window.clearTimers = function () {
     id--;
   }
 };
+
+
+window.startSpinner = function () {
+  if (device.platform != 'BrowserStand') {
+    var options = {dimBackground: true};
+
+    SpinnerPlugin.activityStart(languages.Downloading, options, function () {
+      console.log("Started");
+    }, function () {
+      console.log("closed");
+    });
+  }
+};
+
+window.stopSpinner = function () {
+  if (device.platform !== 'BrowserStand') {
+    console.log("Spinner Stop");
+    SpinnerPlugin.activityStop();
+  }
+};
+
+window.blurFields = function () {
+  try {
+    if ('activeElement' in document) {
+      var activeObj = document.activeElement;
+      if (activeObj.tagName.toLowerCase() == "input")
+        console.log("bluring element ", activeObj.blur());
+      else
+        console.log("not bluring ", activeObj, activeObj.tagName);
+    }
+    else {
+      console.log("Your browser does not support the activeElement property!");
+    }
+    return;
+  }
+  catch (e) {
+  }
+  ;
+};
+
+
+window.saveHistory = function (viewName, viewOpts) {
+  // console.log("SAVE HISTORY ", viewName, viewOpts);
+  history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
+  if (history.arrayOfHistory.length != 0 && history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== viewName) {
+    history.arrayOfHistory.push(
+      {
+        "view": viewName,
+        "params": viewOpts
+      }
+    );
+    window.savePageLogs(viewName);
+    sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+  }
+
+
+  console.error('WINDOW.SAVE HISTORY');
+};
+
+window.savePageLogs = function (viewName) {
+  pageLogs = JSON.parse(sessionStorage.getItem('page_logs'));
+  if (pageLogs) {
+    if (pageLogs.length !== 0) {
+      for (var k in pageLogs) {
+        if (pageLogs[k] && pageLogs[k].view === viewName) {
+          pageLogs.splice(k, 1);
+        }
+      }
+      pageLogs.push(
+        {
+          view: viewName,
+          logs: []
+        }
+      );
+    }
+  } else {
+    pageLogs = [{
+      view: viewName,
+      logs: []
+    }];
+  }
+  sessionStorage.setItem('page_logs', JSON.stringify(pageLogs))
+};
+
+window.getPosition = function (el) {
+  var xPos = 0;
+  var yPos = 0;
+
+  while (el) {
+    if (el.tagName == "BODY") {
+      // deal with browser quirks with body/window/document and page scroll
+      var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
+      var yScroll = el.scrollTop || document.documentElement.scrollTop;
+
+      xPos += (el.offsetLeft - xScroll + el.clientLeft);
+      yPos += (el.offsetTop - yScroll + el.clientTop);
+    } else {
+      // for all other non-BODY elements
+      xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+      yPos += (el.offsetTop - el.scrollTop + el.clientTop);
+    }
+
+    el = el.offsetParent;
+  }
+  return {
+    x: xPos,
+    y: yPos
+  };
+};
+
+window.sendToLog = function (data) {
+  console.log("sending information");
+  params = {
+    method: 'report.issue',
+    input: data,
+    onSuccess: function (result) {
+      if (result[0][0].error === 0) {
+        if (result[1][0]) {
+          saved_log_id = result[1][0].report_id;
+          console.log('id of saved log:', saved_log_id);
+          deleteLog(saved_log_id);
+          //clearing sessionStorage and etc
+        }
+      }
+      else {
+        console.log('something gone wrong:', result);
+        //to do something else
+      }
+    },
+    onFail: function (api_status, api_status_message, data) {
+      console.log('cannot save logs to server');
+      console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+      console.error(data);
+    },
+  }
+  window.api.send(params);
+};
+
+var fileData = [], log;
+
+window.writeLog = function (logToSave) {
+
+  phoneNumber = localStorage.getItem('click_client_phoneNumber');
+  sign_time = (new Date()).getTime();
+  report_id = 'id' + sign_time + Math.random().toString(16).slice(2);
+  sign_string = hex_md5(sign_time + report_id + 'x-report');
+  console.log('sign_string before send', sign_string);
+  log = {
+    phone_num: phoneNumber,
+    report_id: report_id,
+    report_data: logToSave,
+    sign_time: sign_time,
+    sign_string: sign_string,
+  };
+  console.log('log before read', log);
+  if (device.platform !== 'BrowserStand') {
+    readFromFile('log.txt', function (data) {
+      if (data) {
+        console.log("READ FILE BEFORE = ", JSON.parse(data));
+        fileData = JSON.parse(data);
+        fileData.push(log);
+        writeToFile('log.txt');
+        console.log('fileData before sending log', fileData);
+        window.sendToLog(log);
+      }
+    });
+  }
+};
+
+function deleteLog(id) {
+  if (device.platform !== 'BrowserStand') {
+    readFromFile('log.txt', function (data) {
+      if (data) {
+        console.log("READ FILE BEFORE = ", JSON.parse(data));
+        fileData = JSON.parse(data);
+        for (log_i in fileData) {
+          if (fileData[log_i] && fileData[log_i].report_id === id) {
+            fileData.splice(log_i, 1);
+          }
+        }
+        writeToFile('log.txt');
+      }
+    });
+  }
+}
+
+function writeToFile(fileName) {
+
+
+  var data = JSON.stringify(fileData, null, '\t');
+  window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (directoryEntry) {
+    directoryEntry.getFile(fileName, {create: true}, function (fileEntry) {
+      fileEntry.createWriter(function (fileWriter) {
+        fileWriter.onwriteend = function (e) {
+          // for real-world usage, you might consider passing a success callback
+          console.log('Write of file "' + fileName + '"" completed.');
+          readFromFile('log.txt', function (data) {
+            console.log("RESULT OF READ FILE = ", data);
+          });
+        };
+
+        fileWriter.onerror = function (e) {
+          // you could hook this up with our global error handler, or pass in an error callback
+          console.log('Write failed: ' + e.toString());
+        };
+
+        var blob = new Blob([data], {type: 'text/plain'});
+
+        fileWriter.write(blob);
+      }, errorHandler.bind(null, fileName));
+    }, errorHandler.bind(null, fileName));
+  }, errorHandler.bind(null, fileName));
+}
+
+function readFromFile(fileName, cb) {
+  var pathToFile = cordova.file.dataDirectory + fileName;
+  window.resolveLocalFileSystemURL(pathToFile, function (fileEntry) {
+    fileEntry.file(function (file) {
+      var reader = new FileReader();
+
+      reader.onloadend = function (e) {
+        cb(this.result);
+      };
+
+      reader.readAsText(file);
+    }, errorHandler.bind(null, fileName));
+  }, errorHandler.bind(null, fileName));
+}
+
+var errorHandler = function (fileName, e) {
+  var msg = '';
+
+  switch (e.code) {
+    case FileError.QUOTA_EXCEEDED_ERR:
+      msg = 'Storage quota exceeded';
+      break;
+    case FileError.NOT_FOUND_ERR:
+      msg = 'File not found';
+      writeToFile('log.txt');
+      break;
+    case FileError.SECURITY_ERR:
+      msg = 'Security error';
+      break;
+    case FileError.INVALID_MODIFICATION_ERR:
+      msg = 'Invalid modification';
+      break;
+    case FileError.INVALID_STATE_ERR:
+      msg = 'Invalid state';
+      break;
+    default:
+      msg = 'Unknown error';
+      break;
+  }
+
+  console.log('Error (' + fileName + '): ' + msg);
+}
+
+
+
+

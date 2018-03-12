@@ -14,6 +14,8 @@
       </div>
       <div id="graphButtonId" role="button" aria-label="{window.languages.ViewReportAriaLabelToggleGraphic}"
            type="button" class="view-reports-graph-button" ontouchend="graphView()"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
 
 
@@ -40,7 +42,7 @@
 
     <div ontouchstart="reportsBodyContainerTouchStart()" ontouchend="reportsBodyContainerTouchEnd()"
          class="view-reports-body-container" id="reportBodyContainerId" if="{firstReportView}"
-         onscroll="reportsBodyContainerTouchMove()">
+         onscroll="reportsBodyContainerScroll()">
       <div class="view-reports-payments-container" each="{i in paymentDates}">
         <div class="view-reports-payment-date-containter" id="{'id'+i}">
           <div class="view-reports-payment-date-field">{i}</div>
@@ -105,20 +107,15 @@
     var scope = this;
 
     this.titleName = 'ОТЧЕТЫ';
+    var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
+    var timeOutTimerData = 0;
+    var timeOutTimerPayment = 0;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-report') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-report',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-report', opts);
 
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#00a8f1");
+        StatusBar.backgroundColorByHexString("#ffffff");
 
       if (!modeOfApp.offlineMode) {
         writeBalance();
@@ -137,13 +134,76 @@
       }
     });
 
-    var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
+    var monthChanged = false;
+    var mCarouselTouchStartX, mCarouselTouchStartY, mCarouselTouchEndX, mCarouselTouchEndY;
+    var paymentTouchStartY, paymentTouchStartX, paymentTouchEndY, paymentTouchEndX;
+    var paymentTimeStart, paymentTimeEnd;
+    var reportBodyContainerStartX, reportBodyContainerStartY, reportBodyContainerEndX, reportBodyContainerEndY;
+    var reportBodyTimeStart, reportBodyTimeEnd;
+    var left;
+    var delta;
+    var percentageTouche;
+    var toucheInPercentage;
+    scope.paymentsMap = {};
+    scope.paymentDates = [];
+    scope.paymentsList = [];
+    scope.pageNumberOptional = 1;
+    scope.showComponent = false;
+
+    scope.leftOfOperations = 320 * widthK;
+    scope.firstReportView = true;
+    scope.count = 12;
+    scope.firstReportView = !opts.show_graph;
+    scope.filterOpen = false;
+    var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+
+    scope.monthsArray = window.languages.ViewReportMonthsArray;
+    scope.mArray = [];
+    var j = 12, t;
+    var curMonth = new Date().getMonth();
+    var i = curMonth;
+    var y = new Date().getFullYear();
+    var yearChanged = false;
+
+
+    if (!scope.mNumber) {
+      scope.mNumber = 12;
+
+      scope.monthNotStartedYet = false;
+
+      this.on('mount', function () {
+        changePositionReportInit();
+      });
+    }
+
+
+    while (j > 0) {
+
+      if (i < 0) {
+
+        t = 12 + i;
+
+        if (!yearChanged) {
+          yearChanged = true;
+          y--;
+        }
+
+      } else {
+        t = i;
+      }
+      scope.mArray[j - 1] = {"count": j--, "name": scope.monthsArray[t].name, "month": t, "year": y};
+      i--;
+    }
+
+    scope.update(scope.mArray);
+
 
     touchStartTitleStart = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      backButtonId.style.webkitTransform = 'scale(0.7)'
+      backButtonId.style.webkitTransform = 'scale(0.7)';
 
       goBackButtonStartX = event.changedTouches[0].pageX;
       goBackButtonStartY = event.changedTouches[0].pageY;
@@ -153,45 +213,21 @@
       event.preventDefault();
       event.stopPropagation();
 
-      backButtonId.style.webkitTransform = 'scale(1)'
+      backButtonId.style.webkitTransform = 'scale(1)';
 
       goBackButtonEndX = event.changedTouches[0].pageX;
       goBackButtonEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
-        onBackKeyDown()
+        onBackKeyDown();
         scope.unmount()
       }
     };
-
-    scope.leftOfOperations = 320 * widthK;
-    scope.firstReportView = true;
-
-    scope.count = 12;
-    //    localStorage.setItem('click_client_countCard', count);
-
-    scope.firstReportView = !opts.show_graph;
-
-
-    if (!scope.mNumber) {
-      scope.mNumber = 12;
-      console.log('MONTH NUMBER', scope.mNumber)
-
-      scope.monthNotStartedYet = false;
-
-      this.on('mount', function () {
-        changePositionReportInit();
-      });
-    }
-
-    scope.filterOpen = false;
 
     openFilter = function () {
       event.stopPropagation();
 
       scope.filterOpen = true;
-
-//      componentMenu.checkOpen = false;
 
       this.filterMenuBackPageId.style.webkitTransition = '0.3s';
       this.reportPageId.style.webkitTransition = '0.3s';
@@ -203,19 +239,14 @@
       this.filterMenuBackPageId.style.opacity = '1';
     };
 
-
     graphView = function () {
 
       scope.firstReportView = !scope.firstReportView;
       scope.update();
 
       var date = new Date();
-      var yearToSearch = scope.mNumber >= 12 - curMonth ? date.getFullYear() : date.getFullYear() - 1;
-      console.log("yearToSearch", yearToSearch)
-      firstDay = new Date(yearToSearch, scope.mArray[scope.mNumber].month, 1);
-      lastDay = new Date(yearToSearch, scope.mArray[scope.mNumber].month + 1, 0);
-      console.log("firstDay=", firstDay);
-      console.log("lastDay=", lastDay);
+      firstDay = new Date(scope.mArray[scope.mNumber].year, scope.mArray[scope.mNumber].month, 1);
+      lastDay = new Date(scope.mArray[scope.mNumber].year, scope.mArray[scope.mNumber].month + 1, 0);
 
       if (scope.firstReportView) {
         graphButtonId.style.backgroundImage = "url(resources/icons/ViewReport/reports_chart_off.png)";
@@ -227,53 +258,22 @@
       }
     };
 
-    var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-
-    scope.monthsArray = window.languages.ViewReportMonthsArray;
-    console.log("monthsArray", scope.monthsArray);
-    scope.mArray = [];
-    var j = 12, t, curMonth = new Date().getMonth();
-    for (var i = curMonth; i > -curMonth; i--) {
-      if (j > 0) {
-        t = i <= 0 ? (11 + i) : i;
-        scope.mArray[j - 1] = {"count": j--, "name": scope.monthsArray[t].name, "month": t};
-        console.log(j, " mArray ", JSON.stringify(scope.mArray[scope.mArray.length - 1]));
-      }
-      else break;
-    }
-    console.log("mArray=", scope.mArray)
-    scope.update(scope.mArray);
-
-
-    var monthChanged = false;
-    var mCarouselTouchStartX, mCarouselTouchStartY, mCarouselTouchEndX, mCarouselTouchEndY
-    var left;
-    var delta;
-    var percentageTouche;
-
     monthContainerTouchStart = function () {
 
       if ((scope.tags['component-report-filter'].filterDateFrom && scope.tags['component-report-filter'].filterDateTo)) {
-
         return;
       }
 
-      console.log("in start touch=", scope.mNumber);
       mCarouselTouchStartX = event.changedTouches[0].pageX;
       mCarouselTouchStartY = event.changedTouches[0].pageY;
 
       percentageTouche = (mCarouselTouchStartX * 100.0) / window.innerHeight;
 
-      console.log("touche started at %", percentageTouche);
-
       left = -(50 * scope.mNumber) - percentageTouche;
       delta = left;
     };
 
-
     monthContainerTouchEnd = function () {
-
 
       event.preventDefault();
       event.stopPropagation();
@@ -284,21 +284,16 @@
 
       mCarouselTouchEndX = event.changedTouches[0].pageX;
       mCarouselTouchEndY = event.changedTouches[0].pageY;
-      console.log(Math.abs(mCarouselTouchStartX - mCarouselTouchEndX))
-      console.log(Math.abs(mCarouselTouchStartY - mCarouselTouchEndY))
+
       if (Math.abs(mCarouselTouchStartX - mCarouselTouchEndX) > 20) {
-        console.log('Touch end of carousel')
         changePositionReport();
       }
       else {
         monthChanged = false;
       }
-
       scope.monthContainerMoved = false;
     };
 
-
-    var toucheInPercentage;
     monthContainerTouchMove = function () {
       event.preventDefault();
       event.stopPropagation();
@@ -320,9 +315,6 @@
     };
 
     changePositionReportVoiceOver = function (count) {
-      console.log("Voice Over changePosition");
-      console.log("count", count);
-      console.log("scope.mNumber", scope.mNumber);
 
       if (scope.monthContainerMoved) return;
       if (scope.mNumber == count - 1) return;
@@ -346,17 +338,9 @@
       }
 
       var dateForComparison = new Date();
-//
-//      if (dateForComparison.getMonth() < scope.mArray[scope.mNumber].month) {
-//
-//        scope.monthNotStartedYet = true;
-//        scope.update();
-//
-//      } else {
 
       scope.monthNotStartedYet = false;
       scope.update();
-      // }
 
       if (scope.firstReportView) {
         paymentListUpdate();
@@ -368,11 +352,7 @@
     };
 
     changePositionReport = function () {
-      console.log("One");
-      console.log("scope.count", scope.count);
-      console.log("scope.mNumber", scope.mNumber);
-      console.log("mCarouselTouchStartX", mCarouselTouchStartX);
-      console.log("mCarouselTouchEndX", mCarouselTouchEndX);
+
 
       monthChanged = true;
       if (mCarouselTouchEndX < mCarouselTouchStartX && scope.mNumber < scope.count - 1) {
@@ -407,18 +387,9 @@
 
       var dateForComparison = new Date();
 
-      console.log("dateForComparison.getMonth()", dateForComparison.getMonth(), " and scope.mArray[scope.mNumber].month", scope.mArray[scope.mNumber].month)
-
-//      if (dateForComparison.getMonth() < scope.mArray[scope.mNumber].month) {
-//
-//        scope.monthNotStartedYet = true;
-//        scope.update();
-//
-//      } else {
-
       scope.monthNotStartedYet = false;
       scope.update();
-      //}
+
 
       if (scope.firstReportView) {
         paymentListUpdate();
@@ -430,7 +401,6 @@
     };
 
     changePositionReportInit = function () {
-      console.log("TWO")
 
       if (scope.mNumber < scope.count - 1) {
         ++scope.mNumber;
@@ -464,16 +434,9 @@
 
       var dateForComparison = new Date();
 
-//      if (dateForComparison.getMonth() < scope.mArray[scope.mNumber].month) {
-//
-//        scope.monthNotStartedYet = true;
-//        scope.update();
-//
-//      } else {
-
       scope.monthNotStartedYet = false;
       scope.update();
-      //}
+
 
       if (scope.firstReportView) {
         paymentListUpdate();
@@ -494,37 +457,19 @@
       return yyyy + '-' + (mmChars[1] ? mm : "0" + mmChars[0]) + '-' + (ddChars[1] ? dd : "0" + ddChars[0]);
     }
 
-    scope.paymentsMap = {};
-    scope.paymentDates = [];
-    scope.paymentsList = [];
-    scope.pageNumberOptional = 1;
+    reportsBodyContainerScroll = function () {
 
-    reportsBodyContainerTouchMove = function () {
-      event.preventDefault();
-      event.stopPropagation();
+      if ((reportBodyContainerId.scrollHeight - reportBodyContainerId.scrollTop) == reportBodyContainerId.offsetHeight && reportBodyContainerId.scrollTop != 0) {
 
-//      for(var i in scope.paymentDates){
-//
-//        console.log('element',document.getElementById('id' + scope.paymentDates[i]).offsetTop)
-//        console.log('main div',reportBodyContainerId.scrollTop)
-//        if(document.getElementById('id' + scope.paymentDates[i]).offsetTop - reportBodyContainerId.scrollTop == 0 ){
-//          document.getElementById('id' + scope.paymentDates[i]).style.position = 'fixed'
-//        }
-////        else{
-////          document.getElementById('id' + scope.paymentDates[i]).style.position = 'relative'
-////        }
-//      }
+        console.log("Payment list length = ", scope.paymentsList.length);
+        if (scope.paymentsList.length % 15 == 0) {
+          console.log("paging");
+          scope.pageNumberOptional++;
+          paymentListUpdate();
+        }
 
-
-      if ((reportBodyContainerId.scrollHeight - reportBodyContainerId.scrollTop) == reportBodyContainerId.offsetHeight) {
-        // you're at the bottom of the page
-        scope.pageNumberOptional++;
-        paymentListUpdate();
       }
-//      var position = reportBodyContainerId.scrollTop;
-//      console.log('POSITION', position)
-//      console.log('HEight', reportBodyContainerId.style.height)
-    }
+    };
 
     scope.paymentListUpdate = paymentListUpdate = function (from) {
 
@@ -535,13 +480,10 @@
         scope.paymentsList = []
       }
       if (scope.monthNotStartedYet) {
-
         scope.paymentsMap = {};
         scope.paymentDates = [];
         scope.paymentsList = [];
-
         scope.update();
-
         return;
       }
       else {
@@ -549,7 +491,7 @@
           scope.pageNumberOptional = 1;
           scope.paymentsMap = {};
           scope.paymentDates = [];
-          scope.paymentsList = []
+          scope.paymentsList = [];
           monthChanged = false;
         }
       }
@@ -567,30 +509,17 @@
       if (!(firstDay && lastDay)) {
 
         var date = new Date();
-        var yearToSearch = scope.mNumber >= 12 - curMonth ? date.getFullYear() : date.getFullYear() - 1;
-        console.log("yearToSearch", yearToSearch)
-        firstDay = new Date(yearToSearch, scope.mArray[scope.mNumber].month, 1);
-        lastDay = new Date(yearToSearch, scope.mArray[scope.mNumber].month + 1, 0);
+        firstDay = new Date(scope.mArray[scope.mNumber].year, scope.mArray[scope.mNumber].month, 1);
+        lastDay = new Date(scope.mArray[scope.mNumber].year, scope.mArray[scope.mNumber].month + 1, 0);
 
         firstDay = convertDate(firstDay);
         lastDay = convertDate(lastDay);
       }
 
-      console.log("firstDay=", firstDay);
-      console.log("lastDay=", lastDay);
-
-
       scope.update();
 
-      if (device.platform != 'BrowserStand') {
-        var options = {dimBackground: false};
-
-        SpinnerPlugin.activityStart("", options, function () {
-          console.log("Started");
-        }, function () {
-          console.log("closed");
-        });
-      }
+      window.startSpinner();
+      window.clearTimeout(timeOutTimerPayment);
 
       if (window.fakedSocket)
         if (window.fakedSocket.readyState == 1) {
@@ -599,8 +528,6 @@
           scope.paymentDates = [];
           scope.paymentsList = []
         }
-
-      var gotAnswer = false;
 
       window.api.call({
         method: 'get.payment.list',
@@ -616,19 +543,12 @@
 
         onSuccess: function (result) {
 
-          gotAnswer = true;
+          console.log('Clearing timer onSuccess', timeOutTimerPayment);
+          window.clearTimeout(timeOutTimerPayment);
 
-          console.log(result)
-          console.log(result[0][0])
           if (result[0][0].error == 0) {
-            console.log('PAYMENTLIST=', result[1]);
+
             for (var i in result[1]) {
-
-//              console.log("C", result[1][i].payment_id);
-
-//              console.log("created=", result[1][i].created.split(" ")[1].substr(0, 5));
-
-//              result[1][i].paymentTime = result[1][i].created.split(" ")[1].substr(0, 5);
 
               if (result[1][i].created)
                 if (result[1][i].created.split(" ")[1])
@@ -657,8 +577,6 @@
                 result[1][i].state_image = "resources/icons/ViewReport/report_status_processing.png"
               }
 
-
-//              console.log("DATE DATE", dateStr)
               if (!scope.paymentsMap[dateStr]) {
                 scope.paymentsMap[dateStr] = [];
                 scope.paymentDates.push(dateStr);
@@ -672,8 +590,6 @@
 
             }
 
-            console.log('scope.paymentDates', scope.paymentDates)
-            console.log('scope.paymentsMap', scope.paymentsMap)
             scope.update();
           }
           else {
@@ -691,15 +607,17 @@
 
         },
         onFail: function (api_status, api_status_message, data) {
+          console.log('Clearing timer onFail', timeOutTimerPayment);
+          window.clearTimeout(timeOutTimerPayment);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
-        }
-      }, 10000);
-
-
-      if (!gotAnswer)
-        setTimeout(function () {
-          if (!gotAnswer) {
+        },
+        onTimeOut: function () {
+          timeOutTimerPayment = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method:'get.payment.list',
+            });
             scope.errorNote = "Сервис временно недоступен";
             scope.stepAmount = 0;
             scope.update();
@@ -709,23 +627,17 @@
               errornote: scope.errorNote,
               step_amount: scope.stepAmount
             });
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Report 694");
-              SpinnerPlugin.activityStop();
-            }
-            return
-          }
-        }, 10000);
-
-
+            window.stopSpinner();
+          }, 30000);
+        },
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimerPayment);
+          window.clearTimeout(timeOutTimerPayment);
+        }
+      }, 30000);
     };
 
-
     scope.graphListUpdate = graphListUpdate = function () {
-
-//      scope.paymentsMap = {};
-//      scope.paymentDates = [];
-//      scope.paymentsList = []
 
       if (scope.monthNotStartedYet) {
 
@@ -751,32 +663,20 @@
       if (!(firstDay && lastDay)) {
 
         var date = new Date();
-        var yearToSearch = scope.mNumber >= 12 - curMonth ? date.getFullYear() : date.getFullYear() - 1;
-        console.log("yearToSearch", yearToSearch)
-        firstDay = new Date(yearToSearch, scope.mArray[scope.mNumber].month, 1);
-        lastDay = new Date(yearToSearch, scope.mArray[scope.mNumber].month + 1, 0);
+        firstDay = new Date(scope.mArray[scope.mNumber].year, scope.mArray[scope.mNumber].month, 1);
+        lastDay = new Date(scope.mArray[scope.mNumber].year, scope.mArray[scope.mNumber].month + 1, 0);
 
         firstDay = convertDate(firstDay);
         lastDay = convertDate(lastDay);
       }
 
-      console.log("firstDay=", firstDay);
-      console.log("lastDay=", lastDay);
-
-      if (device.platform != 'BrowserStand') {
-        var options = {dimBackground: true};
-
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Started");
-        }, function () {
-          console.log("closed");
-        });
-      }
+      window.startSpinner();
+      window.clearTimeout(timeOutTimerData);
 
       scope.graphList = [];
       scope.paymentsSum = 0;
-      var gotAnswer = false;
       scope.update();
+
       window.api.call({
         method: 'history.chart.data',
         input: {
@@ -792,31 +692,21 @@
 
           scope.graphList = [];
           scope.paymentsSum = 0;
-          gotAnswer = true;
-
-          console.log(result)
-          console.log(result[0][0])
+          console.log('Clearing timer onSuccess', timeOutTimerData);
+          window.clearTimeout(timeOutTimerData);
           if (result[0][0].error == 0) {
             for (var i in result[1]) {
-
               scope.paymentsSum += parseInt(result[1][i].amount.replace(/\s/g, ''));
-
               scope.graphList.push(result[1][i]);
             }
-
             scope.paymentsSum = scope.paymentsSum.toString();
-
             if (scope.paymentsSum)
               scope.paymentsSum = window.amountTransform(scope.paymentsSum);
-
             scope.update();
-
-            console.log('history chart data', scope.graphList);
-
             createGraph(scope.graphList);
           }
           else {
-            scope.graphList = []
+            scope.graphList = [];
             createGraph(scope.graphList);
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
@@ -831,14 +721,17 @@
 
         },
         onFail: function (api_status, api_status_message, data) {
+          console.log('Clearing timer onFail', timeOutTimerData);
+          window.clearTimeout(timeOutTimerData);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
-        }
-      }, 10000);
-
-      if (!gotAnswer)
-        setTimeout(function () {
-          if (!gotAnswer) {
+        },
+        onTimeOut: function () {
+          timeOutTimerData = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method:'history.char.data',
+            });
             scope.errorNote = "Сервис временно недоступен";
             scope.stepAmount = 0;
             window.common.alert.show("componentAlertId", {
@@ -847,14 +740,15 @@
               errornote: scope.errorNote,
               step_amount: scope.stepAmount
             });
+            window.stopSpinner();
             scope.update();
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Report 823");
-              SpinnerPlugin.activityStop();
-            }
-            return
-          }
-        }, 10000);
+          }, 30000);
+        },
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimerData);
+          window.clearTimeout(timeOutTimerData);
+        }
+      }, 30000);
 
     };
 
@@ -877,10 +771,7 @@
         data.datasets[0].data.push(arrayForGraph[i].percent);
         data.datasets[0].backgroundColor.push(arrayForGraph[i].color_hex);
         var centerOfBlock = parseInt(sumOfAngle) + parseInt(arrayForGraph[i].percent) / 2;
-
-        console.log('CENTER', centerOfBlock)
         var alpha = 3.6 * parseInt(centerOfBlock);
-        console.log('ALPHA', alpha)
         sumOfAngle += parseInt(arrayForGraph[i].percent);
 
         var x = 240 + (170 * Math.sin(alpha / (180 / Math.PI)));
@@ -898,7 +789,6 @@
           width = 100;
         }
 
-        console.log('DATA', data)
         var percent = arrayForGraph[i].percent;
         var coordinates = {
           x: x,
@@ -907,7 +797,7 @@
           image: arrayForGraph[i].image_inner,
           order: j,
           alpha: alpha,
-          position: position,
+          position: position
 //          width: width
         }
         scope.arrayOfCoordinates.push(coordinates);
@@ -915,9 +805,7 @@
 
         scope.countForGraph = j;
       }
-      scope.update()
-      console.log("ARRAY OF COORDINATES", scope.arrayOfCoordinates)
-      console.log('DATA', data)
+      scope.update();
       if (document.getElementById('myChart'))
         var ctx = document.getElementById('myChart').getContext('2d');
       else {
@@ -944,43 +832,20 @@
           console.log('scope.arrayOfCoordinates[i]', scope.arrayOfCoordinates)
         }
       }
-    }
-
-    //    paymentListUpdate();
-
-
-    scope.showComponent = false;
-
-
-    var paymentTouchStartY, paymentTouchStartX, paymentTouchEndY, paymentTouchEndX;
-    var paymentTimeStart, paymentTimeEnd;
-
-    paymentOnClick = function () {
-      console.log("ONCLICK")
-    }
+    };
 
     paymentTouchEnd = function (paymentId) {
 
-
-      console.log("TOUCHEND", event)
-
-      document.getElementById(paymentId).style.backgroundColor = 'rgba(231,231,231,0.8)'
+      document.getElementById(paymentId).style.backgroundColor = 'rgba(231,231,231,0.8)';
 
       setTimeout(function () {
         document.getElementById(paymentId).style.backgroundColor = 'transparent'
-      }, 300)
+      }, 300);
 
-
-//      paymentTouchEndY = event.changedTouches[0].pageY;
-//      paymentTouchEndX = event.changedTouches[0].pageX;
-//      paymentTimeEnd = event.timeStamp.toFixed(0);
 
       paymentTouchEndY = event.pageY;
       paymentTouchEndX = event.pageX;
       paymentTimeEnd = event.timeStamp.toFixed(0);
-
-      console.log('settingsTouchStartY', paymentTouchStartY)
-      console.log('settingsTouchEndY', paymentTouchEndY)
 
       setTimeout(function () {
 
@@ -996,22 +861,6 @@
               errornote: scope.errorNote,
               step_amount: scope.stepAmount
             });
-//        confirm(question)
-//          scope.confirmShowBool = true;
-//          scope.confirmNote = question;
-//          scope.confirmType = 'local';
-//          scope.result = function (bool) {
-//            if (bool) {
-//              localStorage.clear();
-//              window.location = 'index.html'
-//              scope.unmount()
-//              return
-//            }
-//            else {
-//              scope.confirmShowBool = false;
-//              return
-//            }
-//          };
             scope.update();
 
             return
@@ -1019,11 +868,7 @@
 
           for (var i = 0; i < scope.paymentsList.length; i++) {
             if (scope.paymentsList[i].payment_id == paymentId) {
-              console.log("FROM VIEW REPORT service report for=", JSON.stringify(scope.paymentsList[i].service_name));
 
-              console.log(scope.paymentsList[i])
-              console.log("scope.tags['view-report-service-new']", scope.tags)
-              console.log("scope.tags['view-report-service-new']", scope)
 
               var servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
               var servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
@@ -1040,67 +885,52 @@
                   }
                   scope.tags['view-report-service-new'].isInFavorites = false;
                 }
-                //console.log(" not found ")
 
               } else {
                 scope.tags['view-report-service-new'].isInFavorites = false;
-                console.log(" NO FAV ")
               }
 
-              if (servicesMap[scope.paymentsList[i].service_id])
-                scope.paymentsList[i].canAddToFavorite = true;
-              else
+              if (servicesMap) {
+                if (servicesMap[scope.paymentsList[i].service_id])
+                  scope.paymentsList[i].canAddToFavorite = true;
+                else
+                  scope.paymentsList[i].canAddToFavorite = false;
+              } else {
                 scope.paymentsList[i].canAddToFavorite = false;
+              }
 
               scope.paymentsList[i].favoriteId = scope.favoriteId;
               scope.showComponent = true;
               scope.tags['view-report-service-new'].opts = scope.paymentsList[i];
-              console.log("VIEW REPORT SERVICE NEW OPTS", scope.paymentsList[i]);
-              console.log("PAYMENT", JSON.stringify(scope.tags['view-report-service-new'].opts.service_name));
-
-              console.log("scope.tags['view-report-service-new']", scope.tags['view-report-service-new']);
-
               window.checkShowingComponent = scope.tags['view-report-service-new'];
 
-
-              riot.update()
+              riot.update();
               break;
             }
           }
         }
         else {
           if (Math.abs(paymentTouchStartY - paymentTouchEndY) <= 100 && (Math.abs(paymentTouchStartX - paymentTouchEndX) > 20) && paymentTimeEnd - paymentTimeStart < 500) {
-            mCarouselTouchEndX = paymentTouchEndX
-            mCarouselTouchStartX = paymentTouchStartX
-            monthChanged = true
+            mCarouselTouchEndX = paymentTouchEndX;
+            mCarouselTouchStartX = paymentTouchStartX;
+            monthChanged = true;
             changePositionReport()
           }
         }
       }, 100)
-
-    }
+    };
 
     paymentTouchStart = function (paymentId) {
       paymentTouchStartY = event.changedTouches[0].pageY;
       paymentTouchStartX = event.changedTouches[0].pageX;
       paymentTimeStart = event.timeStamp.toFixed(0);
-    }
+    };
 
-    paymentTouchMove = function (paymentId) {
-
-      console.log("paymentId=", paymentId);
-      console.log("paymentId asdd=", document.getElementById(paymentId).childNodes[0]);
-
-      console.log("paymentId scrollTop =", paymentId.clientTop)
-    }
-
-    var reportBodyContainerStartX, reportBodyContainerStartY, reportBodyContainerEndX, reportBodyContainerEndY;
-    var reportBodyTimeStart, reportBodyTimeEnd;
     reportsBodyContainerTouchStart = function () {
       reportBodyContainerStartY = event.changedTouches[0].pageY;
       reportBodyContainerStartX = event.changedTouches[0].pageX;
       reportBodyTimeStart = event.timeStamp.toFixed(0);
-    }
+    };
 
     reportsBodyContainerTouchEnd = function () {
 
@@ -1109,12 +939,24 @@
       reportBodyContainerEndY = event.changedTouches[0].pageY;
       reportBodyContainerEndX = event.changedTouches[0].pageX;
       reportBodyTimeEnd = event.timeStamp.toFixed(0);
+      console.log("touch end out", reportBodyContainerEndY, reportBodyContainerStartY, 250 * widthK, reportBodyContainerId.scrollTop);
 
-      if (Math.abs(reportBodyContainerStartY - reportBodyContainerEndY) <= 100 && (Math.abs(reportBodyContainerStartX - reportBodyContainerEndX) > 20) && reportBodyTimeEnd - reportBodyTimeStart < 500) {
-        mCarouselTouchEndX = reportBodyContainerEndX
-        mCarouselTouchStartX = reportBodyContainerStartX
+      if (Math.abs(reportBodyContainerStartY - reportBodyContainerEndY) <= 100 && (Math.abs(reportBodyContainerStartX - reportBodyContainerEndX) > 20) && (reportBodyTimeEnd - reportBodyTimeStart) < 500) {
+        mCarouselTouchEndX = reportBodyContainerEndX;
+        mCarouselTouchStartX = reportBodyContainerStartX;
+        console.log("touch end inner", reportBodyContainerEndY);
         monthChanged = true
         changePositionReport()
+      } else if (reportBodyContainerEndY > reportBodyContainerStartY && (reportBodyContainerEndY - reportBodyContainerStartY) >= (250 * widthK) && reportBodyContainerId.scrollTop == 0) {
+        console.log("update page")
+        console.log("scrollTop=", reportBodyContainerId.scrollTop)
+        scope.pageNumberOptional = 1;
+        scope.paymentsMap = {};
+        scope.paymentDates = [];
+        scope.paymentsList = [];
+        monthChanged = false;
+        paymentListUpdate();
+
       }
 
     }

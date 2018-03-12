@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html lang="ru" id="htmlId"
       onCut="return false"
-      onDrag="return false" onDrop="return false" autocomplete=off unselectable="on"
-      style="position:absolute; width: 100%; height: 100%; background: -webkit-linear-gradient(rgb(0,168,241),rgb(73,212,255)80%);">
+      onDrag="return false"
+      onDrop="return false"
+      onCopy="return false"
+      autocomplete=off
+      unselectable="on"
+      onselectstart="return false"
+      style="position:absolute;
+      width: 100%;
+      height: 100%;
+      background: white;
+      -webkit-user-select: none;">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, maximum-scale=10.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, maximum-scale=10.0, user-scalable=no, viewport-fit=cover">
   <meta name="format-detection" content="telephone=no">
   <script src="js/languages/languages.js"></script>
   <script src="js/mOperators/mOperators.js"></script>
@@ -45,12 +54,20 @@
 
 <script>
 
-  api.init();
   var scope = this;
   sessionStorage.clear();
-  //  console.log = function () {
-  //    return
-  //  }
+
+
+  var _warn = console.warn;
+
+  console.warn = function (warnMessage) {
+    pageLogs = JSON.parse(sessionStorage.getItem('page_logs'));
+    if (pageLogs && pageLogs.length > 0) {
+      pageLogs[pageLogs.length - 1].logs.push(warnMessage);
+      sessionStorage.setItem('page_logs', JSON.stringify(pageLogs));
+    }
+    _warn.apply(console, arguments);
+  };
 
   permissionAccess = function () {
 
@@ -58,6 +75,7 @@
       var permissions = cordova.plugins.permissions;
       permissions.checkPermission(permissions.CALL_PHONE, checkPermissionCallbackOfCall, null);
       permissions.checkPermission(permissions.READ_CONTACTS, checkPermissionCallbackOfContacts, null);
+      permissions.checkPermission(permissions.ACCESS_COARSE_LOCATION, checkPermissionCallbackOfGps, checkPermissionErrorCallbackOfGps);
 
       if (device.platform === 'Android') {
         permissions.checkPermission(permissions.READ_PHONE_STATE, checkPermissionCallbackOfSim, null);
@@ -118,6 +136,32 @@
       }
     }
 
+    function checkPermissionCallbackOfGps(status) {
+      console.log("status.checkPermission 111 = ", status.checkPermission);
+      if (!status.checkPermission) {
+        var errorCallback = function () {
+          console.log('location find FALSE in success');
+          localStorage.setItem('location_find', true);
+        };
+        permissions.requestPermission(
+          permissions.ACCESS_COARSE_LOCATION,
+          function (status) {
+            if (!status.checkPermission) errorCallback();
+            else {
+              console.log("location find TRUE");
+              localStorage.setItem('location_find', true);
+            }
+          },
+          errorCallback);
+      }
+    }
+
+    function checkPermissionErrorCallbackOfGps() {
+      console.log("Check permission callback error 333");
+      localStorage.setItem('location_find', false);
+    }
+
+
     try {
       window.FirebasePlugin.hasPermission(function (data) {
         console.log('FIREBASE ACCESS', data.isEnabled);
@@ -131,8 +175,13 @@
   var checkFirstStarting = false;
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
+      api.init();
+
+//      writeLog({foo: 'bar'});
+
       window.FirebasePlugin.setBadgeNumber(0);
       MobileAccessibility.usePreferredTextZoom(false);
+      window.cordova.plugins.Keyboard.disableScroll(true);
       checkFirstStarting = true;
 
       console.log("Версия приложения из плагина", AppVersion.version);
@@ -145,11 +194,14 @@
       }
       else {
 //    localStorage.clear()
+        localStorage.removeItem('click_client_cards');
+        localStorage.removeItem('click_client_issuer_list');
         localStorage.removeItem('click_client_payCategoryList');
         localStorage.removeItem('click_client_categoryNamesMap');
         localStorage.removeItem('click_client_payServiceList');
         localStorage.removeItem('click_client_servicesMapByCategory');
         localStorage.removeItem('click_client_servicesMap');
+        localStorage.removeItem('click_client_agreement');
         localStorage.setItem('version', AppVersion.version)
       }
 
@@ -158,6 +210,7 @@
 
 //      localStorage.setItem('device', JSON.stringify(device))
       localStorage.setItem("click_client_authorized", JSON.stringify(false));
+      console.log("authorized false");
 
 //      if (!window.isConnected) {
 //        var options = {dimBackground: true};
@@ -180,11 +233,13 @@
 
       localStorage.setItem('onResume', false);
 
-      StatusBar.backgroundColorByHexString("#00b0eb");
+      StatusBar.backgroundColorByHexString("#ffffff");
+      StatusBar.styleDefault();
 
       if (device.platform === 'Android')
         permissionAccess();
       else if (device.platform === 'iOS') {
+        localStorage.setItem('location_find', true);
         window.FirebasePlugin.grantPermission();
       }
 
@@ -218,19 +273,163 @@
       document.addEventListener("resume", onResumeFunction, false);
       document.addEventListener("online", onlineDetector, false);
       document.addEventListener("offline", offlineDetector, false);
+      //raise button on keyboardShow
+      window.addEventListener('native.keyboardshow', keyboardShowHandler);
+      window.addEventListener('native.keyboardhide', keyboardHideHandler);
+
+      function keyboardShowHandler(e) {
+        console.log('Keyboard height is: ' + e.keyboardHeight);
+        window.bottomButtomBottom = e.keyboardHeight + "px";
+        try {
+          if (this.bottomButtonContactId)
+            bottomButtonContactId.style.bottom = e.keyboardHeight + "px";
+        } catch (error) {
+          console.error(error);
+        }
+        try {
+          if (this.bottomButtonCardId)
+            bottomButtonCardId.style.bottom = e.keyboardHeight + "px";
+        } catch (error) {
+          console.error(error);
+        }
+        try {
+          if (this.bottomButtonBetweenId)
+            bottomButtonBetweenId.style.bottom = e.keyboardHeight + "px";
+        } catch (error) {
+          console.error(error);
+        }
+        try {
+          if (this.bottomButtonSubmitId)
+            bottomButtonSubmitId.style.bottom = e.keyboardHeight + "px";
+        } catch (error) {
+          console.error(error);
+        }
+        try {
+          if (this.bottomButtonContainer)
+            bottomButtonContainer.style.bottom = e.keyboardHeight + "px";
+        } catch (error) {
+          console.error(error);
+        }
+        try {
+          if (this.firstEnterButtonId)
+            firstEnterButtonId.style.bottom = e.keyboardHeight + "px";
+        } catch (error) {
+          console.error(error);
+        }
+        try {
+          if (this.cardInputContainer) {
+            cardInputTop = window.getPosition(cardInputContainer).y + cardInputContainer.clientHeight;
+            keyBoardTop = document.documentElement.clientHeight - e.keyboardHeight;
+            if (cardInputTop > keyBoardTop) {
+              keyBoardInputDelta = cardInputTop - keyBoardTop;
+              cardInputContainer.style.top = (cardInputContainer.offsetTop - keyBoardInputDelta) + 'px';
+            }
+          }
+        } catch (error) {
+          console.error(error);
+        }
+
+        try {
+          if (this.enterButtonId)
+            enterButtonId.style.bottom = e.keyboardHeight + "px";
+        } catch (error) {
+          console.error(error);
+        }
+        try {
+          if (this.formTypeTwoBtnId)
+            formTypeTwoBtnId.style.bottom = e.keyboardHeight + "px";
+        } catch (error) {
+          console.error(error);
+        }
+        try {
+          if (this.nextButtonId)
+            nextButtonId.style.bottom = e.keyboardHeight + "px";
+        } catch (error) {
+          console.error(error);
+        }
+
+      }
+
+      function keyboardHideHandler(e) {
+        console.log('Keyboard hidden');
+        window.bottomButtomBottom = "0px";
+        try {
+          if (this.bottomButtonContactId)
+            bottomButtonContactId.style.bottom = "0px";
+        } catch (error) {
+          console.error(error);
+        }
+        try {
+          if (this.bottomButtonCardId)
+            bottomButtonCardId.style.bottom = "0px";
+        } catch (error) {
+          console.error(error);
+        }
+        try {
+          if (this.bottomButtonBetweenId)
+            bottomButtonBetweenId.style.bottom = "0px";
+        } catch (error) {
+          console.error(error);
+        }
+        try {
+          if (this.bottomButtonSubmitId)
+            bottomButtonSubmitId.style.bottom = "0px";
+        } catch (error) {
+          console.error(error);
+        }
+        try {
+          if (this.bottomButtonContainer)
+            bottomButtonContainer.style.bottom = "0px";
+        } catch (error) {
+          console.error(error);
+        }
+        try {
+          if (this.firstEnterButtonId)
+            firstEnterButtonId.style.bottom = "0px";
+        } catch (error) {
+          console.error(error);
+        }
+        try {
+          if (this.cardInputContainer)
+            cardInputContainer.style.top = '';
+        } catch (error) {
+          console.error(error);
+        }
+        try {
+          if (this.enterButtonId)
+            enterButtonId.style.bottom = "0px";
+        } catch (error) {
+          console.error(error);
+        }
+        try {
+          if (this.formTypeTwoBtnId)
+            formTypeTwoBtnId.style.bottom = "0px";
+        } catch (error) {
+          console.error(error);
+        }
+        try {
+          if (this.nextButtonId)
+            nextButtonId.style.bottom = "0px";
+        } catch (error) {
+          console.error(error);
+        }
+
+      }
     }, false);
   }
 
-  //  if (JSON.parse(localStorage.getItem('demo_version')) === true) {
-  //    this.closeDemo();
-  //  }
 
   var tempOpts;
   function onBackKeyDown() {
 
-    if (device.platform != 'BrowserStand') {
-      SpinnerPlugin.activityStop();
+
+    for (var i in window.common.alert.tags) {
+      if (window.common.alert.isShown(i)) {
+        return;
+      }
     }
+
+    window.stopSpinner();
 
     if (window.checkShowingComponent) {
       if (window.checkShowingComponent.parent) {
@@ -255,6 +454,20 @@
         navigator.app.exitApp();
       }
       else {
+        if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-news' && JSON.parse(sessionStorage.getItem("push_news"))) {
+          sessionStorage.setItem("push_news", false);
+
+          if ((!JSON.parse(localStorage.getItem('click_client_authorized')) && !modeOfApp.demoVersion) || JSON.parse(localStorage.getItem('session_broken')) || (JSON.parse(localStorage.getItem('settings_block')) === true && JSON.parse(localStorage.getItem('onResume')))) {
+            riotTags.innerHTML = "<view-authorization>";
+            riot.mount('view-authorization');
+            return
+          }
+          history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
+          if (history.arrayOfHistory[history.arrayOfHistory.length - 2].view === "view-main-page") {
+            history.arrayOfHistory[history.arrayOfHistory.length - 2].params = {};
+            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+          }
+        }
         history.arrayOfHistory.pop();
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
         riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
@@ -264,7 +477,9 @@
           riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, tempOpts);
         } else {
           riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
+
         }
+
       }
     }
   }
@@ -277,19 +492,17 @@
 
     if (componentMenu.check === true || window.pickContactFromNativeChecker === true || modeOfApp.offlineMode) {
       window.pickContactFromNativeChecker = false;
+      window.scannerCanBeAsked = false;
       componentMenu.check = false;
       return
     }
-    setTimeout(function () {
-      localStorage.setItem('onResume', true);
-      console.log("onResume set true");
-      if (JSON.parse(localStorage.getItem('settings_block')) === true) {
-        console.log("authorization mount onPause, block true");
-        riotTags.innerHTML = "<view-authorization>";
-        riot.mount('view-authorization');
+    localStorage.setItem('onResume', true);
+    console.log("onResume set true");
+    if (JSON.parse(localStorage.getItem('settings_block')) === true) {
+      localStorage.setItem('session_broken', false);
+      localStorage.setItem("click_client_authorized", false);
+    }
 
-      }
-    }, 0);
   }
 
   function onResumeFunction() {
@@ -297,26 +510,32 @@
 
     if (modeOfApp.offlineMode) return
 
-    console.log('balance')
-
     if (modeOfApp.onlineMode && window.isConnected) {
-      console.log('HIDE CONFIRM')
+      console.log('HIDE CONFIRM and ALERT')
       window.common.alert.hide("componentConfirmId");
+      window.common.alert.hide("componentAlertId");
     }
 
-    if (!checkFirstStarting && localStorage.getItem('click_client_token') && localStorage.getItem('click_client_loginInfo')) {
+    if (!checkFirstStarting && localStorage.getItem('click_client_token') && localStorage.getItem('click_client_loginInfo') &&
+      !(sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true)) {
       var nowMinutes = new Date().getMinutes();
       console.log("BEFORE MINUTES", waitingMinutes);
       console.log("NOW MINUTES", nowMinutes);
+      console.log("window.scannerCanBeAsked=", window.scannerCanBeAsked);
 
       if ((Math.abs(parseInt(waitingMinutes) - parseInt(nowMinutes)) > 5)) {
         console.log("5 minutes >");
         console.log("SESSION_BROKEN = TRUE");
-        localStorage.setItem('session_broken', true)
+        localStorage.setItem('session_broken', true);
         riotTags.innerHTML = "<view-authorization>";
         riot.mount('view-authorization');
         return
+      } else if (JSON.parse(localStorage.getItem('settings_block')) === true && window.scannerCanBeAsked) {
+        console.log("authorization mount onResume, block true");
+        riotTags.innerHTML = "<view-authorization>";
+        riot.mount('view-authorization');
       }
+      window.scannerCanBeAsked = true;
       setTimeout(function () {
 
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");
@@ -381,18 +600,6 @@
 
 
   function checkImageURL(dirEntry, fileNamePrefix, fileName, assetURL, index, callback) {
-
-//    var xhr = new XMLHttpRequest();
-//
-//    xhr.open('GET', cordova.file.applicationDirectory + dirEntry + fileName, true);
-//    xhr.responseType = 'blob';
-//
-//    xhr.onload = function () {
-//      var blob = new Blob([this.response], {type: 'image/png'});
-//      callback(false, index, fileName);
-//    };
-//
-//    xhr.onerror = function () {
 
     var convertFunction = convertFileToDataURLviaFileReader;
 

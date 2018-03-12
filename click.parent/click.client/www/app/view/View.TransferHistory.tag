@@ -68,15 +68,9 @@
     scope.tourClosed = true;
     scope.clickPinError = false;
     scope.showComponent = false;
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-history') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-transfer-history',
-          "params": opts,
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+
+    window.saveHistory('view-transfer-history', opts);
+
     if (localStorage.getItem('click_client_loginInfo')) {
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
@@ -88,7 +82,7 @@
         componentTourId.style.display = "block";
         scope.tourClosed = false;
         if (device.platform != 'BrowserStand')
-          StatusBar.backgroundColorByHexString("#004663");
+          StatusBar.backgroundColorByHexString("#ffffff");
       }
     })
 

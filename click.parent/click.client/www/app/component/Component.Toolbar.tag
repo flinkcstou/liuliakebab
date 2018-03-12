@@ -107,15 +107,8 @@
 
         console.log('TOOLBAR SCOPE', scope.parent.tags['view-news'].showNewsFunction(1))
 
-        if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-news') {
-          history.arrayOfHistory.push(
-            {
-              "view": 'view-news',
-              "params": opts
-            }
-          );
-          sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-        }
+        window.saveHistory('view-news', opts);
+
       }
     };
 

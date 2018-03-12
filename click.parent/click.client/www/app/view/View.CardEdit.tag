@@ -6,6 +6,8 @@
     </div>
     <div id="rightButton" type="button" class="{check-button: rightbuttoncheck}" ontouchstart="saveEditStart()"
          ontouchend="saveEditEnd()"></div>
+    <div class="title-bottom-border">
+    </div>
   </div>
   <div class="card-edit-body-container">
     <div class="card-edit-field">
@@ -20,15 +22,8 @@
   </div>
 
   <script>
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-card-edit') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-card-edit',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+
+    window.saveHistory('view-card-edit', opts);
 
     var scope = this;
     scope.backbuttoncheck = true;
@@ -128,7 +123,7 @@
                 scope.cardsArray[scope.card.card_id].name = newCardName;
 
                 //TODO: CHANGED - COMMENTED
-                if (isMain == scope.card.default_account) {
+                if (isMain == scope.card.default_account || scope.onlyOneCard) {
                   localStorage.setItem('click_client_cards', JSON.stringify(scope.cardsArray));
                   onBackKeyDown();
                 }

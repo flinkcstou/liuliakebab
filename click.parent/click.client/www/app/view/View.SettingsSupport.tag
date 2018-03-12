@@ -1,9 +1,13 @@
 <view-settings-support id="settingsSupportId" class="view-settings-support riot-tags-main-container">
   <div class="settings-support-blue-container">
 
-    <div class="settings-support-page-title">
-      <div id="closeButtonId" role="button" aria-label="{window.languages.Close}" class="settings-support-x-button"
-           ontouchstart="closeSettingsSupportTouchStart()" ontouchend="closeSettingsSupportTouchEnd()"></div>
+    <div class="page-title">
+      <p class="name-title">{languages.ViewSupportSettingsPageTitle}</p>
+      <div id="settingsSupportBackButton" role="button" aria-label="{window.languages.Back}"
+           ontouchstart="settingsSupportGoToBackStart()" ontouchend="settingsSupportGoToBackEnd()"
+           class="back-button"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
 
     <div class="settings-support-help-icon"></div>
@@ -51,29 +55,29 @@
   <script>
     var scope = this;
 
-    var closeButtonStartX, closeButtonEndX, closeButtonStartY, closeButtonEndY;
+    var backButtonStartX, backButtonEndX, backButtonStartY, backButtonEndY;
 
-    closeSettingsSupportTouchStart = function () {
+    settingsSupportGoToBackStart = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      closeButtonId.style.webkitTransform = 'scale(0.8)'
+      settingsSupportBackButton.style.webkitTransform = 'scale(0.8)'
 
-      closeButtonStartX = event.changedTouches[0].pageX;
-      closeButtonStartY = event.changedTouches[0].pageY;
+      backButtonStartX = event.changedTouches[0].pageX;
+      backButtonStartY = event.changedTouches[0].pageY;
 
     };
 
-    closeSettingsSupportTouchEnd = function () {
+    settingsSupportGoToBackEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      closeButtonId.style.webkitTransform = 'scale(1)'
+      settingsSupportBackButton.style.webkitTransform = 'scale(1)'
 
-      closeButtonEndX = event.changedTouches[0].pageX;
-      closeButtonEndY = event.changedTouches[0].pageY;
+      backButtonEndX = event.changedTouches[0].pageX;
+      backButtonEndY = event.changedTouches[0].pageY;
 
-      if (Math.abs(closeButtonStartX - closeButtonEndX) <= 20 && Math.abs(closeButtonStartY - closeButtonEndY) <= 20) {
+      if (Math.abs(backButtonStartX - backButtonEndX) <= 20 && Math.abs(backButtonStartY - backButtonEndY) <= 20) {
         onBackKeyDown();
         scope.unmount()
       }

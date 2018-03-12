@@ -1,17 +1,19 @@
 <view-service-pincards-new class="view-service-pincards riot-tags-main-container">
 
   <div class="pay-page-title" style="border-style: none;">
-    <p class="{servicepage-title :opts.mode!='ADDAUTOPAY', autopay-method-page-title:opts.mode=='ADDAUTOPAY'}">
+    <p class="servicepage-title">
       {(opts.mode=='ADDAUTOPAY')?(window.languages.ViewAutoPayTitleName):("")}
       {titleName}</p>
     <p class="servicepage-category-field">{(opts.mode=='ADDAUTOPAY')?
       (autoPayTypeText):(categoryName)}</p>
     <div id="pinCardBackButtonId" role="button" aria-label="{window.languages.Back}" ontouchend="touchStartTitle()"
          ontouchstart="onTouchStartOfBack()"
-         class="{servicepage-button-back:opts.mode!='ADDAUTOPAY', autopay-method-back-button:opts.mode=='ADDAUTOPAY'}">
+         class="servicepage-button-back">
     </div>
     <div type="button" class="servicepage-service-icon" if="{opts.mode=='ADDAUTOPAY'}"
          style="background-image: url({serviceIcon})"></div>
+    <div class="title-bottom-border">
+    </div>
   </div>
 
   <div class="pincard-body-container">
@@ -60,19 +62,13 @@
 
   <script>
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-pincards-new') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-service-pincards-new',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-service-pincards-new', opts);
 
     var scope = this;
 
     var backStartY, backStartX, backEndY, backEndX;
+
+    console.log("OPTS in ServicePinCards", opts)
 
     scope.onTouchStartOfBack = onTouchStartOfBack = function () {
       event.stopPropagation();
@@ -105,7 +101,7 @@
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).friendhelp) {
         componentTourId.style.display = "block";
         if (device.platform != 'BrowserStand')
-          StatusBar.backgroundColorByHexString("#004663");
+          StatusBar.backgroundColorByHexString("#ffffff");
       }
     });
 
@@ -177,7 +173,9 @@
         console.log(cardSumFromPinCards, opts.amountText)
         var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
         scope.update()
-        if (cardSumFromPinCards && cardSumFromPinCards < parseInt(opts.amountText) && opts.mode != 'ADDAUTOPAY') {
+        var sumEnough = opts.cost ? (cardSumFromPinCards < parseInt(opts.amountText) * opts.cost) : (cardSumFromPinCards < parseInt(opts.amountText));
+        console.log("sunEnough=", sumEnough)
+        if (cardSumFromPinCards && sumEnough && opts.mode != 'ADDAUTOPAY') {
           console.log(cardSumFromPinCards, opts.amountText)
           scope.clickPinError = false;
           scope.errorNote = "На выбранной карте недостаточно средств";
@@ -286,7 +284,7 @@
       scope.friendHelpBool = false;
     }
 
-    refreshFunction = function (bool) {
+    scope.refreshFunction = refreshFunction = function (bool) {
       scope.friendHelpBool = bool;
       scope.update(scope.friendHelpBool);
     }

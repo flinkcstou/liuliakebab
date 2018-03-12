@@ -11,6 +11,9 @@ var RU_LANGUAGES =
     "Close": "Закрыть",
     "Add": "Добавить",
     "Save": "Сохранить",
+
+    "ServiceUnavailableText": "Сервис временно не доступен",
+
     "ChooseFromContacts": "Выбрать контакт из телефонной книги",
 
     "ComponentBankOperationsPay": "ОПЛАТА",
@@ -19,6 +22,7 @@ var RU_LANGUAGES =
 
     "ComponentBankOperationsAutoPay": "АВТОПЛАТЁЖ",
     "ComponentBankOperationsQr": "СКАНЕР QR",
+    "ComponentBankOperationsInPlacePay": "ОПЛАТА НА МЕСТАХ",
 
     "BankOperationsAutoPay": "МОИ КАРТЫ",
 
@@ -30,7 +34,7 @@ var RU_LANGUAGES =
 
     "ViewRegistrationTextField": "Введите номер телефона",
     "ViewRegistrationDeviceRememberLabel": "Запомнить устройство",
-    "ViewRegistrationDeviceButtonEnterLabel": "Далее",
+    "ViewRegistrationDeviceButtonEnterLabel": "ДАЛЕЕ",
     "ViewRegistrationDeviceButtonHelp": "Помощь",
     "ViewRegistrationDeviceButtonOffline": "Офлайн режим",
     "ViewRegistrationDeviceButtonDemoVersion": "Демо версия",
@@ -47,8 +51,8 @@ var RU_LANGUAGES =
     "ViewAuthorizationFirstEnterAriaLabelShowPass": "Показать введённый пароль",
     "ViewAuthorizationClickPinLabel": "Введите CLICK-PIN",
     "ViewAuthorizationForgetPinLabel": "Забыли CLICK-PIN?",
-    "ViewAuthorizationFirstEnterLabel": "Войти",
-    "ViewAuthorizationResetLocalStorageLabel": "Очистить данные",
+    "ViewAuthorizationFirstEnterLabel": "ВОЙТИ",
+    "ViewAuthorizationResetLocalStorageLabel": "Сбросить данные",
     "ViewAuthorizationOfflineModeLabel": "Офлайн режим",
 
     "ViewInfoBalanceTitle": "Общий баланс",
@@ -59,21 +63,33 @@ var RU_LANGUAGES =
     "ViewInfoReportsTitle": "Отчёты",
     "ViewInfoLastOperations": "Последние операции",
 
+    "ViewMonitoringReportNoTokenTitle": "ОТЧЁТЫ",
+    "ViewMonitoringReportYesTokenTitle": "МОНИТОРИНГ ЗА ",
+    "ViewMonitoringReportTurnOnTextOne": "Включите сервис \"Мониторинг платежей\"",
+    "ViewMonitoringReportTurnOnTextTwo": "и следите за передвижением Ваших средств",
+    "ViewMonitoringReportTurnOnTurnOn": "ВКЛЮЧИТЬ СЕРВИС",
+    "ViewMonitoringReportIncomeTypeTitle": "Поступление",
+    "ViewMonitoringReportOutgoTypeTitle": "Расход",
+    "ViewMonitoringReportFilterTitle": "ФИЛЬТРЫ",
+
     "ViewMyCardAriaLabelCardSettings": "Настройки карты",
     "ViewMyCardTransfer": "Переводы с карты на карту",
     "ViewMyCardTitleName": "ДЕЙСТВИЯ С КАРТОЙ",
     "ViewMyCardPay": "Оплата с карты",
-    "ViewMyCardReports": "Отчеты по карте",
+    "ViewMyCardReports": "Мониторинг платежей",
     "ViewMyCardBlock": "Удалить карту",
     "ViewMyCardLastOperations": "Последние операции",
     "ViewMyCardSuccessDelete": "Карта успешно удалена",
+    "ViewMyCardTransferDeniedAccess": "Извининте, вы не можете произвести перевод с этой карты",
+    "ViewMyCardTransferDeniedP2p": "Первод средств с данной карты недоступен",
 
-    "ViewServicePageEnterLabel": "Далее",
+    "ViewServicePageEnterLabel": "Продолжить",
     "ViewServicePageChooseCityLabel": "Выберите город",
     "ViewServicePageChooseDistrictLabel": "Выберите район",
     //"ViewServicePageChooseRegion": "ВЫБЕРИТЕ РАЙОН",
     //"ViewServicePageChooseCity": "ВЫБЕРИТЕ ГОРОД",
     "ViewServicePageSaveLabel": "Сохранить",
+    "ViewServicePagePayLabel": "Оплатить",
     "ViewServicePageVoiceOverOpenCalculator": "Открыть калькулятор",
     "ViewServicePageAmountTextLabel": "Сумма оплаты:",
     "ViewServicePageAmountTaxText": "Комиссия: ",
@@ -95,13 +111,16 @@ var RU_LANGUAGES =
   "ComponentReportFilterByDate": "По дате",
   "ComponentReportFilterByAccount": "По карте",
 
-  "ComponentReportFilterByDateFrom": "C",
-  "ComponentReportFilterByDateTo": "По",
+  "ComponentReportFilterByDateFrom": "C:",
+  "ComponentReportFilterByDateTo": "По:",
 
   "ComponentReportFilterReadyButton": "готово",
 
   "ComponentReportFilterTodayText": "сегодня",
   "ComponentReportFilterYesterdayText": "вчера",
+
+  "ComponentReportFilterDoneButtonLabel": "Готово",
+  "ComponentReportFilterCancelButtonLabel": "Отменить",
 
   "ComponentResultPleaseWait": "Пожалуйста подождите...",
   "ComponentResultOk": "Закрыть",
@@ -133,6 +152,7 @@ var RU_LANGUAGES =
   "ViewPayConformEnterPhone": "Номер телефона:",
   "ViewPayConfirmAmountOfPay": "Сумма платежа:",
   "ViewPayConfirmCategory": "Категория:",
+  "ViewPayConfirmServiceId": "ID Сервиса:",
   "ViewPayConfirmMobileConnection": "Мобильная связь",
   "ViewPayConfirmPayFromCard": "Оплата с карты:",
   "ViewPayConfirmFriendHelp": "Помощь друга:",
@@ -146,7 +166,7 @@ var RU_LANGUAGES =
   "ViewPayTransferMenuNameCard": "КАРТА",
   "ViewPayTransferContactTextField": "Укажите номер телефона получателя:",
   "ViewPayTransferCardTextField": "Укажите номер карты получателя:",
-  "ViewPayTransferNext": "Далее",
+  "ViewPayTransferNext": "Продолжить",
   "ViewPayTransferTitle": "ПЕРЕВОДЫ",
   "ViewPayTransferCardOwnerTitle": "Владелец:",
   "ViewPayTransferAccessToContacts": "Для быстрого поиска в адресной книге, необходимо разрешить приложению доступ к контактам на Вашем устройстве",
@@ -162,16 +182,27 @@ var RU_LANGUAGES =
   "ViewPayTransferByPhoneNumberTitle": "ПЕРЕВОД НА НОМЕР",
   "ViewPayTransferHistoryTitle": "ИСТОРИЯ ПЕРЕВОДОВ",
   "ViewPayTransferNewCardTextField": "Введите номер карты получателя:",
+  "ViewPayTransferNewContactName": "Пользователю CLICK",
+  "ViewPayTransferNewCardName": "На карту друга",
+  "ViewPayTransferNewBetweenName": "Между моими картами",
+  "ViewPayTransferNewTitle": "ПЕРЕВОД СРЕДСТВ",
+  "ViewPayTransferNewContactTextField": "Номер телефона друга:",
+  "ViewPayTransferNewContinue": "ПРОДОЛЖИТЬ",
+  "ViewPayTransferNewSubmitTransfer": "ПОДТВЕРДИТЬ ПЕРЕВОД",
+  "ViewPayTransferNewCardOwnerTitle": "ФИО:",
+  "ViewPayTransferNewSubmitRecieverLabel": "Получатель:",
+  "ViewPayTransferNewSubmitTitle": "ПОДТВЕРЖДЕНИЕ ПЕРЕВОДА",
 
 
   "ViewTransferTwoTax": "Комиссия: ",
-  "ViewTransferTwoNext": "Далее",
+  "ViewTransferTwoNext": "Продолжить",
   "ViewTransferTwoTitle": "ПЕРЕВОД НА",
   "ViewTransferTwoSum": "Введите сумму",
 
   "ViewTransferThreeTitle": "ПЕРЕВОД НА",
   "ViewTransferThreeMenuTitle": "ПЕРЕВЕСТИ С КАРТЫ",
-  "ViewTransferThreeNext": "Далее",
+  "ViewTransferThreeNext": "Продолжить",
+  "ViewTransferSubmitNoCards": "Нет карт доступных для переводов",
 
   "ViewTransferFourTitle": "ПЕРЕВОД НА",
   "ViewTransferFourEnterPhone": "Номер телефона получателя:",
@@ -189,6 +220,8 @@ var RU_LANGUAGES =
   "ViewTransferFourTransferInformation": "Перевод с карты: ",
 
   "ComponentCodeConfirmTitle": "ЗАЩИТНЫЙ КОД",
+  "ComponentCodeConfirmMessageText": "Передайте код получателю для завершения перевода",
+  "ComponentCodeConfirmOk": "OK",
 
   "ComponentSuccessMessage": "Перевод прошел успешно!",
   "ComponentSuccessMessageForPay": "Оплата проведена успешно!",
@@ -199,6 +232,7 @@ var RU_LANGUAGES =
   "ComponentSuccessMessageForRemovingFromFavorites": "Платёж успешно удален из избранных",
 
   "ComponentInProcessingPartOne": "Перевод передан на обработку.",
+  "ComponentInProcessingPartOneWithoutDot": "Перевод передан на обработку",
   "ComponentInProcessingPartOneForTransfer": "Перевод отправлен",
   "ComponentInProcessingPartTwoForTransfer": "и ожидает подтверждения получателя",
   "ComponentInProcessingForTransfer": "Перевод отправлен и ожидает подтверждения получателя",
@@ -206,8 +240,6 @@ var RU_LANGUAGES =
   "ComponentInProcessingPartOneForPay": "Оплата передана на обработку.",
   "ComponentInProcessingPartTwo": "Ждите СМС с результатом!",
   "ComponentInProcessingPayment": "Оплата передана на обработку. Ждите СМС с результатом!",
-
-  "ComponentInProcessingPartTwoForTransfer": "и ожидает подтверждения получателя",
 
   "ComponentUnsuccessMessagePart1": 'Извините,',
   "ComponentUnsuccessMessagePart2": 'что-то пошло не так.',
@@ -280,6 +312,7 @@ var RU_LANGUAGES =
   "ViewInviteFriendSettingsTitle": "Пригласить друга",
   "ViewAboutSettingsTitle": "О программе",
   "ViewSupportSettingsTitle": "Служба поддержки",
+  "ViewSupportSettingsPageTitle": "СЛУЖБА ПОДДЕРЖКИ",
   "ViewCallCenterSettingsTitle": "Позвонить в Контактный центр",
   "ClearLocalStorage": "Очистить данные",
 
@@ -302,9 +335,9 @@ var RU_LANGUAGES =
   "ViewAboutSettingsRateUsTitle": "Оцените нас в Google Play",
 
   "ViewSettingsAboutProgramTitleName": "О ПРОГРАММЕ",
-  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 5.7",
+  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 5.8.3",
   "ViewSettingsAboutProgramVersionTitleNamePartOneClick": "CLICK Uzbekistan",
-  "ViewSettingsAboutProgramVersionTitleNamePartTwo": "21 ноября, 2017",
+  "ViewSettingsAboutProgramVersionTitleNamePartTwo": "18 января, 2018",
   "ViewSettingsAboutProgramUserAgreementTitleName": "Пользовательское соглашение",
   "ViewSettingsAboutProgramRankTitleName": "Оцените нас в Google Play",
 
@@ -324,6 +357,13 @@ var RU_LANGUAGES =
   "ViewSettingsGeneralLanguageRussian": "Русский",
 
   "ViewSettingsUserAgreementTitle": "ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ",
+
+  "ViewPaymentMonitorTitle": "МОНИТОРИНГ ПЛАТЕЖЕЙ",
+  "ViewPaymentMonitorAbout": "Данный сервис позволяет отслеживать полную историю расходов и поступлений по вашей карте",
+  "ViewPaymentMonitorCostFirstPart": "Стоимость услуги ",
+  "ViewPaymentMonitorCostSecondPart": " сум за каждую карту",
+  "ViewPaymentMonitorOffer": "Публичная оферта",
+  "ViewPaymentMonitorSuccessTurningOn": "Публичная оферта",
 
   "ViewTransferDetailTitle": "ДЕТАЛИ ПЕРЕВОДА",
   "ViewTransferDetailTransferIconTitleOne": "Получен перевод",
@@ -367,7 +407,7 @@ var RU_LANGUAGES =
   "ViewPaymentDetailTitlePayFrom": "Оплатить с:",
   "ViewPaymentDetailCardNotChosen": "Выберите карты",
 
-  "ViewTrustedDevicesTitle": "доверенные устройства",
+  "ViewTrustedDevicesTitle": "Доверенные устройства",
   "ViewTrustedDevicesVoiceOverRemove": "Удалить доверенное устройство",
 
   "ViewReportMonthsArray": [{"name": "Январь", "count": 1}, {"name": "Февраль", "count": 2}, {
@@ -387,7 +427,7 @@ var RU_LANGUAGES =
   "ViewReportServiceRemoveFromFavorites": "Удалить из избранных",
   "ViewReportServiceAddToAutoPayment": "Добавить в автоплатеж",
   "ViewReportServiceGetSupportHelp": "Получить помощь поддержки",
-  "ViewReportServiceRepeatButtonLabel": "повторить",
+  "ViewReportServiceRepeatButtonLabel": "ПОВТОРИТЬ",
   "ViewReportServiceShowQrButtonLabel": "Показать QR-Код",
 
   "ViewBankListTitleName": "ЛИМИТЫ НА ПЕРЕВОДЫ",
@@ -403,6 +443,7 @@ var RU_LANGUAGES =
   "ViewAddCardDateTitle": "Срок действия",
   "ViewAddCardPinTitle": "Код банка",
   "ViewAddCardDoMainTitle": "Сделать основной",
+  "ViewAddCardAddBtnText": "ДОБАВИТЬ",
 
   "ViewContactTitle": "КОНТАКТ",
   "ViewContactPay": "Оплатить за мобильный",
@@ -418,8 +459,9 @@ var RU_LANGUAGES =
 
 
   "ViewQrTitle": "ОПЛАТА ТОВАРОВ И УСЛУГ",
-  "ViewQrTitleAccept": "Далее",
+  "ViewQrTitleAccept": "ПРОДОЛЖИТЬ",
   "ViewQrTitleCancel": "Отменить",
+  "ViewQrLabelOnScanner": "Наведите камеру на QR код",
 
   "ViewReportServiceAmountOfPay": "Сумма платежа:",
   "ViewReportServicePayWithCard": "Оплата с карты:",
@@ -550,7 +592,7 @@ var RU_LANGUAGES =
   "ViewAutoPayCreatedSuccessTextTwo": " успешно создан!",
   "ViewAutoPayDeletedSuccessText": "Автоплатеж успешно удален!",
 
-  "ViewServiceInfoButtonNextText": "Далее",
+  "ViewServiceInfoButtonNextText": "Продолжить",
   "ViewServiceInfoButtonGoToPaymentText": "ПЕРЕЙТИ К ОПЛАТЕ",
 
   "ComponentToolbarAriaLabelOpenSideMenu": "Открыть боковое меню",
@@ -574,7 +616,8 @@ var RU_LANGUAGES =
   "ViewFavoriteAriaLabelEditOperation": "Редактировать операцию",
   "ViewFavoriteAriaLabelRemoveOperation": "Удалить операцию",
   "ViewFavoriteEmptyTitleText": "ВЫ ЕЩЕ НЕ ДОБАВИЛИ НИ ОДНОГО ИЗБРАННОГО ПЛАТЕЖА",
-  "ViewFavoriteEmptyBodyText": "Нажмите на \"+\" для добавления платежа в избранное",
+  "ViewFavoriteEmptyBodyText": "Нажмите на \"+\" для добавления платежа в избранные",
+  "ViewFavoriteBodyTitleText": "ИЗБРАННЫЕ ПЛАТЕЖИ",
   "ViewInvoiceInEmptyTitleText": "",
   "ViewInvoiceInEmptyBodyText": "ПОКА ВАМ НИКТО НЕ ВЫСТАВЛЯЛ СЧЕТ",
   "ViewInvoiceOutEmptyTitleText": "",
@@ -587,6 +630,7 @@ var RU_LANGUAGES =
 
 
   "ComponentCardCarouselAddFirstCardtext": "Добавьте свою первую карту в CLICK",
+  "ComponentCardCarouselBalanceError": "Ошибка баланса",
 
   "ViewNewsDetails": "Подробнее",
   "ViewNewsFollowLink": "ПЕРЕЙТИ",
@@ -598,7 +642,15 @@ var RU_LANGUAGES =
   "ViewDefaultAccountChooseButtonText": "Выбрать",
 
 
-  "ViewDefaultAccountSuccessText": "Основная карта установлена успешно"
+  "ViewDefaultAccountSuccessText": "Основная карта установлена успешно",
+
+  "DemoModeConstraintText": "Внимание! Для совершения данного действия необходимо авторизоваться!",
+
+
+  "ViewInPlacePayTitle": "ОПЛАТА НА МЕСТАХ",
+  "InPlaceSearchPlaceHolderText": "Поиск",
+  "InPlaceSearchNoMatchText": "Нет совпадений",
+  "InPlacePayGpsErrorText": "Пожалуйста, откройте настройки и разрешите CLICK Uzbekistan использовать ваше местонахождение и убедитесь что у вас включены геоданные"
 
 
 };

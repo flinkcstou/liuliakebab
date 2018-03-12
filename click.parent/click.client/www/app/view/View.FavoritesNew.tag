@@ -1,12 +1,14 @@
 <view-favorites-new>
   <div class="riot-tags-main-container">
-    <div class="pay-page-title">
-      <p class="pay-name-title">{titleName}</p>
+    <div class="page-title">
+      <p class="name-title">{titleName}</p>
       <div id="favouriteBackButtonId" ontouchend="favouriteGoToBackEnd()" ontouchstart="onTouchStartOfBack()"
-           class="pay-back-button" role="button" aria-label="{window.languages.Back}"></div>
+           class="back-button" role="button" aria-label="{window.languages.Back}"></div>
       <div id="favouriteRightButtonId" ontouchend="addFavorite()" ontouchstart="onTouchStartOfAddSign()"
-           class="settings-friend-help-add-button" role="button"
+           class="add-button" role="button"
            aria-label="{window.languages.ViewFavoriteAriaLabelAddOperation}"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
 
     <div class="view-favorites-container" if="{favoriteListShow}">
@@ -55,7 +57,7 @@
 
   <script>
     var scope = this;
-    this.titleName = 'ИЗБРАННОЕ';
+    this.titleName = window.languages.ViewFavoriteBodyTitleText;
     scope.favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
@@ -65,15 +67,7 @@
 
     opts = {};
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-favorites-new') {
-      history.arrayOfHistory.push(
-        {
-          "view"  : 'view-favorites-new',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-favorites-new', opts);
 
     componentMenu.check = false;
 
@@ -163,13 +157,8 @@
             scope: this,
 
             onSuccess: function (result) {
-              if (device.platform != 'BrowserStand') {
-                console.log("Spinner Stop View Favorites new 167");
-                SpinnerPlugin.activityStop();
-              }
+              window.stopSpinner();
               if (result[0][0].error == 0) {
-                console.log(' disable_cache, updating amountText')
-
                 if (result[5])
                   for (var i in result[5]) {
                     console.log("1");
@@ -180,7 +169,6 @@
                       break;
                     }
                   }
-
               }
             },
 
@@ -205,116 +193,116 @@
     var openFavouriteStarX, openFavouriteStarY, openFavouriteEndX, openFavouriteEndY
 
     openFavoritePaymentStart = function (id) {
-      event.preventDefault()
       event.stopPropagation();
-
-      document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)'
 
       openFavouriteStarX = event.changedTouches[0].pageX;
       openFavouriteStarY = event.changedTouches[0].pageY;
     }
 
     openFavoritePaymentEnd = function (id) {
-      event.preventDefault()
       event.stopPropagation();
-
-      document.getElementById(id).style.backgroundColor = 'transparent'
 
       openFavouriteEndX = event.changedTouches[0].pageX;
       openFavouriteEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(openFavouriteStarX - openFavouriteEndX) <= 20 && Math.abs(openFavouriteStarY - openFavouriteEndY) <= 20) {
 
-        console.log("id=", id);
-        id = id.substring(1, id.length);
-        console.log("id2=", id);
+        document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
 
-        for (var i in scope.favoritePaymentsList) {
-          if (scope.favoritePaymentsList[i].id == id) {
-            console.log("scope.favoritePaymentsList[i].id", scope.favoritePaymentsList[i].id);
-            console.log("open favorite ", scope.favoritePaymentsList[i]);
-            scope.favoritePaymentsList[i].params.favoriteId = scope.favoritePaymentsList[i].id;
+        setTimeout(function () {
+          document.getElementById(id).style.backgroundColor = 'transparent';
 
-            if (modeOfApp.offlineMode) {
+          console.log("id=", id);
+          id = id.substring(1, id.length);
+          console.log("id2=", id);
 
-              var firstFieldText = inputVerification.spaceDeleter(scope.favoritePaymentsList[i].params.firstFieldText);
-              var amountText = inputVerification.spaceDeleter(scope.favoritePaymentsList[i].params.amountText);
-              var formtype = scope.favoritePaymentsList[i].params.formtype;
-              var communalParam = scope.favoritePaymentsList[i].params.communalParam;
-              var firstFieldId = scope.favoritePaymentsList[i].params.firstFieldId;
+          for (var i in scope.favoritePaymentsList) {
+            if (scope.favoritePaymentsList[i].id == id) {
+              console.log("scope.favoritePaymentsList[i].id", scope.favoritePaymentsList[i].id);
+              console.log("open favorite ", scope.favoritePaymentsList[i]);
+              scope.favoritePaymentsList[i].params.favoriteId = scope.favoritePaymentsList[i].id;
+
+              if (modeOfApp.offlineMode) {
+
+                var firstFieldText = inputVerification.spaceDeleter(scope.favoritePaymentsList[i].params.firstFieldText);
+                var amountText = inputVerification.spaceDeleter(scope.favoritePaymentsList[i].params.amountText);
+                var formtype = scope.favoritePaymentsList[i].params.formtype;
+                var communalParam = scope.favoritePaymentsList[i].params.communalParam;
+                var firstFieldId = scope.favoritePaymentsList[i].params.firstFieldId;
 
 
-              var ussdQuery = scope.favoritePaymentsList[i].ussd;
-              if (ussdQuery === null) {
-                scope.clickPinError = false;
-                scope.errorNote = ("Сервис временно недоступен!");
-                scope.showError = true;
-                scope.update();
+                var ussdQuery = scope.favoritePaymentsList[i].ussd;
+                if (ussdQuery === null) {
+                  scope.clickPinError = false;
+                  scope.errorNote = ("Сервис временно недоступен!");
+                  scope.showError = true;
+                  scope.update();
+                  return
+                }
+
+                if (formtype == 1) {
+                  if (firstFieldText) {
+                    ussdQuery = ussdQuery.replace('{param}', firstFieldText);
+                  }
+                  else {
+                    ussdQuery = ussdQuery.replace('*{param}', firstFieldText);
+                  }
+                  ussdQuery = ussdQuery.replace('{option}', firstFieldId);
+                  ussdQuery = ussdQuery.replace('{amount}', amountText);
+                  ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+                  console.log(ussdQuery)
+                }
+
+                if (formtype == 2) {
+                  ussdQuery = ussdQuery.replace('{param}', firstFieldText);
+                  ussdQuery = ussdQuery.replace('{amount}', amountText);
+                  ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+                  console.log(ussdQuery)
+                }
+
+                if (formtype == 3) {
+                  ussdQuery = ussdQuery.replace('{communal_para}', communalParam);
+                  ussdQuery = ussdQuery.replace('{param}', firstFieldText);
+                  ussdQuery = ussdQuery.replace('{amount}', amountText);
+                  ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+                  console.log(ussdQuery)
+                }
+
+                if (formtype == 4) {
+                  ussdQuery = ussdQuery.replace('{param}', firstFieldText);
+                  ussdQuery = ussdQuery.replace('{amount}', amountText);
+                  ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+                  console.log(ussdQuery)
+                }
+
+
+                console.log(ussdQuery)
+
+                phonedialer.dial(
+//              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
+                  ussdQuery + "%23",
+                  function (err) {
+                    if (err == "empty") {
+                      scope.clickPinError = false;
+                      scope.errorNote = ("Unknown phone number");
+                      scope.showError = true;
+                      scope.update();
+                    }
+                    else console.log("Dialer Error:" + err);
+                  },
+                  function (success) {
+                  }
+                );
                 return
               }
+              this.riotTags.innerHTML = "<view-service-pincards-new>";
+              riot.mount('view-service-pincards-new', scope.favoritePaymentsList[i].params);
 
-              if (formtype == 1) {
-                if (firstFieldText) {
-                  ussdQuery = ussdQuery.replace('{param}', firstFieldText);
-                }
-                else {
-                  ussdQuery = ussdQuery.replace('*{param}', firstFieldText);
-                }
-                ussdQuery = ussdQuery.replace('{option}', firstFieldId);
-                ussdQuery = ussdQuery.replace('{amount}', amountText);
-                ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
-                console.log(ussdQuery)
-              }
+              scope.unmount()
 
-              if (formtype == 2) {
-                ussdQuery = ussdQuery.replace('{param}', firstFieldText);
-                ussdQuery = ussdQuery.replace('{amount}', amountText);
-                ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
-                console.log(ussdQuery)
-              }
-
-              if (formtype == 3) {
-                ussdQuery = ussdQuery.replace('{communal_para}', communalParam);
-                ussdQuery = ussdQuery.replace('{param}', firstFieldText);
-                ussdQuery = ussdQuery.replace('{amount}', amountText);
-                ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
-                console.log(ussdQuery)
-              }
-
-              if (formtype == 4) {
-                ussdQuery = ussdQuery.replace('{param}', firstFieldText);
-                ussdQuery = ussdQuery.replace('{amount}', amountText);
-                ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
-                console.log(ussdQuery)
-              }
-
-
-              console.log(ussdQuery)
-
-              phonedialer.dial(
-//              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
-                ussdQuery + "%23",
-                function (err) {
-                  if (err == "empty") {
-                    scope.clickPinError = false;
-                    scope.errorNote = ("Unknown phone number");
-                    scope.showError = true;
-                    scope.update();
-                  }
-                  else console.log("Dialer Error:" + err);
-                },
-                function (success) {
-                }
-              );
-              return
             }
-            this.riotTags.innerHTML = "<view-service-pincards-new>";
-            riot.mount('view-service-pincards-new', scope.favoritePaymentsList[i].params);
-
-            scope.unmount()
-
           }
-        }
+        }, 100);
       }
 
     };

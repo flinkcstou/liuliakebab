@@ -5,7 +5,7 @@
 
   <div id="mainPageId" class="view-main-page">
     <component-toolbar></component-toolbar>
-    <component-bank-operations></component-bank-operations>
+    <component-bank-operations-new></component-bank-operations-new>
     <component-service-carousel-new></component-service-carousel-new>
     <component-card-carousel></component-card-carousel>
     <component-footer></component-footer>
@@ -36,37 +36,41 @@
     viewServicePage.amountWithoutSpace = 0;
     viewServicePage.amountTex = 0;
     onBackParams.opts = null;
+    viewMainPage.myCards = false;
+    viewTransfer.phoneNumber = '';
+    viewTransfer.cardNumber = '';
+    viewTransfer.type = 2;
+    viewTransferStepTwo.sum = '';
+    viewPay = {};
+
+    var touchStartX, touchEndX, touchMoveX;
+    var timeStartX, timeEndX;
+    var width = window.innerWidth;
+
+    var myCardListStartX, myCardListEndX, myCardListStartY, myCardListEndY;
 
 
     this.on('mount', function () {
       if (device.platform !== 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#00a8f1");
-
-      localStorage.setItem("click_client_authorized", true);
+        StatusBar.backgroundColorByHexString("#ffffff");
 
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).mainpage) {
         componentTourId.style.display = "block";
         if (device.platform !== 'BrowserStand')
-          StatusBar.backgroundColorByHexString("#004663");
+          StatusBar.backgroundColorByHexString("#ffffff");
       }
 
       if (opts) {
         if (opts.view === "news" || (sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true)) {
           console.log("mainPage news");
           viewNewsId.style.display = 'block';
-          scope.tags['view-news'].showNewsFunction(1);
+          scope.tags['view-news'].showNewsFunction(1, opts.news_id);
 
-
-          if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-news') {
-            history.arrayOfHistory.push(
-              {
-                "view": 'view-news',
-                "params": opts
-              }
-            );
-            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-          }
+          window.saveHistory('view-news', opts);
+          console.log("MOUNT MAIN news to history");
         }
+      } else {
+        localStorage.setItem("click_client_authorized", true);
       }
     });
 
@@ -83,20 +87,11 @@
         "params": opts
       }
     );
+    window.savePageLogs('view-main-page');
+
+    console.log("main page to history");
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
-    viewMainPage.myCards = false;
-    viewTransfer.phoneNumber = '';
-    viewTransfer.cardNumber = '';
-    viewTransfer.type = 2;
-    viewTransferStepTwo.sum = '';
-
-    var touchStartX, touchEndX, touchMoveX;
-    var timeStartX, timeEndX;
-    var width = window.innerWidth;
-
-
-    var myCardListStartX, myCardListEndX, myCardListStartY, myCardListEndY;
 
     myCardListTouchStart = function () {
       event.preventDefault();

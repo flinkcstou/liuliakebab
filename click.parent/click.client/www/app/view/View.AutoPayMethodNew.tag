@@ -1,12 +1,14 @@
 <view-autopay-method-new>
   <div class="riot-tags-main-container">
     <div class="pay-page-title" style="border-style: none;">
-      <p class="autopay-method-page-title">{titleName} {serviceName}</p>
+      <p class="servicepage-title">{titleName} {serviceName}</p>
       <div ontouchend="goToBack()" ontouchstart="onTouchStartOfBack()"
-           class="autopay-method-back-button">
+           class="servicepage-button-back">
       </div>
       <div type="button" class="servicepage-service-icon autopay-method-service-icon"
            style="background-image: url({serviceIcon})"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
 
 
@@ -37,15 +39,7 @@
   <script>
     var scope = this;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-autopay-method-new') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-autopay-method-new',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-autopay-method-new', opts);
 
     var backStartY, backStartX, backEndY, backEndX;
 
@@ -99,7 +93,7 @@
 
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).autopaymethod) {
         componentTourId.style.display = "block";
-        StatusBar.backgroundColorByHexString("#004663");
+        StatusBar.backgroundColorByHexString("#ffffff");
       }
     });
 

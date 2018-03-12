@@ -1,9 +1,11 @@
 <view-security-settings>
   <div class="riot-tags-main-container">
-    <div class="pay-page-title">
-      <p class="pay-name-title">{titleName}</p>
+    <div class="page-title">
+      <p class="name-title">{titleName}</p>
       <div id="backButton" ontouchstart="securityGoToBackStart()" ontouchend="securityGoToBackEnd()"
-           class="pay-back-button" role="button" aria-label="{window.languages.Back}"></div>
+           class="back-button" role="button" aria-label="{window.languages.Back}"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
     <div class="settings-container">
 
@@ -122,16 +124,7 @@
       scope.update()
     });
 
-
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-security-settings') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-security-settings',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-security-settings', opts);
 
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 
@@ -316,27 +309,24 @@
           window.common.alert.show("componentAlertId", {
             parent: scope,
             clickpinerror: scope.clickPinError,
-            errornote: scope.errorNote,
+            errornote: scope.errorNote
           });
 
           scope.update();
           return
         }
       }
-      console.log("QQQ")
       if (!fingerPrint) {
-        console.log()
         securityFingerPrintIconId.style.backgroundImage = "url(resources/icons/ViewService/radio_selected.png)";
-        fingerPrint = true
-        console.log("true")
+        fingerPrint = true;
         localStorage.setItem("settings_finger_print", true)
       }
       else {
         securityFingerPrintIconId.style.backgroundImage = "url(resources/icons/ViewService/radio_unselected.png)";
-        fingerPrint = false
+        fingerPrint = false;
         localStorage.setItem("settings_finger_print", false)
       }
-      scope.update()
+      scope.update();
     }
 
 

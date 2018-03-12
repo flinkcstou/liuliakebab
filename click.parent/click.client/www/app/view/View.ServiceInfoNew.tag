@@ -8,21 +8,29 @@
     </div>
     <div type="button" class="servicepage-service-icon"
          style="background-image: url({serviceIcon})"></div>
+    <div class="title-bottom-border">
+    </div>
   </div>
 
-  <div class="pincard-body-container">
+  <div class="serviceinfo-body-container">
     <div class="serviceinfo-options" if="{type==3}">
       <div class="serviceinfo-option-text-container">
-        <p class="serviceinfo-option-text">{optionsHeader}</p></div>
+        <div class="serviceinfo-option-text">{optionsHeader}<p if="{!checkIconShow}" style="display:inline">:
+          {opts.firstFieldText}</p></div>
+      </div>
 
       <div class="serviceinfo-option-containter" ontouchstart="optionOnTouchStart()"
            ontouchend="optionOnTouchEnd(this.id)"
            each="{i in optionsArray}"
            id="{i.option_value}">
         <ul class="serviceinfo-option-info-container" style="list-style:none">
-          <li class="serviceinfo-option-detail" each="{j in i.option_object}">
-            <div class="serviceinfo-option-title-text">{j.title}:</div>
-            <div class="serviceinfo-option-value-text">
+          <li class="serviceinfo-option-detail" each="{j in i.option_object}" if="{j.title}">
+            <div
+              class="{serviceinfo-option-title-text-option:checkIconShow,serviceinfo-option-title-text:!checkIconShow}">
+              {j.title}:
+            </div>
+            <div
+              class="{serviceinfo-option-value-text-option:checkIconShow,serviceinfo-option-value-text:!checkIconShow}">
               {j.value}
             </div>
           </li>
@@ -31,12 +39,13 @@
       </div>
     </div>
 
-    <div class="serviceinfo-options" if="{type==1}">
-      <div class="serviceinfo-inform-field" each="{i in infoArray}">
-        <p class="serviceinfo-inform-field-title">{i.title}:</p>
-        <p class="serviceinfo-inform-field-value">{i.value}</p>
-      </div>
-
+    <div class="serviceinfo-option-containter">
+      <ul class="serviceinfo-option-info-container" if="{type==1}">
+        <li class="serviceinfo-option-detail" each="{i in infoArray}">
+          <div class="serviceinfo-option-title-text">{i.title}:</div>
+          <div class="serviceinfo-option-value-text">{i.value}</div>
+        </li>
+      </ul>
     </div>
 
     <button class="serviceinfo-button-next"
@@ -49,15 +58,7 @@
 
     console.log('OPTS in ServiceInfo NEW', opts);
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-service-info-new') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-service-info-new',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-service-info-new', opts);
 
     var scope = this;
 
@@ -65,63 +66,59 @@
     scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
     console.log("servicesMap=", scope.servicesMap);
     scope.service = scope.servicesMap[opts.chosenServiceId][0];
-    this.titleName = scope.service.name;
-    this.serviceIcon = scope.service.image;
-    this.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
+    scope.titleName = scope.service.name;
+    scope.serviceIcon = scope.service.image;
+    scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
     var payment_data, optionAttribute;
+    var timeOutTimer = 0;
+    var goBackStartY, goBackStartX, goBackEndY, goBackEndX;
+    var optionOnTouchStartY, optionOnTouchStartX, optionOnTouchEndY, optionOnTouchEndX;
     scope.type = 0;
-
+    scope.index = -1;
+    if (!opts.transactionId) {
+      opts.transactionId = parseInt(Date.now() / 1000);
+      console.log('TRANSACTION_ID FROM OPTS', JSON.stringify(opts))
+    }
 
     if (opts.formtype == 1) {
       payment_data = {
         "param": opts.firstFieldId,
         "value": opts.firstFieldText,
-        "transaction_id": parseInt(Date.now() / 1000)
+        "transaction_id": opts.transactionId
       };
-
     }
     else if (opts.formtype == 2) {
       payment_data = {
         "pin_param": opts.cardTypeId,
-        "transaction_id": parseInt(Date.now() / 1000)
+        "transaction_id": opts.transactionId
       };
-
     }
-    else if (opts.formtype == 3) {
+    else if (opts.formtype == 3 || opts.formtype == 5) {
       payment_data = {
         "param": opts.firstFieldId,
         "value": opts.firstFieldText,
         "communal_param": opts.communalParam,
-        "transaction_id": parseInt(Date.now() / 1000)
+        "transaction_id": opts.transactionId
       };
-
-
     }
     else if (opts.formtype == 4) {
       payment_data = {
         "param": opts.firstFieldId,
         "value": opts.firstFieldText,
         "internet_package_param": opts.internetPackageParam,
-        "transaction_id": parseInt(Date.now() / 1000)
+        "transaction_id": opts.transactionId
       };
-
     }
 
-    if (device.platform != 'BrowserStand') {
-      var options = {dimBackground: true};
-
-      SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-        console.log("Started");
-      }, function () {
-        console.log("closed");
-      });
-    }
+    window.startSpinner();
 
     console.log("enable_information_cache", localStorage.getItem('click_client_infoCacheEnabled'))
 
-    if (!JSON.parse(localStorage.getItem('click_client_infoCacheEnabled')))
+    if (localStorage.getItem('click_client_infoCacheEnabled') && !JSON.parse(localStorage.getItem('click_client_infoCacheEnabled'))) {
+      console.log("get information")
       getInformation();
+    }
     else {
       scope.serviceData = JSON.parse(localStorage.getItem("click_client_infoCached"))
 
@@ -131,6 +128,14 @@
         scope.optionsHeader = scope.serviceData.options_header;
         scope.checkIconShow = scope.serviceData.options.length > 1;
         optionAttribute = scope.serviceData.options[0].option_payment_attribute;
+        opts.paymentDataAttributes = scope.serviceData.options[0].payment_data_attributes;
+        //find array in cached data
+        for (var i in scope.serviceData.options[0].option_object){
+          if (scope.serviceData.options[0].option_object[i].constructor === Array){
+            console.log(scope.serviceData.options[0].option_object[i]);
+            opts.code = scope.serviceData.options[0].option_object[i][0];
+          }
+        }
         opts.optionAttribute = optionAttribute;
         opts.optionValue = scope.checkIconShow ? null : scope.serviceData.options[0].option_value;
         scope.type = 3;
@@ -143,10 +148,7 @@
 
     }
 
-    var checkAnswer;
-
     function getInformation() {
-      checkAnswer = false;
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
 
       window.api.call({
@@ -157,13 +159,12 @@
           service_id: opts.chosenServiceId,
           payment_data: payment_data
         },
-
         scope: this,
 
         onSuccess: function (result) {
-          checkAnswer = true;
+          console.log('Clearing timer onSuccess', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           if (result[0][0].error == 0) {
-            console.log("result of GET ADDITIONAL INFO 0", result);
             if (result[1]) {
               localStorage.setItem('click_client_infoCacheEnabled', result[1][0].enable_information_cache)
               if (result[1][0].enable_information_cache)
@@ -174,6 +175,14 @@
                 scope.optionsHeader = result[1][0].options_header;
                 scope.checkIconShow = result[1][0].options.length > 1;
                 optionAttribute = result[1][0].options[0].option_payment_attribute;
+                opts.paymentDataAttributes = result[1][0].options[0].payment_data_attributes;
+                //find array in result
+                for (var i in result[1][0].options[0].option_object){
+                  if (result[1][0].options[0].option_object[i].constructor === Array){
+                    console.log(result[1][0].options[0].option_object[i]);
+                    opts.code = result[1][0].options[0].option_object[i][0];
+                  }
+                }
                 opts.optionAttribute = optionAttribute;
                 opts.optionValue = scope.checkIconShow ? null : result[1][0].options[0].option_value;
                 scope.type = 3;
@@ -183,15 +192,11 @@
                 scope.type = 1;
                 scope.update();
               }
-
             }
           }
           else {
-            checkAnswer = true;
-            console.log("result of GET ADDITIONAL INFO 2", result);
             scope.errorMessage = result[0][0].error_note;
             scope.stepAmount = 1;
-
             window.common.alert.show("componentUnsuccessId", {
               parent: scope,
               step_amount: scope.stepAmount,
@@ -199,12 +204,13 @@
               operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
               operationmessagepartthree: scope.errorMessage
             });
-
             scope.update();
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
+          console.log('Clearing timer onFail', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           window.common.alert.show("componentUnsuccessId", {
             parent: scope,
             step_amount: scope.stepAmount,
@@ -214,13 +220,13 @@
           });
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
-        }
-      }, 10000);
-
-      if (!checkAnswer) {
-        console.log("wwww")
-        setTimeout(function () {
-          if (!checkAnswer) {
+        },
+        onTimeOut: function () {
+          timeOutTimer = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method: 'get.additional.information',
+            });
             scope.errorNote = "Сервис временно недоступен";
             scope.stepAmount = 1;
             scope.update();
@@ -233,26 +239,23 @@
               viewmount: true,
               errornote: scope.errorNote,
             });
-
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Service Info New 224");
-              SpinnerPlugin.activityStop();
-            }
-            return
-          }
-        }, 10000);
-      }
-
-
+            window.stopSpinner();
+          }, 10000);
+          console.log('creating timeOut', timeOutTimer);
+        },
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
+        }
+      }, 10000);
     }
 
-    var goBackStartY, goBackStartX, goBackEndY, goBackEndX;
 
     goToBackServiceInfoStart = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      document.getElementById("goBackServiceInfoButtonId").style.webkitTransform = 'scale(0.7)'
+      document.getElementById("goBackServiceInfoButtonId").style.webkitTransform = 'scale(0.7)';
 
       goBackStartY = event.changedTouches[0].pageY;
       goBackStartX = event.changedTouches[0].pageX;
@@ -263,19 +266,17 @@
       event.preventDefault();
       event.stopPropagation();
 
-      document.getElementById("goBackServiceInfoButtonId").style.webkitTransform = 'scale(1)'
+      document.getElementById("goBackServiceInfoButtonId").style.webkitTransform = 'scale(1)';
 
       goBackEndY = event.changedTouches[0].pageY;
       goBackEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(goBackStartY - goBackEndY) <= 20 && Math.abs(goBackStartX - goBackEndX) <= 20) {
 
-        onBackKeyDown()
+        onBackKeyDown();
         scope.unmount()
       }
     };
-
-    var optionOnTouchStartY, optionOnTouchStartX, optionOnTouchEndY, optionOnTouchEndX;
 
     optionOnTouchStart = function () {
       event.stopPropagation();
@@ -283,8 +284,6 @@
       optionOnTouchStartX = event.changedTouches[0].pageX;
     };
 
-
-    scope.index = -1;
     optionOnTouchEnd = function (id) {
       event.stopPropagation();
 
@@ -301,7 +300,6 @@
       }
     };
 
-
     goToNextPage = function () {
 
       if (scope.index == -1 && scope.serviceData.information_type == 3 && scope.checkIconShow) {
@@ -315,14 +313,21 @@
           step_amount: scope.stepAmount,
           viewpage: scope.viewPage,
           viewmount: true,
-          errornote: scope.errorNote,
+          errornote: scope.errorNote
         });
 
         scope.update();
       } else {
-        this.riotTags.innerHTML = "<view-service-pincards-new>";
-        riot.mount('view-service-pincards-new', opts);
-        scope.unmount()
+        if (opts.formtype == 5) {
+          console.log("opts to send ", opts)
+          this.riotTags.innerHTML = "<view-service-additional-info>";
+          riot.mount('view-service-additional-info', opts);
+          scope.unmount()
+        } else {
+          this.riotTags.innerHTML = "<view-service-pincards-new>";
+          riot.mount('view-service-pincards-new', opts);
+          scope.unmount()
+        }
       }
 
     };

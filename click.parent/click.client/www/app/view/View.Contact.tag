@@ -1,9 +1,11 @@
 <view-contact class="riot-tags-main-container">
 
-  <div class="view-contact-page-title">
-    <p class="view-contact-name-title">{titleName}</p>
+  <div class="page-title">
+    <p class="name-title">{titleName}</p>
     <div id="backButton" ontouchstart="goToBackStart()" role="button" aria-label="{window.languages.Back}"
-         ontouchend="goToBackEnd()" class="view-contact-back-button"></div>
+         ontouchend="goToBackEnd()" class="back-button"></div>
+    <div class="title-bottom-border">
+    </div>
   </div>
 
   <div class="view-contact">
@@ -69,6 +71,7 @@
     scope.firstLetter = opts.object.firstLetter;
     scope.arrayOfNumbers = opts.object.phoneNumbers[0];
     scope.contactId = opts.object.id;
+    scope.phoneForPayment = '';
 
     if (scope.arrayOfNumbers) {
 
@@ -93,15 +96,7 @@
       }
     }
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-contact') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-contact',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-contact', opts);
 
     scope.titleName = window.languages.ViewContactTitle;
 
@@ -137,13 +132,13 @@
             contactSelectContainerId.style.display = 'block'
           }
           else {
-            scope.arrayOfNumbers[0].value = scope.arrayOfNumbers[0].value.substring(scope.arrayOfNumbers[0].value.length - 9, scope.arrayOfNumbers[0].value.length)
-            var id = window.mOperators[scope.arrayOfNumbers[0].value.substring(0, 2)]
-            console.log('OPERATOR', scope.arrayOfNumbers[0].value.substring(0, 2))
+            scope.phoneForPayment = scope.arrayOfNumbers[0].value.substring(scope.arrayOfNumbers[0].value.length - 9, scope.arrayOfNumbers[0].value.length)
+            var id = window.mOperators[scope.phoneForPayment.substring(0, 2)]
+            console.log('OPERATOR', scope.phoneForPayment.substring(0, 2))
             console.log('ID', id)
             opts.chosenServiceId = id;
-            scope.arrayOfNumbers[0].value = scope.arrayOfNumbers[0].value.substring(scope.arrayOfNumbers[0].value.length - 9, scope.arrayOfNumbers[0].value.length);
-            opts.number = scope.arrayOfNumbers[0].value;
+            scope.phoneForPayment = scope.phoneForPayment.substring(scope.phoneForPayment.length - 9, scope.phoneForPayment.length);
+            opts.number = scope.phoneForPayment;
 
             console.log('ID', id)
             if (id) {
@@ -197,6 +192,7 @@
         for (var i in digits) {
           phone += digits[i]
         }
+        phoneForTransfer = phone.substring(phone.length - 12, phone.length);
         phone = phone.substring(phone.length - 9, phone.length);
 
         if (goToPay) {
@@ -228,8 +224,13 @@
           }
         }
         else {
-          riotTags.innerHTML = "<view-transfer>";
-          riot.mount('view-transfer', {number: phone});
+          params = {
+            transferType: 'contact',
+            phoneNumber: phoneForTransfer,
+          };
+          console.log("TEL number in view-contact", params);
+          riotTags.innerHTML = "<view-transfer-new>";
+          riot.mount('view-transfer-new', params);
 
           scope.unmount()
         }
@@ -276,8 +277,9 @@
               }
             }
             localStorage.setItem('contactList', JSON.stringify(arrayOfContacts))
-            onBackKeyDown()
-            return
+            riotTags.innerHTML = "<view-main-page>";
+            riot.mount("view-main-page");
+            scope.unmount();
           }
         };
 
@@ -315,9 +317,14 @@
           }
           else {
 
-            scope.arrayOfNumbers[0].value = scope.arrayOfNumbers[0].value.substring(scope.arrayOfNumbers[0].value.length - 9, scope.arrayOfNumbers[0].value.length);
-            riotTags.innerHTML = "<view-transfer>";
-            riot.mount('view-transfer', {number: scope.arrayOfNumbers[0].value});
+            scope.arrayOfNumbers[0].value = scope.arrayOfNumbers[0].value.substring(scope.arrayOfNumbers[0].value.length - 12, scope.arrayOfNumbers[0].value.length);
+            params = {
+              transferType: 'contact',
+              phoneNumber: scope.arrayOfNumbers[0].value,
+            };
+            console.log("TEL number in view-contact", scope.arrayOfNumbers[0].value);
+            riotTags.innerHTML = "<view-transfer-new>";
+            riot.mount('view-transfer-new', params);
 
             scope.unmount()
           }

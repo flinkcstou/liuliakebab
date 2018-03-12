@@ -2,11 +2,13 @@
 
   <div class="transfer-detail-title-container">
 
-    <div class="page-title transfer-detail-page-title">
+    <div class="page-title">
       <p class="name-title">{titleName}</p>
       <div id="transferDetailBackButtonId" role="button" aria-label="{window.languages.Back}"
            ontouchstart="goToBackStart()" ontouchend="goToBackEnd()"
-           class="settings-general-back-button"></div>
+           class="back-button"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
     <div class="transfer-detail-transfer-icon"></div>
     <p class="transfer-detail-transfer-icon-title-part-one">
@@ -18,7 +20,8 @@
     <p class="transfer-detail-transfer-icon-title-phone">
       +{opts.phoneNumber.substring(0, 3) + ' ' +
       inputVerification.telVerificationWithSpace(opts.phoneNumber.substring(3, opts.phoneNumber.length))}</p>
-
+    <div class="title-bottom-border">
+    </div>
   </div>
 
   <div class="transfer-detail-container">
@@ -39,9 +42,7 @@
       <p class="transfer-detail-status">Ожидает подтверждения</p>
     </div>
 
-    <div class="transfer-detail-cover"></div>
-
-    <div class="transfer-detail-buttons-container">
+    <div class="transfer-detail-buttons-container upper-shadow">
       <button id="acceptTransferButtonId" class="transfer-detail-button-accept"
               ontouchend="transferDetailOnTouchEndAccept()"
               ontouchstart="transferDetailOnTouchStartAccept()">
@@ -96,15 +97,13 @@
     scope.showConfirmPanel = false;
     scope.showComponent = false;
 
-    console.log('WWWWWWWWWW')
-
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 
     goToBackStart = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      transferDetailBackButtonId.style.webkitTransform = 'scale(0.7)'
+      transferDetailBackButtonId.style.webkitTransform = 'scale(0.7)';
 
       goBackButtonStartX = event.changedTouches[0].pageX;
       goBackButtonStartY = event.changedTouches[0].pageY;
@@ -112,15 +111,15 @@
     };
 
     goToBackEnd = function (doNotPrevent) {
+
       if (!doNotPrevent) {
         event.preventDefault();
         event.stopPropagation();
-        transferDetailBackButtonId.style.webkitTransform = 'scale(1)'
+        transferDetailBackButtonId.style.webkitTransform = 'scale(1)';
 
         goBackButtonEndX = event.changedTouches[0].pageX;
         goBackButtonEndY = event.changedTouches[0].pageY;
       }
-
 
       if ((Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) || doNotPrevent) {
         onBackKeyDown()
@@ -142,7 +141,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      confirmTransferButtonId.style.webkitTransform = 'scale(0.8)'
+      confirmTransferButtonId.style.webkitTransform = 'scale(0.8)';
 
       console.log("Secret Code For Confirmation", this.secretCodeInput.value);
 
@@ -154,7 +153,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      confirmTransferButtonId.style.webkitTransform = 'scale(1)'
+      confirmTransferButtonId.style.webkitTransform = 'scale(1)';
 
       touchEndAcceptSecretCodeX = event.changedTouches[0].pageX;
       touchEndAcceptSecretCodeY = event.changedTouches[0].pageY;
@@ -172,7 +171,7 @@
           window.common.alert.show("componentAlertId", {
             parent: scope,
             clickpinerror: scope.clickPinError,
-            errornote: scope.errorNote,
+            errornote: scope.errorNote
           });
 
           scope.update();
@@ -182,21 +181,12 @@
 
         if (Math.abs(touchEndAcceptSecretCodeX - touchStartAcceptSecretCodeX) < 20 &&
           Math.abs(touchEndAcceptSecretCodeY - touchStartAcceptSecretCodeY) < 20) {
-//        riot.update();
-          console.log('OPTS IN TRANSFER DETAIL', scope.opts)
-
 
           var params = {
             amount: scope.opts.amount,
             secret_key: secret_key,
             invoiceId: scope.opts.invoiceId
           };
-
-//        scope.showComponent = true;
-//        console.log('PARAMS', params)
-//        scope.tags['view-transfer-on-card'].opts = params
-//        window.checkShowingComponent = scope.tags['view-transfer-on-card'];
-//        riot.update();
 
           riotTags.innerHTML = "<view-transfer-on-card>";
           riot.mount("view-transfer-on-card", params);
@@ -210,7 +200,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      acceptTransferButtonId.style.webkitTransform = 'scale(0.8)'
+      acceptTransferButtonId.style.webkitTransform = 'scale(0.8)';
 
       touchStartAcceptX = event.changedTouches[0].pageX;
       touchStartAcceptY = event.changedTouches[0].pageY;
@@ -220,9 +210,8 @@
       event.preventDefault();
       event.stopPropagation();
 
-      acceptTransferButtonId.style.webkitTransform = 'scale(1)'
+      acceptTransferButtonId.style.webkitTransform = 'scale(1)';
 
-      console.log("ACCEPT OPTS", opts)
 
       touchEndAcceptX = event.changedTouches[0].pageX;
       touchEndAcceptY = event.changedTouches[0].pageY;
@@ -239,7 +228,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      cancelTransferButtonId.style.webkitTransform = 'scale(0.8)'
+      cancelTransferButtonId.style.webkitTransform = 'scale(0.8)';
 
       touchStartDeclineX = event.changedTouches[0].pageX;
       touchStartDeclineY = event.changedTouches[0].pageY;
@@ -249,7 +238,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      cancelTransferButtonId.style.webkitTransform = 'scale(1)'
+      cancelTransferButtonId.style.webkitTransform = 'scale(1)';
 
 
       touchEndDeclineX = event.changedTouches[0].pageX;
@@ -260,34 +249,24 @@
 
         if (scope.parent) {
           for (var i in scope.parent.invoiceList) {
-//          console.log("scope.parent.invoiceList[i]", scope.parent.invoiceList[i])
+
             if (scope.parent.invoiceList[i].invoice_id == scope.opts.invoiceId) {
               scope.parent.invoiceList[i].deleted = true;
-//            console.log("QWEQW")
-//            alert('TRUE')
+
             }
           }
           riot.update(scope.parent.invoiceList);
         }
 
-        console.log('INVOICE OPTS', opts)
-
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");
         var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
         var sessionKey = loginInfo.session_key;
 
-        if (device.platform != 'BrowserStand') {
-          var options = {dimBackground: true};
-
-          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-            console.log("Started");
-          }, function () {
-            console.log("closed");
-          });
-        }
+        window.startSpinner();
 
         window.api.call({
           method: 'invoice.action',
+          stopSpinner: false,
           input: {
             session_key: sessionKey,
             phone_num: phoneNumber,
@@ -296,6 +275,7 @@
           },
           scope: this,
           onSuccess: function (result) {
+            window.stopSpinner();
 
             console.log("result of invoice transfer decline", result);
 
@@ -309,14 +289,21 @@
               window.common.alert.show("componentAlertId", {
                 parent: scope,
                 clickpinerror: scope.clickPinError,
-                errornote: scope.errorNote,
+                errornote: scope.errorNote
               });
 
-              scope.update();
             }
           },
 
           onFail: function (api_status, api_status_message, data) {
+            window.stopSpinner();
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: false,
+              errornote: api_status_message
+            });
+
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
           }

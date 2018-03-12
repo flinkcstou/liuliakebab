@@ -2,13 +2,15 @@
   <div class="riot-tags-main-container">
     <div class="settings-general-user-info-container">
 
-      <div class="page-title settings-general-page-title">
+      <div class="page-title">
         <p class="name-title">{titleName}</p>
         <div id="backButton" ontouchstart="goToBackStart()" ontouchend="goToBackEnd()"
-             class="settings-general-back-button" role="button" aria-label="{window.languages.Back}"></div>
+             class="back-button" role="button" aria-label="{window.languages.Back}"></div>
         <div id="rightButton" type="button" role="button" aria-label="{window.languages.Save}"
-             class="settings-general-check-button"
+             class="check-button"
              ontouchend="saveEditedNameTouchEnd()"></div>
+        <div class="title-bottom-border">
+        </div>
       </div>
 
       <img src="resources/icons/ViewSettingsGeneral/general_avatar.png" id="imageUserAvatarId"
@@ -33,19 +35,6 @@
       </div>
     </div>
     <div class="settings-container settings-general-container">
-      <div class="settings-general-gender-container">
-        <div class="settings-general-male-container" ontouchend="maleTouchEnd()">
-          <div id="maleIconId" class="settings-general-male-icon"></div>
-          <p id="maleTitleId" class="settings-general-gender-text">
-            {window.languages.ViewSettingsGeneralGenderMaleTitle}</p>
-        </div>
-        <div class="settings-general-line-between"></div>
-        <div class="settings-general-female-container" ontouchend="femaleTouchEnd()">
-          <div id="femaleIconId" class="settings-general-female-icon"></div>
-          <p id="femaleTitleId" class="settings-general-gender-text">
-            {window.languages.ViewSettingsGeneralGenderFemaleTitle}</p>
-        </div>
-      </div>
       <div class="settings-general-languages-container" if="{langChangeBool}">
         <div class="settings-general-lang-container" ontouchend="MakeMainCheck()">
           <p class="settings-general-lang-text">{window.languages.ViewSettingsGeneralLanguageRussian}</p>
@@ -79,20 +68,20 @@
       }
 
       settingsUserNameId.value = scope.firstName + ' ' + scope.lastName;
-      if (scope.gender == 'M') {
-        maleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_male_active.png)'
-        maleTitleId.style.color = 'black'
-
-        femaleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_female_inactive.png)'
-        femaleTitleId.style.color = 'lightgrey'
-      }
-      else {
-        maleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_male_inactive.png)'
-        maleTitleId.style.color = 'lightgrey'
-
-        femaleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_female_active.png)'
-        femaleTitleId.style.color = 'black'
-      }
+//      if (scope.gender == 'M') {
+//        maleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_male_active.png)'
+//        maleTitleId.style.color = 'black'
+//
+//        femaleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_female_inactive.png)'
+//        femaleTitleId.style.color = 'lightgrey'
+//      }
+//      else {
+//        maleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_male_inactive.png)'
+//        maleTitleId.style.color = 'lightgrey'
+//
+//        femaleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_female_active.png)'
+//        femaleTitleId.style.color = 'black'
+//      }
 
       scope.update();
 
@@ -453,31 +442,31 @@
       }
     }
 
-    maleTouchEnd = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      maleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_male_active.png)'
-      maleTitleId.style.color = 'black'
-
-      femaleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_female_inactive.png)'
-      femaleTitleId.style.color = 'lightgrey'
-
-      scope.gender = 'M'
-    }
-
-    femaleTouchEnd = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      maleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_male_inactive.png)'
-      maleTitleId.style.color = 'lightgrey'
-
-      femaleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_female_active.png)'
-      femaleTitleId.style.color = 'black'
-
-      scope.gender = 'F'
-    }
+    //    maleTouchEnd = function () {
+    //      event.preventDefault();
+    //      event.stopPropagation();
+    //
+    //      maleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_male_active.png)'
+    //      maleTitleId.style.color = 'black'
+    //
+    //      femaleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_female_inactive.png)'
+    //      femaleTitleId.style.color = 'lightgrey'
+    //
+    //      scope.gender = 'M'
+    //    }
+    //
+    //    femaleTouchEnd = function () {
+    //      event.preventDefault();
+    //      event.stopPropagation();
+    //
+    //      maleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_male_inactive.png)'
+    //      maleTitleId.style.color = 'lightgrey'
+    //
+    //      femaleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_female_active.png)'
+    //      femaleTitleId.style.color = 'black'
+    //
+    //      scope.gender = 'F'
+    //    }
 
 
     editUserInfoTouchEnd = function () {
@@ -497,16 +486,7 @@
       }
     }
 
-
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-general-settings') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-general-settings',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-general-settings', opts);
 
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 

@@ -2,24 +2,24 @@
   <div>
 
     <div class="report-service-upper-container">
-
-      <div class="page-title settings-general-page-title">
+      <div class="page-title">
         <div id="backButton" ontouchstart="reportServiceGoToBackStart()" ontouchend="reportServiceGoToBackEnd()"
-             class="settings-general-back-button"></div>
+             class="back-button"></div>
+        <div class="title-bottom-border">
+        </div>
       </div>
 
       <img src="{opts.image}" id="serviceIconId"
            class="report-service-icon"/>
 
-      <div class="report-service-upper-info-container">
-        <div class="report-service-title">{(opts.service_name) ? (opts.service_name) : ("")}</div>
-        <div class="report-service-payment-info-text">{window.languages.ViewReportServicePaymentNumber}
-          {(opts.payment_id) ? (opts.payment_id) : ("")}
-        </div>
-        <div class="report-service-payment-info-text">{window.languages.ViewReportServicePaymentDate} {opts.created}
-        </div>
+      <div class="report-service-title">{(opts.service_name) ? (opts.service_name) : ("")}</div>
+      <div class="report-service-payment-info-text">{window.languages.ViewReportServicePaymentNumber}
+        {(opts.payment_id) ? (opts.payment_id) : ("")}
       </div>
-
+      <div class="report-service-payment-info-text">{window.languages.ViewReportServicePaymentDate} {opts.created}
+      </div>
+      <div class="title-bottom-border">
+      </div>
     </div>
 
     <div class="report-service-body-container">
@@ -42,7 +42,7 @@
         </div>
         <div class="report-service-field">
           <p class="report-service-text-field">{window.languages.ViewReportServicePayWithCard}</p>
-          <p class="report-service-info-input">{(cards[opts.account_id])? (cards[opts.account_id].name+ " " +
+          <p class="report-service-info-input-card-name">{(cards[opts.account_id])? (cards[opts.account_id].name+ " " +
             cards[opts.account_id].numberPartOne + " **** **** " + cards[opts.account_id].numberPartTwo):"UNKNOWN"}</p>
         </div>
         <div class="report-service-field report-service-last-field">
@@ -54,41 +54,41 @@
         </div>
       </div>
 
-      <div class="report-service-data-button-info-container">
-        <div class="report-service-button-info-container" if="{opts.is_indoor != 1 && opts.canAddToFavorite === true}">
 
-          <div class="report-service-button-icon report-service-button-favorites-icon" if="{!isInFavorites}"></div>
-          <div id="addToFavouriteButtonId" class="report-service-button-action"
-               ontouchend="addToFavoritesTouchEnd(this.id)" if="{!isInFavorites}"
-               ontouchstart="addToFavoritesTouchStart(this.id)">{languages.ViewReportServiceAddToFavorites}
-          </div>
+      <div class="report-service-button-info-container" if="{opts.is_indoor != 1 && opts.canAddToFavorite === true}">
 
-          <div class="report-service-button-icon report-service-button-favorites-icon-added"
-               if="{isInFavorites}"></div>
-          <div id="delToFavouriteButtonId" class="report-service-button-action"
-               ontouchend="removeFromFavoritesTouchEnd(this.id)" if="{isInFavorites}"
-               ontouchstart="addToFavoritesTouchStart(this.id)">{languages.ViewReportServiceRemoveFromFavorites}
-          </div>
-
-        </div>
-        <div class="report-service-button-info-container" if="{false}">
-          <div class="report-service-button-icon report-service-button-auto-payment-icon"></div>
-          <a class="report-service-button-action">{languages.ViewReportServiceAddToAutoPayment}</a>
-        </div>
-        <div class="report-service-button-info-container">
-          <div class="report-service-button-icon report-service-button-support-icon"></div>
-          <div id="supportButtonId" class="report-service-button-action" ontouchend="goToSupportTouchEnd(this.id)"
-               ontouchstart="goToSupportTouchStart(this.id)">{languages.ViewReportServiceGetSupportHelp}
-          </div>
+        <div class="report-service-button-icon report-service-button-favorites-icon" if="{!isInFavorites}"></div>
+        <div id="addToFavouriteButtonId" class="report-service-button-action"
+             ontouchend="addToFavoritesTouchEnd(this.id)" if="{!isInFavorites}"
+             ontouchstart="addToFavoritesTouchStart(this.id)">{languages.ViewReportServiceAddToFavorites}
         </div>
 
-        <button id="repeatButtinId" if="{opts.is_indoor != 1 && opts.canAddToFavorite === true}"
-                class="report-service-repeat-button"
-                ontouchend="onTouchEndOfService(this.id)"
-                ontouchstart="onTouchStartOfService(this.id)">
-          {opts.qr_image? languages.ViewReportServiceShowQrButtonLabel : languages.ViewReportServiceRepeatButtonLabel}
-        </button>
+        <div class="report-service-button-icon report-service-button-favorites-icon-added"
+             if="{isInFavorites}"></div>
+        <div id="delToFavouriteButtonId" class="report-service-button-action"
+             ontouchend="removeFromFavoritesTouchEnd(this.id)" if="{isInFavorites}"
+             ontouchstart="addToFavoritesTouchStart(this.id)">{languages.ViewReportServiceRemoveFromFavorites}
+        </div>
+
       </div>
+      <div class="report-service-button-info-container" if="{false}">
+        <div class="report-service-button-icon report-service-button-auto-payment-icon"></div>
+        <a class="report-service-button-action">{languages.ViewReportServiceAddToAutoPayment}</a>
+      </div>
+      <div class="report-service-button-info-container">
+        <div class="report-service-button-icon report-service-button-support-icon"></div>
+        <div id="supportButtonId" class="report-service-button-action" ontouchend="goToSupportTouchEnd(this.id)"
+             ontouchstart="goToSupportTouchStart(this.id)">{languages.ViewReportServiceGetSupportHelp}
+        </div>
+      </div>
+
+      <button id="repeatButtinId" if="{opts.is_indoor != 1 && opts.canAddToFavorite === true}"
+              class="bottom-button-container"
+              ontouchend="onTouchEndOfService(this.id)"
+              ontouchstart="onTouchStartOfService(this.id)">
+        {opts.qr_image? languages.ViewReportServiceShowQrButtonLabel : languages.ViewReportServiceRepeatButtonLabel}
+      </button>
+
 
     </div>
   </div>
@@ -106,7 +106,7 @@
 
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#00a8f1");
+        StatusBar.backgroundColorByHexString("#ffffff");
 
       scope.update()
 
@@ -141,16 +141,10 @@
 
     //    console.log("OPTS=", scope.opts);
 
-    if (scope.parent == null)
-      if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-report-service-new') {
-        history.arrayOfHistory.push(
-          {
-            "view": 'view-report-service-new',
-            "params": scope.opts
-          }
-        );
-        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-      }
+    if (scope.parent == null) {
+      window.saveHistory('view-report-service-new', opts);
+    }
+
 
     goToSupportTouchStart = function (id) {
 
@@ -417,8 +411,8 @@
             window.checkShowingComponent = null;
           }
 
-          riotTags.innerHTML = "<view-pay-confirm-new>";
-          riot.mount("view-pay-confirm-new", opts);
+          riotTags.innerHTML = "<view-service-page-new>";
+          riot.mount("view-service-page-new", opts);
 
           scope.update();
 //        scope.unmount()

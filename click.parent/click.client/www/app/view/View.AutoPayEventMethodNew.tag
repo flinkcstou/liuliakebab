@@ -1,13 +1,15 @@
 <view-autopay-event-method-new>
   <div class="riot-tags-main-container">
     <div class="pay-page-title" style="border-style: none;">
-      <p class="autopay-method-page-title">{titleName} {serviceName}</p>
+      <p class="servicepage-title">{titleName} {serviceName}</p>
       <p class="servicepage-category-field">{window.languages.ViewAutoPayMethodEventText}</p>
       <div ontouchend="goToBack()" ontouchstart="onTouchStartOfBack()"
-           class="autopay-method-back-button">
+           class="servicepage-button-back">
       </div>
       <div type="button" class="servicepage-service-icon autopay-method-service-icon"
            style="background-image: url({serviceIcon})"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
 
 
@@ -51,9 +53,9 @@
       <p class="autopay-event-amounts-info-text autopay-event-amounts-info-text-two">{amountsCanBeText}сум</p>
 
 
-      <button
-          class="{autopay-event-button-enter-enabled: enterButtonEnabled,autopay-event-button-enter-disabled:!enterButtonEnabled}"
-          ontouchend="chooseCardToPay()" ontouchstart="onTouchStartOfChooseCard()">
+      <button id="enterButtonId" style="bottom: {window.bottomButtonBottom}"
+              class="{autopay-event-button-enter-enabled: enterButtonEnabled,autopay-event-button-enter-disabled:!enterButtonEnabled}"
+              ontouchend="chooseCardToPay()" ontouchstart="onTouchStartOfChooseCard()">
         {window.languages.ViewServicePageEnterLabel}
       </button>
 
@@ -98,15 +100,7 @@
     var scope = this;
     scope.enterButtonEnabled = false;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-autopay-event-method-new') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-autopay-event-method-new',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-autopay-event-method-new', opts);
 
     var backStartY, backStartX, backEndY, backEndX;
 
@@ -158,9 +152,12 @@
       this.serviceName = scope.servicesMap[scope.autoPayData.service_id][0].name;
       this.serviceIcon = scope.servicesMap[scope.autoPayData.service_id][0].image;
       if (scope.autoPayData.fromView == 'PAYCONFIRM' && opts.firstFieldText) {
-        if (opts.firstFieldId === 1)
+        if (opts.firstFieldId == 1) {
           scope.defaultNumber = !opts.firstFieldText ? null : (inputVerification.telVerificationWithSpace(opts.firstFieldText));
-        else scope.defaultNumber = opts.firstFieldText;
+        }
+        else {
+          scope.defaultNumber = opts.firstFieldText;
+        }
       }
     }
 

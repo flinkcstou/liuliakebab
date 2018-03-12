@@ -1,12 +1,14 @@
 <view-auto-pay-new class="riot-tags-main-container">
-  <div class="pay-page-title">
-    <p class="pay-name-title">{titleName}</p>
+  <div class="page-title">
+    <p class="name-title">{titleName}</p>
     <div id="autoPayBackButtonId" role="button" aria-label="{window.languages.Back}" ontouchstart="onTouchStartOfBack()"
          ontouchend="goToBack()"
-         class="pay-back-button"></div>
+         class="back-button"></div>
     <div id="rightButton" role="button" aria-label="{window.languages.ViewAutoPayVoiceOverAdd}"
          ontouchstart="onTouchStartOfAddSign()" ontouchend="addAutoPay()"
-         class="settings-friend-help-add-button"></div>
+         class="add-button"></div>
+    <div class="title-bottom-border">
+    </div>
   </div>
 
   <div class="view-autopay-container" if="{autopayListShow}">
@@ -41,15 +43,7 @@
 
     this.titleName = window.languages.ViewAutoPayTitleName;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-auto-pay-new') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-auto-pay-new',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-auto-pay-new', opts);
 
     var backStartY, backStartX, backEndY, backEndX;
 

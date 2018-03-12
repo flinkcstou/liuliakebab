@@ -250,7 +250,7 @@
         scope.tourClosed = false;
 
         if (device.platform != 'BrowserStand')
-          StatusBar.backgroundColorByHexString("#004663");
+          StatusBar.backgroundColorByHexString("#ffffff");
       }
 
       if (opts && opts.number) {
@@ -343,7 +343,7 @@
 
     })
 
-    focusFieldAfterTourClosed = function () {
+    scope.focusFieldAfterTourClosed = focusFieldAfterTourClosed = function () {
 
       scope.tourClosed = true;
 
@@ -374,15 +374,8 @@
       }
     }
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-transfer',
-          "params": opts,
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-transfer', opts);
+
     //    console.log('OPTS', opts)
 
     if (localStorage.getItem('click_client_loginInfo')) {

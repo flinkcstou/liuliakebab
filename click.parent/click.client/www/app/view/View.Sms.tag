@@ -1,5 +1,13 @@
 <view-sms class="view-sms riot-tags-main-container">
   <div class="sms-flex-container">
+    <div class="page-title">
+      <div id="smsButtonHelpId" class="registration-button-help" ontouchend="helpTouchEndSms()"
+           ontouchstart="helpTouchStartSms()">
+        {window.languages.ViewSmsButtonHelp}
+      </div>
+      <div class="title-bottom-border">
+      </div>
+    </div>
     <div class="sms-unchangable-container">
       <div class="sms-phone-field">
         <p class="sms-text-field-one">{window.languages.ViewSmsFieldOne}</p>
@@ -8,25 +16,23 @@
         <div class="sms-timer" ontouchend="touchEndResend()" ontouchstart="touchStartResend()">{time}
           <div class="sms-resend-icon" role="button" aria-label="{window.languages.ViewSmsAriaLabelResendSms}"></div>
         </div>
-
-        <div class="sms-text-field">
-          <p style="margin-bottom: 4px">{messageTitle}<br>{messageTitleTwo}</p>
-          <p id="deliveredPhoneNumber" style="margin: 0">{phoneNumber.substring(0, 3)}
-            {phoneNumber.substring(3, phoneNumber.length)}</p>
-          <div id="changeNumberButtonId" class="sms-button-enter" ontouchend="goToBackRegistrationEnd()"
-               ontouchstart="goToBackRegistrationStart()">{window.languages.ViewSmsButtonEnterLabel}
-          </div>
+      </div>
+      <div class="sms-text-field">
+        <p style="margin-bottom: {4 * widthK}px;
+         margin-top: {15 * widthK}px;">{messageTitle}<br>{messageTitleTwo}</p>
+        <p id="deliveredPhoneNumber" style="margin: 0; margin-bottom: {15 * widthK}px;">{phoneNumber.substring(0, 3)}
+          {phoneNumber.substring(3, phoneNumber.length)}</p>
+        <div class="hor-line-border">
+        </div>
+        <div id="changeNumberButtonId" class="sms-button-enter" ontouchend="goToBackRegistrationEnd()"
+             ontouchstart="goToBackRegistrationStart()">{window.languages.ViewSmsButtonEnterLabel}
         </div>
       </div>
     </div>
   </div>
 
 
-  <div class="registration-keyboard-field keyboard-field" style="bottom: {150*widthK}px">
-    <div id="smsButtonHelpId" class="registration-button-help" ontouchend="helpTouchEndSms()"
-         ontouchstart="helpTouchStartSms()"
-         style="top: {560*widthK}px">{window.languages.ViewSmsButtonHelp}
-    </div>
+  <div class="sms-keyboard-field keyboard-field" style="bottom: {150*widthK}px">
     <component-keyboard></component-keyboard>
   </div>
 
@@ -39,21 +45,13 @@
     scope.messageTitleTwo = '';
     scope.phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-sms') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-sms',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-sms', opts);
     scope.confirmSms = '';
 
     this.on('mount', function () {
 
       if (device.platform !== 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#00b0eb");
+        StatusBar.backgroundColorByHexString("#ffffff");
     });
 
 
@@ -66,31 +64,6 @@
       keyboardTouchStartX = event.changedTouches[0].pageX
       keyboardTouchStartY = event.changedTouches[0].pageY
     };
-
-    //
-    //    componentKeyboard.returnValue = function (myValue) {
-    //
-    //      keyboardTouchEndX = event.changedTouches[0].pageX
-    //      keyboardTouchEndY = event.changedTouches[0].pageY
-    //
-    //
-    //      if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20) {
-    //
-    //        if (scope.confirmSms.length < 5 && myValue != 'x') {
-    //          scope.confirmSms += myValue;
-    //        }
-    //        if (myValue == 'x') {
-    //          scope.confirmSms = scope.confirmSms.substring(0, scope.confirmSms.length - 1);
-    //        }
-    //        scope.update();
-    //        if (scope.confirmSms.length == 5) {
-    //          var sms = scope.confirmSms;
-    //          viewSms.getSms(sms);
-    //          return;
-    //        }
-    //      }
-    //    }
-
 
     componentKeyboard.returnValue = function (myValue, id) {
 
@@ -196,63 +169,60 @@
 
     var helpTouchStartXSms, helpTouchStartYSms, helpTouchEndXSms, helpTouchEndYSms;
     helpTouchStartSms = function () {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
 
-      smsButtonHelpId.style.webkitTransform = 'scale(0.8)'
+      smsButtonHelpId.style.webkitTransform = 'scale(0.8)';
 
-      helpTouchStartXSms = event.changedTouches[0].pageX
-      helpTouchStartYSms = event.changedTouches[0].pageY
+      helpTouchStartXSms = event.changedTouches[0].pageX;
+      helpTouchStartYSms = event.changedTouches[0].pageY;
 
-    }
+    };
 
     helpTouchEndSms = function () {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
 
-      smsButtonHelpId.style.webkitTransform = 'scale(1)'
+      smsButtonHelpId.style.webkitTransform = 'scale(1)';
 
-      helpTouchEndXSms = event.changedTouches[0].pageX
-      helpTouchEndYSms = event.changedTouches[0].pageY
+      helpTouchEndXSms = event.changedTouches[0].pageX;
+      helpTouchEndYSms = event.changedTouches[0].pageY;
 
 
       if (Math.abs(helpTouchStartXSms - helpTouchEndXSms) <= 20 && Math.abs(helpTouchStartYSms - helpTouchEndYSms) <= 20) {
-//        riotTags.innerHTML = "<view-help>";
-//        riot.mount('view-help');
-//        scope.unmount()
+
         componentTourId.style.display = "block";
-//        tourBackPageId.style.opacity = '1';
         if (device.platform !== 'BrowserStand')
-          StatusBar.backgroundColorByHexString("#024361");
+          StatusBar.backgroundColorByHexString("#ffffff");
 
 
       }
-    }
+    };
 
     var goBackTouchStartXSms, goBackTouchStartYSms, goBackTouchEndXSms, goBackTouchEndYSms;
     goToBackRegistrationStart = function () {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
 
-      changeNumberButtonId.style.webkitTransform = 'scale(0.8)'
+      changeNumberButtonId.style.webkitTransform = 'scale(0.8)';
 
-      goBackTouchStartXSms = event.changedTouches[0].pageX
-      goBackTouchStartYSms = event.changedTouches[0].pageY
-    }
+      goBackTouchStartXSms = event.changedTouches[0].pageX;
+      goBackTouchStartYSms = event.changedTouches[0].pageY;
+    };
 
     goToBackRegistrationEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      changeNumberButtonId.style.webkitTransform = 'scale(1)'
+      changeNumberButtonId.style.webkitTransform = 'scale(1)';
 
-      goBackTouchEndXSms = event.changedTouches[0].pageX
-      goBackTouchEndYSms = event.changedTouches[0].pageY
+      goBackTouchEndXSms = event.changedTouches[0].pageX;
+      goBackTouchEndYSms = event.changedTouches[0].pageY;
 
       if (Math.abs(goBackTouchStartXSms - goBackTouchEndXSms) <= 20 && Math.abs(goBackTouchStartYSms - goBackTouchEndYSms) <= 20) {
         onBackKeyDown()
       }
-    }
+    };
 
 
     var minutes = 0;
@@ -273,9 +243,7 @@
         var phoneNumber = localStorage.getItem('click_client_phoneNumber');
         var deviceId = localStorage.getItem('click_client_deviceID');
         var timestamp = parseInt(Date.now() / 1000);
-        var signString = hex_md5(phoneNumber.substring(0, 5) + timestamp + phoneNumber.substring(phoneNumber.length - 4, phoneNumber.length))
-
-        console.log('CALL CALL CALL CALL CALL')
+        var signString = hex_md5(phoneNumber.substring(0, 5) + timestamp + phoneNumber.substring(phoneNumber.length - 4, phoneNumber.length));
 
         window.api.call({
           method: 'call.ivr',
@@ -291,20 +259,17 @@
           onSuccess: function (result) {
 
           },
-
           onFail: function (api_status, api_status_message, data) {
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
           }
         });
-
         clearInterval(time);
       }
       if (seconds == 0) {
         seconds = 59;
         minutes--;
       }
-
       scope.update();
     }
     var time = setInterval(timer, 1000);
@@ -320,16 +285,17 @@
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var deviceId = localStorage.getItem('click_client_deviceID');
       scope.tourData = {
-        mainpage: false,
-        transfer: false,
-        invoice: false,
-        autopaymethod: false,
-        calculator: false,
-        friendhelp: false
+        mainpage: true,
+        transfer: true,
+        invoice: true,
+        autopaymethod: true,
+        calculator: true,
+        friendhelp: true
       };
       localStorage.setItem("tour_data", JSON.stringify(scope.tourData));
       registrationConfirm(sms, phoneNumber, deviceId);
-    }
+    };
+
     function deviceRemember() {
       if (JSON.parse(localStorage.getItem('device_remember')) === true)
         return 1;
@@ -342,17 +308,28 @@
     function registrationConfirm(sms, phoneNumber, deviceId) {
       countOfCall++;
       checkServiceAnswer = false;
-      if (device.platform !== 'BrowserStand') {
-        var options = {dimBackground: true};
+      window.startSpinner();
 
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Started");
-        }, function () {
-          console.log("closed");
-        });
-      }
+      if (countOfCall <= 3 && !checkServiceAnswer)
+        setTimeout(function () {
+          if (!checkServiceAnswer && modeOfApp.onlineMode) {
+            var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+            var deviceId = localStorage.getItem('click_client_deviceID');
+            registrationConfirm(scope.confirmSms, phoneNumber, deviceId);
+          }
+          if (countOfCall == 3 && !checkServiceAnswer) {
+            scope.errorNote = "Сервис временно недоступен";
+            countOfCall = 0;
+            window.stopSpinner();
 
-
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              clickpinerror: scope.clickPinError,
+              errornote: scope.errorNote,
+            });
+            scope.update();
+          }
+        }, 10000);
       window.api.call({
         method: 'device.register.confirm',
         input: {
@@ -363,28 +340,20 @@
         },
 
         scope: this,
-
         onSuccess: function (result) {
           checkServiceAnswer = true;
           if (result[0][0])
             if (result[0][0].error == 0) {
               clearInterval(time);
-
               localStorage.setItem('confirm_needed', false);
               if (result[0][0].client_exists == 1) {
-                localStorage.setItem('click_client_registered', true)
+                localStorage.setItem('click_client_registered', true);
                 this.riotTags.innerHTML = "<view-authorization>";
                 riot.mount('view-authorization');
-
                 scope.unmount()
               }
               else {
-                localStorage.setItem('click_client_registered', false)
-//                this.riotTags.innerHTML = "<view-registration-client>";
-//                riot.mount('view-registration-client');
-
-//                scope.unmount()
-//
+                localStorage.setItem('click_client_registered', false);
                 riotTags.innerHTML = "<view-pin-code>";
                 riot.mount('view-pin-code', ['view-sms']);
                 scope.unmount()
@@ -397,7 +366,7 @@
               window.common.alert.show("componentAlertId", {
                 parent: scope,
                 clickpinerror: scope.clickPinError,
-                errornote: scope.errorNote,
+                errornote: scope.errorNote
               });
 
               scope.update();
@@ -409,33 +378,6 @@
           console.error(data);
         }
       }, 10000);
-
-      if (countOfCall <= 3 && !checkServiceAnswer)
-        setTimeout(function () {
-          if (!checkServiceAnswer && modeOfApp.onlineMode) {
-            var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-            var deviceId = localStorage.getItem('click_client_deviceID');
-            registrationConfirm(scope.confirmSms, phoneNumber, deviceId);
-          }
-          if (countOfCall == 3 && !checkServiceAnswer) {
-            scope.errorNote = "Сервис временно недоступен";
-            countOfCall = 0;
-            if (device.platform !== 'BrowserStand') {
-              console.log("Spinner Stop View SMS 422");
-              SpinnerPlugin.activityStop();
-            }
-
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote,
-            });
-
-            scope.update();
-
-            return;
-          }
-        }, 10000);
 
     }
 
@@ -464,11 +406,10 @@
         window.common.alert.show("componentAlertId", {
           parent: scope,
           clickpinerror: scope.clickPinError,
-          errornote: scope.errorNote,
+          errornote: scope.errorNote
         });
 
         scope.update();
-//      alert(window.languages.ViewSmsResendText + localStorage.getItem('click_client_phoneNumber'));
         resendSms();
       }
     };
@@ -488,8 +429,6 @@
         scope: this,
 
         onSuccess: function (result) {
-//                    console.log("result[0][0] ", result[0][0]);
-//                    console.log("result ", result);
         },
 
         onFail: function (api_status, api_status_message, data) {

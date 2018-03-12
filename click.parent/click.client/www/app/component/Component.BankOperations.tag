@@ -50,6 +50,7 @@
   <script>
 
     var closeIFrameStartX, closeIFrameEndX, closeIFrameStartY, closeIFrameEndY;
+    var timeOutTimer = 0;
 
     hideIFrameStart = function (id) {
       closeIFrameStartX = event.changedTouches[0].pageX;
@@ -123,8 +124,8 @@
       transferButtonId.style.webkitTransform = 'scale(1)';
 
       if (Math.abs(transferStartX - transferEndX) <= 20 && Math.abs(transferStartY - transferEndY) <= 20) {
-        riotTags.innerHTML = "<view-transfer>";
-        riot.mount('view-transfer');
+        riotTags.innerHTML = "<view-transfer-new>";
+        riot.mount('view-transfer-new');
 //        scope.unmount()
       }
       else return;
@@ -326,8 +327,6 @@
                       });
                     }
 
-                    var answerFromServer = false;
-
                     window.api.call({
                       method: 'get.indoor.service',
                       input: {
@@ -340,11 +339,10 @@
                       scope: this,
 
                       onSuccess: function (result) {
-                        answerFromServer = true;
+                        window.clearTimeout(timeOutTimer);
                         if (result[0][0].error == 0) {
                           if (result[1]) {
                             if (result[1][0]) {
-
                               if (rkAmount) {
                                 result[1][0].rk_amount = rkAmount
                               }
@@ -353,19 +351,16 @@
                               }
                               riotTags.innerHTML = "<view-qr>";
                               riot.mount('view-qr', result[1][0]);
-//                                scope.unmount()
                             }
                           }
-                          console.log("QR PAY", result);
                         }
                         else {
                           if (result[0][0].error == -202) {
                             if (result[0][0].error_url) {
 
                               window.checkShowingComponent = scope;
-                              scope.update()
-                              iFrameExternalUrlId.src = result[0][0].error_url
-
+                              scope.update();
+                              iFrameExternalUrlId.src = result[0][0].error_url;
 
 //                               ref = cordova.InAppBrowser.open(result[0][0].error_url, '_blank', 'location=no');
 //
@@ -398,7 +393,6 @@
 //
 //
 //                              });
-
                               return
                             }
                           }
@@ -416,21 +410,21 @@
                       },
 
                       onFail: function (api_status, api_status_message, data) {
+                        window.clearTimeout(timeOutTimer);
                         console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
                         console.error(data);
+                      },
+                      onTimeOut: function () {
+                        timeOutTimer = setTimeout(function () {
+                          window.stopSpinner();
+                        }, 15000);
+                        console.log('creating timeOut', timeOutTimer);
+                      },
+                      onEmergencyStop: function(){
+                        console.log('Clearing timer emergencyStop',timeOutTimer);
+                        window.clearTimeout(timeOutTimer);
                       }
-                    });
-
-                    setTimeout(function () {
-                      if (!answerFromServer) {
-                        if (device.platform != 'BrowserStand') {
-                          console.log("Spinner Stop Compnent Bank Operations 415");
-                          SpinnerPlugin.activityStop();
-                        }
-                      }
-
-                      return
-                    }, 15000)
+                    }, 15000);
                   }
                 }
               }
@@ -452,7 +446,7 @@
               showFlipCameraButton: false, // iOS and Android
               showTorchButton: true, // iOS and Android
               torchOn: false, // Android, launch with the torch switched on (if available)
-              prompt: "Наведите камеру к QR коду", // Android
+              prompt: window.languages.ViewQrLabelOnScanner, // Android
               resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
               formats: "QR_CODE", // default: all but PDF_417 and RSS_EXPANDED
               orientation: "portrait", // Android only (portrait|landscape), default unset so it rotates with the device

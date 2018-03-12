@@ -1,9 +1,11 @@
 <view-qr class="riot-tags-main-container">
-  <div class="view-qr-blue-container">
-    <div class="view-qr-page-title">
-      <p class="view-qr-name-title">{titleName}</p>
+  <div class="view-qr-blue-container page-title-shadow">
+    <div class="page-title">
+      <p class="name-title">{titleName}</p>
       <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchend="goToBack()"
-           class="pay-back-button"></div>
+           class="back-button"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
     <div class="view-qr-company-icon" style="background-image: url({opts.image})"></div>
     <p class="view-qr-company-name">
@@ -14,8 +16,8 @@
   <div class="view-qr-container">
 
     <div class="view-qr-contact-phone-field-container">
-      <div class="view-qr-contact-phone-field">
-        <p class="view-qr-contact-text-field">Сумма</p>
+      <div id="sumField" class="view-qr-contact-phone-field">
+        <p id="sumFieldTitle" class="view-qr-contact-text-field">Сумма</p>
         <p if="{!showPlaceHolderError && !modeOfApp.offlineMode}" class="view-qr-contact-number-input-commission">
           {window.languages.ViewTransferTwoTax} {tax}
           {window.languages.Currency}</p>
@@ -26,11 +28,10 @@
       </div>
     </div>
 
-    <div class="view-qr-buttons-container">
-      <button class="view-qr-button-accept" ontouchend="onTouchEndAccept()" ontouchstart="onTouchStartAccept()">
-        {window.languages.ViewQrTitleAccept}
-      </button>
-    </div>
+    <button id="bottomButtonContainer" class="bottom-button-container" ontouchend="onTouchEndAccept()"
+            ontouchstart="onTouchStartAccept()">
+      {window.languages.ViewQrTitleAccept}
+    </button>
 
   </div>
 
@@ -38,53 +39,39 @@
 
     var scope = this;
     this.titleName = window.languages.ViewQrTitle;
+    var touchStartAcceptX, touchStartAcceptY, touchStartDeclineX, touchStartDeclineY;
+    var sumForQrPay;
+    var checkFirst = false,
+      maskOne = /[0-9]/g,
+      maskTwo = /[0-9' ']/g,
+      defaultAccount;
+    scope.showPlaceHolderError = false;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-qr') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-qr',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    if (!opts.commission_percent)
+      scope.showPlaceHolderError = true;
+
+    window.saveHistory('view-qr', opts);
 
     this.on('mount', function () {
 
-      if (device.platform ==='Android')
+      if (device.platform === 'Android')
         setTimeout(function () {
           sumValueId.focus()
         }, 0);
       else {
-        sumValueId.focus()
+        sumValueId.focus();
         sumValueId.autofocus
       }
 
       if (opts.rk_amount) {
-        sumValueId.value = window.amountTransform(opts.rk_amount)
+        sumValueId.value = window.amountTransform(opts.rk_amount);
         sumForQrPay = opts.rk_amount
       }
 
       scope.tax = sumForQrPay * opts.commission_percent / 100;
       scope.update();
 
-//      if (viewTransferStepTwo.sum.length > 0) {
-//        sumValueId.value = viewTransferStepTwo.sum;
-//        checkFirst = true;
-//        sumForTransfer = viewTransferStepTwo.sumWithoutSpace;
-//      }
-//      else
-    })
-
-    scope.showPlaceHolderError = false;
-
-    if (!opts.commission_percent)
-      scope.showPlaceHolderError = true;
-
-    var checkFirst = false,
-      maskOne = /[0-9]/g,
-      maskTwo = /[0-9' ']/g,
-      defaultAccount;
+    });
 
     console.log('QR OPTS', opts);
 
@@ -97,11 +84,10 @@
     goToBack = function () {
       event.preventDefault();
       event.stopPropagation();
-      onBackKeyDown()
+      onBackKeyDown();
       scope.unmount()
     };
 
-    var touchStartAcceptX, touchStartAcceptY, touchStartDeclineX, touchStartDeclineY
     onTouchStartAccept = function () {
 
       touchStartAcceptX = event.changedTouches[0].pageX;
@@ -162,7 +148,6 @@
             errornote: scope.errorNote
           });
           scope.update();
-//          alert(opts.lang_max_amount)
         }
 
       }
@@ -170,41 +155,45 @@
 
 
     sumMouseUp = function () {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
       if (!checkFirst) {
-        sumValueId.value = ''
+        sumValueId.value = '';
         checkFirst = true;
       }
 
       if (sumValueId.value.match(maskOne) != null && sumValueId.value.match(maskOne).length != null) {
-        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length
-        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length
+        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length;
+        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length;
       } else {
-        sumValueId.selectionStart = 0
-        sumValueId.selectionEnd = 0
+        sumValueId.selectionStart = 0;
+        sumValueId.selectionEnd = 0;
       }
-    }
+    };
 
     sumOnBlur = function () {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
+
+      sumField.style.borderBottom = "" + 3 * widthK + "px solid #e8e8e8";
+      sumFieldTitle.style.color = '#565d6a';
 
       if (sumValueId.value.length == 0) {
         sumValueId.value = '0';
       }
-    }
-
-    var sumForQrPay;
+    };
 
     sumFocus = function () {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
+
+      sumField.style.borderBottom = "" + 3 * widthK + "px solid #01cfff";
+      sumFieldTitle.style.color = '#01cfff';
 
       if (sumValueId.value.length == 1 && sumValueId.value[0] == '0') {
         sumValueId.value = ''
       }
-    }
+    };
 
     sumKeyUp = function () {
 
@@ -218,20 +207,20 @@
 
       if (sumValueId.value.match(maskTwo) != null && sumValueId.value.match(maskTwo).length != null) {
 
-        sumValueId.value = sumValueId.value.substring(0, event.target.value.match(maskTwo).length)
-        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length
-        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length
+        sumValueId.value = sumValueId.value.substring(0, event.target.value.match(maskTwo).length);
+        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length;
+        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length;
 
         sumForQrPay = sumValueId.value.substring(0, sumValueId.value.match(maskTwo).length);
         sumForQrPay = sumForQrPay.replace(new RegExp(' ', 'g'), '');
 
         sumValueId.value = window.amountTransform(sumForQrPay.toString());
-        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length
+        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length;
         sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length
 
 
       } else {
-        sumValueId.selectionStart = 0
+        sumValueId.selectionStart = 0;
         sumValueId.selectionEnd = 0
       }
 
@@ -240,7 +229,10 @@
       else {
         scope.tax = 0
       }
-
+      if (event.keyCode === input_codes.ENTER) {
+        if (device.platform !== 'BrowserStand')
+          cordova.plugins.Keyboard.close();
+      }
       scope.update()
     }
 

@@ -1,16 +1,20 @@
 <view-about-program class="riot-tags-main-container">
   <div class="settings-about-program-blue-container">
-    <div class="settings-about-program-page-title">
-      <p class="settings-about-program-name-title">{titleName}</p>
+    <div class="page-title">
+      <p class="name-title">{titleName}</p>
       <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchstart="goToBackStart()"
-           ontouchend="goToBackEnd()" class="pay-back-button"></div>
+           ontouchend="goToBackEnd()" class="back-button"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
     <div class="settings-about-program-click-icon"></div>
     <p class="settings-about-program-version-title-part-one">
-      {window.languages.ViewSettingsAboutProgramVersionTitleNamePartOne} <br>{window.languages.ViewSettingsAboutProgramVersionTitleNamePartOneClick}
+      {window.languages.ViewSettingsAboutProgramVersionTitleNamePartOneClick} <br>{window.languages.ViewSettingsAboutProgramVersionTitleNamePartOne}
     </p>
     <p class="settings-about-program-version-title-part-two">
       {window.languages.ViewSettingsAboutProgramVersionTitleNamePartTwo}</p>
+    <div class="title-bottom-border">
+    </div>
   </div>
   <div class="settings-container settings-about-program-container">
     <div id="agreementButtonId" class="settings-about-program-user-agreement-container"
@@ -18,12 +22,16 @@
       <p class="settings-about-program-user-agreement-title">
         {window.languages.ViewSettingsAboutProgramUserAgreementTitleName}</p>
       <div class="settings-about-program-user-agreement-icon"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
     <div id="rankButtonId" class="settings-about-program-rank-container" ontouchstart="rankAppTouchStart()"
          ontouchend="rankAppTouchEnd()">
       <p id="rankText" class="settings-about-program-rank-title">{(device.platform == "iOS")?
         (window.languages.ViewSettingsAboutProgramIOSRankTitleName):(window.languages.ViewSettingsAboutProgramRankTitleName)}</p>
       <div class="settings-about-program-rank-icon"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
   </div>
 
@@ -32,15 +40,7 @@
     var scope = this;
     this.titleName = window.languages.ViewSettingsAboutProgramTitleName;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-about-program') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-about-program',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-about-program', opts);
 
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 
@@ -123,12 +123,11 @@
 
       if (Math.abs(rankButtonStartX - rankButtonEndX) <= 20 && Math.abs(rankButtonStartY - rankButtonEndY) <= 20) {
 
+        window.scannerCanBeAsked = false;
         if (device.platform === "iOS") {
-
           window.open('https://itunes.apple.com/us/app/click-uzbekistan/id768132591?mt=8');
         } else {
-
-          window.open('https://play.google.com/store/apps/details?id=air.com.ssdsoftwaresolutions.clickuz');
+          window.open('market://details?id=air.com.ssdsoftwaresolutions.clickuz', '_system');
         }
       }
     }

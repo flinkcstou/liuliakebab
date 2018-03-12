@@ -329,7 +329,7 @@
         }
 
         if (device.platform != 'BrowserStand') {
-          StatusBar.backgroundColorByHexString("#00a8f1");
+          StatusBar.backgroundColorByHexString("#ffffff");
         }
         componentTourId.style.display = 'none';
         if (opts.focusfield) {

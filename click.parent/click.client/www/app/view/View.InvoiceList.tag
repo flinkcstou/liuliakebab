@@ -1,11 +1,12 @@
 <view-invoice-list class="riot-tags-main-container">
 
-  <div class="invoice-list-page-title">
-    <p class="invoice-list-name-title">{titleName}</p>
+  <div class="page-title">
+    <p class="name-title">{titleName}</p>
     <div id="invoiceListBackButtonId" role="button" aria-label="{window.languages.Back}"
          ontouchstart="invoiceGoToBackStart()" ontouchend="invoiceGoToBackEnd()"
-         class="invoice-list-back-button">
-
+         class="back-button">
+    </div>
+    <div class="title-bottom-border">
     </div>
   </div>
 
@@ -23,6 +24,8 @@
         <p class="invoice-list-nav-buttons-title {invoice-list-nav-button-not-selected: toUser}">
           {languages.ViewInvoiceListFromUser}</p>
       </div>
+      <div id="borderRightLineId" class="invoice-list-nav-buttons-border">
+      </div>
     </div>
     <div id="invoiceListInvoicesId" class="invoice-list-invoices-holder" onscroll="invoiceListInvoicesTouchMove()"
          if="{invoiceListShow}">
@@ -32,7 +35,7 @@
            ontouchend="goToInvoiceHistoryDetailTouchEnd(this.title, this.id)"
            ontouchstart="goToInvoiceHistoryDetailTouchStart(this.id)">
         <div
-            class="invoice-list-invoice-sum-holder {invoice-list-invoice-is-p2p: invoice.is_p2p == 1 && toUser, invoice-list-invoice-is-not-p2p: invoice.is_p2p == 0 || !toUser}">
+          class="invoice-list-invoice-sum-holder {invoice-list-invoice-is-p2p: invoice.is_p2p == 1 && toUser, invoice-list-invoice-is-not-p2p: invoice.is_p2p == 0 || !toUser}">
           <mark class="invoice-list-invoice-sum-sym">сум</mark>
           <p class="invoice-list-invoice-sum">{invoice.amount}</p>
         </div>
@@ -46,7 +49,7 @@
           {languages.ViewInvoiceListInvoiceIsP2PFromUser}</p>
         <div class="invoice-list-invoice-phone-number-holder">
           <p class="invoice-list-invoice-phone-number">{(invoice.service_id == -4)?("+"):("")}
-            {invoice.parameter||invoice.cntrg_info_param2}</p>
+            {invoice.parameter||invoice.cntrg_info_param3}</p>
           <p class="invoice-list-invoice-service-name" if="{invoice.is_p2p == 0}">{invoice.service_name}</p>
         </div>
         <p class="invoice-list-invoice-date">{invoice.date} {invoice.time}</p>
@@ -103,7 +106,7 @@
       if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).invoice) {
         componentTourId.style.display = "block";
         if (device.platform != 'BrowserStand')
-          StatusBar.backgroundColorByHexString("#004663");
+          StatusBar.backgroundColorByHexString("#ffffff");
       }
     });
 
@@ -125,12 +128,10 @@
       if ((invoiceListInvoicesId.scrollHeight - invoiceListInvoicesId.scrollTop) == invoiceListInvoicesId.offsetHeight && canDownloadInvoiceList) {
         console.log(scope.toUser)
         if (scope.toUser) {
-          console.log("ASDQQQ");
           invoiceListPageNumber++;
           getInvoiceListToUser()
         }
         else {
-          console.log("ASDQQQ");
           invoiceListPageNumber++;
           getInvoiceListFromUser()
         }
@@ -138,10 +139,8 @@
     }
 
     scope.invoiceList = [];
-    var checkAnswerToUser;
 
     getInvoiceListToUser = function () {
-      console.log("ASDQQQ");
 
       if (!scope.toUser) {
         scope.oldInvoiceList = scope.invoiceList;
@@ -157,18 +156,9 @@
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
       var sessionKey = loginInfo.session_key;
-      checkAnswerToUser = false;
+      var timeOutTimerToUser = 0;
 
-      if (device.platform != 'BrowserStand') {
-        var options = {dimBackground: true};
-
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Started");
-        }, function () {
-          console.log("closed");
-        });
-      }
-
+      window.startSpinner();
       window.api.call({
         method: 'invoice.list',
         input: {
@@ -178,34 +168,28 @@
         },
         scope: this,
         onSuccess: function (result) {
-          checkAnswerToUser = true;
+          console.log('Clearing timer onSuccess', timeOutTimerToUser);
+          window.clearTimeout(timeOutTimerToUser);
 
           if (result[0][0].error == 0) {
-            console.log(result[1])
             if (result[1]) {
-              if (result[1].length == 0) {
+              if (result[1].length == 0 && invoiceListPageNumber == 1) {
                 canDownloadInvoiceList = false;
                 scope.invoiceListShow = false;
                 scope.update();
               }
               if (result[1][0]) {
-                console.log('invoice to user', result[1])
-                console.log('LENGTH', result[1].length)
-
                 for (var i = 0; i < result[1].length; i++) {
 
                   try {
                     result[1][i].amount = window.amountTransform(result[1][i].amount.toString());
                   } catch (error) {
-
                     console.log(error);
                   }
                   result[1][i].deleted = false;
                   scope.invoiceList.push(result[1][i]);
                 }
-
                 scope.update();
-
                 localStorage.setItem('click_client_invoice_list', JSON.stringify(scope.invoiceList));
               }
             }
@@ -214,7 +198,6 @@
             }
           }
           else {
-
             window.common.alert.show("componentAlertId", {
               parent: scope,
               clickpinerror: false,
@@ -227,29 +210,28 @@
         onFail: function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
-        }
-      }, 10000);
-      if (!checkAnswerToUser) {
-        console.log("wwww to user")
-        setTimeout(function () {
-          if (!checkAnswerToUser) {
-            console.log("STOP method")
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Invoice List 238");
-              SpinnerPlugin.activityStop();
-            }
-
+        },
+        onTimeOut: function () {
+          timeOutTimerToUser = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method: 'invoice.list',
+            });
+            window.stopSpinner();
             window.common.alert.show("componentAlertId", {
               parent: scope,
               clickpinerror: false,
               errornote: "Сервис временно недоступен"
             });
-
             scope.update();
-            return
-          }
-        }, 10000);
-      }
+          }, 10000);
+          console.log('creating timeOutToUser', timeOutTimerToUser);
+        },
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimerToUser);
+          window.clearTimeout(timeOutTimerToUser);
+        }
+      }, 10000);
 
     };
 
@@ -268,17 +250,9 @@
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
       var sessionKey = loginInfo.session_key;
-      var checkAnswerFromUser = false;
+      var timeOutTimerFromUser = 0;
 
-      if (device.platform != 'BrowserStand') {
-        var options = {dimBackground: true};
-
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Started");
-        }, function () {
-          console.log("closed");
-        });
-      }
+      window.startSpinner();
 
       window.api.call({
         method: 'invoice.history',
@@ -289,18 +263,16 @@
         },
         scope: this,
         onSuccess: function (result) {
-          checkAnswerFromUser = true;
+          console.log('Clearing timer onSuccess', timeOutTimerFromUser);
+          window.clearTimeout(timeOutTimerFromUser);
           if (result[0][0].error == 0) {
             if (result[1]) {
-              if (result[1].length == 0) {
+              if (result[1].length == 0 && invoiceListPageNumber == 1) {
                 canDownloadInvoiceList = false;
                 scope.invoiceListShow = false;
                 scope.update();
               }
               if (result[1][0]) {
-                console.log('invoice from user', result[1])
-
-
                 for (var i = 0; i < result[1].length; i++) {
 
                   try {
@@ -312,8 +284,6 @@
                   result[1][i].deleted = false;
                   scope.invoiceList.push(result[1][i]);
                 }
-
-
                 scope.update();
 //                localStorage.setItem('click_client_invoice_list', JSON.stringify(scope.invoiceList));
               }
@@ -332,29 +302,28 @@
         onFail: function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
-        }
-      }, 10000);
-
-      if (!checkAnswerFromUser) {
-        console.log("wwww from user")
-        setTimeout(function () {
-          if (!checkAnswerFromUser) {
-            console.log("STOP method")
-            if (device.platform != 'BrowserStand') {
-              console.log("Spinner Stop View Invoice List 339");
-              SpinnerPlugin.activityStop();
-            }
-
+        },
+        onTimeOut: function () {
+          timeOutTimerFromUser = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method: 'invoice.history',
+            });
+            window.stopSpinner();
             window.common.alert.show("componentAlertId", {
               parent: scope,
               clickpinerror: false,
               errornote: "Сервис временно недоступен"
             });
             scope.update();
-            return
-          }
-        }, 10000);
-      }
+          }, 10000);
+          console.log('creating timeOutFromUser', timeOutTimerFromUser);
+        },
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimerFromUser);
+          window.clearTimeout(timeOutTimerFromUser);
+        }
+      }, 10000);
 
     };
 
@@ -400,24 +369,42 @@
       event.preventDefault();
       event.stopPropagation();
 
-      document.getElementById(id).style.backgroundColor = 'transparent'
 
       goToInvoiceHistoryDetailTouchEndX = event.changedTouches[0].pageX;
       goToInvoiceHistoryDetailTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(goToInvoiceHistoryDetailTouchEndX - goToInvoiceHistoryDetailTouchStartX) < 20 &&
         Math.abs(goToInvoiceHistoryDetailTouchEndY - goToInvoiceHistoryDetailTouchStartY) < 20) {
-        scope.showComponentPayment = false;
-        scope.showComponentHistory = false;
-        scope.showComponentTransfer = false;
+        document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
+        setTimeout(function () {
+          document.getElementById(id).style.backgroundColor = 'transparent';
+          scope.showComponentPayment = false;
+          scope.showComponentHistory = false;
+          scope.showComponentTransfer = false;
 
-        invoice = JSON.parse(invoice);
-        console.log("Invoice for view.invoice-history-details", invoice);
+          invoice = JSON.parse(invoice);
+          console.log("Invoice for view.invoice-history-details", invoice);
 
-        if (history.arrayOfHistory.length != 0) {
+          if (history.arrayOfHistory.length != 0) {
 
-          if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-invoice-list') {
-            history.arrayOfHistory.pop();
+            if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-invoice-list') {
+              history.arrayOfHistory.pop();
+
+              opts.toUser = scope.toUser;
+
+              history.arrayOfHistory.push(
+                {
+                  "view": 'view-invoice-list',
+                  "params": opts
+                }
+              );
+
+              console.log("HISTORY ARRAY_OF_HISTORY", history.arrayOfHistory);
+
+              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+            }
+          }
+          else {
 
             opts.toUser = scope.toUser;
 
@@ -428,47 +415,34 @@
               }
             );
 
-            console.log("HISTORY ARRAY_OF_HISTORY", history.arrayOfHistory);
-
             sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
           }
-        }
-        else {
 
-          opts.toUser = scope.toUser;
+          var params = {};
 
-          history.arrayOfHistory.push(
-            {
-              "view": 'view-invoice-list',
-              "params": opts
-            }
-          );
+          if (!scope.toUser) {
 
-          sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-        }
+            params = {
+              is_p2p: invoice.is_p2p,
+              invoice_id: invoice.invoice_id,
+              inParameter: invoice.cntrg_info_param2, //????
+              amount: invoice.amount,
+              commission: invoice.p2p_comission_amount,
+              transferCode: invoice.p2p_secret_code,
+              time: invoice.time,
+              date: invoice.date,
+              status: invoice.status_note
+            };
 
-        var params = {};
+            if (invoice.cntrg_info_param3)
+              params.inParameter = invoice.cntrg_info_param3;
 
-        if (!scope.toUser) {
+            scope.showComponent = true;
+            scope.showComponentHistory = true;
+            scope.tags['view-invoice-history-detail'].opts = params
+            window.checkShowingComponent = scope.tags['view-invoice-history-detail'];
 
-          params = {
-            is_p2p: invoice.is_p2p,
-            invoice_id: invoice.invoice_id,
-            inParameter: invoice.cntrg_info_param2, //????
-            amount: invoice.amount,
-            commission: invoice.p2p_comission_amount,
-            transferCode: invoice.p2p_secret_code,
-            time: invoice.time,
-            date: invoice.date,
-            status: invoice.status_note
-          };
-
-          scope.showComponent = true;
-          scope.showComponentHistory = true;
-          scope.tags['view-invoice-history-detail'].opts = params
-          window.checkShowingComponent = scope.tags['view-invoice-history-detail'];
-
-          scope.update();
+            scope.update();
 
 //          history.arrayOfHistory.push({view: "view-invoice-history-detail"});
 //          sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
@@ -476,29 +450,29 @@
 //          riot.mount("view-invoice-history-detail", params);
 
 //          scope.unmount()
-        } else {
+          } else {
 
 
-          if (invoice.is_p2p) {
-            console.log("TRANSFER")
+            if (invoice.is_p2p) {
+              console.log("TRANSFER")
 
-            params = {
+              params = {
 
-              phoneNumber: invoice.parameter,
-              amount: invoice.amount,
-              invoiceId: invoice.invoice_id,
-              time: invoice.time,
-              date: invoice.date
-            };
+                phoneNumber: invoice.parameter,
+                amount: invoice.amount,
+                invoiceId: invoice.invoice_id,
+                time: invoice.time,
+                date: invoice.date
+              };
 
-            console.log('PARAMS IN INVOICE LIST', params)
+              console.log('PARAMS IN INVOICE LIST', params)
 
-            scope.showComponent = true;
-            scope.showComponentTransfer = true;
-            scope.tags['view-transfer-detail'].opts = params
-            console.log("scope.tags['view-transfer-detail'].opts", scope.tags['view-transfer-detail'].opts)
-            window.checkShowingComponent = scope.tags['view-transfer-detail'];
-            riot.update();
+              scope.showComponent = true;
+              scope.showComponentTransfer = true;
+              scope.tags['view-transfer-detail'].opts = params
+              console.log("scope.tags['view-transfer-detail'].opts", scope.tags['view-transfer-detail'].opts)
+              window.checkShowingComponent = scope.tags['view-transfer-detail'];
+              riot.update();
 
 //            history.arrayOfHistory.push({view: "view-transfer-detail"});
 //            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
@@ -506,27 +480,27 @@
 //            riot.mount('view-transfer-detail', params);
 //
 //            scope.unmount()
-          } else {
+            } else {
 
-            console.log("PAYMENT")
+              console.log("PAYMENT")
 
-            params = {
+              params = {
 
-              amount: invoice.amount,
-              invoiceId: invoice.invoice_id,
-              phoneNumber: invoice.merchant_phone,
-              accountNumber: invoice.parameter,
-              serviceName: invoice.service_name,
-              is_friend_help: invoice.is_friend_help
-            };
+                amount: invoice.amount,
+                invoiceId: invoice.invoice_id,
+                phoneNumber: invoice.merchant_phone,
+                accountNumber: invoice.parameter,
+                serviceName: invoice.service_name,
+                is_friend_help: invoice.is_friend_help
+              };
 
-            console.log("PAYMENT PARAMS", params)
+              console.log("PAYMENT PARAMS", params)
 
-            scope.showComponent = true;
-            scope.showComponentPayment = true;
-            scope.tags['view-payment-detail'].opts = params
-            window.checkShowingComponent = scope.tags['view-payment-detail'];
-            riot.update();
+              scope.showComponent = true;
+              scope.showComponentPayment = true;
+              scope.tags['view-payment-detail'].opts = params
+              window.checkShowingComponent = scope.tags['view-payment-detail'];
+              riot.update();
 
 //            history.arrayOfHistory.push({view: "view-payment-detail"});
 //            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
@@ -534,14 +508,13 @@
 //            riot.mount('view-payment-detail', params);
 //
 //            this.unmount()
+            }
           }
-        }
+        }, 100);
       }
     };
 
     goToInvoiceHistoryDetailTouchStart = function (id) {
-
-      document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)'
 
       goToInvoiceHistoryDetailTouchStartX = event.changedTouches[0].pageX;
       goToInvoiceHistoryDetailTouchStartY = event.changedTouches[0].pageY;

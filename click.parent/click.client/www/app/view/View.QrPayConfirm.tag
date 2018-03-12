@@ -1,13 +1,15 @@
 <view-qr-pay-confirm class="view-pay-confirm riot-tags-main-container">
 
-  <div class="qr-pay-page-title" style="border-style: none;">
-    <p class="qr-servicepage-title">{titleName}</p>
-    <p class="qr-servicepage-category-field">{categoryName}</p>
+  <div class="pay-page-title" style="border-style: none;">
+    <p class="servicepage-title {qr-servicepage-qr-title: !opts[2].location}">{titleName}</p>
+    <p if="{opts[2].location}" class="servicepage-category-field">{categoryName}</p>
     <div ontouchend="goToBack()"
-         class="qr-servicepage-button-back" role="button" aria-label="{window.languages.Back}">
+         class="servicepage-button-back" role="button" aria-label="{window.languages.Back}">
     </div>
     <div type="button" class="qr-servicepage-service-icon"
          style="background-image: url({serviceIcon})"></div>
+    <div class="title-bottom-border">
+    </div>
   </div>
 
   <div class="qr-payconfirm-body-container">
@@ -21,11 +23,16 @@
         <p class="qr-payconfirm-phone-input">{amountTextCopy} {currency}</p>
         <p if="{tax}" class="qr-payconfirm-tax-field">{window.languages.ViewTransferFourTax} {tax}
           {objectCardForTransfer.currency}</p>
+        <div class="title-bottom-border">
+        </div>
       </div>
       <div class="qr-payconfirm-field">
-        <p class="qr-payconfirm-text-field">{window.languages.ViewPayConfirmCategory}</p>
+        <p class="qr-payconfirm-text-field">{opts[2].location? window.languages.ViewPayConfirmServiceId
+          : window.languages.ViewPayConfirmCategory}</p>
         <p class="qr-payconfirm-phone-input" style="text-decoration: underline">
-          {categoryName}</p>
+          {opts[2].location? opts[2].id : categoryName}</p>
+        <div class="title-bottom-border">
+        </div>
       </div>
       <div class="qr-payconfirm-card-field" if="{cardOrFriendBool}">
         <div class="qr-payconfirm-card-info-container">
@@ -36,6 +43,8 @@
         </div>
         <div class="qr-payconfirm-card-logo-container"
              style="background-image: url({url})">
+        </div>
+        <div class="title-bottom-border">
         </div>
       </div>
       <div class="qr-payconfirm-card-field" if="{!cardOrFriendBool}">
@@ -64,45 +73,37 @@
     console.log('OPTS QR CONFIRM', opts)
     var scope = this;
     var pageToReturnIfError = 'view-main-page';
+    var timeOutTimer = 0;
+    var qrCounter = 0;
+    var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+    var successStep = 3, errorStep = 0, waitingStep = 3, unsuccessStep = 2;
+    var qrPayButtonStartX, qrPayButtonEndX, qrPayButtonStartY,
+      qrPayButtonEndY;
+
     goToBack = function () {
       event.preventDefault();
       event.stopPropagation();
       onBackKeyDown()
       scope.unmount()
-    }
+    };
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-qr-pay-confirm') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-qr-pay-confirm',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-qr-pay-confirm', opts);
 
     this.viewPage = 'view-main-page';
-
-    this.on('mount', function () {
-
-    });
-
 
     var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
     scope.cardOrFriendBool = opts[0];
     scope.titleName = opts[2].name;
     scope.serviceIcon = opts[2].image;
-    scope.categoryName = opts[2].name;
+    scope.categoryName = opts[2].location ? opts[2].category_name : opts[2].name;
     scope.tax = opts[2].tax;
 
     scope.update();
-    console.log(opts[0]);
 
-    var successStep = 3, errorStep = 0, waitingStep = 3, unsuccessStep = 2;
 
     updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
       console.log("OPEN RESULT COMPONENT");
-//      scope.showResult = showResult;
 
       scope.stepAmount = stepAmount;
       scope.viewPage = viewPage;
@@ -136,10 +137,7 @@
       });
       scope.update();
     };
-    //
-    //    if (scope.isInFavorites)
-    //      this.viewPage = 'view-main-page';
-    //    else this.viewPage = 'view-pay';
+
     scope.amountTextCopy = window.amountTransform(opts[2].qrSum);
 
     if (scope.cardOrFriendBool) {
@@ -160,22 +158,6 @@
       scope.friendFirstLetterOfName = friendForHelp.firstLetterOfName;
       scope.friendPhoto = friendForHelp.photo;
 
-    }
-    scope.update();
-
-
-    if (scope.cardOrFriendBool) {
-      var chosenCardId = opts[1];
-      if (cardsArray[chosenCardId]) {
-        scope.cardName = cardsArray[chosenCardId].name;
-        scope.numberPartOne = cardsArray[chosenCardId].numberPartOne;
-        scope.numberPartTwo = cardsArray[chosenCardId].numberPartTwo;
-        scope.salary = cardsArray[chosenCardId].salary;
-        scope.currency = cardsArray[chosenCardId].currency;
-        scope.url = cardsArray[chosenCardId].url;
-      }
-    }
-    else {
       if (viewServicePinCards.friendHelpPaymentMode) {
 
         scope.friendHelpBool = true;
@@ -185,7 +167,7 @@
           scope.phoneNumber = viewServicePinCards.chosenFriendForHelp.number;
           scope.photo = viewServicePinCards.chosenFriendForHelp.photo;
         }
-        scope.update();
+
       } else {
 
         scope.friendHelpBool = false;
@@ -194,8 +176,6 @@
     }
     scope.update();
 
-    var qrPayButtonStartX, qrPayButtonEndX, qrPayButtonStartY,
-      qrPayButtonEndY;
 
     payServiceStart = function () {
 
@@ -203,7 +183,7 @@
       qrPayButtonStartY = event.changedTouches[0].pageY;
 
       qrPayButtonId.style.webkitTransform = 'scale(0.8)'
-    }
+    };
 
     payServiceEnd = function () {
 
@@ -255,17 +235,6 @@
           friend_phone: friendPhone
         };
 
-//        if (device.platform != 'BrowserStand') {
-//          var options = {dimBackground: true};
-//
-//          SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-//            console.log("Started");
-//          }, function () {
-//            console.log("closed");
-//          });
-//        }
-
-        console.log("inputObject", inputObject)
 
         window.common.alert.updateView("componentResultId", {
           parent: scope,
@@ -274,83 +243,68 @@
           step_amount: scope.stepAmount
         });
         scope.update();
-
         window.api.call({
           method: 'app.payment',
           stopSpinner: false,
           input: inputObject,
-
           scope: this,
 
           onSuccess: function (result) {
-
-
-            console.log('RESULT QR QR', result)
-
             if (result[0][0].error == 0) {
               if (result[1])
                 if (!result[1][0].payment_id && result[1][0].invoice_id) {
-
-                  answerFromServer = true;
-
-                  console.log("result of APP.PAYMENT 1", result);
+                  console.log('Clearing timer onSuccess', timeOutTimer);
+                  window.clearTimeout(timeOutTimer);
                   viewServicePage.phoneText = null;
                   viewServicePage.amountText = null;
-
-//                  scope.operationMessage = 'Оплата QR прошла успешно';
                   viewServicePinCards.friendHelpPaymentMode = false;
-                  updateResultComponent(true, successStep, null, 'success', window.languages.ComponentResultQRSuccess);
-//                  componentSuccessId.style.display = 'block';
+                  updateResultComponent(true, successStep, null, 'success', result[0][0].error_note);
                 } else if (result[1][0].payment_id && !result[1][0].invoice_id) {
-
-
                   setTimeout(function () {
                     checkQrPaymentStatus(result[1][0].payment_id);
                   }, 2000);
-
                 }
             }
             else {
-              console.log("result of APP.PAYMENT 3", result);
               updateResultComponent(true, errorStep, null, 'unsuccess', result[0][0].error_note);
-//              componentUnsuccessId.style.display = 'block';
             }
           },
 
           onFail: function (api_status, api_status_message, data) {
-            answerFromServer = true;
+            console.log('Clearing timer onFail', timeOutTimer);
+            window.clearTimeout(timeOutTimer);
             updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
-          }
-        });
+          },
+          onTimeOut: function () {
+            timeOutTimer = setTimeout(function () {
+              window.writeLog({
+                reason: 'Timeout',
+                method:'app.payment (in qr)',
+              });
+              scope.errorNote = window.languages.WaitingTimeExpiredText;
+              scope.viewPage = pageToReturnIfError;
+              scope.update();
+              window.common.alert.updateView("componentResultId", {
+                parent: scope,
+                resulttext: scope.resultText,
+                viewpage: scope.viewPage,
+                step_amount: scope.stepAmount
+              });
 
-        setTimeout(function () {
-          if (!answerFromServer) {
-            scope.errorNote = window.languages.WaitingTimeExpiredText;
-            scope.viewPage = pageToReturnIfError;
-            scope.update();
-            window.common.alert.updateView("componentResultId", {
-              parent: scope,
-              resulttext: scope.resultText,
-              viewpage: scope.viewPage,
-              step_amount: scope.stepAmount
-            });
-            return
+            }, 30000);
+            console.log('creating timeOut', timeOutTimer);
+          },
+          onEmergencyStop: function () {
+            console.log('Clearing timer emergencyStop', timeOutTimer);
+            window.clearTimeout(timeOutTimer);
           }
-        }, 30000)
+        }, 30000);
       }
-
-    }
-
-    var answerFromServer = false;
-    var qrCounter = 0;
-    var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
-    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+    };
 
     function checkQrPaymentStatus(payment_id) {
-
-      console.log("check transfer status");
 
       window.api.call({
         method: 'get.payment',
@@ -365,65 +319,53 @@
 
         onSuccess: function (result) {
           if (result[0][0].error == 0 && result[1][0]) {
-
-
             if (result[1][0].state == -1) {
 
-              answerFromServer = true;
-
-//              scope.errorQrPayment = result[0][0].error_note;
-//              componentUnsuccessId.style.display = 'block';
-//              riot.update()
+              console.log('Clearing timer onSuccess', timeOutTimer);
+              window.clearTimeout(timeOutTimer);
               updateResultComponent(true, unsuccessStep, null, 'unsuccess', result[1][0].error);
-
-
             } else if (result[1][0].state == 2) {
 
-              answerFromServer = true;
+              console.log('Clearing timer onSuccess', timeOutTimer);
+              window.clearTimeout(timeOutTimer);
               window.updateBalanceGlobalFunction();
-              console.log("result of APP.PAYMENT 1", result);
               viewServicePage.phoneText = null;
               viewServicePage.amountText = null;
               viewServicePinCards.friendHelpPaymentMode = false;
-
-//              scope.operationMessage = 'Оплата QR прошла успешно';
-//              scope.update();
               updateResultComponent(true, successStep, null, 'success', window.languages.ComponentResultQRSuccess);
 
             } else if (result[1][0].state == 1) {
-
               qrCounter++;
-
               if (qrCounter < 5) {
-
                 setTimeout(function () {
                   checkQrPaymentStatus(result[1][0].payment_id);
                 }, 2000);
-
               } else {
-
-                answerFromServer = true;
+                console.log('Clearing timer onSuccess', timeOutTimer);
+                window.clearTimeout(timeOutTimer);
                 updateResultComponent(true, waitingStep, null, 'waiting', window.languages.ComponentInProcessingPartOneForPay);
               }
-
             }
             window.api.spinnerOn = false;
 
           }
           else {
-            answerFromServer = true;
+            console.log('Clearing timer onSuccess', timeOutTimer);
+            window.clearTimeout(timeOutTimer);
             updateResultComponent(true, errorStep, pageToReturnIfError, 'unsuccess', result[1][0].error);
-
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
-          answerFromServer = true;
-
+          console.log('Clearing timer onFail', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           updateResultComponent(true, errorStep, pageToReturnIfError, 'unsuccess', api_status_message);
-
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
+        },
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
         }
       });
     }

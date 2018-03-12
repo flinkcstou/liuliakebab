@@ -15,6 +15,7 @@
     console.log('scope.parent DELETE', scope.parent)
 
     var delButtonStartX, delButtonEndX, delButtonStartY, delButtonEndY;
+    var timeOutTimer = 0;
 
     deleteCardTouchStart = function () {
       event.preventDefault();
@@ -83,17 +84,7 @@
 
     componentDeleteCard.deleteCard = function () {
 
-      var answerFromServer = false;
-
-      if (device.platform != 'BrowserStand') {
-        var options = {dimBackground: true};
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Spinner start in card delete");
-        }, function () {
-          console.log("Spinner stop in card delete");
-        });
-      }
-
+      window.startSpinner();
       window.api.call({
         method: 'account.remove',
         input: {
@@ -103,11 +94,9 @@
         },
 
         scope: this,
-
         onSuccess: function (result) {
-
-          answerFromServer = true;
-
+          console.log('Clearing timer onFail',timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           if (result[0][0].error === 0) {
 
             var cardNumber = JSON.parse(localStorage.getItem("cardNumber"));
@@ -121,7 +110,6 @@
             countCard = (countCard - 1 >= 0) ? (countCard - 1) : (0);
             localStorage.setItem("cardNumber", JSON.stringify(cardNumber));
             localStorage.setItem("click_client_countCard", JSON.stringify(countCard));
-
 
             for (var i in cards) {
               if (cards[i].card_id == scope.accountId) {
@@ -157,7 +145,6 @@
                 viewpage: "view-main-page"
               });
               deleteCardComponentId.style.display = 'none';
-
             } else {
               if (Object.keys(cards).length === 1) {
                 console.log("Second condition");
@@ -173,10 +160,8 @@
                 deleteCardComponentId.style.display = 'none';
               }
             }
-
           }
           else {
-
             window.common.alert.show("componentAlertId", {
               parent: scope,
               clickpinerror: false,
@@ -188,7 +173,8 @@
         },
 
         onFail: function (api_status, api_status_message, data) {
-          answerFromServer = true;
+          console.log('Clearing timer onFail',timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           window.common.alert.show("componentAlertId", {
             parent: scope,
             viewpage: "view-main-page",
@@ -198,26 +184,29 @@
           riot.update();
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
+        },
+        onTimeOut: function () {
+          timeOutTimer = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method:'account.remove',
+            });
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                viewpage: "view-main-page",
+                errornote: window.languages.WaitingTimeExpiredText
+              });
+              deleteCardComponentId.style.display = "none";
+              window.stopSpinner();
+              riot.update();
+          }, 30000);
+          console.log('creating timeOut', timeOutTimer);
+        },
+        onEmergencyStop: function(){
+          console.log('Clearing timer emergencyStop',timeOutTimer);
+          window.clearTimeout(timeOutTimer);
         }
       });
-
-      setTimeout(function () {
-        if (!answerFromServer) {
-          answerFromServer = true;
-          window.common.alert.show("componentAlertId", {
-            parent: scope,
-            viewpage: "view-main-page",
-            errornote: window.languages.WaitingTimeExpiredText
-          });
-          deleteCardComponentId.style.display = "none";
-          riot.update();
-          if (device.platform != 'BrowserStand') {
-            console.log("Spinner stop in authorization by timeout");
-            SpinnerPlugin.activityStop();
-          }
-          return
-        }
-      }, 30000)
     };
 
 

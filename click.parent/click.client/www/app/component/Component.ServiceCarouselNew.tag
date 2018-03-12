@@ -220,10 +220,11 @@
     fillFavorites();
 
     console.log("AppVersion", AppVersion.version, "; localStorage.getItem('version')", localStorage.getItem('version'))
+    console.log("push news?", (sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true))
 
 
-    if (modeOfApp.onlineMode && (!localStorage.getItem('favoritePaymentsList') ||
-      (localStorage.getItem('version') !== AppVersion.version && localStorage.getItem('favoritePaymentsList')))) {
+    if (modeOfApp.onlineMode && !(sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true) &&
+      (!localStorage.getItem('favoritePaymentsList') || (localStorage.getItem('version') !== AppVersion.version && localStorage.getItem('favoritePaymentsList')))) {
 
       window.api.call({
         method: 'get.wishlist',
@@ -239,7 +240,7 @@
 
           if (result[0][0].error == 0) {
 
-            if (result[1].length != 0 && !localStorage.getItem('favoritePaymentsList')) {
+            if (result[1].length != 0 && !localStorage.getItem('favoritePaymentsList') && localStorage.getItem('click_client_servicesMap')) {
               scope.favoritePaymentsList = [];
 
               for (var j in result[1]) {
@@ -455,7 +456,7 @@
 
       if (Math.abs(onTouchStartX - onTouchEndX) <= 20) {
         console.log("chosen id in service carousel NEW=", id);
-        if (modeOfApp.offlineMode && id.indexOf('mynumber') != -1) {
+        if (modeOfApp.offlineMode && typeof id === "string" && id.indexOf('mynumber') != -1) {
           opts.chosenServiceId = 'mynumber';
         }
         else {

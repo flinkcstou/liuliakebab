@@ -80,15 +80,7 @@
 
   <script>
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-transfer-stepfour') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-transfer-stepfour',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-transfer-stepfour', opts);
 
     var scope = this;
     scope.backbuttoncheck = true;
@@ -378,19 +370,28 @@
       if (!objectForTransfer.transactionId)
         objectForTransfer.transactionId = parseInt(Date.now() / 1000);
 
+      console.log("scope on p2p.payment", scope);
+
       initResultComponent();
 
       console.log("TRANSACTION_ID", objectForTransfer.transactionId);
 
+      setTimeout(function () {
+        if (!answerFromServer) {
+          window.api.forceClose();
+          updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
+          return
+        }
+      }, 30000)
       window.api.call({
         method: 'p2p.payment',
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber,
-          account_id: scope.objectCardForTransfer.card_id,
-          receiver_data: scope.objectTypeForTransfer.name.replace(/\s/g, ''),
-          amount: parseInt(scope.objectSumForTransfer.sum),
-          type: scope.objectTypeForTransfer.type,
+          account_id: scope.objectCardForTransfer.card_id, //6125929
+          receiver_data: scope.objectTypeForTransfer.name.replace(/\s/g, ''),//998977441334 //8600 1309 1671 6543
+          amount: parseInt(scope.objectSumForTransfer.sum),//5000
+          type: scope.objectTypeForTransfer.type,//2 //1
           transaction_id: objectForTransfer.transactionId
 //                                card_number: cardNumberForTransfer.replace(/\s/g, ''),
         },
@@ -437,20 +438,10 @@
 
         onFail: function (api_status, api_status_message, data) {
           updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
-//          componentUnsuccessId.style.display = 'block';
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
       });
-
-      setTimeout(function () {
-        if (!answerFromServer) {
-          window.api.forceClose();
-//          scope.showError = true;
-          updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
-          return
-        }
-      }, 30000)
 
     }
 

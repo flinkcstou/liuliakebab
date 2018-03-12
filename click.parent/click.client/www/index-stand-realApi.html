@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" id="htmlId"
       onCut="return false"
-      onDrag="return false" onDrop="return false" autocomplete=off unselectable="on">
+      onDrag="return false"
+      onDrop="return false"
+      onCopy="return false"
+      autocomplete=off
+      unselectable="on"
+      onselectstart="return false">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, maximum-scale=10.0, user-scalable=no">
@@ -44,6 +49,7 @@
 
 <script>
   var versionOfApp = '5.0.8';
+  sessionStorage.clear();
   if (localStorage.getItem('version') && localStorage.getItem('version') === versionOfApp) {
 
   }
@@ -51,9 +57,20 @@
 //    localStorage.clear()
     localStorage.setItem('version', versionOfApp)
   }
-  //    console.log = function() { return}
 
   api.init();
+
+  var _warn = console.warn;
+
+  console.warn = function (warnMessage) {
+    pageLogs = JSON.parse(sessionStorage.getItem('page_logs'));
+    if (pageLogs && pageLogs.length > 0) {
+      pageLogs[pageLogs.length - 1].logs.push(warnMessage);
+      sessionStorage.setItem('page_logs', JSON.stringify(pageLogs));
+    }
+    _warn.apply(console, arguments);
+  };
+
   var scope = this;
   if (window.cordova) {
     document.addEventListener("deviceready", function () {
@@ -146,7 +163,9 @@
           riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, tempOpts);
         } else {
           riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
+
         }
+
       }
     }
   }

@@ -35,7 +35,7 @@
     if (device.platform !== 'BrowserStand') {
       window.FirebasePlugin.onNotificationOpen(function (notification) {
 
-//        alert("onNotification open input object " + JSON.stringify(notification));
+        window.scannerCanBeAsked = false;
 
         if (notification.message) {
           try {
@@ -132,12 +132,21 @@
 
             sessionStorage.setItem("push_news", true);
 
-            console.log('running news');
+            console.log('running news', JSON.parse(sessionStorage.getItem("push_notification_real")).notify_id, scope.notificationElementId);
+            var news_id = JSON.parse(sessionStorage.getItem("push_notification_real")).notify_id;
+            console.log("news_id=", news_id)
 
+//            if (news_id) {
+//            console.log(" opening with news_id");
             riotTags.innerHTML = "<view-main-page>";
-            riot.mount("view-main-page", {view: "news"});
-
+            riot.mount("view-main-page", {view: "news", news_id: news_id});
+//            } else {
+//              console.log("without news_id");
+//              riotTags.innerHTML = "<view-main-page>";
+//              riot.mount("view-main-page", {view: "news"});
+//            }
             return
+
 
           }
 
@@ -194,11 +203,17 @@
     }
 
     onTouchEndNotificationAccept = function () {
+      event.preventDefault();
+      event.stopPropagation();
     };
     onTouchEndNotificationDecline = function () {
+      event.preventDefault();
+      event.stopPropagation();
     };
 
     onTouchStartNotificationDecline = function () {
+      event.preventDefault();
+      event.stopPropagation();
 
       window.FirebasePlugin.logEvent("DECLINE", {
         content_type: scope.notificationAction,
@@ -213,6 +228,10 @@
     };
 
     onTouchStartNotificationAccept = function () {
+
+      event.preventDefault();
+      event.stopPropagation();
+
       if (localStorage.getItem('click_client_phoneNumber')) {
         window.FirebasePlugin.setUserId(localStorage.getItem('click_client_phoneNumber'));
       }
@@ -283,20 +302,22 @@
 
       if (scope.notificationAction == "news") {
 
-        if (authorized) {
+//        if (authorized) {
 
-          window.pushNotificationActions.getNewsFunction(scope.notificationElementId);
-        } else {
+        window.pushNotificationActions.getNewsFunction(scope.notificationElementId);
+//        } else {
+//
+//          notification = {
+//            action: "getNewsFunction",
+//            params: scope.notificationElementId
+//          };
+//
+//          sessionStorage.setItem("push_notification", JSON.stringify(notification));
+//
+//          console.log(JSON.parse(sessionStorage.getItem("push_notification")));
+//        }
 
-          notification = {
-            action: "getNewsFunction",
-            params: scope.notificationElementId
-          };
-
-          sessionStorage.setItem("push_notification", JSON.stringify(notification));
-
-          console.log(JSON.parse(sessionStorage.getItem("push_notification")));
-        }
+        return
       }
 
       window.FirebasePlugin.logEvent("ACCEPT", {

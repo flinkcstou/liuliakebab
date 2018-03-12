@@ -6,6 +6,8 @@
     </div>
     <div id="rightButton" type="button" class="{settings-button: rightbuttoncheck}" ontouchstart="editCardStart()"
          ontouchend="editCardEnd()" role="button" aria-label="{window.languages.ViewMyCardAriaLabelCardSettings}"></div>
+    <div class="title-bottom-border">
+    </div>
   </div>
 
   <div class="my-cards-carousel">
@@ -36,7 +38,7 @@
 
     <div id="reportButtonId" class="my-cards-button-field my-cards-button-field-report"
          ontouchstart="reportsOnTouchStart()"
-         ontouchend="goToReports()">
+         ontouchend="reportsOnTouchEnd()">
       <div class="my-cards-button-icon my-cards-button-icon-report">
       </div>
 
@@ -88,39 +90,53 @@
 
     var scope = this;
     viewMainPage.atMainPage = false;
+    var lastOperationButtonStartX, lastOperationButtonEndX, lastOperationButtonStartY, lastOperationButtonEndY;
+    var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
+    var editButtonStartX, editButtonEndX, editButtonStartY, editButtonEndY;
+    var lastOperationTimeStart, lastOperationTimeEnd;
+    var operationInfoTouchStartY, operationInfoTouchEndY;
+    var lastOperationCheck = false;
+    scope.top = 200 * widthK;
+    viewMyCards.check = true;
+    viewMainPage.myCards = true;
+    scope.backbuttoncheck = true;
+    scope.rightbuttoncheck = true;
+    scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
+    this.titleName = window.languages.ViewMyCardTitleName;
+    scope.arrayOfOperationsByAccount = [];
+    scope.lastOperationsDates = [];
+    scope.lastOperationsMap = {};
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-my-cards') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-my-cards',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+    var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key,
+      phoneNumber = localStorage.getItem('click_client_phoneNumber'),
+      myCardsOnTouchStartY, myCardsOnTouchStartX, myCardsOnTouchEndY, myCardsOnTouchEndX;
+
+    if (opts[0]) {
+      scope.cardId = opts[0];
+      console.log('scope.cardId', scope.cardId)
     }
 
-    this.on('mount', function () {
+    if (scope.cardId) {
+      scope.card = scope.cardsArray[scope.cardId];
+    }
+
+
+    window.saveHistory('view-my-cards', opts);
+
+    scope.on('mount', function () {
       scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
-      console.log('scope.parent', scope)
-
+      console.log('scope.parent', scope);
       scope.lastOperationsHidden = true;
-
-//      scope.update(scope.tags['component-card-carousel']);
-      riot.update()
+      scope.update()
     });
 
-    var lastOperationButtonStartX, lastOperationButtonEndX, lastOperationButtonStartY, lastOperationButtonEndY;
-    var lastOperationTimeStart, lastOperationTimeEnd
-    var lastOperationCheck = false;
     lastOperationsTouchStart = function () {
       lastOperationButtonStartX = event.changedTouches[0].pageX;
       lastOperationButtonStartY = event.changedTouches[0].pageY;
       lastOperationTimeStart = event.timeStamp.toFixed(0);
-    }
+    };
 
     lastOperationsTouchEnd = function () {
-
-      console.log('scope', scope)
 
       lastOperationButtonEndX = event.changedTouches[0].pageX;
       lastOperationButtonEndY = event.changedTouches[0].pageY;
@@ -130,56 +146,49 @@
 
         if (scope.lastOperationsHidden) {
 
-          lastOperationMainContainerId.style.webkitTransform = "translate3d(0," + 85 * widthK + "px,0)"
-//          lastOperationMainContainerId.top = "0"
-          lastOperationContainerId.style.height = 1070 * widthK + "px";
-          document.getElementById('containerCard').style.webkitTransform = "scale(0.2)"
-          document.getElementById('myCardLastOperationContainerIconId').style.webkitTransform = "rotate(180deg)"
+          lastOperationMainContainerId.style.webkitTransform = "translate3d(0," + 85 * widthK + "px,0)";
+          lastOperationContainerId.style.height = 1232 * heightK - 172 * widthK + "px";
+          document.getElementById('containerCard').style.webkitTransform = "scale(0.2)";
+          document.getElementById('myCardLastOperationContainerIconId').style.webkitTransform = "rotate(180deg)";
           lastOperationCheck = true;
         } else {
 
-          lastOperationMainContainerId.style.webkitTransform = "translate3d(0," + 835 * widthK + "px,0)"
-//          lastOperationMainContainerId.top = "0"
-          lastOperationContainerId.style.height = 325 * widthK + "px";
-          document.getElementById('containerCard').style.webkitTransform = "scale(1)"
-          document.getElementById('myCardLastOperationContainerIconId').style.webkitTransform = "rotate(0)"
+          lastOperationMainContainerId.style.webkitTransform = "translate3d(0," + 835 * widthK + "px,0)";
+          lastOperationContainerId.style.height = 1232 * heightK - 922 * widthK + "px";
+          document.getElementById('containerCard').style.webkitTransform = "scale(1)";
+          document.getElementById('myCardLastOperationContainerIconId').style.webkitTransform = "rotate(0)";
           lastOperationCheck = false;
         }
 
         scope.lastOperationsHidden = !scope.lastOperationsHidden;
-
         return;
       }
 
       if (Math.abs(lastOperationButtonStartX - lastOperationButtonEndX) <= 100 && lastOperationButtonStartY > lastOperationButtonEndY && !lastOperationCheck) {
 
-        lastOperationMainContainerId.style.webkitTransform = "translate3d(0," + 85 * widthK + "px,0)"
-//          lastOperationMainContainerId.top = "0"
+        lastOperationMainContainerId.style.webkitTransform = "translate3d(0," + 85 * widthK + "px,0)";
         lastOperationContainerId.style.height = 1070 * widthK + "px";
-        document.getElementById('containerCard').style.webkitTransform = "scale(0.2)"
-        document.getElementById('myCardLastOperationContainerIconId').style.webkitTransform = "rotate(180deg)"
+        document.getElementById('containerCard').style.webkitTransform = "scale(0.2)";
+        document.getElementById('myCardLastOperationContainerIconId').style.webkitTransform = "rotate(180deg)";
         lastOperationCheck = true;
 
       }
       else {
         if (Math.abs(lastOperationButtonStartX - lastOperationButtonEndX) <= 100 && lastOperationButtonStartY < lastOperationButtonEndY && lastOperationCheck) {
-          lastOperationMainContainerId.style.webkitTransform = "translate3d(0," + 835 * widthK + "px,0)"
-//          lastOperationMainContainerId.top = "0"
+          lastOperationMainContainerId.style.webkitTransform = "translate3d(0," + 835 * widthK + "px,0)";
           lastOperationContainerId.style.height = 325 * widthK + "px";
-          document.getElementById('containerCard').style.webkitTransform = "scale(1)"
-          document.getElementById('myCardLastOperationContainerIconId').style.webkitTransform = "rotate(0)"
+          document.getElementById('containerCard').style.webkitTransform = "scale(1)";
+          document.getElementById('myCardLastOperationContainerIconId').style.webkitTransform = "rotate(0)";
           lastOperationCheck = false;
         }
       }
-    }
-
-    var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
+    };
 
     goToBackStart = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      backButton.style.webkitTransform = 'scale(0.7)'
+      backButton.style.webkitTransform = 'scale(0.7)';
 
       goBackButtonStartX = event.changedTouches[0].pageX;
       goBackButtonStartY = event.changedTouches[0].pageY;
@@ -190,36 +199,33 @@
       event.preventDefault();
       event.stopPropagation();
 
-      backButton.style.webkitTransform = 'scale(1)'
+      backButton.style.webkitTransform = 'scale(1)';
 
       goBackButtonEndX = event.changedTouches[0].pageX;
       goBackButtonEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
-        onBackKeyDown()
+        onBackKeyDown();
         scope.unmount()
       }
     };
-
-    var editButtonStartX, editButtonEndX, editButtonStartY, editButtonEndY;
 
     editCardStart = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      rightButton.style.webkitTransform = 'scale(0.7)'
+      rightButton.style.webkitTransform = 'scale(0.7)';
 
       editButtonStartX = event.changedTouches[0].pageX;
       editButtonStartY = event.changedTouches[0].pageY;
 
-    }
+    };
 
     editCardEnd = function () {
-//      console.log("card for edit=", scope.card);
       event.preventDefault();
       event.stopPropagation();
 
-      rightButton.style.webkitTransform = 'scale(1)'
+      rightButton.style.webkitTransform = 'scale(1)';
 
       editButtonEndX = event.changedTouches[0].pageX;
       editButtonEndY = event.changedTouches[0].pageY;
@@ -227,27 +233,14 @@
       if (Math.abs(editButtonStartX - editButtonEndX) <= 20 && Math.abs(editButtonStartY - editButtonEndY) <= 20) {
 
         if (modeOfApp.demoVersion) {
-          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-//        confirm(question)
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
+
           window.common.alert.show("componentAlertId", {
             parent: scope,
             errornote: question
           });
-//        scope.confirmType = 'local';
-//        scope.result = function (bool) {
-//          if (bool) {
-//            localStorage.clear();
-//            window.location = 'index.html'
-//            scope.unmount()
-//            return
-//          }
-//          else {
-//            scope.confirmShowBool = false;
-//            return
-//          }
-//        };
-          scope.update();
 
+          scope.update();
           return
         }
 
@@ -261,21 +254,19 @@
     reportsOnTouchStart = function () {
       event.stopPropagation();
 
-      reportButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)'
+      reportButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
 
       myCardsOnTouchStartY = event.changedTouches[0].pageY;
       myCardsOnTouchStartX = event.changedTouches[0].pageX;
-    }
+    };
 
-    goToReports = function () {
+    reportsOnTouchEnd = function () {
       event.stopPropagation();
 
-      reportButtonId.style.backgroundColor = ''
+      reportButtonId.style.backgroundColor = '';
 
       myCardsOnTouchEndY = event.changedTouches[0].pageY;
       myCardsOnTouchEndX = event.changedTouches[0].pageX;
-//      console.log(onTouchEndY)
-
 
       if (Math.abs(myCardsOnTouchStartY - myCardsOnTouchEndY) <= 20 && Math.abs(myCardsOnTouchStartX - myCardsOnTouchEndX) <= 20) {
 
@@ -286,14 +277,11 @@
           cards = scope.tags["component-card-carousel"].cardsarray;
         cardNumber = JSON.parse(cardNumber);
 
-//      console.log("ASDASDASDASDASD", cards);
-
         for (card in cards) {
-
-//        console.log("ASDASDASDASDASD", card, cards[card], cards[card].countCard, cardNumber);
 
           if (cards[card].countCard == cardNumber) {
 
+            console.log(cards[card]);
             riotTags.innerHTML = "<view-report>";
             riot.mount('view-report', {
               show_graph: true,
@@ -310,14 +298,13 @@
       event.stopPropagation();
       myCardsOnTouchStartY = event.changedTouches[0].pageY;
       myCardsOnTouchStartX = event.changedTouches[0].pageX;
-    }
+    };
 
     confirmToDeleteCardTouchEnd = function () {
       event.stopPropagation();
 
       myCardsOnTouchEndY = event.changedTouches[0].pageY;
       myCardsOnTouchEndX = event.changedTouches[0].pageX;
-//      console.log(onTouchEndY)
 
 
       if (Math.abs(myCardsOnTouchStartY - myCardsOnTouchEndY) <= 20 && Math.abs(myCardsOnTouchStartX - myCardsOnTouchEndX) <= 20) {
@@ -325,8 +312,8 @@
         event.stopPropagation();
 
         if (modeOfApp.demoVersion) {
-          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-//        confirm(question)
+          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
+
           window.common.alert.show("componentConfirmId", {
             parent: scope,
             "confirmnote": question,
@@ -335,8 +322,8 @@
           scope.result = function (bool) {
             if (bool) {
               localStorage.clear();
-              window.location = 'index.html'
-              scope.unmount()
+              window.location = 'index.html';
+              scope.unmount();
               return
             }
             else {
@@ -345,7 +332,6 @@
             }
           };
           scope.update();
-
           return
         }
 
@@ -363,66 +349,27 @@
           window.common.alert.show("componentAlertId", {
             parent: scope,
             clickpinerror: false,
-            errornote: 'Вы не можете удалить эту карту!',
+            errornote: 'Вы не можете удалить эту карту!'
           });
           scope.update();
         }
       }
-    }
-
-
-    var scope = this,
-      sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key,
-      phoneNumber = localStorage.getItem('click_client_phoneNumber'),
-      myCardsOnTouchStartY, myCardsOnTouchStartX, myCardsOnTouchEndY, myCardsOnTouchEndX;
-
-    console.log("MY CARDS VIEW, OPTS=", opts);
-
-    if (opts[0]) {
-      scope.cardId = opts[0];
-      console.log('scope.cardId', scope.cardId)
-    }
-
-    scope.top = 200 * widthK;
-    viewMyCards.check = true;
-    viewMainPage.myCards = true;
-    scope.backbuttoncheck = true;
-    scope.rightbuttoncheck = true;
-    scope.cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
-
-
-    this.titleName = window.languages.ViewMyCardTitleName;
-
-    if (scope.cardId) {
-      scope.card = scope.cardsArray[scope.cardId];
-    }
-    //    console.log('scope.cardId', scope.cardId)
-    //    console.log('scope.cardsArray', scope.cardsArray)
-
-
-    scope.arrayOfOperationsByAccount = [];
-    scope.lastOperationsDates = [];
-    scope.lastOperationsMap = {};
+    };
 
     scope.cardInformation = cardInformation = function (cardIdFromCarousel) {
 
       history.arrayOfHistory[history.arrayOfHistory.length - 1].params[0] = cardIdFromCarousel;
       history.arrayOfHistory[history.arrayOfHistory.length - 1].view = 'view-my-cards';
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
+      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
       if (cardIdFromCarousel) {
         scope.card = scope.cardsArray[cardIdFromCarousel];
       }
 
-      console.log("You clicked on card - ", cardIdFromCarousel);
-      console.log("You clicked scope.cardsArray - ", scope.cardsArray);
-      console.log("You clicked on scope.card - ", scope.card);
-
       scope.arrayOfOperationsByAccount = [];
       scope.lastOperationsDates = [];
       scope.lastOperationsMap = {};
-      scope.update()
-      console.log("Scope.Card=", scope.card)
+      scope.update();
 
       if (scope.card)
         window.api.call({
@@ -468,9 +415,8 @@
                       result[1][i].state_image = "resources/icons/ViewReport/report_status_processing.png"
                     }
 
-                    result[1][i].show_date = dateStr
+                    result[1][i].show_date = dateStr;
 
-                    console.log("DATE DATE", dateStr)
                     if (!scope.lastOperationsMap[dateStr]) {
                       scope.lastOperationsMap[dateStr] = [];
                       scope.lastOperationsDates.push(dateStr);
@@ -484,11 +430,8 @@
                     scope.arrayOfOperationsByAccount.push(result[1][i]);
                   }
                 }
-//                this.lastOperationContainerId.style.height = j * 160 * widthK + 'px';
                 scope.update();
-                console.log('scope.arrayOfOperationsByAccount', scope.arrayOfOperationsByAccount)
-                console.log('scope.lastOperationsDates', scope.lastOperationsDates)
-                console.log('scope.lastOperationsMap', scope.lastOperationsMap)
+
               }
             }
             else {
@@ -507,27 +450,26 @@
             console.error(data);
           }
         });
-    }
+    };
 
     scope.cardInformation(scope.cardId);
 
     payOnTouchStart = function () {
       event.stopPropagation();
 
-      payButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)'
+      payButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
 
       myCardsOnTouchStartY = event.changedTouches[0].pageY;
       myCardsOnTouchStartX = event.changedTouches[0].pageX;
-    }
+    };
 
     goToPayView = function () {
       event.stopPropagation();
 
-      payButtonId.style.backgroundColor = 'transparent'
+      payButtonId.style.backgroundColor = 'transparent';
 
       myCardsOnTouchEndY = event.changedTouches[0].pageY;
       myCardsOnTouchEndX = event.changedTouches[0].pageX;
-//      console.log(onTouchEndY)
 
 
       if (Math.abs(myCardsOnTouchStartY - myCardsOnTouchEndY) <= 20 && Math.abs(myCardsOnTouchStartX - myCardsOnTouchEndX) <= 20) {
@@ -559,31 +501,29 @@
           scope.update();
         }
       }
-    }
+    };
 
     transferOnTouchStart = function () {
       event.stopPropagation();
 
-      transferButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)'
+      transferButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
 
       myCardsOnTouchStartY = event.changedTouches[0].pageY;
       myCardsOnTouchStartX = event.changedTouches[0].pageX;
-    }
+    };
 
     goToTransferView = function () {
       event.stopPropagation();
 
-      transferButtonId.style.backgroundColor = 'transparent'
+      transferButtonId.style.backgroundColor = 'transparent';
 
       myCardsOnTouchEndY = event.changedTouches[0].pageY;
       myCardsOnTouchEndX = event.changedTouches[0].pageX;
-//      console.log(onTouchEndY)
-
 
       if (Math.abs(myCardsOnTouchStartY - myCardsOnTouchEndY) <= 20 && Math.abs(myCardsOnTouchStartX - myCardsOnTouchEndX) <= 20) {
 
         for (var i in scope.cardsArray) {
-//          console.log('scope.cardsArray[i].card_id', scope.cardsArray[i].card_id, 'scope.cardsArray[i].access', scope.cardsArray[i].access)
+
           if (scope.cardsArray[i].card_id == scope.card.card_id && scope.cardsArray[i].access == 2) {
             scope.cardsArray[i].chosenCard = true;
           }
@@ -595,49 +535,56 @@
         event.preventDefault();
         event.stopPropagation();
 
-        console.log('CARD CHOSEN ', JSON.parse(localStorage.getItem('click_client_cards')))
-        if (scope.card.access == 2) {
-          riotTags.innerHTML = "<view-transfer>";
-          riot.mount('view-transfer');
 
-          scope.unmount()
-        }
-        else {
+        if (scope.card.access != 2) {
           window.common.alert.show("componentAlertId", {
             parent: scope,
             clickpinerror: false,
-            errornote: 'Извининте, вы не можете произвести перевод с этой карты'
+            errornote: window.languages.ViewMyCardTransferDeniedAccess,
           });
           scope.update();
+          return;
         }
-      }
-    }
+        if (scope.card.p2p_allowed == 0) {
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: false,
+            errornote: window.languages.ViewMyCardTransferDeniedP2p,
+          });
+          scope.update();
+          return;
+        }
 
-    var operationInfoTouchStartY, operationInfoTouchEndY;
+        params = {
+          idCardFromMyCards: scope.card.card_id
+        };
+        riotTags.innerHTML = "<view-transfer-new>";
+        riot.mount('view-transfer-new', params);
+        scope.unmount()
+      }
+    };
+
     scope.onTouchStartOfOperation = onTouchStartOfOperation = function (paymentId) {
-      console.log('Start')
       operationInfoTouchStartY = event.changedTouches[0].pageY;
-    }
+    };
 
     scope.onTouchEndOfOperation = onTouchEndOfOperation = function (paymentId) {
 
-      document.getElementById(paymentId).style.backgroundColor = 'rgba(231,231,231,0.8)'
+      document.getElementById(paymentId).style.backgroundColor = 'rgba(231,231,231,0.8)';
 
       setTimeout(function () {
         document.getElementById(paymentId).style.backgroundColor = 'transparent'
-      }, 300)
-
+      }, 300);
 
       operationInfoTouchEndY = event.pageY;
 
       setTimeout(function () {
 
-
         if (Math.abs(operationInfoTouchStartY - operationInfoTouchEndY) < 20) {
 
           if (modeOfApp.demoVersion) {
-            var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-//        confirm(question)
+            var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
+
             window.common.alert.show("componentConfirmId", {
               parent: scope,
               "confirmnote": question,
@@ -646,8 +593,8 @@
             scope.result = function (bool) {
               if (bool) {
                 localStorage.clear();
-                window.location = 'index.html'
-                scope.unmount()
+                window.location = 'index.html';
+                scope.unmount();
                 return
               }
               else {
@@ -656,35 +603,27 @@
               }
             };
             scope.update();
-
             return
           }
 
-          console.log("Time to open");
           for (var i = 0; i < scope.arrayOfOperationsByAccount.length; i++) {
             if (scope.arrayOfOperationsByAccount[i].payment_id == paymentId) {
               var servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
-//            console.log("FROM VIEW INFO service report for=", scope.arrayOfOperationsByAccount[i]);
-
               var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
 
-              console.log(" starting check", favoritePaymentsList)
               if (favoritePaymentsList) {
                 for (var j in favoritePaymentsList) {
-                  console.log("fav payment j ", favoritePaymentsList[j].params)
+
                   if (favoritePaymentsList[j].params.paymentId && favoritePaymentsList[j].params.paymentId == paymentId) {
-                    console.log("found ", favoritePaymentsList[j].params.paymentId)
                     scope.arrayOfOperationsByAccount[i].isInFavorites = true;
                     scope.favoriteId = favoritePaymentsList[j].id;
                     break;
                   }
                   scope.arrayOfOperationsByAccount[i].isInFavorites = false;
                 }
-                //console.log(" not found ")
 
               } else {
                 scope.arrayOfOperationsByAccount[i].isInFavorites = false;
-                console.log(" NO FAV ")
               }
 
               if (servicesMap[scope.arrayOfOperationsByAccount[i].service_id])
@@ -696,7 +635,7 @@
               riotTags.innerHTML = "<view-report-service-new>";
               riot.mount("view-report-service-new", scope.arrayOfOperationsByAccount[i]);
 
-              scope.unmount()
+              scope.unmount();
               break;
             }
           }

@@ -8,9 +8,15 @@
   <div class="view-info-balance-container">
     <p class="view-info-balance-label">{window.languages.ViewInfoBalanceTitle}</p>
     <div class="view-info-card-balance-currency-container">
-      <div if="{!modeOfApp.offlineMode}" class="view-info-card-balance">
-        <p class="view-info-card-balance-sum">{(fullBalanceCopy) ? (fullBalanceCopy) : (error_message)}</p>
-        <p if="{!modeOfApp.offlineMode && fullBalanceCopy}" class="view-info-card-currency">сум</p>
+      <div if="{!modeOfApp.offlineMode}" class="view-info-card-balance" id="fullCardBalanceContainer">
+        <canvas id="fullScaleCanvas" style="display: none;"></canvas>
+        <canvas id="fractionalScaleCanvas" style="display: none;"></canvas>
+        <canvas id="currencyScaleCanvas" style="display: none;"></canvas>
+        <div class="view-info-card-balance-scale-container" id="fullCardBalanceScaleContainer">
+          <p class="view-info-card-balance-sum">{(fullBalanceCopy) ? (fullBalanceCopy) : (error_message)}<span
+            class="view-info-card-balance-sum-fractional">{(fractionalPart) ? (fractionalPart) : ''}</span> <span
+            if="{!modeOfApp.offlineMode && fullBalanceCopy}" class="view-info-card-currency">{window.languages.ViewReportServiceCommissionCurrency}</span></p>
+        </div>
       </div>
 
       <a if="{modeOfApp.offlineMode}" class="offline-card-balance"
@@ -67,76 +73,99 @@
   <script>
     var scope = this;
     var defaultAccount;
+    var goBackTouchStartX, goBackTouchStartY, goBackTouchEndX, goBackTouchEndY;
+    var balanceTouchStartX, balanceTouchStartY, balanceTouchEndX, balanceTouchEndY;
+    var operationInfoTouchStartY, operationInfoTouchEndY;
+    var goToReportsTouchStartX, goToReportsTouchStartY, goToReportsTouchEndX, goToReportsTouchEndY;
     scope.attention = false;
     scope.fullBalance = 0;
     scope.fullBalanceCopy = null;
+    scope.fractionalPart = null;
     scope.error_message = null;
-
     var cards = JSON.parse(localStorage.getItem('click_client_cards'));
     var getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
     var objectAccount = {};
     var accountsForBalance = [];
+    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+    if (JSON.parse(localStorage.getItem('click_client_loginInfo'))) {
+      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+    }
+    scope.leftOfOperations = 200 * widthK;
+    scope.lastOperationContainer = [];
+    var canvasFull;
+    var contextFull;
+    var canvasFractional;
+    var contextFractional;
+    var canvasCurrency;
+    var contextCurrency;
+
+
+    window.saveHistory('view-info', opts);
+
 
     for (var j in getAccountsCards) {
-      objectAccount.account_id = getAccountsCards[j].id
-      objectAccount.card_num_hash = getAccountsCards[j].card_num_hash
-      objectAccount.card_num_crypted = getAccountsCards[j].card_num_crypted
+      objectAccount.account_id = getAccountsCards[j].id;
+      objectAccount.card_num_hash = getAccountsCards[j].card_num_hash;
+      objectAccount.card_num_crypted = getAccountsCards[j].card_num_crypted;
       accountsForBalance.push(objectAccount);
       objectAccount = {};
     }
-    console.log("GETACCOUNTS", accountsForBalance)
 
-    if (JSON.parse(localStorage.getItem('click_client_loginInfo')))
-      var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
 
-    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+    console.log("GETACCOUNTS", accountsForBalance);
 
-    //    console.log('getAccountsCards', getAccountsCards)
     for (var i in cards) {
       if (cards[i].default_account === true)
         defaultAccount = cards[i];
     }
 
-    this.on('mount', function () {
+    scope.on('mount', function () {
+      canvasFull = document.getElementById('fullScaleCanvas');
+      contextFull = canvasFull.getContext('2d');
+      canvasFractional = document.getElementById('fractionalScaleCanvas');
+      contextFractional = canvasFractional.getContext('2d');
+      canvasCurrency = document.getElementById('currencyScaleCanvas');
+      contextCurrency = canvasCurrency.getContext('2d');
+      contextFull.font = 67 * widthK + "px SFUIDisplay-Light";
+      contextFractional.font = 51 * widthK + "px SFUIDisplay-Light";
+      contextCurrency.font = 26 * widthK + "px SFUIDisplay-Light";
       if (device.platform != 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#e5e5e5");
+        StatusBar.backgroundColorByHexString("#ffffff");
       var accountsForBalance = [];
       var objectAccount = {};
       if (!modeOfApp.offlineMode) {
         writeBalanceInfo(accountsForBalance);
       }
-    })
 
-    var balanceTouchStartX, balanceTouchStartY, balanceTouchEndX, balanceTouchEndY;
+    });
 
     reloadBalanceTouchStart = function () {
 
-      reloadBalanceButtonId.style.webkitTransform = 'rotate(90deg)'
+      reloadBalanceButtonId.style.webkitTransform = 'rotate(90deg)';
 
-      balanceTouchStartX = event.changedTouches[0].pageX
-      balanceTouchStartY = event.changedTouches[0].pageY
-    }
+      balanceTouchStartX = event.changedTouches[0].pageX;
+      balanceTouchStartY = event.changedTouches[0].pageY;
+    };
 
     reloadBalanceTouchEnd = function () {
 
       setTimeout(function () {
         reloadBalanceButtonId.style.webkitTransform = 'rotate(0deg)'
-      }, 500)
+      }, 500);
 
-
-      balanceTouchEndX = event.changedTouches[0].pageX
-      balanceTouchEndY = event.changedTouches[0].pageY
+      balanceTouchEndX = event.changedTouches[0].pageX;
+      balanceTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(balanceTouchStartX - balanceTouchEndX) <= 20 && Math.abs(balanceTouchStartY - balanceTouchEndY) <= 20) {
         writeBalanceInfo(accountsForBalance);
       }
-    }
+    };
 
     writeBalanceInfo = function () {
       var j = 0;
       scope.fullBalance = 0;
       scope.fullBalanceCopy = 0;
-
+      scope.fractionalPart = 0;
       window.api.call({
         method: 'get.balance.multiple',
         input: {
@@ -151,31 +180,31 @@
           scope.fullBalance = null;
           if (result[0][0].error == 0) {
             if (result[1]) {
-//                console.log('getAccountsCards[j].currency_name', getAccountsCards[j].currency_name)
-//                console.log('defaultAccount.currency', defaultAccount.currency)
+
               try {
-                console.log('INFO BALANCE res', result)
                 for (var i in result[1]) {
                   scope.fullBalance += result[1][i].balance;
                 }
-                scope.fullBalanceCopy = scope.fullBalance;
+                scope.fullBalanceCopy = Math.floor(scope.fullBalance);
+                scope.fractionalPart = window.getFractionalPart(scope.fullBalance.toString());
 
                 scope.fullBalanceCopy = scope.fullBalanceCopy.toFixed(0).toString();
                 scope.fullBalanceCopy = window.amountTransform(scope.fullBalanceCopy);
-                scope.update()
-//                if (getAccountsCards[j].currency_name.trim() == defaultAccount.currency.trim()) {
-//                  scope.fullBalance = parseInt(scope.fullBalance);
-//                  scope.fullBalance += result[1][0].balance;
-//                  scope.fullBalanceCopy = scope.fullBalance;
-//
-//                  scope.fullBalanceCopy = scope.fullBalanceCopy.toFixed(0).toString();
-//                  scope.fullBalanceCopy = window.amountTransform(scope.fullBalanceCopy);
-//
-////                    console.log('INFO BALANCEE', )
-//                  scope.update();
-//                }
-//                else
-//                  scope.attention = true;
+                scope.update();
+                textWidthFull = contextFull.measureText(scope.fullBalanceCopy + ' ').width;
+                textWidthFractional = contextFractional.measureText(scope.fractionalPart).width;
+                textWidthCurrency = contextCurrency.measureText(window.languages.ViewReportServiceCommissionCurrency).width;
+                totalTextWidth = textWidthFull + textWidthFractional + textWidthCurrency;
+
+                console.log("full card balance container", fullCardBalanceContainer.offsetWidth);
+                console.log("full card balance", fullCardBalanceScaleContainer.offsetWidth);
+
+                if (totalTextWidth > fullCardBalanceContainer.offsetWidth) {
+                  scaleK = fullCardBalanceContainer.offsetWidth / totalTextWidth;
+                  left_d = (scaleK - 1) * totalTextWidth / 2;
+                  fullCardBalanceScaleContainer.style.webkitTransform = 'scale(' + scaleK + ')';
+                  fullCardBalanceScaleContainer.style.left = left_d + 'px';
+                }
               } catch (Error) {
 
                 console.log("VIEW INFO WRITE BALANCE", Error);
@@ -186,7 +215,7 @@
             }
           }
           else {
-            scope.error_message = 'Ошибка'
+            scope.error_message = 'Ошибка';
             scope.update();
           }
         },
@@ -197,12 +226,11 @@
         }
       });
 
-
       scope.update();
-    }
+    };
 
     offlineBalanceInfoTrue = function () {
-      event.preventDefault()
+      event.preventDefault();
       event.stopPropagation();
       modeOfApp.offlineMode.balance = true;
 
@@ -232,60 +260,41 @@
         );
         return
       }
-    }
-
-
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-info') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-info',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
-
-    scope.leftOfOperations = 200 * widthK;
-    scope.lastOperationContainer = [];
-
-    var goBackTouchStartX, goBackTouchStartY, goBackTouchEndX, goBackTouchEndY;
-    onTouchEndBack = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      backButtonId.style.webkitTransform = 'scale(1)'
-
-      goBackTouchEndX = event.changedTouches[0].pageX
-      goBackTouchEndY = event.changedTouches[0].pageY
-
-      if (Math.abs(goBackTouchStartX - goBackTouchEndX) <= 20 && Math.abs(goBackTouchStartY - goBackTouchEndY) <= 20) {
-
-//      this.riotTags.innerHTML = '<view-main-page>';
-//      riot.mount('view-main-page');
-        onBackKeyDown()
-
-        scope.unmount()
-      }
-
-    }
+    };
 
     onTouchStartBack = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      backButtonId.style.webkitTransform = 'scale(0.8)'
+      backButtonId.style.webkitTransform = 'scale(0.8)';
 
-      goBackTouchStartX = event.changedTouches[0].pageX
-      goBackTouchStartY = event.changedTouches[0].pageY
+      goBackTouchStartX = event.changedTouches[0].pageX;
+      goBackTouchStartY = event.changedTouches[0].pageY;
 
-    }
+    };
+
+    onTouchEndBack = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      backButtonId.style.webkitTransform = 'scale(1)';
+
+      goBackTouchEndX = event.changedTouches[0].pageX;
+      goBackTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(goBackTouchStartX - goBackTouchEndX) <= 20 && Math.abs(goBackTouchStartY - goBackTouchEndY) <= 20) {
+
+        onBackKeyDown();
+//        scope.unmount()
+      }
+    };
 
     if (!modeOfApp.offlineMode)
       window.api.call({
         method: 'get.payment.list',
         input: {
           session_key: sessionKey,
-          phone_num: phoneNumber,
+          phone_num: phoneNumber
         },
 
         scope: this,
@@ -395,26 +404,25 @@
         }
       });
 
-    var goToReportsTouchStartX, goToReportsTouchStartY, goToReportsTouchEndX, goToReportsTouchEndY;
 
     goToReportsTouchStart = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      reportButtonId.style.backgroundColor = 'rgba(231,231,231,0.8)'
+      reportButtonId.style.backgroundColor = 'rgba(231,231,231,0.8)';
 
-      goToReportsTouchStartX = event.changedTouches[0].pageX
-      goToReportsTouchStartY = event.changedTouches[0].pageY
-    }
+      goToReportsTouchStartX = event.changedTouches[0].pageX;
+      goToReportsTouchStartY = event.changedTouches[0].pageY;
+    };
 
     goToReportsTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      reportButtonId.style.backgroundColor = 'transparent'
+      reportButtonId.style.backgroundColor = 'transparent';
 
-      goToReportsTouchEndX = event.changedTouches[0].pageX
-      goToReportsTouchEndY = event.changedTouches[0].pageY
+      goToReportsTouchEndX = event.changedTouches[0].pageX;
+      goToReportsTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(goToReportsTouchStartX - goToReportsTouchEndX) <= 20 && Math.abs(goToReportsTouchStartY - goToReportsTouchEndY) <= 20) {
 
@@ -439,38 +447,35 @@
           return
         }
 
-        riotTags.innerHTML = "<view-report>";
-        riot.mount('view-report');
+        riotTags.innerHTML = "<view-monitoring-report>";
+        riot.mount('view-monitoring-report');
 
         scope.unmount()
       }
 
-    }
+    };
 
-    var operationInfoTouchStartY, operationInfoTouchEndY;
     scope.onTouchStartOfOperation = onTouchStartOfOperation = function (paymentId) {
       operationInfoTouchStartY = event.changedTouches[0].pageY;
-    }
+    };
 
     scope.onTouchEndOfOperation = onTouchEndOfOperation = function (paymentId) {
 
-      document.getElementById(paymentId).style.backgroundColor = 'rgba(231,231,231,0.8)'
+      document.getElementById(paymentId).style.backgroundColor = 'rgba(231,231,231,0.8)';
 
       setTimeout(function () {
         document.getElementById(paymentId).style.backgroundColor = 'transparent'
-      }, 300)
-
+      }, 300);
 
       operationInfoTouchEndY = event.pageY;
 
       setTimeout(function () {
 
-
         if (Math.abs(operationInfoTouchStartY - operationInfoTouchEndY) < 20) {
 
           if (modeOfApp.demoVersion) {
-            var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-//        confirm(question)
+            var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
+
             window.common.alert.show("componentConfirmId", {
               parent: scope,
               "confirmnote": question,
@@ -479,8 +484,8 @@
             scope.result = function (bool) {
               if (bool) {
                 localStorage.clear();
-                window.location = 'index.html'
-                scope.unmount()
+                window.location = 'index.html';
+                scope.unmount();
                 return
               }
               else {
@@ -493,31 +498,25 @@
             return
           }
 
-          console.log("Time to open");
           for (var i = 0; i < scope.lastOperationContainer.length; i++) {
             if (scope.lastOperationContainer[i].payment_id == paymentId) {
               var servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
-//            console.log("FROM VIEW INFO service report for=", scope.lastOperationContainer[i]);
-
               var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
 
-              console.log(" starting check", favoritePaymentsList)
               if (favoritePaymentsList) {
                 for (var j in favoritePaymentsList) {
-                  console.log("fav payment j ", favoritePaymentsList[j].params)
+
                   if (favoritePaymentsList[j].params.paymentId && favoritePaymentsList[j].params.paymentId == paymentId) {
-                    console.log("found ", favoritePaymentsList[j].params.paymentId)
+
                     scope.lastOperationContainer[i].isInFavorites = true;
                     scope.favoriteId = favoritePaymentsList[j].id;
                     break;
                   }
                   scope.lastOperationContainer[i].isInFavorites = false;
                 }
-                //console.log(" not found ")
 
               } else {
                 scope.lastOperationContainer[i].isInFavorites = false;
-                console.log(" NO FAV ")
               }
 
               if (servicesMap[scope.lastOperationContainer[i].service_id])
@@ -529,7 +528,7 @@
               riotTags.innerHTML = "<view-report-service-new>";
               riot.mount("view-report-service-new", scope.lastOperationContainer[i]);
 
-              scope.unmount()
+              scope.unmount();
               break;
             }
           }

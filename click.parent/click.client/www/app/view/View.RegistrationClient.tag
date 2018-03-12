@@ -77,15 +77,7 @@
 
   <script>
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-registration-client') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-registration-client',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-registration-client', opts);
 
 
     this.on('mount', function () {
@@ -96,7 +88,7 @@
         demoContainer.style.left = 100 * widthK + 'px';
 
       if (device.platform != "BrowserStand")
-        StatusBar.backgroundColorByHexString("#00b0eb");
+        StatusBar.backgroundColorByHexString("#ffffff");
     })
 
     var scope = this;

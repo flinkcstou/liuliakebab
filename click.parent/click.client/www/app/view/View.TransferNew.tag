@@ -1,63 +1,107 @@
 <view-transfer-new class="riot-tags-main-container">
-  <div class="transfer-page-title">
-    <p class="transfer-name-title">{titleName}</p>
+  <div class="page-title">
+    <p class="name-title">{window.languages.ViewPayTransferNewTitle}</p>
     <div id="backButton" ontouchend="goToBackFromTransferTouchEnd()" ontouchstart="goToBackFromTransferTouchStart()"
-         class="transfer-back-button" role="button" aria-label="{window.languages.Back}">
+         class="back-button" role="button" aria-label="{window.languages.Back}">
     </div>
     <div if="{modeOfApp.onlineMode}" id="rightButton" role="button"
          aria-label="{window.languages.ViewBankListTitleName}" type="button"
          class="transfer-i-button"
          ontouchend="openBanksListPageTouchEnd()" ontouchstart="openBanksListPageTouchStart()">
     </div>
+    <div class="title-bottom-border">
+    </div>
   </div>
 
   <div class="transfer-body-container">
-    <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
-      <li style="overflow: hidden;">
-        <div class="transfer-block-container"
-             id="view-transfer-by-card"
-             ontouchend="transferTouchEnd(this.id)" ontouchstart="transferTouchStart()">
-          <div class="transfer-category-icon"></div>
-          <div class="transfer-category-name-field">{window.languages.ViewPayTransferByCardNumber}</div>
-          <div class="transfer-icon-tick"></div>
+    <div id="menuContainerId" class="transfer-new-menu-container">
+      <div id="borderRightLineId" class="transfer-new-menu-border-right">
+      </div>
+      <div id="borderLeftLineId" class="transfer-new-menu-border-left">
+      </div>
+      <div id="contact" class="transfer-new-menu-item"
+           ontouchend="transferTypeTouchEnd(this.id)"
+           ontouchstart="transferTypeTouchStart(this.id)">
+        <div id="contactIconId"
+             class="transfer-new-menu-contact-icon">
+          <img id="contactIcon1" src="resources/icons/ViewTransfer/touser1.png"
+               class="transfer-new-menu-contact-icon-img-1">
+          <img id="contactIcon2" src="resources/icons/ViewTransfer/touser2.png"
+               class="transfer-new-menu-contact-icon-img-2">
         </div>
-      </li>
-      <li style="overflow: hidden;">
-        <div class="transfer-block-container"
-             id="view-transfer-by-phone"
-             ontouchend="transferTouchEnd(this.id)" ontouchstart="transferTouchStart()">
-          <div class="transfer-category-icon"></div>
-          <div class="transfer-category-name-field">{window.languages.ViewPayTransferByPhoneNumber}</div>
-          <div class="transfer-icon-tick"></div>
+        <p id="contactLabelId" class="transfer-new-menu-label-contact">
+          {window.languages.ViewPayTransferNewContactName}</p>
+      </div>
+      <div id="card" class="transfer-new-menu-item"
+           ontouchend="transferTypeTouchEnd(this.id)"
+           ontouchstart="transferTypeTouchStart(this.id)">
+        <div id="cardIconId" class="transfer-new-menu-card-icon">
+          <img id="cardIcon1" src="resources/icons/ViewTransfer/tofriend1.png"
+               class="transfer-new-menu-card-icon-img-1">
+          <img id="cardIcon2" src="resources/icons/ViewTransfer/tofriend2.png"
+               class="transfer-new-menu-card-icon-img-2">
         </div>
-      </li>
-      <li style="overflow: hidden;">
-        <div class="transfer-block-container"
-             id="view-transfer-between-cards"
-             ontouchend="transferTouchEnd(this.id)" ontouchstart="transferTouchStart()">
-          <div class="transfer-category-icon"></div>
-          <div class="transfer-category-name-field">{window.languages.ViewPayTransferBetweenCards}</div>
-          <div class="transfer-icon-tick"></div>
+        <p id="cardLabelId" class="transfer-new-menu-label-card">
+          {window.languages.ViewPayTransferNewCardName}</p>
+      </div>
+      <div id="between" class="transfer-new-menu-item"
+           ontouchend="transferTypeTouchEnd(this.id)"
+           ontouchstart="transferTypeTouchStart(this.id)">
+        <div id="betweenIconId" class="transfer-new-menu-between-icon">
+          <img id="betweenIcon1" src="resources/icons/ViewTransfer/toown1.png"
+               class="transfer-new-menu-between-icon-img-1">
+          <img id="betweenIcon2" src="resources/icons/ViewTransfer/toown2.png"
+               class="transfer-new-menu-between-icon-img-2">
         </div>
-      </li>
-      <li style="overflow: hidden;">
-        <div class="transfer-block-container"
-             id="view-transfer-history"
-             ontouchend="transferTouchEnd(this.id)" ontouchstart="transferTouchStart()">
-          <div class="transfer-category-icon"></div>
-          <div class="transfer-category-name-field">{window.languages.ViewPayTransferHistory}</div>
-          <div class="transfer-icon-tick"></div>
-        </div>
-      </li>
-    </ul>
+        <p id="betweenLabelId" class="transfer-new-menu-label-between">
+          {window.languages.ViewPayTransferNewBetweenName}</p>
+      </div>
+    </div>
+    <div id="transferTypeCarousel"
+         class="transfer-new-type-carousel"
+         ontouchend="endTouchTransferTypeCarousel(this)"
+         ontouchmove="moveTouchTransferTypeCarousel(this)"
+         ontouchstart="startTouchTransferTypeCarousel()">
+      <div id="transferType">
+        <component-transfer-to-contact
+          class="transfer-new-form-container"
+          cardsarray="{cardsarray}"
+          cardcounter="{cardCounter}"
+          idcardfrommycards="{idCardFromMyCards}"
+          id="contactForm">
+        </component-transfer-to-contact>
+
+        <component-transfer-to-card
+          style="left: 100%"
+          class="transfer-new-form-container"
+          cardsarray="{cardsarray}"
+          cardcounter="{cardCounter}"
+          idcardfrommycards="{idCardFromMyCards}"
+          id="cardForm">
+        </component-transfer-to-card>
+
+        <component-transfer-between
+          style="left: 200%"
+          class="transfer-new-form-container"
+          cardsarray="{cardsarray}"
+          cardcounter="{cardCounter}"
+          idcardfrommycards="{idCardFromMyCards}"
+          id="betweenForm">
+        </component-transfer-between>
+      </div>
+    </div>
+
   </div>
 
   <div hidden="{!showComponent}" id="componentBankListId" class="component-bank-list">
     <div class="page-title" style="border: none;">
-      <p class="component-banklist-name-title">{window.languages.ViewBankListTitleName}</p>
+      <p class="name-title">{window.languages.ViewBankListTitleName}</p>
       <div id="closeBankListButtonId" type="button" class="component-banklist-close-button"
            ontouchend="closeComponentBankListTouchEnd()" ontouchstart="closeComponentBankListTouchStart()"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
+    <img src="resources/gifs/1x1.gif" width="1" height="1">
     <div id="bankListContainerId" class="component-banklist-container" onscroll="bankListTouchMove()">
       <div class="component-banklist-card-flipper" each="{i in bankList}" ontouchstart="flipCardTouchStart()"
            ontouchend="flipCardTouchEnd(this)">
@@ -101,63 +145,377 @@
   <component-tour view="transfer" focusfield="{true}"></component-tour>
   <script>
 
-    viewTransfer.check = true;
-    this.titleName = window.languages.ViewPayTransferTitle;
     var scope = this;
+    var transferTouchStartX,
+      transferTouchStartY,
+      transferTouchEndX,
+      transferTouchEndY;
+
     scope.tourClosed = true;
     scope.clickPinError = false;
     scope.showComponent = false;
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== 'view-transfer-new') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-transfer-new',
-          "params": opts,
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    scope.allBankList = [];
+    scope.activatedType = '';
+    scope.idCardFromMyCards = -1;
+    scope.cardsarray = [];
+    scope.cardCounter = 0;
+    scope.leftTransferType = 0;
+    scope.deltaTransferType = 0;
+    scope.transferTypeNumber = 0;
+    scope.transferTypeCount = 2;
+    scope.transitionRunning = false;
+
+    window.saveHistory('view-transfer-new', opts);
+
     if (localStorage.getItem('click_client_loginInfo')) {
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
     }
+
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
-    this.on('mount', function () {
-      if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).transfer) {
-        componentTourId.style.display = "block";
-        scope.tourClosed = false;
-        if (device.platform !== 'BrowserStand')
-          StatusBar.backgroundColorByHexString("#004663");
+    scope.on('mount', function () {
+      if (opts && JSON.stringify(opts) !== '{}') {
+        console.log('opts in new transfers', opts);
+        if (opts.transferType && opts.transferType === 'contact') {
+          if (opts.phoneNumber === undefined) {
+            log_info = {
+              comment: 'Transfers: phone number is undefined in opts',
+              opts: opts
+            };
+            window.sendToLog(log_info);
+            opts.phoneNumber = '';
+          }
+
+          changeIconTransferByContact();
+          scope.transferTypeNumber = 0;
+          contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(opts.phoneNumber.substr(3, opts.phoneNumber.length));
+          contactPhoneBlurAndChange();
+        }
+        if (opts.transferType && opts.transferType === 'card') {
+          console.log('open transfers to card');
+          if (opts.cardNumber === undefined) {
+            log_info = {
+              comment: 'Transfers: card number is undefined in opts',
+              opts: opts
+            };
+            window.sendToLog(log_info);
+            opts.cardNumber = '';
+          }
+          changeIconTransferByCard();
+          scope.transferTypeNumber = 1;
+          cardInputId.value = opts.cardNumber;
+          cardBlurAndChange();
+        }
+        if (opts.idCardFromMyCards) {
+          scope.idCardFromMyCards = opts.idCardFromMyCards;
+          changeIconTransferByContact();
+        }
+        document.getElementById("transferType").style.transition = '0s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+        document.getElementById("transferType").style.webkitTransition = '0s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+        document.getElementById("transferType").style.transform = "translate3d(" + (-scope.transferTypeNumber * 100) + '%' + ", 0, 0)";
+        document.getElementById("transferType").style.webkitTransform = "translate3d(" + (-scope.transferTypeNumber * 100) + '%' + ", 0, 0)";
       }
+      else {
+        if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).transfer) {
+          setTimeout(function () {
+            cardInputId.blur();
+            contactPhoneNumberId.blur();
+            betweenAmountId.blur();
+          }, 1);
+          componentTourId.style.display = "block";
+          scope.tourClosed = false;
+          if (device.platform !== 'BrowserStand')
+            StatusBar.backgroundColorByHexString("#ffffff");
+        }
+        else {
+          changeIconTransferByContact();
+          setTimeout(function () {
+            contactPhoneNumberId.focus();
+          }, 1);
+        }
+      }
+
+      if (modeOfApp.offlineMode) {
+        between.style.display = 'none';
+        betweenForm.style.display = 'none';
+        borderLeftLineId.style.display = 'none';
+        borderRightLineId.style.width = '50%';
+        card.style.width = '50%';
+        contact.style.width = '50%';
+      }
+      if (localStorage.getItem('click_client_countCard')) {
+        scope.countCard = JSON.parse(localStorage.getItem('click_client_countCard'));
+        if (scope.countCard < 3) {
+          between.style.display = 'none';
+          betweenForm.style.display = 'none';
+          borderLeftLineId.style.display = 'none';
+          borderRightLineId.style.width = '50%';
+          card.style.width = '50%';
+          contact.style.width = '50%';
+        }
+      }
+      if (localStorage.getItem('click_client_cards')) {
+        scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
+        for (var i in scope.cardsarray) {
+          if (scope.cardsarray[i].p2p_allowed == 0
+            || scope.cardsarray[i].access != 2
+            || scope.cardsarray[i].salary == null) {
+            delete scope.cardsarray[i];
+          } else {
+            scope.cardCounter++;
+            scope.cardsarray[i].countCard = scope.cardCounter;
+          }
+        }
+        if (scope.cardCounter < 2) {
+          between.style.display = 'none';
+          betweenForm.style.display = 'none';
+          borderLeftLineId.style.display = 'none';
+          borderRightLineId.style.width = '50%';
+          card.style.width = '50%';
+          contact.style.width = '50%';
+        }
+      } else {
+        between.style.display = 'none';
+        betweenForm.style.display = 'none';
+        borderLeftLineId.style.display = 'none';
+        borderRightLineId.style.width = '50%';
+        card.style.width = '50%';
+        contact.style.width = '50%';
+        log_info = {
+          comment: 'Transfers: click_client_cards is empty',
+        };
+        window.sendToLog(log_info);
+      }
+      if (between.style.display === 'none'){
+        scope.transferTypeCount--;
+      }
+      transferType.addEventListener("webkitTransitionEnd", transitionEnd, true);
+      transferType.addEventListener("webkitTransitionStart", transitionStart, true);
+      scope.update();
     });
 
-    //Choose transfer type and tour processing
     {
-      var transferTouchStartX, transferTouchStartY, transferTouchEndX, transferTouchEndY;
-      transferTouchStart = function () {
+      transitionEnd = function () {
+        if (event.target.id != transferType.id) {
+          console.log(event.target.id, transferType.id);
+          return;
+        }
+        console.log('transitionEnd', scope.transferTypeNumber);
+        if (scope.transferTypeNumber === 0) {
+          changeIconTransferByContact();
+          setTimeout(function () {
+            contactPhoneNumberId.focus();
+          }, 0);
+        }
+        if (scope.transferTypeNumber === 1) {
+          changeIconTransferByCard();
+          setTimeout(function () {
+            cardInputId.focus();
+          }, 0);
+        }
+        if (scope.transferTypeNumber === 2) {
+          changeIconTransferByBetween();
+          setTimeout(function () {
+            betweenAmountId.focus();
+          }, 0);
+        }
+        transitionStart();
+        setTimeout(function () {
+          scope.transitionRunning = false;
+        }, 500);
+      };
+      transitionStart = function () {
+        console.log('transitionStart');
+        scope.transitionRunning = true;
+      };
+
+      //Choose transfer type
+      startTouchTransferTypeCarousel = function () {
+        transferTouchStartX = event.changedTouches[0].pageX;
+        scope.leftTransferType = -(window.innerWidth * scope.transferTypeNumber) - transferTouchStartX;
+        scope.deltaTransferType = scope.leftTransferType;
+
+        contactPhoneNumberId.readOnly = false;
+        cardInputId.readOnly = false;
+        betweenAmountId.readOnly = false;
+      };
+
+      moveTouchTransferTypeCarousel = function () {
         event.preventDefault();
         event.stopPropagation();
+        if (scope.transitionRunning)
+          return;
+        transferTouchEndX = event.changedTouches[0].pageX;
+        moveDeltaX = transferTouchEndX - transferTouchStartX;
+        if (moveDeltaX > 0 && scope.transferTypeNumber === 0)
+          return;
+        if (moveDeltaX < 0 && scope.transferTypeNumber === scope.transferTypeCount)
+          return;
+        contactPhoneNumberId.blur();
+        cardInputId.blur();
+        betweenAmountId.blur();
+        document.getElementById("transferType").style.transition = '0s';
+        document.getElementById("transferType").style.webkitTransition = '0s';
+        document.getElementById("transferType").style.transform = "translate3d(" + (event.changedTouches[0].pageX + scope.deltaTransferType) + 'px' + ", 0, 0)";
+        document.getElementById("transferType").style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + scope.deltaTransferType) + 'px' + ", 0, 0)";
+      };
+
+      endTouchTransferTypeCarousel = function () {
+        transferTouchEndX = event.changedTouches[0].pageX;
+        if (Math.abs(transferTouchStartX - transferTouchEndX) > 0 && !scope.transitionRunning) {
+          changePositionTransferTypeCarousel("transferType");
+        }
+      };
+
+      changePositionTransferTypeCarousel = function (id) {
+        if (transferTouchEndX < transferTouchStartX && scope.transferTypeNumber < scope.transferTypeCount) {
+          console.log('if #1');
+          ++scope.transferTypeNumber;
+          document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+          document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+          document.getElementById(id).style.transform = "translate3d(" + (-scope.transferTypeNumber * 100) + '%' + ", 0, 0)";
+          document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.transferTypeNumber * 100) + '%' + ", 0, 0)";
+        }
+
+        if (transferTouchEndX < transferTouchStartX && scope.transferTypeNumber >= scope.transferTypeCount) {
+          console.log('if #2');
+          console.log(scope.transferTypeCount);
+          document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+          document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+          document.getElementById(id).style.transform = "translate3d(" + (-scope.transferTypeNumber * 100) + '%' + ", 0, 0)";
+          document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.transferTypeNumber * 100) + '%' + ", 0, 0)";
+        }
+
+        if (transferTouchEndX > transferTouchStartX && scope.transferTypeNumber > 0) {
+          console.log('if #3');
+          --scope.transferTypeNumber;
+          document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+          document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+          document.getElementById(id).style.transform = "translate3d(" + (-scope.transferTypeNumber * 100) + '%' + ", 0, 0)";
+          document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.transferTypeNumber * 100) + '%' + ", 0, 0)";
+        }
+
+        if (transferTouchEndX > transferTouchStartX && scope.transferTypeNumber === 0) {
+          console.log('if #4');
+          document.getElementById(id).style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+          document.getElementById(id).style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+          document.getElementById(id).style.transform = "translate3d(" + (-scope.transferTypeNumber * 100) + '%' + ", 0, 0)";
+          document.getElementById(id).style.webkitTransform = "translate3d(" + (-scope.transferTypeNumber * 100) + '%' + ", 0, 0)";
+        }
+        scope.update();
+      };
+
+      transferTypeTouchStart = function (id) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (device.platform != 'BrowserStand')
+          cordova.plugins.Keyboard.close();
+        setTimeout(function () {
+          contactPhoneNumberId.blur();
+          cardInputId.blur();
+          betweenAmountId.blur();
+        }, 0);
+
+        document.getElementById(id).style.webkitTransform = 'scale(0.7)';
 
         transferTouchStartX = event.changedTouches[0].pageX;
         transferTouchStartY = event.changedTouches[0].pageY;
-      }
-      transferTouchEnd = function (id) {
+      };
+      transferTypeTouchEnd = function (id) {
         event.preventDefault();
         event.stopPropagation();
+
+        document.getElementById(id).style.webkitTransform = 'scale(1)';
 
         transferTouchEndX = event.changedTouches[0].pageX;
         transferTouchEndY = event.changedTouches[0].pageY;
 
         if (Math.abs(transferTouchStartX - transferTouchEndX) <= 20
           && Math.abs(transferTouchStartY - transferTouchEndY) <= 20) {
-          console.log("Go to transfer", id);
-          riotTags.innerHTML = "<" + id + ">";
-          riot.mount(id);
+          makeAllGrey();
+          if (id === 'contact') {
+            changeIconTransferByContact();
+            scope.transferTypeNumber = 0;
+            setTimeout(function () {
+              if (scope.transferTypeNumber === 0 && !scope.transitionRunning && !scope.showComponent)
+                contactPhoneNumberId.focus();
+            }, 500);
+          }
+          if (id === 'card') {
+            changeIconTransferByCard();
+            scope.transferTypeNumber = 1;
+            setTimeout(function () {
+              if (scope.transferTypeNumber === 1 && !scope.transitionRunning && !scope.showComponent)
+                cardInputId.focus();
+            }, 500);
+          }
+          if (id === 'between') {
+            changeIconTransferByBetween();
+            scope.transferTypeNumber = 2;
+            setTimeout(function () {
+              if (scope.transferTypeNumber === 2 && !scope.transitionRunning && !scope.showComponent)
+                betweenAmountId.focus();
+            }, 500);
+          }
+          document.getElementById("transferType").style.transition = '0s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+          document.getElementById("transferType").style.webkitTransition = '0s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
+          document.getElementById("transferType").style.transform = "translate3d(" + (-scope.transferTypeNumber * 100) + '%' + ", 0, 0)";
+          document.getElementById("transferType").style.webkitTransform = "translate3d(" + (-scope.transferTypeNumber * 100) + '%' + ", 0, 0)";
         }
       };
-      focusFieldAfterTourClosed = function () {
-        scope.tourClosed = true;
-      }
+
+      //Make all labels and icons grey
+      makeAllGrey = function () {
+        if (device.platform != 'BrowserStand')
+          cordova.plugins.Keyboard.close();
+        setTimeout(function () {
+          contactPhoneNumberId.blur();
+          cardInputId.blur();
+          betweenAmountId.blur();
+        }, 0);
+        contactLabelId.style.color = "#989898";
+        cardLabelId.style.color = "#989898";
+        betweenLabelId.style.color = "#989898";
+        contactIcon1.style.visibility = 'hidden';
+        contactIcon2.style.visibility = 'visible';
+        cardIcon1.style.visibility = 'hidden';
+        cardIcon2.style.visibility = 'visible';
+        betweenIcon1.style.visibility = 'hidden';
+        betweenIcon2.style.visibility = 'visible';
+//        contactIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/touser2.png)';
+//        cardIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/tofriend2.png)';
+//        betweenIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/toown2.png)';
+      };
+
+      //change icon transfer by contact
+      changeIconTransferByContact = function () {
+        makeAllGrey();
+        checkPhoneNumberLength();
+        contactLabelId.style.color = "black";
+        contactIcon1.style.visibility = 'visible';
+        contactIcon2.style.visibility = 'hidden';
+//        contactIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/touser1.png)';
+      };
+
+      //change icon transfer by card
+      changeIconTransferByCard = function () {
+        makeAllGrey();
+        checkCardNumberLength();
+        cardLabelId.style.color = "black";
+        cardIcon1.style.visibility = 'visible';
+        cardIcon2.style.visibility = 'hidden';
+//        cardIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/tofriend1.png)';
+      };
+
+      //change icon transfer by between
+      changeIconTransferByBetween = function () {
+        makeAllGrey();
+        betweenLabelId.style.color = "black";
+        betweenIcon1.style.visibility = 'visible';
+        betweenIcon2.style.visibility = 'hidden';
+//        betweenIconId.style.backgroundImage = 'url(resources/icons/ViewTransfer/toown1.png)';
+      };
     }
 
     //Info about banks
@@ -179,6 +537,11 @@
       };
 
       openBanksListPageTouchEnd = function () {
+
+        cardInputId.blur();
+        contactPhoneNumberId.blur();
+        betweenAmountId.blur();
+
         event.preventDefault();
         event.stopPropagation();
 
@@ -203,7 +566,6 @@
               pathtosettings: scope.pathToSettings,
               permissionerror: scope.permissionError,
             });
-
             scope.update();
             return;
           }
@@ -211,7 +573,7 @@
           if (JSON.parse(localStorage.getItem("click_client_p2p_bank_list"))) {
             scope.bankList = JSON.parse(localStorage.getItem("click_client_p2p_bank_list"));
           }
-          scope.showComponent = true
+          scope.showComponent = true;
           window.checkShowingComponent = scope;
           scope.update();
         }
@@ -238,6 +600,7 @@
                   if (localStorage.getItem('click_client_p2p_all_bank_list') !== JSON.stringify(result[1])) {
                     localStorage.setItem('click_client_p2p_bank_list', JSON.stringify(bankListAvailable));
                     localStorage.setItem('click_client_p2p_all_bank_list', JSON.stringify(result[1]));
+                    scope.allBankList = result[1];
                   }
                 }
                 else {
@@ -260,6 +623,10 @@
               }
             });
         }
+
+      if (JSON.parse(localStorage.getItem("click_client_p2p_all_bank_list"))) {
+        scope.allBankList = JSON.parse(localStorage.getItem("click_client_p2p_all_bank_list"));
+      }
 
       var closeBankListTouchStartX, closeBankListTouchStartY, closeBankListTouchEndX, closeBankListTouchEndY;
 
@@ -309,23 +676,35 @@
         if (Math.abs(flipCardTouchStartX - flipCardTouchEndX) <= 20 &&
           Math.abs(flipCardTouchStartY - flipCardTouchEndY) <= 20 && !pointerInOffer) {
 
-          var rotated = object.style.transform;
+          var rotated = object.style.webkitTransform;
+          if (device.platform == 'Android')
+            rotated = object.style.transform;
           if (rotated === "rotateY(-180deg)") {
             if (!publicOfferHidden) {
-              if (publicOfferRect.top > flipCardTouchEndY)
-                object.style.transform = "rotateY(0deg)";
+              if (publicOfferRect.top > flipCardTouchEndY) {
+                if (device.platform == 'Android')
+                  object.style.transform = "rotateY(0deg)";
+                else
+                  object.style.webkitTransform = "rotateY(0deg)";
+              }
             }
             else {
-              object.style.transform = "rotateY(0deg)";
+              if (device.platform == 'Android')
+                object.style.transform = "rotateY(0deg)";
+              else
+                object.style.webkitTransform = "rotateY(0deg)";
             }
           }
-          else
-            object.style.transform = "rotateY(-180deg)";
+          else {
+            if (device.platform == 'Android')
+              object.style.transform = "rotateY(-180deg)";
+            else
+              object.style.webkitTransform = "rotateY(-180deg)";
+          }
         }
       };
 
       openPublicOffer = function (LinkToPublicOffer) {
-        console.log("Link to Offer", LinkToPublicOffer);
         window.open(LinkToPublicOffer, '_system', 'location=no');
       }
     }
@@ -360,6 +739,15 @@
         }
       }
     }
+
+    //Tour processing
+    scope.focusFieldAfterTourClosed = focusFieldAfterTourClosed = function () {
+      scope.tourClosed = true;
+      changeIconTransferByContact();
+      setTimeout(function () {
+        contactPhoneNumberId.focus();
+      }, 100);
+    };
 
   </script>
 </view-transfer-new>

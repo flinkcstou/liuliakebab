@@ -6,7 +6,7 @@
 
     <div class="filter-menu-inside-button" ontouchend="closeFilter()">
       <p
-        class="view-reports-filter-text {filter-inside-text: filterDate || filterAccount, filter-inside-text-main: !(filterDate || filterAccount)}">
+        class="view-reports-filter-text">
         {languages.ComponentReportFilterTitle}</p>
       <div type="button"
            class="view-reports-filter-button {filter-inside-button: filterDate || filterAccount, filter-inside-button-main: !(filterDate || filterAccount)}"></div>
@@ -167,8 +167,11 @@
 
       var options = {
         date: new Date(),
+        doneButtonLabel: window.languages.ComponentReportFilterDoneButtonLabel,
+        cancelButtonLabel: window.languages.ComponentReportFilterCancelButtonLabel,
         mode: 'date',
-        androidTheme: 5
+        androidTheme: 5,
+        locale: "ru_RU",
       };
 
       function onSuccess(pickedDate) {
@@ -208,8 +211,11 @@
 
       var options = {
         date: new Date(),
+        doneButtonLabel: window.languages.ComponentReportFilterDoneButtonLabel,
+        cancelButtonLabel: window.languages.ComponentReportFilterCancelButtonLabel,
         mode: 'date',
-        androidTheme: 5
+        androidTheme: 5,
+        locale: "ru_RU",
       };
 
       function onSuccess(pickedDate) {

@@ -1,13 +1,15 @@
 <view-friend-help-settings>
   <div class="riot-tags-main-container">
-    <div class="pay-page-title">
-      <p class="pay-name-title">{titleName}</p>
+    <div class="page-title">
+      <p class="name-title">{titleName}</p>
       <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchstart="goToBackStart()"
-           ontouchend="goToBackEnd()" class="pay-back-button"></div>
+           ontouchend="goToBackEnd()" class="back-button"></div>
       <div id="rightButton" role="button" aria-label="{window.languages.ViewFriendHelpSettingsVoiceOverAddFriend}"
            ontouchstart="goToAddFriendViewStart()"
            ontouchend="goToAddFriendViewEnd()"
-           class="settings-friend-help-add-button"></div>
+           class="add-button"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
     <div id="mainContainerId" class="settings-container">
       <div each="{i in arrayOfFriends}" id="{'id'+i.id}" class="settings-friend-help-contact-container">
@@ -34,21 +36,14 @@
 
   <script>
     var scope = this;
+    var timeOutTimer = 0;
     console.log('OPTS in FriendHelp', opts);
 
     scope.arrayOfPhoneNumbers = [];
 
     this.titleName = window.languages.ViewSecuritySettingsFriendHelpTitle;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-friend-help-settings') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-friend-help-settings',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-friend-help-settings', opts);
 
     scope.arrayOfFriends = [];
 
@@ -58,17 +53,9 @@
     else {
       scope.arrayOfFriends = JSON.parse(localStorage.getItem('click_client_friends'));
       console.log('scope.arrayOfFriends', scope.arrayOfFriends)
-
-//      for(var i in scope.arrayOfFriends){
-//        if(scope.arrayOfFriends[i].photo === null){
-//
-//        }
-//      }
     }
 
     function onSuccess(contacts) {
-      //      alert('Found ' + contacts.length + ' contacts.');
-
       for (var i in contacts) {
         var personObj = {};
         if (contacts[i].phoneNumbers) {
@@ -90,8 +77,6 @@
       }
 
       if (typeof scope.arrayOfPhoneNumbers === 'undefined' || scope.arrayOfPhoneNumbers.length < 1) return
-
-
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
       var sessionKey = info.session_key;
@@ -102,14 +87,12 @@
           phone_num: phoneNumber,
           phone_list: scope.arrayOfPhoneNumbers,
           session_key: sessionKey,
-
         },
 
         scope: this,
-
         onSuccess: function (result) {
-          answerFromServer = true;
-
+          console.log('Clearing timer onSuccess', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           if (result[0][0].error === 0) {
             var object = {};
             var counter = 0;
@@ -151,27 +134,46 @@
             scope.clickPinError = false;
             scope.errorNote = result[0][0].error_note;
             scope.showError = true;
-            scope.viewPage = ''
+            scope.viewPage = '';
             scope.update();
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
-          answerFromServer = true;
+          console.log('Clearing timer onFail', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
+        },
+
+        onTimeOut: function () {
+          timeOutTimer = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method:'check.contact.list',
+            });
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              errornote: window.languages.WaitingTimeExpiredText,
+              step_amount: 0
+            });
+            scope.update();
+            window.stopSpinner();
+          }, 30000);
+        },
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
         }
-      });
+      }, 30000);
     }
 
-
     function onError(contactError) {
-      answerFromServer = true;
+      console.log('Clearing timer emergencyStop', timeOutTimer);
+      window.clearTimeout(timeOutTimer);
       console.log('error', contactError)
     }
 
-
-    // find all contacts with 'Bob' in any name field
 
     if (!localStorage.getItem('click_client_friendsOuter_count')) {
       console.log("requesting friend list")
@@ -180,7 +182,6 @@
         var options = new ContactFindOptions();
         options.multiple = true;
         options.hasPhoneNumber = true;
-        var answerFromServer = false;
         if (device.platform !== 'BrowserStand') {
           var options = {dimBackground: true};
           SpinnerPlugin.activityStart(languages.Downloading, options, function () {
@@ -190,65 +191,9 @@
           });
         }
         navigator.contacts.find(["phoneNumbers"], onSuccess, onError, options);
-        setTimeout(function () {
-          if (!answerFromServer) {
-            answerFromServer = true;
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              errornote: window.languages.WaitingTimeExpiredText,
-              step_amount: 0
-            });
-            scope.update();
-            if (device.platform !== 'BrowserStand') {
-              console.log("Spinner stop in settingsFriendHelp by timeout");
-              SpinnerPlugin.activityStop();
-            }
-          }
-        }, 30000);
       }
     }
 
-
-    //    var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-    //    var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-    //    var sessionKey = info.session_key;
-    //
-    //    window.api.call({
-    //      method: 'card.add',
-    //      input: {
-    //        phone_num: phoneNumber,
-    //        card_number: cardNumber,
-    //        card_data: dateOrPin,
-    //        session_key: sessionKey,
-    //
-    //      },
-    //
-    //      scope: this,
-    //
-    //      onSuccess: function (result) {
-    //        if (result[0][0].error == 0) {
-    //          console.log("CARD ADD", result);
-    //
-    //          scope.clickPinError = false;
-    //          scope.errorNote = result[0][0].error_note;
-    //          scope.showError = true;
-    //          scope.viewPage = 'view-main-page'
-    //          scope.update();
-    //        }
-    //        else {
-    //          scope.clickPinError = false;
-    //          scope.errorNote = result[0][0].error_note;
-    //          scope.showError = true;
-    //          scope.viewPage = ''
-    //          scope.update();
-    //        }
-    //      },
-    //
-    //      onFail: function (api_status, api_status_message, data) {
-    //        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-    //        console.error(data);
-    //      }
-    //    });
 
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 
@@ -318,7 +263,6 @@
     var chooseButtonStartX, chooseButtonEndX, chooseButtonStartY, chooseButtonEndY;
 
     chooseFriendForHelpStart = function (id) {
-      event.preventDefault();
       event.stopPropagation();
 
       console.log("ID", id)
@@ -330,7 +274,6 @@
     }
 
     chooseFriendForHelpEnd = function (number, id) {
-      event.preventDefault();
       event.stopPropagation();
 
       document.getElementById(id).style.backgroundColor = 'transparent'
@@ -366,7 +309,6 @@
     var delButtonStartX, delButtonEndX, delButtonStartY, delButtonEndY;
 
     deleteFriendTouchStart = function (id) {
-      event.preventDefault();
       event.stopPropagation();
 
       delButtonStartX = event.changedTouches[0].pageX;
@@ -377,7 +319,6 @@
 
     deleteFriendTouchEnd = function (id, idWithoutPrefix, delId) {
 
-      event.preventDefault();
       event.stopPropagation();
 
       delButtonEndX = event.changedTouches[0].pageX;

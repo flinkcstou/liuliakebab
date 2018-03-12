@@ -1,10 +1,12 @@
 <view-settings>
   <div class="riot-tags-main-container">
-    <div class="settings-page-title">
-      <p class="settings-name-title">{titleName}</p>
+    <div class="page-title">
+      <p class="name-title">{titleName}</p>
       <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchstart="settingsGoToBackStart()"
            ontouchend="settingsGoToBackEnd()"
-           class="settings-back-button"></div>
+           class="back-button"></div>
+      <div class="title-bottom-border">
+      </div>
     </div>
     <div class="settings-container">
       <div id="mainSettingsButtonId" class="settings-block-containter" ontouchstart="goToMainSettingsTouchStart()"
@@ -20,6 +22,15 @@
         <div class="settings-block-icon"
              style="background-image: url('resources/icons/ViewSettings/settings_security.png')"></div>
         <div class="settings-block-name-field">{window.languages.ViewSecuritySettingsTitle}</div>
+        <div class="settings-block-next-icon"></div>
+      </div>
+
+      <div id="paymentMonitoringButtonId" class="settings-block-containter"
+           ontouchstart="goToPaymentMonitoringTouchStart()"
+           ontouchend="goToPaymentMonitoringTouchEnd()">
+        <div class="settings-block-icon"
+             style="background-image: url('resources/icons/ViewSettings/settings_security.png')"></div>
+        <div class="settings-block-name-field">{window.languages.ViewPaymentMonitorTitle}</div>
         <div class="settings-block-next-icon"></div>
       </div>
 
@@ -80,15 +91,8 @@
     var scope = this;
     this.titleName = window.languages.ViewSettingsTitleNameTwo;
 
-    if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-settings') {
-      history.arrayOfHistory.push(
-        {
-          "view": 'view-settings',
-          "params": opts
-        }
-      );
-      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-    }
+    window.saveHistory('view-settings', opts);
+
     componentMenu.check = false;
     scope.supportShow = false;
 
@@ -184,6 +188,36 @@
         scope.unmount()
       }
     }
+
+    var paymentMonitoringButtonStartX, paymentMonitoringButtonEndX, paymentMonitoringButtonStartY,
+      paymentMonitoringButtonEndY;
+
+    goToPaymentMonitoringTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      paymentMonitoringButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)';
+
+      paymentMonitoringButtonStartX = event.changedTouches[0].pageX;
+      paymentMonitoringButtonStartY = event.changedTouches[0].pageY;
+    };
+
+    goToPaymentMonitoringTouchEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      paymentMonitoringButtonId.style.backgroundColor = 'transparent';
+
+      paymentMonitoringButtonEndX = event.changedTouches[0].pageX;
+      paymentMonitoringButtonEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(paymentMonitoringButtonStartX - paymentMonitoringButtonEndX) <= 20
+        && Math.abs(paymentMonitoringButtonStartY - paymentMonitoringButtonEndY) <= 20) {
+        riotTags.innerHTML = "<view-payment-monitor>";
+        riot.mount("view-payment-monitor");
+        scope.unmount()
+      }
+    };
 
     var friendHelpSettingsButtonStartX, friendHelpSettingsButtonEndX, friendHelpSettingsButtonStartY,
       friendHelpSettingsButtonEndY;
@@ -307,15 +341,8 @@
       if (Math.abs(goToSupportSettingsButtonStartX - goToSupportSettingsButtonEndX) <= 20 && Math.abs(goToSupportSettingsButtonStartY - goToSupportSettingsButtonEndY) <= 20) {
         settingsSupportId.style.display = 'block';
 
-        if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view != 'view-settings-support') {
-          history.arrayOfHistory.push(
-            {
-              "view": 'view-settings-support',
-              "params": opts,
-            }
-          );
-          sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory))
-        }
+        window.saveHistory('view-settings-support', opts);
+
       }
 
     }
