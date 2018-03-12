@@ -2,7 +2,8 @@
   <div id="reportPageId" class="view-reports-page">
     <div class="page-title" style="border: none;">
       <p class="name-title">{titleText}</p>
-      <div id="backButtonId" role="button" aria-label="{window.languages.Back}" ontouchstart="goToBackReportTouchStart()"
+      <div id="backButtonId" role="button" aria-label="{window.languages.Back}"
+           ontouchstart="goToBackReportTouchStart()"
            ontouchend="goToBackReportTouchEnd()"
            class="back-button">
       </div>
@@ -57,6 +58,15 @@
       </div>
     </div>
 
+    <div id="filterButtonContainerId"
+         class="view-monitoring-report-filter-button-container"
+         ontouchstart="goToFilterStart()"
+         ontouchend="goToFilterEnd()">
+      <div id="filterButtonId"
+           class="view-monitoring-report-filter-button">
+      </div>
+    </div>
+
   </div>
 
   <script>
@@ -74,6 +84,8 @@
     };
     scope.noToken = true;
 
+    scope.pageNumber = 0;
+
     scope.reportsList = [];
     scope.outgoList = [];
     scope.incomeList = [];
@@ -81,7 +93,7 @@
     scope.on('mount', function () {
       scope.titleText = generateTitleText();
       scope.noToken = !checkForTokens();
-      if (!scope.noToken){
+      if (!scope.noToken) {
         loadOutgo();
       }
       scope.update();
@@ -186,10 +198,43 @@
       }
     }
 
+    //Functions for filter button
+    {
+      var goToFilterStartX, goToFilterStartY,
+        goToFilterEndX, goToFilterEndY;
+
+      goToFilterStart = function () {
+        event.preventDefault();
+        event.stopPropagation();
+
+        filterButtonContainerId.style.webkitTransform = 'scale(0.8)';
+
+        goToFilterStartX = event.changedTouches[0].pageX;
+        goToFilterStartY = event.changedTouches[0].pageY;
+      };
+
+      goToFilterEnd = function () {
+        event.preventDefault();
+        event.stopPropagation();
+
+        filterButtonContainerId.style.webkitTransform = 'scale(1)';
+
+        goToFilterEndX = event.changedTouches[0].pageX;
+        goToFilterEndY = event.changedTouches[0].pageY;
+
+        if (Math.abs(goToFilterStartX - goToFilterEndX) <= 20
+          && Math.abs(goToFilterStartY - goToFilterEndY) <= 20) {
+          riotTags.innerHTML = "<view-report-filter>";
+          riot.mount('view-report-filter', opts);
+          scope.unmount();
+        }
+      }
+    }
+
     checkForTokens = function () {
       var result = false;
-      for (var i in scope.cardsarray){
-        if (scope.cardsarray[i].monitoring_token !== ""){
+      for (var i in scope.cardsarray) {
+        if (scope.cardsarray[i].monitoring_token !== "") {
           result = true;
         }
       }
@@ -198,18 +243,18 @@
 
     generateTitleText = function () {
       var resultTitle = '';
-      if (checkForTokens()){
+      if (checkForTokens()) {
         resultTitle = window.languages.ViewMonitoringReportYesTokenTitle;
         var currentMonth = new Date().getMonth() + 1;
-        for (var i in window.languages.ViewReportMonthsArray){
-          if (window.languages.ViewReportMonthsArray[i].count === currentMonth){
+        for (var i in window.languages.ViewReportMonthsArray) {
+          if (window.languages.ViewReportMonthsArray[i].count === currentMonth) {
             resultTitle = resultTitle + window.languages.ViewReportMonthsArray[i].name.toUpperCase();
           }
         }
       } else {
         resultTitle = window.languages.ViewMonitoringReportNoTokenTitle;
       }
-      if (scope.filter.start !== '' || scope.filter.end !== ''){
+      if (scope.filter.start !== '' || scope.filter.end !== '') {
         resultTitle = scope.filter.start.toString() + '-' + scope.filter.end.toString();
       }
       return resultTitle;
@@ -229,7 +274,7 @@
     };
 
     loadOutgo = function (id) {
-      if (scope.outgoList.length === 0){
+      if (scope.outgoList.length === 0) {
 
       }
     };
@@ -297,7 +342,7 @@
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber,
-          page_number: parseInt(scope.pageNumberOptional),
+          page_number: parseInt(scope.pageNumber),
           date_start: firstDay,
           date_end: lastDay,
           account_id: accountId
@@ -376,7 +421,7 @@
           timeOutTimerPayment = setTimeout(function () {
             window.writeLog({
               reason: 'Timeout',
-              method:'get.payment.list',
+              method: 'get.payment.list',
             });
             scope.errorNote = "Сервис временно недоступен";
             scope.stepAmount = 0;

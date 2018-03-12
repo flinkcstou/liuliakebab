@@ -2622,6 +2622,15 @@ var css = {
   "border-bottom: 1px solid #e8e8e8;" +
   "}",
 
+  titleTopBorder: ".title-top-border " +
+  "{" +
+  "position: absolute;" +
+  "width: 90%;" +
+  "left: 5%;" +
+  "top: 0%;" +
+  "border-bottom: 1px solid #e8e8e8;" +
+  "}",
+
   verLineBorder: ".hor-line-border " +
   "{" +
   "position: relative;" +
@@ -10690,6 +10699,355 @@ var css = {
   "background-position-y: center;" +
   "background-position-x: center;" +
   "background-size: 100%;" +
+  "}",
+
+  viewMonitoringReportFilterButton: ".view-monitoring-report-filter-button" +
+  "{ " +
+  "position: absolute;" +
+  "width:" + 115 * widthK + "px;" +
+  "height:" + 115 * widthK + "px;" +
+  "background-image: url(resources/icons/ViewReportFilter/monitoring_filter.png);" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 62%;" +
+  "}",
+
+  viewMonitoringReportFilterButtonContainer: ".view-monitoring-report-filter-button-container" +
+  "{ " +
+  "position: absolute;" +
+  "width:" + 115 * widthK + "px;" +
+  "height:" + 115 * widthK + "px;" +
+  "bottom:" + 67 * widthK + "px;" +
+  "right:" + 36 * widthK + "px;" +
+  "z-index: 20;" +
+  "background-color: #00a8f1;" +
+  "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "border-radius: " + 100 * widthK + "px;" +
+  "-webkit-box-shadow:" + 7 * widthK + "px " + 7 * widthK + "px " + 13 * widthK + "px " + 0 * widthK + "px " + "rgba(0,0,0, 0.11);" +
+  "-moz-box-shadow:" + 7 * widthK + "px " + 7 * widthK + "px " + 13 * widthK + "px " + 0 * widthK + "px " + "rgba(0,0,0, 0.11);" +
+  "box-shadow:" + 7 * widthK + "px " + 7 * widthK + "px " + 13 * widthK + "px " + 0 * widthK + "px " + "rgba(0,0,0, 0.11);" +
+  "border-radius: " + 100 * widthK + "px;" +
+  "}",
+
+// VIEW REPORT FILTER
+
+  viewReportFiltersContainer: ".view-report-filters-container" +
+  "{ " +
+  "position: absolute;" +
+  "width: 100%;" +
+  "top: " + 87 * widthK + "px;" +
+  "}",
+
+  viewReportFilterByDateContainer: ".view-report-filter-bydate-container" +
+  "{ " +
+  "position: relative;" +
+  "height: " + 160 * widthK + "px;" +
+  "overflow: hidden;" +
+  "}",
+
+  viewReportFilterByDateTitle: ".view-report-filter-bydate-title" +
+  "{ " +
+  "position: relative;" +
+  "margin: 0;" +
+  "margin-left: " + 134 * widthK + "px;" +
+  "margin-top: " + 50 * widthK + "px;" +
+  "font-size: " + 33 * widthK + "px;" +
+  "color: #565d6a;" +
+  "}",
+
+  viewReportFilterByDateText: ".view-report-filter-bydate-text" +
+  "{ " +
+  "position: relative;" +
+  "margin: 0;" +
+  "margin-left: " + 134 * widthK + "px;" +
+  "margin-top: " + 3 * widthK + "px;" +
+  "font-size: " + 29 * widthK + "px;" +
+  "color: #c2c2c2;" +
+  "}",
+
+  viewReportFilterByDateIcon: ".view-report-filter-bydate-icon" +
+  "{ " +
+  "position: absolute;" +
+  "top:" + 51 * widthK + "px;" +
+  "left:" + 47 * widthK + "px;" +
+  "height:" + 41 * widthK + "px;" +
+  "width:" + 41 * widthK + "px;" +
+  "background-image: url('resources/icons/ViewReportFilter/monitoring_filter_date.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 100%;" +
+  "background-position-y: center;" +
+  "background-position-x: center;" +
+  "background-size: 100%;" +
+  "}",
+
+  viewReportFilterArrowIcon: ".view-report-filter-arrow-icon" +
+  "{ " +
+  "position: absolute;" +
+  "top:" + 73 * widthK + "px;" +
+  "right:" + 50 * widthK + "px;" +
+  "height:" + 17 * widthK + "px;" +
+  "width:" + 11 * widthK + "px;" +
+  "background-image: url('resources/icons/ViewReportFilter/filter_arrow.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 100%;" +
+  "background-position-y: center;" +
+  "background-position-x: center;" +
+  "background-size: 100%;" +
+  "}",
+
+  viewReportFilterByCardContainer: ".view-report-filter-bycard-container" +
+  "{ " +
+  "position: relative;" +
+  "height: " + 160 * widthK + "px;" +
+  "overflow: hidden;" +
+  "}",
+
+  viewReportFilterByCardTitle: ".view-report-filter-bycard-title" +
+  "{ " +
+  "position: relative;" +
+  "margin: 0;" +
+  "margin-left: " + 134 * widthK + "px;" +
+  "margin-top: " + 33 * widthK + "px;" +
+  "font-size: " + 33 * widthK + "px;" +
+  "color: #565d6a;" +
+  "}",
+
+  viewReportFilterByCardText: ".view-report-filter-bycard-text" +
+  "{ " +
+  "position: relative;" +
+  "margin: 0;" +
+  "margin-left: " + 134 * widthK + "px;" +
+  "margin-top: " + 3 * widthK + "px;" +
+  "font-size: " + 29 * widthK + "px;" +
+  "color: #c2c2c2;" +
+  "}",
+
+  viewReportFilterByCardIcon: ".view-report-filter-bycard-icon" +
+  "{ " +
+  "position: absolute;" +
+  "top:" + 35 * widthK + "px;" +
+  "left:" + 47 * widthK + "px;" +
+  "height:" + 41 * widthK + "px;" +
+  "width:" + 41 * widthK + "px;" +
+  "background-image: url('resources/icons/ViewReportFilter/monitoring_filter_card.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 100%;" +
+  "background-position-y: center;" +
+  "background-position-x: center;" +
+  "background-size: 100%;" +
+  "}",
+
+  viewReportFilterPage: ".view-report-filter-page " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 100%;" +
+  "background: #fafafa;" +
+  "}",
+
+  viewReportFilterDateCustomText: ".view-report-filter-date-custom-text " +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "margin-left:" + 44 * widthK + "px;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "color: #565d6a;" +
+  "}",
+
+  viewReportFilterDateCustomContainer: ".view-report-filter-date-custom-container " +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "margin: 0;" +
+  "margin-top:" + 126 * widthK + "px;" +
+  "}",
+
+  viewReportFilterDateCustomFrom: ".view-report-filter-date-custom-from " +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height:" + 89 * widthK + "px;" +
+  "margin: 0;" +
+  "margin-top:" + 20 * widthK + "px;" +
+  "background-color: white;" +
+  "}",
+
+  viewReportFilterDateCustomFromTitle: ".view-report-filter-date-custom-from-title " +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "margin-top:" + 26 * widthK + "px;" +
+  "margin-left:" + 52 * widthK + "px;" +
+  "font-size:" + 31 * widthK + "px;" +
+  "color: #c2c2c2;" +
+  "}",
+
+  viewReportFilterDateCustomTo: ".view-report-filter-date-custom-to " +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height:" + 89 * widthK + "px;" +
+  "margin: 0;" +
+  "background-color: white;" +
+  "}",
+
+  viewReportFilterDateCustomToTitle: ".view-report-filter-date-custom-to-title " +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "margin-top:" + 26 * widthK + "px;" +
+  "margin-left:" + 52 * widthK + "px;" +
+  "font-size:" + 31 * widthK + "px;" +
+  "color: #c2c2c2;" +
+  "}",
+
+  viewReportFilterDateCustomArrow: ".view-report-filter-date-custom-arrow" +
+  "{ " +
+  "position: absolute;" +
+  "top:" + 40 * widthK + "px;" +
+  "right:" + 52 * widthK + "px;" +
+  "height:" + 17 * widthK + "px;" +
+  "width:" + 11 * widthK + "px;" +
+  "background-image: url('resources/icons/ViewReportFilter/filter_arrow.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 100%;" +
+  "background-position-y: center;" +
+  "background-position-x: center;" +
+  "background-size: 100%;" +
+  "}",
+
+  viewReportFilterDateRangeTypeContainer: ".view-report-filter-date-range-type-container" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "margin-top:" + 60 * widthK + "px;" +
+  "}",
+
+  viewReportFilterDateRangeType: ".view-report-filter-date-range-type" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height:" + 89 * widthK + "px;" +
+  "margin: 0;" +
+  "background-color: white;" +
+  "}",
+
+  viewReportFilterDateRangeTypeTitle: ".view-report-filter-date-range-type-title" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "margin-top:" + 26 * widthK + "px;" +
+  "margin-left:" + 52 * widthK + "px;" +
+  "font-size:" + 33 * widthK + "px;" +
+  "color: #565d6a;" +
+  "}",
+
+  viewReportFilterDateRangeTypeCheckIcon: ".view-report-filter-date-range-type-check-icon" +
+  "{" +
+  "position: absolute;" +
+  "right:" + 40 * widthK + "px;" +
+  "width:" + 57 * widthK + "px;" +
+  "height: 100%;" +
+  "top: 0;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 62%;" +
+  "background-position: center;" +
+  "background-image: url('resources/icons/ViewService/radio_unselected.png');" +
+  "}",
+
+  viewReportFilterCardChooseCardText: ".view-report-filter-card-choose-card-text " +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "margin-top:" + 126 * widthK + "px;" +
+  "margin-left:" + 44 * widthK + "px;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "color: #565d6a;" +
+  "}",
+
+  viewReportFilterCardCardsContainer: ".view-report-filter-card-cards-container " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "top:" + 190 * widthK + "px;" +
+  "height:" + (1232 * heightK - 277 * widthK) + "px;" +
+  "background-color: transparent;" +
+  "overflow-x: hidden;" +
+  "overflow-y: scroll;" +
+  "-webkit-backface-visibility: hidden;" +
+  "backface-visibility: hidden;" +
+  "-webkit-overflow-scrolling: touch;" +
+  "}",
+
+  viewReportFilterCardCard: ".view-report-filter-card-card " +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height: " + 145 * widthK + "px; " +
+  "margin: auto;" +
+  "left: 0;" +
+  "right: 0;" +
+  "background-color: white;" +
+  "}",
+
+  viewReportFilterCardCardLogoContainer: ".view-report-filter-card-card-logo-container " +
+  "{" +
+  "width: 31%;" +
+  "height: 100%;" +
+  "left: 0;" +
+  "background-color: transparent;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: contain;" +
+  "float: left;" +
+  "position: absolute;" +
+  "}",
+
+  viewReportFilterCardCardInfoContainer: ".view-report-filter-card-card-info-container " +
+  "{" +
+  "position: absolute;" +
+  "width: 41%;" +
+  "height: 100%;" +
+  "left: 30%;" +
+  "background-color: transparent;" +
+  "}",
+
+  viewReportFilterCardCardInfoTextOne: ".view-report-filter-card-card-info-text-one " +
+  "{" +
+  "position: absolute;" +
+  "font-size: " + 30 * widthK + "px; " +
+  "width: 110%;" +
+  "top: 25%;" +
+  "margin: 0;" +
+  "text-overflow: ellipsis;" +
+  "white-space: nowrap;" +
+  "overflow: hidden;" +
+  "color: #565d6a;" +
+  "}",
+
+  viewReportFilterCardCardInfoTextThree: ".view-report-filter-card-card-info-text-three " +
+  "{" +
+  "position: absolute;" +
+  "font-size: " + 28 * widthK + "px; " +
+  "color: #565d6a;" +
+  "margin: 0;" +
+  "top: 53%;" +
+  "}",
+
+  viewReportFilterCardCardCheckIcon: ".view-report-filter-card-card-check-icon" +
+  "{" +
+  "position: absolute;" +
+  "right:" + 40 * widthK + "px;" +
+  "width:" + 57 * widthK + "px;" +
+  "height: 100%;" +
+  "top: 0;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 62%;" +
+  "background-position: center;" +
+  "background-image: url('resources/icons/ViewService/radio_unselected.png');" +
   "}",
 
 //  VIEW REPORTS
