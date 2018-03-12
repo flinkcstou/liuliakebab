@@ -284,7 +284,7 @@
       scope.friendHelpBool = false;
     }
 
-    refreshFunction = function (bool) {
+    scope.refreshFunction = refreshFunction = function (bool) {
       scope.friendHelpBool = bool;
       scope.update(scope.friendHelpBool);
     }
