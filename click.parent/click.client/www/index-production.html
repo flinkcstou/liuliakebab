@@ -328,6 +328,26 @@
         } catch (error) {
           console.error(error);
         }
+
+        try {
+          if (this.enterButtonId)
+            enterButtonId.style.bottom = e.keyboardHeight + "px";
+        } catch (error) {
+          console.error(error);
+        }
+        try {
+          if (this.formTypeTwoBtnId)
+            formTypeTwoBtnId.style.bottom = e.keyboardHeight + "px";
+        } catch (error) {
+          console.error(error);
+        }
+        try {
+          if (this.nextButtonId)
+            nextButtonId.style.bottom = e.keyboardHeight + "px";
+        } catch (error) {
+          console.error(error);
+        }
+
       }
 
       function keyboardHideHandler(e) {
@@ -375,6 +395,25 @@
         } catch (error) {
           console.error(error);
         }
+        try {
+          if (this.enterButtonId)
+            enterButtonId.style.bottom = "0px";
+        } catch (error) {
+          console.error(error);
+        }
+        try {
+          if (this.formTypeTwoBtnId)
+            formTypeTwoBtnId.style.bottom = "0px";
+        } catch (error) {
+          console.error(error);
+        }
+        try {
+          if (this.nextButtonId)
+            nextButtonId.style.bottom = "0px";
+        } catch (error) {
+          console.error(error);
+        }
+
       }
     }, false);
   }

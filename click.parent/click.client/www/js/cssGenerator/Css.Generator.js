@@ -5309,9 +5309,9 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "background-color: #ee4d3d;" +
-  "background: -moz-linear-gradient(left, #ee4d3d 20%, #76c1f4);" +
-  "background: -webkit-linear-gradient(left, #ee4d3d 20%, #76c1f4);" +
-  "background: -ms-linear-gradient(left, #ee4d3d 20%, #76c1f4);" +
+  // "background: -moz-linear-gradient(left, #ee4d3d 20%, #76c1f4);" +
+  // "background: -webkit-linear-gradient(left, #ee4d3d 20%, #76c1f4);" +
+  // "background: -ms-linear-gradient(left, #ee4d3d 20%, #76c1f4);" +
   "bottom: 0;" +
   "padding: 0;" +
   "left: 0;" +

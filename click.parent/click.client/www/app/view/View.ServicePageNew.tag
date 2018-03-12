@@ -118,7 +118,7 @@
     </div>
 
 
-    <button id="enterButtonId"
+    <button id="enterButtonId" style="bottom: {window.bottomButtonBottom}"
             class="{servicepage-button-enter-enabled: enterButtonEnabled,servicepage-button-enter-disabled:!enterButtonEnabled}"
             ontouchstart="onTouchStartOfEnter()"
             ontouchend="onTouchEndOfEnter()">
@@ -232,7 +232,8 @@
       </div>
     </div>
 
-    <button id="formTypeTwoBtnId" class="servicepage-button-save" ontouchstart="onTouchStartOfEnter()"
+    <button id="formTypeTwoBtnId" style="bottom: {window.bottomButtonBottom}" class="servicepage-button-save"
+            ontouchstart="onTouchStartOfEnter()"
             ontouchend="formTypeTwoButtonFunction()">
       {!enterButton?window.languages.ViewServicePageSaveLabel:window.languages.ViewServicePageEnterLabel}
     </button>
