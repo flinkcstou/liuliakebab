@@ -112,6 +112,13 @@
             riot.update()
             riotTags.innerHTML = "<view-registration-device>";
             riot.mount('view-registration-device');
+          } else if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-sms') {
+            window.common.alert.hide("componentAlertId");
+            console.log("Alert to device registration");
+            history.arrayOfHistory.pop();
+            sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+            riotTags.innerHTML = "<view-registration-device>";
+            riot.mount('view-registration-device');
           }
           else {
             console.log("Alert to authorization");
