@@ -14942,7 +14942,7 @@ var css = {
   "width:" + 100 * widthK + "px;" +
   "left: 10%;" +
   "top: 10%;" +
-  "background-image: url(resources/icons/ViewSuccessUnsuccess/notification.png);" +
+  "background-image: url(resources/icons/ViewSuccessUnsuccess/notification2.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
   "}",
