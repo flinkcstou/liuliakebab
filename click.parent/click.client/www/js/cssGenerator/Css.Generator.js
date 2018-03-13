@@ -10770,15 +10770,17 @@ var css = {
   "top: " + 20 * widthK + "px; " +
   "left: 6%;" +
   "text-align: left;" +
-  "font-size:" + 28 * widthK + "px; " +
+  "font-size:" + 29 * widthK + "px; " +
   "color: #595759;" +
   "font-weight: bold;" +
+  "letter-spacing:1px;" +
+  "word-spacing:" + 4 * widthK + "px;" +
   "}",
 
   viewMonitoringPaymentBlockContainer: ".view-monitoring-payment-block-containter" +
   "{" +
   "position: relative;" +
-  "height:" + 140 * widthK + "px; " +
+  "height:" + 145 * widthK + "px; " +
   "width: 91%;" +
   "left: 4%;" +
   "z-index: 1;" +
@@ -10791,7 +10793,7 @@ var css = {
   viewMonitoringPaymentIcon: ".view-monitoring-payment-icon " +
   "{" +
   //"top:" + 50 * widthK + "px;" +
-  "background-size: 80%;" +
+  "background-size: cover;" +
   "position: absolute;" +
   "width:" + 125 * widthK + "px;" +
   "height:" + 125 * widthK + "px;" +
@@ -10824,10 +10826,10 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: 25%;" +
-  "top: 15%;" +
-  "left: 8%;" +
+  "top: 34%;" +
+  "left: 15%;" +
   "margin: 0;" +
-  "font-size:" + 22 * widthK + "px; " +
+  "font-size:" + 24 * widthK + "px; " +
   "width: 75%;" +
   "white-space: nowrap;" +
   "text-overflow: ellipsis;" +
@@ -10837,11 +10839,10 @@ var css = {
   viewMonitoringPaymentInfoBalance: ".view-monitoring-payment-info-balance " +
   "{" +
   "position: relative;" +
-  "top: 30%;" +
-  // "left: 35%;" +
-  "right:" + 5 * widthK + "px;" +
+  "top: 28%;" +
+  "right:21%;" +
   "margin: 0;" +
-  "font-size:" + 35 * widthK + "px;" +
+  "font-size:" + 28 * widthK + "px;" +
   "color: #595759;" +
   "float: right;" +
   "font-weight: bold;" +
@@ -10850,8 +10851,8 @@ var css = {
   viewMonitoringPaymentInfoCurrencyField: ".view-monitoring-payment-info-currency-field" +
   "{" +
   "position: relative;" +
-  "top: 37%;" +
-  // "left: 36%;" +
+  "top: 31%;" +
+  "right: 18%;" +
   "margin: 0;" +
   "font-size:" + 24 * widthK + "px;" +
   "color: #595759;" +
@@ -10863,8 +10864,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: 25%;" +
-  "top: 65%;" +
-  "left: 8%;" +
+  "top: 50%;" +
+  "left: 16%;" +
   "margin: 0;" +
   "font-size: " + 22 * widthK + "px; " +
   "width: 75%;" +
@@ -10894,7 +10895,7 @@ var css = {
   //"height: 100%;" +
   "top: 32%;" +
   "background-repeat: no-repeat;" +
-  "background-size: 60%;" +
+  "background-size: 23%;" +
   "background-position: center;" +
   "background-image: url('resources/icons/ViewReportFilter/filter_arrow.png');" +
   "margin: 0;" +
