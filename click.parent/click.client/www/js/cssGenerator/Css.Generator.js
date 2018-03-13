@@ -10877,10 +10877,10 @@ var css = {
   viewMonitoringPaymentInfoTime: ".view-monitoring-payment-info-time " +
   "{" +
   "position: absolute;" +
-  "right: " + 36 * widthK + "px; " +
+  "right: " + 63 * widthK + "px; " +
   "width: 10%;" +
   //"height: 100%;" +
-  "top: 60%;" +
+  "top: 54%;" +
   "font-size: " + 20 * widthK + "px; " +
   "margin: 0;" +
   "color: #8b8b8b;" +
@@ -10890,12 +10890,12 @@ var css = {
   "{" +
   "position: absolute;" +
   "width:" + 60 * widthK + "px;" +
-  "left: 96%;" +
+  "left: 92%;" +
   "height:" + 60 * widthK + "px;" +
   //"height: 100%;" +
-  "top: 32%;" +
+  "top: 30%;" +
   "background-repeat: no-repeat;" +
-  "background-size: 23%;" +
+  "background-size: 22%;" +
   "background-position: center;" +
   "background-image: url('resources/icons/ViewReportFilter/filter_arrow.png');" +
   "margin: 0;" +
