@@ -56,6 +56,32 @@
           </div>
         </div>
       </div>
+
+    </div>
+
+    <div class="view-monitoring-body-container" id="reportBodyContainerId">
+      <div class="view-monitoring-payments-container" each="{i in paymentDates}">
+        <div class="view-monitoring-payment-date-containter" id="{'id'+i}">
+          <div class="view-monitoring-payment-date-field">{i}</div>
+        </div>
+        <div class="view-monitoring-payment-block-containter" each="{j in paymentsMap[i]}" id="{j.payment_id}"
+             ontouchstart="" onclick="" role="button"
+             aria-label="{j.service_name}">
+          <div class="view-monitoring-payment-icon"
+               style="background-image: url({j.image})"></div>
+          <div class="view-monitoring-payment-info-left-container">
+            <p class="view-monitoring-payment-info-name">{j.service_name}</p>
+            <p class="view-monitoring-payment-info-number">{j.cntrg_info_param2}</p>
+          </div>
+          <div class="view-monitoring-payment-info-right-container">
+            <div class="view-monitoring-payment-info-currency-field">сум</div>
+            <div class="view-monitoring-payment-info-balance">{window.amountTransform(j.amount.toString())}
+            </div>
+            <p class="view-monitoring-payment-info-time">{j.paymentTime}</p>
+          </div>
+          <div class="view-monitoring-payment-info-state-image"></div>
+        </div>
+      </div>
     </div>
 
     <div id="filterButtonContainerId"
@@ -77,6 +103,8 @@
     scope.noTokenTitle = window.languages.ViewMonitoringReportNoTokenTitle;
     scope.titleText = '';
     scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
+    var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
     scope.filter = {
       start: '',
       end: '',
@@ -235,7 +263,10 @@
       var result = false;
       for (var i in scope.cardsarray) {
         if (scope.cardsarray[i].monitoring_token !== "") {
+          console.log("account id=", scope.cardsarray[i].id)
+          scope.accountId = scope.cardsarray[i].id;
           result = true;
+          break;
         }
       }
       return result;
@@ -271,6 +302,8 @@
       document.getElementById(id).style.borderBottom = "" + 3 * widthK + "px solid red";
       document.getElementById(id).style.fontFamily = "SFUIDisplay-Semibold";
       document.getElementById(id).style.color = "red";
+
+      paymentListUpdate();
     };
 
     loadOutgo = function (id) {
@@ -281,71 +314,54 @@
 
     scope.paymentListUpdate = paymentListUpdate = function (from) {
 
-      if (from == 'fromGraph' || from == 'fromFilter') {
-        scope.pageNumberOptional = 1;
-        scope.paymentsMap = {};
-        scope.paymentDates = [];
-        scope.paymentsList = []
-      }
-      if (scope.monthNotStartedYet) {
-        scope.paymentsMap = {};
-        scope.paymentDates = [];
-        scope.paymentsList = [];
-        scope.update();
-        return;
-      }
-      else {
-        if (monthChanged) {
-          scope.pageNumberOptional = 1;
-          scope.paymentsMap = {};
-          scope.paymentDates = [];
-          scope.paymentsList = [];
-          monthChanged = false;
-        }
-      }
+
+      scope.pageNumberOptional = 1;
+      scope.paymentsMap = {};
+      scope.paymentDates = [];
+      scope.paymentsList = [];
 
       scope.update();
-      var firstDay = scope.tags["component-report-filter"].filterDateFrom,
-        lastDay = scope.tags["component-report-filter"].filterDateTo,
-        accountId = scope.tags["component-report-filter"].filterByAccount;
+//      var firstDay = scope.tags["component-report-filter"].filterDateFrom,
+//        lastDay = scope.tags["component-report-filter"].filterDateTo,
+//        accountId = scope.tags["component-report-filter"].filterByAccount;
 
-      if (!accountId) {
+      if (!scope.accountId) {
 
-        accountId = null;
+        scope.accountId = null;
       }
 
-      if (!(firstDay && lastDay)) {
-
-        var date = new Date();
-        firstDay = new Date(scope.mArray[scope.mNumber].year, scope.mArray[scope.mNumber].month, 1);
-        lastDay = new Date(scope.mArray[scope.mNumber].year, scope.mArray[scope.mNumber].month + 1, 0);
-
-        firstDay = convertDate(firstDay);
-        lastDay = convertDate(lastDay);
-      }
-
-      scope.update();
+//      if (!(firstDay && lastDay)) {
+//
+//        var date = new Date();
+//        firstDay = new Date(scope.mArray[scope.mNumber].year, scope.mArray[scope.mNumber].month, 1);
+//        lastDay = new Date(scope.mArray[scope.mNumber].year, scope.mArray[scope.mNumber].month + 1, 0);
+//
+//        firstDay = convertDate(firstDay);
+//        lastDay = convertDate(lastDay);
+//      }
+//
+//      scope.update();
 
       window.startSpinner();
-      window.clearTimeout(timeOutTimerPayment);
+//      window.clearTimeout(timeOutTimerPayment);
 
-      if (window.fakedSocket)
-        if (window.fakedSocket.readyState == 1) {
-          scope.pageNumberOptional = 1;
-          scope.paymentsMap = {};
-          scope.paymentDates = [];
-          scope.paymentsList = []
-        }
+//      if (window.fakedSocket)
+//        if (window.fakedSocket.readyState == 1) {
+//          scope.pageNumberOptional = 1;
+//          scope.paymentsMap = {};
+//          scope.paymentDates = [];
+//          scope.paymentsList = []
+//        }
 
       window.api.call({
         method: 'get.payment.list',
         input: {
           session_key: sessionKey,
           phone_num: phoneNumber,
-          page_number: parseInt(scope.pageNumber),
-          date_start: firstDay,
-          date_end: lastDay,
-          account_id: accountId
+//          page_number: parseInt(scope.pageNumber),
+//          date_start: firstDay,
+//          date_end: lastDay,
+          account_id: scope.accountId
         },
         scope: this,
 
@@ -373,17 +389,17 @@
               if (date.getUTCDate() == new Date().getUTCDate() - 1 && date.getUTCMonth() == new Date().getUTCMonth() && date.getUTCFullYear() == new Date().getUTCFullYear())
                 dateStr = 'вчера';
 
-              if (result[1][i].state == -1) {
-                result[1][i].state_image = "resources/icons/ViewReport/report_status_error.png"
-              }
-
-              if (result[1][i].state == 2) {
-                result[1][i].state_image = "resources/icons/ViewReport/report_status_ok.png"
-              }
-
-              if (result[1][i].state == 1) {
-                result[1][i].state_image = "resources/icons/ViewReport/report_status_processing.png"
-              }
+//              if (result[1][i].state == -1) {
+//                result[1][i].state_image = "resources/icons/ViewReport/report_status_error.png"
+//              }
+//
+//              if (result[1][i].state == 2) {
+//                result[1][i].state_image = "resources/icons/ViewReport/report_status_ok.png"
+//              }
+//
+//              if (result[1][i].state == 1) {
+//                result[1][i].state_image = "resources/icons/ViewReport/report_status_processing.png"
+//              }
 
               if (!scope.paymentsMap[dateStr]) {
                 scope.paymentsMap[dateStr] = [];
