@@ -15,16 +15,20 @@
       <div class="view-report-filter-date-custom-text">
         {window.languages.ViewReportFilterDateCustomText}
       </div>
-      <div id="customPeriodFromDateId" class="view-report-filter-date-custom-from">
+      <div id="customPeriodFromDateId" class="view-report-filter-date-custom-from" ontouchend="pickDateFrom()">
         <div class="title-top-border"></div>
 
-        <div class="view-report-filter-date-custom-from-title">{window.languages.ViewReportFilterDateCustomFrom}</div>
+        <div class="view-report-filter-date-custom-from-title">{window.languages.ViewReportFilterDateCustomFrom}
+          {from_dd}.{from_mm}.{from_yyyy}
+        </div>
         <div class="view-report-filter-date-custom-arrow"></div>
 
         <div class="title-bottom-border"></div>
       </div>
-      <div id="customPeriodToDateId" class="view-report-filter-date-custom-to">
-        <div class="view-report-filter-date-custom-to-title">{window.languages.ViewReportFilterDateCustomTo}</div>
+      <div id="customPeriodToDateId" class="view-report-filter-date-custom-to" ontouchend="pickDateTo()">
+        <div class="view-report-filter-date-custom-to-title">{window.languages.ViewReportFilterDateCustomTo}
+          {to_dd}.{to_mm}.{to_yyyy}
+        </div>
         <div class="view-report-filter-date-custom-arrow"></div>
         <div class="title-bottom-border"></div>
       </div>
@@ -109,6 +113,97 @@
           scope.unmount();
         }
       }
+    }
+
+    //Pick date
+    {
+      pickDateFrom = function () {
+
+        var currentDate = new Date(),
+          verifiedDate;
+
+        var options = {
+          date: new Date(),
+          doneButtonLabel: window.languages.ComponentReportFilterDoneButtonLabel,
+          cancelButtonLabel: window.languages.ComponentReportFilterCancelButtonLabel,
+          mode: 'date',
+          androidTheme: 5,
+          locale: "ru_RU",
+        };
+
+        function onSuccess(pickedDate) {
+
+          verifiedDate = pickedDate;
+
+          if (verifiedDate.getTime() > currentDate.getTime()) {
+
+            verifiedDate = currentDate;
+
+          }
+
+          if (dateTo) {
+
+            if (dateTo.getTime() < verifiedDate.getTime()) {
+
+              verifiedDate = dateTo;
+            }
+          }
+
+          dateFrom = verifiedDate;
+
+          scope.from_dd = dateFrom.getDate();
+          scope.from_mm = dateFrom.getMonth() + 1;
+          scope.from_yyyy = dateFrom.getFullYear();
+
+          scope.update();
+        }
+
+        datePicker.show(options, onSuccess);
+      };
+
+      pickDateTo = function () {
+
+        var currentDate = new Date(),
+          verifiedDate;
+
+        var options = {
+          date: new Date(),
+          doneButtonLabel: window.languages.ComponentReportFilterDoneButtonLabel,
+          cancelButtonLabel: window.languages.ComponentReportFilterCancelButtonLabel,
+          mode: 'date',
+          androidTheme: 5,
+          locale: "ru_RU",
+        };
+
+        function onSuccess(pickedDate) {
+
+          verifiedDate = pickedDate;
+
+          if (verifiedDate.getTime() > currentDate.getTime()) {
+
+            verifiedDate = currentDate;
+          }
+
+          if (dateFrom) {
+
+            if (dateFrom.getTime() > verifiedDate.getTime()) {
+
+              verifiedDate = dateFrom;
+            }
+          }
+
+          dateTo = verifiedDate;
+
+          scope.to_dd = dateTo.getDate();
+          scope.to_mm = dateTo.getMonth() + 1;
+          scope.to_yyyy = dateTo.getFullYear();
+
+          scope.update();
+        };
+
+        datePicker.show(options, onSuccess);
+      };
+
     }
 
   </script>

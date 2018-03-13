@@ -389,18 +389,6 @@
               if (date.getUTCDate() == new Date().getUTCDate() - 1 && date.getUTCMonth() == new Date().getUTCMonth() && date.getUTCFullYear() == new Date().getUTCFullYear())
                 dateStr = 'вчера';
 
-//              if (result[1][i].state == -1) {
-//                result[1][i].state_image = "resources/icons/ViewReport/report_status_error.png"
-//              }
-//
-//              if (result[1][i].state == 2) {
-//                result[1][i].state_image = "resources/icons/ViewReport/report_status_ok.png"
-//              }
-//
-//              if (result[1][i].state == 1) {
-//                result[1][i].state_image = "resources/icons/ViewReport/report_status_processing.png"
-//              }
-
               if (!scope.paymentsMap[dateStr]) {
                 scope.paymentsMap[dateStr] = [];
                 scope.paymentDates.push(dateStr);
