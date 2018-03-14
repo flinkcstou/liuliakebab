@@ -99,7 +99,7 @@ var RU_LANGUAGES =
     "ViewMyCardTransferDeniedAccess": "Извининте, вы не можете произвести перевод с этой карты",
     "ViewMyCardTransferDeniedP2p": "Первод средств с данной карты недоступен",
 
-    "ViewServicePageEnterLabel": "Продолжить",
+    "ViewServicePageEnterLabel": "ПРОДОЛЖИТЬ",
     "ViewServicePageChooseCityLabel": "Выберите город",
     "ViewServicePageChooseDistrictLabel": "Выберите район",
     //"ViewServicePageChooseRegion": "ВЫБЕРИТЕ РАЙОН",
@@ -182,7 +182,7 @@ var RU_LANGUAGES =
   "ViewPayTransferMenuNameCard": "КАРТА",
   "ViewPayTransferContactTextField": "Укажите номер телефона получателя:",
   "ViewPayTransferCardTextField": "Укажите номер карты получателя:",
-  "ViewPayTransferNext": "Продолжить",
+  "ViewPayTransferNext": "ПРОДОЛЖИТЬ",
   "ViewPayTransferTitle": "ПЕРЕВОДЫ",
   "ViewPayTransferCardOwnerTitle": "Владелец:",
   "ViewPayTransferAccessToContacts": "Для быстрого поиска в адресной книге, необходимо разрешить приложению доступ к контактам на Вашем устройстве",
@@ -211,13 +211,13 @@ var RU_LANGUAGES =
 
 
   "ViewTransferTwoTax": "Комиссия: ",
-  "ViewTransferTwoNext": "Продолжить",
+  "ViewTransferTwoNext": "ПРОДОЛЖИТЬ",
   "ViewTransferTwoTitle": "ПЕРЕВОД НА",
   "ViewTransferTwoSum": "Введите сумму",
 
   "ViewTransferThreeTitle": "ПЕРЕВОД НА",
   "ViewTransferThreeMenuTitle": "ПЕРЕВЕСТИ С КАРТЫ",
-  "ViewTransferThreeNext": "Продолжить",
+  "ViewTransferThreeNext": "ПРОДОЛЖИТЬ",
   "ViewTransferSubmitNoCards": "Нет карт доступных для переводов",
 
   "ViewTransferFourTitle": "ПЕРЕВОД НА",
@@ -304,7 +304,7 @@ var RU_LANGUAGES =
   "ViewInvoiceHistoryDetailPaymentStatusLabel": "Статус:",
 
   "ComponentPinResetTextOne": "При смене CLICK-PIN все Ваши карты будут отключены от системы CLICK",
-  "ComponentPinResetTextTwo": "Продолжить?",
+  "ComponentPinResetTextTwo": "ПРОДОЛЖИТЬ?",
   "ComponentPinResetTextThree": "Все Ваши карты отключены от системы CLICK",
   "ComponentPinResetTextFour": "Для установки нового CLICK-PIN необходимо заново пройти регистрацию",
   "ComponentPinResetYesButtonLabel": "ДА",
@@ -608,7 +608,7 @@ var RU_LANGUAGES =
   "ViewAutoPayCreatedSuccessTextTwo": " успешно создан!",
   "ViewAutoPayDeletedSuccessText": "Автоплатеж успешно удален!",
 
-  "ViewServiceInfoButtonNextText": "Продолжить",
+  "ViewServiceInfoButtonNextText": "ПРОДОЛЖИТЬ",
   "ViewServiceInfoButtonGoToPaymentText": "ПЕРЕЙТИ К ОПЛАТЕ",
 
   "ComponentToolbarAriaLabelOpenSideMenu": "Открыть боковое меню",
