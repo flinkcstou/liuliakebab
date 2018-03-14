@@ -76,11 +76,13 @@
 
   <div class="view-authorization-inner-container" if="{fingerprintMode}">
 
-    <div id="switchModeButton" class="bottom-button-container"
+    <div class="auth-fingerprint-body-label">{languages.ViewAuthFingerprintBodyText}</div>
+
+    <div id="switchModeButton" class="button-auth-fingerprint"
          ontouchend="firstPinEnterTouchEnd()"
          ontouchstart="firstPinEnterTouchStart()">
-      <div class="button-auth-fingerprint-mode-label">{window.languages.ViewAuthFingerprintModeButtonLabel}</div>
-      <div class="button-enter-icon"></div>
+      <div class="auth-fingerprint-mode-label">{window.languages.ViewAuthFingerprintModeButtonLabel}</div>
+      <div class="button-auth-fingerprint-clickpin-icon"></div>
     </div>
 
   </div>

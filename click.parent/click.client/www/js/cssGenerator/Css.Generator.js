@@ -1161,7 +1161,7 @@ var css = {
   "overflow: hidden;" +
   "}",
 
-  buttonAuthFingerPrintModeLabel: ".button-auth-fingerprint-mode-label " +
+  authFingerPrintModeLabel: ".auth-fingerprint-mode-label " +
   "{" +
   "position: absolute;" +
   "top: 27%;" +
@@ -1171,6 +1171,48 @@ var css = {
   "margin: auto;" +
   "margin-left:" + 65 * widthK + "px;" +
   "color: white;" +
+  "}",
+
+  buttonAuthFingerprintClickPinIcon: ".button-auth-fingerprint-clickpin-icon" +
+  "{" +
+  "position: absolute;" +
+  "left: 90%;" +
+  "background-size: contain;" +
+  "background-image: url(resources/icons/authorization/button_arrow.png);" +
+  "background-repeat: no-repeat;" +
+  "width:" + 56 * widthK + "px;" +
+  "height:" + 28 * widthK + "px;" +
+  "top:" + 29 * widthK + "px;" +
+  "transition: 0.8s;" +
+  "}",
+
+  buttonAuthFingerprint: ".button-auth-fingerprint" +
+  "{" +
+  "height: " + 120 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #00a8f1;" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
+  "color: #ffffff;" +
+  "}",
+
+  authFingerPrintBodyLabel: ".auth-fingerprint-body-label " +
+  "{" +
+  "position: absolute;" +
+  "top: 12%;" +
+  "width:90%;" +
+  "height:" + 40 * widthK + "px;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "margin: auto;" +
+  "left: 5%;" +
+  "color: #353340;" +
+  "text-align: center;" +
   "}",
 
   authorizationFlexContainer: ".authorization-flex-container" +

@@ -56,6 +56,7 @@ var RU_LANGUAGES =
     "ViewAuthorizationOfflineModeLabel": "Офлайн режим",
 
     "ViewAuthFingerprintModeButtonLabel": "ВОЙТИ ИСПОЛЬЗУЯ CLICK-PIN",
+    "ViewAuthFingerprintBodyText": "Приложите палец к сканеру отпечатка для входа в приложение",
 
     "ViewInfoBalanceTitle": "Общий баланс",
 
