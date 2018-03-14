@@ -447,8 +447,8 @@
           return
         }
 
-        riotTags.innerHTML = "<view-monitoring-report>";
-        riot.mount('view-monitoring-report');
+        riotTags.innerHTML = "<view-report>";
+        riot.mount('view-report');
 
         scope.unmount()
       }

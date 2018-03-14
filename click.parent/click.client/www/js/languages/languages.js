@@ -94,7 +94,7 @@ var RU_LANGUAGES =
     "ViewMyCardTransfer": "Переводы с карты на карту",
     "ViewMyCardTitleName": "ДЕЙСТВИЯ С КАРТОЙ",
     "ViewMyCardPay": "Оплата с карты",
-    "ViewMyCardReports": "Мониторинг платежей",
+    "ViewMyCardReports": "Отчеты по карте",
     "ViewMyCardBlock": "Удалить карту",
     "ViewMyCardLastOperations": "Последние операции",
     "ViewMyCardSuccessDelete": "Карта успешно удалена",

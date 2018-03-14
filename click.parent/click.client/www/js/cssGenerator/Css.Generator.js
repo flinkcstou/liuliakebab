@@ -10752,6 +10752,176 @@ var css = {
   "border-radius: " + 100 * widthK + "px;" +
   "}",
 
+  viewMonitoringBodyContainer: ".view-monitoring-body-container" +
+  "{" +
+  "position: absolute;" +
+  //"height:" + 1150 * widthK + "px; " +
+  "width:100%; " +
+  "top:" + 190 * widthK + "px; " +
+  "bottom:0; " +
+  "background-color: white; " +
+  "overflow-y: scroll; " +
+  "overflow-x: hidden; " +
+  "-webkit-overflow-scrolling: touch; " +
+  // "background-color: #00a8f1;" +
+  "}",
+
+  viewMonitoringPaymentsContainer: ".view-monitoring-payments-container" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "}",
+
+  viewMonitoringPaymentDateContainer: ".view-monitoring-payment-date-containter" +
+  "{" +
+  "position: relative;" +
+  "height:" + 80 * widthK + "px; " +
+  "width: 100%;" +
+  // "left: 4%;" +
+  // "margin-top: 1%;" +
+  //"border-bottom:" + 1 * widthK + "px solid gainsboro;" +
+  "background-color: #f6f6f6;" +
+  "}",
+
+  viewMonitoringPaymentDateField: ".view-monitoring-payment-date-field" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "top: " + 20 * widthK + "px; " +
+  "left: 6%;" +
+  "text-align: left;" +
+  "font-size:" + 29 * widthK + "px; " +
+  "color: #595759;" +
+  "font-weight: bold;" +
+  "letter-spacing:1px;" +
+  "word-spacing:" + 4 * widthK + "px;" +
+  "}",
+
+  viewMonitoringPaymentBlockContainer: ".view-monitoring-payment-block-containter" +
+  "{" +
+  "position: relative;" +
+  "height:" + 145 * widthK + "px; " +
+  "width: 91%;" +
+  "left: 4%;" +
+  "z-index: 1;" +
+  //"margin-top: 1%;" +
+  "border-top:" + 1 * widthK + "px solid #f1f1f1;" +
+  "background-color: transparent;" +
+  "}",
+
+
+  viewMonitoringPaymentIcon: ".view-monitoring-payment-icon " +
+  "{" +
+  //"top:" + 50 * widthK + "px;" +
+  "background-size: cover;" +
+  "position: absolute;" +
+  "width:" + 125 * widthK + "px;" +
+  "height:" + 125 * widthK + "px;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  //"border-radius:" + 100 * widthK + "px;" +
+  //"border:solid 1px #f1f1f1;" +
+  "top: 6%;" +
+  "}",
+
+  viewMonitoringPaymentInfoLeftContainer: ".view-monitoring-payment-info-left-container " +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "width: 40%;" +
+  "left: 18%;" +
+  "color: #8b8b8b;" +
+  "}",
+
+  viewMonitoringPaymentInfoRightContainer: ".view-monitoring-payment-info-right-container " +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "width: 38%;" +
+  "left: 59%;" +
+  "color: #8b8b8b;" +
+  "}",
+
+  viewMonitoringPaymentInfoName: ".view-monitoring-payment-info-name " +
+  "{" +
+  "position: absolute;" +
+  "height: 25%;" +
+  "top: 34%;" +
+  "left: 15%;" +
+  "margin: 0;" +
+  "font-size:" + 24 * widthK + "px; " +
+  "width: 75%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "}",
+
+  viewMonitoringPaymentInfoBalance: ".view-monitoring-payment-info-balance " +
+  "{" +
+  "position: relative;" +
+  "top: 28%;" +
+  "right:21%;" +
+  "margin: 0;" +
+  "font-size:" + 28 * widthK + "px;" +
+  "color: #595759;" +
+  "float: right;" +
+  "font-weight: bold;" +
+  "}",
+
+  viewMonitoringPaymentInfoCurrencyField: ".view-monitoring-payment-info-currency-field" +
+  "{" +
+  "position: relative;" +
+  "top: 31%;" +
+  "right: 18%;" +
+  "margin: 0;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "color: #595759;" +
+  "float: right;" +
+  "font-weight: bold;" +
+  "}",
+
+  viewMonitoringPaymentInfoNumber: ".view-monitoring-payment-info-number " +
+  "{" +
+  "position: absolute;" +
+  "height: 25%;" +
+  "top: 50%;" +
+  "left: 16%;" +
+  "margin: 0;" +
+  "font-size: " + 22 * widthK + "px; " +
+  "width: 75%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "}",
+
+  viewMonitoringPaymentInfoTime: ".view-monitoring-payment-info-time " +
+  "{" +
+  "position: absolute;" +
+  "right: " + 63 * widthK + "px; " +
+  "width: 10%;" +
+  //"height: 100%;" +
+  "top: 54%;" +
+  "font-size: " + 20 * widthK + "px; " +
+  "margin: 0;" +
+  "color: #8b8b8b;" +
+  "}",
+
+  viewMonitoringPaymentInfoStateImage: ".view-monitoring-payment-info-state-image " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 60 * widthK + "px;" +
+  "left: 92%;" +
+  "height:" + 60 * widthK + "px;" +
+  //"height: 100%;" +
+  "top: 30%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 22%;" +
+  "background-position: center;" +
+  "background-image: url('resources/icons/ViewReportFilter/filter_arrow.png');" +
+  "margin: 0;" +
+  "}",
+
+
 // VIEW REPORT FILTER
 
   viewReportFiltersContainer: ".view-report-filters-container" +
