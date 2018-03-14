@@ -79,8 +79,8 @@
     <div class="auth-fingerprint-body-label">{languages.ViewAuthFingerprintBodyText}</div>
 
     <div id="switchModeButton" class="button-auth-fingerprint"
-         ontouchend="firstPinEnterTouchEnd()"
-         ontouchstart="firstPinEnterTouchStart()">
+         ontouchend="goToClickPinAuthorizationEnd()"
+         ontouchstart="goToClickPinAuthorizationStart()">
       <div class="auth-fingerprint-mode-label">{window.languages.ViewAuthFingerprintModeButtonLabel}</div>
       <div class="button-auth-fingerprint-clickpin-icon"></div>
     </div>
@@ -97,6 +97,21 @@
     scope.errorCode = 0;
     scope.fingerprintMode = true;
     //    scope.fingerprintMode = false;
+
+    //    setTimeout(function () {
+    if (JSON.parse(localStorage.getItem('settings_finger_print')) && scope.fingerprintMode) {
+      console.log("AUTHORIZATION CALL new OF FINGERPRINT 191");
+
+      try {
+        fingerPrintAsk();
+      }
+      catch (e) {
+        console.log(e)
+      }
+    } else {
+      window.scannerCanBeAsked = true;
+    }
+    //    }, 500);
 
 
     this.on('mount', function () {
@@ -195,7 +210,7 @@
 
     focusColor = function () {
       document.getElementById("firstPinContainerId").style.borderColor = "#00a8f1";
-    }
+    };
 
     inputPinFocus = function () {
       console.log("ALert is shown? ", window.common.alert.isShown("componentAlertId"));
@@ -447,20 +462,33 @@
       }
     };
 
-    setTimeout(function () {
-      if (JSON.parse(localStorage.getItem('settings_finger_print')) && window.scannerCanBeAsked) {
-        console.log("AUTHORIZATION CALL new OF FINGERPRINT 191");
+    var goToClickPinAuthStartX, goToClickPinAuthStartY, goToClickPinAuthEndX, goToClickPinAuthEndY;
 
-        try {
-          fingerPrintAsk();
-        }
-        catch (e) {
-          console.log(e)
-        }
-      } else {
-        window.scannerCanBeAsked = true;
+    goToClickPinAuthorizationStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+//      firstEnterButtonId.style.webkitTransform = 'scale(0.8)';
+
+      goToClickPinAuthStartX = event.changedTouches[0].pageX;
+      goToClickPinAuthStartY = event.changedTouches[0].pageY;
+    };
+
+    goToClickPinAuthorizationEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+//      firstEnterButtonId.style.webkitTransform = 'scale(1)';
+
+      goToClickPinAuthEndX = event.changedTouches[0].pageX;
+      goToClickPinAuthEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(goToClickPinAuthStartX - goToClickPinAuthEndX) <= 20 && Math.abs(goToClickPinAuthStartY - goToClickPinAuthEndY) <= 20) {
+        scope.fingerprintMode = false;
+        scope.update();
+        console.log("OPEN USUAL :CLICK PIN AUTH, show stop listener");
       }
-    }, 500);
+    };
 
     enter = function () {
 
