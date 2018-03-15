@@ -15270,6 +15270,18 @@ var css = {
   "height:" + 330 * widthK + "px;" +
   "}",
 
+  // viewNewsBlockImageLoader: ".view-news-block-image-loader " +
+  // "{" +
+  // "position: relative;" +
+  // "background-image: url('resources/icons/ViewNews/loader.gif');" +
+  // "background-repeat: no-repeat;" +
+  // "background-position-x: center;" +
+  // "background-position-y: center;" +
+  // "background-size: 10%;" +
+  // "width: 100%;" +
+  // "height:" + 330 * widthK + "px;" +
+  // "}",
+
   viewNewsBlockTitle: ".view-news-block-title " +
   "{" +
   "position: relative;" +

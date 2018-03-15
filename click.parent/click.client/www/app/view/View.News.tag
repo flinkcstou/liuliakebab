@@ -13,7 +13,8 @@
            hidden
            class="view-news-block-image"
            exist="{i.image_exist}"
-           style="background-image: url({i.news_image})"></div>
+           style="background-image: url({i.news_image})">
+      </div>
 
       <div class="{view-news-block:!i.url, view-news-block-with-link:i.url}" shorttext="{i.content_short}"
            opened="false" title="{i.news_content}"
@@ -247,7 +248,7 @@
           timeOutTimerNews = setTimeout(function () {
             window.writeLog({
               reason: 'Timeout',
-              method:'get.news',
+              method: 'get.news',
             });
             window.common.alert.show("componentAlertId", {
               parent: scope,
