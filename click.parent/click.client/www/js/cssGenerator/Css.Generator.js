@@ -4954,9 +4954,6 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "background-color: #00a8f1;" +
-  // "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
-  // "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
-  // "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
   "bottom: 0;" +
   "padding: 0;" +
   "left: 0;" +
@@ -13439,22 +13436,6 @@ var css = {
 
   transferOnCardOkButton: ".transfer-on-card-ok-button" +
   "{" +
-  // "position: relative;" +
-  // "margin: " + 49 * widthK + "px 0 0 " + 214 * widthK + "px;" +
-  // "float: left;" +
-  // "text-align: center;" +
-  // "line-height: " + 63 * widthK + "px;" +
-  // "font-size: " + 29 * widthK + "px;" +
-  // "background-color: #00a8f1;" +
-  // "height: " + 74 * widthK + "px;" +
-  // "font-family: SFUIDisplay-Light;" +
-  // "border: none;" +
-  // "outline: none;" +
-  // "width: 44%;" +
-  // "border-radius: " + 10 * widthK + "px;" +
-  // "color: #ffffff;" +
-  // "text-transform: capitalize;" +
-
   "height: " + 87 * widthK + "px;" +
   "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
@@ -14212,7 +14193,6 @@ var css = {
   "top: 62%;" +
   "bottom:0;" +
   "background-color: transparent;" +
-  "border-bottom:  " + 1 + "px solid lightgray;" +
   "overflow: scroll;" +
   "}",
 
@@ -14226,9 +14206,6 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "background-color: #00a8f1;" +
-  // "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
-  // "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
-  // "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
   "bottom: 0;" +
   "padding: 0;" +
   "left: 0;" +
@@ -14328,9 +14305,7 @@ var css = {
   "width: 100%; " +
   "top: " + 130 * heightK + "px; " +
   "background-color: white;" +
-  "overflow-x: hidden;" +
-  "overflow-y: scroll;" +
-  "border-bottom: 1px solid black;" +
+  "overflow: hidden;" +
   "}",
 
   qrPayconfirmDataContainer: ".qr-payconfirm-data-container" +
@@ -14339,7 +14314,6 @@ var css = {
   "width: 100%;" +
   "height: " + 569 * widthK + "px; " +
   "background-color: transparent;" +
-  //"border-bottom:  " + 1 + "px solid lightgray;" +
   "}",
 
   qrPayconfirmPhoneField: ".qr-payconfirm-phone-field" +
@@ -14483,7 +14457,6 @@ var css = {
   "top: 60%;" +
   "bottom: 0;" +
   "background-color: transparent;" +
-  "border-bottom:  1px solid lightgray;" +
   "overflow: scroll;" +
   "}",
 

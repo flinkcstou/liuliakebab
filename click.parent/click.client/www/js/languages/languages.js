@@ -655,7 +655,7 @@ var RU_LANGUAGES =
 
   "ViewDefaultAccountTitle": "ОСНОВНАЯ КАРТА",
   "ViewDefaultAccountSubTitle": "Выберите основную карту",
-  "ViewDefaultAccountChooseButtonText": "Выбрать",
+  "ViewDefaultAccountChooseButtonText": "ВЫБРАТЬ",
 
 
   "ViewDefaultAccountSuccessText": "Основная карта установлена успешно",
