@@ -4939,7 +4939,6 @@ var css = {
   "top: 62%;" +
   "bottom:0;" +
   "background-color: transparent;" +
-  "border-bottom:  " + 1 + "px solid lightgray;" +
   // "overflow-y: scroll;" +
   // "overflow-x: hidden;" +
   // "-webkit-overflow-scrolling: touch; " +
@@ -5177,7 +5176,6 @@ var css = {
   "top: 60%;" +
   "bottom: 0;" +
   "background-color: transparent;" +
-  "border-bottom:  1px solid lightgray;" +
   "overflow: hidden;" +
   "}",
 
