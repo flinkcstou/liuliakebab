@@ -399,7 +399,7 @@ var RU_LANGUAGES =
 
   "ViewTransferOnCardTitleTextPartOne": "Зачислить средства в размере",
   "ViewTransferOnCardTitleTextPartTwo": "на карту:",
-  "ViewTransferOnCardAcceptButtonText": "принять",
+  "ViewTransferOnCardAcceptButtonText": "ПРИНЯТЬ",
   "ViewTransferOnCardCardNotChosen": "Выберите карту",
 
   "ViewAccountDetailTransferIconTitleOne": "Получен счет",

@@ -13439,21 +13439,35 @@ var css = {
 
   transferOnCardOkButton: ".transfer-on-card-ok-button" +
   "{" +
-  "position: relative;" +
-  "margin: " + 49 * widthK + "px 0 0 " + 214 * widthK + "px;" +
-  "float: left;" +
-  "text-align: center;" +
-  "line-height: " + 63 * widthK + "px;" +
-  "font-size: " + 29 * widthK + "px;" +
-  "background-color: #00a8f1;" +
-  "height: " + 74 * widthK + "px;" +
+  // "position: relative;" +
+  // "margin: " + 49 * widthK + "px 0 0 " + 214 * widthK + "px;" +
+  // "float: left;" +
+  // "text-align: center;" +
+  // "line-height: " + 63 * widthK + "px;" +
+  // "font-size: " + 29 * widthK + "px;" +
+  // "background-color: #00a8f1;" +
+  // "height: " + 74 * widthK + "px;" +
+  // "font-family: SFUIDisplay-Light;" +
+  // "border: none;" +
+  // "outline: none;" +
+  // "width: 44%;" +
+  // "border-radius: " + 10 * widthK + "px;" +
+  // "color: #ffffff;" +
+  // "text-transform: capitalize;" +
+
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
-  "width: 44%;" +
-  "border-radius: " + 10 * widthK + "px;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #00a8f1;" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
   "color: #ffffff;" +
-  "text-transform: capitalize;" +
+  "pointer-events: auto;" +
   "}",
 
 //  Component Alert
