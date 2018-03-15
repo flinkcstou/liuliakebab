@@ -1336,6 +1336,7 @@ var css = {
   "padding: 0;" +
   "border: none;" +
   "background-color: white;" +
+  "outline: none;" +
   "border-top: 1px solid #e8e8e8;" +
   "}",
 
@@ -8455,6 +8456,7 @@ var css = {
   "width: 100%;" +
   "height: 100%;" +
   "overflow: hidden;" +
+  "background: white;" +
   "}",
 
   pinCodeFlexContainer: ".pincode-flex-container" +
