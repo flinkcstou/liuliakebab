@@ -3901,12 +3901,12 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: " + 1102 * heightK + "px; " +
-  "width: 100%; " +
+  "width: " + 720 * widthK + "px; " +
   "top: " + 130 * heightK + "px; " +
   "background-color: white;" +
-  "overflow-x: hidden;" +
-  "overflow-y: scroll;" +
-  "-webkit-overflow-scrolling: touch; " +
+  "overflow: hidden;" +
+  // "overflow-y: scroll;" +
+  // "-webkit-overflow-scrolling: touch; " +
   "}",
 
 
@@ -3914,10 +3914,10 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: " + 1102 * heightK + "px; " +
-  "width: 100%; " +
+  "width: " + 720 * widthK + "px; " +
   "top: " + 130 * heightK + "px; " +
   "background-color: white;" +
-  // "overflow-x: hidden;" +
+  "overflow: hidden;" +
   // "overflow-y: scroll;" +
   // "-webkit-overflow-scrolling: touch; " +
   "}",
@@ -3926,13 +3926,12 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: " + 1102 * heightK + "px; " +
-  "width: 100%; " +
+  "width: " + 720 * widthK + "px; " +
   "top: " + 130 * heightK + "px; " +
   "background-color: white;" +
-  // "overflow-x: hidden;" +
+  "overflow: hidden;" +
   // "overflow-y: scroll;" +
   // "-webkit-overflow-scrolling: touch; " +
-  "border-bottom: 1px solid black;" +
   "}",
 
   componentFirstField: ".component-first-field" +
@@ -16521,17 +16520,20 @@ var css = {
   serviceInfoButtonNext: ".serviceinfo-button-next" +
   "{" +
   "position: absolute;" +
-  "left: 28%;" +
-  "width: 44%;" +
-  "height: " + 74 * widthK + "px;" +
-  "background-color: #00a8f1;" +
-  "border-radius: " + 10 * widthK + "px;" +
-  "bottom: " + 55 * widthK + "px; " +
-  "font-size: " + 32 * widthK + "px;" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
-  "color: #ffffff;" +
   "border: none;" +
   "outline: none;" +
+  "width: 100%;" +
+  "background-color: #00a8f1;" +
+  "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
+  "color: #ffffff;" +
   "}",
 
   serviceInfoInformField: ".serviceinfo-inform-field" +
