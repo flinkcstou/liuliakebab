@@ -4273,9 +4273,6 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "background-color: #00a8f1;" +
-  "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
-  "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
-  "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
   "bottom: 0;" +
   "padding: 0;" +
   "left: 0;" +
@@ -4284,23 +4281,6 @@ var css = {
   "}",
 
   servicePageButtonEnterDisabled: ".servicepage-button-enter-disabled" +
-  "{" +
-  "height: " + 87 * widthK + "px;" +
-  "font-size: " + 38 * widthK + "px;" +
-  "font-family: SFUIDisplay-Light;" +
-  "border: none;" +
-  "outline: none;" +
-  "position: absolute;" +
-  "width: 100%;" +
-  "background-color: #D2D2D2;" +
-  "bottom: 0;" +
-  "padding: 0;" +
-  "left: 0;" +
-  "color: #ffffff;" +
-  "pointer-events: none;" +
-  "}",
-
-  servicePageButtonSave: ".servicepage-button-save" +
   "{" +
   "height: " + 87 * widthK + "px;" +
   "font-size: " + 38 * widthK + "px;" +
@@ -4975,9 +4955,9 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "background-color: #00a8f1;" +
-  "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
-  "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
-  "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
   "bottom: 0;" +
   "padding: 0;" +
   "left: 0;" +
@@ -5289,9 +5269,9 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "background-color: #00a8f1;" +
-  "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
-  "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
-  "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
   "bottom: 0;" +
   "padding: 0;" +
   "left: 0;" +
@@ -14234,9 +14214,9 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "background-color: #00a8f1;" +
-  "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
-  "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
-  "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
   "bottom: 0;" +
   "padding: 0;" +
   "left: 0;" +
@@ -14552,9 +14532,9 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "background-color: #00a8f1;" +
-  "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
-  "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
-  "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
   "bottom: 0;" +
   "padding: 0;" +
   "left: 0;" +
@@ -16039,9 +16019,9 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "background-color: #00a8f1;" +
-  "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
-  "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
-  "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
   "bottom: 0;" +
   "padding: 0;" +
   "left: 0;" +
@@ -16059,9 +16039,9 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   "background-color: #00a8f1;" +
-  "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
-  "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
-  "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
   "bottom: 0;" +
   "padding: 0;" +
   "left: 0;" +
@@ -16527,9 +16507,9 @@ var css = {
   "outline: none;" +
   "width: 100%;" +
   "background-color: #00a8f1;" +
-  "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
-  "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
-  "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
   "bottom: 0;" +
   "padding: 0;" +
   "left: 0;" +

@@ -232,7 +232,7 @@
       </div>
     </div>
 
-    <button id="formTypeTwoBtnId" style="bottom: {window.bottomButtonBottom}" class="servicepage-button-save"
+    <button id="formTypeTwoBtnId" style="bottom: {window.bottomButtonBottom}" class="servicepage-button-enter-disabled"
             ontouchstart="onTouchStartOfEnter()"
             ontouchend="formTypeTwoButtonFunction()">
       {!enterButton?window.languages.ViewServicePageSaveLabel:window.languages.ViewServicePageEnterLabel}
