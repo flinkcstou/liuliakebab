@@ -259,8 +259,7 @@
         scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
         for (var i in scope.cardsarray) {
           if (scope.cardsarray[i].p2p_allowed == 0
-            || scope.cardsarray[i].access != 2
-            || scope.cardsarray[i].salary == null) {
+            || scope.cardsarray[i].access != 2) {
             delete scope.cardsarray[i];
           } else {
             scope.cardCounter++;
