@@ -81,7 +81,7 @@
         scope.addFirstCardBool = true;
         viewMainPage.addFirstCardBool = true;
         localStorage.removeItem('click_client_cards');
-        scope.parent.update();
+//        scope.parent.update();
       } else {
 
         for (var i in scope.cardsarray) {
