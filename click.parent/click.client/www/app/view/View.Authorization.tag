@@ -146,6 +146,10 @@
       localStorage.setItem('settings_finger_print', false)
     }
 
+    if (localStorage.getItem('settings_finger_print_enrolled')) {
+      window.fingerPrint.check = JSON.parse(localStorage.getItem('settings_finger_print_enrolled'));
+    }
+
 
     var eyeInputShow = false;
 
