@@ -1659,6 +1659,9 @@
     scope.onTouchEndOfEnter = onTouchEndOfEnter = function () {
       event.stopPropagation();
 
+      opts.cost = scope.service.cost;
+      opts.lang_amount_title = scope.service.lang_amount_title;
+
       if (this.enterButtonId && scope.enterButtonEnabled)
         this.enterButtonId.style.webkitTransform = 'scale(1)';
 

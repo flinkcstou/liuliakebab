@@ -279,10 +279,6 @@
       }
 
     }
-
-    if (scope.service.lang_amount_currency && scope.service.lang_amount_currency !== '') {
-      scope.currency = scope.service.lang_amount_currency;
-    }
     scope.update();
 
 
