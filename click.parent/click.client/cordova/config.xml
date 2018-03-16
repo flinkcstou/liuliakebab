@@ -2,8 +2,8 @@
 <widget id="air.com.ssdsoftwaresolutions.clickuz"
         android-packageName="air.com.ssdsoftwaresolutions.clickuz"
         ios-CFBundleIdentifier="com.ssdsoftwaresolutions.clickuz"
-        version="5.8.3" xmlns="http://www.w3.org/ns/widgets"
-        android-versionCode="50000083">
+        version="5.2" xmlns="http://www.w3.org/ns/widgets"
+        android-versionCode="50000020">
   <name>CLICK Uzbekistan</name>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="Orientation" value="sensorPortrait"/>
