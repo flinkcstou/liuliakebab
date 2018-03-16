@@ -299,14 +299,15 @@
 
       }
 
-      if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance &&
+      if (!modeOfApp.offlineMode && localStorage.getItem('click_client_accountInfo') && !withoutBalance && Object.keys(scope.cardsarray).length != 0 &&
         !(sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true)) {
         writeBalance();
-      } else {
-        if (invoice) {
-          scope.update();
-        }
       }
+//      else {
+//        if (invoice) {
+//          scope.update();
+//        }
+//      }
 
       scope.update();
 
@@ -674,11 +675,13 @@
 
     this.on("mount", function () {
 
-      cards.style.transition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
-      cards.style.webkitTransition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+      if (viewMainPage.atMainPage) {
+        cards.style.transition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
+        cards.style.webkitTransition = '0s cubic-bezier(0.7, 0.05, 0.39, 1.5)';
 
-      cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
-      cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        cards.style.transform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+        cards.style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
+      }
 
 
       if (modeOfApp.offlineMode) {

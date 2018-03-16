@@ -18,8 +18,8 @@
       {window.languages.ViewTransferDetailTransferIconTitleTwo}</p>
 
     <p class="transfer-detail-transfer-icon-title-phone">
-      +{opts.phoneNumber.substring(0, 3) + ' ' +
-      inputVerification.telVerificationWithSpace(opts.phoneNumber.substring(3, opts.phoneNumber.length))}</p>
+      +{opts.phoneNumber ? (opts.phoneNumber.substring(0, 3) + ' ' +
+      inputVerification.telVerificationWithSpace(opts.phoneNumber.substring(3, opts.phoneNumber.length))) :''}</p>
     <div class="title-bottom-border">
     </div>
   </div>

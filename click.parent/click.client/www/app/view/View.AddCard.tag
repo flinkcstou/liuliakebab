@@ -92,6 +92,7 @@
       scope.processingTypes = loginInfo.card_prefixes;
     }
     scope.showBottomButton = false;
+    viewMainPage.atMainPage = false;
 
     window.saveHistory('view-add-card', opts);
 
@@ -255,7 +256,7 @@
             timeOutTimer = setTimeout(function () {
               window.writeLog({
                 reason: 'Timeout',
-                method:'card.add',
+                method: 'card.add',
               });
               updateResultComponent(true, null, mainPageToReturn, 'waiting', window.languages.WaitingTimeExpiredText);
             }, 20000)
