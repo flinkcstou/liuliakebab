@@ -1538,7 +1538,6 @@ window.getPosition = function (el) {
 };
 
 window.sendToLog = function (data) {
-  console.log("sending information");
   params = {
     method: 'report.issue',
     input: data,
@@ -1567,6 +1566,20 @@ window.sendToLog = function (data) {
 
 var fileData = [], log;
 
+window.replaceErrors = function(key, value) {
+  if (value instanceof Error) {
+    var error = {};
+
+    Object.getOwnPropertyNames(value).forEach(function (key) {
+      error[key] = value[key];
+    });
+
+    return error;
+  }
+
+  return value;
+};
+
 window.writeLog = function (logToSave) {
 
   phoneNumber = localStorage.getItem('click_client_phoneNumber');
@@ -1593,6 +1606,8 @@ window.writeLog = function (logToSave) {
         window.sendToLog(log);
       }
     });
+  } else {
+    window.sendToLog(log);
   }
 };
 

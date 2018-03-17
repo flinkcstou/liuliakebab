@@ -3089,6 +3089,14 @@ var css = {
   "left: 2%;" +
   "}",
 
+  myCardsOperationInfoContainer: ".my-cards-operation-info-container " +
+  "{" +
+  "position: absolute;" +
+  "height:" + 150 * widthK + "px;" +
+  "width: 65%;" +
+  "top: 0;" +
+  "left: 26%;" +
+  "}",
 
   myCardsOperationAmounts: ".my-cards-operation-amount " +
   "{" +
@@ -3097,20 +3105,18 @@ var css = {
   "background-size: contain;" +
   "font-size:" + 48 * widthK + "px;" +
   "height:" + 60 * widthK + "px;" +
-  "top:" + 40 * widthK + "px;" +
-  "left:" + 150 * widthK + "px;" +
+  "top:" + 12 * widthK + "px;" +
   "float: left;" +
-
   "}",
 
   myCardsOperationCurrency: ".my-cards-operation-currency " +
   "{" +
   "position: relative;" +
   "color: #919191;" +
-  "top:" + 26 * widthK + "px;" +
+  "top:" + 30 * widthK + "px;" +
   "background-size: contain;" +
   "float: left;" +
-  "left:" + 160 * widthK + "px;" +
+  "left:" + 10 * widthK + "px;" +
   "font-size:" + 25 * widthK + "px;" +
   "}",
 
@@ -3118,8 +3124,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "color: #919191;" +
-  "bottom:" + 30 * widthK + "px;" +
-  "left:" + 150 * widthK + "px;" +
+  "bottom:" + 25 * widthK + "px;" +
   "font-size:" + 25 * widthK + "px;" +
   "}",
 
