@@ -431,7 +431,7 @@
 
     function deviceImei() {
 
-      if (device.platform == "BrowserStand") {
+      if (device.platform == "BrowserStand" || device.platform == 'iOS') {
         deviceImei = (device.uuid.substring(0, device.uuid.length / 2));
       } else {
         window.plugins.imei.get(
