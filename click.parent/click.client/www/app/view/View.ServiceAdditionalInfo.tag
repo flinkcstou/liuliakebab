@@ -311,7 +311,6 @@
         console.log(scope.to_dd, 'to_dd');
 
         checkFields();
-
         scope.update();
       };
 
@@ -642,8 +641,15 @@
           scope.update(scope.enterButtonEnabled);
           return;
         } else {
-          range_from = representDotedDate(scope.from_dd, scope.from_mm, scope.from_yyyy)
-          range_to = representDotedDate(scope.to_dd, scope.to_mm, scope.to_yyyy);
+          if (scope.dateFrom == scope.dateTo){
+            console.log("dates ", dateFrom, dateTo)
+            scope.enterButtonEnabled = false;
+            scope.update(scope.enterButtonEnabled);
+            return;
+          } else {
+            range_from = representDotedDate(scope.from_dd, scope.from_mm, scope.from_yyyy)
+            range_to = representDotedDate(scope.to_dd, scope.to_mm, scope.to_yyyy);
+          }
         }
       } else {
         if (!fromInput.value || !toInput.value) {
