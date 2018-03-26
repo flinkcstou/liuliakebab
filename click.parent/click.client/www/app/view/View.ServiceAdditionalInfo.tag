@@ -652,8 +652,15 @@
           scope.update(scope.enterButtonEnabled);
           return;
         } else {
-          range_from = fromInput.value;
-          range_to = toInput.value;
+          if (parseInt(toInput.value) <= parseInt(fromInput.value)){
+            console.log("indicators ", fromInput.value, toInput.value)
+            scope.enterButtonEnabled = false;
+            scope.update(scope.enterButtonEnabled);
+            return;
+          } else {
+            range_from = fromInput.value;
+            range_to = toInput.value;
+          }
         }
       }
 

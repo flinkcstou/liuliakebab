@@ -36,7 +36,7 @@ if (!window.device) {
 if (typeof AppVersion === "undefined") {
 
   AppVersion = {
-    version: "5.0.4",
-    build: "5.0.4.1"
+    version: "5.2",
+    build: "5.2"
   };
 }
