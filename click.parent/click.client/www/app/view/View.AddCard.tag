@@ -58,8 +58,6 @@
   <script>
     var scope = this;
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-    var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-    var sessionKey = info.session_key;
     var dateOrPin = '';
     var cardNumber = '';
     var createButtonStartX,
