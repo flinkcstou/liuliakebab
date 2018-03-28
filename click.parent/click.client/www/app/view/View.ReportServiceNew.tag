@@ -455,7 +455,8 @@
       goBackButtonEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
-        onBackKeyDown()
+        console.log("report service component should be closed");
+        onBackKeyDown();
         scope.update()
       }
 //      scope.unmount()
