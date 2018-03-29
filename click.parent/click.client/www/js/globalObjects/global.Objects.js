@@ -1060,8 +1060,10 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
                         var favoritePaymentsListForApi = [];
                         for (var j in result[1]) {
                           var fav = JSON.parse(result[1][j].body);
-                          fav.service.image = servicesMap[fav.service.id][0].image;
-                          favoritePaymentsList.push(fav);
+                          if (servicesMap[fav.service.id]) {
+                            fav.service.image = servicesMap[fav.service.id][0].image;
+                            favoritePaymentsList.push(fav);
+                          }
                         }
                         for (var i in favoritePaymentsList)
                           favoritePaymentsListForApi.push({
