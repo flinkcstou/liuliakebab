@@ -1327,7 +1327,7 @@ window.fingerPrintInit = function () {
   }
 };
 
-window.fingerPrintAsk = function () {
+window.fingerPrintAsk = function (fingerprintIconId) {
   console.log("G.O. fingerprint ASK");
 
   if (localStorage.getItem('settings_finger_print') !== null) {
@@ -1357,34 +1357,58 @@ window.fingerPrintAsk = function () {
 
         if (JSON.parse(localStorage.getItem("settings_finger_print")) === true && localStorage.getItem('click_client_pin')) {
 
-          FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
+          FingerprintAuth.start(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
         }
 
       }
 
 
       function encryptSuccessCallback(result) {
-        window.fingerPrint.fingerPrintInitialize = false;
+        console.log("encrypt success, change gif to CHECK");
+        if (document.getElementById(fingerprintIconId))
+          document.getElementById(fingerprintIconId).style.backgroundImage = "url(resources/gifs/auth/check.gif?p" + new Date().getTime() + ")";
 
-        if (result.withFingerprint) {
+        setTimeout(function () {
+          window.fingerPrint.fingerPrintInitialize = false;
+          if (document.getElementById(fingerprintIconId))
+            document.getElementById(fingerprintIconId).style.backgroundImage = "url(resources/gifs/auth/success.gif?p" + new Date().getTime() + ")";
 
-          pin = localStorage.getItem('click_client_pin');
-          enter();
+          setTimeout(function () {
+            if (result.withFingerprint) {
 
-        } else if (result.withBackup) {
+              pin = localStorage.getItem('click_client_pin');
+              enter();
 
-          pin = localStorage.getItem('click_client_pin');
-          enter();
-        }
+            } else if (result.withBackup) {
+
+              pin = localStorage.getItem('click_client_pin');
+              enter();
+            }
+          }, 1000);
+        }, 1000);
       }
 
       function encryptErrorCallback(error) {
-        window.fingerPrint.fingerPrintInitialize = false;
-        if (error === "Cancelled") {
-          console.log("FingerprintAuth Dialog Cancelled!");
-        } else {
-          console.log("FingerprintAuth Error: " + error);
-        }
+        console.log("encrypt success, change gif to CHECK");
+        if (document.getElementById(fingerprintIconId))
+          document.getElementById(fingerprintIconId).style.backgroundImage = "url(resources/gifs/auth/check.gif?p" + new Date().getTime() + ")";
+
+        setTimeout(function () {
+          window.fingerPrint.fingerPrintInitialize = false;
+          if (document.getElementById(fingerprintIconId))
+            document.getElementById(fingerprintIconId).style.backgroundImage = "url(resources/gifs/auth/error.gif?p" + new Date().getTime() + ")";
+
+          setTimeout(function () {
+
+            window.fingerPrint.fingerPrintInitialize = false;
+            if (error === "Cancelled") {
+              console.log("FingerprintAuth Dialog Cancelled!");
+            } else {
+              console.log("FingerprintAuth Error: " + error);
+            }
+          }, 1000);
+        }, 1000);
+
       }
 
     }
@@ -1416,6 +1440,33 @@ window.fingerPrintAsk = function () {
 
         console.log('FAIL FINGER PRINT')
       }
+    }
+  }
+};
+
+window.fingerPrintStop = function () {
+  if (localStorage.getItem('settings_finger_print') !== null) {
+
+    if (device.platform == 'Android') {
+
+      var encryptConfig = {
+        clientId: "myAppName",
+        clientSecret: "currentUser",
+        password: "currentUser",
+        token: "currentUser",
+        locale: "ru",
+        disableBackup: true,
+//              userAuthRequired: false,
+        dialogHint: "Повторите попытку",
+        dialogTitle: "Сканирование для CLICK"
+
+      };
+
+      FingerprintAuth.end(encryptConfig, function () {
+        console.log("closed");
+      }, function () {
+        console.log("error in close");
+      });
     }
   }
 };
@@ -1568,7 +1619,7 @@ window.sendToLog = function (data) {
 
 var fileData = [], log;
 
-window.replaceErrors = function(key, value) {
+window.replaceErrors = function (key, value) {
   if (value instanceof Error) {
     var error = {};
 

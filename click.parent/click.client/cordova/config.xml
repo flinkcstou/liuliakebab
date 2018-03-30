@@ -20,7 +20,6 @@
   <plugin name="cordova-plugin-sim"/>
   <plugin name="cordova-plugin-phonedialer"/>
   <plugin name="cordova-plugin-touch-id" spec="3.2.0"/>
-  <plugin name="cordova-plugin-android-fingerprint"/>
   <plugin name="cordova-plugin-splashscreen"/>
   <plugin name="cordova-plugin-statusbar"/>
   <plugin name="phonegap-plugin-barcodescanner"/>

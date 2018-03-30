@@ -79,7 +79,7 @@
     <div class="auth-fingerprint-body-label">{languages.ViewAuthFingerprintBodyText}</div>
 
     <div id="fingerPrintIconId" class="auth-fingerprint-icon"
-         style="background-image: url('resources/gifs/auth/load.gif')"></div>
+         style="background-image: url('resources/gifs/auth/wait.gif')"></div>
 
     <div id="switchModeButton" class="button-auth-fingerprint"
          ontouchend="goToClickPinAuthorizationEnd()"
@@ -98,23 +98,7 @@
     var timeOutTimer = 0;
     scope.checkAndroid = false;
     scope.errorCode = 0;
-    scope.fingerprintMode = true;
-    //    scope.fingerprintMode = false;
-
-    //    setTimeout(function () {
-    if (JSON.parse(localStorage.getItem('settings_finger_print')) && scope.fingerprintMode) {
-      console.log("AUTHORIZATION CALL new OF FINGERPRINT 191");
-
-      try {
-        fingerPrintAsk();
-      }
-      catch (e) {
-        console.log(e)
-      }
-    } else {
-      window.scannerCanBeAsked = true;
-    }
-    //    }, 500);
+    scope.fingerprintMode = false;
 
 
     this.on('mount', function () {
@@ -190,6 +174,26 @@
       window.fingerPrint.check = JSON.parse(localStorage.getItem('settings_finger_print_enrolled'));
     }
 
+    if (JSON.parse(localStorage.getItem('settings_finger_print')) && !scope.firstEnter) {
+      scope.fingerprintMode = true;
+      scope.update();
+    }
+
+
+    //    setTimeout(function () {
+    if (JSON.parse(localStorage.getItem('settings_finger_print')) && scope.fingerprintMode) {
+      console.log("AUTHORIZATION CALL new OF FINGERPRINT 191");
+
+      try {
+        fingerPrintAsk('fingerPrintIconId');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    } else {
+      window.scannerCanBeAsked = true;
+    }
+    //    }, 500);
 
     var eyeInputShow = false;
 
@@ -347,7 +351,7 @@
         if (myValue === "space" && JSON.parse(localStorage.getItem('settings_finger_print')) === true) {
           try {
             console.log("AUTHORIZATION CALL new OF FINGERPRINT 338");
-            fingerPrintAsk();
+            fingerPrintAsk('fingerPrintIconId');
           }
           catch (e) {
             console.log(e)
@@ -491,6 +495,7 @@
       goToClickPinAuthEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(goToClickPinAuthStartX - goToClickPinAuthEndX) <= 20 && Math.abs(goToClickPinAuthStartY - goToClickPinAuthEndY) <= 20) {
+        fingerPrintStop();
         scope.fingerprintMode = false;
         scope.update();
         console.log("OPEN USUAL :CLICK PIN AUTH, show stop listener");

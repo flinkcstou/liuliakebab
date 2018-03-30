@@ -1223,7 +1223,7 @@ var css = {
   "top: 33%;" +
   "width:" + 315 * widthK + "px;" +
   "height:" + 315 * widthK + "px;" +
-  "background-image: url(resources/gifs/auth/load.png);" +
+  "background-image: url(resources/gifs/auth/wait.gif);" +
   "background-repeat: no-repeat;" +
   "background-size: cover;" +
   "background-position-x: center;" +
