@@ -183,7 +183,7 @@
               comment: 'Transfers: phone number is undefined in opts',
               opts: opts
             };
-            window.sendToLog(log_info);
+            window.writeLog(log_info);
             opts.phoneNumber = '';
           }
 
@@ -199,7 +199,7 @@
               comment: 'Transfers: card number is undefined in opts',
               opts: opts
             };
-            window.sendToLog(log_info);
+            window.writeLog(log_info);
             opts.cardNumber = '';
           }
           changeIconTransferByCard();
@@ -259,8 +259,7 @@
         scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
         for (var i in scope.cardsarray) {
           if (scope.cardsarray[i].p2p_allowed == 0
-            || scope.cardsarray[i].access != 2
-            || scope.cardsarray[i].salary == null) {
+            || scope.cardsarray[i].access != 2) {
             delete scope.cardsarray[i];
           } else {
             scope.cardCounter++;
@@ -282,10 +281,6 @@
         borderRightLineId.style.width = '50%';
         card.style.width = '50%';
         contact.style.width = '50%';
-        log_info = {
-          comment: 'Transfers: click_client_cards is empty',
-        };
-        window.sendToLog(log_info);
       }
       if (between.style.display === 'none'){
         scope.transferTypeCount--;

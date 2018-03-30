@@ -311,7 +311,6 @@
         console.log(scope.to_dd, 'to_dd');
 
         checkFields();
-
         scope.update();
       };
 
@@ -597,13 +596,17 @@
     checkFields = function (from) {
       if (!scope.service['amount_editable']) return;
 
-      if (from == 'sum' && amountForPayTransaction < scope.service.min_pay_limit) {
-        scope.showErrorOfLimit = true;
-        amountField.style.borderBottom = 3 * widthK + 'px solid red';
-        amountFieldTitle.style.color = 'red';
+      if (amountForPayTransaction < scope.service.min_pay_limit) {
+
+        if (from == 'sum' && amount.value.length != 0) {
+          scope.showErrorOfLimit = true;
+          amountField.style.borderBottom = 3 * widthK + 'px solid red';
+          amountFieldTitle.style.color = 'red';
+          scope.update();
+          placeHolderSumId.style.color = 'red';
+        }
         scope.enterButtonEnabled = false;
         scope.update();
-        placeHolderSumId.style.color = 'red';
         return;
       }
       else if (from == 'sum' && amountField.length >= 1) {
@@ -613,19 +616,22 @@
         scope.update()
       }
       if (amountForPayTransaction > scope.service.max_pay_limit) {
-        scope.showErrorOfLimit = true;
-        amountField.style.borderBottom = 3 * widthK + 'px solid red';
-        amountFieldTitle.style.color = 'red';
+        if (from == 'sum' && amount.value.length != 0) {
+          scope.showErrorOfLimit = true;
+          amountField.style.borderBottom = 3 * widthK + 'px solid red';
+          amountFieldTitle.style.color = 'red';
+          scope.update();
+          placeHolderSumId.style.color = 'red';
+        }
         scope.enterButtonEnabled = false;
         scope.update();
-        placeHolderSumId.style.color = 'red';
         return;
       }
       else if (from == 'sum') {
         amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
         amountFieldTitle.style.color = '#01cfff';
         scope.showErrorOfLimit = false;
-        scope.update();
+        scope.update()
       }
 
       if (scope.code) {
@@ -635,8 +641,15 @@
           scope.update(scope.enterButtonEnabled);
           return;
         } else {
-          range_from = representDotedDate(scope.from_dd, scope.from_mm, scope.from_yyyy)
-          range_to = representDotedDate(scope.to_dd, scope.to_mm, scope.to_yyyy);
+          if (scope.dateFrom == scope.dateTo){
+            console.log("dates ", dateFrom, dateTo)
+            scope.enterButtonEnabled = false;
+            scope.update(scope.enterButtonEnabled);
+            return;
+          } else {
+            range_from = representDotedDate(scope.from_dd, scope.from_mm, scope.from_yyyy)
+            range_to = representDotedDate(scope.to_dd, scope.to_mm, scope.to_yyyy);
+          }
         }
       } else {
         if (!fromInput.value || !toInput.value) {
@@ -645,8 +658,15 @@
           scope.update(scope.enterButtonEnabled);
           return;
         } else {
-          range_from = fromInput.value;
-          range_to = toInput.value;
+          if (parseInt(toInput.value) <= parseInt(fromInput.value)){
+            console.log("indicators ", fromInput.value, toInput.value)
+            scope.enterButtonEnabled = false;
+            scope.update(scope.enterButtonEnabled);
+            return;
+          } else {
+            range_from = fromInput.value;
+            range_to = toInput.value;
+          }
         }
       }
 

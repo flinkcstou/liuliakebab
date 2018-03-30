@@ -7831,7 +7831,7 @@ window.fakedSocket.register("get.service.list", function (input) {
       "status": 1,
       "priority": 5,
       "image": "https://m.click.uz/static/merchant/logo/logo_9.png",
-      "form_type": 3,
+      "form_type": 1,
       "cost": 1,
       "is_mobile": 0,
       "lang_amount_placeholder": "Введите сумму оплаты",

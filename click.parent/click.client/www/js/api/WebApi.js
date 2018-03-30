@@ -146,8 +146,8 @@ window.api.initSocket = function () {
                 window.writeLog(
                   {
                     reason: 'unexpected error while working with onSuccess function',
-                    error:ERROR,
-                    parsedData: parsedData
+                    error: JSON.stringify(ERROR, replaceErrors),
+                    parsedData: JSON.stringify(parsedData)
                   }
                 );
               }

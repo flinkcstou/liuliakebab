@@ -71,10 +71,12 @@
              aria-label="{i.service_name}">
           <div class="my-cards-operation-service-icon"
                style="background-image: url({i.image})"></div>
-          <div class="my-cards-operation-amount">- {i.amount}</div>
-          <div class="my-cards-operation-currency">{i.lang_amount_currency}</div>
-          <div class="my-cards-firm-name">{i.service_name}</div>
-          <div class="my-cards-operation-date">{i.cntrg_info_param2}</div>
+          <div class="my-cards-operation-info-container">
+            <div class="my-cards-firm-name">{i.service_name}</div>
+            <div class="my-cards-operation-amount">- {i.amount}</div>
+            <div class="my-cards-operation-currency">{i.lang_amount_currency}</div>
+            <div class="my-cards-operation-date">{i.cntrg_info_param2}</div>
+          </div>
           <p class="my-cards-last-operation-info-time">{i.paymentTime}</p>
 
         </div>

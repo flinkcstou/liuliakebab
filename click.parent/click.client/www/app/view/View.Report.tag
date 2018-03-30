@@ -149,6 +149,7 @@
     scope.paymentsList = [];
     scope.pageNumberOptional = 1;
     scope.showComponent = false;
+    window.checkShowingComponent = null;
 
     scope.leftOfOperations = 320 * widthK;
     scope.firstReportView = true;
@@ -616,7 +617,7 @@
           timeOutTimerPayment = setTimeout(function () {
             window.writeLog({
               reason: 'Timeout',
-              method:'get.payment.list',
+              method: 'get.payment.list',
             });
             scope.errorNote = "Сервис временно недоступен";
             scope.stepAmount = 0;
@@ -730,7 +731,7 @@
           timeOutTimerData = setTimeout(function () {
             window.writeLog({
               reason: 'Timeout',
-              method:'history.char.data',
+              method: 'history.char.data',
             });
             scope.errorNote = "Сервис временно недоступен";
             scope.stepAmount = 0;
@@ -901,10 +902,11 @@
 
               scope.paymentsList[i].favoriteId = scope.favoriteId;
               scope.showComponent = true;
+              console.log("report service component is being shown up");
               scope.tags['view-report-service-new'].opts = scope.paymentsList[i];
               window.checkShowingComponent = scope.tags['view-report-service-new'];
 
-              riot.update();
+              scope.update();
               break;
             }
           }
