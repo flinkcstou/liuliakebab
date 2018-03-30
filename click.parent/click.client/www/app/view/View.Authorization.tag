@@ -78,6 +78,9 @@
 
     <div class="auth-fingerprint-body-label">{languages.ViewAuthFingerprintBodyText}</div>
 
+    <div id="fingerPrintIconId" class="auth-fingerprint-icon"
+         style="background-image: url('resources/gifs/auth/load.gif')"></div>
+
     <div id="switchModeButton" class="button-auth-fingerprint"
          ontouchend="goToClickPinAuthorizationEnd()"
          ontouchstart="goToClickPinAuthorizationStart()">

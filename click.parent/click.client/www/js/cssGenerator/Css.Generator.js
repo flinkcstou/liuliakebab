@@ -1215,6 +1215,20 @@ var css = {
   "text-align: center;" +
   "}",
 
+  authFingerPrintIcon: ".auth-fingerprint-icon" +
+  "{" +
+  "position: relative;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "top: 33%;" +
+  "width:" + 315 * widthK + "px;" +
+  "height:" + 315 * widthK + "px;" +
+  "background-image: url(resources/gifs/auth/load.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: cover;" +
+  "background-position-x: center;" +
+  "}",
+
   authorizationFlexContainer: ".authorization-flex-container" +
   "{" +
   "position: absolute;" +
