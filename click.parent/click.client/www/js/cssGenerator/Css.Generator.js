@@ -1266,17 +1266,6 @@ var css = {
   "position: relative;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
-  "margin-top:" + 50 * heightK + "px;" +
-  "}",
-
-  authorizationKeyboardCentringContainer: ".authorization-keyboard-centring-container " +
-  "{" +
-  "position: absolute;" +
-  "top:" + 455 * heightK + "px;" +
-  "height:" + 572 * heightK + "px;" +
-  "width: 100%;" +
-  "margin-left: auto;" +
-  "margin-right: auto;" +
   "}",
 
   authorizationButtonEnter: ".authorization-button-enter " +
@@ -1291,8 +1280,8 @@ var css = {
   "margin-right: auto;" +
   "width: 100%;" +
   // "left:" + 70 * widthK + "px;" +
-  "margin-top:" + 305 * heightK + "px;" +
-  "height:" + 150 * heightK + "px;" +
+  "margin-top:" + 330 * widthK + "px;" +
+  "height:" + 180 * widthK + "px;" +
   "}",
 
   authorizationButtonForgetPin: ".authorization-button-forget-pin " +
@@ -1346,6 +1335,7 @@ var css = {
   "padding: 0;" +
   "border: none;" +
   "background-color: white;" +
+  "outline: none;" +
   "border-top: 1px solid #e8e8e8;" +
   "}",
 
@@ -2815,6 +2805,15 @@ var css = {
   "border-bottom: 1px solid #e8e8e8;" +
   "}",
 
+  titleTopBorder: ".title-top-border " +
+  "{" +
+  "position: absolute;" +
+  "width: 90%;" +
+  "left: 5%;" +
+  "top: 0%;" +
+  "border-bottom: 1px solid #e8e8e8;" +
+  "}",
+
   verLineBorder: ".hor-line-border " +
   "{" +
   "position: relative;" +
@@ -3272,6 +3271,14 @@ var css = {
   "left: 2%;" +
   "}",
 
+  myCardsOperationInfoContainer: ".my-cards-operation-info-container " +
+  "{" +
+  "position: absolute;" +
+  "height:" + 150 * widthK + "px;" +
+  "width: 65%;" +
+  "top: 0;" +
+  "left: 26%;" +
+  "}",
 
   myCardsOperationAmounts: ".my-cards-operation-amount " +
   "{" +
@@ -3280,20 +3287,18 @@ var css = {
   "background-size: contain;" +
   "font-size:" + 48 * widthK + "px;" +
   "height:" + 60 * widthK + "px;" +
-  "top:" + 40 * widthK + "px;" +
-  "left:" + 150 * widthK + "px;" +
+  "top:" + 12 * widthK + "px;" +
   "float: left;" +
-
   "}",
 
   myCardsOperationCurrency: ".my-cards-operation-currency " +
   "{" +
   "position: relative;" +
   "color: #919191;" +
-  "top:" + 26 * widthK + "px;" +
+  "top:" + 30 * widthK + "px;" +
   "background-size: contain;" +
   "float: left;" +
-  "left:" + 160 * widthK + "px;" +
+  "left:" + 10 * widthK + "px;" +
   "font-size:" + 25 * widthK + "px;" +
   "}",
 
@@ -3301,8 +3306,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "color: #919191;" +
-  "bottom:" + 30 * widthK + "px;" +
-  "left:" + 150 * widthK + "px;" +
+  "bottom:" + 25 * widthK + "px;" +
   "font-size:" + 25 * widthK + "px;" +
   "}",
 
@@ -3944,6 +3948,7 @@ var css = {
   "float: left;" +
   "}",
 
+
   //viewPay: ".view-pay" +
   //"{" +
   //"position: absolute;" +
@@ -4083,12 +4088,12 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: " + 1102 * heightK + "px; " +
-  "width: 100%; " +
+  "width: " + 720 * widthK + "px; " +
   "top: " + 130 * heightK + "px; " +
   "background-color: white;" +
-  "overflow-x: hidden;" +
-  "overflow-y: scroll;" +
-  "-webkit-overflow-scrolling: touch; " +
+  "overflow: hidden;" +
+  // "overflow-y: scroll;" +
+  // "-webkit-overflow-scrolling: touch; " +
   "}",
 
 
@@ -4096,10 +4101,10 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: " + 1102 * heightK + "px; " +
-  "width: 100%; " +
+  "width: " + 720 * widthK + "px; " +
   "top: " + 130 * heightK + "px; " +
   "background-color: white;" +
-  // "overflow-x: hidden;" +
+  "overflow: hidden;" +
   // "overflow-y: scroll;" +
   // "-webkit-overflow-scrolling: touch; " +
   "}",
@@ -4108,13 +4113,12 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: " + 1102 * heightK + "px; " +
-  "width: 100%; " +
+  "width: " + 720 * widthK + "px; " +
   "top: " + 130 * heightK + "px; " +
   "background-color: white;" +
-  // "overflow-x: hidden;" +
+  "overflow: hidden;" +
   // "overflow-y: scroll;" +
   // "-webkit-overflow-scrolling: touch; " +
-  "border-bottom: 1px solid black;" +
   "}",
 
   componentFirstField: ".component-first-field" +
@@ -4448,58 +4452,35 @@ var css = {
 
   servicePageButtonEnterEnabled: ".servicepage-button-enter-enabled" +
   "{" +
-  "position: relative;" +
-  "left: 28%;" +
-  "width: 44%;" +
-  "height: " + 74 * widthK + "px;" +
-  "background-color: #00a8f1;" +
-  "border-radius: " + 10 * widthK + "px;" +
-  "text-transform: capitalize;" +
-  "margin-top: " + 20 * widthK + "px;" +
-  "top: " + 200 * widthK + "px;" +
-  "padding: 0;" +
-  "font-size: " + 32 * widthK + "px;" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #00a8f1;" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
   "color: #ffffff;" +
   "pointer-events: auto;" +
   "}",
 
   servicePageButtonEnterDisabled: ".servicepage-button-enter-disabled" +
   "{" +
-  "position: relative;" +
-  "left: 28%;" +
-  "width: 44%;" +
-  "height: " + 74 * widthK + "px;" +
-  "background-color: #D2D2D2;" +
-  "border-radius: " + 10 * widthK + "px;" +
-  "text-transform: capitalize;" +
-  "margin-top: " + 20 * widthK + "px;" +
-  "top: " + 200 * widthK + "px;" +
-  "padding: 0;" +
-  "font-size: " + 32 * widthK + "px;" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
-  "color: #ffffff;" +
-  "pointer-events: none;" +
-  "}",
-
-  servicePageButtonSave: ".servicepage-button-save" +
-  "{" +
   "position: absolute;" +
-  "left: 28%;" +
-  "width: 44%;" +
-  "height: " + 74 * widthK + "px;" +
+  "width: 100%;" +
   "background-color: #D2D2D2;" +
-  "border-radius: " + 10 * widthK + "px;" +
-  "bottom: " + 55 * widthK + "px; " +
-  "font-size: " + 32 * widthK + "px;" +
-  "font-family: SFUIDisplay-Light;" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
   "color: #ffffff;" +
-  "border: none;" +
-  "outline: none;" +
   "pointer-events: none;" +
   "}",
 
@@ -5145,7 +5126,6 @@ var css = {
   "top: 62%;" +
   "bottom:0;" +
   "background-color: transparent;" +
-  "border-bottom:  " + 1 + "px solid lightgray;" +
   // "overflow-y: scroll;" +
   // "overflow-x: hidden;" +
   // "-webkit-overflow-scrolling: touch; " +
@@ -5153,19 +5133,17 @@ var css = {
 
   pincardButtonEnter: " .pincard-button-enter" +
   "{" +
-  //"top: " + 230 * heightK + "px;" +
-  "height: " + 74 * widthK + "px;" +
-  "margin: 3% auto 0 auto;" +
-  "background-color: #00a8f1;" +
-  "padding: 0;" +
-  "font-size: " + 32 * widthK + "px;" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
-  "position: relative;" +
-  "left: 28%;" +
-  "width: 44%;" +
-  "border-radius: " + 10 * widthK + "px;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #00a8f1;" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
   "color: #ffffff;" +
   "}",
 
@@ -5382,7 +5360,6 @@ var css = {
   "top: 60%;" +
   "bottom: 0;" +
   "background-color: transparent;" +
-  "border-bottom:  1px solid lightgray;" +
   "overflow: hidden;" +
   "}",
 
@@ -5466,18 +5443,20 @@ var css = {
 
   payconfirmButtonEnter: ".payconfirm-button-enter" +
   "{" +
-  "height: " + 74 * widthK + "px;" +
-  "text-transform: capitalize;" +
-  "position: relative;" +
-  "background-color: #00a8f1;" +
-  "padding: 0;" +
-  "font-size: " + 32 * widthK + "px;" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
-  "left: 28%;" +
-  "width: 44%;" +
-  "border-radius: " + 10 * widthK + "px;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #00a8f1;" +
+  // "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
   "color: #ffffff;" +
   "}",
 
@@ -5493,20 +5472,21 @@ var css = {
 
   payconfirmButtonDelete: ".payconfirm-button-delete" +
   "{" +
-  "height: " + 74 * widthK + "px;" +
-  "text-transform: capitalize;" +
-  "position: absolute;" +
-  "background-color: #ee4d3d;" +
-  "padding: 0;" +
-  "font-size: " + 32 * widthK + "px;" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
-  "left: 28%;" +
-  "width: 44%;" +
-  "border-radius: " + 10 * widthK + "px;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #ee4d3d;" +
+  // "background: -moz-linear-gradient(left, #ee4d3d 20%, #76c1f4);" +
+  // "background: -webkit-linear-gradient(left, #ee4d3d 20%, #76c1f4);" +
+  // "background: -ms-linear-gradient(left, #ee4d3d 20%, #76c1f4);" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
   "color: #ffffff;" +
-  "bottom:" + 100 * widthK + "px;" +
   "}",
 
   //COMPONENT SEARCH
@@ -8336,334 +8316,6 @@ var css = {
   "background-position: center;" +
   "}",
 
-  viewClickPass: ".view-click-pass" +
-  "{" +
-  "position: absolute;" +
-  "height: 100%;" +
-  "width: 100%;" +
-  "background-color: white;" +
-  "}",
-
-  clickPassHelpButton: ".click-pass-help-button " +
-  "{" +
-  "position: absolute;" +
-  "width:" + 87 * widthK + "px;" +
-  "height:" + 87 * widthK + "px;" +
-  "right: 4.2%;" +
-  "background-image: url('resources/icons/ViewClickPass/help.png');" +
-  "background-repeat: no-repeat;" +
-  "-webkit-background-size: 48%;" +
-  "background-position-y: center;" +
-  "background-position-x: center;" +
-  "background-size: 65%;" +
-  "}",
-
-  clickPassHelpMenu: ".click-pass-help-menu " +
-  "{" +
-  "position: absolute;" +
-  "height: 100%;" +
-  "width:" + 607 * widthK + "px;" +
-  "right: 0;" +
-  "overflow: hidden;" +
-  "transform: translate3d(" + window.innerWidth + "px, 0, 0);" +
-  "-webkit-transform: translate3d(" + window.innerWidth + "px, 0, 0);" +
-  "-ms-transform: translate3d(" + window.innerWidth + "px, 0, 0);" +
-  "background-color: #ffffff;" +
-  "z-index: 1;" +
-  "}",
-
-  clickPassHelpMenuCloseButton: ".click-pass-help-menu-close-button " +
-  "{" +
-  "position: absolute;" +
-  "width:" + 87 * widthK + "px;" +
-  "height:" + 87 * widthK + "px;" +
-  "right: 4.4%;" +
-  "background-image: url('resources/icons/ViewClickPass/close.png');" +
-  "background-repeat: no-repeat;" +
-  "-webkit-background-size: 40%;" +
-  "background-position-y: center;" +
-  "background-position-x: center;" +
-  "background-size: 40%;" +
-  "}",
-
-  clickPassHelpMenuTextContainer: ".click-pass-help-menu-text-container " +
-  "{" +
-  "position: absolute;" +
-  "top:" + 123 * widthK + "px;" +
-  "left:" + 45 * widthK + "px;" +
-  "height:" + 103 * widthK + "px;" +
-  "width:" + 273 * widthK + "px;" +
-  "border-bottom: 1px solid #e8e8e8;" +
-  "color: #565d6a;" +
-  "}",
-
-  clickPassHelpMenuFirst: ".click-pass-help-menu-first " +
-  "{" +
-  "position: relative;" +
-  "text-align: left;" +
-  "font-size:" + 32 * widthK + "px;" +
-  "margin: 0;" +
-  "}",
-
-  clickPassHelpMenuSecond: ".click-pass-help-menu-second " +
-  "{" +
-  "position: relative;" +
-  "text-align: left;" +
-  "margin: 0;" +
-  "font-size:" + 31.5 * widthK + "px;" +
-  "}",
-
-  clickPassHelpMenuHand: ".click-pass-help-menu-hand " +
-  "{" +
-  "position: absolute;" +
-  "margin: 0;" +
-  "width:" + 310 * widthK + "px;" +
-  "height:" + 310 * widthK + "px;" +
-  "top:" + 83 * widthK + "px;" +
-  "left:" + 260 * widthK + "px;" +
-  "background-image: url('resources/icons/ViewClickPass/hand.png');" +
-  "background-repeat: no-repeat;" +
-  "-webkit-background-size: 100%;" +
-  "background-position-y: center;" +
-  "background-position-x: center;" +
-  "background-size: 100%;" +
-  "}",
-
-  clickPassHelpMenuProgress: ".click-pass-help-menu-progress " +
-  "{" +
-  "position: absolute;" +
-  "margin: 0;" +
-  "width:" + 60 * widthK + "px;" +
-  "height:" + 425 * widthK + "px;" +
-  "top:" + 330 * widthK + "px;" +
-  "left:" + 38 * widthK + "px;" +
-  "background-image: url('resources/icons/ViewClickPass/step.png');" +
-  "background-repeat: no-repeat;" +
-  "-webkit-background-size: contain;" +
-  "background-position-y: center;" +
-  "background-position-x: center;" +
-  "background-size: contain;" +
-  "}",
-
-  clickPassHelpMenuSteps: ".click-pass-help-menu-steps " +
-  "{" +
-  "position: absolute;" +
-  "top:" + 330 * widthK + "px;" +
-  "left:" + 137 * widthK + "px;" +
-  "height:" + 425 * widthK + "px;" +
-  "width:" + 450 * widthK + "px;" +
-  "font-size:" + 30 * widthK + "px;" +
-  "color: #565d6a;" +
-  "}",
-
-  clickPassHelpMenuFirstStep: ".click-pass-help-menu-first-step " +
-  "{" +
-  "position: relative;" +
-  "margin-top:" + 104 * widthK + "px;" +
-  "}",
-
-  clickPassHelpMenuSecondStep: ".click-pass-help-menu-second-step " +
-  "{" +
-  "position: relative;" +
-  "margin-top:" + 93 * widthK + "px;" +
-  "}",
-
-  clickPassHelpMenuThirdStep: ".click-pass-help-menu-third-step " +
-  "{" +
-  "position: relative;" +
-  "margin-top:" + 56 * widthK + "px;" +
-  "}",
-
-  clickPassShowToSeller: ".view-click-pass-shot-to-seller " +
-  "{" +
-  "position: absolute;" +
-  "width: 100%;" +
-  "top:" + 123 * widthK + "px;" +
-  "text-align: center;" +
-  "font-size:" + 33 * widthK + "px;" +
-  "color: #01cfff;" +
-  "}",
-
-  clickPassQrCodeCanvas: ".click-pass-qr-code-canvas " +
-  "{" +
-  "position: absolute;" +
-  "margin: auto;" +
-  "margin-top:" + 200 * widthK + "px;" +
-  "left: 0;" +
-  "right: 0;" +
-  "}",
-
-  clickPassProgressBarContainer: ".click-pass-progress-bar-container" +
-  "{" +
-  "position: absolute;" +
-  "left: 0;" +
-  "right: 0;" +
-  "margin: auto;" +
-  "margin-top:" + 630 * widthK + "px;" +
-  "width:" + 410 * widthK + "px;" +
-  "height:" + 20 * widthK + "px;" +
-  "border-radius:" + 20 * widthK + "px;" +
-  "background-color: #e8e8e8;" +
-  "background-image: url(resources/icons/ViewClickPass/progress.png);" +
-  "background-repeat: no-repeat;" +
-  "background-size: cover;" +
-  "overflow: hidden;" +
-  "}",
-
-  clickPassProgressBarContainerLine: ".click-pass-progress-bar-container-line" +
-  "{" +
-  "position: absolute;" +
-  "left: 0;" +
-  "margin: 0;" +
-  "width:" + 410 * widthK + "px;" +
-  "height:" + 20 * widthK + "px;" +
-  "border-radius:" + 20 * widthK + "px;" +
-  "background-color: #01cfff;" +
-  "background-repeat: no-repeat;" +
-  "background-size: cover;" +
-  "overflow: hidden;" +
-  "}",
-
-  clickPassBarCodeCanvas: ".click-pass-bar-code-canvas " +
-  "{" +
-  "position: absolute;" +
-  "margin: auto;" +
-  "margin-top:" + 700 * widthK + "px;" +
-  "width:" + 684 * widthK + "px;" +
-  "height:" + 200 * heightK + "px;" +
-  "left: 0;" +
-  "right: 0;" +
-  "}",
-
-  clickPassFullBarCode: ".click-pass-full-bar-code " +
-  "{" +
-  "position: absolute;" +
-  "margin: 0;" +
-  "width: 100%;" +
-  "height: 100%;" +
-  "z-index: 20;" +
-  "display: none;" +
-  "background-image: url('resources/icons/transparent.png');" +
-  "}",
-
-  clickPassFullBarCodeCanvas: ".click-pass-full-bar-code-canvas " +
-  "{" +
-  "position: absolute;" +
-  "width: 0;" +
-  "height: 0;" +
-  "}",
-
-  clickPassFullBarCodeImg: ".click-pass-full-bar-code-img " +
-  "{" +
-  "position: absolute;" +
-  "left: 5%;" +
-  "top: 5%;" +
-  "width: 90%;" +
-  "height: 90%;" +
-  "}",
-
-  clickPassChosenCardContainer: ".click-pass-chosen-card-container" +
-  "{" +
-  "position: absolute;" +
-  "width: 90%;" +
-  "height: " + 140 * widthK + "px; " +
-  "margin: auto;" +
-  "bottom: " + 55 * widthK + "px; " +
-  "left: 0;" +
-  "right: 0;" +
-  "background-color: transparent;" +
-  "border-top: " + 1 + "px solid #e8e8e8;" +
-  "border-bottom: " + 1 + "px solid #e8e8e8;" +
-  "}",
-
-  clickPassChosenCardInfoContainer: ".click-pass-chosen-card-info-container" +
-  "{" +
-  "position: absolute;" +
-  "width: 41%;" +
-  "height: 100%;" +
-  "left: 35%;" +
-  "background-color: transparent;" +
-  "}",
-
-  clickPassChosenCardInfoTextOne: ".click-pass-chosen-card-info-text-one" +
-  "{" +
-  "position: absolute;" +
-  "font-size: " + 24 * widthK + "px; " +
-  "color: gray;" +
-  "width: 110%;" +
-  "top: 22%;" +
-  "margin-top: 0;" +
-  "text-overflow: ellipsis;" +
-  "white-space: nowrap;" +
-  "overflow: hidden;" +
-  "}",
-
-  clickPassChosenCardInfoTextThree: ".click-pass-chosen-card-info-text-three" +
-  "{" +
-  "position: absolute;" +
-  "font-size: " + 23 * widthK + "px; " +
-  "color: gray;" +
-  "top: 48%;" +
-  "}",
-
-  clickPassChosenCardLogoContainer: ".click-pass-chosen-card-logo-container" +
-  "{" +
-  "width: 35%;" +
-  "height: 100%;" +
-  "left: 0;" +
-  "background-color: transparent;" +
-  "background-repeat: no-repeat;" +
-  "background-position: center;" +
-  "background-size: contain;" +
-  "float: left;" +
-  "position: absolute;" +
-  "}",
-
-  clickPassChosenCardNextIcon: ".click-pass-chosen-card-next-icon" +
-  "{" +
-  "position: absolute;" +
-  "right: 0;" +
-  "width: 10%;" +
-  "height: 100%;" +
-  "top: 0;" +
-  "background-repeat: no-repeat;" +
-  "background-size: 17%;" +
-  "background-position: center;" +
-  "background-image: url(resources/icons/ViewClickPass/open.png);" +
-  "}",
-
-  clickPassCardsListContainer: ".click-pass-cards-list-container" +
-  "{" +
-  "position: absolute;" +
-  "width: 100%;" +
-  "top: " + 88 * widthK + "px; " +
-  "margin: auto;" +
-  "}",
-
-  clickPassCardInList: ".click-pass-card-in-list" +
-  "{" +
-  "position: relative;" +
-  "width: 90%;" +
-  "height: " + 140 * widthK + "px; " +
-  "margin: auto;" +
-  "left: 0;" +
-  "right: 0;" +
-  "background-color: transparent;" +
-  "border-bottom: " + 1 + "px solid #e8e8e8;" +
-  "}",
-
-  clickPassChosenCardBackground: ".click-pass-chosen-card-background" +
-  "{" +
-  "position: absolute;" +
-  "width: 100%;" +
-  "height: " + 140 * widthK + "px; " +
-  "margin: auto;" +
-  "left: 0;" +
-  "right: 0;" +
-  "background-color: rgba(231,231,231,0.5);" +
-  "}",
-
-
   //COMPONENT Generated qr
   componentGeneratedQr: ".component-generated-qr " +
   "{" +
@@ -8965,7 +8617,7 @@ var css = {
   "width: 100%;" +
   "height: 100%;" +
   "overflow: hidden;" +
-  "background-color: #ffffff;" +
+  "background: white;" +
   "}",
 
   pinCodeFlexContainer: ".pincode-flex-container" +
@@ -9832,20 +9484,20 @@ var css = {
 
   settingsAddFriendNextButtonInnerContainer: ".settings-add-friend-next-button-inner-container" +
   "{" +
-  "position: relative;" +
-  "height: " + 74 * widthK + "px;" +
-  "text-transform: capitalize;" +
-  "margin-right: auto;" +
-  "margin-left: auto;" +
-  "margin: 15% auto 0 auto;" +
-  "background-color: #00a8f1;" +
-  "padding: 0;" +
-  "font-size: " + 32 * widthK + "px;" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
-  "width: 44%;" +
-  "border-radius: " + 10 * widthK + "px;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #00a8f1;" +
+  // "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
   "color: #ffffff;" +
   "}",
 
@@ -10192,6 +9844,196 @@ var css = {
   "margin: 0;  " +
   "width: 100%;  " +
   "color: #565d6a;" +
+  "}",
+
+  paymentMonitorContainer: ".payment-monitor-container " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%; " +
+  "top:" + 87 * widthK + "px; " +
+  "bottom:0; " +
+  "background-color: #f2f2f1; " +
+  "}",
+
+  paymentMonitorAboutContainer: ".payment-monitor-about-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%; " +
+  "height:" + 155 * widthK + "px; " +
+  "top: 0; " +
+  "background-color: white; " +
+  "}",
+
+  paymentMonitorAboutText: ".payment-monitor-about-text" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0; " +
+  "width: 77%; " +
+  "height: 90%; " +
+  "left: 5.5%; " +
+  "top:" + 23 * widthK + "px; " +
+  "font-size:" + 29 * widthK + "px; " +
+  "text-align: left; " +
+  "color: #565d6a; " +
+  "}",
+
+  paymentMonitorCostContainer: ".payment-monitor-cost-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%; " +
+  "height:" + 160 * widthK + "px; " +
+  "top:" + 155 * widthK + "px; " +
+  "background-color: transparent; " +
+  "}",
+
+  paymentMonitorCostText: ".payment-monitor-cost-text" +
+  "{" +
+  "position: relative;" +
+  "right: 7%; " +
+  "margin-bottom: 0; " +
+  "top:" + 14 * widthK + "px; " +
+  "font-size:" + 31 * widthK + "px; " +
+  "text-align: right; " +
+  "color: red; " +
+  "}",
+
+  paymentMonitorCostOffer: ".payment-monitor-cost-offer" +
+  "{" +
+  "position: absolute;" +
+  "width:" + 255 * widthK + "px; " +
+  "right: 7%; " +
+  "margin: 0; " +
+  "margin-top:" + 25 * widthK + "px; " +
+  "font-size:" + 30 * widthK + "px; " +
+  "border-bottom:" + 2 * widthK + "px solid #565d6a; " +
+  "text-align: center; " +
+  "color: #565d6a; " +
+  "}",
+
+  paymentMonitorCardsContainer: ".payment-monitor-cards-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height:" + (window.innerHeight - 420 * widthK) + "px; " +
+  "top:" + 333 * widthK + "px; " +
+  "background-color: transparent;" +
+  "overflow-x: hidden;" +
+  "overflow-y: scroll;" +
+  "-webkit-backface-visibility: hidden;" +
+  "backface-visibility: hidden;" +
+  "-webkit-overflow-scrolling: touch;" +
+  "}",
+
+  paymentMonitorCard: ".payment-monitor-card" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height: " + 145 * widthK + "px; " +
+  "margin: auto;" +
+  "left: 0;" +
+  "right: 0;" +
+  "background-color: white;" +
+  "}",
+
+  paymentMonitorCardLogoContainer: ".payment-monitor-card-logo-container" +
+  "{" +
+  "width: 31%;" +
+  "height: 100%;" +
+  "left: 0;" +
+  "background-color: transparent;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: contain;" +
+  "float: left;" +
+  "position: absolute;" +
+  "}",
+
+  paymentMonitorCardInfoContainer: ".payment-monitor-card-info-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 41%;" +
+  "height: 100%;" +
+  "left: 33%;" +
+  "background-color: transparent;" +
+  "}",
+
+  paymentMonitorCardInfoTextOne: ".payment-monitor-card-info-text-one" +
+  "{" +
+  "position: absolute;" +
+  "font-size: " + 30 * widthK + "px; " +
+  "width: 110%;" +
+  "top: 27%;" +
+  "margin: 0;" +
+  "text-overflow: ellipsis;" +
+  "white-space: nowrap;" +
+  "overflow: hidden;" +
+  "color: #565d6a;" +
+  "}",
+
+  paymentMonitorCardInfoTextThree: ".payment-monitor-card-info-text-three" +
+  "{" +
+  "position: absolute;" +
+  "font-size: " + 29 * widthK + "px; " +
+  "color: #565d6a;" +
+  "margin: 0;" +
+  "top: 49%;" +
+  "}",
+
+  paymentMonitorCardCheckBox: ".payment-monitor-card-checkbox" +
+  "{" +
+  "position: absolute;" +
+  "right: " + 53 * widthK + "px; " +
+  "top: " + 53 * widthK + "px; " +
+  "height: " + 33 * widthK + "px; " +
+  "width: " + 60 * widthK + "px; " +
+  "}",
+
+  paymentMonitorCardCheckBoxInputTypeCheckBox: ".payment-monitor-card-checkbox input[type='checkbox']" +
+  "{" +
+  "position: absolute;" +
+  "visibility: hidden; " +
+  "}",
+
+  paymentMonitorCardCheckBoxLabel: ".payment-monitor-card-checkbox label" +
+  "{" +
+  "position: absolute; " +
+  "width: 100%; " +
+  "height: " + 33 * widthK + "px; " +
+  "cursor: pointer; " +
+  "border: " + 3 * widthK + "px solid #f2f2f1; " +
+  "border-radius: " + 40 * widthK + "px; " +
+  "-webkit-border-radius: " + 40 * widthK + "px; " +
+  "}",
+
+  paymentMonitorCardCheckBoxToggleLabelBefore: ".payment-monitor-card-checkbox label:before " +
+  "{" +
+  "position: absolute; " +
+  "content: ' '; " +
+  "top: " + 4 * widthK + "px; " +
+  "margin-left: " + 5 * widthK + "px; " +
+  "background: #f2f2f1; " +
+  "width: " + 23 * widthK + "px; " +
+  "height: " + 23 * widthK + "px; " +
+  "border: " + 1 * widthK + "px solid #f2f2f1; " +
+  "-webkit-border-radius: 100%; " +
+  "border-radius: 100%; " +
+  "-webkit-transform: translate3d(0,0,0); " +
+  "transform: translate3d(0,0,0); " +
+  "-webkit-transition:  -webkit-transform 300ms cubic-bezier(0.390, 0.575, 0.565, 1.000); " +
+  "transition:  transform 300ms cubic-bezier(0.390, 0.575, 0.565, 1.000); " +
+  "}",
+
+  paymentMonitorCardCheckBoxCheckedBefore: ".payment-monitor-card-checkbox input[type='checkbox']:checked ~ label:before " +
+  "{" +
+  "-webkit-transform: translate3d(" + 25 * widthK + "px,0,0); " +
+  "transform: translate3d(" + 25 * widthK + "px,0,0); " +
+  "background: #00a8f1; " +
+  "border: " + 1 * widthK + "px solid #00a8f1; " +
+  "}",
+
+  paymentMonitorCardCheckBoxCheckedBeforeToggle: ".payment-monitor-card-checkbox input[type='checkbox']:checked ~ label" +
+  "{" +
+  "border: " + 3 * widthK + "px solid #00a8f1; " +
   "}",
 
   //TRANSFER DETAIL VIEW
@@ -10921,6 +10763,624 @@ var css = {
   "margin: 0;" +
   "text-align: center;" +
   "color: grey;" +
+  "}",
+
+// VIEW MONITORING REPORT
+
+  viewMonitoringReportTypeAndTurnOnContainer: ".view-monitoring-report-type-and-turn-on-container" +
+  "{" +
+  "position: absolute;" +
+  "top:" + 87 * widthK + "px;" +
+  "width: 100%;" +
+  "}",
+
+  viewMonitoringReportTypeContainer: ".view-monitoring-report-type-container" +
+  "{" +
+  "position: relative;" +
+  "height:" + 100 * widthK + "px;" +
+  "width: 100%;" +
+  "top: 0;" +
+  "}",
+
+  viewMonitoringReportType: ".view-monitoring-report-type" +
+  "{" +
+  "height: 100%;" +
+  "width: 50%;" +
+  "float: left;" +
+  "color: #c2c2c2;" +
+  "}",
+
+  viewMonitoringReportTypeTitle: ".view-monitoring-report-type-title" +
+  "{" +
+  "margin: 0;" +
+  "margin-top:" + 28 * widthK + "px;" +
+  "margin-left:" + 40 * widthK + "px;" +
+  "text-align: left;" +
+  "font-size:" + 29 * widthK + "px;" +
+  "}",
+
+  viewMonitoringReportTurnOnContainer: ".view-monitoring-report-turnon-container" +
+  "{" +
+  "position: relative;" +
+  "height:" + 208 * widthK + "px;" +
+  "width: 100%;" +
+  "overflow: hidden;" +
+  "background-color: #00a8f1;" +
+  "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "}",
+
+  viewMonitoringReportTurnOnTextOne: ".view-monitoring-report-turnon-text-one" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "margin-top:" + 40 * widthK + "px;" +
+  "margin-left:" + 40 * widthK + "px;" +
+  "width: 90%;" +
+  "color: white;" +
+  "text-align: left;" +
+  "font-family: 'SFUIDisplay-Semibold';" +
+  "font-size:" + 29 * widthK + "px;" +
+  "}",
+
+  viewMonitoringReportTurnOnTextTwo: ".view-monitoring-report-turnon-text-two" +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "margin-left:" + 40 * widthK + "px;" +
+  "width: 90%;" +
+  "color: white;" +
+  "text-align: left;" +
+  "font-family: 'SFUIDisplay-Semibold';" +
+  "font-size:" + 29 * widthK + "px;" +
+  "}",
+
+  viewMonitoringReportTurnOnTurnOn: ".view-monitoring-report-turnon-turnon" +
+  "{" +
+  "position: relative;" +
+  "margin:" + 23 * widthK + "px;" +
+  "margin-left:" + 293 * widthK + "px;" +
+  "width:" + 427 * widthK + "px;" +
+  "color: white;" +
+  "text-align: left;" +
+  "font-family: 'SFUIDisplay-Semibold';" +
+  "font-size:" + 33 * widthK + "px;" +
+  "}",
+
+  viewMonitoringReportTurnOnArrow: ".view-monitoring-report-turnon-arrow" +
+  "{" +
+  "position: absolute;" +
+  "top: 0;" +
+  "right:" + 52 * widthK + "px;" +
+  "height: 100%;" +
+  "width:" + 11 * widthK + "px;" +
+  "color: white;" +
+  "background-image: url('resources/icons/ViewReport/turnon_monitoring_arrow.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 100%;" +
+  "background-position-y: center;" +
+  "background-position-x: center;" +
+  "background-size: 100%;" +
+  "}",
+
+  viewMonitoringReportFilterButton: ".view-monitoring-report-filter-button" +
+  "{ " +
+  "position: absolute;" +
+  "width:" + 115 * widthK + "px;" +
+  "height:" + 115 * widthK + "px;" +
+  "background-image: url(resources/icons/ViewReportFilter/monitoring_filter.png);" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: 62%;" +
+  "}",
+
+  viewMonitoringReportFilterButtonContainer: ".view-monitoring-report-filter-button-container" +
+  "{ " +
+  "position: absolute;" +
+  "width:" + 115 * widthK + "px;" +
+  "height:" + 115 * widthK + "px;" +
+  "bottom:" + 67 * widthK + "px;" +
+  "right:" + 36 * widthK + "px;" +
+  "z-index: 20;" +
+  "background-color: #00a8f1;" +
+  "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "border-radius: " + 100 * widthK + "px;" +
+  "-webkit-box-shadow:" + 7 * widthK + "px " + 7 * widthK + "px " + 13 * widthK + "px " + 0 * widthK + "px " + "rgba(0,0,0, 0.11);" +
+  "-moz-box-shadow:" + 7 * widthK + "px " + 7 * widthK + "px " + 13 * widthK + "px " + 0 * widthK + "px " + "rgba(0,0,0, 0.11);" +
+  "box-shadow:" + 7 * widthK + "px " + 7 * widthK + "px " + 13 * widthK + "px " + 0 * widthK + "px " + "rgba(0,0,0, 0.11);" +
+  "border-radius: " + 100 * widthK + "px;" +
+  "}",
+
+  viewMonitoringBodyContainer: ".view-monitoring-body-container" +
+  "{" +
+  "position: absolute;" +
+  //"height:" + 1150 * widthK + "px; " +
+  "width:100%; " +
+  "top:" + 190 * widthK + "px; " +
+  "bottom:0; " +
+  "background-color: white; " +
+  "overflow-y: scroll; " +
+  "overflow-x: hidden; " +
+  "-webkit-overflow-scrolling: touch; " +
+  // "background-color: #00a8f1;" +
+  "}",
+
+  viewMonitoringPaymentsContainer: ".view-monitoring-payments-container" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "}",
+
+  viewMonitoringPaymentDateContainer: ".view-monitoring-payment-date-containter" +
+  "{" +
+  "position: relative;" +
+  "height:" + 80 * widthK + "px; " +
+  "width: 100%;" +
+  // "left: 4%;" +
+  // "margin-top: 1%;" +
+  //"border-bottom:" + 1 * widthK + "px solid gainsboro;" +
+  "background-color: #f6f6f6;" +
+  "}",
+
+  viewMonitoringPaymentDateField: ".view-monitoring-payment-date-field" +
+  "{" +
+  "position: relative;" +
+  "background-size: contain;" +
+  "top: " + 20 * widthK + "px; " +
+  "left: 6%;" +
+  "text-align: left;" +
+  "font-size:" + 29 * widthK + "px; " +
+  "color: #595759;" +
+  "font-weight: bold;" +
+  "letter-spacing:1px;" +
+  "word-spacing:" + 4 * widthK + "px;" +
+  "}",
+
+  viewMonitoringPaymentBlockContainer: ".view-monitoring-payment-block-containter" +
+  "{" +
+  "position: relative;" +
+  "height:" + 145 * widthK + "px; " +
+  "width: 91%;" +
+  "left: 4%;" +
+  "z-index: 1;" +
+  //"margin-top: 1%;" +
+  "border-top:" + 1 * widthK + "px solid #f1f1f1;" +
+  "background-color: transparent;" +
+  "}",
+
+
+  viewMonitoringPaymentIcon: ".view-monitoring-payment-icon " +
+  "{" +
+  //"top:" + 50 * widthK + "px;" +
+  "background-size: cover;" +
+  "position: absolute;" +
+  "width:" + 125 * widthK + "px;" +
+  "height:" + 125 * widthK + "px;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  //"border-radius:" + 100 * widthK + "px;" +
+  //"border:solid 1px #f1f1f1;" +
+  "top: 6%;" +
+  "}",
+
+  viewMonitoringPaymentInfoLeftContainer: ".view-monitoring-payment-info-left-container " +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "width: 40%;" +
+  "left: 18%;" +
+  "color: #8b8b8b;" +
+  "}",
+
+  viewMonitoringPaymentInfoRightContainer: ".view-monitoring-payment-info-right-container " +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "width: 38%;" +
+  "left: 59%;" +
+  "color: #8b8b8b;" +
+  "}",
+
+  viewMonitoringPaymentInfoName: ".view-monitoring-payment-info-name " +
+  "{" +
+  "position: absolute;" +
+  "height: 25%;" +
+  "top: 34%;" +
+  "left: 15%;" +
+  "margin: 0;" +
+  "font-size:" + 24 * widthK + "px; " +
+  "width: 75%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "}",
+
+  viewMonitoringPaymentInfoBalance: ".view-monitoring-payment-info-balance " +
+  "{" +
+  "position: relative;" +
+  "top: 28%;" +
+  "right:21%;" +
+  "margin: 0;" +
+  "font-size:" + 28 * widthK + "px;" +
+  "color: #595759;" +
+  "float: right;" +
+  "font-weight: bold;" +
+  "}",
+
+  viewMonitoringPaymentInfoCurrencyField: ".view-monitoring-payment-info-currency-field" +
+  "{" +
+  "position: relative;" +
+  "top: 31%;" +
+  "right: 18%;" +
+  "margin: 0;" +
+  "font-size:" + 24 * widthK + "px;" +
+  "color: #595759;" +
+  "float: right;" +
+  "font-weight: bold;" +
+  "}",
+
+  viewMonitoringPaymentInfoNumber: ".view-monitoring-payment-info-number " +
+  "{" +
+  "position: absolute;" +
+  "height: 25%;" +
+  "top: 50%;" +
+  "left: 16%;" +
+  "margin: 0;" +
+  "font-size: " + 22 * widthK + "px; " +
+  "width: 75%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "}",
+
+  viewMonitoringPaymentInfoTime: ".view-monitoring-payment-info-time " +
+  "{" +
+  "position: absolute;" +
+  "right: " + 63 * widthK + "px; " +
+  "width: 10%;" +
+  //"height: 100%;" +
+  "top: 54%;" +
+  "font-size: " + 20 * widthK + "px; " +
+  "margin: 0;" +
+  "color: #8b8b8b;" +
+  "}",
+
+  viewMonitoringPaymentInfoStateImage: ".view-monitoring-payment-info-state-image " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 60 * widthK + "px;" +
+  "left: 92%;" +
+  "height:" + 60 * widthK + "px;" +
+  //"height: 100%;" +
+  "top: 30%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 22%;" +
+  "background-position: center;" +
+  "background-image: url('resources/icons/ViewReportFilter/filter_arrow.png');" +
+  "margin: 0;" +
+  "}",
+
+
+// VIEW REPORT FILTER
+
+  viewReportFiltersContainer: ".view-report-filters-container" +
+  "{ " +
+  "position: absolute;" +
+  "width: 100%;" +
+  "top: " + 87 * widthK + "px;" +
+  "}",
+
+  viewReportFilterByDateContainer: ".view-report-filter-bydate-container" +
+  "{ " +
+  "position: relative;" +
+  "height: " + 160 * widthK + "px;" +
+  "overflow: hidden;" +
+  "}",
+
+  viewReportFilterByDateTitle: ".view-report-filter-bydate-title" +
+  "{ " +
+  "position: relative;" +
+  "margin: 0;" +
+  "margin-left: " + 134 * widthK + "px;" +
+  "margin-top: " + 50 * widthK + "px;" +
+  "font-size: " + 33 * widthK + "px;" +
+  "color: #565d6a;" +
+  "}",
+
+  viewReportFilterByDateText: ".view-report-filter-bydate-text" +
+  "{ " +
+  "position: relative;" +
+  "margin: 0;" +
+  "margin-left: " + 134 * widthK + "px;" +
+  "margin-top: " + 3 * widthK + "px;" +
+  "font-size: " + 29 * widthK + "px;" +
+  "color: #c2c2c2;" +
+  "}",
+
+  viewReportFilterByDateIcon: ".view-report-filter-bydate-icon" +
+  "{ " +
+  "position: absolute;" +
+  "top:" + 51 * widthK + "px;" +
+  "left:" + 47 * widthK + "px;" +
+  "height:" + 41 * widthK + "px;" +
+  "width:" + 41 * widthK + "px;" +
+  "background-image: url('resources/icons/ViewReportFilter/monitoring_filter_date.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 100%;" +
+  "background-position-y: center;" +
+  "background-position-x: center;" +
+  "background-size: 100%;" +
+  "}",
+
+  viewReportFilterArrowIcon: ".view-report-filter-arrow-icon" +
+  "{ " +
+  "position: absolute;" +
+  "top:" + 73 * widthK + "px;" +
+  "right:" + 50 * widthK + "px;" +
+  "height:" + 17 * widthK + "px;" +
+  "width:" + 11 * widthK + "px;" +
+  "background-image: url('resources/icons/ViewReportFilter/filter_arrow.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 100%;" +
+  "background-position-y: center;" +
+  "background-position-x: center;" +
+  "background-size: 100%;" +
+  "}",
+
+  viewReportFilterByCardContainer: ".view-report-filter-bycard-container" +
+  "{ " +
+  "position: relative;" +
+  "height: " + 160 * widthK + "px;" +
+  "overflow: hidden;" +
+  "}",
+
+  viewReportFilterByCardTitle: ".view-report-filter-bycard-title" +
+  "{ " +
+  "position: relative;" +
+  "margin: 0;" +
+  "margin-left: " + 134 * widthK + "px;" +
+  "margin-top: " + 33 * widthK + "px;" +
+  "font-size: " + 33 * widthK + "px;" +
+  "color: #565d6a;" +
+  "}",
+
+  viewReportFilterByCardText: ".view-report-filter-bycard-text" +
+  "{ " +
+  "position: relative;" +
+  "margin: 0;" +
+  "margin-left: " + 134 * widthK + "px;" +
+  "margin-top: " + 3 * widthK + "px;" +
+  "font-size: " + 29 * widthK + "px;" +
+  "color: #c2c2c2;" +
+  "}",
+
+  viewReportFilterByCardIcon: ".view-report-filter-bycard-icon" +
+  "{ " +
+  "position: absolute;" +
+  "top:" + 35 * widthK + "px;" +
+  "left:" + 47 * widthK + "px;" +
+  "height:" + 41 * widthK + "px;" +
+  "width:" + 41 * widthK + "px;" +
+  "background-image: url('resources/icons/ViewReportFilter/monitoring_filter_card.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 100%;" +
+  "background-position-y: center;" +
+  "background-position-x: center;" +
+  "background-size: 100%;" +
+  "}",
+
+  viewReportFilterPage: ".view-report-filter-page " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 100%;" +
+  "background: #fafafa;" +
+  "}",
+
+  viewReportFilterDateCustomText: ".view-report-filter-date-custom-text " +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "margin-left:" + 44 * widthK + "px;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "color: #565d6a;" +
+  "}",
+
+  viewReportFilterDateCustomContainer: ".view-report-filter-date-custom-container " +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "margin: 0;" +
+  "margin-top:" + 126 * widthK + "px;" +
+  "}",
+
+  viewReportFilterDateCustomFrom: ".view-report-filter-date-custom-from " +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height:" + 89 * widthK + "px;" +
+  "margin: 0;" +
+  "margin-top:" + 20 * widthK + "px;" +
+  "background-color: white;" +
+  "}",
+
+  viewReportFilterDateCustomFromTitle: ".view-report-filter-date-custom-from-title " +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "margin-top:" + 26 * widthK + "px;" +
+  "margin-left:" + 52 * widthK + "px;" +
+  "font-size:" + 31 * widthK + "px;" +
+  "color: #c2c2c2;" +
+  "}",
+
+  viewReportFilterDateCustomTo: ".view-report-filter-date-custom-to " +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height:" + 89 * widthK + "px;" +
+  "margin: 0;" +
+  "background-color: white;" +
+  "}",
+
+  viewReportFilterDateCustomToTitle: ".view-report-filter-date-custom-to-title " +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "margin-top:" + 26 * widthK + "px;" +
+  "margin-left:" + 52 * widthK + "px;" +
+  "font-size:" + 31 * widthK + "px;" +
+  "color: #c2c2c2;" +
+  "}",
+
+  viewReportFilterDateCustomArrow: ".view-report-filter-date-custom-arrow" +
+  "{ " +
+  "position: absolute;" +
+  "top:" + 40 * widthK + "px;" +
+  "right:" + 52 * widthK + "px;" +
+  "height:" + 17 * widthK + "px;" +
+  "width:" + 11 * widthK + "px;" +
+  "background-image: url('resources/icons/ViewReportFilter/filter_arrow.png');" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 100%;" +
+  "background-position-y: center;" +
+  "background-position-x: center;" +
+  "background-size: 100%;" +
+  "}",
+
+  viewReportFilterDateRangeTypeContainer: ".view-report-filter-date-range-type-container" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "margin-top:" + 60 * widthK + "px;" +
+  "}",
+
+  viewReportFilterDateRangeType: ".view-report-filter-date-range-type" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height:" + 89 * widthK + "px;" +
+  "margin: 0;" +
+  "background-color: white;" +
+  "}",
+
+  viewReportFilterDateRangeTypeTitle: ".view-report-filter-date-range-type-title" +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "margin-top:" + 26 * widthK + "px;" +
+  "margin-left:" + 52 * widthK + "px;" +
+  "font-size:" + 33 * widthK + "px;" +
+  "color: #565d6a;" +
+  "}",
+
+  viewReportFilterDateRangeTypeCheckIcon: ".view-report-filter-date-range-type-check-icon" +
+  "{" +
+  "position: absolute;" +
+  "right:" + 40 * widthK + "px;" +
+  "width:" + 57 * widthK + "px;" +
+  "height: 100%;" +
+  "top: 0;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 62%;" +
+  "background-position: center;" +
+  "background-image: url('resources/icons/ViewService/radio_unselected.png');" +
+  "}",
+
+  viewReportFilterCardChooseCardText: ".view-report-filter-card-choose-card-text " +
+  "{" +
+  "position: relative;" +
+  "margin: 0;" +
+  "margin-top:" + 126 * widthK + "px;" +
+  "margin-left:" + 44 * widthK + "px;" +
+  "font-size:" + 32 * widthK + "px;" +
+  "color: #565d6a;" +
+  "}",
+
+  viewReportFilterCardCardsContainer: ".view-report-filter-card-cards-container " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "top:" + 190 * widthK + "px;" +
+  "height:" + (1232 * heightK - 277 * widthK) + "px;" +
+  "background-color: transparent;" +
+  "overflow-x: hidden;" +
+  "overflow-y: scroll;" +
+  "-webkit-backface-visibility: hidden;" +
+  "backface-visibility: hidden;" +
+  "-webkit-overflow-scrolling: touch;" +
+  "}",
+
+  viewReportFilterCardCard: ".view-report-filter-card-card " +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height: " + 145 * widthK + "px; " +
+  "margin: auto;" +
+  "left: 0;" +
+  "right: 0;" +
+  "background-color: white;" +
+  "}",
+
+  viewReportFilterCardCardLogoContainer: ".view-report-filter-card-card-logo-container " +
+  "{" +
+  "width: 31%;" +
+  "height: 100%;" +
+  "left: 0;" +
+  "background-color: transparent;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-size: contain;" +
+  "float: left;" +
+  "position: absolute;" +
+  "}",
+
+  viewReportFilterCardCardInfoContainer: ".view-report-filter-card-card-info-container " +
+  "{" +
+  "position: absolute;" +
+  "width: 41%;" +
+  "height: 100%;" +
+  "left: 30%;" +
+  "background-color: transparent;" +
+  "}",
+
+  viewReportFilterCardCardInfoTextOne: ".view-report-filter-card-card-info-text-one " +
+  "{" +
+  "position: absolute;" +
+  "font-size: " + 30 * widthK + "px; " +
+  "width: 110%;" +
+  "top: 25%;" +
+  "margin: 0;" +
+  "text-overflow: ellipsis;" +
+  "white-space: nowrap;" +
+  "overflow: hidden;" +
+  "color: #565d6a;" +
+  "}",
+
+  viewReportFilterCardCardInfoTextThree: ".view-report-filter-card-card-info-text-three " +
+  "{" +
+  "position: absolute;" +
+  "font-size: " + 28 * widthK + "px; " +
+  "color: #565d6a;" +
+  "margin: 0;" +
+  "top: 53%;" +
+  "}",
+
+  viewReportFilterCardCardCheckIcon: ".view-report-filter-card-card-check-icon" +
+  "{" +
+  "position: absolute;" +
+  "right:" + 40 * widthK + "px;" +
+  "width:" + 57 * widthK + "px;" +
+  "height: 100%;" +
+  "top: 0;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 62%;" +
+  "background-position: center;" +
+  "background-image: url('resources/icons/ViewService/radio_unselected.png');" +
   "}",
 
 //  VIEW REPORTS
@@ -13163,21 +13623,19 @@ var css = {
 
   transferOnCardOkButton: ".transfer-on-card-ok-button" +
   "{" +
-  "position: relative;" +
-  "margin: " + 49 * widthK + "px 0 0 " + 214 * widthK + "px;" +
-  "float: left;" +
-  "text-align: center;" +
-  "line-height: " + 63 * widthK + "px;" +
-  "font-size: " + 29 * widthK + "px;" +
-  "background-color: #00a8f1;" +
-  "height: " + 74 * widthK + "px;" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
-  "width: 44%;" +
-  "border-radius: " + 10 * widthK + "px;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #00a8f1;" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
   "color: #ffffff;" +
-  "text-transform: capitalize;" +
+  "pointer-events: auto;" +
   "}",
 
 //  Component Alert
@@ -13922,25 +14380,22 @@ var css = {
   "top: 62%;" +
   "bottom:0;" +
   "background-color: transparent;" +
-  "border-bottom:  " + 1 + "px solid lightgray;" +
   "overflow: scroll;" +
   "}",
 
   qrPincardButtonEnter: " .qr-pincard-button-enter" +
   "{" +
-  "position: absolute;" +
-  "margin: 0;" +
-  "height: " + 74 * widthK + "px;" +
-  "font-size: " + 32 * widthK + "px;" +
-  "top: 60%;" +
-  "background-color: #00a8f1;" +
-  "padding: 0;" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
-  "left: 28%;" +
-  "width: 44%;" +
-  "border-radius: " + 10 * widthK + "px;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #00a8f1;" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
   "color: #ffffff;" +
   "}",
 
@@ -14037,9 +14492,7 @@ var css = {
   "width: 100%; " +
   "top: " + 130 * heightK + "px; " +
   "background-color: white;" +
-  "overflow-x: hidden;" +
-  "overflow-y: scroll;" +
-  "border-bottom: 1px solid black;" +
+  "overflow: hidden;" +
   "}",
 
   qrPayconfirmDataContainer: ".qr-payconfirm-data-container" +
@@ -14048,7 +14501,6 @@ var css = {
   "width: 100%;" +
   "height: " + 569 * widthK + "px; " +
   "background-color: transparent;" +
-  //"border-bottom:  " + 1 + "px solid lightgray;" +
   "}",
 
   qrPayconfirmPhoneField: ".qr-payconfirm-phone-field" +
@@ -14192,7 +14644,6 @@ var css = {
   "top: 60%;" +
   "bottom: 0;" +
   "background-color: transparent;" +
-  "border-bottom:  1px solid lightgray;" +
   "overflow: scroll;" +
   "}",
 
@@ -14245,19 +14696,20 @@ var css = {
 
   qrPayconfirmButtonEnter: ".qr-payconfirm-button-enter" +
   "{" +
-  "position: absolute;" +
-  "margin: 0;" +
-  "height: " + 74 * widthK + "px;" +
-  "font-size: " + 32 * widthK + "px;" +
-  "top: 60%;" +
-  "background-color: #00a8f1;" +
-  "padding: 0;" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
-  "left: 28%;" +
-  "width: 44%;" +
-  "border-radius: " + 10 * widthK + "px;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #00a8f1;" +
+  // "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
   "color: #ffffff;" +
   "}",
 
@@ -14990,6 +15442,18 @@ var css = {
   "height:" + 330 * widthK + "px;" +
   "}",
 
+  // viewNewsBlockImageLoader: ".view-news-block-image-loader " +
+  // "{" +
+  // "position: relative;" +
+  // "background-image: url('resources/icons/ViewNews/loader.gif');" +
+  // "background-repeat: no-repeat;" +
+  // "background-position-x: center;" +
+  // "background-position-y: center;" +
+  // "background-size: 10%;" +
+  // "width: 100%;" +
+  // "height:" + 330 * widthK + "px;" +
+  // "}",
+
   viewNewsBlockTitle: ".view-news-block-title " +
   "{" +
   "position: relative;" +
@@ -15171,7 +15635,7 @@ var css = {
   "width:" + 100 * widthK + "px;" +
   "left: 10%;" +
   "top: 10%;" +
-  "background-image: url(resources/icons/ViewSuccessUnsuccess/notification.png);" +
+  "background-image: url(resources/icons/ViewSuccessUnsuccess/notification2.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
   "}",
@@ -15731,38 +16195,40 @@ var css = {
 
   autopayEventButtonEnterEnabled: " .autopay-event-button-enter-enabled" +
   "{" +
-  "top:" + 400 * heightK + "px;" +
-  "height:" + 74 * widthK + "px;" +
-  "margin: 0 auto 0 auto;" +
-  "background-color: #00a8f1;" +
-  "padding: 0;" +
-  "font-size: " + 32 * widthK + "px;" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
-  "position: relative;" +
-  "left: 28%;" +
-  "width: 44%;" +
-  "border-radius: " + 10 * widthK + "px;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #00a8f1;" +
+  // "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
   "color: #ffffff;" +
   "pointer-events: auto;" +
   "}",
 
   autopayEventButtonEnterDisabled: " .autopay-event-button-enter-disabled" +
   "{" +
-  "top:" + 400 * heightK + "px;" +
-  "height:" + 74 * widthK + "px;" +
-  "margin: 0 auto 0 auto;" +
-  "background-color: #D2D2D2;" +
-  "padding: 0;" +
-  "font-size: " + 32 * widthK + "px;" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
-  "position: relative;" +
-  "left: 28%;" +
-  "width: 44%;" +
-  "border-radius: " + 10 * widthK + "px;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #00a8f1;" +
+  // "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
   "color: #ffffff;" +
   "pointer-events: none;" +
   "}",
@@ -16218,17 +16684,20 @@ var css = {
   serviceInfoButtonNext: ".serviceinfo-button-next" +
   "{" +
   "position: absolute;" +
-  "left: 28%;" +
-  "width: 44%;" +
-  "height: " + 74 * widthK + "px;" +
-  "background-color: #00a8f1;" +
-  "border-radius: " + 10 * widthK + "px;" +
-  "bottom: " + 55 * widthK + "px; " +
-  "font-size: " + 32 * widthK + "px;" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
-  "color: #ffffff;" +
   "border: none;" +
   "outline: none;" +
+  "width: 100%;" +
+  "background-color: #00a8f1;" +
+  // "background: -moz-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  // "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
+  "color: #ffffff;" +
   "}",
 
   serviceInfoInformField: ".serviceinfo-inform-field" +

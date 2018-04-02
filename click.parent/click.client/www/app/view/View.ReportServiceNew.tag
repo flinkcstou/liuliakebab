@@ -419,9 +419,9 @@
         } else {
           window.common.alert.show("componentGeneratedQrId", {
             parent: scope,
-            qr_image: opts.qr_image,
-            qr_header: opts.qr_header,
-            qr_footer: opts.qr_footer,
+            qr_image: scope.opts.qr_image,
+            qr_header: scope.opts.qr_header,
+            qr_footer: scope.opts.qr_footer,
             viewpage: undefined,
             step_amount: 0
           });
@@ -455,7 +455,8 @@
       goBackButtonEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
-        onBackKeyDown()
+        console.log("report service component should be closed");
+        onBackKeyDown();
         scope.update()
       }
 //      scope.unmount()

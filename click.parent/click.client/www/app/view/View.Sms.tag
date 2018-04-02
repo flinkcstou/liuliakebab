@@ -220,7 +220,9 @@
       goBackTouchEndYSms = event.changedTouches[0].pageY;
 
       if (Math.abs(goBackTouchStartXSms - goBackTouchEndXSms) <= 20 && Math.abs(goBackTouchStartYSms - goBackTouchEndYSms) <= 20) {
-        onBackKeyDown()
+        onBackKeyDown();
+        console.log('CLEARING INTERVAL FOR CALL.IVR', time);
+        clearInterval(time);
       }
     };
 

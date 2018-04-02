@@ -55,7 +55,8 @@
         <div class="transfer-contact-found-text-two">{suggestionTwo.phoneNumber}</div>
       </div>
 
-      <button id="nextButtonId" class="settings-add-friend-next-button-inner-container"
+      <button id="nextButtonId" style="bottom: {window.bottomButtonBottom}"
+              class="settings-add-friend-next-button-inner-container"
               ontouchstart="addFriendTouchStart()" ontouchend="addFriendTouchEnd()">
         {window.languages.ViewPayTransferNext}
       </button>

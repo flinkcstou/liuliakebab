@@ -378,12 +378,11 @@
       if (checkBoxChangeId.checked) {
         modeOfApp.onlineMode = true
         modeOfApp.offlineMode = false;
-        if (localStorage.getItem('click_client_token')) {
+        if (localStorage.getItem('click_client_token') && localStorage.getItem('click_client_registered')) {
           this.riotTags.innerHTML = "<view-authorization>";
           riot.mount('view-authorization');
 //          scope.unmount()
-        }
-        else {
+        } else {
           this.riotTags.innerHTML = "<view-registration-device>";
           riot.mount('view-registration-device');
 //          scope.unmount()

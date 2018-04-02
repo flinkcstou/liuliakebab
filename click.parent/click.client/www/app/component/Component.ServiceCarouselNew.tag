@@ -245,9 +245,11 @@
 
               for (var j in result[1]) {
                 var fav = JSON.parse(result[1][j].body);
-                fav.service.image = scope.servicesMap[fav.service.id][0].image;
-                scope.favoritePaymentsList.push(fav);
-                console.log("image changed for ", fav)
+                if (scope.servicesMap[fav.service.id]) {
+                  fav.service.image = scope.servicesMap[fav.service.id][0].image;
+                  scope.favoritePaymentsList.push(fav);
+                  console.log("image changed for ", fav)
+                }
               }
               favoritePaymentsListForApi = [];
               for (var i in scope.favoritePaymentsList)

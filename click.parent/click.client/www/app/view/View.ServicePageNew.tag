@@ -118,7 +118,7 @@
     </div>
 
 
-    <button id="enterButtonId"
+    <button id="enterButtonId" style="bottom: {window.bottomButtonBottom}"
             class="{servicepage-button-enter-enabled: enterButtonEnabled,servicepage-button-enter-disabled:!enterButtonEnabled}"
             ontouchstart="onTouchStartOfEnter()"
             ontouchend="onTouchEndOfEnter()">
@@ -232,7 +232,8 @@
       </div>
     </div>
 
-    <button id="formTypeTwoBtnId" class="servicepage-button-save" ontouchstart="onTouchStartOfEnter()"
+    <button id="formTypeTwoBtnId" style="bottom: {window.bottomButtonBottom}" class="servicepage-button-enter-disabled"
+            ontouchstart="onTouchStartOfEnter()"
             ontouchend="formTypeTwoButtonFunction()">
       {!enterButton?window.languages.ViewServicePageSaveLabel:window.languages.ViewServicePageEnterLabel}
     </button>
@@ -367,37 +368,48 @@
 
     checkFieldsToActivateNext = function (from) {
 
+      console.log("CHECK fields");
+
       if (!scope.service['amount_editable']) return;
 
-      if (amountForPayTransaction < scope.service.min_pay_limit && from == 'sum' && amount.value.length != 0) {
-        scope.showErrorOfLimit = true;
-        amountField.style.borderBottom = 3 * widthK + 'px solid red';
-        amountFieldTitle.style.color = 'red';
-        scope.enterButtonEnabled = false;
-        scope.update();
-        placeHolderSumId.style.color = 'red';
-        return;
-      }
-      else if (from == 'sum' && amountField.length >= 1) {
-        amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
-        amountFieldTitle.style.color = '#01cfff';
-        scope.showErrorOfLimit = false;
-        scope.update()
-      }
-      if (amountForPayTransaction > scope.service.max_pay_limit && from == 'sum' && amount.value.length != 0) {
-        scope.showErrorOfLimit = true;
-        amountField.style.borderBottom = 3 * widthK + 'px solid red';
-        amountFieldTitle.style.color = 'red';
-        scope.enterButtonEnabled = false;
-        scope.update();
-        placeHolderSumId.style.color = 'red';
-        return;
-      }
-      else if (from == 'sum') {
-        amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
-        amountFieldTitle.style.color = '#01cfff';
-        scope.showErrorOfLimit = false;
-        scope.update()
+      if (scope.service.form_type != 5) {
+        if (amountForPayTransaction < scope.service.min_pay_limit) {
+
+          if (from == 'sum' && amount.value.length != 0) {
+            scope.showErrorOfLimit = true;
+            amountField.style.borderBottom = 3 * widthK + 'px solid red';
+            amountFieldTitle.style.color = 'red';
+            scope.update();
+            placeHolderSumId.style.color = 'red';
+          }
+          scope.enterButtonEnabled = false;
+          scope.update();
+          return;
+        }
+        else if (from == 'sum' && amountField.length >= 1) {
+          amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+          amountFieldTitle.style.color = '#01cfff';
+          scope.showErrorOfLimit = false;
+          scope.update()
+        }
+        if (amountForPayTransaction > scope.service.max_pay_limit) {
+          if (from == 'sum' && amount.value.length != 0) {
+            scope.showErrorOfLimit = true;
+            amountField.style.borderBottom = 3 * widthK + 'px solid red';
+            amountFieldTitle.style.color = 'red';
+            scope.update();
+            placeHolderSumId.style.color = 'red';
+          }
+          scope.enterButtonEnabled = false;
+          scope.update();
+          return;
+        }
+        else if (from == 'sum') {
+          amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
+          amountFieldTitle.style.color = '#01cfff';
+          scope.showErrorOfLimit = false;
+          scope.update()
+        }
       }
 
 
@@ -1646,6 +1658,9 @@
 
     scope.onTouchEndOfEnter = onTouchEndOfEnter = function () {
       event.stopPropagation();
+
+      opts.cost = scope.service.cost;
+      opts.lang_amount_title = scope.service.lang_amount_title;
 
       if (this.enterButtonId && scope.enterButtonEnabled)
         this.enterButtonId.style.webkitTransform = 'scale(1)';

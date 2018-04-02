@@ -53,9 +53,9 @@
       <p class="autopay-event-amounts-info-text autopay-event-amounts-info-text-two">{amountsCanBeText}сум</p>
 
 
-      <button
-        class="{autopay-event-button-enter-enabled: enterButtonEnabled,autopay-event-button-enter-disabled:!enterButtonEnabled}"
-        ontouchend="chooseCardToPay()" ontouchstart="onTouchStartOfChooseCard()">
+      <button id="enterButtonId" style="bottom: {window.bottomButtonBottom}"
+              class="{autopay-event-button-enter-enabled: enterButtonEnabled,autopay-event-button-enter-disabled:!enterButtonEnabled}"
+              ontouchend="chooseCardToPay()" ontouchstart="onTouchStartOfChooseCard()">
         {window.languages.ViewServicePageEnterLabel}
       </button>
 

@@ -101,10 +101,18 @@
           window.common.alert.hide("componentConfirmId");
           return;
         }
+        console.log("confirm component, history=", history.arrayOfHistory);
 
         if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view === 'view-registration-device') {
           console.log("Confirm to device registration");
           riot.update();
+          riotTags.innerHTML = "<view-registration-device>";
+          riot.mount('view-registration-device');
+        }
+        else if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view === 'view-sms') {
+          console.log("Confirm to device registration");
+          history.arrayOfHistory.pop();
+          sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
           riotTags.innerHTML = "<view-registration-device>";
           riot.mount('view-registration-device');
         }

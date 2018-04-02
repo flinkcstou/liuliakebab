@@ -3,10 +3,10 @@
     <div class="page-title">
 
       <div class="registration-button-offline"
-             if="{device.platform != 'iOS'}"
-             id="registrationOfflineButtonId"
-             ontouchstart="registrationOfflineTouchStart()"
-             ontouchend="registrationOfflineTouchEnd()">{window.languages.ViewRegistrationDeviceButtonOffline}
+           if="{device.platform != 'iOS'}"
+           id="registrationOfflineButtonId"
+           ontouchstart="registrationOfflineTouchStart()"
+           ontouchend="registrationOfflineTouchEnd()">{window.languages.ViewRegistrationDeviceButtonOffline}
       </div>
 
       <div id="registrationHelpButtonId" class="registration-button-help" ontouchend="helpTouchEnd()"
@@ -427,9 +427,27 @@
       return device.model;
     }
 
+    var deviceImei;
+
     function deviceImei() {
-      return (device.uuid.substring(0, device.uuid.length / 2));
+
+      if (device.platform == "BrowserStand" || device.platform == 'iOS') {
+        deviceImei = (device.uuid.substring(0, device.uuid.length / 2));
+      } else {
+        window.plugins.imei.get(
+          function (imei) {
+            console.log("got imei: " + imei);
+            deviceImei = imei;
+          },
+          function () {
+            console.log("error loading imei");
+          }
+        );
+      }
+
     }
+
+    deviceImei();
 
     function deviceInfo() {
       return device.manufacturer + ' ' + device.version + ' ' + device.model;
@@ -447,14 +465,14 @@
           device_name: deviceName(),
           device_type: deviceType(),
           datetime: date,
-          imei: deviceImei(),
+          imei: deviceImei,
           app_version: AppVersion.version
         },
 
         scope: this,
 
         onSuccess: function (result) {
-          console.log('Clearing timer onSuccess',timeOutTimer);
+          console.log('Clearing timer onSuccess', timeOutTimer);
           window.clearTimeout(timeOutTimer);
           window.stopSpinner();
           console.log("Device.register.request method answer: fail");
@@ -491,7 +509,7 @@
         },
 
         onFail: function (api_status, api_status_message, data) {
-          console.log('Clearing timer onFail',timeOutTimer);
+          console.log('Clearing timer onFail', timeOutTimer);
           window.clearTimeout(timeOutTimer);
           console.log("Device.register.request method answer: fail");
           window.stopSpinner();
@@ -503,16 +521,16 @@
           timeOutTimer = setTimeout(function () {
             window.writeLog({
               reason: 'Timeout',
-              method:'device.register.request',
+              method: 'device.register.request',
             });
-              updateAlertComponent(true, null, 'view-registration-device', window.languages.WaitingTimeExpiredText);
-              window.stopSpinner();
-              window.api.forceClose();
+            updateAlertComponent(true, null, 'view-registration-device', window.languages.WaitingTimeExpiredText);
+            window.stopSpinner();
+            window.api.forceClose();
           }, 30000);
           console.log('creating timeOut', timeOutTimer);
         },
-        onEmergencyStop: function(){
-          console.log('Clearing timer emergencyStop',timeOutTimer);
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimer);
           window.clearTimeout(timeOutTimer);
         }
       });

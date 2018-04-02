@@ -113,7 +113,7 @@
 
       if (Math.abs(payStartX - payEndX) <= 20 && Math.abs(payStartY - payEndY) <= 20) {
         riotTags.innerHTML = "<view-pay>";
-        riot.mount('view-pay');
+        riot.mount('view-pay', {mode: 'USUAL'});
 //        scope.unmount()
       }
       else return

@@ -64,6 +64,31 @@ var RU_LANGUAGES =
     "ViewInfoReportsTitle": "Отчёты",
     "ViewInfoLastOperations": "Последние операции",
 
+    "ViewMonitoringReportNoTokenTitle": "ОТЧЁТЫ",
+    "ViewMonitoringReportYesTokenTitle": "МОНИТОРИНГ ЗА ",
+    "ViewMonitoringReportTurnOnTextOne": "Включите сервис \"Мониторинг платежей\"",
+    "ViewMonitoringReportTurnOnTextTwo": "и следите за передвижением Ваших средств",
+    "ViewMonitoringReportTurnOnTurnOn": "ВКЛЮЧИТЬ СЕРВИС",
+    "ViewMonitoringReportIncomeTypeTitle": "Поступление",
+    "ViewMonitoringReportOutgoTypeTitle": "Расход",
+
+    "ViewReportFilterTitle": "ФИЛЬТРЫ",
+    "ViewReportFilterSaveButton": "СОХРАНИТЬ",
+    "ViewReportFilterApplyButton": "ПРИМЕНИТЬ",
+    "ViewReportFilterByDateTitle": "Фильтр по дате",
+    "ViewReportFilterByCardTitle": "Фильтр по карте",
+    "ViewReportFilterDatePageTitle": "ПО ДАТЕ",
+    "ViewReportFilterDateCustomText": "За определенный период",
+    "ViewReportFilterDateCustomFrom": "с",
+    "ViewReportFilterDateCustomTo": "по",
+    "ViewReportFilterDateRangeToday": "За сегодня",
+    "ViewReportFilterDateRangeYesterday": "За вчера",
+    "ViewReportFilterDateRangeCurrentWeek": "За текущую неделю",
+    "ViewReportFilterDateRangeLastWeek": "За прошлую неделю",
+
+    "ViewReportFilterCardPageTitle": "ПО КАРТЕ",
+    "ViewReportFilterCardChooseCardText": "Выберите карту",
+
     "ViewMyCardAriaLabelCardSettings": "Настройки карты",
     "ViewMyCardTransfer": "Переводы с карты на карту",
     "ViewMyCardTitleName": "ДЕЙСТВИЯ С КАРТОЙ",
@@ -75,13 +100,13 @@ var RU_LANGUAGES =
     "ViewMyCardTransferDeniedAccess": "Извининте, вы не можете произвести перевод с этой карты",
     "ViewMyCardTransferDeniedP2p": "Первод средств с данной карты недоступен",
 
-    "ViewServicePageEnterLabel": "Далее",
+    "ViewServicePageEnterLabel": "ПРОДОЛЖИТЬ",
     "ViewServicePageChooseCityLabel": "Выберите город",
     "ViewServicePageChooseDistrictLabel": "Выберите район",
     //"ViewServicePageChooseRegion": "ВЫБЕРИТЕ РАЙОН",
     //"ViewServicePageChooseCity": "ВЫБЕРИТЕ ГОРОД",
-    "ViewServicePageSaveLabel": "Сохранить",
-    "ViewServicePagePayLabel": "Оплатить",
+    "ViewServicePageSaveLabel": "СОХРАНИТЬ",
+    "ViewServicePagePayLabel": "ОПЛАТИТЬ",
     "ViewServicePageVoiceOverOpenCalculator": "Открыть калькулятор",
     "ViewServicePageAmountTextLabel": "Сумма оплаты:",
     "ViewServicePageAmountTaxText": "Комиссия: ",
@@ -152,13 +177,13 @@ var RU_LANGUAGES =
   "ViewPayConfirmAvailable": "Доступно",
   "ViewPayConfirmRemoveFromFavorites": "Удалить из избранных",
   "ViewPayConfirmAddToAutoPay": "Добавить в автоплатеж",
-  "ViewPayConfirmPay": "Оплатить",
+  "ViewPayConfirmPay": "ОПЛАТИТЬ",
 
   "ViewPayTransferMenuNameContact": "КОНТАКТ",
   "ViewPayTransferMenuNameCard": "КАРТА",
   "ViewPayTransferContactTextField": "Укажите номер телефона получателя:",
   "ViewPayTransferCardTextField": "Укажите номер карты получателя:",
-  "ViewPayTransferNext": "Далее",
+  "ViewPayTransferNext": "ПРОДОЛЖИТЬ",
   "ViewPayTransferTitle": "ПЕРЕВОДЫ",
   "ViewPayTransferCardOwnerTitle": "Владелец:",
   "ViewPayTransferAccessToContacts": "Для быстрого поиска в адресной книге, необходимо разрешить приложению доступ к контактам на Вашем устройстве",
@@ -187,13 +212,13 @@ var RU_LANGUAGES =
 
 
   "ViewTransferTwoTax": "Комиссия: ",
-  "ViewTransferTwoNext": "Далее",
+  "ViewTransferTwoNext": "ПРОДОЛЖИТЬ",
   "ViewTransferTwoTitle": "ПЕРЕВОД НА",
   "ViewTransferTwoSum": "Введите сумму",
 
   "ViewTransferThreeTitle": "ПЕРЕВОД НА",
   "ViewTransferThreeMenuTitle": "ПЕРЕВЕСТИ С КАРТЫ",
-  "ViewTransferThreeNext": "Далее",
+  "ViewTransferThreeNext": "ПРОДОЛЖИТЬ",
   "ViewTransferSubmitNoCards": "Нет карт доступных для переводов",
 
   "ViewTransferFourTitle": "ПЕРЕВОД НА",
@@ -280,7 +305,7 @@ var RU_LANGUAGES =
   "ViewInvoiceHistoryDetailPaymentStatusLabel": "Статус:",
 
   "ComponentPinResetTextOne": "При смене CLICK-PIN все Ваши карты будут отключены от системы CLICK",
-  "ComponentPinResetTextTwo": "Продолжить?",
+  "ComponentPinResetTextTwo": "ПРОДОЛЖИТЬ?",
   "ComponentPinResetTextThree": "Все Ваши карты отключены от системы CLICK",
   "ComponentPinResetTextFour": "Для установки нового CLICK-PIN необходимо заново пройти регистрацию",
   "ComponentPinResetYesButtonLabel": "ДА",
@@ -327,9 +352,9 @@ var RU_LANGUAGES =
   "ViewAboutSettingsRateUsTitle": "Оцените нас в Google Play",
 
   "ViewSettingsAboutProgramTitleName": "О ПРОГРАММЕ",
-  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 5.8.3",
+  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 5.2",
   "ViewSettingsAboutProgramVersionTitleNamePartOneClick": "CLICK Uzbekistan",
-  "ViewSettingsAboutProgramVersionTitleNamePartTwo": "18 января, 2018",
+  "ViewSettingsAboutProgramVersionTitleNamePartTwo": "16 марта, 2018",
   "ViewSettingsAboutProgramUserAgreementTitleName": "Пользовательское соглашение",
   "ViewSettingsAboutProgramRankTitleName": "Оцените нас в Google Play",
 
@@ -350,6 +375,13 @@ var RU_LANGUAGES =
 
   "ViewSettingsUserAgreementTitle": "ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ",
 
+  "ViewPaymentMonitorTitle": "МОНИТОРИНГ ПЛАТЕЖЕЙ",
+  "ViewPaymentMonitorAbout": "Данный сервис позволяет отслеживать полную историю расходов и поступлений по вашей карте",
+  "ViewPaymentMonitorCostFirstPart": "Стоимость услуги ",
+  "ViewPaymentMonitorCostSecondPart": " сум за каждую карту",
+  "ViewPaymentMonitorOffer": "Публичная оферта",
+  "ViewPaymentMonitorSuccessTurningOn": "Публичная оферта",
+
   "ViewTransferDetailTitle": "ДЕТАЛИ ПЕРЕВОДА",
   "ViewTransferDetailTransferIconTitleOne": "Получен перевод",
   "ViewTransferDetailTransferIconTitleTwo": "от пользователя CLICK",
@@ -368,7 +400,7 @@ var RU_LANGUAGES =
 
   "ViewTransferOnCardTitleTextPartOne": "Зачислить средства в размере",
   "ViewTransferOnCardTitleTextPartTwo": "на карту:",
-  "ViewTransferOnCardAcceptButtonText": "принять",
+  "ViewTransferOnCardAcceptButtonText": "ПРИНЯТЬ",
   "ViewTransferOnCardCardNotChosen": "Выберите карту",
 
   "ViewAccountDetailTransferIconTitleOne": "Получен счет",
@@ -580,13 +612,13 @@ var RU_LANGUAGES =
 
   "ViewAutoPayNameFieldText": "Название автоплатежа",
   "ViewAutoPayConditionFieldText": "Условие",
-  "ViewAutoPayCreateButtonText": "Создать",
-  "ViewAutoPayDeleteButtonText": "Удалить",
+  "ViewAutoPayCreateButtonText": "СОЗДАТЬ",
+  "ViewAutoPayDeleteButtonText": "УДАЛИТЬ",
   "ViewAutoPayCreatedSuccessTextOne": "Автоплатеж ",
   "ViewAutoPayCreatedSuccessTextTwo": " успешно создан!",
   "ViewAutoPayDeletedSuccessText": "Автоплатеж успешно удален!",
 
-  "ViewServiceInfoButtonNextText": "Далее",
+  "ViewServiceInfoButtonNextText": "ПРОДОЛЖИТЬ",
   "ViewServiceInfoButtonGoToPaymentText": "ПЕРЕЙТИ К ОПЛАТЕ",
 
   "ComponentToolbarAriaLabelOpenSideMenu": "Открыть боковое меню",
@@ -633,7 +665,7 @@ var RU_LANGUAGES =
 
   "ViewDefaultAccountTitle": "ОСНОВНАЯ КАРТА",
   "ViewDefaultAccountSubTitle": "Выберите основную карту",
-  "ViewDefaultAccountChooseButtonText": "Выбрать",
+  "ViewDefaultAccountChooseButtonText": "ВЫБРАТЬ",
 
 
   "ViewDefaultAccountSuccessText": "Основная карта установлена успешно",

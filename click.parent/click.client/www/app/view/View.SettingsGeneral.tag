@@ -442,31 +442,31 @@
       }
     }
 
-    maleTouchEnd = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      maleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_male_active.png)'
-      maleTitleId.style.color = 'black'
-
-      femaleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_female_inactive.png)'
-      femaleTitleId.style.color = 'lightgrey'
-
-      scope.gender = 'M'
-    }
-
-    femaleTouchEnd = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      maleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_male_inactive.png)'
-      maleTitleId.style.color = 'lightgrey'
-
-      femaleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_female_active.png)'
-      femaleTitleId.style.color = 'black'
-
-      scope.gender = 'F'
-    }
+    //    maleTouchEnd = function () {
+    //      event.preventDefault();
+    //      event.stopPropagation();
+    //
+    //      maleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_male_active.png)'
+    //      maleTitleId.style.color = 'black'
+    //
+    //      femaleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_female_inactive.png)'
+    //      femaleTitleId.style.color = 'lightgrey'
+    //
+    //      scope.gender = 'M'
+    //    }
+    //
+    //    femaleTouchEnd = function () {
+    //      event.preventDefault();
+    //      event.stopPropagation();
+    //
+    //      maleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_male_inactive.png)'
+    //      maleTitleId.style.color = 'lightgrey'
+    //
+    //      femaleIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_female_active.png)'
+    //      femaleTitleId.style.color = 'black'
+    //
+    //      scope.gender = 'F'
+    //    }
 
 
     editUserInfoTouchEnd = function () {
