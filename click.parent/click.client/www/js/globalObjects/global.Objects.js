@@ -1390,6 +1390,7 @@ window.fingerPrintAsk = function (fingerprintIconId) {
 
       function encryptErrorCallback(error) {
         console.log("encrypt success, change gif to CHECK");
+        fingerPrintAsk('fingerPrintIconId');
         if (document.getElementById(fingerprintIconId))
           document.getElementById(fingerprintIconId).style.backgroundImage = "url(resources/gifs/auth/check.gif?p" + new Date().getTime() + ")";
 
@@ -1400,13 +1401,16 @@ window.fingerPrintAsk = function (fingerprintIconId) {
 
           setTimeout(function () {
 
+            if (document.getElementById(fingerprintIconId))
+              document.getElementById(fingerprintIconId).style.backgroundImage = "url(resources/gifs/auth/wait.gif?p" + new Date().getTime() + ")";
+
             window.fingerPrint.fingerPrintInitialize = false;
             if (error === "Cancelled") {
               console.log("FingerprintAuth Dialog Cancelled!");
             } else {
               console.log("FingerprintAuth Error: " + error);
             }
-          }, 1000);
+          }, 1500);
         }, 1000);
 
       }
