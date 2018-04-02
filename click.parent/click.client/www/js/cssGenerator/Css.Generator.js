@@ -1188,7 +1188,7 @@ var css = {
 
   buttonAuthFingerprint: ".button-auth-fingerprint" +
   "{" +
-  "height: " + 120 * widthK + "px;" +
+  "height: " + 87 * widthK + "px;" +
   "font-size: " + 38 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
@@ -15328,7 +15328,7 @@ var css = {
   viewNewsBlockImage: ".view-news-block-image " +
   "{" +
   "position: relative;" +
-  "background-image: url('resources/icons/ViewNews/news.png');" +
+  "background-image: url('resources/icons/ViewNews/loading_blue2.gif');" +
   "background-repeat: no-repeat;" +
   "background-position-y: bottom;" +
   "background-size: 100%;" +
