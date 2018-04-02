@@ -1462,7 +1462,7 @@ window.fingerPrintStop = function () {
 
       };
 
-      FingerprintAuth.end(encryptConfig, function () {
+      FingerprintAuth.stop(function () {
         console.log("closed");
       }, function () {
         console.log("error in close");
