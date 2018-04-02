@@ -1755,3 +1755,18 @@ function codeCheckLuna(number) {
   var mod = parseInt(sum % 10);
   return ((mod == 0) ? 0 : 10 - mod);
 }
+
+function getLuhnRemainder(value) {
+  const CHARCODE_0 = '0'.charCodeAt(0);
+  const MAPPING_EVEN = [0, 2, 4, 6, 8, 1, 3, 5, 7, 9];
+
+  var length = value.length;
+  var accumulator = 0;
+  var bit = 0;
+
+  while (length-- > 0) {
+    accumulator += (bit ^= 1) ? value.charCodeAt(length) -
+      CHARCODE_0 : MAPPING_EVEN[value.charCodeAt(length) - CHARCODE_0];
+  }
+  return accumulator % 10;
+}

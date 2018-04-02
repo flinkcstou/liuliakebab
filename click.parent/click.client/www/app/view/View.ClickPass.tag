@@ -343,7 +343,7 @@
       var timeForOtp = correctTime();
       scope.showCreatingTime = timeForOtp;
       scope.OTP = updateOtp(deviceId, timeForOtp);
-      var luna = codeCheckLuna(card_id.toString() + scope.OTP.toString());
+      var luna = getLuhnRemainder(card_id.toString() + scope.OTP.toString());
       var result = card_id.toString() + scope.OTP.toString() + luna;
       scope.showCodeData = result;
       scope.update();
@@ -433,7 +433,7 @@
     }
 
     function updateOnlyCardId(card_id) {
-      var luna = codeCheckLuna(card_id.toString() + scope.OTP.toString());
+      var luna = getLuhnRemainder(card_id.toString() + scope.OTP.toString());
       var result = card_id.toString() + scope.OTP.toString() + luna;
       generateQrCode(result);
       generateBarCode(result);
