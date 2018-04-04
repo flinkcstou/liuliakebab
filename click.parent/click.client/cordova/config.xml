@@ -16,6 +16,7 @@
   <plugin name="cordova-plugin-device"/>
   <plugin name="cordova-plugin-file"/>
   <plugin name="cordova-plugin-android-permissions"/>
+  <plugin name="cordova-plugin-contacts"/>
   <plugin name="cordova-plugin-sim"/>
   <plugin name="cordova-plugin-phonedialer"/>
   <plugin name="cordova-plugin-touch-id" spec="3.2.0"/>
