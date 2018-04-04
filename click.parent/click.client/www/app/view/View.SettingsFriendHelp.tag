@@ -150,7 +150,7 @@
           timeOutTimer = setTimeout(function () {
             window.writeLog({
               reason: 'Timeout',
-              method:'check.contact.list',
+              method: 'check.contact.list',
             });
             window.common.alert.show("componentAlertId", {
               parent: scope,
@@ -298,13 +298,14 @@
                 onBackParams.opts = JSON.parse(JSON.stringify(opts));
                 onBackKeyDown();
               }
+              return;
             }
           }
 
         }
       }
 
-    }
+    };
 
     var delButtonStartX, delButtonEndX, delButtonStartY, delButtonEndY;
 
