@@ -298,6 +298,7 @@
                 onBackParams.opts = JSON.parse(JSON.stringify(opts));
                 onBackKeyDown();
               }
+              return;
             }
           }
 
