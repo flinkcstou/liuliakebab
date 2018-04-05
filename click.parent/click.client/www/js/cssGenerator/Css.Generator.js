@@ -3327,6 +3327,18 @@ var css = {
   "border-bottom:" + 1 + "px solid #e8e8e8;" +
   "}",
 
+  viewInfoBodyContainer: ".view-info-body-container " +
+  "{" +
+  "position: absolute;" +
+  "bottom: 0;" +
+  "top:" + 89 * widthK + "px;" +
+  "width: 100%;" +
+  "border-bottom:" + 1 + "px solid #e8e8e8;" +
+  "overflow-y: scroll;" +
+  "-webkit-overflow-scrolling: touch;" +
+  "overflow-x: hidden;" +
+  "}",
+
   viewInfoBackButton: ".view-info-back-button " +
   "{position: absolute;" +
   "left:" + 10 * widthK + "px;" +
@@ -3349,7 +3361,7 @@ var css = {
   "right:" + 30 * widthK + "px;" +
   "left:" + 30 * widthK + "px;" +
   "height:" + 190 * widthK + "px;" +
-  "top:" + 89 * widthK + "px;" +
+  // "top:" + 89 * widthK + "px;" +
   "border-bottom:" + 1 + "px solid #f4f4f4;" +
   "}",
 
@@ -3429,7 +3441,7 @@ var css = {
   "right:" + 30 * widthK + "px;" +
   "left:" + 30 * widthK + "px;" +
   "height:" + 125 * widthK + "px;" +
-  "top:" + 280 * widthK + "px;" +
+  "top:" + 190 * widthK + "px;" +
   "border-bottom:" + 1 + "px solid #f4f4f4;" +
   "}",
 
@@ -3439,7 +3451,7 @@ var css = {
   "right:" + 30 * widthK + "px;" +
   "left:" + 30 * widthK + "px;" +
   "height:" + 125 * widthK + "px;" +
-  "top:" + 280 * widthK + "px;" +
+  "top:" + 190 * widthK + "px;" +
   //"top:" + 408 * widthK + "px;" +
   "border-bottom:" + 1 + "px solid #f4f4f4;" +
   "}",
@@ -3551,12 +3563,12 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   //"height:" + 710 * widthK + "px;" +
-  "top:" + 468 * widthK + "px;" +
+  "top:" + 378 * widthK + "px;" +
   "bottom:" + 0 * widthK + "px;" +
   //"top:" + 600 * widthK + "px;" +
-  "overflow-y: scroll;" +
-  "-webkit-overflow-scrolling: touch;" +
-  "overflow-x: hidden;" +
+  // "overflow-y: scroll;" +
+  // "-webkit-overflow-scrolling: touch;" +
+  // "overflow-x: hidden;" +
   "font-size:" + 23 * widthK + "px;" +
   "}",
 
@@ -3602,7 +3614,7 @@ var css = {
   "width: 100%;" +
   "height:" + 68 * widthK + "px;" +
   //"top:" + 535 * widthK + "px;" +
-  "top:" + 400 * widthK + "px;" +
+  "top:" + 310 * widthK + "px;" +
   "z-index:99;" +
   "background-color: white;" +
   "box-shadow:" + 0 * widthK + "px " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + "rgb(37, 36, 36);" +

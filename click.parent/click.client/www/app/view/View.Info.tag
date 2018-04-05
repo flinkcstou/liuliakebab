@@ -5,67 +5,71 @@
          ontouchend="onTouchEndBack()"></div>
   </div>
 
-  <div class="view-info-balance-container">
-    <p class="view-info-balance-label">{window.languages.ViewInfoBalanceTitle}</p>
-    <div class="view-info-card-balance-currency-container">
-      <div if="{!modeOfApp.offlineMode}" class="view-info-card-balance" id="fullCardBalanceContainer">
-        <canvas id="fullScaleCanvas" style="display: none;"></canvas>
-        <canvas id="fractionalScaleCanvas" style="display: none;"></canvas>
-        <canvas id="currencyScaleCanvas" style="display: none;"></canvas>
-        <div class="view-info-card-balance-scale-container" id="fullCardBalanceScaleContainer">
-          <p class="view-info-card-balance-sum">{(fullBalanceCopy) ? (fullBalanceCopy) : (error_message)}<span
-            class="view-info-card-balance-sum-fractional">{(fractionalPart) ? (fractionalPart) : ''}</span> <span
-            if="{!modeOfApp.offlineMode && fullBalanceCopy}" class="view-info-card-currency">{window.languages.ViewReportServiceCommissionCurrency}</span>
-          </p>
-        </div>
-      </div>
+  <div class="view-info-body-container" id="lastOperationsContainerId" onscroll="lastOperationsContainerScroll()">
 
-      <a if="{modeOfApp.offlineMode}" class="offline-card-balance"
-         ontouchstart="offlineBalanceInfoTrue()">Получить баланс</a>
+    <div class="view-info-balance-container">
+      <p class="view-info-balance-label">{window.languages.ViewInfoBalanceTitle}</p>
+      <div class="view-info-card-balance-currency-container">
+        <div if="{!modeOfApp.offlineMode}" class="view-info-card-balance" id="fullCardBalanceContainer">
+          <canvas id="fullScaleCanvas" style="display: none;"></canvas>
+          <canvas id="fractionalScaleCanvas" style="display: none;"></canvas>
+          <canvas id="currencyScaleCanvas" style="display: none;"></canvas>
+          <div class="view-info-card-balance-scale-container" id="fullCardBalanceScaleContainer">
+            <p class="view-info-card-balance-sum">{(fullBalanceCopy) ? (fullBalanceCopy) : (error_message)}<span
+              class="view-info-card-balance-sum-fractional">{(fractionalPart) ? (fractionalPart) : ''}</span> <span
+              if="{!modeOfApp.offlineMode && fullBalanceCopy}" class="view-info-card-currency">{window.languages.ViewReportServiceCommissionCurrency}</span>
+            </p>
+          </div>
+        </div>
+
+        <a if="{modeOfApp.offlineMode}" class="offline-card-balance"
+           ontouchstart="offlineBalanceInfoTrue()">Получить баланс</a>
+      </div>
+      <div class="view-info-bag-icon"></div>
+      <div if="{attention && !modeOfflineMode.check}" class="view-info-attention-icon"></div>
+      <div id="reloadBalanceButtonId" role="button" aria-label="{window.languages.ViewInfoAriaLabelReloadAmount}"
+           if="{!modeOfflineMode.check}" class="view-info-reload-icon"
+           ontouchstart="reloadBalanceTouchStart()" ontouchend="reloadBalanceTouchEnd()"></div>
     </div>
-    <div class="view-info-bag-icon"></div>
-    <div if="{attention && !modeOfflineMode.check}" class="view-info-attention-icon"></div>
-    <div id="reloadBalanceButtonId" role="button" aria-label="{window.languages.ViewInfoAriaLabelReloadAmount}"
-         if="{!modeOfflineMode.check}" class="view-info-reload-icon"
-         ontouchstart="reloadBalanceTouchStart()" ontouchend="reloadBalanceTouchEnd()"></div>
-  </div>
 
-  <div class="view-info-my-finance-container" style="display: none">
-    <div class="view-info-my-finance-icon"></div>
-    <div class="view-info-open-icon"></div>
-    <p class="view-info-my-finance-title">{window.languages.ViewInfoMyFinanceTitle}</p>
-  </div>
+    <div class="view-info-my-finance-container" style="display: none">
+      <div class="view-info-my-finance-icon"></div>
+      <div class="view-info-open-icon"></div>
+      <p class="view-info-my-finance-title">{window.languages.ViewInfoMyFinanceTitle}</p>
+    </div>
 
-  <div id="reportButtonId" role="button" aria-label="{window.languages.ViewInfoReportsTitle}"
-       class="view-info-reports-container" ontouchend="goToReportsTouchEnd()"
-       ontouchstart="goToReportsTouchStart()">
-    <div class="view-info-reports-icon"></div>
-    <div class="view-info-open-icon"></div>
-    <p class="view-info-reports-title">{window.languages.ViewInfoReportsTitle}</p>
-  </div>
+    <div id="reportButtonId" role="button" aria-label="{window.languages.ViewInfoReportsTitle}"
+         class="view-info-reports-container" ontouchend="goToReportsTouchEnd()"
+         ontouchstart="goToReportsTouchStart()">
+      <div class="view-info-reports-icon"></div>
+      <div class="view-info-open-icon"></div>
+      <p class="view-info-reports-title">{window.languages.ViewInfoReportsTitle}</p>
+    </div>
 
-  <div class="view-info-operations-title">
-    <p class="view-info-operations-label">{window.languages.ViewInfoLastOperations}</p>
-  </div>
+    <div class="view-info-operations-title">
+      <p class="view-info-operations-label">{window.languages.ViewInfoLastOperations}</p>
+    </div>
 
-  <div id="lastOperationsContainerId" class="view-info-operations-container" onscroll="lastOperationsContainerScroll()">
-    <div class="view-info-operation-container" each="{i in lastOperationContainer}" id="{i.payment_id}"
-         ontouchstart="onTouchStartOfOperation(this.id)" role="button" aria-label="{i.service_name}"
-         onclick="onTouchEndOfOperation(this.id)">
+    <div class="view-info-operations-container">
+      <div class="view-info-operation-container" each="{i in lastOperationContainer}" id="{i.payment_id}"
+           ontouchstart="onTouchStartOfOperation(this.id)" role="button" aria-label="{i.service_name}"
+           onclick="onTouchEndOfOperation(this.id)">
 
-      <div class="view-info-operations-icon" style="background-image: url({i.image})">
+        <div class="view-info-operations-icon" style="background-image: url({i.image})">
 
-        <div class="view-info-operation-info-container">
-          <p class="view-info-operation-info-name">{i.service_name}</p>
-          <p class="view-info-operation-info-balance"> - {i.amount}</p>
-          <p class="view-info-operation-info-balance">{}</p>
-          <p class="view-info-operation-info-number">{i.cntrg_info_param2}</p>
-          <p class="view-info-operation-info-date">{i.created}</p>
+          <div class="view-info-operation-info-container">
+            <p class="view-info-operation-info-name">{i.service_name}</p>
+            <p class="view-info-operation-info-balance"> - {i.amount}</p>
+            <p class="view-info-operation-info-balance">{}</p>
+            <p class="view-info-operation-info-number">{i.cntrg_info_param2}</p>
+            <p class="view-info-operation-info-date">{i.created}</p>
 
-          <div class="view-info-state-image" style="background-image: url({i.state_image})"></div>
+            <div class="view-info-state-image" style="background-image: url({i.state_image})"></div>
+          </div>
+
         </div>
-
       </div>
+
     </div>
 
   </div>
@@ -292,7 +296,9 @@
 
     lastOperationsContainerScroll = function () {
 
-      if ((lastOperationsContainerId.scrollHeight - lastOperationsContainerId.scrollTop) == lastOperationsContainerId.offsetHeight && lastOperationsContainerId.scrollTop != 0) {
+      console.log(lastOperationsContainerId.scrollHeight - lastOperationsContainerId.scrollTop, lastOperationsContainerId.offsetHeight);
+
+      if ((lastOperationsContainerId.scrollHeight - lastOperationsContainerId.scrollTop) <= lastOperationsContainerId.offsetHeight && lastOperationsContainerId.scrollTop != 0) {
 
         console.log("Payment list length = ", scope.lastOperationContainer.length);
         if (scope.lastOperationContainer.length % 15 == 0) {
