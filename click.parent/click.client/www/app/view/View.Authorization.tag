@@ -273,8 +273,10 @@
       resetLocalStorageTouchEndY;
 
     resetLocalStorageTouchStart = function () {
-      event.preventDefault();
-      event.stopPropagation();
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
 
       resetLocalButtonId.style.webkitTransform = 'scale(0.8)';
       resetLocalStorageTouchStartX = event.changedTouches[0].pageX;
@@ -283,8 +285,10 @@
     };
 
     resetLocalStorageTouchEnd = function () {
-      event.preventDefault();
-      event.stopPropagation();
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
 
       resetLocalButtonId.style.webkitTransform = 'scale(1)';
 
@@ -292,6 +296,7 @@
       resetLocalStorageTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(resetLocalStorageTouchStartX - resetLocalStorageTouchEndX) <= 20 && Math.abs(resetLocalStorageTouchStartY - resetLocalStorageTouchEndY) <= 20) {
+
         if (scope.firstEnter)
           firstPinInputId.blur();
 
@@ -351,6 +356,8 @@
         if (myValue === "space" && JSON.parse(localStorage.getItem('settings_finger_print')) === true) {
           try {
             console.log("AUTHORIZATION CALL new OF FINGERPRINT 338");
+            scope.fingerprintMode = true;
+            scope.update();
             fingerPrintAsk('fingerPrintIconId');
           }
           catch (e) {

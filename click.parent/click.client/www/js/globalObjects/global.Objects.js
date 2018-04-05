@@ -99,8 +99,11 @@ window.common.alert = {
     console.log(id, params);
 
     if (!window.common.alert.priorities[id]) return;
+    console.log("222");
 
-    if (window.fingerPrint.fingerPrintInitialize) return;
+    // if (window.fingerPrint.fingerPrintInitialize) return;
+
+    console.log("333");
 
     var show = true;
 
