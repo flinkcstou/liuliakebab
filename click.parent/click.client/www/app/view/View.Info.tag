@@ -15,7 +15,8 @@
         <div class="view-info-card-balance-scale-container" id="fullCardBalanceScaleContainer">
           <p class="view-info-card-balance-sum">{(fullBalanceCopy) ? (fullBalanceCopy) : (error_message)}<span
             class="view-info-card-balance-sum-fractional">{(fractionalPart) ? (fractionalPart) : ''}</span> <span
-            if="{!modeOfApp.offlineMode && fullBalanceCopy}" class="view-info-card-currency">{window.languages.ViewReportServiceCommissionCurrency}</span></p>
+            if="{!modeOfApp.offlineMode && fullBalanceCopy}" class="view-info-card-currency">{window.languages.ViewReportServiceCommissionCurrency}</span>
+          </p>
         </div>
       </div>
 
@@ -47,11 +48,10 @@
     <p class="view-info-operations-label">{window.languages.ViewInfoLastOperations}</p>
   </div>
 
-  <div class="view-info-operations-container">
+  <div id="lastOperationsContainerId" class="view-info-operations-container" onscroll="lastOperationsContainerScroll()">
     <div class="view-info-operation-container" each="{i in lastOperationContainer}" id="{i.payment_id}"
          ontouchstart="onTouchStartOfOperation(this.id)" role="button" aria-label="{i.service_name}"
-         onclick="onTouchEndOfOperation(this.id)"
-         style="top:{leftOfOperations*i.count + 50 * widthK}px;">
+         onclick="onTouchEndOfOperation(this.id)">
 
       <div class="view-info-operations-icon" style="background-image: url({i.image})">
 
@@ -92,6 +92,7 @@
     }
     scope.leftOfOperations = 200 * widthK;
     scope.lastOperationContainer = [];
+    scope.pageNumberOptional = 1;
     var canvasFull;
     var contextFull;
     var canvasFractional;
@@ -289,121 +290,86 @@
       }
     };
 
-    if (!modeOfApp.offlineMode)
-      window.api.call({
-        method: 'get.payment.list',
-        input: {
-          session_key: sessionKey,
-          phone_num: phoneNumber
-        },
+    lastOperationsContainerScroll = function () {
 
-        scope: this,
+      if ((lastOperationsContainerId.scrollHeight - lastOperationsContainerId.scrollTop) == lastOperationsContainerId.offsetHeight && lastOperationsContainerId.scrollTop != 0) {
 
-        onSuccess: function (result) {
-          if (result[0][0].error == 0) {
-            var j = 0;
-//          if (device.platform != 'BrowserStand') {
-//            window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
-//
-//              for (var i in result[1]) {
-//
-//
-//                if (result[1][i].state == 0) {
-//                  result[1][i].count = j;
-//
-//                  result[1][i].amount = result[1][i].amount.toString();
-//
-//                  if (result[1][i].amount.length == 7) {
-//                    result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
-//                      result[1][i].amount.substring(1, 4) + ' ' + result[1][i].amount.substring(4, result[1][i].amount.length)
-//
-//                  }
-//
-//                  if (result[1][i].amount.length == 6) {
-//                    result[1][i].amount = result[1][i].amount.substring(0, 3) + ' ' +
-//                      result[1][i].amount.substring(3, result[1][i].amount.length)
-//
-//                  }
-//
-//                  if (result[1][i].amount.length == 5) {
-//                    result[1][i].amount = result[1][i].amount.substring(0, 2) + ' ' +
-//                      result[1][i].amount.substring(2, result[1][i].amount.length)
-//
-//                  }
-//
-//                  if (result[1][i].amount.length == 4) {
-//                    result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
-//                      result[1][i].amount.substring(1, result[1][i].amount.length)
-//
-//                  }
-//
-//                  var icon = result[1][i].image;
-//                  var filename = icon.substr(icon.lastIndexOf('/') + 1);
-//
-//                  var newIcon = checkImageURL;
-//                  newIcon('www/resources/icons/ViewPay/service/', filename, 'image', icon, result[1][i], function (object) {
-//                    scope.lastOperationContainer.push(object);
-////                    if (result[1].length == scope.lastOperationContainer.length) {
-////                      console.log("save into localstorage");
-////                      localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
-////                      localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(scope.categoryNamesMap));
-////                    }
-//                  });
-//
-//                  j++;
-//                }
-//
-//              }
-//            }, onErrorLoadFs);
-//          } else {
-            for (var i in result[1]) {
-
-              result[1][i].count = j;
-
-              result[1][i].amount = result[1][i].amount.toString();
-              result[1][i].amount = window.amountTransform(result[1][i].amount);
-
-              console.log("STATE ", result[1][i].state)
-
-              if (result[1][i].state == -1) {
-                result[1][i].state_image = "resources/icons/ViewReport/report_status_error.png"
-              }
-
-              if (result[1][i].state == 1) {
-                result[1][i].state_image = "resources/icons/ViewReport/report_status_processing.png"
-              }
-
-              if (result[1][i].state == 2) {
-                result[1][i].state_image = "resources/icons/ViewReport/report_status_ok.png"
-              }
-
-              scope.lastOperationContainer.push(result[1][i])
-
-              j++;
-
-            }
-//          }
-            console.log('scope.lastOperationContainer', scope.lastOperationContainer)
-            scope.update()
-//            console.log('scope.lastOperationContainer', scope.lastOperationContainer);
-          }
-          else {
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: false,
-              errornote: result[0][0].error_note
-            });
-            scope.update();
-          }
-
-        },
-
-        onFail: function (api_status, api_status_message, data) {
-          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
+        console.log("Payment list length = ", scope.lastOperationContainer.length);
+        if (scope.lastOperationContainer.length % 15 == 0) {
+          console.log("paging");
+          scope.pageNumberOptional++;
+          lastOperationsUpdate();
         }
-      });
 
+      }
+    };
+
+    scope.lastOperationsUpdate = lastOperationsUpdate = function () {
+
+      if (!modeOfApp.offlineMode)
+        window.api.call({
+          method: 'get.payment.list',
+          input: {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            page_number: parseInt(scope.pageNumberOptional)
+          },
+
+          scope: this,
+
+          onSuccess: function (result) {
+            if (result[0][0].error == 0) {
+              var j = 0;
+
+              for (var i in result[1]) {
+
+                result[1][i].count = j;
+
+                result[1][i].amount = result[1][i].amount.toString();
+                result[1][i].amount = window.amountTransform(result[1][i].amount);
+
+                console.log("STATE ", result[1][i].state);
+
+                if (result[1][i].state == -1) {
+                  result[1][i].state_image = "resources/icons/ViewReport/report_status_error.png"
+                }
+
+                if (result[1][i].state == 1) {
+                  result[1][i].state_image = "resources/icons/ViewReport/report_status_processing.png"
+                }
+
+                if (result[1][i].state == 2) {
+                  result[1][i].state_image = "resources/icons/ViewReport/report_status_ok.png"
+                }
+
+                scope.lastOperationContainer.push(result[1][i]);
+                j++;
+              }
+
+              console.log('scope.lastOperationContainer', scope.lastOperationContainer);
+              scope.update()
+//            console.log('scope.lastOperationContainer', scope.lastOperationContainer);
+            }
+            else {
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: false,
+                errornote: result[0][0].error_note
+              });
+              scope.update();
+            }
+
+          },
+
+          onFail: function (api_status, api_status_message, data) {
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          }
+        });
+
+    };
+
+    scope.lastOperationsUpdate();
 
     goToReportsTouchStart = function () {
       event.preventDefault();

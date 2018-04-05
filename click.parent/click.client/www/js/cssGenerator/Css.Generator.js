@@ -3562,7 +3562,7 @@ var css = {
 
   viewInfoOperationContainer: ".view-info-operation-container " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "width: 100%;" +
   "height:" + 200 * widthK + "px;" +
   "z-index: 999999;" +
