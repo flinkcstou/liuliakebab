@@ -103,6 +103,7 @@
     var contextFractional;
     var canvasCurrency;
     var contextCurrency;
+    var timeOutTimerPayment = 0;
 
 
     window.saveHistory('view-info', opts);
@@ -141,6 +142,19 @@
       if (!modeOfApp.offlineMode) {
         writeBalanceInfo(accountsForBalance);
       }
+
+      if (viewPay.lastOperations) {
+        scope.lastOperationContainer = viewPay.lastOperations;
+        scope.update();
+        console.log("viewPay.lastOperationsContainerId=", viewPay.lastOperationsContainerScrollTop);
+        if (viewPay.lastOperationsContainerScrollTop) {
+
+          lastOperationsContainerId.scrollTop = viewPay.lastOperationsContainerScrollTop;
+          viewPay = {};
+        }
+      }
+      else
+        scope.lastOperationsUpdate();
 
     });
 
@@ -296,13 +310,9 @@
 
     lastOperationsContainerScroll = function () {
 
-      console.log(lastOperationsContainerId.scrollHeight - lastOperationsContainerId.scrollTop, lastOperationsContainerId.offsetHeight);
-
       if ((lastOperationsContainerId.scrollHeight - lastOperationsContainerId.scrollTop) <= lastOperationsContainerId.offsetHeight && lastOperationsContainerId.scrollTop != 0) {
 
-        console.log("Payment list length = ", scope.lastOperationContainer.length);
         if (scope.lastOperationContainer.length % 15 == 0) {
-          console.log("paging");
           scope.pageNumberOptional++;
           lastOperationsUpdate();
         }
@@ -312,7 +322,9 @@
 
     scope.lastOperationsUpdate = lastOperationsUpdate = function () {
 
-      if (!modeOfApp.offlineMode)
+      if (!modeOfApp.offlineMode) {
+        window.startSpinner();
+        window.clearTimeout(timeOutTimerPayment);
         window.api.call({
           method: 'get.payment.list',
           input: {
@@ -324,6 +336,9 @@
           scope: this,
 
           onSuccess: function (result) {
+
+            window.clearTimeout(timeOutTimerPayment);
+
             if (result[0][0].error == 0) {
               var j = 0;
 
@@ -368,14 +383,35 @@
           },
 
           onFail: function (api_status, api_status_message, data) {
+            window.clearTimeout(timeOutTimerPayment);
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
+          },
+          onTimeOut: function () {
+            timeOutTimerPayment = setTimeout(function () {
+              window.writeLog({
+                reason: 'Timeout',
+                method: 'get.payment.list',
+              });
+              scope.errorNote = "Сервис временно недоступен";
+              scope.stepAmount = 0;
+              scope.update();
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                errornote: scope.errorNote,
+                step_amount: scope.stepAmount
+              });
+              window.stopSpinner();
+            }, 30000);
+          },
+          onEmergencyStop: function () {
+            console.log('Clearing timer emergencyStop', timeOutTimerPayment);
+            window.clearTimeout(timeOutTimerPayment);
           }
-        });
+        }, 30000);
+      }
 
     };
-
-    scope.lastOperationsUpdate();
 
     goToReportsTouchStart = function () {
       event.preventDefault();
@@ -437,7 +473,7 @@
 
       setTimeout(function () {
         document.getElementById(paymentId).style.backgroundColor = 'transparent'
-      }, 300);
+      }, 50);
 
       operationInfoTouchEndY = event.pageY;
 
@@ -497,6 +533,11 @@
                 scope.lastOperationContainer[i].canAddToFavorite = false;
 
               scope.lastOperationContainer[i].favoriteId = scope.favoriteId;
+
+              viewPay.lastOperationsContainerScrollTop = lastOperationsContainerId.scrollTop;
+
+              viewPay.lastOperations = scope.lastOperationContainer;
+
               riotTags.innerHTML = "<view-report-service-new>";
               riot.mount("view-report-service-new", scope.lastOperationContainer[i]);
 
