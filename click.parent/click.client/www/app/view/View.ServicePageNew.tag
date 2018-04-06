@@ -169,7 +169,7 @@
         firstLevelArray[0])?(firstLevelArray[0].name):(""))}</p>
     </div>
     <div class="servicepage-dropdown-container">
-      <div class="servicepage-dropdown-variant" each="{i in firstLevelArray}" id="{i.id}" if="{formType==3}"
+      <div class="servicepage-dropdown-variant" each="{i in firstLevelArray}" id="{i.id}" if="{formType==3 || formType==5}"
            ontouchstart="onTouchStartOfDropdown()" ontouchend="onTouchEndOfDropdownTwo({i.id})"
            style="height: unset;">
         <p id="text{i.id}" class="servicepage-dropdown-text-field" style="padding-left: 6%;
@@ -185,18 +185,6 @@
            ontouchstart="onTouchStartOfDropdown()" ontouchend="onTouchEndOfDropdownTwo({i.type})"
            style="height: unset;">
         <p id="text{i.type}" class="servicepage-dropdown-text-field" style="padding-left: 6%;
-            width: 88%;
-            word-wrap: break-word;
-            overflow: unset;
-            white-space: unset;
-            position: unset;
-            padding-top: {30 * widthK}px;
-            padding-bottom: {30 * widthK}px;">{i.name}</p>
-      </div>
-      <div class="servicepage-dropdown-variant" each="{i in firstLevelArray}" id="{i.id}" if="{formType==5}"
-           ontouchstart="onTouchStartOfDropdown()" ontouchend="onTouchEndOfDropdownTwo({i.id})"
-           style="height: unset;">
-        <p id="text{i.id}" class="servicepage-dropdown-text-field" style="padding-left: 6%;
             width: 88%;
             word-wrap: break-word;
             overflow: unset;
