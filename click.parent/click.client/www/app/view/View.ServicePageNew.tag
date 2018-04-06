@@ -203,7 +203,7 @@
            if="{formType==4}"
            ontouchstart="onTouchStartOfDropdownThree()"
            ontouchend="onTouchEndOfDropdownThree(this.id)"
-           style="height: unset; min-height: {125 * widthK}px;">
+           style="height: unset; ">
         <p id="texttwo{i.code}" class="servicepage-dropdown-text-field"
            style="padding-left: 6%;
             width: 88%;
