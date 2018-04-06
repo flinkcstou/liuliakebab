@@ -288,17 +288,17 @@
       onTouchEndX = event.changedTouches[0].pageX;
 
       if ((Math.abs(onTouchStartY - onTouchEndY) <= 15 && Math.abs(onTouchStartX - onTouchEndX) <= 15) || scope.checkOfSearch) {
-//
-//        event.stopPropagation();
-//        event.preventDefault();
+
+        event.stopPropagation();
+        event.preventDefault();
         viewPay.categoryScrollTop = categoriesContainerId.scrollTop;
         if (document.getElementById(id))
-          document.getElementById(id).style.webkitTransform = 'scale(0.8)'
+          document.getElementById(id).style.webkitTransform = 'scale(0.8)';
 
         setTimeout(function () {
 
           if (document.getElementById(id))
-            document.getElementById(id).style.webkitTransform = 'scale(1)'
+            document.getElementById(id).style.webkitTransform = 'scale(1)';
 
           var newOpts = {};
           newOpts.mode = opts.mode;
