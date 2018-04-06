@@ -76,15 +76,16 @@
     if (opts[0] == 'view-sms') {
       fromRegistration = true;
       scope.checkPin = true;
-      scope.nowCheckPin = false
+      scope.nowCheckPin = false;
+      scope.backbuttoncheck = true;
       console.log("ASD")
     } else if (opts[0] == 'view-security-settings') {
       fromSettings = true;
       fromAuthorization = false;
       fromRegistration = false;
       fromPayOrTransfer = false;
-    }
-    else if (opts[0] == 'view-pay-confirm' || opts[0] == 'view-transfer-submit') {
+      scope.backbuttoncheck = true;
+    } else if (opts[0] == 'view-pay-confirm' || opts[0] == 'view-transfer-submit') {
       scope.nowCheckPinTitle = window.languages.ViewPinCodeConfirmPayTransferLabel;
       scope.backbuttoncheck = true;
       fromSettings = false;
@@ -92,11 +93,10 @@
       fromRegistration = false;
       fromPayOrTransfer = true;
       var errorPinTimesCounter = 0;
-    }
-    else if (opts[0] == 'view-authorization') {
+    } else if (opts[0] == 'view-authorization') {
       fromAuthorization = true;
       scope.checkPin = true;
-      scope.nowCheckPin = false
+      scope.nowCheckPin = false;
       scope.labelOfTitle = "Для удобства пользования, просим установить новый CLICK-PIN из 5 цифр!"
     }
 
