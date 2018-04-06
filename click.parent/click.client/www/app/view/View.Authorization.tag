@@ -100,6 +100,8 @@
     scope.errorCode = 0;
     scope.fingerprintMode = false;
 
+    console.log("OPTS in Auth", opts);
+
 
     this.on('mount', function () {
 
@@ -175,7 +177,8 @@
     }
 
     if (JSON.parse(localStorage.getItem('settings_finger_print')) && !scope.firstEnter) {
-      scope.fingerprintMode = true;
+      scope.fingerprintMode = opts.fingerPrintMode == false ? false : true;
+      console.log("opts.fingerprintMode ", opts.fingerPrintMode, scope.fingerprintMode);
       scope.update();
     }
 
@@ -614,7 +617,8 @@
               clickpinerror: clickPinError,
               errornote: errorNote,
               errorcode: errorCode,
-              viewpage: viewPage
+              viewpage: viewPage,
+              fingerprintmodeoff: true
             });
             scope.update();
             enteredPin = '';
@@ -630,7 +634,7 @@
         onFail: function (api_status, api_status_message, data) {
           console.log('Clearing timer onFail', timeOutTimer);
           window.clearTimeout(timeOutTimer);
-          updateAlertComponent(true, null, 'view-authorization', window.languages.ServiceUnavailableText);
+          updateAlertComponent(true, null, 'view-authorization', window.languages.ServiceUnavailableText, true);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error("Error data: ", data);
         },
@@ -640,7 +644,7 @@
               reason: 'Timeout',
               method: 'app.login',
             });
-            updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText);
+            updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText, true);
             window.stopSpinner();
           }, 30000);
           console.log('creating timeOut', timeOutTimer);
@@ -653,15 +657,16 @@
     }
 
 
-    updateAlertComponent = function (showError, stepAmount, viewPage, text) {
-      console.log("OPEN ALERT COMPONENT:", showError, text, stepAmount, viewPage);
+    updateAlertComponent = function (showError, stepAmount, viewPage, text, fingerprintmodeoff) {
+      console.log("OPEN ALERT COMPONENT:", showError, text, stepAmount, viewPage, fingerprintmodeoff);
 
       if (showError) {
 
         window.common.alert.show("componentAlertId", {
           parent: scope,
           viewpage: viewPage,
-          errornote: text
+          errornote: text,
+          fingerprintmodeoff: fingerprintmodeoff
         });
       } else {
 
