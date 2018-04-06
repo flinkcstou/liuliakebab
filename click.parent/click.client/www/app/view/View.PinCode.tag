@@ -76,7 +76,8 @@
     if (opts[0] == 'view-sms') {
       fromRegistration = true;
       scope.checkPin = true;
-      scope.nowCheckPin = false
+      scope.nowCheckPin = false;
+      scope.backbuttoncheck = true;
       console.log("ASD")
     } else if (opts[0] == 'view-security-settings') {
       fromSettings = true;
@@ -95,7 +96,7 @@
     } else if (opts[0] == 'view-authorization') {
       fromAuthorization = true;
       scope.checkPin = true;
-      scope.nowCheckPin = false
+      scope.nowCheckPin = false;
       scope.labelOfTitle = "Для удобства пользования, просим установить новый CLICK-PIN из 5 цифр!"
     }
 
