@@ -1402,10 +1402,21 @@ window.fingerPrintAsk = function (fingerprintIconId) {
           if (document.getElementById(fingerprintIconId))
             document.getElementById(fingerprintIconId).style.backgroundImage = "url(resources/gifs/auth/error.gif?p" + new Date().getTime() + ")";
 
+          if (document.getElementById('fingerPrintErrorText')) {
+            console.log("FFF fingerPrintErrorText");
+
+            // document.getElementById('fingerPrintErrorText').classList.add("auth-fingerprint-errortext-stop");
+
+            // document.getElementById('fingerPrintErrorText').classList.remove("auth-fingerprint-errortext-stop");
+            document.getElementById('fingerPrintErrorText').classList.add("auth-fingerprint-errortext-start");
+          }
           setTimeout(function () {
 
             if (document.getElementById(fingerprintIconId))
               document.getElementById(fingerprintIconId).style.backgroundImage = "url(resources/gifs/auth/wait.gif?p" + new Date().getTime() + ")";
+
+            if (document.getElementById('fingerPrintErrorText'))
+              document.getElementById('fingerPrintErrorText').classList.remove("auth-fingerprint-errortext-start");
 
             window.fingerPrint.fingerPrintInitialize = false;
             if (error === "Cancelled") {

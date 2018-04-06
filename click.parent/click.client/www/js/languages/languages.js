@@ -57,6 +57,7 @@ var RU_LANGUAGES =
 
     "ViewAuthFingerprintModeButtonLabel": "ВОЙТИ ИСПОЛЬЗУЯ CLICK-PIN",
     "ViewAuthFingerprintBodyText": "Приложите палец к сканеру отпечатка для входа в приложение",
+    "ViewAuthFingerprintErrorText": "Отпечаток пальца не распознан",
 
     "ViewInfoBalanceTitle": "Общий баланс",
 

@@ -81,6 +81,8 @@
     <div id="fingerPrintIconId" class="auth-fingerprint-icon"
          style="background-image: url('resources/gifs/auth/wait.gif')"></div>
 
+    <p id="fingerPrintErrorText" class="auth-fingerprint-errortext">{languages.ViewAuthFingerprintErrorText}</p>
+
     <div id="switchModeButton" class="button-auth-fingerprint"
          ontouchend="goToClickPinAuthorizationEnd()"
          ontouchstart="goToClickPinAuthorizationStart()">
@@ -360,8 +362,11 @@
           try {
             console.log("AUTHORIZATION CALL new OF FINGERPRINT 338");
             scope.fingerprintMode = true;
+            updateEnteredPin();
             scope.update();
             fingerPrintAsk('fingerPrintIconId');
+            return;
+
           }
           catch (e) {
             console.log(e)

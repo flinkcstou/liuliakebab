@@ -1229,6 +1229,39 @@ var css = {
   "background-position-x: center;" +
   "}",
 
+  authFingerPrintErrorText: ".auth-fingerprint-errortext" +
+  "{" +
+  "position: relative;" +
+  "color: #757389;" +
+  "width:" + 500 * widthK + "px;" +
+  "margin: auto;" +
+  "text-align: center;" +
+  "top:" + 250 * widthK + "px" + "!important;" +
+  "font-size:" + 36 * widthK + "px;" +
+  "opacity: 0;" +
+  "height: " + 240 * heightK + "px;" +
+  "overflow-y: auto;" +
+  "}",
+
+  authFingerPrintErrorTextStart: ".auth-fingerprint-errortext-start " +
+  "{" +
+  "-webkit-transition: 0.7s;" +
+  "-webkit-transition-delay: 0.8s;" +
+  "transition: 0.7s;" +
+  "transition-delay: 0.8s;" +
+  "top:" + 214 * widthK + "px" + "!important;" +
+  "opacity: 1 !important;" +
+  "}",
+
+  authFingerPrintErrorTextStop: ".auth-fingerprint-errortext-stop " +
+  "{" +
+  "-webkit-transition: 0.7s;" +
+  "transition: 0.7s;" +
+  "top:" + 226 * widthK + "px" + "!important;" +
+  "opacity: 0 !important;" +
+  "}",
+
+
   authorizationFlexContainer: ".authorization-flex-container" +
   "{" +
   "position: absolute;" +
