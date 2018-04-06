@@ -170,16 +170,40 @@
     </div>
     <div class="servicepage-dropdown-container">
       <div class="servicepage-dropdown-variant" each="{i in firstLevelArray}" id="{i.id}" if="{formType==3}"
-           ontouchstart="onTouchStartOfDropdown()" ontouchend="onTouchEndOfDropdownTwo({i.id})">
-        <p id="text{i.id}" class="servicepage-dropdown-text-field" style="left: 8%">{i.name}</p>
+           ontouchstart="onTouchStartOfDropdown()" ontouchend="onTouchEndOfDropdownTwo({i.id})"
+           style="height: unset;">
+        <p id="text{i.id}" class="servicepage-dropdown-text-field" style="padding-left: 6%;
+            width: 88%;
+            word-wrap: break-word;
+            overflow: unset;
+            white-space: unset;
+            position: unset;
+            padding-top: {30 * widthK}px;
+            padding-bottom: {30 * widthK}px;">{i.name}</p>
       </div>
       <div class="servicepage-dropdown-variant" each="{i in firstLevelArray}" id="{i.type}" if="{formType==4}"
-           ontouchstart="onTouchStartOfDropdown()" ontouchend="onTouchEndOfDropdownTwo({i.type})">
-        <p id="text{i.type}" class="servicepage-dropdown-text-field" style="left: 8%">{i.name}</p>
+           ontouchstart="onTouchStartOfDropdown()" ontouchend="onTouchEndOfDropdownTwo({i.type})"
+           style="height: unset;">
+        <p id="text{i.type}" class="servicepage-dropdown-text-field" style="padding-left: 6%;
+            width: 88%;
+            word-wrap: break-word;
+            overflow: unset;
+            white-space: unset;
+            position: unset;
+            padding-top: {30 * widthK}px;
+            padding-bottom: {30 * widthK}px;">{i.name}</p>
       </div>
       <div class="servicepage-dropdown-variant" each="{i in firstLevelArray}" id="{i.id}" if="{formType==5}"
-           ontouchstart="onTouchStartOfDropdown()" ontouchend="onTouchEndOfDropdownTwo({i.id})">
-        <p id="text{i.id}" class="servicepage-dropdown-text-field" style="left: 8%">{i.name}</p>
+           ontouchstart="onTouchStartOfDropdown()" ontouchend="onTouchEndOfDropdownTwo({i.id})"
+           style="height: unset;">
+        <p id="text{i.id}" class="servicepage-dropdown-text-field" style="padding-left: 6%;
+            width: 88%;
+            word-wrap: break-word;
+            overflow: unset;
+            white-space: unset;
+            position: unset;
+            padding-top: {30 * widthK}px;
+            padding-bottom: {30 * widthK}px;">{i.name}</p>
       </div>
     </div>
   </div>
@@ -203,7 +227,7 @@
            if="{formType==4}"
            ontouchstart="onTouchStartOfDropdownThree()"
            ontouchend="onTouchEndOfDropdownThree(this.id)"
-           style="height: unset; ">
+           style="height: unset;">
         <p id="texttwo{i.code}" class="servicepage-dropdown-text-field"
            style="padding-left: 6%;
             width: 88%;
@@ -1441,7 +1465,7 @@
 
       if (Math.abs(servicePageTouchStartY - servicePageTouchEndY) <= 20 && Math.abs(servicePageTouchStartX - servicePageTouchEndX) <= 20) {
         this.blockFirstDropdownId.style.display = 'none';
-        if (scope.formType == 3) {
+        if (scope.formType == 3 || scope.formType == 5) {
           for (var i = 0; i < scope.firstLevelArray.length; i++) {
             if (scope.firstLevelArray[i].id == id) {
               scope.chosenFieldNameTwo = scope.firstLevelArray[i].name;

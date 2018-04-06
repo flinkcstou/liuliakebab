@@ -45,7 +45,7 @@
     scope.messageTitleTwo = '';
     scope.phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
-    window.saveHistory('view-sms', opts);
+//    window.saveHistory('view-sms', opts);
     scope.confirmSms = '';
 
     this.on('mount', function () {
