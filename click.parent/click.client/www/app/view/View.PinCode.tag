@@ -97,6 +97,7 @@
       fromAuthorization = true;
       scope.checkPin = true;
       scope.nowCheckPin = false;
+      scope.backbuttoncheck = true;
       scope.labelOfTitle = "Для удобства пользования, просим установить новый CLICK-PIN из 5 цифр!"
     }
 
@@ -628,12 +629,10 @@
             localStorage.setItem('pinForStand', hex_md5(pin));
             scope.update();
 
-            window.common.alert.show("componentAlertId", {
+            window.common.alert.show("componentSuccessId", {
               parent: scope,
-              clickpinerror: scope.clickPinError,
+              operationmessage: scope.errorNote,
               viewpage: scope.viewpage,
-              errornote: scope.errorNote,
-              errorcode: scope.errorCode,
               step_amount: scope.stepToBack
             });
 
