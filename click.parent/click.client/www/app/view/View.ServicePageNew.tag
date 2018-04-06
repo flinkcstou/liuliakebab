@@ -39,7 +39,7 @@
 
     <div class="servicepage-second-dropdown-field" if="{hasFirstLevel && service.category_id!=11}"
          ontouchend="openDropDownTwo()" role="button" aria-label="{chosenFieldNameTwo}">
-      <p if="{formType==3 || formType==4 || formType==5}"
+      <p if="{formType==3 || formType==4 || formType==5 || formType==6}"
          class="servicepage-text-field servicepage-second-dropdown-field-text">
         {(service.options_title)?(service.options_title):("")}</p>
       <p class="servicepage-dropdown-text-field">{chosenFieldNameTwo}</p>
@@ -95,7 +95,7 @@
       <div class="servicepage-dropdown-icon"></div>
     </div>
 
-    <div hidden="{formType==5}"
+    <div hidden="{formType==5 || formType==6}"
          class="{servicepage-amount-field: !dropDownOn, servicepage-amount-field-two: dropDownOn}"
          id="amountField">
       <p id="amountFieldTitle" class="servicepage-text-field">{amountFieldTitle}</p>
@@ -169,7 +169,8 @@
         firstLevelArray[0])?(firstLevelArray[0].name):(""))}</p>
     </div>
     <div class="servicepage-dropdown-container">
-      <div class="servicepage-dropdown-variant" each="{i in firstLevelArray}" id="{i.id}" if="{formType==3 || formType==5}"
+      <div class="servicepage-dropdown-variant" each="{i in firstLevelArray}" id="{i.id}"
+           if="{formType==3 || formType==5  || formType==6}"
            ontouchstart="onTouchStartOfDropdown()" ontouchend="onTouchEndOfDropdownTwo({i.id})"
            style="height: unset;">
         <p id="text{i.id}" class="servicepage-dropdown-text-field" style="padding-left: 6%;
@@ -402,7 +403,7 @@
 
       if (!scope.service['amount_editable']) return;
 
-      if (scope.service.form_type != 5) {
+      if (scope.service.form_type != 5 && scope.service.form_type != 6) {
         if (amountForPayTransaction < scope.service.min_pay_limit) {
 
           if (from == 'sum' && amount.value.length != 0) {
@@ -442,7 +443,6 @@
         }
       }
 
-
       if (opts.mode == 'ADDAUTOPAY' && this.autoPayNameInput && this.autoPayNameInput.value.length < 1) {
         console.log("Введите название автоплатежа");
         scope.enterButtonEnabled = false;
@@ -476,8 +476,7 @@
         }
       }
 
-
-      if (scope.formType == 3 || scope.formType == 5) {
+      if (scope.formType == 3 || scope.formType == 5 || scope.formType == 6) {
 
         if (scope.hasSecondLevel)
           opts.communalParam = scope.chosenFieldParamIdThree;
@@ -503,7 +502,7 @@
           scope.update(scope.enterButtonEnabled);
           return;
         }
-      } else if (scope.formType != 5) {
+      } else if (scope.formType != 5 && scope.formType != 6) {
 
         if (amountForPayTransaction < scope.service.min_pay_limit) {
           console.log("amount=", amountForPayTransaction);
@@ -1453,7 +1452,7 @@
 
       if (Math.abs(servicePageTouchStartY - servicePageTouchEndY) <= 20 && Math.abs(servicePageTouchStartX - servicePageTouchEndX) <= 20) {
         this.blockFirstDropdownId.style.display = 'none';
-        if (scope.formType == 3 || scope.formType == 5) {
+        if (scope.formType == 3 || scope.formType == 5 || scope.formType == 6) {
           for (var i = 0; i < scope.firstLevelArray.length; i++) {
             if (scope.firstLevelArray[i].id == id) {
               scope.chosenFieldNameTwo = scope.firstLevelArray[i].name;
