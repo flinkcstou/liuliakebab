@@ -506,12 +506,16 @@
   }
 
   function onResumeFunction() {
+
+
+    history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
+
     MobileAccessibility.usePreferredTextZoom(false);
 
-    if (modeOfApp.offlineMode) return
+    if (modeOfApp.offlineMode) return;
 
     if (modeOfApp.onlineMode && window.isConnected) {
-      console.log('HIDE CONFIRM and ALERT')
+      console.log('HIDE CONFIRM and ALERT');
       window.common.alert.hide("componentConfirmId");
       window.common.alert.hide("componentAlertId");
     }
@@ -521,7 +525,7 @@
       var nowMinutes = new Date().getMinutes();
       console.log("BEFORE MINUTES", waitingMinutes);
       console.log("NOW MINUTES", nowMinutes);
-      console.log("window.scannerCanBeAsked=", window.scannerCanBeAsked);
+      console.log(" window.fingerPrint.fingerprintMode =", window.fingerPrint.fingerprintMode);
 
       if ((Math.abs(parseInt(waitingMinutes) - parseInt(nowMinutes)) > 5)) {
         console.log("5 minutes >");
@@ -532,6 +536,10 @@
         return
       } else if (JSON.parse(localStorage.getItem('settings_block')) === true && window.scannerCanBeAsked) {
         console.log("authorization mount onResume, block true");
+        riotTags.innerHTML = "<view-authorization>";
+        riot.mount('view-authorization');
+      } else if (history.arrayOfHistory.length != 0 && history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-authorization' && window.fingerPrint.fingerprintMode) {
+        console.log("Auth page!");
         riotTags.innerHTML = "<view-authorization>";
         riot.mount('view-authorization');
       }

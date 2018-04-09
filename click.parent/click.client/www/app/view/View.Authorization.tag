@@ -102,7 +102,8 @@
     var timeOutTimer = 0;
     scope.checkAndroid = false;
     scope.errorCode = 0;
-    scope.fingerprintMode = true;
+    scope.fingerprintMode = false;
+    window.fingerPrint.fingerprintMode = false;
 
     console.log("OPTS in Auth", opts);
 
@@ -182,6 +183,7 @@
 
     if (JSON.parse(localStorage.getItem('settings_finger_print')) && !scope.firstEnter) {
       scope.fingerprintMode = opts.fingerPrintMode == false ? false : true;
+      window.fingerPrint.fingerprintMode = scope.fingerprintMode;
       console.log("opts.fingerprintMode ", opts.fingerPrintMode, scope.fingerprintMode);
       scope.update();
     }
@@ -364,6 +366,7 @@
           try {
             console.log("AUTHORIZATION CALL new OF FINGERPRINT 338");
             scope.fingerprintMode = true;
+            window.fingerPrint.fingerprintMode = true;
             updateEnteredPin();
             scope.update();
             fingerPrintAsk('fingerPrintIconId');
@@ -514,6 +517,8 @@
       if (Math.abs(goToClickPinAuthStartX - goToClickPinAuthEndX) <= 20 && Math.abs(goToClickPinAuthStartY - goToClickPinAuthEndY) <= 20) {
         fingerPrintStop();
         scope.fingerprintMode = false;
+        window.fingerPrint.fingerprintMode = false;
+        window.fingerPrint.fingerPrintInitialize = false;
         scope.update();
         console.log("OPEN USUAL :CLICK PIN AUTH, show stop listener");
       }
@@ -543,6 +548,8 @@
         firstPinInputId.blur();
         firstPinInputValue = firstPinInputId.value;
       }
+
+      window.fingerPrint.fingerPrintInitialize = false;
 
       var version = localStorage.getItem('version');
 
