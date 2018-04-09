@@ -1532,10 +1532,8 @@ window.blurFields = function () {
       console.log("Your browser does not support the activeElement property!");
     }
     return;
+  } catch (e) {
   }
-  catch (e) {
-  }
-  ;
 };
 
 
