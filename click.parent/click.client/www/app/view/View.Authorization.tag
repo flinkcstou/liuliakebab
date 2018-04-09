@@ -76,6 +76,8 @@
 
   <div class="view-authorization-inner-container" if="{fingerprintMode}">
 
+    <div class="auth-fingerprint-logo"></div>
+
     <div class="auth-fingerprint-body-label">{languages.ViewAuthFingerprintBodyText}</div>
 
     <div id="fingerPrintIconId" class="auth-fingerprint-icon"
@@ -100,7 +102,7 @@
     var timeOutTimer = 0;
     scope.checkAndroid = false;
     scope.errorCode = 0;
-    scope.fingerprintMode = false;
+    scope.fingerprintMode = true;
 
     console.log("OPTS in Auth", opts);
 

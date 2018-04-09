@@ -1205,7 +1205,7 @@ var css = {
   authFingerPrintBodyLabel: ".auth-fingerprint-body-label " +
   "{" +
   "position: absolute;" +
-  "top: 12%;" +
+  "top: 20%;" +
   "width:90%;" +
   "height:" + 40 * widthK + "px;" +
   "font-size:" + 34 * widthK + "px;" +
@@ -1215,12 +1215,26 @@ var css = {
   "text-align: center;" +
   "}",
 
+  authFingerPrintLogo: ".auth-fingerprint-logo" +
+  "{" +
+  "position: relative;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "top: 5%;" +
+  "width:" + 345 * widthK + "px;" +
+  "height:" + 125 * widthK + "px;" +
+  "background-image: url(resources/icons/icon/click_logo.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: contain;" +
+  "background-position-x: center;" +
+  "}",
+
   authFingerPrintIcon: ".auth-fingerprint-icon" +
   "{" +
   "position: relative;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
-  "top: 33%;" +
+  "top: 31%;" +
   "width:" + 315 * widthK + "px;" +
   "height:" + 315 * widthK + "px;" +
   "background-image: url(resources/gifs/auth/wait.gif);" +
