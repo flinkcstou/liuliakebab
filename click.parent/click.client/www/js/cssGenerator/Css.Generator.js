@@ -1232,15 +1232,16 @@ var css = {
   authFingerPrintErrorText: ".auth-fingerprint-errortext" +
   "{" +
   "position: relative;" +
-  "color: #757389;" +
-  "width:" + 500 * widthK + "px;" +
-  "margin: auto;" +
+  "color: #FF544A;" +
+  "width: 80%;" +
   "text-align: center;" +
-  "top:" + 250 * widthK + "px" + "!important;" +
+  "top:" + 425 * widthK + "px" + "!important;" +
   "font-size:" + 36 * widthK + "px;" +
   "opacity: 0;" +
   "height: " + 240 * heightK + "px;" +
   "overflow-y: auto;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
   "}",
 
   authFingerPrintErrorTextStart: ".auth-fingerprint-errortext-start " +
@@ -1249,7 +1250,7 @@ var css = {
   "-webkit-transition-delay: 0.8s;" +
   "transition: 0.7s;" +
   "transition-delay: 0.8s;" +
-  "top:" + 214 * widthK + "px" + "!important;" +
+  "top:" + 389 * widthK + "px" + "!important;" +
   "opacity: 1 !important;" +
   "}",
 
@@ -1257,7 +1258,7 @@ var css = {
   "{" +
   "-webkit-transition: 0.7s;" +
   "transition: 0.7s;" +
-  "top:" + 226 * widthK + "px" + "!important;" +
+  "top:" + 401 * widthK + "px" + "!important;" +
   "opacity: 0 !important;" +
   "}",
 

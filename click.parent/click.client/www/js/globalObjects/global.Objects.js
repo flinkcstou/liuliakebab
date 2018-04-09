@@ -1405,9 +1405,6 @@ window.fingerPrintAsk = function (fingerprintIconId) {
           if (document.getElementById('fingerPrintErrorText')) {
             console.log("FFF fingerPrintErrorText");
 
-            // document.getElementById('fingerPrintErrorText').classList.add("auth-fingerprint-errortext-stop");
-
-            // document.getElementById('fingerPrintErrorText').classList.remove("auth-fingerprint-errortext-stop");
             document.getElementById('fingerPrintErrorText').classList.add("auth-fingerprint-errortext-start");
           }
           setTimeout(function () {
