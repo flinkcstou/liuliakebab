@@ -240,10 +240,15 @@
 
     try {
       if (opts.cost) {
-        scope.amountTextCopy = window.amountTransform(window.inputVerification.spaceDeleter(opts.amountText) * opts.cost);
+        scope.fullAmount = (opts.amountText * opts.cost);
+        scope.intPartAmount = Math.floor(fullAmount).toFixed(0).toString();
+        scope.fracPartAmount = window.getFractionalPart(fullAmount.toString());
+        scope.amountTextCopy = window.amountTransform(window.inputVerification.spaceDeleter(intPartAmount)) + fracPartAmount;
       }
       else {
-        scope.amountTextCopy = window.amountTransform(opts.amountText);
+        scope.intPartAmount = Math.floor(opts.amountText).toFixed(0).toString();
+        scope.fracPartAmount = window.getFractionalPart(opts.amountText.toString());
+        scope.amountTextCopy = window.amountTransform(scope.intPartAmount) + scope.fracPartAmount;
       }
     }
     catch (e) {
@@ -537,7 +542,9 @@
       sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       phoneNumber = localStorage.getItem('click_client_phoneNumber');
       serviceId = opts.chosenServiceId;
-      amount = inputVerification.spaceDeleter(opts.amountText.toString());
+      fracAmount = window.getFractionalPart(opts.amountText.toString());
+      intAmount = Math.floor(opts.amountText.toString()).toFixed(0).toString();
+      amount = inputVerification.spaceDeleter(intAmount) + fracAmount;
 
       // friend help or own payment
 
