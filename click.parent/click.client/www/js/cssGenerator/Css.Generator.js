@@ -1894,10 +1894,11 @@ var css = {
   "border-radius:" + 14 * widthK + "px;" +
   "background-size: cover;" +
   "color: white;" +
-  "-webkit-box-shadow: " + 9 * widthK + "px " + 9 * widthK + "px " + 29.4 * widthK + "px " + "rgba(0,0,0, 0.08);" +
-  "-moz-box-shadow: " + 9 * widthK + "px " + 9 * widthK + "px " + 29.4 * widthK + "px " + "rgba(0,0,0, 0.08);" +
-  "box-shadow: " + 9 * widthK + "px " + 9 * widthK + "px " + 29.4 * widthK + "px " + "rgba(0,0,0, 0.08);" +
+  "-webkit-box-shadow: " + "0px " + 5 * widthK + "px " + 60 * widthK + "px " + 4 * widthK + "px " + "rgba(86, 93, 106, 0.29);" +
+  "-moz-box-shadow: " + "0px " + 5 * widthK + "px " + 60 * widthK + "px " + 4 * widthK + "px " + "rgba(86, 93, 106, 0.29);" +
+  "box-shadow: " + "0px " + 5 * widthK + "px " + 60 * widthK + "px " + 4 * widthK + "px " + "rgba(86, 93, 106, 0.29);" +
   "background-color: #BDC7D0;" +
+  "background-repeat: no-repeat;" +
   "}",
 
   invoiceCardPartOne: ".invoice-card-part-one " +
@@ -3373,6 +3374,7 @@ var css = {
   "left:" + 30 * widthK + "px;" +
   "height:" + 89 * widthK + "px;" +
   "border-bottom:" + 1 + "px solid #e8e8e8;" +
+  "z-index: 1000002;" +
   "}",
 
   viewInfoBodyContainer: ".view-info-body-container " +
