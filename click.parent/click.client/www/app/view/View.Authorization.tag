@@ -74,7 +74,7 @@
 
   </div>
 
-  <div class="view-authorization-inner-container" if="{fingerprintMode}">
+  <div class="view-authorization-inner-container" if="{fingerprintMode && device.platform == 'Android'}">
 
     <div class="auth-fingerprint-logo"></div>
 
@@ -524,9 +524,9 @@
       }
     };
 
-    enter = function () {
+    enter = function (bool) {
 
-      console.log("Enter of AUTH");
+      console.log("Enter of AUTH, bool input=", bool);
 
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var deviceId = localStorage.getItem('click_client_deviceID');
@@ -537,6 +537,10 @@
       }
       var password = hex_sha512(token + date + pin);
       localStorage.setItem("pinForStand", pin);
+      if (bool == false) {
+        console.log("bool auth is false");
+        var password = hex_sha512(token + date + hex_md5("sjfhyasdugjhkhiuk"));
+      }
       authorization(phoneNumber, deviceId, password, date);
     };
 
