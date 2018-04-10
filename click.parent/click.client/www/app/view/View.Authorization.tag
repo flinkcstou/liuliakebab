@@ -1,6 +1,6 @@
 <view-authorization class="view-authorization riot-tags-main-container">
 
-  <div class="view-authorization-inner-container" if="{!fingerprintMode}">
+  <div class="view-authorization-inner-container" if="{!fingerprintMode || device.platform == 'iOS'}">
 
     <div if="{!firstEnter}" class="authorization-flex-container">
       <div class="authorization-unchangable-container">
@@ -602,51 +602,54 @@
             }
           }
           else {
-
-            var clickPinError, errorNote, errorCode, viewPage;
-
             window.stopSpinner();
+            if (!scope.fingerprintMode && device.platform != 'iOS') {
 
-            if (result[0][0].error === -31) {
+              var clickPinError, errorNote, errorCode, viewPage;
 
-              clickPinError = true;
+              if (result[0][0].error === -31) {
 
-            } else if (result[0][0].error === -799) {
+                clickPinError = true;
 
-              errorNote = result[0][0].error_note;
-              errorCode = 2;
+              } else if (result[0][0].error === -799) {
 
-            } else {
-
-              //This conidition cannot be true, need to be deleted in future
-              if (opts.from === "registration-client") {
-                errorNote = "Карта ещё не добавлена. Попробуйте войти через несколько минут";
-              }
-              else {
                 errorNote = result[0][0].error_note;
-                viewPage = "view-authorization";
+                errorCode = 2;
+
+              } else {
+
+                //This conidition cannot be true, need to be deleted in future
+                if (opts.from === "registration-client") {
+                  errorNote = "Карта ещё не добавлена. Попробуйте войти через несколько минут";
+                }
+                else {
+                  errorNote = result[0][0].error_note;
+                  viewPage = "view-authorization";
+                }
+                clickPinError = false;
+
               }
-              clickPinError = false;
 
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: clickPinError,
+                errornote: errorNote,
+                errorcode: errorCode,
+                viewpage: viewPage,
+                fingerprintmodeoff: true
+              });
+              scope.update();
+              enteredPin = '';
+              if (!scope.firstEnter)
+                updateEnteredPin();
+              else {
+                firstPinInputId.value = "";
+                inputPinFocus();
+              }
+              return
+            } else {
+              console.log("fingerprintMode error");
             }
-
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: clickPinError,
-              errornote: errorNote,
-              errorcode: errorCode,
-              viewpage: viewPage,
-              fingerprintmodeoff: true
-            });
-            scope.update();
-            enteredPin = '';
-            if (!scope.firstEnter)
-              updateEnteredPin();
-            else {
-              firstPinInputId.value = "";
-              inputPinFocus();
-            }
-            return
           }
         },
         onFail: function (api_status, api_status_message, data) {

@@ -1406,7 +1406,7 @@ window.fingerPrintAsk = function (fingerprintIconId) {
             document.getElementById('fingerPrintErrorText').classList.add("auth-fingerprint-errortext-start");
           }
 
-          // enter(false);
+          enter(false);
 
           setTimeout(function () {
 
