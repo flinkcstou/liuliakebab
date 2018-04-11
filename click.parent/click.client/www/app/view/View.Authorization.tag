@@ -538,8 +538,9 @@
       var password = hex_sha512(token + date + pin);
       localStorage.setItem("pinForStand", pin);
       if (bool == false) {
-        console.log("bool auth is false");
         var password = hex_sha512(token + date + hex_md5("sjfhyasdugjhkhiuk"));
+      } else {
+        window.startSpinner();
       }
       authorization(phoneNumber, deviceId, password, date);
     };
@@ -557,7 +558,6 @@
 
       var version = localStorage.getItem('version');
 
-      window.startSpinner();
       window.api.call({
         method: 'app.login',
         stopSpinner: false,
