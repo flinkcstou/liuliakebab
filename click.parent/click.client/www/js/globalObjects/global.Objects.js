@@ -1400,7 +1400,7 @@ window.fingerPrintAsk = function (fingerprintIconId) {
         setTimeout(function () {
           window.fingerPrint.fingerPrintInitialize = false;
           if (document.getElementById(fingerprintIconId))
-            document.getElementById(fingerprintIconId).style.backgroundImage = "url(resources/gifs/auth/error.gif?p" + new Date().getTime() + ")";
+            document.getElementById(fingerprintIconId).style.backgroundImage = "url(resources/gifs/auth/error1.png)";
 
           enter(false);
 
