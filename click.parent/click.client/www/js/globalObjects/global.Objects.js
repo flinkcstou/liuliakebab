@@ -1393,7 +1393,7 @@ window.fingerPrintAsk = function (fingerprintIconId) {
 
       function encryptErrorCallback(error) {
         console.log("encrypt error, change gif to CHECK");
-        fingerPrintAsk('fingerPrintIconId');
+
         if (document.getElementById(fingerprintIconId))
           document.getElementById(fingerprintIconId).style.backgroundImage = "url(resources/gifs/auth/check.gif?p" + new Date().getTime() + ")";
 
@@ -1402,19 +1402,9 @@ window.fingerPrintAsk = function (fingerprintIconId) {
           if (document.getElementById(fingerprintIconId))
             document.getElementById(fingerprintIconId).style.backgroundImage = "url(resources/gifs/auth/error.gif?p" + new Date().getTime() + ")";
 
-          if (document.getElementById('fingerPrintErrorText')) {
-            document.getElementById('fingerPrintErrorText').classList.add("auth-fingerprint-errortext-start");
-          }
-
           enter(false);
 
           setTimeout(function () {
-
-            if (document.getElementById(fingerprintIconId))
-              document.getElementById(fingerprintIconId).style.backgroundImage = "url(resources/gifs/auth/wait.gif?p" + new Date().getTime() + ")";
-
-            if (document.getElementById('fingerPrintErrorText'))
-              document.getElementById('fingerPrintErrorText').classList.remove("auth-fingerprint-errortext-start");
 
             window.fingerPrint.fingerPrintInitialize = false;
             if (error === "Cancelled") {

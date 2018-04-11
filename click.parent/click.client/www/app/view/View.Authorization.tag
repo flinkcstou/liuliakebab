@@ -83,7 +83,7 @@
     <div id="fingerPrintIconId" class="auth-fingerprint-icon"
          style="background-image: url('resources/gifs/auth/wait.gif')"></div>
 
-    <p id="fingerPrintErrorText" class="auth-fingerprint-errortext">{languages.ViewAuthFingerprintErrorText}</p>
+    <p id="fingerPrintErrorText" class="auth-fingerprint-errortext">{errorMessage}</p>
 
     <div id="switchModeButton" class="button-auth-fingerprint"
          ontouchend="goToClickPinAuthorizationEnd()"
@@ -648,7 +648,25 @@
               }
               return
             } else {
-              console.log("fingerprintMode error");
+              console.log("fingerprintMode error", result[0][0].error_note);
+              scope.errorMessage = result[0][0].error_note;
+              scope.update();
+
+              setTimeout(function () {
+                if (document.getElementById('fingerPrintErrorText')) {
+                  document.getElementById('fingerPrintErrorText').classList.add("auth-fingerprint-errortext-start");
+                }
+                setTimeout(function () {
+                  if (document.getElementById('fingerPrintErrorText'))
+                    document.getElementById('fingerPrintErrorText').classList.remove("auth-fingerprint-errortext-start");
+
+                  fingerPrintAsk('fingerPrintIconId');
+
+                  if (document.getElementById('fingerPrintIconId'))
+                    document.getElementById('fingerPrintIconId').style.backgroundImage = "url(resources/gifs/auth/wait.gif?p" + new Date().getTime() + ")";
+                }, 2000);
+              }, 500);
+
             }
           }
         },
