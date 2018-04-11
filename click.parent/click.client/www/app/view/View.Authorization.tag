@@ -1,6 +1,6 @@
 <view-authorization class="view-authorization riot-tags-main-container">
 
-  <div class="view-authorization-inner-container" if="{!fingerprintMode || device.platform == 'iOS'}">
+  <div class="view-authorization-inner-container" if="{!fingerprintMode}">
 
     <div if="{!firstEnter}" class="authorization-flex-container">
       <div class="authorization-unchangable-container">
@@ -182,7 +182,7 @@
     }
 
     if (JSON.parse(localStorage.getItem('settings_finger_print')) && !scope.firstEnter) {
-      scope.fingerprintMode = opts.fingerPrintMode == false ? false : true;
+      scope.fingerprintMode = device.platform == 'iOS' ? false : (opts.fingerPrintMode == false ? false : true);
       window.fingerPrint.fingerprintMode = scope.fingerprintMode;
       console.log("opts.fingerprintMode ", opts.fingerPrintMode, scope.fingerprintMode);
       scope.update();
@@ -190,7 +190,7 @@
 
 
     //    setTimeout(function () {
-    if (JSON.parse(localStorage.getItem('settings_finger_print')) && scope.fingerprintMode) {
+    if (JSON.parse(localStorage.getItem('settings_finger_print'))) {
       console.log("AUTHORIZATION CALL new OF FINGERPRINT 191");
 
       try {
@@ -365,8 +365,8 @@
         if (myValue === "space" && JSON.parse(localStorage.getItem('settings_finger_print')) === true) {
           try {
             console.log("AUTHORIZATION CALL new OF FINGERPRINT 338");
-            scope.fingerprintMode = true;
-            window.fingerPrint.fingerprintMode = true;
+            scope.fingerprintMode = device.platform == 'iOS' ? false : true;
+            window.fingerPrint.fingerprintMode = scope.fingerprintMode;
             updateEnteredPin();
             scope.update();
             fingerPrintAsk('fingerPrintIconId');
@@ -603,7 +603,7 @@
           }
           else {
             window.stopSpinner();
-            if (!scope.fingerprintMode && device.platform != 'iOS') {
+            if (!scope.fingerprintMode) {
 
               var clickPinError, errorNote, errorCode, viewPage;
 
