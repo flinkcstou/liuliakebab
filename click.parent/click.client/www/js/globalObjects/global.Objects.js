@@ -1394,6 +1394,8 @@ window.fingerPrintAsk = function (fingerprintIconId) {
       function encryptErrorCallback(error) {
         console.log("encrypt error, change gif to CHECK");
 
+        fingerPrintStop();
+
         if (document.getElementById(fingerprintIconId))
           document.getElementById(fingerprintIconId).style.backgroundImage = "url(resources/gifs/auth/check.gif?p" + new Date().getTime() + ")";
 
@@ -1454,19 +1456,6 @@ window.fingerPrintStop = function () {
   if (localStorage.getItem('settings_finger_print') !== null) {
 
     if (device.platform == 'Android') {
-
-      var encryptConfig = {
-        clientId: "myAppName",
-        clientSecret: "currentUser",
-        password: "currentUser",
-        token: "currentUser",
-        locale: "ru",
-        disableBackup: true,
-//              userAuthRequired: false,
-        dialogHint: "Повторите попытку",
-        dialogTitle: "Сканирование для CLICK"
-
-      };
 
       FingerprintAuth.stop(function () {
         console.log("closed");
