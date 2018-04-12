@@ -36,6 +36,31 @@
         </ul>
       </div>
 
+      <div class="inplace-pay-service-inner-container" if="{false}"
+           ontouchmove="servicesBodyContainerTouchMove()" ontouchstart="servicesBodyContainerTouchStart()"
+           ontouchend="servicesBodyContainerTouchEnd()">
+
+        <div each="{i in serviceList}" if="{!(modeOfApp.offlineMode)}" class="inplace-pay-service-container"
+             id="{i.id}"
+             ontouchstart="onTouchStartOfService(this.id)"
+             ontouchend="onTouchEndOfService(this.id)">
+          <div class="inplace-pay-service-icon" style="background-image: url({i.image})"></div>
+          <div class="inplace-pay-service-info">
+            <div class="inplace-pay-service-name-field">{i.name}</div>
+            <div class="inplace-pay-service-address-field">{i.address}</div>
+            <div class="inplace-pay-service-distance-container" if="{i.distance && i.distance!=null}">
+              <div class="inplace-pay-service-distance-icon"></div>
+              <div class="inplace-pay-service-distance-field">{i.distance}</div>
+            </div>
+          </div>
+          <div class="inplace-pay-service-icon-tick"></div>
+        </div>
+
+        <div if="{serviceList.length==0 && searchMode}" class="inplace-pay-search-no-match">
+          {window.languages.InPlaceSearchNoMatchText}
+        </div>
+      </div>
+
     </div>
 
   </div>
@@ -565,6 +590,90 @@
         searchServiceByWord();
       }
     };
+
+    scope.searchServiceByWord = searchServiceByWord = function () {
+      var searchWord = searchInputId.value;
+
+      if (modeOfApp.onlineMode && searchWord) {
+
+        window.blurFields();
+        window.startSpinner();
+        scope.searchMode = false;
+        scope.serviceList = [];
+        scope.pageNumber = 1;
+
+        window.api.call({
+          method: 'get.indoor.service.list',
+          input: {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            category_id: 0,
+            location: inPlacePay.latitude + " " + inPlacePay.longitude,
+            search: searchWord
+          },
+          scope: this,
+
+          onSuccess: function (result) {
+            console.log('Clearing timer onSuccess', timeOutTimerTwo);
+            window.clearTimeout(timeOutTimerTwo);
+            window.stopSpinner();
+            scope.searchMode = true;
+
+            if (result[0][0].error == 0) {
+              if (result[1][0]) {
+
+                for (var i in result[1]) {
+                  scope.serviceList.push(result[1][i]);
+                }
+
+              }
+              console.log("Update");
+              scope.update();
+            } else {
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                step_amount: stepBack,
+                viewmount: true,
+                errornote: result[0][0].error_note
+              });
+            }
+
+          },
+          onFail: function (api_status, api_status_message, data) {
+            console.log('Clearing timer onFail', timeOutTimerTwo);
+            window.clearTimeout(timeOutTimerTwo);
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              step_amount: stepBack,
+              viewmount: true,
+              errornote: window.languages.ServiceUnavailableText
+            });
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          },
+          onTimeOut: function () {
+            timeOutTimerTwo = setTimeout(function () {
+              window.writeLog({
+                reason: 'Timeout',
+                method: 'get.indoor.service.list',
+              });
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                step_amount: stepBack,
+                viewmount: true,
+                errornote: window.languages.WaitingTimeExpiredText
+              });
+            }, 30000);
+            console.log('creating timeOut', timeOutTimerTwo);
+          },
+          onEmergencyStop: function () {
+            console.log('Clearing timer emergencyStop', timeOutTimerTwo);
+            window.clearTimeout(timeOutTimerTwo);
+          }
+        }, 30000);
+
+      }
+    }
 
 
   </script>

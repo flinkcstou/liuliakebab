@@ -682,7 +682,7 @@
 
     };
 
-    searchServiceByWord = function () {
+    scope.searchServiceByWord = searchServiceByWord = function () {
       var searchWord = searchInputId.value;
 
       if (modeOfApp.onlineMode && searchWord) {
