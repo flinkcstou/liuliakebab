@@ -1309,10 +1309,15 @@ window.fingerPrintInit = function () {
           }
         }
 
+        var availableTech = 'Устройтсво поддерживает технологию TouchID';
+        if (device.model == 'iPhone10,3' || device.model == 'iPhone10,6'){
+          availableTech = 'Устройство поддерживает технологию FaceID';
+        }
+
         navigator.notification.confirm(
           'Хотите использовать ее для CLICK?',  // message
           onConfirm,              // callback to invoke with index of button pressed
-          'Устройтсво поддерживает технологию TouchID',            // title
+          availableTech,            // title
           ['Да', 'Нет']          // buttonLabels
         );
 
