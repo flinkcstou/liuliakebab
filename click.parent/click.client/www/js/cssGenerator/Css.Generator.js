@@ -17303,13 +17303,41 @@ var css = {
   "{" +
   "position: relative;" +
   "top: " + 28 * widthK + "px; " +
-  "text-align: left;" +
+  "text-align: justify;" +
   "font-size:" + 24 * widthK + "px; " +
   "color: #a9abaf;" +
-  // "height: " + 65 * widthK + "px; " +
+  "max-height: " + 90 * widthK + "px; " +
   "width: 70%;" +
   "overflow: hidden;" +
-  "text-overflow: ellipsis;" +
+  // "text-overflow: ellipsis;" +
+  "margin-right: " + -25 * widthK + "px; " +
+  "padding-right: " + 20 * widthK + "px; " +
+  "}",
+
+  inPlacePayServiceAddressFieldBefore: ".inplace-pay-service-address-field:before" +
+  "{" +
+  /* points in the end */
+  "content: '...';" +
+  /* absolute position */
+  "position: absolute;" +
+  /* set position to right bottom corner of block */
+  "right: 0;" +
+  "bottom: 0;" +
+  "}",
+
+  inPlacePayServiceAddressFieldAfter: ".inplace-pay-service-address-field:after" +
+  "{" +
+  /* points in the end */
+  "content: '';" +
+  /* absolute position */
+  "position: absolute;" +
+  /* set position to right bottom corner of text */
+  "right: 0;" +
+  "width: " + 25 * widthK + "px; " +
+  /* set width and height */
+  "height: " + 25 * widthK + "px; " +
+  "margin-top: " + 5 * widthK + "px; " +
+  "background: white;" +
   "}",
 
   inPlacePayServiceDistanceContainer: ".inplace-pay-service-distance-container" +
