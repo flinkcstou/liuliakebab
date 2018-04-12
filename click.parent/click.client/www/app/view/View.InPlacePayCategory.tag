@@ -8,9 +8,12 @@
 
     <div class="inplace-pay-category-container" id="categoriesContainerId">
 
-      <div class="inplace-pay-search-container" style="display:none;">
+      <div class="inplace-pay-search-container">
         <div class="inplace-pay-search-field" id="searchContainerId">
           <input class="inplace-pay-search-input-part" type="text" id="searchInputId"
+                 onfocus="colorFieldInplaceSearch()"
+                 onblur="blurFieldInplaceSearch()"
+                 onkeydown="keyDownFieldInplaceSearch()"
                  placeholder="{window.languages.InPlaceSearchPlaceHolderText}"/>
           <div id="searchIcon" class="inplace-pay-search-icon" ontouchstart="onTouchStartOfSearchCategory()"
                ontouchend="onTouchEndOfSearchCategory()"></div>
@@ -153,7 +156,7 @@
           timeOutTimer = setTimeout(function () {
             window.writeLog({
               reason: 'Timeout',
-              method:'get.indoor.category.list',
+              method: 'get.indoor.category.list',
             });
             window.common.alert.show("componentAlertId", {
               parent: scope,
@@ -543,6 +546,23 @@
           scope.unmount();
         }, 50)
 
+      }
+    };
+
+    colorFieldInplaceSearch = function () {
+      searchContainerId.style.borderBottom = "" + 3 * widthK + "px solid #01cfff";
+      searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search_blue.png)';
+    };
+
+    blurFieldInplaceSearch = function () {
+      searchContainerId.style.borderBottom = "" + 3 * widthK + "px solid #cbcbcb";
+      searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search.png)';
+    };
+
+    keyDownFieldInplaceSearch = function () {
+      if (event.keyCode === input_codes.ENTER) {
+        setTimeout(searchInputId.blur(), 0);
+        searchServiceByWord();
       }
     };
 

@@ -17105,10 +17105,9 @@ var css = {
   inPlacePayCategoryInnerContainer: ".inplace-pay-category-inner-container" +
   "{" +
   "position: absolute;" +
-  // "height:100%; " +
+  "height:90%; " +
   "width: 100%; " +
-  "top: 0; " +
-  // "top:15%; " +
+  "top: 9%; " +
   "bottom:0; " +
   "overflow-y: auto; " +
   "overflow-x: hidden; " +
@@ -17118,9 +17117,9 @@ var css = {
   inPlacePayServiceInnerContainer: ".inplace-pay-service-inner-container" +
   "{" +
   "position: absolute;" +
-  "height:85%; " +
+  "height: 90%; " +
   "width: 100%; " +
-  "top:12%; " +
+  "top: 9%; " +
   "bottom:0; " +
   "overflow-y: auto; " +
   "overflow-x: hidden; " +
@@ -17192,7 +17191,7 @@ var css = {
   inPlacePaySearchContainer: ".inplace-pay-search-container" +
   "{" +
   "position: absolute;" +
-  "height:12%; " +
+  "height:10%; " +
   "width: 100%; " +
   "background-color: white; " +
   "z-index: 99999;" +
@@ -17203,8 +17202,8 @@ var css = {
   "{" +
   "position: relative;" +
   "left: 10%;" +
-  "width: 79.5%;" +
-  "height: 74.5%;" +
+  "width:" + 572 * widthK + "px; " +
+  "height:" + 100 * widthK + "px; " +
   "border-bottom:  " + 3 * widthK + "px solid #e8e8e8;" +
   "color: white;" +
   // "top: 8%;" +
@@ -17215,7 +17214,7 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top: 25%;" +
+  "top: 22%;" +
   "padding: 0;" +
   "margin: 0;" +
   // "margin-left: 3%;" +
@@ -17244,7 +17243,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 50%;" +
   "background-position: center;" +
-  "top: 22%;" +
+  "top: 19%;" +
   "}",
 
   // View InPlacePayService
