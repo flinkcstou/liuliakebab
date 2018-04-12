@@ -272,6 +272,7 @@
         seconds = 59;
         minutes--;
       }
+      console.log('tic tac', minutes, seconds);
       scope.update();
     }
     var time = setInterval(timer, 1000);
@@ -438,6 +439,11 @@
           console.error(data);
         }
       })
+
+      minutes = 0;
+      seconds = 60;
+
+      time = setInterval(timer, 1000);
     }
 
 
