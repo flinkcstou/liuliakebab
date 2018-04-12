@@ -17098,6 +17098,7 @@ var css = {
   "bottom:0; " +
   "z-index:3; " +
   "overflow:hidden; " +
+  "overflow-y: auto; " +
   "background-color: white; " +
   "}",
 
@@ -17109,8 +17110,8 @@ var css = {
   "width: 100%; " +
   "top: 9%; " +
   "bottom:0; " +
-  "overflow-y: auto; " +
-  "overflow-x: hidden; " +
+  // "overflow-y: auto; " +
+  // "overflow-x: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
   "}",
 
@@ -17121,8 +17122,8 @@ var css = {
   "width: 100%; " +
   "top: 9%; " +
   "bottom:0; " +
-  "overflow-y: auto; " +
-  "overflow-x: hidden; " +
+  // "overflow-y: auto; " +
+  // "overflow-x: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
   "}",
 
@@ -17251,11 +17252,11 @@ var css = {
   inPlacePayServiceContainer: ".inplace-pay-service-container" +
   "{" +
   "position: relative;" +
-  "height:" + 230 * widthK + "px; " +
+  "height:" + 210 * widthK + "px; " +
   "width: 90%;" +
   "left: 5%;" +
   "top:" + -4 * widthK + "px; " +
-  "border-top:" + 0.5 + "px solid gainsboro;" +
+  "border-bottom:" + 0.5 + "px solid gainsboro;" +
   "background-color: transparent;" +
   "z-index:9999999;" +
   "}",

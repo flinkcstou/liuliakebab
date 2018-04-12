@@ -8,7 +8,8 @@
       </div>
     </div>
 
-    <div class="inplace-pay-category-container" id="categoriesContainerId">
+    <div class="inplace-pay-category-container" id="categoriesContainerId"
+         onscroll="servicesScroll()">
 
       <div class="inplace-pay-search-container">
         <div class="inplace-pay-search-field" id="searchContainerId">
@@ -24,8 +25,7 @@
         </div>
       </div>
 
-      <div class="inplace-pay-service-inner-container" id="servicesBodyContainerId"
-           onscroll="servicesScroll()"
+      <div class="inplace-pay-service-inner-container"
            ontouchmove="servicesBodyContainerTouchMove()" ontouchstart="servicesBodyContainerTouchStart()"
            ontouchend="servicesBodyContainerTouchEnd()">
 
@@ -271,7 +271,7 @@
     };
 
     keyDownFieldInplaceSearch = function () {
-      if (event.keyCode === input_codes.ENTER){
+      if (event.keyCode === input_codes.ENTER) {
         setTimeout(searchInputId.blur(), 0);
         searchServiceByWord();
       }
@@ -672,7 +672,7 @@
 
     servicesScroll = function () {
 
-      if ((servicesBodyContainerId.scrollHeight - servicesBodyContainerId.scrollTop) == servicesBodyContainerId.offsetHeight) {
+      if ((categoriesContainerId.scrollHeight - categoriesContainerId.scrollTop) == categoriesContainerId.offsetHeight) {
 
         if (scope.serviceList.length % 20 == 0) {
           scope.pageNumber++;
@@ -680,7 +680,7 @@
         }
       }
 
-    }
+    };
 
     searchServiceByWord = function () {
       var searchWord = searchInputId.value;
