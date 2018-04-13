@@ -13,14 +13,13 @@
           <input class="inplace-pay-search-input-part" type="text" id="searchInputId"
                  onfocus="colorFieldInplaceSearch()"
                  onblur="blurFieldInplaceSearch()"
-                 onkeydown="keyDownFieldInplaceSearch()"
                  placeholder="{window.languages.InPlaceSearchPlaceHolderText}"/>
           <div id="searchIcon" class="inplace-pay-search-icon" ontouchstart="onTouchStartOfSearchCategory()"
                ontouchend="onTouchEndOfSearchCategory()"></div>
         </div>
       </div>
 
-      <div class="inplace-pay-category-inner-container">
+      <div class="inplace-pay-category-inner-container" if="{!searchServices}">
         <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
           <li each="{i in categoryList}" style="overflow: hidden;">
             <div if="{!(modeOfApp.offlineMode)}" class="inplace-pay-block-containter" title="{i.category_name}"
@@ -36,9 +35,7 @@
         </ul>
       </div>
 
-      <div class="inplace-pay-service-inner-container" if="{false}"
-           ontouchmove="servicesBodyContainerTouchMove()" ontouchstart="servicesBodyContainerTouchStart()"
-           ontouchend="servicesBodyContainerTouchEnd()">
+      <div class="inplace-pay-service-inner-container" if="{searchServices}">
 
         <div each="{i in serviceList}" if="{!(modeOfApp.offlineMode)}" class="inplace-pay-service-container"
              id="{i.id}"
@@ -89,8 +86,24 @@
     //    var latitude, longitude;
     var mainPageToReturn = "view-main-page";
     var timeOutTimer = 0;
+    scope.searchServices = false;
+    scope.pageNumber = 1;
+    scope.serviceList = [];
+    scope.searchMode = false;
+    var stepBack = 1;
 
     window.saveHistory('view-inplace-pay-category', opts);
+
+    scope.on('mount', function () {
+
+      console.log("viewPay.serviceContainerScrollTop=", viewPay.serviceContainerScrollTop)
+      if (viewPay.serviceContainerScrollTop) {
+
+        categoriesContainerId.scrollTop = viewPay.serviceContainerScrollTop;
+        viewPay.serviceContainerScrollTop = null;
+      }
+
+    });
 
     findLocation = function () {
 
@@ -155,6 +168,7 @@
 
               }
               sessionStorage.setItem('click_client_inPlacePayCategoryList', JSON.stringify(scope.categoryList));
+              console.log("category list = ", scope.categoryList);
               scope.update();
             }
           } else {
@@ -251,44 +265,7 @@
 
       if (Math.abs(searchStartX - searchEndX) <= 20 && Math.abs(searchStartY - searchEndY) <= 20) {
         console.log("string to search=", searchInputId.value);
-
-        var searchWord = searchInputId.value;
-
-        if (modeOfApp.onlineMode && searchWord) {
-
-          scope.categoryList = [];
-
-          window.api.call({
-            method: 'get.indoor.category.list',
-            input: {
-              session_key: sessionKey,
-              phone_num: phoneNumber,
-              search: searchWord
-            },
-            scope: this,
-
-            onSuccess: function (result) {
-              if (result[0][0].error == 0)
-                if (result[1][0]) {
-
-
-                  for (var i in result[1]) {
-
-                    scope.categoryList.push(result[1][i]);
-
-                  }
-                  sessionStorage.setItem('click_client_inPlacePayCategoryList', JSON.stringify(scope.categoryList));
-                  scope.update();
-
-                }
-
-            },
-            onFail: function (api_status, api_status_message, data) {
-              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-              console.error(data);
-            }
-          });
-        }
+        searchServiceByWord();
       }
     };
 
@@ -593,10 +570,13 @@
 
     scope.searchServiceByWord = searchServiceByWord = function () {
       var searchWord = searchInputId.value;
-
+      console.log("searchWord=", searchWord);
       if (modeOfApp.onlineMode && searchWord) {
 
-        window.blurFields();
+        scope.searchServices = true;
+        window.saveHistory('view-inplace-pay-service');
+        scope.update();
+
         window.startSpinner();
         scope.searchMode = false;
         scope.serviceList = [];
@@ -673,8 +653,51 @@
         }, 30000);
 
       }
-    }
+    };
 
+    scope.onTouchStartOfService = onTouchStartOfService = function (id) {
+
+      onTouchStartY = event.changedTouches[0].pageY;
+      onTouchStartX = event.changedTouches[0].pageX;
+    };
+
+    scope.onTouchEndOfService = onTouchEndOfService = function (id) {
+
+      onTouchEndY = event.changedTouches[0].pageY;
+      onTouchEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(onTouchStartY - onTouchEndY) <= 20 && Math.abs(onTouchStartX - onTouchEndX) <= 20) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
+        window.clearTimeout(timeOutTimer);
+
+        setTimeout(function () {
+
+          document.getElementById(id).style.backgroundColor = 'transparent';
+
+          for (var i in scope.serviceList) {
+            if (scope.serviceList[i].id == id) {
+              viewPay.serviceContainerScrollTop = categoriesContainerId.scrollTop;
+              scope.serviceList[i].location = inPlacePay.latitude + " " + inPlacePay.longitude;
+
+              history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
+              history.arrayOfHistory.pop();
+              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+
+              riotTags.innerHTML = "<view-qr>";
+              riot.mount('view-qr', scope.serviceList[i]);
+
+              break;
+            }
+
+          }
+
+        }, 50)
+
+      }
+    };
 
   </script>
 </view-inplace-pay-category>

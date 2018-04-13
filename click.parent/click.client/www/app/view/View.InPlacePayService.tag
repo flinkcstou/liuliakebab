@@ -93,7 +93,7 @@
       console.log("viewPay.serviceContainerScrollTop=", viewPay.serviceContainerScrollTop)
       if (viewPay.serviceContainerScrollTop) {
 
-        servicesBodyContainerId.scrollTop = viewPay.serviceContainerScrollTop;
+        categoriesContainerId.scrollTop = viewPay.serviceContainerScrollTop;
         viewPay.serviceContainerScrollTop = null;
       }
 
@@ -211,25 +211,17 @@
 
     if (JSON.parse(sessionStorage.getItem('click_client_inPlacePayServiceList'))) {
 
-      console.log('111');
       scope.serviceList = JSON.parse(sessionStorage.getItem('click_client_inPlacePayServiceList'));
       scope.update();
 
     } else if (inPlacePay.latitude && inPlacePay.longitude) {
-
-      console.log('222');
       getServiceList();
 
     } else if (localStorage.getItem('location_find') && JSON.parse(localStorage.getItem('location_find'))) {
-
-      console.log('333');
       findLocation();
 
     } else {
-
-      console.log('444');
       getServiceList();
-
     }
 
     goToBackStart = function () {
@@ -578,7 +570,7 @@
 
           for (var i in scope.serviceList) {
             if (scope.serviceList[i].id == id) {
-              viewPay.serviceContainerScrollTop = servicesBodyContainerId.scrollTop;
+              viewPay.serviceContainerScrollTop = categoriesContainerId.scrollTop;
               scope.serviceList[i].location = inPlacePay.latitude + " " + inPlacePay.longitude;
               riotTags.innerHTML = "<view-qr>";
               riot.mount('view-qr', scope.serviceList[i]);
