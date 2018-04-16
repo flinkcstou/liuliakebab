@@ -3667,6 +3667,7 @@ var css = {
   "top:" + 310 * widthK + "px;" +
   "z-index:99;" +
   "background-color: white;" +
+  "-webkit-box-shadow:" + 0 * widthK + "px " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + "rgb(37, 36, 36);" +
   "box-shadow:" + 0 * widthK + "px " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + "rgb(37, 36, 36);" +
   "}",
 
@@ -16519,7 +16520,7 @@ var css = {
   serviceInfoOptions: ".serviceinfo-options" +
   "{" +
   "width: 100%;" +
-  "height: 85%;" +
+  "height: " + 1015 * heightK + "px; " +
   "overflow: auto;" +
   //"border-bottom: 1px solid lightgray;" +
   "}",
