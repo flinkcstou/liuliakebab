@@ -14,9 +14,16 @@
                  onfocus="colorFieldInplaceSearch()"
                  onblur="blurFieldInplaceSearch()"
                  onkeydown="keyDownFieldInplaceSearch()"
+                 oninput="onInputSearchField()"
                  placeholder="{window.languages.InPlaceSearchPlaceHolderText}"/>
-          <div id="searchIcon" class="inplace-pay-search-icon" ontouchstart="onTouchStartOfSearchCategory()"
+          <div if="{showSearchIcon}" id="searchIcon"
+               class="inplace-pay-search-icon"
+               ontouchstart="onTouchStartOfSearchCategory()"
                ontouchend="onTouchEndOfSearchCategory()"></div>
+          <div if="{!showSearchIcon}" id="searchRemoveIcon"
+               class="inplace-pay-search-remove-icon"
+               ontouchstart="onTouchStartOfSearchRemove()"
+               ontouchend="onTouchEndOfSearchRemove()"></div>
         </div>
       </div>
 
@@ -88,6 +95,7 @@
     var mainPageToReturn = "view-main-page";
     var timeOutTimer = 0;
     scope.searchServices = false;
+    scope.showSearchIcon = true;
     scope.pageNumber = 1;
     scope.serviceList = [];
     scope.searchMode = false;
@@ -268,6 +276,35 @@
       if (Math.abs(searchStartX - searchEndX) <= 20 && Math.abs(searchStartY - searchEndY) <= 20) {
         searchInputId.autofocus;
         searchInputId.focus();
+      }
+    };
+
+    onTouchStartOfSearchRemove = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (searchRemoveIcon)
+        searchRemoveIcon.style.webkitTransform = 'scale(0.7)';
+
+      searchStartX = event.changedTouches[0].pageX;
+      searchStartY = event.changedTouches[0].pageY;
+
+    };
+
+    onTouchEndOfSearchRemove = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (searchRemoveIcon)
+        searchRemoveIcon.style.webkitTransform = 'scale(1)';
+
+      searchEndX = event.changedTouches[0].pageX;
+      searchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(searchStartX - searchEndX) <= 20 && Math.abs(searchStartY - searchEndY) <= 20) {
+        searchInputId.value = "";
+        scope.showSearchIcon = true;
+        scope.update();
       }
     };
 
@@ -555,20 +592,34 @@
 
     colorFieldInplaceSearch = function () {
       searchContainerId.style.borderBottom = "" + 3 * widthK + "px solid #01cfff";
-      searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search_blue.png)';
+      if (document.getElementById('searchIcon'))
+        searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search_blue.png)';
     };
 
     blurFieldInplaceSearch = function () {
       searchContainerId.style.borderBottom = "" + 3 * widthK + "px solid #cbcbcb";
-      searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search.png)';
+      if (document.getElementById('searchIcon'))
+        searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search.png)';
     };
 
     keyDownFieldInplaceSearch = function () {
+
       clearTimeout(searchFieldTimeout);
 
       searchFieldTimeout = setTimeout(function () {
         searchServiceByWord();
       }, 500);
+    };
+
+    onInputSearchField = function () {
+      if (searchInputId.value.length == 0) {
+        console.log("show searchIcon true");
+        scope.showSearchIcon = true;
+      } else {
+        console.log("show searchIcon false");
+        scope.showSearchIcon = false;
+      }
+      scope.update();
     };
 
     scope.searchServiceByWord = searchServiceByWord = function () {
@@ -620,8 +671,6 @@
 
           },
           onFail: function (api_status, api_status_message, data) {
-            console.log('Clearing timer onFail', timeOutTimerTwo);
-            window.clearTimeout(timeOutTimerTwo);
             window.common.alert.show("componentAlertId", {
               parent: scope,
               step_amount: stepBack,

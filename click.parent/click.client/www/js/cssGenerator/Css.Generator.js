@@ -17248,6 +17248,21 @@ var css = {
   "top: 19%;" +
   "}",
 
+  inPlacePaySearchRemoveIcon: ".inplace-pay-search-remove-icon" +
+  "{" +
+  "position: relative;" +
+  "float: right;" +
+  "right: -4%;" +
+  "background-image: url(resources/icons/ViewInPlacePay/search_remove.png);" +
+  "width:" + 76 * widthK + "px;" +
+  "height:" + 87 * widthK + "px;" +
+  "-webkit-background-size: 50%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 45%;" +
+  "background-position: center;" +
+  "top: 19%;" +
+  "}",
+
   // View InPlacePayService
 
   inPlacePayServiceContainer: ".inplace-pay-service-container" +
