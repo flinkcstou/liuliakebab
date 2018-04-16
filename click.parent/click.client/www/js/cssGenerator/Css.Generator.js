@@ -3667,8 +3667,8 @@ var css = {
   "top:" + 310 * widthK + "px;" +
   "z-index:99;" +
   "background-color: white;" +
-  "-webkit-box-shadow:" + 0 * widthK + "px " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + "rgb(37, 36, 36);" +
   "box-shadow:" + 0 * widthK + "px " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + "rgb(37, 36, 36);" +
+  "-webkit-box-shadow:" + 0 * widthK + "px " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + "rgb(37, 36, 36);" +
   "}",
 
   viewInfoOperationsLabel: ".view-info-operations-label " +
