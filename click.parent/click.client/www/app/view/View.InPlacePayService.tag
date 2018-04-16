@@ -19,9 +19,16 @@
                  onfocus="colorFieldInplaceSearch()"
                  onblur="blurFieldInplaceSearch()"
                  onkeydown="keyDownFieldInplaceSearch()"
+                 oninput="onInputSearchField()"
                  placeholder="{window.languages.InPlaceSearchPlaceHolderText}"/>
-          <div id="searchIcon" class="inplace-pay-search-icon" ontouchstart="onTouchStartOfSearchService()"
-               ontouchend="onTouchEndOfSearchService()"></div>
+          <div if="{showSearchIcon}" id="searchIcon"
+               class="inplace-pay-search-icon"
+               ontouchstart="onTouchStartOfSearchCategory()"
+               ontouchend="onTouchEndOfSearchCategory()"></div>
+          <div if="{!showSearchIcon}" id="searchRemoveIcon"
+               class="inplace-pay-search-remove-icon"
+               ontouchstart="onTouchStartOfSearchRemove()"
+               ontouchend="onTouchEndOfSearchRemove()"></div>
         </div>
       </div>
 
@@ -85,6 +92,8 @@
     var pageToReturn = "view-inplace-pay-category";
     var stepBack = 1;
     scope.searchMode = false;
+    scope.showSearchIcon = true;
+    var searchFieldTimeout;
 
     window.saveHistory('view-inplace-pay-service', opts);
 
@@ -257,19 +266,36 @@
 
     colorFieldInplaceSearch = function () {
       searchContainerId.style.borderBottom = "" + 3 * widthK + "px solid #01cfff";
-      searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search_blue.png)';
+      if (document.getElementById('searchIcon'))
+        searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search_blue.png)';
     };
 
     blurFieldInplaceSearch = function () {
       searchContainerId.style.borderBottom = "" + 3 * widthK + "px solid #cbcbcb";
-      searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search.png)';
+      if (document.getElementById('searchIcon'))
+        searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search.png)';
     };
 
     keyDownFieldInplaceSearch = function () {
-      if (event.keyCode === input_codes.ENTER) {
-        setTimeout(searchInputId.blur(), 0);
+
+      clearTimeout(searchFieldTimeout);
+
+      searchFieldTimeout = setTimeout(function () {
+        scope.pageNumber = 1;
+        scope.serviceList = [];
         searchServiceByWord();
+      }, 500);
+    };
+
+    onInputSearchField = function () {
+      if (searchInputId.value.length == 0) {
+        console.log("show searchIcon true");
+        scope.showSearchIcon = true;
+      } else {
+        console.log("show searchIcon false");
+        scope.showSearchIcon = false;
       }
+      scope.update();
     };
 
     onTouchStartOfSearchService = function () {
@@ -297,6 +323,38 @@
       if (Math.abs(searchStartX - searchEndX) <= 20 && Math.abs(searchStartY - searchEndY) <= 20) {
         console.log("string to search=", searchInputId.value);
 
+        searchServiceByWord();
+      }
+    };
+
+    onTouchStartOfSearchRemove = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (searchRemoveIcon)
+        searchRemoveIcon.style.webkitTransform = 'scale(0.7)';
+
+      searchStartX = event.changedTouches[0].pageX;
+      searchStartY = event.changedTouches[0].pageY;
+
+    };
+
+    onTouchEndOfSearchRemove = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (searchRemoveIcon)
+        searchRemoveIcon.style.webkitTransform = 'scale(1)';
+
+      searchEndX = event.changedTouches[0].pageX;
+      searchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(searchStartX - searchEndX) <= 20 && Math.abs(searchStartY - searchEndY) <= 20) {
+        searchInputId.value = "";
+        scope.showSearchIcon = true;
+        scope.update();
+        scope.pageNumber = 1;
+        scope.serviceList = [];
         searchServiceByWord();
       }
     };
@@ -680,7 +738,7 @@
     scope.searchServiceByWord = searchServiceByWord = function () {
       var searchWord = searchInputId.value;
 
-      if (modeOfApp.onlineMode && searchWord) {
+      if (modeOfApp.onlineMode) {
 
         window.blurFields();
         window.startSpinner();
