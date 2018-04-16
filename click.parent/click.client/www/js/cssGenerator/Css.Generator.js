@@ -16519,7 +16519,7 @@ var css = {
   serviceInfoOptions: ".serviceinfo-options" +
   "{" +
   "width: 100%;" +
-  "height: 85%;" +
+  "height: " + 1015 * heightK + "px; " +
   "overflow: auto;" +
   //"border-bottom: 1px solid lightgray;" +
   "}",
