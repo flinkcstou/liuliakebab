@@ -13,8 +13,11 @@
         <p class="sms-text-field-one">{window.languages.ViewSmsFieldOne}</p>
         <input class="sms-phone-input" value="{confirmSms}" ontouchend="onTouchendSmsNumber()" disabled/>
         <div id="inputCaretSms" class="sms-caret"></div>
-        <div class="sms-timer" ontouchend="touchEndResend()" ontouchstart="touchStartResend()">{time}
-          <div class="sms-resend-icon" role="button" aria-label="{window.languages.ViewSmsAriaLabelResendSms}"></div>
+        <div class="sms-timer">{time}
+          <div class="sms-resend-icon" role="button"
+               if="{showResendButton}"
+               aria-label="{window.languages.ViewSmsAriaLabelResendSms}"
+               ontouchend="touchEndResend()" ontouchstart="touchStartResend()"></div>
         </div>
       </div>
       <div class="sms-text-field">
@@ -47,6 +50,7 @@
 
 //    window.saveHistory('view-sms', opts);
     scope.confirmSms = '';
+    scope.showResendButton = false;
 
     this.on('mount', function () {
 
@@ -238,6 +242,7 @@
       else
         scope.time = minutes + ':' + seconds;
       if (minutes == 0 && seconds == 0) {
+        scope.showResendButton = true;
         scope.messageTitle = window.languages.ViewSmsMessageTitle;
         scope.messageTitleTwo = window.languages.ViewSmsMessageTitleTwo;
         scope.update();
@@ -411,7 +416,7 @@
           clickpinerror: scope.clickPinError,
           errornote: scope.errorNote
         });
-
+        scope.showResendButton = false;
         scope.update();
         resendSms();
       }
