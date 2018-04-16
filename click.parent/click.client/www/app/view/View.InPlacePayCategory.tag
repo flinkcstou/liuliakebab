@@ -6,7 +6,7 @@
            ontouchend="goToBackEnd()" class="back-button"></div>
     </div>
 
-    <div class="inplace-pay-category-container" id="categoriesContainerId">
+    <div class="inplace-pay-category-container" id="categoriesContainerId" onscroll="servicesScroll()">
 
       <div class="inplace-pay-search-container">
         <div class="inplace-pay-search-field" id="searchContainerId">
@@ -305,6 +305,9 @@
         searchInputId.value = "";
         scope.showSearchIcon = true;
         scope.update();
+        scope.pageNumber = 1;
+        scope.serviceList = [];
+        searchServiceByWord();
       }
     };
 
@@ -607,6 +610,8 @@
       clearTimeout(searchFieldTimeout);
 
       searchFieldTimeout = setTimeout(function () {
+        scope.pageNumber = 1;
+        scope.serviceList = [];
         searchServiceByWord();
       }, 500);
     };
@@ -622,18 +627,28 @@
       scope.update();
     };
 
+    servicesScroll = function () {
+
+      if ((categoriesContainerId.scrollHeight - categoriesContainerId.scrollTop) == categoriesContainerId.offsetHeight) {
+
+        if (scope.serviceList.length % 20 == 0 && scope.searchServices) {
+          scope.pageNumber++;
+          searchServiceByWord();
+        }
+      }
+
+    };
+
     scope.searchServiceByWord = searchServiceByWord = function () {
       var searchWord = searchInputId.value;
       console.log("searchWord=", searchWord);
-      if (modeOfApp.onlineMode && searchWord) {
+      if (modeOfApp.onlineMode) {
 
         scope.searchServices = true;
         window.saveHistory('view-inplace-pay-service');
         scope.update();
 
         scope.searchMode = false;
-        scope.serviceList = [];
-        scope.pageNumber = 1;
 
         window.api.call({
           method: 'get.indoor.service.list',
@@ -642,7 +657,8 @@
             phone_num: phoneNumber,
             category_id: 0,
             location: inPlacePay.latitude + " " + inPlacePay.longitude,
-            search: searchWord
+            search: searchWord,
+            page_number: parseInt(scope.pageNumber)
           },
           scope: this,
 
