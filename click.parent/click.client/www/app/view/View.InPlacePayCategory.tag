@@ -13,6 +13,7 @@
           <input class="inplace-pay-search-input-part" type="text" id="searchInputId"
                  onfocus="colorFieldInplaceSearch()"
                  onblur="blurFieldInplaceSearch()"
+                 onkeydown="keyDownFieldInplaceSearch()"
                  placeholder="{window.languages.InPlaceSearchPlaceHolderText}"/>
           <div id="searchIcon" class="inplace-pay-search-icon" ontouchstart="onTouchStartOfSearchCategory()"
                ontouchend="onTouchEndOfSearchCategory()"></div>
@@ -91,6 +92,7 @@
     scope.serviceList = [];
     scope.searchMode = false;
     var stepBack = 1;
+    var searchFieldTimeout;
 
     window.saveHistory('view-inplace-pay-category', opts);
 
@@ -264,8 +266,8 @@
       searchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(searchStartX - searchEndX) <= 20 && Math.abs(searchStartY - searchEndY) <= 20) {
-        console.log("string to search=", searchInputId.value);
-        searchServiceByWord();
+        searchInputId.autofocus;
+        searchInputId.focus();
       }
     };
 
@@ -562,10 +564,11 @@
     };
 
     keyDownFieldInplaceSearch = function () {
-      if (event.keyCode === input_codes.ENTER) {
-        setTimeout(searchInputId.blur(), 0);
+      clearTimeout(searchFieldTimeout);
+      console.log("search key down and clearing timeOut");
+      searchFieldTimeout = setTimeout(function () {
         searchServiceByWord();
-      }
+      }, 500);
     };
 
     scope.searchServiceByWord = searchServiceByWord = function () {
@@ -577,7 +580,7 @@
         window.saveHistory('view-inplace-pay-service');
         scope.update();
 
-        window.startSpinner();
+//        window.startSpinner();
         scope.searchMode = false;
         scope.serviceList = [];
         scope.pageNumber = 1;
@@ -596,7 +599,7 @@
           onSuccess: function (result) {
             console.log('Clearing timer onSuccess', timeOutTimerTwo);
             window.clearTimeout(timeOutTimerTwo);
-            window.stopSpinner();
+//            window.stopSpinner();
             scope.searchMode = true;
 
             if (result[0][0].error == 0) {
