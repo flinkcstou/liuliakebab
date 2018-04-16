@@ -565,7 +565,9 @@
 
     keyDownFieldInplaceSearch = function () {
       clearTimeout(searchFieldTimeout);
+
       console.log("search key down and clearing timeOut");
+
       searchFieldTimeout = setTimeout(function () {
         searchServiceByWord();
       }, 500);
