@@ -33,7 +33,10 @@
              id="{i.id}"
              ontouchstart="onTouchStartOfService(this.id)"
              ontouchend="onTouchEndOfService(this.id)">
-          <div class="inplace-pay-service-icon" style="background-image: url({i.image})"></div>
+          <img class="inplace-pay-service-icon" src="{i.image}"
+               style="background-image: url(resources/icons/ViewInPlacePay/loader.gif);
+               background-size: 50%;"
+               onload="iconLoaded(this)">
           <div class="inplace-pay-service-info">
             <div class="inplace-pay-service-name-field">{i.name}</div>
             <div class="inplace-pay-service-address-field">{i.address}</div>
@@ -756,6 +759,11 @@
         }, 30000);
 
       }
+    }
+
+    iconLoaded = function (element) {
+      console.log(element.style.backgroundImage);
+      element.style.backgroundImage = "";
     }
 
 
