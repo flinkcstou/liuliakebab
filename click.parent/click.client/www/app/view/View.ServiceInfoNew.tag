@@ -121,7 +121,9 @@
       getInformation();
     }
     else {
-      scope.serviceData = JSON.parse(localStorage.getItem("click_client_infoCached"))
+      scope.serviceData = JSON.parse(localStorage.getItem("click_client_infoCached"));
+
+      window.stopSpinner();
 
       console.log("Displaying cached info")
       if (scope.serviceData.information_type == 3) {
