@@ -1751,5 +1751,14 @@ var errorHandler = function (fileName, e) {
 }
 
 
+function clearLoaderOnIconLoad(id){
+  if (document.getElementById(id)) {
+    setTimeout(function () {
+      document.getElementById(id).style.backgroundImage = 'none';
+    }, 0);
+  }
+}
+
+
 
 

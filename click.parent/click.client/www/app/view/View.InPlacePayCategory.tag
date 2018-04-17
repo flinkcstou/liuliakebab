@@ -49,8 +49,9 @@
              id="{i.id}"
              ontouchstart="onTouchStartOfService(this.id)"
              ontouchend="onTouchEndOfService(this.id)">
-          <img class="inplace-pay-service-icon" src="{i.image}"
-               onload="iconLoaded(this)">
+          <img id="{i.id+'_image'}"
+               class="inplace-pay-service-icon" src="{i.image}"
+               onload="clearLoaderOnIconLoad(this.id)">
           <div class="inplace-pay-service-info">
             <div class="inplace-pay-service-name-field">{i.name}</div>
             <div class="inplace-pay-service-address-field">{i.address}</div>
@@ -744,10 +745,6 @@
         }, 50)
 
       }
-    };
-
-    iconLoaded = function (element) {
-      element.style.backgroundImage = "";
     };
 
   </script>
