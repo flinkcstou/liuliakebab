@@ -9,7 +9,9 @@
     </div>
 
     <div class="inplace-pay-category-container" id="categoriesContainerId"
-         onscroll="servicesScroll()">
+         onscroll="servicesScroll()" ontouchmove="servicesBodyContainerTouchMove()"
+         ontouchstart="servicesBodyContainerTouchStart()"
+         ontouchend="servicesBodyContainerTouchEnd()">
 
       <div class="inplace-pay-search-container">
         <div class="inplace-pay-search-field" id="searchContainerId">
@@ -32,9 +34,7 @@
         </div>
       </div>
 
-      <div class="inplace-pay-service-inner-container"
-           ontouchmove="servicesBodyContainerTouchMove()" ontouchstart="servicesBodyContainerTouchStart()"
-           ontouchend="servicesBodyContainerTouchEnd()">
+      <div class="inplace-pay-service-inner-container" id="servicesBodyContainerId">
 
         <div each="{i in serviceList}" if="{!(modeOfApp.offlineMode)}" class="inplace-pay-service-container"
              id="{i.id}"
@@ -319,9 +319,9 @@
       searchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(searchStartX - searchEndX) <= 20 && Math.abs(searchStartY - searchEndY) <= 20) {
-        console.log("string to search=", searchInputId.value);
 
-        searchServiceByWord();
+        searchInputId.autofocus;
+        searchInputId.focus();
       }
     };
 
@@ -651,29 +651,29 @@
 
         event.stopPropagation();
 
-        if ((servicesBodyContainerId.scrollHeight - servicesBodyContainerId.scrollTop) == servicesBodyContainerId.offsetHeight && event.changedTouches[0].pageY < servicesStartY) {
+        if ((categoriesContainerId.scrollHeight - categoriesContainerId.scrollTop) == categoriesContainerId.offsetHeight && event.changedTouches[0].pageY < servicesStartY) {
 
           if (Math.abs(event.changedTouches[0].pageY + top) < 250 * widthK) {
 
-            document.getElementById('servicesBodyContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
-            document.getElementById('servicesBodyContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
-            document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
-            document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
+            document.getElementById('categoriesContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+            document.getElementById('categoriesContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+            document.getElementById('categoriesContainerId').style.transform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
+            document.getElementById('categoriesContainerId').style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
 
           }
-        } else if (servicesBodyContainerId.scrollTop == 0 && event.changedTouches[0].pageY > servicesStartY) {
+        } else if (categoriesContainerId.scrollTop == 0 && event.changedTouches[0].pageY > servicesStartY) {
 
           if (Math.abs(event.changedTouches[0].pageY + top) < 250 * widthK) {
-            document.getElementById('servicesBodyContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
-            document.getElementById('servicesBodyContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
-            document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
-            document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
+            document.getElementById('categoriesContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+            document.getElementById('categoriesContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+            document.getElementById('categoriesContainerId').style.transform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
+            document.getElementById('categoriesContainerId').style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
           }
         } else {
-          document.getElementById('servicesBodyContainerId').style.transition = '0s cubic-bezier(0.2, 0.05, 0.39, 0)';
-          document.getElementById('servicesBodyContainerId').style.webkitTransition = '0s cubic-bezier(0.2, 0.05, 0.39, 0)';
-          document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0,0,0)";
-          document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0,0,0)";
+          document.getElementById('categoriesContainerId').style.transition = '0s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('categoriesContainerId').style.webkitTransition = '0s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('categoriesContainerId').style.transform = "translate3d(0,0,0)";
+          document.getElementById('categoriesContainerId').style.webkitTransform = "translate3d(0,0,0)";
         }
 
       }
@@ -699,20 +699,20 @@
         servicesEndX = event.changedTouches[0].pageX;
         servicesEndY = event.changedTouches[0].pageY;
 
-        if ((servicesBodyContainerId.scrollHeight - servicesBodyContainerId.scrollTop) == servicesBodyContainerId.offsetHeight) {
+        if ((categoriesContainerId.scrollHeight - categoriesContainerId.scrollTop) == categoriesContainerId.offsetHeight) {
 
-          document.getElementById('servicesBodyContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
-          document.getElementById('servicesBodyContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
-          document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0,0,0)";
-          document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0,0,0)";
+          document.getElementById('categoriesContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('categoriesContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('categoriesContainerId').style.transform = "translate3d(0,0,0)";
+          document.getElementById('categoriesContainerId').style.webkitTransform = "translate3d(0,0,0)";
 
 
-        } else if (servicesBodyContainerId.scrollTop == 0) {
+        } else if (categoriesContainerId.scrollTop == 0) {
 
-          document.getElementById('servicesBodyContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
-          document.getElementById('servicesBodyContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
-          document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0,0,0)";
-          document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0,0,0)";
+          document.getElementById('categoriesContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('categoriesContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('categoriesContainerId').style.transform = "translate3d(0,0,0)";
+          document.getElementById('categoriesContainerId').style.webkitTransform = "translate3d(0,0,0)";
 
         }
 
@@ -727,7 +727,10 @@
 
         if (scope.serviceList.length % 20 == 0) {
           scope.pageNumber++;
-          getServiceList();
+          if (scope.searchMode)
+            searchServiceByWord();
+          else
+            getServiceList();
         }
       }
 
@@ -738,11 +741,7 @@
 
       if (modeOfApp.onlineMode) {
 
-        window.blurFields();
-        window.startSpinner();
         scope.searchMode = false;
-        scope.serviceList = [];
-        scope.pageNumber = 1;
 
         window.api.call({
           method: 'get.indoor.service.list',
@@ -751,14 +750,13 @@
             phone_num: phoneNumber,
             category_id: opts.categoryId,
             location: inPlacePay.latitude + " " + inPlacePay.longitude,
-            search: searchWord
+            search: searchWord,
+            page_number: parseInt(scope.pageNumber)
           },
           scope: this,
 
           onSuccess: function (result) {
-            console.log('Clearing timer onSuccess', timeOutTimerTwo);
-            window.clearTimeout(timeOutTimerTwo);
-            window.stopSpinner();
+
             scope.searchMode = true;
 
             if (result[0][0].error == 0) {
@@ -769,7 +767,6 @@
                 }
 
               }
-              console.log("Update");
               scope.update();
             } else {
               window.common.alert.show("componentAlertId", {
@@ -782,8 +779,6 @@
 
           },
           onFail: function (api_status, api_status_message, data) {
-            console.log('Clearing timer onFail', timeOutTimerTwo);
-            window.clearTimeout(timeOutTimerTwo);
             window.common.alert.show("componentAlertId", {
               parent: scope,
               step_amount: stepBack,
@@ -792,30 +787,11 @@
             });
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
-          },
-          onTimeOut: function () {
-            timeOutTimerTwo = setTimeout(function () {
-              window.writeLog({
-                reason: 'Timeout',
-                method: 'get.indoor.service.list',
-              });
-              window.common.alert.show("componentAlertId", {
-                parent: scope,
-                step_amount: stepBack,
-                viewmount: true,
-                errornote: window.languages.WaitingTimeExpiredText
-              });
-            }, 30000);
-            console.log('creating timeOut', timeOutTimerTwo);
-          },
-          onEmergencyStop: function () {
-            console.log('Clearing timer emergencyStop', timeOutTimerTwo);
-            window.clearTimeout(timeOutTimerTwo);
           }
-        }, 30000);
+        });
 
       }
-    }
+    };
 
     iconLoaded = function (element) {
       element.style.backgroundImage = "";
