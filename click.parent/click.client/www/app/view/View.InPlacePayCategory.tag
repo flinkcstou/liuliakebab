@@ -6,7 +6,10 @@
            ontouchend="goToBackEnd()" class="back-button"></div>
     </div>
 
-    <div class="inplace-pay-category-container" id="categoriesContainerId" onscroll="servicesScroll()">
+    <div class="inplace-pay-category-container" id="categoriesContainerId" onscroll="servicesScroll()"
+         ontouchmove="servicesBodyContainerTouchMove()"
+         ontouchstart="servicesBodyContainerTouchStart()"
+         ontouchend="servicesBodyContainerTouchEnd()">
 
       <div class="inplace-pay-search-container">
         <div class="inplace-pay-search-field" id="searchContainerId">
@@ -92,7 +95,6 @@
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
     var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
     var sessionKey = loginInfo.session_key;
-    //    var latitude, longitude;
     var mainPageToReturn = "view-main-page";
     var timeOutTimer = 0;
     scope.searchServices = false;
@@ -107,7 +109,6 @@
 
     scope.on('mount', function () {
 
-      console.log("viewPay.serviceContainerScrollTop=", viewPay.serviceContainerScrollTop)
       if (viewPay.serviceContainerScrollTop) {
 
         categoriesContainerId.scrollTop = viewPay.serviceContainerScrollTop;
@@ -147,7 +148,14 @@
     if (localStorage.getItem('location_find') && JSON.parse(localStorage.getItem('location_find')))
       findLocation();
 
-    if (JSON.parse(sessionStorage.getItem('click_client_inPlacePayCategoryList'))) {
+    if (viewPay.searchServices && JSON.parse(sessionStorage.getItem('click_client_inPlacePayServiceList'))) {
+      scope.searchServices = true;
+      viewPay.searchServices = false;
+      window.saveHistory('view-inplace-pay-service');
+      scope.serviceList = JSON.parse(sessionStorage.getItem('click_client_inPlacePayServiceList'));
+      scope.update();
+    }
+    else if (JSON.parse(sessionStorage.getItem('click_client_inPlacePayCategoryList'))) {
       scope.categoryList = JSON.parse(sessionStorage.getItem('click_client_inPlacePayCategoryList'));
       scope.update();
     }
@@ -640,6 +648,81 @@
 
     };
 
+    servicesBodyContainerTouchMove = function () {
+
+      if (device.platform == 'Android') {
+
+        event.stopPropagation();
+
+        if ((categoriesContainerId.scrollHeight - categoriesContainerId.scrollTop) == categoriesContainerId.offsetHeight && event.changedTouches[0].pageY < servicesStartY) {
+
+          if (Math.abs(event.changedTouches[0].pageY + top) < 250 * widthK) {
+
+            document.getElementById('categoriesContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+            document.getElementById('categoriesContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+            document.getElementById('categoriesContainerId').style.transform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
+            document.getElementById('categoriesContainerId').style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
+
+          }
+        } else if (categoriesContainerId.scrollTop == 0 && event.changedTouches[0].pageY > servicesStartY) {
+
+          if (Math.abs(event.changedTouches[0].pageY + top) < 250 * widthK) {
+            document.getElementById('categoriesContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+            document.getElementById('categoriesContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+            document.getElementById('categoriesContainerId').style.transform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
+            document.getElementById('categoriesContainerId').style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
+          }
+        } else {
+          document.getElementById('categoriesContainerId').style.transition = '0s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('categoriesContainerId').style.webkitTransition = '0s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('categoriesContainerId').style.transform = "translate3d(0,0,0)";
+          document.getElementById('categoriesContainerId').style.webkitTransform = "translate3d(0,0,0)";
+        }
+
+      }
+    };
+
+    var top;
+
+    servicesBodyContainerTouchStart = function () {
+      if (device.platform == 'Android') {
+
+        servicesStartX = event.changedTouches[0].pageX;
+        servicesStartY = event.changedTouches[0].pageY;
+
+        top = -servicesStartY;
+      }
+    };
+
+    servicesBodyContainerTouchEnd = function () {
+
+
+      if (device.platform == 'Android') {
+
+        servicesEndX = event.changedTouches[0].pageX;
+        servicesEndY = event.changedTouches[0].pageY;
+
+        if ((categoriesContainerId.scrollHeight - categoriesContainerId.scrollTop) == categoriesContainerId.offsetHeight) {
+
+          document.getElementById('categoriesContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('categoriesContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('categoriesContainerId').style.transform = "translate3d(0,0,0)";
+          document.getElementById('categoriesContainerId').style.webkitTransform = "translate3d(0,0,0)";
+
+
+        } else if (categoriesContainerId.scrollTop == 0) {
+
+          document.getElementById('categoriesContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('categoriesContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('categoriesContainerId').style.transform = "translate3d(0,0,0)";
+          document.getElementById('categoriesContainerId').style.webkitTransform = "translate3d(0,0,0)";
+
+        }
+
+      }
+
+    };
+
     scope.searchServiceByWord = searchServiceByWord = function () {
       var searchWord = searchInputId.value;
       console.log("searchWord=", searchWord);
@@ -675,7 +758,7 @@
                 }
 
               }
-              console.log("Update");
+              sessionStorage.setItem('click_client_inPlacePayServiceList', JSON.stringify(scope.serviceList));
               scope.update();
             } else {
               window.common.alert.show("componentAlertId", {
@@ -727,6 +810,7 @@
           for (var i in scope.serviceList) {
             if (scope.serviceList[i].id == id) {
               viewPay.serviceContainerScrollTop = categoriesContainerId.scrollTop;
+              viewPay.searchServices = true;
               scope.serviceList[i].location = inPlacePay.latitude + " " + inPlacePay.longitude;
 
               history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));

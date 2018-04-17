@@ -636,7 +636,6 @@
 
               break;
             }
-
           }
 
         }, 50)
@@ -767,6 +766,7 @@
                 }
 
               }
+              sessionStorage.setItem('click_client_inPlacePayServiceList', JSON.stringify(scope.serviceList));
               scope.update();
             } else {
               window.common.alert.show("componentAlertId", {
