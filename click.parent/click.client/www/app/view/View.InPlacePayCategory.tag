@@ -317,6 +317,7 @@
         scope.update();
         scope.pageNumber = 1;
         scope.serviceList = [];
+        window.startSpinner();
         searchServiceByWord();
       }
     };
@@ -750,6 +751,7 @@
           onSuccess: function (result) {
 
             scope.searchMode = true;
+            window.stopSpinner();
 
             if (result[0][0].error == 0) {
               if (result[1][0]) {
@@ -772,6 +774,7 @@
 
           },
           onFail: function (api_status, api_status_message, data) {
+            window.stopSpinner();
             window.common.alert.show("componentAlertId", {
               parent: scope,
               step_amount: stepBack,
