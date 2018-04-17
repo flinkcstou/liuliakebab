@@ -651,7 +651,7 @@
 
     servicesBodyContainerTouchMove = function () {
 
-      if (device.platform == 'Android') {
+      if (device.platform == 'Android' && scope.searchServices) {
 
         event.stopPropagation();
 
@@ -686,7 +686,7 @@
     var top;
 
     servicesBodyContainerTouchStart = function () {
-      if (device.platform == 'Android') {
+      if (device.platform == 'Android' && scope.searchServices) {
 
         servicesStartX = event.changedTouches[0].pageX;
         servicesStartY = event.changedTouches[0].pageY;
@@ -698,7 +698,7 @@
     servicesBodyContainerTouchEnd = function () {
 
 
-      if (device.platform == 'Android') {
+      if (device.platform == 'Android' && scope.searchServices) {
 
         servicesEndX = event.changedTouches[0].pageX;
         servicesEndY = event.changedTouches[0].pageY;
