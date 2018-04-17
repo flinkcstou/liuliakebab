@@ -17288,7 +17288,8 @@ var css = {
   "float: left;" +
   "left: 1%;" +
   "top:" + 31 * widthK + "px; " +
-  "background-size: 100%;" +
+  "background-size: 50%;" +
+  "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
   "}",
 
   inPlacePayServiceInfo: ".inplace-pay-service-info" +
