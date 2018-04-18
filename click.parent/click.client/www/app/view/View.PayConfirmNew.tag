@@ -574,7 +574,7 @@
           "transaction_id": opts.transactionId
         };
       }
-      else if (opts.formtype == 3 || opts.formtype == 5) {
+      else if (opts.formtype == 3 || opts.formtype == 5 || opts.formtype == 6) {
         payment_data = {
           "param": opts.firstFieldId,
           "value": firstFieldtext,
@@ -602,6 +602,8 @@
       }
 
       if (opts.mode != 'ADDAUTOPAY') {
+
+//        console.log("paymentData = ", payment_data);
 
         paymentFunction(payment_data);
 

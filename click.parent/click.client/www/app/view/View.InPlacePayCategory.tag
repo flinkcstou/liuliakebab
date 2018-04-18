@@ -104,7 +104,7 @@
     scope.serviceList = [];
     scope.searchMode = false;
     var stepBack = 1;
-    var searchFieldTimeout;
+    var searchFieldTimeout, searchFieldActive = false;
 
     window.saveHistory('view-inplace-pay-category', opts);
 
@@ -605,12 +605,14 @@
     };
 
     colorFieldInplaceSearch = function () {
+      searchFieldActive = true;
       searchContainerId.style.borderBottom = "" + 3 * widthK + "px solid #01cfff";
       if (document.getElementById('searchIcon'))
         searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search_blue.png)';
     };
 
     blurFieldInplaceSearch = function () {
+      searchFieldActive = false;
       searchContainerId.style.borderBottom = "" + 3 * widthK + "px solid #cbcbcb";
       if (document.getElementById('searchIcon'))
         searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search.png)';
@@ -639,6 +641,14 @@
     };
 
     servicesScroll = function () {
+
+//      console.log("searchFieldActive", searchFieldActive);
+
+      if (searchFieldActive) {
+        console.log("bluring fields");
+        window.blurFields();
+        searchFieldActive = false;
+      }
 
       if ((categoriesContainerId.scrollHeight - categoriesContainerId.scrollTop) == categoriesContainerId.offsetHeight) {
 
