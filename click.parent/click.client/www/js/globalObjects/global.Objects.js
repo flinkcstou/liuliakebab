@@ -99,11 +99,8 @@ window.common.alert = {
     console.log(id, params);
 
     if (!window.common.alert.priorities[id]) return;
-    console.log("222");
 
     // if (window.fingerPrint.fingerPrintInitialize) return;
-
-    console.log("333");
 
     var show = true;
 
@@ -1310,7 +1307,7 @@ window.fingerPrintInit = function () {
         }
 
         var availableTech = 'Устройтсво поддерживает технологию TouchID';
-        if (device.model == 'iPhone10,3' || device.model == 'iPhone10,6'){
+        if (device.model == 'iPhone10,3' || device.model == 'iPhone10,6') {
           availableTech = 'Устройство поддерживает технологию FaceID';
         }
 
@@ -1499,6 +1496,13 @@ window.stopSpinner = function () {
     console.log("Spinner Stop");
     SpinnerPlugin.activityStop();
   }
+};
+
+window.startLoaderDots = function () {
+  // if (device.platform != 'BrowserStand') {
+  console.log("start loader dots");
+  // document.getElementById("loaderDots").style.display = 'block';
+  // }
 };
 
 window.blurFields = function () {
@@ -1751,7 +1755,7 @@ var errorHandler = function (fileName, e) {
 }
 
 
-function clearLoaderOnIconLoad(id){
+function clearLoaderOnIconLoad(id) {
   if (document.getElementById(id)) {
     setTimeout(function () {
       document.getElementById(id).style.backgroundImage = 'none';

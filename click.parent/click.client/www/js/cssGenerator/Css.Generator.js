@@ -123,6 +123,21 @@ var css = {
   //"background: rgb(128,128,128);" +
   //"}",
 
+
+  loaderDots: ".loader-dots" +
+  "{" +
+  "position: absolute;" +
+  "width:" + 190 * widthK + "px;" +
+  "height:" + 190 * widthK + "px;" +
+  "left:" + 285 * widthK + "px;" +
+  //"top:" + 400 * widthK + "px;" +
+  "background-image: url('resources/gifs/loader_dots.gif');" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "z-index: 999;" +
+  "display:none;" +
+  "}",
+
   //DEMO
 
   demoVersionButtonExit: ".demo-version-button-exit" +
