@@ -92,7 +92,7 @@
     var stepBack = 1;
     scope.searchMode = false;
     scope.showSearchIcon = true;
-    var searchFieldTimeout;
+    var searchFieldTimeout, searchFieldActive = false;
 
     window.saveHistory('view-inplace-pay-service', opts);
 
@@ -264,12 +264,14 @@
     };
 
     colorFieldInplaceSearch = function () {
+      searchFieldActive = true;
       searchContainerId.style.borderBottom = "" + 3 * widthK + "px solid #01cfff";
       if (document.getElementById('searchIcon'))
         searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search_blue.png)';
     };
 
     blurFieldInplaceSearch = function () {
+      searchFieldActive = false;
       searchContainerId.style.borderBottom = "" + 3 * widthK + "px solid #cbcbcb";
       if (document.getElementById('searchIcon'))
         searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search.png)';
@@ -288,10 +290,8 @@
 
     onInputSearchField = function () {
       if (searchInputId.value.length == 0) {
-        console.log("show searchIcon true");
         scope.showSearchIcon = true;
       } else {
-        console.log("show searchIcon false");
         scope.showSearchIcon = false;
       }
       scope.update();
@@ -351,9 +351,11 @@
       if (Math.abs(searchStartX - searchEndX) <= 20 && Math.abs(searchStartY - searchEndY) <= 20) {
         searchInputId.value = "";
         scope.showSearchIcon = true;
+        scope.searchMode = false;
         scope.update();
         scope.pageNumber = 1;
         scope.serviceList = [];
+        window.startSpinner();
         searchServiceByWord();
       }
     };
@@ -682,6 +684,15 @@
     var top;
 
     servicesBodyContainerTouchStart = function () {
+
+      console.log("touch start container");
+
+      if (searchFieldActive) {
+        console.log("bluring fields");
+        window.blurFields();
+        searchFieldActive = false;
+      }
+
       if (device.platform == 'Android') {
 
         servicesStartX = event.changedTouches[0].pageX;
@@ -757,7 +768,12 @@
 
           onSuccess: function (result) {
 
+            console.log("pageNumber=", scope.pageNumber, ", list size=", scope.serviceList.length);
+            if (scope.pageNumber == 1)
+              scope.serviceList = [];
+
             scope.searchMode = true;
+            window.stopSpinner();
 
             if (result[0][0].error == 0) {
               if (result[1][0]) {
@@ -780,6 +796,7 @@
 
           },
           onFail: function (api_status, api_status_message, data) {
+            window.stopSpinner();
             window.common.alert.show("componentAlertId", {
               parent: scope,
               step_amount: stepBack,

@@ -314,6 +314,7 @@
       if (Math.abs(searchStartX - searchEndX) <= 20 && Math.abs(searchStartY - searchEndY) <= 20) {
         searchInputId.value = "";
         scope.showSearchIcon = true;
+        scope.searchMode = false;
         scope.update();
         scope.pageNumber = 1;
         scope.serviceList = [];
@@ -631,24 +632,14 @@
 
     onInputSearchField = function () {
       if (searchInputId.value.length == 0) {
-        console.log("show searchIcon true");
         scope.showSearchIcon = true;
       } else {
-        console.log("show searchIcon false");
         scope.showSearchIcon = false;
       }
       scope.update();
     };
 
     servicesScroll = function () {
-
-//      console.log("searchFieldActive", searchFieldActive);
-
-      if (searchFieldActive) {
-        console.log("bluring fields");
-        window.blurFields();
-        searchFieldActive = false;
-      }
 
       if ((categoriesContainerId.scrollHeight - categoriesContainerId.scrollTop) == categoriesContainerId.offsetHeight) {
 
@@ -697,6 +688,15 @@
     var top;
 
     servicesBodyContainerTouchStart = function () {
+
+      console.log("touch start container");
+
+      if (searchFieldActive) {
+        console.log("bluring fields");
+        window.blurFields();
+        searchFieldActive = false;
+      }
+
       if (device.platform == 'Android' && scope.searchServices) {
 
         servicesStartX = event.changedTouches[0].pageX;
@@ -759,6 +759,10 @@
           scope: this,
 
           onSuccess: function (result) {
+
+            console.log("pageNumber=", scope.pageNumber, ", list size=", scope.serviceList.length);
+            if (scope.pageNumber == 1)
+              scope.serviceList = [];
 
             scope.searchMode = true;
             window.stopSpinner();
