@@ -48,8 +48,10 @@
       </ul>
     </div>
 
-    <button class="serviceinfo-button-next"
-            ontouchend="goToNextPage()">
+    <button id="serviceinfoButtonNextId"
+            class="serviceinfo-button-next"
+            ontouchstart="goToNextPageStart()"
+            ontouchend="goToNextPageEnd()">
       {window.languages.ViewServiceInfoButtonNextText}
     </button>
   </div>
@@ -308,7 +310,12 @@
       }
     };
 
-    goToNextPage = function () {
+    goToNextPageStart = function () {
+      serviceinfoButtonNextId.style.webkitTransform = 'scale(0.8)';
+    };
+
+    goToNextPageEnd = function () {
+      serviceinfoButtonNextId.style.webkitTransform = 'scale(1)';
 
       if (scope.index == -1 && scope.serviceData.information_type == 3 && scope.checkIconShow) {
 

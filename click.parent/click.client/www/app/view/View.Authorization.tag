@@ -499,7 +499,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-//      firstEnterButtonId.style.webkitTransform = 'scale(0.8)';
+      switchModeButton.style.webkitTransform = 'scale(0.8)';
 
       goToClickPinAuthStartX = event.changedTouches[0].pageX;
       goToClickPinAuthStartY = event.changedTouches[0].pageY;
@@ -509,7 +509,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-//      firstEnterButtonId.style.webkitTransform = 'scale(1)';
+      switchModeButton.style.webkitTransform = 'scale(1)';
 
       goToClickPinAuthEndX = event.changedTouches[0].pageX;
       goToClickPinAuthEndY = event.changedTouches[0].pageY;
