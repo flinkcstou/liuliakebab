@@ -453,15 +453,15 @@
                           }
                         }
                         else {
-                          if (result[0][0].error == -202) {
-                            if (result[0][0].error_url) {
-
-                              window.checkShowingComponent = scope;
-                              scope.update();
-                              iFrameExternalUrlId.src = result[0][0].error_url;
-                              return
-                            }
-                          }
+//                          if (result[0][0].error == -202) {
+//                            if (result[0][0].error_url) {
+//
+//                              window.checkShowingComponent = scope;
+//                              scope.update();
+//                              iFrameExternalUrlId.src = result[0][0].error_url;
+//                              return
+//                            }
+//                          }
 
                           scope.clickPinError = false;
                           scope.errorNote = result[0][0].error_note;
