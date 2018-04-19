@@ -796,15 +796,7 @@
 
       scope.update();
 
-      if (device.platform != 'BrowserStand') {
-        var options = {dimBackground: true};
-
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Spinner start in pay confirm");
-        }, function () {
-          console.log("Spinner stop in pay confirm");
-        });
-      }
+      window.startSpinner();
 
       if (scope.autoPayData) {
         if (scope.autoPayData.autopay_type == 2) {
