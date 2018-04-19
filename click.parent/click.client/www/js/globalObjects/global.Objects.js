@@ -1505,6 +1505,14 @@ window.startLoaderDots = function () {
     document.getElementById("loaderDots").style.display = 'block';
 };
 
+window.startPaginationLoaderDots = function () {
+  console.log("start pagination loader dots");
+  if (document.getElementById("loaderDots")) {
+    document.getElementById("loaderDots").style.top = '91%';
+    document.getElementById("loaderDots").style.display = 'block';
+  }
+};
+
 window.stopLoaderDots = function () {
   console.log("stop loader dots");
   if (document.getElementById("loaderDots"))

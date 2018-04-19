@@ -91,7 +91,7 @@
     var pageToReturn = "view-inplace-pay-category";
     var stepBack = 1;
     scope.searchMode = false;
-    scope.showSearchIcon = true;
+    scope.showSearchIcon = !opts.searchWord;
     var searchFieldTimeout, searchFieldActive = false, searchWord = opts.searchWord;
 
     window.saveHistory('view-inplace-pay-service', opts);
@@ -101,7 +101,6 @@
       setTimeout(function () {
         window.blurFields();
       }, 500);
-      console.log("viewPay.serviceContainerScrollTop=", viewPay.serviceContainerScrollTop)
       if (viewPay.serviceContainerScrollTop) {
 
         categoriesContainerId.scrollTop = viewPay.serviceContainerScrollTop;
@@ -145,7 +144,7 @@
     scope.getServiceList = getServiceList = function () {
 
 //      scope.serviceList = [];
-      window.startSpinner();
+//      window.startSpinner();
 
       window.api.call({
         method: 'get.indoor.service.list',
@@ -162,6 +161,7 @@
           console.log('Clearing timer onSuccess', timeOutTimer);
           window.clearTimeout(timeOutTimer);
           window.stopSpinner();
+          window.stopLoaderDots();
 
           if (result[0][0].error == 0) {
             if (result[1][0]) {
@@ -187,6 +187,8 @@
         onFail: function (api_status, api_status_message, data) {
           console.log('Clearing timer onFail', timeOutTimer);
           window.clearTimeout(timeOutTimer);
+          window.stopSpinner();
+          window.stopLoaderDots();
           window.common.alert.show("componentAlertId", {
             parent: scope,
             step_amount: stepBack,
@@ -749,6 +751,7 @@
 
         if (scope.serviceList.length % 20 == 0) {
           scope.pageNumber++;
+          window.startPaginationLoaderDots();
           if (scope.searchMode)
             searchServiceByWord();
           else

@@ -648,6 +648,7 @@
 
         if (scope.serviceList.length % 20 == 0 && scope.searchServices) {
           scope.pageNumber++;
+          window.startPaginationLoaderDots();
           searchServiceByWord();
         }
       }
@@ -768,7 +769,7 @@
               scope.serviceList = [];
 
             scope.searchMode = true;
-            window.stopSpinner();
+//            window.stopSpinner();
             window.stopLoaderDots();
 
             if (result[0][0].error == 0) {
@@ -792,7 +793,7 @@
 
           },
           onFail: function (api_status, api_status_message, data) {
-            window.stopSpinner();
+//            window.stopSpinner();
             window.stopLoaderDots();
             window.common.alert.show("componentAlertId", {
               parent: scope,
