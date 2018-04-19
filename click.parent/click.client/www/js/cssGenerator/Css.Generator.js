@@ -1665,7 +1665,7 @@ var css = {
   "background-image: url(resources/icons/toolbar/bell.png);" +
   "width:" + 100 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
-  "background-size: 40%;" +
+  "background-size: 50%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "right:" + 14 * widthK + "px;" +

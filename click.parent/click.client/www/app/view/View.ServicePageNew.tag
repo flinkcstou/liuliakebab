@@ -1680,8 +1680,13 @@
     scope.onTouchStartOfEnter = onTouchStartOfEnter = function () {
       event.stopPropagation();
 
-      if (this.enterButtonId && scope.enterButtonEnabled)
-        this.enterButtonId.style.webkitTransform = 'scale(0.8)'
+      if (this.enterButtonId && scope.enterButtonEnabled) {
+        this.enterButtonId.style.webkitTransform = 'scale(0.8)';
+      }
+
+      if (this.formTypeTwoBtnId) {
+        this.formTypeTwoBtnId.style.webkitTransform = 'scale(0.8)';
+      }
 
       enterStartY = event.changedTouches[0].pageY;
       enterStartX = event.changedTouches[0].pageX;
@@ -1944,6 +1949,10 @@
 
       enterEndY = event.changedTouches[0].pageY;
       enterEndX = event.changedTouches[0].pageX;
+
+      if (this.formTypeTwoBtnId) {
+        this.formTypeTwoBtnId.style.webkitTransform = 'scale(1)';
+      }
 
       if (Math.abs(enterStartY - enterEndY) <= 20 && Math.abs(enterStartX - enterEndX) <= 20) {
 

@@ -28,7 +28,7 @@
       </div>
     </div>
 
-    <button id="bottomButtonContainer" class="bottom-button-container" ontouchend="onTouchEndAccept()"
+    <button id="bottomButtonContainerId" class="bottom-button-container" ontouchend="onTouchEndAccept()"
             ontouchstart="onTouchStartAccept()">
       {window.languages.ViewQrTitleAccept}
     </button>
@@ -92,12 +92,16 @@
 
       touchStartAcceptX = event.changedTouches[0].pageX;
       touchStartAcceptY = event.changedTouches[0].pageY;
+
+      bottomButtonContainerId.style.webkitTransform = 'scale(0.8)';
     };
 
     onTouchEndAccept = function () {
 
       touchEndAcceptX = event.changedTouches[0].pageX;
       touchEndAcceptY = event.changedTouches[0].pageY;
+
+      bottomButtonContainerId.style.webkitTransform = 'scale(1)';
 
       if (Math.abs(touchEndAcceptX - touchStartAcceptX) < 20 &&
         Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
