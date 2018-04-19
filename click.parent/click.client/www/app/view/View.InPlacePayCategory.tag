@@ -628,7 +628,7 @@
         scope.pageNumber = 1;
         scope.serviceList = [];
         scope.searchMode = false;
-        if (!scope.searchServices) scope.searchServices = true;
+//        if (!scope.searchServices) scope.searchServices = true;
         window.saveHistory('view-inplace-pay-service');
         scope.update();
         searchServiceByWord();
@@ -746,6 +746,10 @@
 
       if (modeOfApp.onlineMode) {
 
+        scope.searchServices = true;
+        scope.update();
+
+        scope.searchMode = false;
 
         window.api.call({
           method: 'get.indoor.service.list',

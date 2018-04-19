@@ -755,6 +755,7 @@
       if (modeOfApp.onlineMode) {
 
         scope.searchMode = false;
+        scope.update();
 
         window.api.call({
           method: 'get.indoor.service.list',
