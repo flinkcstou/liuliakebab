@@ -17311,8 +17311,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "height:" + 190 * widthK + "px; " +
-  "width: 70%;" +
-  "left: 38%;" +
+  "width: 65%;" +
+  "left: 35%;" +
   "top: 9%;" +
   // "float: left;" +
   "background-color: transparent;" +

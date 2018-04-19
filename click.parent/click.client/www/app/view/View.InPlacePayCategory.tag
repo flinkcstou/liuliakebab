@@ -104,8 +104,9 @@
     scope.serviceList = [];
     scope.searchMode = false;
     var stepBack = 1;
-    var searchFieldTimeout, searchFieldActive = false;
+    var searchFieldTimeout, searchFieldActive = false, searchWord;
 
+    console.log("OPTS in InplacePayCategory", opts);
     window.saveHistory('view-inplace-pay-category', opts);
 
     scope.on('mount', function () {
@@ -149,14 +150,7 @@
     if (localStorage.getItem('location_find') && JSON.parse(localStorage.getItem('location_find')))
       findLocation();
 
-    if (viewPay.searchServices && JSON.parse(sessionStorage.getItem('click_client_inPlacePayServiceList'))) {
-      scope.searchServices = true;
-      viewPay.searchServices = false;
-      window.saveHistory('view-inplace-pay-service');
-      scope.serviceList = JSON.parse(sessionStorage.getItem('click_client_inPlacePayServiceList'));
-      scope.update();
-    }
-    else if (JSON.parse(sessionStorage.getItem('click_client_inPlacePayCategoryList'))) {
+    if (JSON.parse(sessionStorage.getItem('click_client_inPlacePayCategoryList'))) {
       scope.categoryList = JSON.parse(sessionStorage.getItem('click_client_inPlacePayCategoryList'));
       scope.update();
     }
@@ -622,6 +616,10 @@
 
     keyDownFieldInplaceSearch = function () {
 
+      if (event.keyCode === input_codes.ENTER) {
+        window.blurFields();
+      }
+
       clearTimeout(searchFieldTimeout);
 
       searchFieldTimeout = setTimeout(function () {
@@ -629,7 +627,7 @@
         scope.serviceList = [];
         scope.searchMode = false;
 //        if (!scope.searchServices) scope.searchServices = true;
-        window.saveHistory('view-inplace-pay-service');
+        window.saveHistory('view-inplace-pay-service', {categoryId: 0, categoryName: scope.titleName});
         scope.update();
         searchServiceByWord();
       }, 500);
@@ -742,7 +740,7 @@
 
     scope.searchServiceByWord = searchServiceByWord = function () {
 
-      var searchWord = searchInputId.value;
+      searchWord = searchInputId.value;
 
       if (modeOfApp.onlineMode) {
 
@@ -839,7 +837,7 @@
               scope.serviceList[i].location = inPlacePay.latitude + " " + inPlacePay.longitude;
 
               history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
-              history.arrayOfHistory.pop();
+              history.arrayOfHistory[history.arrayOfHistory.length - 1].params.searchWord = searchWord;
               sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
               riotTags.innerHTML = "<view-qr>";

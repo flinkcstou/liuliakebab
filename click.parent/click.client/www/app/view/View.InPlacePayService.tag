@@ -15,7 +15,7 @@
 
       <div class="inplace-pay-search-container">
         <div class="inplace-pay-search-field" id="searchContainerId">
-          <input class="inplace-pay-search-input-part"
+          <input class="inplace-pay-search-input-part" value="{opts.searchWord}"
                  type="text"
                  id="searchInputId"
                  onfocus="colorFieldInplaceSearch()"
@@ -92,7 +92,7 @@
     var stepBack = 1;
     scope.searchMode = false;
     scope.showSearchIcon = true;
-    var searchFieldTimeout, searchFieldActive = false;
+    var searchFieldTimeout, searchFieldActive = false, searchWord;
 
     window.saveHistory('view-inplace-pay-service', opts);
 
@@ -278,6 +278,10 @@
     };
 
     keyDownFieldInplaceSearch = function () {
+
+      if (event.keyCode === input_codes.ENTER) {
+        window.blurFields();
+      }
 
       clearTimeout(searchFieldTimeout);
 
@@ -636,6 +640,11 @@
             if (scope.serviceList[i].id == id) {
               viewPay.serviceContainerScrollTop = categoriesContainerId.scrollTop;
               scope.serviceList[i].location = inPlacePay.latitude + " " + inPlacePay.longitude;
+
+              history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
+              history.arrayOfHistory[history.arrayOfHistory.length - 1].params.searchWord = searchWord;
+              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+
               riotTags.innerHTML = "<view-qr>";
               riot.mount('view-qr', scope.serviceList[i]);
 
@@ -750,7 +759,7 @@
     };
 
     scope.searchServiceByWord = searchServiceByWord = function () {
-      var searchWord = searchInputId.value;
+      searchWord = searchInputId.value;
 
       if (modeOfApp.onlineMode) {
 
