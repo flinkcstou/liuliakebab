@@ -318,7 +318,8 @@
         scope.update();
         scope.pageNumber = 1;
         scope.serviceList = [];
-        window.startSpinner();
+//        window.startSpinner();
+        window.startLoaderDots();
         searchServiceByWord();
       }
     };
@@ -626,6 +627,10 @@
       searchFieldTimeout = setTimeout(function () {
         scope.pageNumber = 1;
         scope.serviceList = [];
+        scope.searchMode = false;
+        if (!scope.searchServices) scope.searchServices = true;
+        window.saveHistory('view-inplace-pay-service');
+        scope.update();
         searchServiceByWord();
       }, 500);
     };
@@ -736,15 +741,11 @@
     };
 
     scope.searchServiceByWord = searchServiceByWord = function () {
+
       var searchWord = searchInputId.value;
-      console.log("searchWord=", searchWord);
+
       if (modeOfApp.onlineMode) {
 
-        scope.searchServices = true;
-        window.saveHistory('view-inplace-pay-service');
-        scope.update();
-
-        scope.searchMode = false;
 
         window.api.call({
           method: 'get.indoor.service.list',
@@ -766,6 +767,7 @@
 
             scope.searchMode = true;
             window.stopSpinner();
+            window.stopLoaderDots();
 
             if (result[0][0].error == 0) {
               if (result[1][0]) {
@@ -789,6 +791,7 @@
           },
           onFail: function (api_status, api_status_message, data) {
             window.stopSpinner();
+            window.stopLoaderDots();
             window.common.alert.show("componentAlertId", {
               parent: scope,
               step_amount: stepBack,

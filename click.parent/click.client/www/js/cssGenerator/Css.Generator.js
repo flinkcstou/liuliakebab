@@ -128,9 +128,9 @@ var css = {
   "{" +
   "position: absolute;" +
   "width:" + 190 * widthK + "px;" +
-  "height:" + 190 * widthK + "px;" +
-  "left:" + 285 * widthK + "px;" +
-  //"top:" + 400 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "left:" + 265 * widthK + "px;" +
+  "top:" + 515 * widthK + "px;" +
   "background-image: url('resources/gifs/loader_dots.gif');" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +

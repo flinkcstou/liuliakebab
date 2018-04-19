@@ -106,6 +106,7 @@ window.common.alert = {
 
     try {
       window.stopSpinner();
+      window.stopLoaderDots();
       window.blurFields();
 
     } catch (error) {
@@ -1499,10 +1500,13 @@ window.stopSpinner = function () {
 };
 
 window.startLoaderDots = function () {
-  // if (device.platform != 'BrowserStand') {
   console.log("start loader dots");
-  // document.getElementById("loaderDots").style.display = 'block';
-  // }
+  document.getElementById("loaderDots").style.display = 'block';
+};
+
+window.stopLoaderDots = function () {
+  console.log("stop loader dots");
+  document.getElementById("loaderDots").style.display = 'none';
 };
 
 window.blurFields = function () {
