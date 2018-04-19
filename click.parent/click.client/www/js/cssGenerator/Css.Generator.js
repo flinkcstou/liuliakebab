@@ -17114,7 +17114,7 @@ var css = {
   "bottom:0; " +
   "z-index:3; " +
   "overflow:hidden; " +
-  "overflow-y: auto; " +
+  // "overflow-y: auto; " +
   "background-color: white; " +
   "}",
 
@@ -17126,8 +17126,8 @@ var css = {
   "width: 100%; " +
   "top: 9%; " +
   "bottom:0; " +
-  // "overflow-y: auto; " +
-  // "overflow-x: hidden; " +
+  "overflow-y: auto; " +
+  "overflow-x: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
   "}",
 
@@ -17138,8 +17138,8 @@ var css = {
   "width: 100%; " +
   "top: 9%; " +
   "bottom:0; " +
-  // "overflow-y: auto; " +
-  // "overflow-x: hidden; " +
+  "overflow-y: auto; " +
+  "overflow-x: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
   "}",
 
