@@ -92,7 +92,7 @@
     var stepBack = 1;
     scope.searchMode = false;
     scope.showSearchIcon = true;
-    var searchFieldTimeout, searchFieldActive = false, searchWord;
+    var searchFieldTimeout, searchFieldActive = false, searchWord = opts.searchWord;
 
     window.saveHistory('view-inplace-pay-service', opts);
 
