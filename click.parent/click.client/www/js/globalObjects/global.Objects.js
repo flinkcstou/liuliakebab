@@ -1501,12 +1501,14 @@ window.stopSpinner = function () {
 
 window.startLoaderDots = function () {
   console.log("start loader dots");
-  document.getElementById("loaderDots").style.display = 'block';
+  if (document.getElementById("loaderDots"))
+    document.getElementById("loaderDots").style.display = 'block';
 };
 
 window.stopLoaderDots = function () {
   console.log("stop loader dots");
-  document.getElementById("loaderDots").style.display = 'none';
+  if (document.getElementById("loaderDots"))
+    document.getElementById("loaderDots").style.display = 'none';
 };
 
 window.blurFields = function () {
