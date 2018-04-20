@@ -7,6 +7,7 @@
   <name>CLICK Uzbekistan</name>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="Orientation" value="sensorPortrait"/>
+  <preference name="loadUrlTimeoutValue" value="700000" />
   <author email="chamirkazhiyev@greet-go.com">
     Amirkazhiev Chingis
   </author>
