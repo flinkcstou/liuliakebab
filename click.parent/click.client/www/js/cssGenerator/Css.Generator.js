@@ -128,9 +128,10 @@ var css = {
   "{" +
   "position: absolute;" +
   "width:" + 190 * widthK + "px;" +
-  "height:" + 100 * widthK + "px;" +
+  // "height:" + 100 * widthK + "px;" +
   "left:" + 265 * widthK + "px;" +
   "top:" + 515 * widthK + "px;" +
+  "bottom: 0;" +
   "background-image: url('resources/gifs/loader_dots.gif');" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
@@ -140,7 +141,8 @@ var css = {
 
   loaderDotsPagination: ".loader-dots-pagination" +
   "{" +
-  "top: 91%;" +
+  "top:" + 1150 * widthK + "px;" +
+  "bottom: 0;" +
   "}",
 
   //DEMO
@@ -17139,7 +17141,7 @@ var css = {
   inPlacePayServiceInnerContainer: ".inplace-pay-service-inner-container" +
   "{" +
   "position: absolute;" +
-  "height: 90%; " +
+  "height: 89%; " +
   "width: 100%; " +
   "top: 9%; " +
   "bottom:0; " +
@@ -17315,7 +17317,7 @@ var css = {
   inPlacePayServiceInfo: ".inplace-pay-service-info" +
   "{" +
   "position: absolute;" +
-  "height:" + 190 * widthK + "px; " +
+  "height:" + 170 * widthK + "px; " +
   "width: 65%;" +
   "left: 35%;" +
   "top: 9%;" +
@@ -17326,7 +17328,7 @@ var css = {
   inPlacePayServiceNameField: ".inplace-pay-service-name-field" +
   "{" +
   "position: relative;" +
-  "top: " + 20 * widthK + "px; " +
+  // "top: " + 20 * widthK + "px; " +
   // "left: 18%;" +
   "text-align: left;" +
   "font-size:" + 36 * widthK + "px; " +
@@ -17339,7 +17341,7 @@ var css = {
   inPlacePayServiceAddressField: ".inplace-pay-service-address-field" +
   "{" +
   "position: relative;" +
-  "top: " + 28 * widthK + "px; " +
+  "top: " + 8 * widthK + "px; " +
   "text-align: justify;" +
   "font-size:" + 24 * widthK + "px; " +
   "color: #a9abaf;" +
@@ -17380,7 +17382,7 @@ var css = {
   inPlacePayServiceDistanceContainer: ".inplace-pay-service-distance-container" +
   "{" +
   "position: relative;" +
-  "top: " + 30 * widthK + "px; " +
+  "top: " + 10 * widthK + "px; " +
   "left: " + 2 * widthK + "px; " +
   "text-align: left;" +
   // "font-size:" + 26 * widthK + "px; " +
