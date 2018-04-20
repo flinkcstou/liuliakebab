@@ -8,10 +8,7 @@
       </div>
     </div>
 
-    <div class="inplace-pay-category-container" id="categoriesContainerId"
-         onscroll="servicesScroll()" ontouchmove="servicesBodyContainerTouchMove()"
-         ontouchstart="servicesBodyContainerTouchStart()"
-         ontouchend="servicesBodyContainerTouchEnd()">
+    <div class="inplace-pay-category-container">
 
       <div class="inplace-pay-search-container">
         <div class="inplace-pay-search-field" id="searchContainerId">
@@ -34,7 +31,10 @@
         </div>
       </div>
 
-      <div class="inplace-pay-service-inner-container" id="servicesBodyContainerId">
+      <div class="inplace-pay-service-inner-container" id="categoriesContainerId"
+           onscroll="servicesScroll()" ontouchmove="servicesBodyContainerTouchMove()"
+           ontouchstart="servicesBodyContainerTouchStart()"
+           ontouchend="servicesBodyContainerTouchEnd()">
 
         <div each="{i in serviceList}" if="{!(modeOfApp.offlineMode)}" class="inplace-pay-service-container"
              id="{i.id}"
@@ -224,6 +224,7 @@
 
     if (JSON.parse(sessionStorage.getItem('click_client_inPlacePayServiceList'))) {
 
+      console.log("1");
       scope.serviceList = JSON.parse(sessionStorage.getItem('click_client_inPlacePayServiceList'));
       scope.update();
 
@@ -234,6 +235,7 @@
       findLocation();
 
     } else {
+      console.log("4");
       getServiceList();
     }
 
@@ -290,7 +292,9 @@
       searchFieldTimeout = setTimeout(function () {
         scope.pageNumber = 1;
         scope.serviceList = [];
+        scope.update();
         scope.searchMode = false;
+        console.log("key down");
         searchServiceByWord();
       }, 500);
     };
@@ -359,11 +363,12 @@
         searchInputId.value = "";
         scope.showSearchIcon = true;
         scope.searchMode = false;
-        scope.update();
         scope.pageNumber = 1;
         scope.serviceList = [];
+        scope.update();
 //        window.startSpinner();
         window.startLoaderDots();
+        console.log("search remove");
         searchServiceByWord();
       }
     };
@@ -747,15 +752,17 @@
 
     servicesScroll = function () {
 
-      if ((categoriesContainerId.scrollHeight - categoriesContainerId.scrollTop) == categoriesContainerId.offsetHeight) {
+      if ((categoriesContainerId.scrollHeight - categoriesContainerId.scrollTop) == categoriesContainerId.offsetHeight && categoriesContainerId.scrollTop != 0) {
 
         if (scope.serviceList.length % 20 == 0) {
           scope.pageNumber++;
           window.startPaginationLoaderDots();
-          if (scope.searchMode)
+          if (searchInputId.value.length != 0) {
             searchServiceByWord();
-          else
+          }
+          else {
             getServiceList();
+          }
         }
       }
 
@@ -766,7 +773,6 @@
 
       if (modeOfApp.onlineMode) {
 
-        scope.searchMode = false;
         scope.update();
 
         window.api.call({

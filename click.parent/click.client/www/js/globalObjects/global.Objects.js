@@ -1508,15 +1508,17 @@ window.startLoaderDots = function () {
 window.startPaginationLoaderDots = function () {
   console.log("start pagination loader dots");
   if (document.getElementById("loaderDots")) {
-    document.getElementById("loaderDots").style.top = '91%';
+    document.getElementById("loaderDots").classList.add("loader-dots-pagination");
     document.getElementById("loaderDots").style.display = 'block';
   }
 };
 
 window.stopLoaderDots = function () {
   console.log("stop loader dots");
-  if (document.getElementById("loaderDots"))
+  if (document.getElementById("loaderDots")) {
     document.getElementById("loaderDots").style.display = 'none';
+    document.getElementById("loaderDots").classList.remove("loader-dots-pagination");
+  }
 };
 
 window.blurFields = function () {
