@@ -141,7 +141,7 @@ var css = {
 
   loaderDotsPagination: ".loader-dots-pagination" +
   "{" +
-  "top:" + 1150 * widthK + "px;" +
+  "top:" + 1160 * widthK + "px;" +
   "bottom: 0;" +
   "}",
 
