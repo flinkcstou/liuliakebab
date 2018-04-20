@@ -27,7 +27,8 @@
         </div>
       </div>
 
-      <div class="inplace-pay-category-inner-container" if="{!searchServices}">
+      <div class="inplace-pay-category-inner-container" if="{!searchServices}"
+           ontouchstart="servicesBodyContainerTouchStart()">
         <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
           <li each="{i in categoryList}" style="overflow: hidden;">
             <div if="{!(modeOfApp.offlineMode)}" class="inplace-pay-block-containter" title="{i.category_name}"

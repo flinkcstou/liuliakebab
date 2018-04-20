@@ -224,7 +224,6 @@
 
     if (JSON.parse(sessionStorage.getItem('click_client_inPlacePayServiceList'))) {
 
-      console.log("1");
       scope.serviceList = JSON.parse(sessionStorage.getItem('click_client_inPlacePayServiceList'));
       scope.update();
 
@@ -235,7 +234,6 @@
       findLocation();
 
     } else {
-      console.log("4");
       getServiceList();
     }
 
