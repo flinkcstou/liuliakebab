@@ -627,9 +627,9 @@
 
     console.log("OPTS in ONBackKeyDown", onBackParams.opts)
 
-    if (device.platform != 'BrowserStand') {
-      SpinnerPlugin.activityStop();
-    }
+    window.stopSpinner();
+    window.stopLoaderDots();
+
 
     if (window.checkShowingComponent) {
       console.log('window.checkShowingComponent', window.checkShowingComponent)
