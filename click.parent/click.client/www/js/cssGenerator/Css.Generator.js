@@ -8229,7 +8229,7 @@ var css = {
   "opacity: 0.95;" +
   "height: 100%;" +
   "width: 100%;" +
-  "background-color: #353340;" +
+  "background-color: rgba(255,255,255,0.95);" +
   // "display: none;" +
   "z-index: 999999999;" +
   "}",
@@ -8237,28 +8237,25 @@ var css = {
   unsuccessOperationSuccessMessage: ".unsuccess-operation-success-message" +
   "{" +
   "position: relative;" +
-  "color: #ff3c5e;" +
-  "width:" + 640 * widthK + "px;" +
-  "height:" + 380 * heightK + "px;" +
-  "font-size:" + 30 * widthK + "px;" +
+  "color: #757389;" +
+  "width:" + 500 * widthK + "px;" +
+  "height:" + 240 * heightK + "px;" +
+  "font-size:" + 36 * widthK + "px;" +
   "text-align: center;" +
-  "margin-left: auto;" +
-  "margin-right: auto;" +
-  "margin-top: 0;" +
-  "margin-bottom: 0;" +
-  "top:" + 340 * widthK + "px;" +
+  "margin: auto;" +
+  "top:" + 262 * widthK + "px;" +
   "overflow-y: auto;" +
   "word-wrap: break-word;" +
   "}",
 
   unsuccessNextButtonInnerContainer: ".unsuccess-next-button-inner-container" +
   "{" +
-  "top: 89%;" +
-  "height: 6%;" +
+  "bottom: 10%;" +
+  "height: " + 74 * widthK + "px;" +
   "margin: 0 auto 0 auto;" +
-  "background-color: #027fe4;" +
+  "background-color: #EB2A48;" +
   "padding: 0;" +
-  "font-size: " + 38 * widthK + "px;" +
+  "font-size: " + 32 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
@@ -8286,13 +8283,13 @@ var css = {
   "position: relative;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
-  "top:" + 250 * widthK + "px;" +
-  "width:" + 270 * widthK + "px;" +
-  "height:" + 250 * widthK + "px;" +
+  "top:" + 232 * widthK + "px;" +
+  "width:" + 400 * widthK + "px;" +
+  "height:" + 400 * widthK + "px;" +
   // "left:" + 243 * widthK + "px;" +
-  "background-image: url(resources/icons/ViewSuccessUnsuccess/fail.png);" +
+  "background-image: url(resources/icons/ViewSuccessUnsuccess/fail2.png);" +
   "background-repeat: no-repeat;" +
-  "background-size: 93%;" +
+  "background-size: 75%;" +
   "background-position: center;" +
   "}",
 
