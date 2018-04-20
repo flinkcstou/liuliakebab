@@ -5681,9 +5681,9 @@ var css = {
   "border-radius:" + 10 * widthK + "px;" +
   "background-size: cover;" +
   "color: white;" +
-  //"-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
-  //"-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
-  //"box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+  "-webkit-box-shadow: " + "0px " + 5 * widthK + "px " + 60 * widthK + "px " + 4 * widthK + "px " + "rgba(86, 93, 106, 0.29);" +
+  "-moz-box-shadow: " + "0px " + 5 * widthK + "px " + 60 * widthK + "px " + 4 * widthK + "px " + "rgba(86, 93, 106, 0.29);" +
+  "box-shadow: " + "0px " + 5 * widthK + "px " + 60 * widthK + "px " + 4 * widthK + "px " + "rgba(86, 93, 106, 0.29);" +
   //"margin-left: 20px;" +
   "float: left;" +
   "margin: " + 7 * widthK + "px;" +
@@ -6395,6 +6395,7 @@ var css = {
   transferNewFormContainer: ".transfer-new-form-container" +
   "{" +
   "position: absolute;" +
+  "overflow: hidden;" +
   "margin-top:" + 155 * widthK + "px;" +
   "height:" + (1232 * heightK - 241 * widthK) + "px;" +
   "width: 100%;" +
@@ -6641,6 +6642,9 @@ var css = {
   "-webkit-border-radius:" + 14 * heightK + "px;" +
   "-moz-border-radius:" + 14 * heightK + "px;" +
   "border-radius:" + 14 * heightK + "px;" +
+  "-webkit-box-shadow: " + "0px " + 5 * widthK + "px " + 60 * widthK + "px " + 4 * widthK + "px " + "rgba(86, 93, 106, 0.29);" +
+  "-moz-box-shadow: " + "0px " + 5 * widthK + "px " + 60 * widthK + "px " + 4 * widthK + "px " + "rgba(86, 93, 106, 0.29);" +
+  "box-shadow: " + "0px " + 5 * widthK + "px " + 60 * widthK + "px " + 4 * widthK + "px " + "rgba(86, 93, 106, 0.29);" +
   "background-size: cover;" +
   "color: white;" +
   "}",
