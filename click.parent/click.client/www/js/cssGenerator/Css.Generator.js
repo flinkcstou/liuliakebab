@@ -6622,7 +6622,6 @@ var css = {
   "{" +
   // "left:" + (360 * widthK - 296 * heightK) + "px;" +
   "position: relative;" +
-  "overflow: hidden;" +
   "height:" + 230 * heightK + "px;" +
   "width: 100%;" +
   "display: inline-block;" +
