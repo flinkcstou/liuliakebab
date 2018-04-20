@@ -138,6 +138,11 @@ var css = {
   "display:none;" +
   "}",
 
+  loaderDotsPagination: ".loader-dots-pagination" +
+  "{" +
+  "top: 91%;" +
+  "}",
+
   //DEMO
 
   demoVersionButtonExit: ".demo-version-button-exit" +

@@ -6,10 +6,7 @@
            ontouchend="goToBackEnd()" class="back-button"></div>
     </div>
 
-    <div class="inplace-pay-category-container" id="categoriesContainerId" onscroll="servicesScroll()"
-         ontouchmove="servicesBodyContainerTouchMove()"
-         ontouchstart="servicesBodyContainerTouchStart()"
-         ontouchend="servicesBodyContainerTouchEnd()">
+    <div class="inplace-pay-category-container">
 
       <div class="inplace-pay-search-container">
         <div class="inplace-pay-search-field" id="searchContainerId">
@@ -46,7 +43,11 @@
         </ul>
       </div>
 
-      <div class="inplace-pay-service-inner-container" if="{searchServices}">
+      <div class="inplace-pay-service-inner-container" if="{searchServices}" id="categoriesContainerId"
+           onscroll="servicesScroll()"
+           ontouchmove="servicesBodyContainerTouchMove()"
+           ontouchstart="servicesBodyContainerTouchStart()"
+           ontouchend="servicesBodyContainerTouchEnd()">
 
         <div each="{i in serviceList}" if="{!(modeOfApp.offlineMode)}" class="inplace-pay-service-container"
              id="{i.id}"
@@ -644,7 +645,7 @@
 
     servicesScroll = function () {
 
-      if ((categoriesContainerId.scrollHeight - categoriesContainerId.scrollTop) == categoriesContainerId.offsetHeight) {
+      if ((categoriesContainerId.scrollHeight - categoriesContainerId.scrollTop) == categoriesContainerId.offsetHeight && categoriesContainerId.scrollTop != 0) {
 
         if (scope.serviceList.length % 20 == 0 && scope.searchServices) {
           scope.pageNumber++;
