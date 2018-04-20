@@ -2770,6 +2770,14 @@ var css = {
   "border-bottom: 1px solid #e8e8e8;" +
   "}",
 
+  InPlacetitleBottomBorder: ".inplace-title-bottom-border " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "bottom: 0%;" +
+  "border-bottom: 1px solid #e8e8e8;" +
+  "}",
+
   titleTopBorder: ".title-top-border " +
   "{" +
   "position: absolute;" +
@@ -17294,7 +17302,6 @@ var css = {
   "width: 90%;" +
   "left: 5%;" +
   "top:" + -4 * widthK + "px; " +
-  "border-bottom:" + 0.5 + "px solid gainsboro;" +
   "background-color: transparent;" +
   "z-index:9999999;" +
   "}",

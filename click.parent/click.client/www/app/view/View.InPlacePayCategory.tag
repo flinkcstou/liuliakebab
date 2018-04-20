@@ -66,6 +66,7 @@
             </div>
           </div>
           <div class="inplace-pay-service-icon-tick"></div>
+          <div class="inplace-title-bottom-border"></div>
         </div>
 
         <div if="{serviceList.length==0 && searchMode}" class="inplace-pay-search-no-match">
