@@ -103,6 +103,13 @@
         "communal_param": opts.communalParam,
         "transaction_id": opts.transactionId
       };
+      if (opts.formtype == 6){
+        payment_data = {
+          "param": opts.chosenPrefixId,
+          "value": opts.chosenPrefixName + opts.firstFieldText,
+          "transaction_id": opts.transactionId
+        }
+      }
       console.log("payment data ", payment_data);
     }
     else if (opts.formtype == 4) {

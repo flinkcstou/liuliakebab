@@ -486,8 +486,15 @@
         if (!opts.communalParam) {
           if (scope.hasSecondLevel)
             console.log("Выберите город и район");
-          else
+          else {
             console.log("Выберите район");
+            if (scope.formType == 6){
+              opts.communalParam = scope.chosenPrefixId;
+              scope.enterButtonEnabled = true;
+              scope.update(scope.enterButtonEnabled);
+              return;
+            }
+          }
 
           scope.enterButtonEnabled = false;
           scope.update(scope.enterButtonEnabled);
@@ -1787,7 +1794,7 @@
             }
 
             if (opts.formtype == 6 && ussdQuery){
-              ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
+              ussdQuery = ussdQuery.replace('{option}', opts.chosenPrefixId);
               ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
               console.log(ussdQuery);
             }

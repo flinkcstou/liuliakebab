@@ -3690,7 +3690,7 @@ var offlinePopularServiceList = [{
     "is_mobile"                  : 0,
     "lang_amount_placeholder"    : "Введите сумму оплаты",
     "lang_min_amount"            : "Минимальная сумма для оплаты 1.00 сум",
-    "lang_max_amount"            : "Максимальная сумма для оплаты 1000000.00 сум",
+    "lang_max_amount"            : "Максимальная сумма для оплаты 1000000.00 сум ",
     "lang_amount_hint"           : null,
     "lang_amount_title"          : "Сумма",
     "lang_amount_currency"       : "сум",
@@ -7337,13 +7337,13 @@ offlineServicesMapByCategory = {
     "service_parameters"         : "536870912",
     "status"                     : 1,
     "priority"                   : 0,
-    "image"                      : "https://m.click.uz/static/merchant/logo/logo_10188.png",
+    "image"                      : "resources/icons/ViewPay/logo_10188.png",
     "form_type"                  : 6,
     "cost"                       : 1,
     "is_mobile"                  : 0,
     "lang_amount_placeholder"    : "Введите сумму оплаты",
     "lang_min_amount"            : "Минимальная сумма для оплаты 1.00 сум",
-    "lang_max_amount"            : "Максимальная сумма для оплаты 1000000.00 сум",
+    "lang_max_amount"            : "Максимальная сумма для оплаты 1000000.00 сум ",
     "lang_amount_hint"           : null,
     "lang_amount_title"          : "Сумма",
     "lang_amount_currency"       : "сум",
@@ -10935,13 +10935,13 @@ offlineServicesMapByCategory = {
       "service_parameters"         : "536870912",
       "status"                     : 1,
       "priority"                   : 0,
-      "image"                      : "https://m.click.uz/static/merchant/logo/logo_10188.png",
+      "image"                      : "resources/icons/ViewPay/logo_10188.png",
       "form_type"                  : 6,
       "cost"                       : 1,
       "is_mobile"                  : 0,
       "lang_amount_placeholder"    : "Введите сумму оплаты",
       "lang_min_amount"            : "Минимальная сумма для оплаты 1.00 сум",
-      "lang_max_amount"            : "Максимальная сумма для оплаты 1000000.00 сум",
+      "lang_max_amount"            : "Максимальная сумма для оплаты 1000000.00 сум ",
       "lang_amount_hint"           : null,
       "lang_amount_title"          : "Сумма",
       "lang_amount_currency"       : "сум",
@@ -12197,13 +12197,13 @@ offlineServicesMapByCategory = {
   } , {
     "service_id"   : 10188,
     "parameter_id" : "536870912",
-    "input_type"   : 2,
-    "title"        : "Номер счета",
-    "placeholder"  : "Введите номер счета",
-    "error_message": "Не указан номер счета",
+    "input_type"   : 1,
+    "title"        : "Номер квитанции",
+    "placeholder"  : "Введите номер квитанции",
+    "error_message": "Не указан номер квитанции",
     "min_len"      : "4",
     "max_len"      : "50",
-    "ussd_query"   : "*880*010188999002*{communal_param}*{param}#"
+    "ussd_query"   : "*880*010188999002*{option}*{param}#"
   }], [{
     "service_id"  : 9,
     "id"          : 1,
@@ -13954,21 +13954,7 @@ offlineServicesMapByCategory = {
     "parent"      : 0,
     "code"        : 14,
     "offline_code": "14"
-  }, {
-    "service_id"  : 10188,
-    "id"          : 1,
-    "name"        : "Получение паспорта РУз",
-    "parent"      : 0,
-    "code"        : 1,
-    "offline_code": "1"
-  }, {
-    "service_id"  : 10188,
-    "id"          : 2,
-    "name"        : "Проездной документ ЛБГ",
-    "parent"      : 0,
-    "code"        : 2,
-    "offline_code": "2"
-  }], [{
+  },], [{
     "service_id"    : 44,
     "card_type_id"  : 1,
     "name"          : "Центральный Телеграф",
@@ -14563,7 +14549,25 @@ offlineServicesMapByCategory = {
     "option_id"      : 11,
     "name"           : "wifism",
     "title"          : "wifism"
-  }, {"service_id": 3213, "parent_param_id": 2, "option_id": 12, "name": "wifinm", "title": "wifinm"}]],
+  }, {
+    "service_id"     : 3213,
+    "parent_param_id": 2,
+    "option_id"      : 12,
+    "name"           : "wifinm",
+    "title": "wifinm"
+  }, {
+    "service_id"     : 10188,
+    "parent_param_id": 536870912,
+    "option_id"      : 1,
+    "name"           : "PA",
+    "title"          : "PA"
+  }, {
+    "service_id"     : 10188,
+    "parent_param_id": 536870912,
+    "option_id"      : 2,
+    "name"           : "XA",
+    "title"          : "XA"
+  }]],
 
   offlineServicesParamsMapOne = {
     "2"   : [{
@@ -15790,15 +15794,15 @@ offlineServicesMapByCategory = {
       "ussd_query"   : null
     }],
     "10188": [{
-        "service_id"   :10188,
-        "parameter_id" :"536870912",
-        "input_type"   :2,
-        "title"        :"Номер счета",
-        "placeholder"  :"Введите номер счета",
-        "error_message":"Не указан номер счета",
-        "min_len"      :"4",
-        "max_len"      :"50",
-        "ussd_query"   :"*880*010188999002*{communal_param}*{param}#"
+      "service_id"   : 10188,
+      "parameter_id" : "536870912",
+      "input_type"   : 1,
+      "title"        : "Номер квитанции",
+      "placeholder"  : "Введите номер квитанции",
+      "error_message": "Не указан номер квитанции",
+      "min_len"      : "4",
+      "max_len"      : "50",
+      "ussd_query"   : "*880*010188999002*{option}*{param}#"
     }],
     "-2"  : [{
       "service_id"   : -2,
@@ -17643,21 +17647,6 @@ offlineServicesMapByCategory = {
       "code"        : 13,
       "offline_code": "13"
     }, {"service_id": 7045, "id": 14, "name": "Каракалпакстан", "parent": 0, "code": 14, "offline_code": "14"}],
-    "10188": [{
-      "service_id"  : 10188,
-      "id"          : 1,
-      "name"        : "Получение паспорта РУз",
-      "parent"      : 0,
-      "code"        : 1,
-      "offline_code": "1"
-    }, {
-      "service_id"  : 10188,
-      "id"          : 2,
-      "name"        : "Проездной документ ЛБГ",
-      "parent"      : 0,
-      "code"        : 2,
-      "offline_code": "2"
-    }]
   },
 
   offlineServicesParamsMapThree = {
@@ -18318,5 +18307,18 @@ offlineServicesParamsMapSix = {
     "option_id"      : 1,
     "name"           : "SP",
     "title"          : "SP"
+  }],
+  "10188": [{
+    "service_id"     : 10188,
+    "parent_param_id": 536870912,
+    "option_id"      : 1,
+    "name"           : "PA",
+    "title"          : "PA"
+  }, {
+    "service_id"     : 10188,
+    "parent_param_id": 536870912,
+    "option_id"      : 2,
+    "name"           : "XA",
+    "title"          : "XA"
   }]
 }
