@@ -1076,6 +1076,12 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
                         localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(favoritePaymentsListForApi));
                         localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
                         console.log("favs processed", favoritePaymentsList);
+                        if (document.getElementById("componentServiceCarouselNew")){
+                          var serviceCarouselTag = document.getElementById("componentServiceCarouselNew");
+                          if (serviceCarouselTag._tag){
+                            serviceCarouselTag._tag.updateWishList();
+                          }
+                        }
                       }
                     }
                     else {

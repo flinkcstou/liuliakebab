@@ -6,7 +6,7 @@
   <div id="mainPageId" class="view-main-page">
     <component-toolbar></component-toolbar>
     <component-bank-operations-new></component-bank-operations-new>
-    <component-service-carousel-new></component-service-carousel-new>
+    <component-service-carousel-new id="componentServiceCarouselNew"></component-service-carousel-new>
     <component-card-carousel></component-card-carousel>
     <component-footer></component-footer>
 

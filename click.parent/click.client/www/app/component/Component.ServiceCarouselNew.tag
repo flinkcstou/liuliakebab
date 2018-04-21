@@ -70,6 +70,11 @@
       scope.operatorKey = phoneNumber.substr(3, 2);
     scope.addFavoriteBool = true;
 
+    scope.updateWishList = function () {
+      scope.favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+      fillFavorites();
+    };
+
     if (!localStorage.getItem("click_client_popularServiceList") && modeOfApp.onlineMode) {
       scope.popularServiceList = [];
       window.api.call({

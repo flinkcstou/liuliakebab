@@ -68,12 +68,24 @@
         }
       }
       console.log(document.getElementById(imageId));
-      if (document.getElementById(imageId))
+      if (document.getElementById(imageId)) {
+        console.log('first if');
         openImage = JSON.parse(document.getElementById(imageId).getAttribute('exist')) === true;
+      }
       document.getElementById(containerId).style.paddingBottom = 100 * widthK + 'px';
       document.getElementById(containerId).setAttribute('opened', true);
-      if (openImage)
+      if (openImage) {
+        console.log('second if');
         document.getElementById(imageId).style.display = 'block';
+        document.getElementById(imageId).setAttribute('src', news.news_image);
+        document.getElementById(imageId).onload = function () {
+          console.log("IMG was loaded");
+        };
+        document.getElementById(imageId).onerror = function () {
+          console.log("image load error");
+          document.getElementById(imageId).setAttribute('src', 'resources/icons/ViewNews/news.png');
+        }
+      }
       document.getElementById(containerId).style.height = 'auto';
       document.getElementById(textId).innerHTML = longText;
 
