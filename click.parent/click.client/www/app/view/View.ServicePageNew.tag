@@ -1796,6 +1796,7 @@
             if (opts.formtype == 6 && ussdQuery){
               ussdQuery = ussdQuery.replace('{option}', opts.chosenPrefixId);
               ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
+              ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
               console.log(ussdQuery);
             }
 
@@ -1815,7 +1816,7 @@
 
             console.log('USSD', ussdQuery, opts)
 
-            console.log(ussdQuery)
+            console.log(ussdQuery + "%23")
 
             phonedialer.dial(
 //              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
