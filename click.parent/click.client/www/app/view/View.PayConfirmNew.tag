@@ -543,7 +543,7 @@
       phoneNumber = localStorage.getItem('click_client_phoneNumber');
       serviceId = opts.chosenServiceId;
       fracAmount = window.getFractionalPart(opts.amountText.toString());
-      intAmount = Math.floor(opts.amountText.toString()).toFixed(0).toString();
+      intAmount = Math.floor(inputVerification.spaceDeleter(opts.amountText).toString()).toFixed(0).toString();
       amount = inputVerification.spaceDeleter(intAmount) + fracAmount;
 
       // friend help or own payment
