@@ -1786,6 +1786,12 @@
               console.log(ussdQuery)
             }
 
+            if (opts.formtype == 6 && ussdQuery){
+              ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
+              ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
+              console.log(ussdQuery);
+            }
+
             if (ussdQuery === null) {
               scope.clickPinError = false;
               scope.errorNote = ("Сервис временно недоступен!");
