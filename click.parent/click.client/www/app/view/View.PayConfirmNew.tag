@@ -266,10 +266,6 @@
         scope.numberPartTwo = cardsArray[chosenCardId].numberPartTwo;
         scope.salary = cardsArray[chosenCardId].salary;
         scope.currency = cardsArray[chosenCardId].currency;
-        if (scope.service && scope.service.lang_amount_currency && scope.service.lang_amount_title !== ""){
-          console.log('special currency for service', scope.service);
-          scope.currency = scope.service.lang_amount_currency;
-        }
         scope.url = cardsArray[chosenCardId].url;
         scope.update();
       }
