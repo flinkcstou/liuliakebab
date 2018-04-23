@@ -32,7 +32,7 @@
       <p if="{opts.commission_percent}" class="payment-detail-commission">
         {window.languages.ViewTransferTwoTax} {commission_amount}
         {window.languages.Currency}</p>
-      <p class="payment-detail-sum">{opts.amount} сум</p>
+      <p class="payment-detail-sum">{opts.amount} {currency}</p>
     </div>
     <div class="payment-detail-payment-container-pay-from">
       <p class="payment-detail-title-pay-from">{window.languages.ViewPaymentDetailTitlePayFrom}</p>
@@ -68,6 +68,16 @@
 
     scope.commission_amount = scope.opts.amount * scope.opts.commission_percent / 100;
     scope.errorCode = 0;
+    scope.currency = window.languages.Currency;
+
+    //Get currency for this service
+    if (localStorage.getItem("click_client_servicesMap")
+      && JSON.parse(localStorage.getItem("click_client_servicesMap"))){
+      if (JSON.parse(localStorage.getItem("click_client_servicesMap"))[opts.service_id]){
+        scope.currency = JSON.parse(localStorage.getItem("click_client_servicesMap"))[opts.service_id][0].lang_amount_currency;
+        console.log('currency', scope.currency);
+      }
+    }
 
     var pageToReturnIfError = 'view-main-page', pageToReturnIfSuccess = 'view-main-page';
     var paymentSuccessStep = 1, paymentWaitingStep = 1;

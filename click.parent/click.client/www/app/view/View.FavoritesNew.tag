@@ -21,7 +21,7 @@
           <div class="view-favorites-info-container">
             <p class="view-favorites-info-name">{j.params.favoriteName ?j.params.favoriteName: j.service.name}</p>
             <div class="view-favorites-info-balance">{j.params.amountText}</div>
-            <div class="view-favorites-info-currency-field">сум</div>
+            <div class="view-favorites-info-currency-field">{j.service.lang_amount_currency}</div>
             <p class="view-favorites-info-number">{(j.params.firstFieldId==1)? ("+" + window.languages.CodeOfCountry +"
               "+j.params.firstFieldText):(j.params.chosenPrefixId? (j.params.chosenPrefixName+j.params.firstFieldText):
               j.params.firstFieldText)}</p>

@@ -36,7 +36,7 @@
            ontouchstart="goToInvoiceHistoryDetailTouchStart(this.id)">
         <div
           class="invoice-list-invoice-sum-holder {invoice-list-invoice-is-p2p: invoice.is_p2p == 1 && toUser, invoice-list-invoice-is-not-p2p: invoice.is_p2p == 0 || !toUser}">
-          <mark class="invoice-list-invoice-sum-sym">сум</mark>
+          <mark class="invoice-list-invoice-sum-sym">{invoice.currency}</mark>
           <p class="invoice-list-invoice-sum">{invoice.amount}</p>
         </div>
         <p class="invoice-list-from-whom-label invoice-list-invoice-is-not-p2p" if="{invoice.is_p2p == 0 && toUser}">
@@ -105,6 +105,12 @@
     else {
       scope.toUser = true;
     }
+
+    if (localStorage.getItem("click_client_servicesMap")
+      && JSON.parse(localStorage.getItem("click_client_servicesMap"))){
+      scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
+    }
+
     window.checkShowingComponent = null;
 
     console.log("TO USER", scope.toUser, opts.toUser);
@@ -190,6 +196,15 @@
                     console.log(error);
                   }
                   result[1][i].deleted = false;
+
+                  if (scope.servicesMap
+                    && scope.servicesMap[result[1][i].service_id]
+                    && scope.servicesMap[result[1][i].service_id][0]){
+                    result[1][i].currency = scope.servicesMap[result[1][i].service_id][0].lang_amount_currency;
+                    console.log(scope.servicesMap[result[1][i].service_id][0]);
+                  } else {
+                    result[1][i].currency = window.languages.Currency;
+                  }
                   scope.invoiceList.push(result[1][i]);
                 }
                 scope.update();
@@ -286,6 +301,16 @@
                     console.log(error);
                   }
                   result[1][i].deleted = false;
+
+                  if (scope.servicesMap
+                    && scope.servicesMap[result[1][i].service_id]
+                    && scope.servicesMap[result[1][i].service_id][0]){
+                    result[1][i].currency = scope.servicesMap[result[1][i].service_id][0].lang_amount_currency;
+                    console.log(scope.servicesMap[result[1][i].service_id][0]);
+                  } else {
+                    result[1][i].currency = window.languages.Currency;
+                  }
+
                   scope.invoiceList.push(result[1][i]);
                 }
                 scope.update();

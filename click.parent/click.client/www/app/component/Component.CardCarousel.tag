@@ -172,6 +172,7 @@
             is_friend_help: invoice.is_friend_help,
             friend_name: invoice.friend_name,
             commission_percent: invoice.commission_percent,
+            service_id: invoice.service_id
           };
 
           history.arrayOfHistory.push({view: "view-payment-detail"});
