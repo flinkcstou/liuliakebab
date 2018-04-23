@@ -239,11 +239,11 @@
 
 
     try {
-      if (opts.cost) {
+      if (opts.cost > 1) {
         scope.fullAmount = (opts.amountText * opts.cost);
-        scope.intPartAmount = Math.floor(fullAmount).toFixed(0).toString();
-        scope.fracPartAmount = window.getFractionalPart(fullAmount.toString());
-        scope.amountTextCopy = window.amountTransform(window.inputVerification.spaceDeleter(intPartAmount)) + fracPartAmount;
+        scope.intPartAmount = Math.floor(scope.fullAmount).toFixed(0).toString();
+        scope.fracPartAmount = window.getFractionalPart(scope.fullAmount.toString());
+        scope.amountTextCopy = window.amountTransform(window.inputVerification.spaceDeleter(scope.intPartAmount)) + scope.fracPartAmount;
       }
       else {
         scope.intPartAmount = Math.floor(opts.amountText).toFixed(0).toString();
@@ -252,6 +252,7 @@
       }
     }
     catch (e) {
+      console.error(e);
       scope.amountTextCopy = opts.amountText;
     }
 
