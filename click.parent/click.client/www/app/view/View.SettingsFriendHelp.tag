@@ -76,7 +76,10 @@
         scope.arrayOfPhoneNumbers.push(personObj)
       }
 
-      if (typeof scope.arrayOfPhoneNumbers === 'undefined' || scope.arrayOfPhoneNumbers.length < 1) return
+      if (typeof scope.arrayOfPhoneNumbers === 'undefined' || scope.arrayOfPhoneNumbers.length < 1) {
+        window.stopSpinner();
+        return;
+      }
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
       var sessionKey = info.session_key;
