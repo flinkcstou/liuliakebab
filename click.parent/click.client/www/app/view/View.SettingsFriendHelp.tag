@@ -169,6 +169,7 @@
     }
 
     function onError(contactError) {
+      window.stopSpinner();
       console.log('Clearing timer emergencyStop', timeOutTimer);
       window.clearTimeout(timeOutTimer);
       console.log('error', contactError)
