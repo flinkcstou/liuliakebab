@@ -32,18 +32,14 @@
            ontouchstart="reloadBalanceTouchStart()" ontouchend="reloadBalanceTouchEnd()"></div>
     </div>
 
-    <div class="view-info-my-finance-container" style="display: none">
-      <div class="view-info-my-finance-icon"></div>
-      <div class="view-info-open-icon"></div>
-      <p class="view-info-my-finance-title">{window.languages.ViewInfoMyFinanceTitle}</p>
-    </div>
-
     <div id="reportButtonId" role="button" aria-label="{window.languages.ViewInfoReportsTitle}"
          class="view-info-reports-container" ontouchend="goToReportsTouchEnd()"
          ontouchstart="goToReportsTouchStart()">
+      <div class="view-info-reports-title-border-top"></div>
       <div class="view-info-reports-icon"></div>
       <div class="view-info-open-icon"></div>
       <p class="view-info-reports-title">{window.languages.ViewInfoReportsTitle}</p>
+      <div class="view-info-reports-title-border-bottom"></div>
     </div>
 
     <div class="view-info-operations-title">

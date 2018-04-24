@@ -3442,7 +3442,7 @@ var css = {
   "left:" + 30 * widthK + "px;" +
   "height:" + 190 * widthK + "px;" +
   // "top:" + 89 * widthK + "px;" +
-  "border-bottom:" + 1 + "px solid #f4f4f4;" +
+  // "border-bottom:" + 1 + "px solid #f4f4f4;" +
   "}",
 
   viewInfoCardBalanceCurrencyContainer: ".view-info-card-balance-currency-container " +
@@ -3528,12 +3528,12 @@ var css = {
   viewInfoReportsContainer: ".view-info-reports-container " +
   "{" +
   "position: absolute;" +
-  "right:" + 30 * widthK + "px;" +
-  "left:" + 30 * widthK + "px;" +
+  "left: 0;" +
+  "width: 100%;" +
   "height:" + 125 * widthK + "px;" +
   "top:" + 190 * widthK + "px;" +
-  //"top:" + 408 * widthK + "px;" +
-  "border-bottom:" + 1 + "px solid #f4f4f4;" +
+  "background-color: #ffffff;" +
+  "z-index: 100;" +
   "}",
 
   viewInfoBagIcon: ".view-info-bag-icon " +
@@ -3594,7 +3594,7 @@ var css = {
   "position: absolute;" +
   "width: 20%;" +
   "height: 80%;" +
-  "right: -5%;" +
+  "right: -1%;" +
   "top: 12%;" +
   "background-image: url(resources/icons/ViewInfo/open.png);" +
   "background-repeat: no-repeat;" +
@@ -3607,7 +3607,7 @@ var css = {
   "position: absolute;" +
   "width: 20%;" +
   "height: 70%;" +
-  "left: -1%;" +
+  "left: 3%;" +
   "top: 15%;" +
   "background-image: url(resources/icons/ViewInfo/myreports.png);" +
   "background-repeat: no-repeat;" +
@@ -3631,11 +3631,29 @@ var css = {
   "position: absolute;" +
   "width: 36%;" +
   "height: 70%;" +
-  "left: 12%;" +
+  "left: 14%;" +
   "top: 10%;" +
   "text-align: center;" +
   "font-size:" + 29 * widthK + "px;" +
   "color: #8b8b8b;" +
+  "}",
+
+  viewInfoReportTitleBorderTop: ".view-info-reports-title-border-top " +
+  "{" +
+  "position: absolute;" +
+  "width: 90%;" +
+  "left: 5%;" +
+  "bottom: 0%;" +
+  "border-bottom:" + 1 + "px solid #e8e8e8;" +
+  "}",
+
+  viewInfoReportTitleBorderBottom: ".view-info-reports-title-border-bottom " +
+  "{" +
+  "position: absolute;" +
+  "width: 90%;" +
+  "left: 5%;" +
+  "top: 0%;" +
+  "border-top:" + 1 + "px solid #e8e8e8;" +
   "}",
 
   viewInfoOperationsContainer: ".view-info-operations-container " +

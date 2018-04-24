@@ -48,7 +48,7 @@
     scope.messageTitleTwo = '';
     scope.phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
-//    window.saveHistory('view-sms', opts);
+    window.saveHistory('view-sms', opts);
     scope.confirmSms = '';
     scope.showResendButton = false;
 
@@ -356,12 +356,14 @@
               localStorage.setItem('confirm_needed', false);
               if (result[0][0].client_exists == 1) {
                 localStorage.setItem('click_client_registered', true);
+                history.arrayOfHistory.pop();
                 this.riotTags.innerHTML = "<view-authorization>";
                 riot.mount('view-authorization');
                 scope.unmount()
               }
               else {
                 localStorage.setItem('click_client_registered', false);
+                history.arrayOfHistory.pop();
                 riotTags.innerHTML = "<view-pin-code>";
                 riot.mount('view-pin-code', ['view-sms']);
                 scope.unmount()
