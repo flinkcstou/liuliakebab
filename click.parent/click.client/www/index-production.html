@@ -423,6 +423,8 @@
   var tempOpts;
   function onBackKeyDown() {
 
+    console.log("onBackKeyDown", JSON.parse(sessionStorage.getItem('history')));
+
 
     for (var i in window.common.alert.tags) {
       if (window.common.alert.isShown(i)) {
@@ -432,6 +434,8 @@
 
     window.stopSpinner();
     window.stopLoaderDots();
+
+    console.log("stopped loaders");
 
     if (window.checkShowingComponent) {
       if (window.checkShowingComponent.parent) {
@@ -445,6 +449,8 @@
       riot.update();
       return
     }
+
+    console.log("after check showing component");
 
     history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
 

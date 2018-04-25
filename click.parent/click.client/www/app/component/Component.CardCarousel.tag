@@ -76,7 +76,7 @@
     scope.addFirstCardBool = false;
 
     if (localStorage.getItem("click_client_servicesMap")
-      && JSON.parse(localStorage.getItem("click_client_servicesMap"))){
+      && JSON.parse(localStorage.getItem("click_client_servicesMap"))) {
       scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
     }
 
@@ -339,6 +339,7 @@
         },
         scope: this,
         onSuccess: function (result) {
+          console.log("invoice list method answer ", JSON.stringify(result));
           if (result[0][0].error == 0 && viewMainPage.atMainPage) {
             if (result[1] && result[1][0]) {
               if (result[1].length != 0) {
@@ -349,7 +350,7 @@
                 for (var i = 0; i < result[1].length; i++) {
                   if (scope.servicesMap
                     && scope.servicesMap[result[1][i].service_id]
-                    && scope.servicesMap[result[1][i].service_id][0]){
+                    && scope.servicesMap[result[1][i].service_id][0]) {
                     result[1][i].currency = scope.servicesMap[result[1][i].service_id][0].lang_amount_currency;
                     console.log(scope.servicesMap[result[1][i].service_id][0]);
                   } else {
@@ -376,11 +377,7 @@
 
               }
 
-
-//              if (scope.invoiceList)
-//                setTimeout(function () {
-//                  addCard()
-//                }, 0);
+              console.log("invoices processed");
 
             }
             else {
@@ -535,6 +532,7 @@
             onSuccess: function (result) {
 
               if (result[0][0].error == 0) {
+                console.log("get accounts response", JSON.stringify(result));
                 if (JSON.parse(localStorage.getItem('click_client_cards')) && !info.update_account_cache) {
                   var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
                   var countLocalStorageCard = Object.keys(cardsArray).length;
