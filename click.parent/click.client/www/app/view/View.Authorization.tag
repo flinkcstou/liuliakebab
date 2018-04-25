@@ -17,26 +17,26 @@
       </div>
     </div>
 
-    <div if="{firstEnter}" class="authorization-flex-container">
-      <div class="authorization-unchangable-container">
-        <div class="authorization-enter-pin-label">
-          {window.languages.ViewAuthorizationClickPinLabel}
-        </div>
-        <div class="authorization-pin-input-first-enter-container" id="firstPinContainerId">
-          <input autofocus="true"
-                 type="password"
-                 class="authorization-pin-input-first-enter"
-                 onfocus="focusColor()"
-                 onblur="inputPinBlur()"
-                 id="firstPinInputId"/>
-          <div id="eyeButtonId" class="authorization-input-eye-button" role="button"
-               aria-label="{window.languages.ViewAuthorizationFirstEnterAriaLabelShowPass}"
-               onclick="eyeClicked()"></div>
-        </div>
+  <div if="{firstEnter}" class="authorization-flex-container">
+    <div class="authorization-unchangable-container">
+      <div class="authorization-enter-pin-label">
+        {window.languages.ViewAuthorizationClickPinLabel}
+      </div>
+      <div class="authorization-pin-input-first-enter-container" id="firstPinContainerId">
+        <input autofocus="true"
+               type="password"
+               class="authorization-pin-input-first-enter"
+               onfocus="focusColor()"
+               onblur="inputPinBlur()"
+               id="firstPinInputId"/>
+        <div id="eyeButtonId" class="authorization-input-eye-button" role="button"
+             aria-label="{window.languages.ViewAuthorizationFirstEnterAriaLabelShowPass}"
+             onclick="eyeClicked()"></div>
       </div>
     </div>
+  </div>
 
-    <div id="authorizationButtonsContainerId" class="authorization-buttons-container">
+  <div id="authorizationButtonsContainerId" class="authorization-buttons-container">
 
 
       <div id="forgetPinButtonId" class="authorization-button-forget-pin" ontouchstart="pinResetTouchStart()"
@@ -57,12 +57,12 @@
         fingerprint="{JSON.parse(localStorage.getItem('settings_finger_print'))}"></component-keyboard>
     </div>
 
-    <div if="{firstEnter}" id="firstEnterButtonId" class="bottom-button-container"
-         ontouchend="firstPinEnterTouchEnd()"
-         ontouchstart="firstPinEnterTouchStart()">
-      <div class="button-enter-label">{window.languages.ViewAuthorizationFirstEnterLabel}</div>
-      <div class="button-enter-icon"></div>
-    </div>
+  <div if="{firstEnter}" id="firstEnterButtonId" class="bottom-button-container"
+       ontouchend="firstPinEnterTouchEnd()"
+       ontouchstart="firstPinEnterTouchStart()">
+    <div class="button-enter-label">{window.languages.ViewAuthorizationFirstEnterLabel}</div>
+    <div class="button-enter-icon"></div>
+  </div>
 
   <button id="authOfflineButtonId" hidden="{device.platform == 'iOS'}"
           if="{firstEnter}"
@@ -108,14 +108,6 @@
       </div>
     </div>
   </div>
-    <button id="authOfflineButtonId" hidden="{device.platform == 'iOS'}"
-            class="{authorization-footer-button-container : !firstEnter, authorization-footer-button-container-first : firstEnter}"
-            class="authorization-footer-button-container"
-            ontouchstart="offlineModeTouchStart()"
-            ontouchend="offlineModeTouchEnd()">
-      {window.languages.ViewAuthorizationOfflineModeLabel}
-    </button>
-
   </div>
 
   <div class="view-authorization-inner-container" if="{fingerprintMode && device.platform == 'Android'}">
@@ -761,7 +753,7 @@
               reason: 'Timeout',
               method: 'app.login',
             });
-            updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText, true);
+            updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText);
             window.stopSpinner();
           }, 30000);
           console.log('creating timeOut', timeOutTimer);
@@ -774,16 +766,15 @@
     }
 
 
-    updateAlertComponent = function (showError, stepAmount, viewPage, text, fingerprintmodeoff) {
-      console.log("OPEN ALERT COMPONENT:", showError, text, stepAmount, viewPage, fingerprintmodeoff);
+    updateAlertComponent = function (showError, stepAmount, viewPage, text) {
+      console.log("OPEN ALERT COMPONENT:", showError, text, stepAmount, viewPage);
 
       if (showError) {
 
         window.common.alert.show("componentAlertId", {
           parent: scope,
           viewpage: viewPage,
-          errornote: text,
-          fingerprintmodeoff: fingerprintmodeoff
+          errornote: text
         });
       } else {
 

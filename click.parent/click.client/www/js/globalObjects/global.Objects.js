@@ -1871,3 +1871,7 @@ function getLuhnRemainder(value) {
   }
   return accumulator % 10;
 }
+
+function generateLuhn(value){
+  return ((10 - getLuhnRemainder(value + '0')) % 10).toString();
+}
