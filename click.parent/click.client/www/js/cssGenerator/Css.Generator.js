@@ -1516,7 +1516,7 @@ var css = {
   authorizationFooterNotFirstButton: ".authorization-footer-not-first-button " +
   "{" +
   "position: relative;" +
-  "width: 50%;" +
+  "width: 49%;" +
   "height: 100%;" +
   "float: left;" +
   "}",
@@ -1550,9 +1550,9 @@ var css = {
   "position: absolute;" +
   "left: 0;" +
   "right: 0;" +
-  "width:" + 250 * widthK + "px ;" +
+  "width: 81% ;" +
   "margin-right: auto;" +
-  "margin-left:" + 28 * widthK + "px ;" +
+  "margin-left:" + 23 * widthK + "px ;" +
   "margin-top:" + 20 * widthK + "px ;" +
   "text-align: center;" +
   "font-family: SFUIDisplay-Semibold;" +
@@ -1591,7 +1591,7 @@ var css = {
   "position: absolute;" +
   "left: 0;" +
   "right: 0;" +
-  "width:" + 250 * widthK + "px ;" +
+  "width: 78% ;" +
   "margin-left: auto;" +
   "margin-right:" + 25 * widthK + "px ;" +
   "margin-top:" + 20 * widthK + "px ;" +
@@ -1612,9 +1612,10 @@ var css = {
 
   authorizationFooterNotFirstBorderRight: ".authorization-footer-not-first-border-right" +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "height: 60%;" +
-  "left: 50%;" +
+  "width: 1%;" +
+  "float: left;" +
   "top: 20%;" +
   "border-right:" + 1 * widthK + "px solid #e8e8e8;" +
   "background: transparent;" +
