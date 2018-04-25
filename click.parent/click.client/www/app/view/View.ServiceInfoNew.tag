@@ -48,8 +48,10 @@
       </ul>
     </div>
 
-    <button class="serviceinfo-button-next"
-            ontouchend="goToNextPage()">
+    <button id="serviceinfoButtonNextId"
+            class="serviceinfo-button-next"
+            ontouchstart="goToNextPageStart()"
+            ontouchend="goToNextPageEnd()">
       {window.languages.ViewServiceInfoButtonNextText}
     </button>
   </div>
@@ -94,13 +96,21 @@
         "transaction_id": opts.transactionId
       };
     }
-    else if (opts.formtype == 3 || opts.formtype == 5) {
+    else if (opts.formtype == 3 || opts.formtype == 5 || opts.formtype == 6) {
       payment_data = {
         "param": opts.firstFieldId,
         "value": opts.firstFieldText,
         "communal_param": opts.communalParam,
         "transaction_id": opts.transactionId
       };
+      if (opts.formtype == 6){
+        payment_data = {
+          "param": opts.chosenPrefixId,
+          "value": opts.chosenPrefixName + opts.firstFieldText,
+          "transaction_id": opts.transactionId
+        }
+      }
+      console.log("payment data ", payment_data);
     }
     else if (opts.formtype == 4) {
       payment_data = {
@@ -120,7 +130,9 @@
       getInformation();
     }
     else {
-      scope.serviceData = JSON.parse(localStorage.getItem("click_client_infoCached"))
+      scope.serviceData = JSON.parse(localStorage.getItem("click_client_infoCached"));
+
+      window.stopSpinner();
 
       console.log("Displaying cached info")
       if (scope.serviceData.information_type == 3) {
@@ -130,8 +142,8 @@
         optionAttribute = scope.serviceData.options[0].option_payment_attribute;
         opts.paymentDataAttributes = scope.serviceData.options[0].payment_data_attributes;
         //find array in cached data
-        for (var i in scope.serviceData.options[0].option_object){
-          if (scope.serviceData.options[0].option_object[i].constructor === Array){
+        for (var i in scope.serviceData.options[0].option_object) {
+          if (scope.serviceData.options[0].option_object[i].constructor === Array) {
             console.log(scope.serviceData.options[0].option_object[i]);
             opts.code = scope.serviceData.options[0].option_object[i][0];
           }
@@ -166,9 +178,9 @@
           window.clearTimeout(timeOutTimer);
           if (result[0][0].error == 0) {
             if (result[1]) {
-              localStorage.setItem('click_client_infoCacheEnabled', result[1][0].enable_information_cache)
+              localStorage.setItem('click_client_infoCacheEnabled', result[1][0].enable_information_cache);
               if (result[1][0].enable_information_cache)
-                localStorage.setItem("click_client_infoCached", JSON.stringify(result[1][0]))
+                localStorage.setItem("click_client_infoCached", JSON.stringify(result[1][0]));
               scope.serviceData = result[1][0];
               if (result[1][0].information_type == 3) {
                 scope.optionsArray = result[1][0].options;
@@ -177,11 +189,16 @@
                 optionAttribute = result[1][0].options[0].option_payment_attribute;
                 opts.paymentDataAttributes = result[1][0].options[0].payment_data_attributes;
                 //find array in result
-                for (var i in result[1][0].options[0].option_object){
-                  if (result[1][0].options[0].option_object[i].constructor === Array){
+                for (var i in result[1][0].options[0].option_object) {
+                  if (result[1][0].options[0].option_object[i].constructor === Array) {
                     console.log(result[1][0].options[0].option_object[i]);
                     opts.code = result[1][0].options[0].option_object[i][0];
+                  } else if (result[1][0].options[0].option_object[i].code == 'AMOUNT' && opts.formtype == 6) {
+                    console.log("formType 6 amount field = ", result[1][0].options[0].option_object[i].value);
+                    opts.amountText = result[1][0].options[0].option_object[i].value;
+
                   }
+
                 }
                 opts.optionAttribute = optionAttribute;
                 opts.optionValue = scope.checkIconShow ? null : result[1][0].options[0].option_value;
@@ -300,7 +317,12 @@
       }
     };
 
-    goToNextPage = function () {
+    goToNextPageStart = function () {
+      serviceinfoButtonNextId.style.webkitTransform = 'scale(0.8)';
+    };
+
+    goToNextPageEnd = function () {
+      serviceinfoButtonNextId.style.webkitTransform = 'scale(1)';
 
       if (scope.index == -1 && scope.serviceData.information_type == 3 && scope.checkIconShow) {
 

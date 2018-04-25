@@ -5,67 +5,67 @@
          ontouchend="onTouchEndBack()"></div>
   </div>
 
-  <div class="view-info-balance-container">
-    <p class="view-info-balance-label">{window.languages.ViewInfoBalanceTitle}</p>
-    <div class="view-info-card-balance-currency-container">
-      <div if="{!modeOfApp.offlineMode}" class="view-info-card-balance" id="fullCardBalanceContainer">
-        <canvas id="fullScaleCanvas" style="display: none;"></canvas>
-        <canvas id="fractionalScaleCanvas" style="display: none;"></canvas>
-        <canvas id="currencyScaleCanvas" style="display: none;"></canvas>
-        <div class="view-info-card-balance-scale-container" id="fullCardBalanceScaleContainer">
-          <p class="view-info-card-balance-sum">{(fullBalanceCopy) ? (fullBalanceCopy) : (error_message)}<span
-            class="view-info-card-balance-sum-fractional">{(fractionalPart) ? (fractionalPart) : ''}</span> <span
-            if="{!modeOfApp.offlineMode && fullBalanceCopy}" class="view-info-card-currency">{window.languages.ViewReportServiceCommissionCurrency}</span></p>
-        </div>
-      </div>
+  <div class="view-info-body-container" id="lastOperationsContainerId" onscroll="lastOperationsContainerScroll()">
 
-      <a if="{modeOfApp.offlineMode}" class="offline-card-balance"
-         ontouchstart="offlineBalanceInfoTrue()">Получить баланс</a>
+    <div class="view-info-balance-container">
+      <p class="view-info-balance-label">{window.languages.ViewInfoBalanceTitle}</p>
+      <div class="view-info-card-balance-currency-container">
+        <div if="{!modeOfApp.offlineMode}" class="view-info-card-balance" id="fullCardBalanceContainer">
+          <canvas id="fullScaleCanvas" style="display: none;"></canvas>
+          <canvas id="fractionalScaleCanvas" style="display: none;"></canvas>
+          <canvas id="currencyScaleCanvas" style="display: none;"></canvas>
+          <div class="view-info-card-balance-scale-container" id="fullCardBalanceScaleContainer">
+            <p class="view-info-card-balance-sum">{(fullBalanceCopy) ? (fullBalanceCopy) : (error_message)}<span
+              class="view-info-card-balance-sum-fractional">{(fractionalPart) ? (fractionalPart) : ''}</span> <span
+              if="{!modeOfApp.offlineMode && fullBalanceCopy}" class="view-info-card-currency">{window.languages.ViewReportServiceCommissionCurrency}</span>
+            </p>
+          </div>
+        </div>
+
+        <a if="{modeOfApp.offlineMode}" class="offline-card-balance"
+           ontouchstart="offlineBalanceInfoTrue()">Получить баланс</a>
+      </div>
+      <div class="view-info-bag-icon"></div>
+      <div if="{attention && !modeOfflineMode.check}" class="view-info-attention-icon"></div>
+      <div id="reloadBalanceButtonId" role="button" aria-label="{window.languages.ViewInfoAriaLabelReloadAmount}"
+           if="{!modeOfflineMode.check}" class="view-info-reload-icon"
+           ontouchstart="reloadBalanceTouchStart()" ontouchend="reloadBalanceTouchEnd()"></div>
     </div>
-    <div class="view-info-bag-icon"></div>
-    <div if="{attention && !modeOfflineMode.check}" class="view-info-attention-icon"></div>
-    <div id="reloadBalanceButtonId" role="button" aria-label="{window.languages.ViewInfoAriaLabelReloadAmount}"
-         if="{!modeOfflineMode.check}" class="view-info-reload-icon"
-         ontouchstart="reloadBalanceTouchStart()" ontouchend="reloadBalanceTouchEnd()"></div>
-  </div>
 
-  <div class="view-info-my-finance-container" style="display: none">
-    <div class="view-info-my-finance-icon"></div>
-    <div class="view-info-open-icon"></div>
-    <p class="view-info-my-finance-title">{window.languages.ViewInfoMyFinanceTitle}</p>
-  </div>
+    <div id="reportButtonId" role="button" aria-label="{window.languages.ViewInfoReportsTitle}"
+         class="view-info-reports-container" ontouchend="goToReportsTouchEnd()"
+         ontouchstart="goToReportsTouchStart()">
+      <div class="view-info-reports-title-border-top"></div>
+      <div class="view-info-reports-icon"></div>
+      <div class="view-info-open-icon"></div>
+      <p class="view-info-reports-title">{window.languages.ViewInfoReportsTitle}</p>
+      <div class="view-info-reports-title-border-bottom"></div>
+    </div>
 
-  <div id="reportButtonId" role="button" aria-label="{window.languages.ViewInfoReportsTitle}"
-       class="view-info-reports-container" ontouchend="goToReportsTouchEnd()"
-       ontouchstart="goToReportsTouchStart()">
-    <div class="view-info-reports-icon"></div>
-    <div class="view-info-open-icon"></div>
-    <p class="view-info-reports-title">{window.languages.ViewInfoReportsTitle}</p>
-  </div>
+    <div class="view-info-operations-title">
+      <p class="view-info-operations-label">{window.languages.ViewInfoLastOperations}</p>
+    </div>
 
-  <div class="view-info-operations-title">
-    <p class="view-info-operations-label">{window.languages.ViewInfoLastOperations}</p>
-  </div>
+    <div class="view-info-operations-container">
+      <div class="view-info-operation-container" each="{i in lastOperationContainer}" id="{i.payment_id}"
+           ontouchstart="onTouchStartOfOperation(this.id)" role="button" aria-label="{i.service_name}"
+           onclick="onTouchEndOfOperation(this.id)">
 
-  <div class="view-info-operations-container">
-    <div class="view-info-operation-container" each="{i in lastOperationContainer}" id="{i.payment_id}"
-         ontouchstart="onTouchStartOfOperation(this.id)" role="button" aria-label="{i.service_name}"
-         onclick="onTouchEndOfOperation(this.id)"
-         style="top:{leftOfOperations*i.count + 50 * widthK}px;">
+        <div class="view-info-operations-icon" style="background-image: url({i.image})">
 
-      <div class="view-info-operations-icon" style="background-image: url({i.image})">
+          <div class="view-info-operation-info-container">
+            <p class="view-info-operation-info-name">{i.service_name}</p>
+            <p class="view-info-operation-info-balance"> - {i.amount}</p>
+            <p class="view-info-operation-info-balance">{}</p>
+            <p class="view-info-operation-info-number">{i.cntrg_info_param2}</p>
+            <p class="view-info-operation-info-date">{i.created}</p>
 
-        <div class="view-info-operation-info-container">
-          <p class="view-info-operation-info-name">{i.service_name}</p>
-          <p class="view-info-operation-info-balance"> - {i.amount}</p>
-          <p class="view-info-operation-info-balance">{}</p>
-          <p class="view-info-operation-info-number">{i.cntrg_info_param2}</p>
-          <p class="view-info-operation-info-date">{i.created}</p>
+            <div class="view-info-state-image" style="background-image: url({i.state_image})"></div>
+          </div>
 
-          <div class="view-info-state-image" style="background-image: url({i.state_image})"></div>
         </div>
-
       </div>
+
     </div>
 
   </div>
@@ -92,12 +92,14 @@
     }
     scope.leftOfOperations = 200 * widthK;
     scope.lastOperationContainer = [];
+    scope.pageNumberOptional = 1;
     var canvasFull;
     var contextFull;
     var canvasFractional;
     var contextFractional;
     var canvasCurrency;
     var contextCurrency;
+    var timeOutTimerPayment = 0;
 
 
     window.saveHistory('view-info', opts);
@@ -136,6 +138,19 @@
       if (!modeOfApp.offlineMode) {
         writeBalanceInfo(accountsForBalance);
       }
+
+      if (viewPay.lastOperations) {
+        scope.lastOperationContainer = viewPay.lastOperations;
+        scope.update();
+        console.log("viewPay.lastOperationsContainerId=", viewPay.lastOperationsContainerScrollTop);
+        if (viewPay.lastOperationsContainerScrollTop) {
+
+          lastOperationsContainerId.scrollTop = viewPay.lastOperationsContainerScrollTop;
+          viewPay = {};
+        }
+      }
+      else
+        scope.lastOperationsUpdate();
 
     });
 
@@ -289,121 +304,110 @@
       }
     };
 
-    if (!modeOfApp.offlineMode)
-      window.api.call({
-        method: 'get.payment.list',
-        input: {
-          session_key: sessionKey,
-          phone_num: phoneNumber
-        },
+    lastOperationsContainerScroll = function () {
 
-        scope: this,
+      if ((lastOperationsContainerId.scrollHeight - lastOperationsContainerId.scrollTop) <= lastOperationsContainerId.offsetHeight && lastOperationsContainerId.scrollTop != 0) {
 
-        onSuccess: function (result) {
-          if (result[0][0].error == 0) {
-            var j = 0;
-//          if (device.platform != 'BrowserStand') {
-//            window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
-//
-//              for (var i in result[1]) {
-//
-//
-//                if (result[1][i].state == 0) {
-//                  result[1][i].count = j;
-//
-//                  result[1][i].amount = result[1][i].amount.toString();
-//
-//                  if (result[1][i].amount.length == 7) {
-//                    result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
-//                      result[1][i].amount.substring(1, 4) + ' ' + result[1][i].amount.substring(4, result[1][i].amount.length)
-//
-//                  }
-//
-//                  if (result[1][i].amount.length == 6) {
-//                    result[1][i].amount = result[1][i].amount.substring(0, 3) + ' ' +
-//                      result[1][i].amount.substring(3, result[1][i].amount.length)
-//
-//                  }
-//
-//                  if (result[1][i].amount.length == 5) {
-//                    result[1][i].amount = result[1][i].amount.substring(0, 2) + ' ' +
-//                      result[1][i].amount.substring(2, result[1][i].amount.length)
-//
-//                  }
-//
-//                  if (result[1][i].amount.length == 4) {
-//                    result[1][i].amount = result[1][i].amount.substring(0, 1) + ' ' +
-//                      result[1][i].amount.substring(1, result[1][i].amount.length)
-//
-//                  }
-//
-//                  var icon = result[1][i].image;
-//                  var filename = icon.substr(icon.lastIndexOf('/') + 1);
-//
-//                  var newIcon = checkImageURL;
-//                  newIcon('www/resources/icons/ViewPay/service/', filename, 'image', icon, result[1][i], function (object) {
-//                    scope.lastOperationContainer.push(object);
-////                    if (result[1].length == scope.lastOperationContainer.length) {
-////                      console.log("save into localstorage");
-////                      localStorage.setItem('click_client_payCategoryList', JSON.stringify(scope.categoryList));
-////                      localStorage.setItem('click_client_categoryNamesMap', JSON.stringify(scope.categoryNamesMap));
-////                    }
-//                  });
-//
-//                  j++;
-//                }
-//
-//              }
-//            }, onErrorLoadFs);
-//          } else {
-            for (var i in result[1]) {
-
-              result[1][i].count = j;
-
-              result[1][i].amount = result[1][i].amount.toString();
-              result[1][i].amount = window.amountTransform(result[1][i].amount);
-
-              console.log("STATE ", result[1][i].state)
-
-              if (result[1][i].state == -1) {
-                result[1][i].state_image = "resources/icons/ViewReport/report_status_error.png"
-              }
-
-              if (result[1][i].state == 1) {
-                result[1][i].state_image = "resources/icons/ViewReport/report_status_processing.png"
-              }
-
-              if (result[1][i].state == 2) {
-                result[1][i].state_image = "resources/icons/ViewReport/report_status_ok.png"
-              }
-
-              scope.lastOperationContainer.push(result[1][i])
-
-              j++;
-
-            }
-//          }
-            console.log('scope.lastOperationContainer', scope.lastOperationContainer)
-            scope.update()
-//            console.log('scope.lastOperationContainer', scope.lastOperationContainer);
-          }
-          else {
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: false,
-              errornote: result[0][0].error_note
-            });
-            scope.update();
-          }
-
-        },
-
-        onFail: function (api_status, api_status_message, data) {
-          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
+        if (scope.lastOperationContainer.length % 15 == 0) {
+          scope.pageNumberOptional++;
+          lastOperationsUpdate();
         }
-      });
 
+      }
+    };
+
+    scope.lastOperationsUpdate = lastOperationsUpdate = function () {
+
+      if (!modeOfApp.offlineMode) {
+        window.startSpinner();
+        window.clearTimeout(timeOutTimerPayment);
+        window.api.call({
+          method: 'get.payment.list',
+          input: {
+            session_key: sessionKey,
+            phone_num: phoneNumber,
+            page_number: parseInt(scope.pageNumberOptional)
+          },
+
+          scope: this,
+
+          onSuccess: function (result) {
+
+            window.clearTimeout(timeOutTimerPayment);
+
+            if (result[0][0].error == 0) {
+              var j = 0;
+
+              for (var i in result[1]) {
+
+                result[1][i].count = j;
+
+                result[1][i].amount = result[1][i].amount.toString();
+                result[1][i].amount = window.amountTransform(result[1][i].amount);
+
+                console.log("STATE ", result[1][i].state);
+
+                if (result[1][i].state == -1) {
+                  result[1][i].state_image = "resources/icons/ViewReport/report_status_error.png"
+                }
+
+                if (result[1][i].state == 1) {
+                  result[1][i].state_image = "resources/icons/ViewReport/report_status_processing.png"
+                }
+
+                if (result[1][i].state == 2) {
+                  result[1][i].state_image = "resources/icons/ViewReport/report_status_ok.png"
+                }
+
+                scope.lastOperationContainer.push(result[1][i]);
+                j++;
+              }
+
+              console.log('scope.lastOperationContainer', scope.lastOperationContainer);
+              scope.update()
+//            console.log('scope.lastOperationContainer', scope.lastOperationContainer);
+            }
+            else {
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: false,
+                errornote: result[0][0].error_note
+              });
+              scope.update();
+            }
+
+          },
+
+          onFail: function (api_status, api_status_message, data) {
+            window.clearTimeout(timeOutTimerPayment);
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          },
+          onTimeOut: function () {
+            timeOutTimerPayment = setTimeout(function () {
+              window.writeLog({
+                reason: 'Timeout',
+                method: 'get.payment.list',
+              });
+              scope.errorNote = "Сервис временно недоступен";
+              scope.stepAmount = 0;
+              scope.update();
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                errornote: scope.errorNote,
+                step_amount: scope.stepAmount
+              });
+              window.stopSpinner();
+            }, 30000);
+          },
+          onEmergencyStop: function () {
+            console.log('Clearing timer emergencyStop', timeOutTimerPayment);
+            window.clearTimeout(timeOutTimerPayment);
+          }
+        }, 30000);
+      }
+
+    };
 
     goToReportsTouchStart = function () {
       event.preventDefault();
@@ -465,7 +469,7 @@
 
       setTimeout(function () {
         document.getElementById(paymentId).style.backgroundColor = 'transparent'
-      }, 300);
+      }, 50);
 
       operationInfoTouchEndY = event.pageY;
 
@@ -525,6 +529,11 @@
                 scope.lastOperationContainer[i].canAddToFavorite = false;
 
               scope.lastOperationContainer[i].favoriteId = scope.favoriteId;
+
+              viewPay.lastOperationsContainerScrollTop = lastOperationsContainerId.scrollTop;
+
+              viewPay.lastOperations = scope.lastOperationContainer;
+
               riotTags.innerHTML = "<view-report-service-new>";
               riot.mount("view-report-service-new", scope.lastOperationContainer[i]);
 

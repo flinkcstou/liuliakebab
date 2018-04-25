@@ -164,7 +164,6 @@
     function checkCardPermissionAndBalance() {
       for (var i in scope.cardsArray) {
         scope.cardsArray[i].permission = false;
-        console.log(scope.cardsArray[i]);
         if (scope.opts.usefor == "p2p" && scope.cardsArray[i].p2p_allowed == 1) {
           scope.cardsArray[i].permission = true;
         }
@@ -182,7 +181,6 @@
         }
 
         if (scope.cardsArray[i].permission == false) {
-          console.log("Cardsarray in permission check function:", scope.cardsArray);
           delete scope.cardsArray[i];
         }
       }

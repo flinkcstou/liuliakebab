@@ -47,6 +47,9 @@
     var cardNumberOfService = 0;
     window.viewServicePage = {};
     window.viewServicePinCards = {};
+    scope.leftOfServiceCarousel = 640 * widthK;
+    var openFavouriteStartX, openFavouriteStartY, openFavouriteEndX, openFavouriteEndY;
+    var delta, touchEndX, touchStartX;
 
     if (modeOfApp.offlineMode) {
       scope.popularServiceList = localStorage.getItem("click_client_popularServiceList") ? (JSON.parse(localStorage.getItem("click_client_popularServiceList"))) : (offlinePopularServiceList);
@@ -58,7 +61,6 @@
     scope.favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
 
-
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
 
     if (JSON.parse(localStorage.getItem('click_client_loginInfo')) && modeOfApp.onlineMode)
@@ -67,6 +69,11 @@
     if (phoneNumber && modeOfApp.onlineMode)
       scope.operatorKey = phoneNumber.substr(3, 2);
     scope.addFavoriteBool = true;
+
+    scope.updateWishList = function () {
+      scope.favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
+      fillFavorites();
+    };
 
     if (!localStorage.getItem("click_client_popularServiceList") && modeOfApp.onlineMode) {
       scope.popularServiceList = [];
@@ -195,9 +202,6 @@
     //    };
 
 
-    scope.leftOfServiceCarousel = 640 * widthK;
-
-
     fillFavorites = function () {
       if (scope.favoritePaymentsList) {
         scope.favPaymentsList = [];
@@ -215,13 +219,9 @@
           scope.addFavoriteBool = false;
         scope.update();
       }
-    }
+    };
 
     fillFavorites();
-
-    console.log("AppVersion", AppVersion.version, "; localStorage.getItem('version')", localStorage.getItem('version'))
-    console.log("push news?", (sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true))
-
 
     if (modeOfApp.onlineMode && !(sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true) &&
       (!localStorage.getItem('favoritePaymentsList') || (localStorage.getItem('version') !== AppVersion.version && localStorage.getItem('favoritePaymentsList')))) {
@@ -338,43 +338,27 @@
     }
 
 
-    var openFavouriteStartX, openFavouriteStartY, openFavouriteEndX, openFavouriteEndY;
-
     openFavouriteStart = function () {
       openFavouriteStartX = event.changedTouches[0].pageX;
       openFavouriteStartY = event.changedTouches[0].pageY;
 
       openFavouriteId.style.backgroundColor = 'rgba(150,150,150,0.5)'
-    }
+    };
+
     openFavouriteEnd = function () {
       openFavouriteEndX = event.changedTouches[0].pageX;
-      openFavouriteEndY = event.changedTouches[0].pageY
+      openFavouriteEndY = event.changedTouches[0].pageY;
 
-      openFavouriteId.style.backgroundColor = 'transparent'
+      openFavouriteId.style.backgroundColor = 'transparent';
 
       if (Math.abs(openFavouriteStartX - openFavouriteEndX) <= 20 && Math.abs(openFavouriteStartY - openFavouriteEndY) <= 20) {
         if (modeOfApp.demoVersion) {
-          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+          var question = window.languages.DemoModeConstraintText;
           window.common.alert.show("componentAlertId", {
             parent: scope,
             errornote: question
           });
-//        confirm(question)
-//          scope.confirmShowBool = true;
-//          scope.confirmNote = question;
-//          scope.confirmType = 'local';
-//          scope.result = function (bool) {
-//            if (bool) {
-//              localStorage.clear();
-//              window.location = 'index.html'
-//              scope.unmount()
-//              return
-//            }
-//            else {
-//              scope.confirmShowBool = false;
-//              return
-//            }
-//          };
+
           scope.update();
 
           return
@@ -382,25 +366,23 @@
         riotTags.innerHTML = "<view-favorites-new>";
         riot.mount("view-favorites-new");
       }
-    }
+    };
 
-    var delta, touchEndX, touchStartX;
     touchStartService = function () {
       touchStartX = event.changedTouches[0].pageX;
       leftOfDelta = -(540 * cardNumberOfService * widthK) - touchStartX;
       delta = leftOfDelta;
-    }
+    };
 
     touchEndService = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      console.log('TOUCH END SERVICE', touchEndX, touchStartX)
       touchEndX = event.changedTouches[0].pageX;
       if (touchStartX != touchEndX) {
         changePositionOfServiceCarousel();
       }
-    }
+    };
 
     touchMoveService = function () {
       this.containerService.style.transition = '0s';
@@ -409,11 +391,10 @@
       event.stopPropagation();
       this.containerService.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0, 0)";
       this.containerService.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0, 0)";
-    }
+    };
 
     changePositionOfServiceCarousel = function () {
 
-      console.log('CHANGE POSITION', touchStartX)
       if (touchEndX < touchStartX) {
         cardNumberOfService = 1;
         this.containerService.style.transform = "translate3d(" + -540 * widthK + "px, 0, 0)";
@@ -429,13 +410,12 @@
         this.containerService.style.transition = '0.3s';
         this.containerService.style.webkitTransition = '0.3s';
       }
-    }
-
+    };
 
     scope.ontouchStartOfService = ontouchStartOfService = function (id) {
       event.stopPropagation();
 
-      document.getElementById(id).style.webkitTransform = 'scale(0.7)'
+      document.getElementById(id).style.webkitTransform = 'scale(0.7)';
 
       onTouchStartX = event.changedTouches[0].pageX;
       touchStartX = event.changedTouches[0].pageX;
@@ -446,18 +426,13 @@
     scope.ontouchEndOfService = ontouchEndOfService = function (id) {
       event.stopPropagation();
 
-      console.log('ID ID ID', id)
-
-      document.getElementById(id).style.webkitTransform = 'scale(1)'
+      document.getElementById(id).style.webkitTransform = 'scale(1)';
 
       onTouchEndX = event.changedTouches[0].pageX;
       touchEndX = event.changedTouches[0].pageX;
-//      if(modeOfApp.offlineMode && id.indexOf('mynumber') != -1){
-//        return
-//      }
 
       if (Math.abs(onTouchStartX - onTouchEndX) <= 20) {
-        console.log("chosen id in service carousel NEW=", id);
+
         if (modeOfApp.offlineMode && typeof id === "string" && id.indexOf('mynumber') != -1) {
           opts.chosenServiceId = 'mynumber';
         }
@@ -470,7 +445,7 @@
         localStorage.setItem('chosenServiceId', id);
         riotTags.innerHTML = "<view-service-page-new>";
         riot.mount("view-service-page-new", opts);
-        scope.unmount()
+        scope.unmount();
 
         return
       }
@@ -485,11 +460,11 @@
       event.stopPropagation();
       this.containerService.style.transform = "translate3d(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0, 0)";
       this.containerService.style.webkitTransform = "translate3d(" + (event.changedTouches[0].pageX + delta) + 'px' + ", 0, 0)";
-    }
+    };
 
     scope.ontouchStartOfPayment = ontouchStartOfPayment = function (id) {
-      console.log("chosen id in payments START=", id)
-      document.getElementById(id).style.webkitTransform = 'scale(0.7)'
+
+      document.getElementById(id).style.webkitTransform = 'scale(0.7)';
       event.stopPropagation();
 
       onTouchStartX2 = event.changedTouches[0].pageX;
@@ -499,9 +474,8 @@
     };
 
     scope.ontouchEndOfPayment = ontouchEndOfPayment = function (id) {
-      console.log("chosen id in payments END=", id);
-      document.getElementById(id).style.webkitTransform = 'scale(1)'
 
+      document.getElementById(id).style.webkitTransform = 'scale(1)';
 
       event.stopPropagation();
 
@@ -509,10 +483,10 @@
       touchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(onTouchStartX2 - onTouchEndX2) <= 20) {
-        console.log("chosen id in payments carousel=", id);
+
         for (var i in scope.favoritePaymentsList) {
           if (scope.favoritePaymentsList[i].id == id) {
-            console.log("gnrf", scope.favoritePaymentsList[i]);
+
             scope.favoritePaymentsList[i].params.favoriteId = scope.favoritePaymentsList[i].id;
 
 
@@ -600,8 +574,6 @@
             }
 
             //scope.service = scope.servicesMap[scope.favoritePaymentsList[i].params.chosenServiceId][0];
-            console.log("HERE IS WORKING");
-            console.log("localStorage cards", localStorage.getItem('click_client_cards'))
 
             if (localStorage.getItem('click_client_cards')) {
 
@@ -620,13 +592,12 @@
 
                   onSuccess: function (result) {
                     if (result[0][0].error == 0) {
-                      console.log(' disable_cache, updating amountText')
 
                       if (result[5])
                         for (var i in result[5]) {
-                          console.log("1");
+
                           if (result[5][i].service_id == scope.favoritePaymentsList[i].service.id) {
-                            console.log("qwerty=", result[5][i].sum_cost);
+
                             scope.favoritePaymentsList[i].params.amountText = window.amountTransform(result[5][i].sum_cost.toString())
                             localStorage.setItem('favoritePaymentsList', JSON.stringify(scope.favoritePaymentsList))
                             if (scope.favoritePaymentsList[i].service.additional_information_type == 3) {
@@ -690,14 +661,14 @@
     scope.ontouchEndOfAddFavorite = ontouchEndOfAddFavorite = function (id) {
       event.stopPropagation();
 
-      document.getElementById(id).style.webkitTransform = 'scale(1)'
+      document.getElementById(id).style.webkitTransform = 'scale(1)';
 
       onTouchEndX2 = event.changedTouches[0].pageX;
       touchEndX = event.changedTouches[0].pageX;
 
       if (Math.abs(onTouchStartX2 - onTouchEndX2) <= 20) {
         if (modeOfApp.demoVersion) {
-          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
+          var question = window.languages.DemoModeConstraintText;
 //        confirm(question)
           window.common.alert.show("componentConfirmId", {
             parent: scope,

@@ -8,32 +8,41 @@
       </div>
     </div>
 
-    <div class="inplace-pay-category-container" id="categoriesContainerId">
+    <div class="inplace-pay-category-container">
 
       <div class="inplace-pay-search-container">
         <div class="inplace-pay-search-field" id="searchContainerId">
-          <input class="inplace-pay-search-input-part"
+          <input class="inplace-pay-search-input-part" value="{opts.searchWord}"
                  type="text"
                  id="searchInputId"
                  onfocus="colorFieldInplaceSearch()"
                  onblur="blurFieldInplaceSearch()"
                  onkeydown="keyDownFieldInplaceSearch()"
+                 oninput="onInputSearchField()"
                  placeholder="{window.languages.InPlaceSearchPlaceHolderText}"/>
-          <div id="searchIcon" class="inplace-pay-search-icon" ontouchstart="onTouchStartOfSearchService()"
-               ontouchend="onTouchEndOfSearchService()"></div>
+          <div if="{showSearchIcon}" id="searchIcon"
+               class="inplace-pay-search-icon"
+               ontouchstart="onTouchStartOfSearchCategory()"
+               ontouchend="onTouchEndOfSearchCategory()"></div>
+          <div if="{!showSearchIcon}" id="searchRemoveIcon"
+               class="inplace-pay-search-remove-icon"
+               ontouchstart="onTouchStartOfSearchRemove()"
+               ontouchend="onTouchEndOfSearchRemove()"></div>
         </div>
       </div>
 
-      <div class="inplace-pay-service-inner-container" id="servicesBodyContainerId"
-           onscroll="servicesScroll()"
-           ontouchmove="servicesBodyContainerTouchMove()" ontouchstart="servicesBodyContainerTouchStart()"
+      <div class="inplace-pay-service-inner-container" id="categoriesContainerId"
+           onscroll="servicesScroll()" ontouchmove="servicesBodyContainerTouchMove()"
+           ontouchstart="servicesBodyContainerTouchStart()"
            ontouchend="servicesBodyContainerTouchEnd()">
 
         <div each="{i in serviceList}" if="{!(modeOfApp.offlineMode)}" class="inplace-pay-service-container"
              id="{i.id}"
              ontouchstart="onTouchStartOfService(this.id)"
              ontouchend="onTouchEndOfService(this.id)">
-          <div class="inplace-pay-service-icon" style="background-image: url({i.image})"></div>
+          <img id="{i.id+'_image'}"
+               class="inplace-pay-service-icon" src="{i.image}"
+               onload="clearLoaderOnIconLoad(this.id)">
           <div class="inplace-pay-service-info">
             <div class="inplace-pay-service-name-field">{i.name}</div>
             <div class="inplace-pay-service-address-field">{i.address}</div>
@@ -43,6 +52,7 @@
             </div>
           </div>
           <div class="inplace-pay-service-icon-tick"></div>
+          <div class="inplace-title-bottom-border"></div>
         </div>
 
         <div if="{serviceList.length==0 && searchMode}" class="inplace-pay-search-no-match">
@@ -82,6 +92,8 @@
     var pageToReturn = "view-inplace-pay-category";
     var stepBack = 1;
     scope.searchMode = false;
+    scope.showSearchIcon = !opts.searchWord;
+    var searchFieldTimeout, searchFieldActive = false, searchWord = opts.searchWord;
 
     window.saveHistory('view-inplace-pay-service', opts);
 
@@ -90,10 +102,9 @@
       setTimeout(function () {
         window.blurFields();
       }, 500);
-      console.log("viewPay.serviceContainerScrollTop=", viewPay.serviceContainerScrollTop)
       if (viewPay.serviceContainerScrollTop) {
 
-        servicesBodyContainerId.scrollTop = viewPay.serviceContainerScrollTop;
+        categoriesContainerId.scrollTop = viewPay.serviceContainerScrollTop;
         viewPay.serviceContainerScrollTop = null;
       }
 
@@ -134,7 +145,7 @@
     scope.getServiceList = getServiceList = function () {
 
 //      scope.serviceList = [];
-      window.startSpinner();
+//      window.startSpinner();
 
       window.api.call({
         method: 'get.indoor.service.list',
@@ -151,6 +162,7 @@
           console.log('Clearing timer onSuccess', timeOutTimer);
           window.clearTimeout(timeOutTimer);
           window.stopSpinner();
+          window.stopLoaderDots();
 
           if (result[0][0].error == 0) {
             if (result[1][0]) {
@@ -176,6 +188,8 @@
         onFail: function (api_status, api_status_message, data) {
           console.log('Clearing timer onFail', timeOutTimer);
           window.clearTimeout(timeOutTimer);
+          window.stopSpinner();
+          window.stopLoaderDots();
           window.common.alert.show("componentAlertId", {
             parent: scope,
             step_amount: stepBack,
@@ -211,25 +225,17 @@
 
     if (JSON.parse(sessionStorage.getItem('click_client_inPlacePayServiceList'))) {
 
-      console.log('111');
       scope.serviceList = JSON.parse(sessionStorage.getItem('click_client_inPlacePayServiceList'));
       scope.update();
 
     } else if (inPlacePay.latitude && inPlacePay.longitude) {
-
-      console.log('222');
       getServiceList();
 
     } else if (localStorage.getItem('location_find') && JSON.parse(localStorage.getItem('location_find'))) {
-
-      console.log('333');
       findLocation();
 
     } else {
-
-      console.log('444');
       getServiceList();
-
     }
 
     goToBackStart = function () {
@@ -261,20 +267,44 @@
     };
 
     colorFieldInplaceSearch = function () {
+      searchFieldActive = true;
       searchContainerId.style.borderBottom = "" + 3 * widthK + "px solid #01cfff";
-      searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search_blue.png)';
+      if (document.getElementById('searchIcon'))
+        searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search_blue.png)';
     };
 
     blurFieldInplaceSearch = function () {
+      searchFieldActive = false;
       searchContainerId.style.borderBottom = "" + 3 * widthK + "px solid #cbcbcb";
-      searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search.png)';
+      if (document.getElementById('searchIcon'))
+        searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search.png)';
     };
 
     keyDownFieldInplaceSearch = function () {
-      if (event.keyCode === input_codes.ENTER){
-        setTimeout(searchInputId.blur(), 0);
-        searchServiceByWord();
+
+      if (event.keyCode === input_codes.ENTER) {
+        window.blurFields();
       }
+
+      clearTimeout(searchFieldTimeout);
+
+      searchFieldTimeout = setTimeout(function () {
+        scope.pageNumber = 1;
+        scope.serviceList = [];
+        scope.update();
+        scope.searchMode = false;
+        console.log("key down");
+        searchServiceByWord();
+      }, 500);
+    };
+
+    onInputSearchField = function () {
+      if (searchInputId.value.length == 0) {
+        scope.showSearchIcon = true;
+      } else {
+        scope.showSearchIcon = false;
+      }
+      scope.update();
     };
 
     onTouchStartOfSearchService = function () {
@@ -300,8 +330,44 @@
       searchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(searchStartX - searchEndX) <= 20 && Math.abs(searchStartY - searchEndY) <= 20) {
-        console.log("string to search=", searchInputId.value);
 
+        searchInputId.autofocus;
+        searchInputId.focus();
+      }
+    };
+
+    onTouchStartOfSearchRemove = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (searchRemoveIcon)
+        searchRemoveIcon.style.webkitTransform = 'scale(0.7)';
+
+      searchStartX = event.changedTouches[0].pageX;
+      searchStartY = event.changedTouches[0].pageY;
+
+    };
+
+    onTouchEndOfSearchRemove = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (searchRemoveIcon)
+        searchRemoveIcon.style.webkitTransform = 'scale(1)';
+
+      searchEndX = event.changedTouches[0].pageX;
+      searchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(searchStartX - searchEndX) <= 20 && Math.abs(searchStartY - searchEndY) <= 20) {
+        searchInputId.value = "";
+        scope.showSearchIcon = true;
+        scope.searchMode = false;
+        scope.pageNumber = 1;
+        scope.serviceList = [];
+        scope.update();
+//        window.startSpinner();
+        window.startLoaderDots();
+        console.log("search remove");
         searchServiceByWord();
       }
     };
@@ -578,14 +644,18 @@
 
           for (var i in scope.serviceList) {
             if (scope.serviceList[i].id == id) {
-              viewPay.serviceContainerScrollTop = servicesBodyContainerId.scrollTop;
+              viewPay.serviceContainerScrollTop = categoriesContainerId.scrollTop;
               scope.serviceList[i].location = inPlacePay.latitude + " " + inPlacePay.longitude;
+
+              history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
+              history.arrayOfHistory[history.arrayOfHistory.length - 1].params.searchWord = searchWord;
+              sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+
               riotTags.innerHTML = "<view-qr>";
               riot.mount('view-qr', scope.serviceList[i]);
 
               break;
             }
-
           }
 
         }, 50)
@@ -600,29 +670,29 @@
 
         event.stopPropagation();
 
-        if ((servicesBodyContainerId.scrollHeight - servicesBodyContainerId.scrollTop) == servicesBodyContainerId.offsetHeight && event.changedTouches[0].pageY < servicesStartY) {
+        if ((categoriesContainerId.scrollHeight - categoriesContainerId.scrollTop) == categoriesContainerId.offsetHeight && event.changedTouches[0].pageY < servicesStartY) {
 
           if (Math.abs(event.changedTouches[0].pageY + top) < 250 * widthK) {
 
-            document.getElementById('servicesBodyContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
-            document.getElementById('servicesBodyContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
-            document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
-            document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
+            document.getElementById('categoriesContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+            document.getElementById('categoriesContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+            document.getElementById('categoriesContainerId').style.transform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
+            document.getElementById('categoriesContainerId').style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
 
           }
-        } else if (servicesBodyContainerId.scrollTop == 0 && event.changedTouches[0].pageY > servicesStartY) {
+        } else if (categoriesContainerId.scrollTop == 0 && event.changedTouches[0].pageY > servicesStartY) {
 
           if (Math.abs(event.changedTouches[0].pageY + top) < 250 * widthK) {
-            document.getElementById('servicesBodyContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
-            document.getElementById('servicesBodyContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
-            document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
-            document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
+            document.getElementById('categoriesContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+            document.getElementById('categoriesContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+            document.getElementById('categoriesContainerId').style.transform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
+            document.getElementById('categoriesContainerId').style.webkitTransform = "translate3d(0," + (event.changedTouches[0].pageY + top) + 'px' + ", 0)";
           }
         } else {
-          document.getElementById('servicesBodyContainerId').style.transition = '0s cubic-bezier(0.2, 0.05, 0.39, 0)';
-          document.getElementById('servicesBodyContainerId').style.webkitTransition = '0s cubic-bezier(0.2, 0.05, 0.39, 0)';
-          document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0,0,0)";
-          document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0,0,0)";
+          document.getElementById('categoriesContainerId').style.transition = '0s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('categoriesContainerId').style.webkitTransition = '0s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('categoriesContainerId').style.transform = "translate3d(0,0,0)";
+          document.getElementById('categoriesContainerId').style.webkitTransform = "translate3d(0,0,0)";
         }
 
       }
@@ -631,6 +701,15 @@
     var top;
 
     servicesBodyContainerTouchStart = function () {
+
+      console.log("touch start container");
+
+      if (searchFieldActive) {
+        console.log("bluring fields");
+        window.blurFields();
+        searchFieldActive = false;
+      }
+
       if (device.platform == 'Android') {
 
         servicesStartX = event.changedTouches[0].pageX;
@@ -648,20 +727,20 @@
         servicesEndX = event.changedTouches[0].pageX;
         servicesEndY = event.changedTouches[0].pageY;
 
-        if ((servicesBodyContainerId.scrollHeight - servicesBodyContainerId.scrollTop) == servicesBodyContainerId.offsetHeight) {
+        if ((categoriesContainerId.scrollHeight - categoriesContainerId.scrollTop) == categoriesContainerId.offsetHeight) {
 
-          document.getElementById('servicesBodyContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
-          document.getElementById('servicesBodyContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
-          document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0,0,0)";
-          document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0,0,0)";
+          document.getElementById('categoriesContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('categoriesContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('categoriesContainerId').style.transform = "translate3d(0,0,0)";
+          document.getElementById('categoriesContainerId').style.webkitTransform = "translate3d(0,0,0)";
 
 
-        } else if (servicesBodyContainerId.scrollTop == 0) {
+        } else if (categoriesContainerId.scrollTop == 0) {
 
-          document.getElementById('servicesBodyContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
-          document.getElementById('servicesBodyContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
-          document.getElementById('servicesBodyContainerId').style.transform = "translate3d(0,0,0)";
-          document.getElementById('servicesBodyContainerId').style.webkitTransform = "translate3d(0,0,0)";
+          document.getElementById('categoriesContainerId').style.transition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('categoriesContainerId').style.webkitTransition = '0.1s cubic-bezier(0.2, 0.05, 0.39, 0)';
+          document.getElementById('categoriesContainerId').style.transform = "translate3d(0,0,0)";
+          document.getElementById('categoriesContainerId').style.webkitTransform = "translate3d(0,0,0)";
 
         }
 
@@ -672,26 +751,28 @@
 
     servicesScroll = function () {
 
-      if ((servicesBodyContainerId.scrollHeight - servicesBodyContainerId.scrollTop) == servicesBodyContainerId.offsetHeight) {
+      if ((categoriesContainerId.scrollHeight - categoriesContainerId.scrollTop) == categoriesContainerId.offsetHeight && categoriesContainerId.scrollTop != 0) {
 
         if (scope.serviceList.length % 20 == 0) {
           scope.pageNumber++;
-          getServiceList();
+          window.startPaginationLoaderDots();
+          if (searchInputId.value.length != 0) {
+            searchServiceByWord();
+          }
+          else {
+            getServiceList();
+          }
         }
       }
 
-    }
+    };
 
-    searchServiceByWord = function () {
-      var searchWord = searchInputId.value;
+    scope.searchServiceByWord = searchServiceByWord = function () {
+      searchWord = searchInputId.value;
 
-      if (modeOfApp.onlineMode && searchWord) {
+      if (modeOfApp.onlineMode) {
 
-        window.blurFields();
-        window.startSpinner();
-        scope.searchMode = false;
-        scope.serviceList = [];
-        scope.pageNumber = 1;
+        scope.update();
 
         window.api.call({
           method: 'get.indoor.service.list',
@@ -700,15 +781,19 @@
             phone_num: phoneNumber,
             category_id: opts.categoryId,
             location: inPlacePay.latitude + " " + inPlacePay.longitude,
-            search: searchWord
+            search: searchWord,
+            page_number: parseInt(scope.pageNumber)
           },
           scope: this,
 
           onSuccess: function (result) {
-            console.log('Clearing timer onSuccess', timeOutTimerTwo);
-            window.clearTimeout(timeOutTimerTwo);
-            window.stopSpinner();
+
+            if (scope.pageNumber == 1)
+              scope.serviceList = [];
+
             scope.searchMode = true;
+            window.stopSpinner();
+            window.stopLoaderDots();
 
             if (result[0][0].error == 0) {
               if (result[1][0]) {
@@ -718,7 +803,7 @@
                 }
 
               }
-              console.log("Update");
+              sessionStorage.setItem('click_client_inPlacePayServiceList', JSON.stringify(scope.serviceList));
               scope.update();
             } else {
               window.common.alert.show("componentAlertId", {
@@ -731,8 +816,8 @@
 
           },
           onFail: function (api_status, api_status_message, data) {
-            console.log('Clearing timer onFail', timeOutTimerTwo);
-            window.clearTimeout(timeOutTimerTwo);
+            window.stopSpinner();
+            window.stopLoaderDots();
             window.common.alert.show("componentAlertId", {
               parent: scope,
               step_amount: stepBack,
@@ -741,30 +826,11 @@
             });
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
-          },
-          onTimeOut: function () {
-            timeOutTimerTwo = setTimeout(function () {
-              window.writeLog({
-                reason: 'Timeout',
-                method: 'get.indoor.service.list',
-              });
-              window.common.alert.show("componentAlertId", {
-                parent: scope,
-                step_amount: stepBack,
-                viewmount: true,
-                errornote: window.languages.WaitingTimeExpiredText
-              });
-            }, 30000);
-            console.log('creating timeOut', timeOutTimerTwo);
-          },
-          onEmergencyStop: function () {
-            console.log('Clearing timer emergencyStop', timeOutTimerTwo);
-            window.clearTimeout(timeOutTimerTwo);
           }
-        }, 30000);
+        });
 
       }
-    }
+    };
 
 
   </script>

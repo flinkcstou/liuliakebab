@@ -40,8 +40,10 @@
         <div class="qr-pincard-friend-change-text" ontouchend="friendHelp()">Изменить</div>
       </div>
 
-      <button class="qr-pincard-button-enter"
-              ontouchend="goToQrPayConfirmView()">
+      <button id="bottomButtonContainerId"
+              class="qr-pincard-button-enter"
+              ontouchstart="goToQrPayConfirmViewStart()"
+              ontouchend="goToQrPayConfirmViewEnd()">
         {window.languages.ViewServicePageEnterLabel}
       </button>
 
@@ -67,10 +69,19 @@
     this.serviceIcon = opts.image;
     this.categoryName = opts.location ? opts.category_name : "";
 
-
-    goToQrPayConfirmView = function () {
+    goToQrPayConfirmViewStart = function () {
       event.preventDefault();
       event.stopPropagation();
+
+      bottomButtonContainerId.style.webkitTransform = 'scale(0.8)';
+    };
+
+
+    goToQrPayConfirmViewEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      bottomButtonContainerId.style.webkitTransform = 'scale(1)';
 
       cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
       console.log("cardsArray=", cardsArray);
@@ -135,7 +146,7 @@
       this.riotTags.innerHTML = "<view-friend-help-settings>";
       riot.mount('view-friend-help-settings', {from: "view-qr"});
 //      scope.unmount()
-    }
+    };
 
     if (viewServicePinCards.friendHelpPaymentMode && viewServicePinCards.chosenFriendForHelp) {
       console.log("AAA");

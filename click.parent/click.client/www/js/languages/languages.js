@@ -56,6 +56,10 @@ var RU_LANGUAGES =
     "ViewAuthorizationOfflineModeLabel": "Офлайн режим",
     "ViewAuthorizationClickScanLabel": "CLICK PASS",
 
+    "ViewAuthFingerprintModeButtonLabel": "ВОЙТИ ИСПОЛЬЗУЯ CLICK-PIN",
+    "ViewAuthFingerprintBodyText": "Приложите палец к сканеру отпечатка для входа в приложение",
+    "ViewAuthFingerprintErrorText": "Отпечаток пальца не распознан",
+
     "ViewInfoBalanceTitle": "Общий баланс",
 
     "ViewInfoAriaLabelReloadAmount": "Обновить баланс",
@@ -352,9 +356,9 @@ var RU_LANGUAGES =
   "ViewAboutSettingsRateUsTitle": "Оцените нас в Google Play",
 
   "ViewSettingsAboutProgramTitleName": "О ПРОГРАММЕ",
-  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 5.2",
+  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 5.9.1",
   "ViewSettingsAboutProgramVersionTitleNamePartOneClick": "CLICK Uzbekistan",
-  "ViewSettingsAboutProgramVersionTitleNamePartTwo": "16 марта, 2018",
+  "ViewSettingsAboutProgramVersionTitleNamePartTwo": "22 апреля, 2018",
   "ViewSettingsAboutProgramUserAgreementTitleName": "Пользовательское соглашение",
   "ViewSettingsAboutProgramRankTitleName": "Оцените нас в Google Play",
 

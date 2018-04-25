@@ -100,12 +100,13 @@ window.common.alert = {
 
     if (!window.common.alert.priorities[id]) return;
 
-    if (window.fingerPrint.fingerPrintInitialize) return;
+    // if (window.fingerPrint.fingerPrintInitialize) return;
 
     var show = true;
 
     try {
       window.stopSpinner();
+      window.stopLoaderDots();
       window.blurFields();
 
     } catch (error) {
@@ -1081,6 +1082,12 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
                         localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(favoritePaymentsListForApi));
                         localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
                         console.log("favs processed", favoritePaymentsList);
+                        if (document.getElementById("componentServiceCarouselNew")){
+                          var serviceCarouselTag = document.getElementById("componentServiceCarouselNew");
+                          if (serviceCarouselTag._tag){
+                            serviceCarouselTag._tag.updateWishList();
+                          }
+                        }
                       }
                     }
                     else {
@@ -1312,10 +1319,15 @@ window.fingerPrintInit = function () {
           }
         }
 
+        var availableTech = 'Устройтсво поддерживает технологию TouchID';
+        if (device.model == 'iPhone10,3' || device.model == 'iPhone10,6') {
+          availableTech = 'Устройство поддерживает технологию FaceID';
+        }
+
         navigator.notification.confirm(
           'Хотите использовать ее для CLICK?',  // message
           onConfirm,              // callback to invoke with index of button pressed
-          'Устройтсво поддерживает технологию TouchID',            // title
+          availableTech,            // title
           ['Да', 'Нет']          // buttonLabels
         );
 
@@ -1333,7 +1345,7 @@ window.fingerPrintInit = function () {
   }
 };
 
-window.fingerPrintAsk = function () {
+window.fingerPrintAsk = function (fingerprintIconId) {
   console.log("G.O. fingerprint ASK");
 
   if (localStorage.getItem('settings_finger_print') !== null) {
@@ -1363,34 +1375,63 @@ window.fingerPrintAsk = function () {
 
         if (JSON.parse(localStorage.getItem("settings_finger_print")) === true && localStorage.getItem('click_client_pin')) {
 
-          FingerprintAuth.encrypt(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
+          FingerprintAuth.start(encryptConfig, encryptSuccessCallback, encryptErrorCallback);
         }
 
       }
 
 
       function encryptSuccessCallback(result) {
-        window.fingerPrint.fingerPrintInitialize = false;
+        console.log("encrypt success, change gif to CHECK");
+        if (document.getElementById(fingerprintIconId))
+          document.getElementById(fingerprintIconId).style.backgroundImage = "url(resources/gifs/auth/check.gif?p" + new Date().getTime() + ")";
 
-        if (result.withFingerprint) {
+        setTimeout(function () {
+          window.fingerPrint.fingerPrintInitialize = false;
+          if (document.getElementById(fingerprintIconId))
+            document.getElementById(fingerprintIconId).style.backgroundImage = "url(resources/gifs/auth/success.gif?p" + new Date().getTime() + ")";
 
-          pin = localStorage.getItem('click_client_pin');
-          enter();
+          setTimeout(function () {
+            if (result.withFingerprint) {
 
-        } else if (result.withBackup) {
+              pin = localStorage.getItem('click_client_pin');
+              enter();
 
-          pin = localStorage.getItem('click_client_pin');
-          enter();
-        }
+            } else if (result.withBackup) {
+
+              pin = localStorage.getItem('click_client_pin');
+              enter();
+            }
+          }, 1000);
+        }, 1000);
       }
 
       function encryptErrorCallback(error) {
-        window.fingerPrint.fingerPrintInitialize = false;
-        if (error === "Cancelled") {
-          console.log("FingerprintAuth Dialog Cancelled!");
-        } else {
-          console.log("FingerprintAuth Error: " + error);
-        }
+        console.log("encrypt error, change gif to CHECK");
+
+        fingerPrintStop();
+
+        if (document.getElementById(fingerprintIconId))
+          document.getElementById(fingerprintIconId).style.backgroundImage = "url(resources/gifs/auth/check.gif?p" + new Date().getTime() + ")";
+
+        setTimeout(function () {
+          window.fingerPrint.fingerPrintInitialize = false;
+          if (document.getElementById(fingerprintIconId))
+            document.getElementById(fingerprintIconId).style.backgroundImage = "url(resources/gifs/auth/error1.png)";
+
+          enter(false);
+
+          setTimeout(function () {
+
+            window.fingerPrint.fingerPrintInitialize = false;
+            if (error === "Cancelled") {
+              console.log("FingerprintAuth Dialog Cancelled!");
+            } else {
+              console.log("FingerprintAuth Error: " + error);
+            }
+          }, 1500);
+        }, 1000);
+
       }
 
     }
@@ -1426,6 +1467,20 @@ window.fingerPrintAsk = function () {
   }
 };
 
+window.fingerPrintStop = function () {
+  if (localStorage.getItem('settings_finger_print') !== null) {
+
+    if (device.platform == 'Android') {
+
+      FingerprintAuth.stop(function () {
+        console.log("closed");
+      }, function () {
+        console.log("error in close");
+      });
+    }
+  }
+};
+
 window.clearTimers = function () {
   var id = window.setTimeout(function () {
   }, 0);
@@ -1456,6 +1511,28 @@ window.stopSpinner = function () {
   }
 };
 
+window.startLoaderDots = function () {
+  console.log("start loader dots");
+  if (document.getElementById("loaderDots"))
+    document.getElementById("loaderDots").style.display = 'block';
+};
+
+window.startPaginationLoaderDots = function () {
+  console.log("start pagination loader dots");
+  if (document.getElementById("loaderDots")) {
+    document.getElementById("loaderDots").classList.add("loader-dots-pagination");
+    document.getElementById("loaderDots").style.display = 'block';
+  }
+};
+
+window.stopLoaderDots = function () {
+  console.log("stop loader dots");
+  if (document.getElementById("loaderDots")) {
+    document.getElementById("loaderDots").style.display = 'none';
+    document.getElementById("loaderDots").classList.remove("loader-dots-pagination");
+  }
+};
+
 window.blurFields = function () {
   try {
     if ('activeElement' in document) {
@@ -1469,10 +1546,8 @@ window.blurFields = function () {
       console.log("Your browser does not support the activeElement property!");
     }
     return;
+  } catch (e) {
   }
-  catch (e) {
-  }
-  ;
 };
 
 
@@ -1574,7 +1649,7 @@ window.sendToLog = function (data) {
 
 var fileData = [], log;
 
-window.replaceErrors = function(key, value) {
+window.replaceErrors = function (key, value) {
   if (value instanceof Error) {
     var error = {};
 
@@ -1709,6 +1784,15 @@ var errorHandler = function (fileName, e) {
 
 function dec2hex(s) { return (s < 15.5 ? '0' : '') + Math.round(s).toString(16); }
 function hex2dec(s) { return parseInt(s, 16); }
+
+function clearLoaderOnIconLoad(id) {
+  if (document.getElementById(id)) {
+    setTimeout(function () {
+      document.getElementById(id).style.backgroundImage = 'none';
+    }, 0);
+  }
+}
+
 
 function base32tohex(base32) {
   var base32chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";

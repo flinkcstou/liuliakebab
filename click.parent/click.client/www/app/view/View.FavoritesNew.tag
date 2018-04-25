@@ -21,7 +21,7 @@
           <div class="view-favorites-info-container">
             <p class="view-favorites-info-name">{j.params.favoriteName ?j.params.favoriteName: j.service.name}</p>
             <div class="view-favorites-info-balance">{j.params.amountText}</div>
-            <div class="view-favorites-info-currency-field">сум</div>
+            <div class="view-favorites-info-currency-field">{j.service.lang_amount_currency}</div>
             <p class="view-favorites-info-number">{(j.params.firstFieldId==1)? ("+" + window.languages.CodeOfCountry +"
               "+j.params.firstFieldText):(j.params.chosenPrefixId? (j.params.chosenPrefixName+j.params.firstFieldText):
               j.params.firstFieldText)}</p>
@@ -64,14 +64,16 @@
     if (loginInfo)
       var sessionKey = loginInfo.session_key;
     scope.favoriteListShow = true;
+    componentMenu.check = false;
+    var backStartY, backStartX, backEndY, backEndX;
+    var addSignStartY, addSignStartX, addSignEndY, addSignEndX;
+    var openFavouriteStarX, openFavouriteStarY, openFavouriteEndX, openFavouriteEndY;
+    var editFavoriteStartY, editFavoriteStartX, editFavoriteEndY, editFavoriteEndX;
+    var removeFavoriteStartY, removeFavoriteStartX, removeFavoriteEndY, removeFavoriteEndX;
 
     opts = {};
 
     window.saveHistory('view-favorites-new', opts);
-
-    componentMenu.check = false;
-
-    var backStartY, backStartX, backEndY, backEndX;
 
     scope.onTouchStartOfBack = onTouchStartOfBack = function () {
       event.stopPropagation();
@@ -84,11 +86,10 @@
       backStartX = event.changedTouches[0].pageX;
     };
 
-
     favouriteGoToBackEnd = function () {
       event.stopPropagation();
 
-      favouriteBackButtonId.style.webkitTransform = 'scale(1)'
+      favouriteBackButtonId.style.webkitTransform = 'scale(1)';
 
       backEndY = event.changedTouches[0].pageY;
       backEndX = event.changedTouches[0].pageX;
@@ -96,17 +97,15 @@
       if (Math.abs(backStartY - backEndY) <= 20 && Math.abs(backStartX - backEndX) <= 20) {
         event.preventDefault();
         event.stopPropagation();
-        onBackKeyDown()
-        scope.unmount()
+        onBackKeyDown();
+        scope.unmount();
       }
     };
-
-    var addSignStartY, addSignStartX, addSignEndY, addSignEndX;
 
     scope.onTouchStartOfAddSign = onTouchStartOfAddSign = function () {
       event.stopPropagation();
 
-      favouriteRightButtonId.style.webkitTransform = 'scale(0.7)'
+      favouriteRightButtonId.style.webkitTransform = 'scale(0.7)';
 
       addSignStartY = event.changedTouches[0].pageY;
       addSignStartX = event.changedTouches[0].pageX;
@@ -115,7 +114,7 @@
     addFavorite = function () {
       event.stopPropagation();
 
-      favouriteRightButtonId.style.webkitTransform = 'scale(1)'
+      favouriteRightButtonId.style.webkitTransform = 'scale(1)';
 
       addSignEndY = event.changedTouches[0].pageY;
       addSignEndX = event.changedTouches[0].pageX;
@@ -128,7 +127,7 @@
         riot.mount("view-pay", opts);
         scope.unmount()
       }
-    }
+    };
 
     if (scope.favoritePaymentsList) {
       for (var i in scope.favoritePaymentsList) {
@@ -146,12 +145,12 @@
         if (scope.favoritePaymentsList[i].service.form_type == 4 && scope.favoritePaymentsList[i].service.disable_cache && modeOfApp.onlineMode && !modeOfApp.demoVersion) {
 
           window.api.call({
-            method     : 'get.service.parameters',
+            method: 'get.service.parameters',
             stopSpinner: false,
-            input      : {
+            input: {
               session_key: sessionKey,
-              phone_num  : phoneNumber,
-              service_id : scope.favoritePaymentsList[i].service.id
+              phone_num: phoneNumber,
+              service_id: scope.favoritePaymentsList[i].service.id
             },
 
             scope: this,
@@ -190,14 +189,13 @@
       scope.update();
     }
 
-    var openFavouriteStarX, openFavouriteStarY, openFavouriteEndX, openFavouriteEndY
 
     openFavoritePaymentStart = function (id) {
       event.stopPropagation();
 
       openFavouriteStarX = event.changedTouches[0].pageX;
       openFavouriteStarY = event.changedTouches[0].pageY;
-    }
+    };
 
     openFavoritePaymentEnd = function (id) {
       event.stopPropagation();
@@ -212,14 +210,11 @@
         setTimeout(function () {
           document.getElementById(id).style.backgroundColor = 'transparent';
 
-          console.log("id=", id);
           id = id.substring(1, id.length);
-          console.log("id2=", id);
 
           for (var i in scope.favoritePaymentsList) {
             if (scope.favoritePaymentsList[i].id == id) {
-              console.log("scope.favoritePaymentsList[i].id", scope.favoritePaymentsList[i].id);
-              console.log("open favorite ", scope.favoritePaymentsList[i]);
+
               scope.favoritePaymentsList[i].params.favoriteId = scope.favoritePaymentsList[i].id;
 
               if (modeOfApp.offlineMode) {
@@ -249,14 +244,14 @@
                   }
                   ussdQuery = ussdQuery.replace('{option}', firstFieldId);
                   ussdQuery = ussdQuery.replace('{amount}', amountText);
-                  ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+                  ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
                   console.log(ussdQuery)
                 }
 
                 if (formtype == 2) {
                   ussdQuery = ussdQuery.replace('{param}', firstFieldText);
                   ussdQuery = ussdQuery.replace('{amount}', amountText);
-                  ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+                  ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
                   console.log(ussdQuery)
                 }
 
@@ -264,19 +259,16 @@
                   ussdQuery = ussdQuery.replace('{communal_para}', communalParam);
                   ussdQuery = ussdQuery.replace('{param}', firstFieldText);
                   ussdQuery = ussdQuery.replace('{amount}', amountText);
-                  ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+                  ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
                   console.log(ussdQuery)
                 }
 
                 if (formtype == 4) {
                   ussdQuery = ussdQuery.replace('{param}', firstFieldText);
                   ussdQuery = ussdQuery.replace('{amount}', amountText);
-                  ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1)
+                  ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
                   console.log(ussdQuery)
                 }
-
-
-                console.log(ussdQuery)
 
                 phonedialer.dial(
 //              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
@@ -295,10 +287,17 @@
                 );
                 return
               }
-              this.riotTags.innerHTML = "<view-service-pincards-new>";
-              riot.mount('view-service-pincards-new', scope.favoritePaymentsList[i].params);
 
-              scope.unmount()
+              if (scope.favoritePaymentsList[i].service.additional_information_type == 3) {
+                localStorage.setItem('click_client_infoCacheEnabled', null)
+                this.riotTags.innerHTML = "<view-service-info-new>";
+                riot.mount('view-service-info-new', scope.favoritePaymentsList[i].params);
+                scope.unmount()
+              } else {
+                this.riotTags.innerHTML = "<view-service-pincards-new>";
+                riot.mount('view-service-pincards-new', scope.favoritePaymentsList[i].params);
+                scope.unmount()
+              }
 
             }
           }
@@ -307,14 +306,12 @@
 
     };
 
-    var editFavoriteStartY, editFavoriteStartX, editFavoriteEndY, editFavoriteEndX;
 
     scope.onTouchStartOfEditFavorite = onTouchStartOfEditFavorite = function () {
       event.stopPropagation();
       editFavoriteStartY = event.changedTouches[0].pageY;
       editFavoriteStartX = event.changedTouches[0].pageX;
     };
-
 
     editFavoritePayment = function (id) {
       event.stopPropagation();
@@ -324,18 +321,13 @@
 
       if (Math.abs(editFavoriteStartY - editFavoriteEndY) <= 20 && Math.abs(editFavoriteStartX - editFavoriteEndX) <= 20) {
 
-        console.log("id=", id);
         id = id.substring(1, id.length);
-        console.log("id2=", id);
 
         for (var i in scope.favoritePaymentsList) {
           if (scope.favoritePaymentsList[i].id == id) {
-            console.log("scope.favoritePaymentsList[i].id", scope.favoritePaymentsList[i].id);
-            console.log("open favorite ", scope.favoritePaymentsList[i]);
 
             scope.favoritePaymentsList[i].params.mode = 'ADDFAVORITE';
             scope.favoritePaymentsList[i].params.favoriteId = scope.favoritePaymentsList[i].id;
-
 
             this.riotTags.innerHTML = "<view-service-page-new>";
             riot.mount('view-service-page-new', scope.favoritePaymentsList[i].params);
@@ -347,7 +339,6 @@
       }
     };
 
-    var removeFavoriteStartY, removeFavoriteStartX, removeFavoriteEndY, removeFavoriteEndX;
 
     scope.onTouchStartOfRemoveFavorite = onTouchStartOfRemoveFavorite = function () {
       event.stopPropagation();
@@ -366,7 +357,6 @@
 
         var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
         var favoritePaymentsListForApi = JSON.parse(localStorage.getItem('favoritePaymentsListForApi'));
-        console.log("favList=", favoritePaymentsList)
 
         for (var i in favoritePaymentsList)
           if (favoritePaymentsList[i].id == id) {
@@ -381,9 +371,9 @@
 
             window.api.call({
               method: 'delete.favourite',
-              input : {
-                session_key  : sessionKey,
-                phone_num    : phoneNumber,
+              input: {
+                session_key: sessionKey,
+                phone_num: phoneNumber,
                 wishlist_data: [{"id": id, "type": 1}]
               },
 
@@ -399,7 +389,7 @@
                 else {
                   scope.clickPinError = false;
                   scope.showError = true;
-                  scope.errorNote = result[0][0].error_note
+                  scope.errorNote = result[0][0].error_note;
                   scope.update();
                   console.log(result[0][0].error_note);
                 }
@@ -411,7 +401,6 @@
               }
             });
 
-            console.log(favoritePaymentsList);
             localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
             localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(favoritePaymentsListForApi));
             break;

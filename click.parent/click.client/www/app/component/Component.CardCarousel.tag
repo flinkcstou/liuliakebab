@@ -15,7 +15,7 @@
             <p class="invoice-card-date">{invoice.time} {invoice.date}</p>
             <div class="invoice-card-transfer-sum-holder">
               <p class="invoice-card-sum">{invoice.amount}</p>
-              <mark class="invoice-card-sum-marked">сум</mark>
+              <mark class="invoice-card-sum-marked">{invoice.currency}</mark>
             </div>
           </div>
           <div id="payment-container" class="invoice-card-info-holder" if="{!invoice.is_p2p}">
@@ -28,7 +28,7 @@
             <p class="invoice-card-date">{invoice.time} {invoice.date}</p>
             <div class="invoice-card-payment-sum-holder">
               <p class="invoice-card-sum">{invoice.amount}</p>
-              <mark class="invoice-card-sum-marked">сум</mark>
+              <mark class="invoice-card-sum-marked">{invoice.currency}</mark>
             </div>
           </div>
           <div class="invoice-card-transfer" if="{invoice.is_p2p}"></div>
@@ -74,6 +74,11 @@
 
     scope.checkSumOfHash = true;
     scope.addFirstCardBool = false;
+
+    if (localStorage.getItem("click_client_servicesMap")
+      && JSON.parse(localStorage.getItem("click_client_servicesMap"))){
+      scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
+    }
 
     if (localStorage.getItem('click_client_cards')) {
       scope.cardsarray = JSON.parse(localStorage.getItem('click_client_cards'));
@@ -172,6 +177,7 @@
             is_friend_help: invoice.is_friend_help,
             friend_name: invoice.friend_name,
             commission_percent: invoice.commission_percent,
+            service_id: invoice.service_id
           };
 
           history.arrayOfHistory.push({view: "view-payment-detail"});
@@ -341,35 +347,14 @@
 
                 var arrayOfInvoice = [];
                 for (var i = 0; i < result[1].length; i++) {
-                  //TODO: FIX
-//                  try {
-//                    result[1][i].amount = window.amountTransform(result[1][i].amount.toString());
-//                    scope.searchNumber = inputVerification.spaceDeleter(result[1][i].merchant_phone);
-//                    arrayOfPhones = JSON.parse(sessionStorage.getItem('arrayOfPhones'));
-//
-//                    if (result[1][i].is_friend_help && arrayOfPhones && arrayOfPhones.length != 0) {
-//
-//                      arrayOfPhones.filter(function (wordOfFunction) {
-//                        if (wordOfFunction.phoneNumbers) {
-//                          for (var i in wordOfFunction.phoneNumbers) {
-//                            index = wordOfFunction.phoneNumbers[i].value.indexOf(scope.searchNumber);
-//                            if (index != -1) {
-//                              result[1][i].friend_name = wordOfFunction.name.givenName;
-//                            }
-//                          }
-//                        }
-//                        else
-//                          index = -1;
-//
-//                      });
-//
-//                    }
-//
-//
-//                  } catch (error) {
-//
-//                    console.log(error);
-//                  }
+                  if (scope.servicesMap
+                    && scope.servicesMap[result[1][i].service_id]
+                    && scope.servicesMap[result[1][i].service_id][0]){
+                    result[1][i].currency = scope.servicesMap[result[1][i].service_id][0].lang_amount_currency;
+                    console.log(scope.servicesMap[result[1][i].service_id][0]);
+                  } else {
+                    result[1][i].currency = window.languages.Currency;
+                  }
                   arrayOfInvoice.push(result[1][i]);
 
                 }
@@ -384,6 +369,7 @@
                   if (arrayOfInvoice[1]) {
                     scope.invoiceList.push(arrayOfInvoice[1]);
                   }
+                  console.log('invoices', scope.invoiceList);
                 }
 
                 scope.update();

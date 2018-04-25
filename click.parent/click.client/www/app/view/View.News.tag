@@ -9,12 +9,10 @@
 
     <div class="view-news-block-of-all" each="{i in newsArray}">
 
-      <div id="newsImageId{i.news_id}"
+      <img id="newsImageId{i.news_id}"
            hidden
            class="view-news-block-image"
-           exist="{i.image_exist}"
-           style="background-image: url({i.news_image})">
-      </div>
+           exist="{i.image_exist}">
 
       <div class="{view-news-block:!i.url, view-news-block-with-link:i.url}" shorttext="{i.content_short}"
            opened="false" title="{i.news_content}"
@@ -70,12 +68,24 @@
         }
       }
       console.log(document.getElementById(imageId));
-      if (document.getElementById(imageId))
+      if (document.getElementById(imageId)) {
+        console.log('first if');
         openImage = JSON.parse(document.getElementById(imageId).getAttribute('exist')) === true;
+      }
       document.getElementById(containerId).style.paddingBottom = 100 * widthK + 'px';
       document.getElementById(containerId).setAttribute('opened', true);
-      if (openImage)
+      if (openImage) {
+        console.log('second if');
         document.getElementById(imageId).style.display = 'block';
+        document.getElementById(imageId).setAttribute('src', news.news_image);
+        document.getElementById(imageId).onload = function () {
+          console.log("IMG was loaded");
+        };
+        document.getElementById(imageId).onerror = function () {
+          console.log("image load error");
+          document.getElementById(imageId).setAttribute('src', 'resources/icons/ViewNews/news.png');
+        }
+      }
       document.getElementById(containerId).style.height = 'auto';
       document.getElementById(textId).innerHTML = longText;
 
@@ -142,9 +152,11 @@
         if (JSON.parse(document.getElementById(containerId).getAttribute('opened')) === false) {
           console.log("This post is not opened and its id is", newsId);
           console.log("All posts", scope.newsArray);
+          var newsImage;
           for (var i in scope.newsArray) {
             if (scope.newsArray[i].news_id === newsId) {
               scope.newsArray[i].opened = true;
+              newsImage = scope.newsArray[i].news_image;
             }
           }
           openImage = JSON.parse(document.getElementById(imageId).getAttribute('exist')) === true;
@@ -154,6 +166,15 @@
             document.getElementById(imageId).style.display = 'block';
           document.getElementById(containerId).style.height = 'auto';
           document.getElementById(textId).innerHTML = longText;
+          var img = document.getElementById(imageId);
+          img.setAttribute('src', newsImage);
+          img.onload = function () {
+            console.log("IMG was loaded");
+          };
+          img.onerror = function () {
+            console.log("image load error");
+            img.setAttribute('src', 'resources/icons/ViewNews/news.png');
+          }
         }
         else {
           for (var i in scope.newsArray) {

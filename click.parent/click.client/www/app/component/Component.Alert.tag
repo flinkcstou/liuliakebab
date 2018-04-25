@@ -80,10 +80,19 @@
           }
 
           if (opts.viewpage) {
-            console.log("Alert to ", opts.viewpage);
-            riotTags.innerHTML = "<" + opts.viewpage + ">";
-            riot.mount(opts.viewpage);
-            return;
+            if (opts.fingerprintmodeoff) {
+              console.log("Alert to ", opts.viewpage);
+              var fingerPrintMode = false;
+              riotTags.innerHTML = "<" + opts.viewpage + ">";
+              riot.mount(opts.viewpage, {fingerPrintMode: fingerPrintMode});
+              return;
+            } else {
+              console.log("Alert to ", opts.viewpage);
+              riotTags.innerHTML = "<" + opts.viewpage + ">";
+              riot.mount(opts.viewpage);
+              return;
+            }
+
           }
 
           console.log("OPTS in ALERT", opts);

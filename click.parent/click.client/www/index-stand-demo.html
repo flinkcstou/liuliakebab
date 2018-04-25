@@ -53,6 +53,7 @@
 
 <body id="bodyId">
 <div id="alertTags"></div>
+<div id="loaderDots" class="loader-dots"></div>
 <div id="riotTags">
 </div>
 <div class="demo-version-button-exit" if="{modeOfApp.demoVersion}" ontouchstart="modeDemoVersionTouchStart()"
@@ -631,9 +632,9 @@
 
     console.log("OPTS in ONBackKeyDown", onBackParams.opts)
 
-    if (device.platform != 'BrowserStand') {
-      SpinnerPlugin.activityStop();
-    }
+    window.stopSpinner();
+    window.stopLoaderDots();
+
 
     if (window.checkShowingComponent) {
       console.log('window.checkShowingComponent', window.checkShowingComponent)

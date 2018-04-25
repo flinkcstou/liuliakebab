@@ -644,12 +644,12 @@
                           console.log("QR PAY", result);
                         }
                         else {
-                          if (result[0][0].error == -202) {
-                            window.checkShowingComponent = scope;
-                            scope.update();
-                            iFrameExternalUrlId.src = result[0][0].error_url
-                            return
-                          }
+//                          if (result[0][0].error == -202) {
+//                            window.checkShowingComponent = scope;
+//                            scope.update();
+//                            iFrameExternalUrlId.src = result[0][0].error_url
+//                            return
+//                          }
                           window.common.alert.show("componentAlertId", {
                             parent: scope,
                             clickpinerror: false,

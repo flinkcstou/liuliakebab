@@ -107,7 +107,6 @@
 
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
-    console.log("servicesMap=", scope.servicesMap);
     scope.service = scope.servicesMap[opts.chosenServiceId][0];
     this.titleName = scope.service.name;
     this.serviceIcon = scope.service.image;

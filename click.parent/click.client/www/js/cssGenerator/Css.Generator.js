@@ -123,6 +123,28 @@ var css = {
   //"background: rgb(128,128,128);" +
   //"}",
 
+
+  loaderDots: ".loader-dots" +
+  "{" +
+  "position: absolute;" +
+  "width:" + 190 * widthK + "px;" +
+  // "height:" + 100 * widthK + "px;" +
+  "left:" + 265 * widthK + "px;" +
+  "top:" + 515 * widthK + "px;" +
+  "bottom: 0;" +
+  "background-image: url('resources/gifs/loader_dots.gif');" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "z-index: 999;" +
+  "display:none;" +
+  "}",
+
+  loaderDotsPagination: ".loader-dots-pagination" +
+  "{" +
+  "top:" + 1160 * widthK + "px;" +
+  "bottom: 0;" +
+  "}",
+
   //DEMO
 
   demoVersionButtonExit: ".demo-version-button-exit" +
@@ -1152,6 +1174,130 @@ var css = {
   "background-repeat: no-repeat;" +
   "}",
 
+  viewAuthorizationInnerContainer: ".view-authorization-inner-container " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 100%;" +
+  "overflow: hidden;" +
+  "}",
+
+  authFingerPrintModeLabel: ".auth-fingerprint-mode-label " +
+  "{" +
+  "position: absolute;" +
+  "top: 27%;" +
+  "width:70%;" +
+  "height:" + 40 * widthK + "px;" +
+  "font-size:" + 36 * widthK + "px;" +
+  "margin: auto;" +
+  "margin-left:" + 65 * widthK + "px;" +
+  "color: white;" +
+  "}",
+
+  buttonAuthFingerprintClickPinIcon: ".button-auth-fingerprint-clickpin-icon" +
+  "{" +
+  "position: absolute;" +
+  "left: 90%;" +
+  "background-size: contain;" +
+  "background-image: url(resources/icons/authorization/button_arrow.png);" +
+  "background-repeat: no-repeat;" +
+  "width:" + 56 * widthK + "px;" +
+  "height:" + 28 * widthK + "px;" +
+  "top:" + 29 * widthK + "px;" +
+  "transition: 0.8s;" +
+  "}",
+
+  buttonAuthFingerprint: ".button-auth-fingerprint" +
+  "{" +
+  "height: " + 87 * widthK + "px;" +
+  "font-size: " + 38 * widthK + "px;" +
+  "font-family: SFUIDisplay-Light;" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "background-color: #00a8f1;" +
+  "bottom: 0;" +
+  "padding: 0;" +
+  "left: 0;" +
+  "color: #ffffff;" +
+  "}",
+
+  authFingerPrintBodyLabel: ".auth-fingerprint-body-label " +
+  "{" +
+  "position: absolute;" +
+  "top: 20%;" +
+  "width:90%;" +
+  "height:" + 40 * widthK + "px;" +
+  "font-size:" + 34 * widthK + "px;" +
+  "margin: auto;" +
+  "left: 5%;" +
+  "color: #353340;" +
+  "text-align: center;" +
+  "}",
+
+  authFingerPrintLogo: ".auth-fingerprint-logo" +
+  "{" +
+  "position: relative;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "top: 5%;" +
+  "width:" + 345 * widthK + "px;" +
+  "height:" + 125 * widthK + "px;" +
+  "background-image: url(resources/icons/icon/click_logo.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: contain;" +
+  "background-position-x: center;" +
+  "}",
+
+  authFingerPrintIcon: ".auth-fingerprint-icon" +
+  "{" +
+  "position: relative;" +
+  "margin-right: auto;" +
+  "margin-left: auto;" +
+  "top: 31%;" +
+  "width:" + 315 * widthK + "px;" +
+  "height:" + 315 * widthK + "px;" +
+  "background-image: url(resources/gifs/auth/wait.gif);" +
+  "background-repeat: no-repeat;" +
+  "background-size: cover;" +
+  "background-position-x: center;" +
+  "}",
+
+  authFingerPrintErrorText: ".auth-fingerprint-errortext" +
+  "{" +
+  "position: relative;" +
+  "color: #FF544A;" +
+  "width: 80%;" +
+  "text-align: center;" +
+  "top:" + 425 * widthK + "px" + "!important;" +
+  "font-size:" + 36 * widthK + "px;" +
+  "opacity: 0;" +
+  "height: " + 240 * heightK + "px;" +
+  "overflow-y: auto;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "}",
+
+  authFingerPrintErrorTextStart: ".auth-fingerprint-errortext-start " +
+  "{" +
+  "-webkit-transition: 0.7s;" +
+  "-webkit-transition-delay: 0.8s;" +
+  "transition: 0.7s;" +
+  "transition-delay: 0.8s;" +
+  "top:" + 389 * widthK + "px" + "!important;" +
+  "opacity: 1 !important;" +
+  "}",
+
+  authFingerPrintErrorTextStop: ".auth-fingerprint-errortext-stop " +
+  "{" +
+  "-webkit-transition: 0.7s;" +
+  "transition: 0.7s;" +
+  "top:" + 401 * widthK + "px" + "!important;" +
+  "opacity: 0 !important;" +
+  "}",
+
+
   authorizationFlexContainer: ".authorization-flex-container" +
   "{" +
   "position: absolute;" +
@@ -1660,7 +1806,7 @@ var css = {
   "background-image: url(resources/icons/toolbar/bell.png);" +
   "width:" + 100 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
-  "background-size: 40%;" +
+  "background-size: 50%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "right:" + 14 * widthK + "px;" +
@@ -1904,10 +2050,11 @@ var css = {
   "border-radius:" + 14 * widthK + "px;" +
   "background-size: cover;" +
   "color: white;" +
-  "-webkit-box-shadow: " + 9 * widthK + "px " + 9 * widthK + "px " + 29.4 * widthK + "px " + "rgba(0,0,0, 0.08);" +
-  "-moz-box-shadow: " + 9 * widthK + "px " + 9 * widthK + "px " + 29.4 * widthK + "px " + "rgba(0,0,0, 0.08);" +
-  "box-shadow: " + 9 * widthK + "px " + 9 * widthK + "px " + 29.4 * widthK + "px " + "rgba(0,0,0, 0.08);" +
+  "-webkit-box-shadow: " + "0px " + 5 * widthK + "px " + 60 * widthK + "px " + 4 * widthK + "px " + "rgba(86, 93, 106, 0.29);" +
+  "-moz-box-shadow: " + "0px " + 5 * widthK + "px " + 60 * widthK + "px " + 4 * widthK + "px " + "rgba(86, 93, 106, 0.29);" +
+  "box-shadow: " + "0px " + 5 * widthK + "px " + 60 * widthK + "px " + 4 * widthK + "px " + "rgba(86, 93, 106, 0.29);" +
   "background-color: #BDC7D0;" +
+  "background-repeat: no-repeat;" +
   "}",
 
   invoiceCardPartOne: ".invoice-card-part-one " +
@@ -2805,6 +2952,14 @@ var css = {
   "border-bottom: 1px solid #e8e8e8;" +
   "}",
 
+  InPlacetitleBottomBorder: ".inplace-title-bottom-border " +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "bottom: 0%;" +
+  "border-bottom: 1px solid #e8e8e8;" +
+  "}",
+
   titleTopBorder: ".title-top-border " +
   "{" +
   "position: absolute;" +
@@ -3431,6 +3586,19 @@ var css = {
   "left:" + 30 * widthK + "px;" +
   "height:" + 89 * widthK + "px;" +
   "border-bottom:" + 1 + "px solid #e8e8e8;" +
+  "z-index: 1000002;" +
+  "}",
+
+  viewInfoBodyContainer: ".view-info-body-container " +
+  "{" +
+  "position: absolute;" +
+  "bottom: 0;" +
+  "top:" + 89 * widthK + "px;" +
+  "width: 100%;" +
+  "border-bottom:" + 1 + "px solid #e8e8e8;" +
+  "overflow-y: scroll;" +
+  "-webkit-overflow-scrolling: touch;" +
+  "overflow-x: hidden;" +
   "}",
 
   viewInfoBackButton: ".view-info-back-button " +
@@ -3455,8 +3623,8 @@ var css = {
   "right:" + 30 * widthK + "px;" +
   "left:" + 30 * widthK + "px;" +
   "height:" + 190 * widthK + "px;" +
-  "top:" + 89 * widthK + "px;" +
-  "border-bottom:" + 1 + "px solid #f4f4f4;" +
+  // "top:" + 89 * widthK + "px;" +
+  // "border-bottom:" + 1 + "px solid #f4f4f4;" +
   "}",
 
   viewInfoCardBalanceCurrencyContainer: ".view-info-card-balance-currency-container " +
@@ -3535,19 +3703,19 @@ var css = {
   "right:" + 30 * widthK + "px;" +
   "left:" + 30 * widthK + "px;" +
   "height:" + 125 * widthK + "px;" +
-  "top:" + 280 * widthK + "px;" +
+  "top:" + 190 * widthK + "px;" +
   "border-bottom:" + 1 + "px solid #f4f4f4;" +
   "}",
 
   viewInfoReportsContainer: ".view-info-reports-container " +
   "{" +
   "position: absolute;" +
-  "right:" + 30 * widthK + "px;" +
-  "left:" + 30 * widthK + "px;" +
+  "left: 0;" +
+  "width: 100%;" +
   "height:" + 125 * widthK + "px;" +
-  "top:" + 280 * widthK + "px;" +
-  //"top:" + 408 * widthK + "px;" +
-  "border-bottom:" + 1 + "px solid #f4f4f4;" +
+  "top:" + 190 * widthK + "px;" +
+  "background-color: #ffffff;" +
+  "z-index: 100;" +
   "}",
 
   viewInfoBagIcon: ".view-info-bag-icon " +
@@ -3608,7 +3776,7 @@ var css = {
   "position: absolute;" +
   "width: 20%;" +
   "height: 80%;" +
-  "right: -5%;" +
+  "right: -1%;" +
   "top: 12%;" +
   "background-image: url(resources/icons/ViewInfo/open.png);" +
   "background-repeat: no-repeat;" +
@@ -3621,7 +3789,7 @@ var css = {
   "position: absolute;" +
   "width: 20%;" +
   "height: 70%;" +
-  "left: -1%;" +
+  "left: 3%;" +
   "top: 15%;" +
   "background-image: url(resources/icons/ViewInfo/myreports.png);" +
   "background-repeat: no-repeat;" +
@@ -3645,11 +3813,29 @@ var css = {
   "position: absolute;" +
   "width: 36%;" +
   "height: 70%;" +
-  "left: 12%;" +
+  "left: 14%;" +
   "top: 10%;" +
   "text-align: center;" +
   "font-size:" + 29 * widthK + "px;" +
   "color: #8b8b8b;" +
+  "}",
+
+  viewInfoReportTitleBorderTop: ".view-info-reports-title-border-top " +
+  "{" +
+  "position: absolute;" +
+  "width: 90%;" +
+  "left: 5%;" +
+  "bottom: 0%;" +
+  "border-bottom:" + 1 + "px solid #e8e8e8;" +
+  "}",
+
+  viewInfoReportTitleBorderBottom: ".view-info-reports-title-border-bottom " +
+  "{" +
+  "position: absolute;" +
+  "width: 90%;" +
+  "left: 5%;" +
+  "top: 0%;" +
+  "border-top:" + 1 + "px solid #e8e8e8;" +
   "}",
 
   viewInfoOperationsContainer: ".view-info-operations-container " +
@@ -3657,18 +3843,18 @@ var css = {
   "position: absolute;" +
   "width: 100%;" +
   //"height:" + 710 * widthK + "px;" +
-  "top:" + 468 * widthK + "px;" +
+  "top:" + 378 * widthK + "px;" +
   "bottom:" + 0 * widthK + "px;" +
   //"top:" + 600 * widthK + "px;" +
-  "overflow-y: scroll;" +
-  "-webkit-overflow-scrolling: touch;" +
-  "overflow-x: hidden;" +
+  // "overflow-y: scroll;" +
+  // "-webkit-overflow-scrolling: touch;" +
+  // "overflow-x: hidden;" +
   "font-size:" + 23 * widthK + "px;" +
   "}",
 
   viewInfoOperationContainer: ".view-info-operation-container " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "width: 100%;" +
   "height:" + 200 * widthK + "px;" +
   "z-index: 999999;" +
@@ -3708,10 +3894,11 @@ var css = {
   "width: 100%;" +
   "height:" + 68 * widthK + "px;" +
   //"top:" + 535 * widthK + "px;" +
-  "top:" + 400 * widthK + "px;" +
+  "top:" + 310 * widthK + "px;" +
   "z-index:99;" +
   "background-color: white;" +
   "box-shadow:" + 0 * widthK + "px " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + "rgb(37, 36, 36);" +
+  "-webkit-box-shadow:" + 0 * widthK + "px " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + "rgb(37, 36, 36);" +
   "}",
 
   viewInfoOperationsLabel: ".view-info-operations-label " +
@@ -5709,9 +5896,9 @@ var css = {
   "border-radius:" + 10 * widthK + "px;" +
   "background-size: cover;" +
   "color: white;" +
-  //"-webkit-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
-  //"-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
-  //"box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
+  "-webkit-box-shadow: " + "0px " + 5 * widthK + "px " + 60 * widthK + "px " + 4 * widthK + "px " + "rgba(86, 93, 106, 0.29);" +
+  "-moz-box-shadow: " + "0px " + 5 * widthK + "px " + 60 * widthK + "px " + 4 * widthK + "px " + "rgba(86, 93, 106, 0.29);" +
+  "box-shadow: " + "0px " + 5 * widthK + "px " + 60 * widthK + "px " + 4 * widthK + "px " + "rgba(86, 93, 106, 0.29);" +
   //"margin-left: 20px;" +
   "float: left;" +
   "margin: " + 7 * widthK + "px;" +
@@ -6423,6 +6610,7 @@ var css = {
   transferNewFormContainer: ".transfer-new-form-container" +
   "{" +
   "position: absolute;" +
+  "overflow: hidden;" +
   "margin-top:" + 155 * widthK + "px;" +
   "height:" + (1232 * heightK - 241 * widthK) + "px;" +
   "width: 100%;" +
@@ -6649,7 +6837,6 @@ var css = {
   "{" +
   // "left:" + (360 * widthK - 296 * heightK) + "px;" +
   "position: relative;" +
-  "overflow: hidden;" +
   "height:" + 230 * heightK + "px;" +
   "width: 100%;" +
   "display: inline-block;" +
@@ -6669,6 +6856,9 @@ var css = {
   "-webkit-border-radius:" + 14 * heightK + "px;" +
   "-moz-border-radius:" + 14 * heightK + "px;" +
   "border-radius:" + 14 * heightK + "px;" +
+  "-webkit-box-shadow: " + "0px " + 5 * widthK + "px " + 60 * widthK + "px " + 4 * widthK + "px " + "rgba(86, 93, 106, 0.29);" +
+  "-moz-box-shadow: " + "0px " + 5 * widthK + "px " + 60 * widthK + "px " + 4 * widthK + "px " + "rgba(86, 93, 106, 0.29);" +
+  "box-shadow: " + "0px " + 5 * widthK + "px " + 60 * widthK + "px " + 4 * widthK + "px " + "rgba(86, 93, 106, 0.29);" +
   "background-size: cover;" +
   "color: white;" +
   "}",
@@ -8249,7 +8439,7 @@ var css = {
   "opacity: 0.95;" +
   "height: 100%;" +
   "width: 100%;" +
-  "background-color: #353340;" +
+  "background-color: rgba(255,255,255,0.95);" +
   // "display: none;" +
   "z-index: 999999999;" +
   "}",
@@ -8257,28 +8447,25 @@ var css = {
   unsuccessOperationSuccessMessage: ".unsuccess-operation-success-message" +
   "{" +
   "position: relative;" +
-  "color: #ff3c5e;" +
-  "width:" + 640 * widthK + "px;" +
-  "height:" + 380 * heightK + "px;" +
-  "font-size:" + 30 * widthK + "px;" +
+  "color: #757389;" +
+  "width:" + 500 * widthK + "px;" +
+  "height:" + 240 * heightK + "px;" +
+  "font-size:" + 36 * widthK + "px;" +
   "text-align: center;" +
-  "margin-left: auto;" +
-  "margin-right: auto;" +
-  "margin-top: 0;" +
-  "margin-bottom: 0;" +
-  "top:" + 340 * widthK + "px;" +
+  "margin: auto;" +
+  "top:" + 262 * widthK + "px;" +
   "overflow-y: auto;" +
   "word-wrap: break-word;" +
   "}",
 
   unsuccessNextButtonInnerContainer: ".unsuccess-next-button-inner-container" +
   "{" +
-  "top: 89%;" +
-  "height: 6%;" +
+  "bottom: 10%;" +
+  "height: " + 74 * widthK + "px;" +
   "margin: 0 auto 0 auto;" +
-  "background-color: #027fe4;" +
+  "background-color: #EB2A48;" +
   "padding: 0;" +
-  "font-size: " + 38 * widthK + "px;" +
+  "font-size: " + 32 * widthK + "px;" +
   "font-family: SFUIDisplay-Light;" +
   "border: none;" +
   "outline: none;" +
@@ -8306,13 +8493,13 @@ var css = {
   "position: relative;" +
   "margin-right: auto;" +
   "margin-left: auto;" +
-  "top:" + 250 * widthK + "px;" +
-  "width:" + 270 * widthK + "px;" +
-  "height:" + 250 * widthK + "px;" +
+  "top:" + 232 * widthK + "px;" +
+  "width:" + 400 * widthK + "px;" +
+  "height:" + 400 * widthK + "px;" +
   // "left:" + 243 * widthK + "px;" +
-  "background-image: url(resources/icons/ViewSuccessUnsuccess/fail.png);" +
+  "background-image: url(resources/icons/ViewSuccessUnsuccess/fail2.png);" +
   "background-repeat: no-repeat;" +
-  "background-size: 93%;" +
+  "background-size: 75%;" +
   "background-position: center;" +
   "}",
 
@@ -15761,7 +15948,7 @@ var css = {
   viewNewsBlockImage: ".view-news-block-image " +
   "{" +
   "position: relative;" +
-  "background-image: url('resources/icons/ViewNews/news.png');" +
+  "background-image: url('resources/icons/ViewNews/loading_blue2.gif');" +
   "background-repeat: no-repeat;" +
   "background-position-y: bottom;" +
   "background-size: 100%;" +
@@ -16890,7 +17077,7 @@ var css = {
   serviceInfoOptions: ".serviceinfo-options" +
   "{" +
   "width: 100%;" +
-  "height: 85%;" +
+  "height: " + 1015 * heightK + "px; " +
   "overflow: auto;" +
   //"border-bottom: 1px solid lightgray;" +
   "}",
@@ -17469,6 +17656,7 @@ var css = {
   "bottom:0; " +
   "z-index:3; " +
   "overflow:hidden; " +
+  // "overflow-y: auto; " +
   "background-color: white; " +
   "}",
 
@@ -17476,10 +17664,9 @@ var css = {
   inPlacePayCategoryInnerContainer: ".inplace-pay-category-inner-container" +
   "{" +
   "position: absolute;" +
-  // "height:100%; " +
+  "height:90%; " +
   "width: 100%; " +
-  "top: 0; " +
-  // "top:15%; " +
+  "top: 9%; " +
   "bottom:0; " +
   "overflow-y: auto; " +
   "overflow-x: hidden; " +
@@ -17489,9 +17676,9 @@ var css = {
   inPlacePayServiceInnerContainer: ".inplace-pay-service-inner-container" +
   "{" +
   "position: absolute;" +
-  "height:85%; " +
+  "height: 89%; " +
   "width: 100%; " +
-  "top:12%; " +
+  "top: 9%; " +
   "bottom:0; " +
   "overflow-y: auto; " +
   "overflow-x: hidden; " +
@@ -17563,7 +17750,7 @@ var css = {
   inPlacePaySearchContainer: ".inplace-pay-search-container" +
   "{" +
   "position: absolute;" +
-  "height:12%; " +
+  "height:10%; " +
   "width: 100%; " +
   "background-color: white; " +
   "z-index: 99999;" +
@@ -17574,8 +17761,8 @@ var css = {
   "{" +
   "position: relative;" +
   "left: 10%;" +
-  "width: 79.5%;" +
-  "height: 74.5%;" +
+  "width:" + 572 * widthK + "px; " +
+  "height:" + 100 * widthK + "px; " +
   "border-bottom:  " + 3 * widthK + "px solid #e8e8e8;" +
   "color: white;" +
   // "top: 8%;" +
@@ -17586,7 +17773,7 @@ var css = {
   "border: none;" +
   "outline: none;" +
   "position: relative;" +
-  "top: 25%;" +
+  "top: 22%;" +
   "padding: 0;" +
   "margin: 0;" +
   // "margin-left: 3%;" +
@@ -17615,7 +17802,22 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 50%;" +
   "background-position: center;" +
-  "top: 22%;" +
+  "top: 19%;" +
+  "}",
+
+  inPlacePaySearchRemoveIcon: ".inplace-pay-search-remove-icon" +
+  "{" +
+  "position: relative;" +
+  "float: right;" +
+  "right: -4%;" +
+  "background-image: url(resources/icons/ViewInPlacePay/search_remove.png);" +
+  "width:" + 76 * widthK + "px;" +
+  "height:" + 87 * widthK + "px;" +
+  "-webkit-background-size: 50%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 45%;" +
+  "background-position: center;" +
+  "top: 19%;" +
   "}",
 
   // View InPlacePayService
@@ -17623,11 +17825,10 @@ var css = {
   inPlacePayServiceContainer: ".inplace-pay-service-container" +
   "{" +
   "position: relative;" +
-  "height:" + 230 * widthK + "px; " +
+  "height:" + 210 * widthK + "px; " +
   "width: 90%;" +
   "left: 5%;" +
   "top:" + -4 * widthK + "px; " +
-  "border-top:" + 0.5 + "px solid gainsboro;" +
   "background-color: transparent;" +
   "z-index:9999999;" +
   "}",
@@ -17643,15 +17844,16 @@ var css = {
   "float: left;" +
   "left: 1%;" +
   "top:" + 31 * widthK + "px; " +
-  "background-size: 100%;" +
+  "background-size: 50%;" +
+  "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
   "}",
 
   inPlacePayServiceInfo: ".inplace-pay-service-info" +
   "{" +
   "position: absolute;" +
-  "height:" + 190 * widthK + "px; " +
-  "width: 70%;" +
-  "left: 38%;" +
+  "height:" + 170 * widthK + "px; " +
+  "width: 65%;" +
+  "left: 35%;" +
   "top: 9%;" +
   // "float: left;" +
   "background-color: transparent;" +
@@ -17660,7 +17862,7 @@ var css = {
   inPlacePayServiceNameField: ".inplace-pay-service-name-field" +
   "{" +
   "position: relative;" +
-  "top: " + 20 * widthK + "px; " +
+  // "top: " + 20 * widthK + "px; " +
   // "left: 18%;" +
   "text-align: left;" +
   "font-size:" + 36 * widthK + "px; " +
@@ -17673,20 +17875,48 @@ var css = {
   inPlacePayServiceAddressField: ".inplace-pay-service-address-field" +
   "{" +
   "position: relative;" +
-  "top: " + 28 * widthK + "px; " +
-  "text-align: left;" +
+  "top: " + 8 * widthK + "px; " +
+  "text-align: justify;" +
   "font-size:" + 24 * widthK + "px; " +
   "color: #a9abaf;" +
-  // "height: " + 65 * widthK + "px; " +
+  "max-height: " + 90 * widthK + "px; " +
   "width: 70%;" +
   "overflow: hidden;" +
-  "text-overflow: ellipsis;" +
+  // "text-overflow: ellipsis;" +
+  "margin-right: " + -25 * widthK + "px; " +
+  "padding-right: " + 20 * widthK + "px; " +
+  "}",
+
+  inPlacePayServiceAddressFieldBefore: ".inplace-pay-service-address-field:before" +
+  "{" +
+  /* points in the end */
+  "content: '...';" +
+  /* absolute position */
+  "position: absolute;" +
+  /* set position to right bottom corner of block */
+  "right: 0;" +
+  "bottom: 0;" +
+  "}",
+
+  inPlacePayServiceAddressFieldAfter: ".inplace-pay-service-address-field:after" +
+  "{" +
+  /* points in the end */
+  "content: '';" +
+  /* absolute position */
+  "position: absolute;" +
+  /* set position to right bottom corner of text */
+  "right: 0;" +
+  "width: " + 25 * widthK + "px; " +
+  /* set width and height */
+  "height: " + 25 * widthK + "px; " +
+  "margin-top: " + 5 * widthK + "px; " +
+  "background: white;" +
   "}",
 
   inPlacePayServiceDistanceContainer: ".inplace-pay-service-distance-container" +
   "{" +
   "position: relative;" +
-  "top: " + 30 * widthK + "px; " +
+  "top: " + 10 * widthK + "px; " +
   "left: " + 2 * widthK + "px; " +
   "text-align: left;" +
   // "font-size:" + 26 * widthK + "px; " +

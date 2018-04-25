@@ -52,6 +52,7 @@
 </component-notification>
 
 <div id="alertTags"></div>
+<div id="loaderDots" class="loader-dots"></div>
 <div id="riotTags" class="riotTags">
 </div>
 
@@ -192,17 +193,15 @@
   var tempOpts;
   function onBackKeyDown() {
 
-    for (var i in window.common.alert.tags){
+    for (var i in window.common.alert.tags) {
       if (window.common.alert.isShown(i)) {
         return;
       }
     }
 
-    console.log("OPTS in ONBackKeyDown", onBackParams.opts)
-
-    if (device.platform != 'BrowserStand') {
-      SpinnerPlugin.activityStop();
-    }
+    console.log("OPTS in ONBackKeyDown", onBackParams.opts);
+    window.stopSpinner();
+    window.stopLoaderDots();
 
     if (window.checkShowingComponent) {
       console.log('window.checkShowingComponent', window.checkShowingComponent)

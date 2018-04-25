@@ -39,7 +39,7 @@
 
     <div class="servicepage-second-dropdown-field" if="{hasFirstLevel && service.category_id!=11}"
          ontouchend="openDropDownTwo()" role="button" aria-label="{chosenFieldNameTwo}">
-      <p if="{formType==3 || formType==4 || formType==5}"
+      <p if="{formType==3 || formType==4 || formType==5 || formType==6}"
          class="servicepage-text-field servicepage-second-dropdown-field-text">
         {(service.options_title)?(service.options_title):("")}</p>
       <p class="servicepage-dropdown-text-field">{chosenFieldNameTwo}</p>
@@ -95,7 +95,7 @@
       <div class="servicepage-dropdown-icon"></div>
     </div>
 
-    <div hidden="{formType==5}"
+    <div hidden="{formType==5 || formType==6}"
          class="{servicepage-amount-field: !dropDownOn, servicepage-amount-field-two: dropDownOn}"
          id="amountField">
       <p id="amountFieldTitle" class="servicepage-text-field">{amountFieldTitle}</p>
@@ -169,13 +169,30 @@
         firstLevelArray[0])?(firstLevelArray[0].name):(""))}</p>
     </div>
     <div class="servicepage-dropdown-container">
-      <div class="servicepage-dropdown-variant" each="{i in firstLevelArray}" id="{i.id}" if="{formType==3}"
-           ontouchstart="onTouchStartOfDropdown()" ontouchend="onTouchEndOfDropdownTwo({i.id})">
-        <p id="text{i.id}" class="servicepage-dropdown-text-field" style="left: 8%">{i.name}</p>
+      <div class="servicepage-dropdown-variant" each="{i in firstLevelArray}" id="{i.id}"
+           if="{formType==3 || formType==5  || formType==6}"
+           ontouchstart="onTouchStartOfDropdown()" ontouchend="onTouchEndOfDropdownTwo({i.id})"
+           style="height: unset;">
+        <p id="text{i.id}" class="servicepage-dropdown-text-field" style="padding-left: 6%;
+            width: 88%;
+            word-wrap: break-word;
+            overflow: unset;
+            white-space: unset;
+            position: unset;
+            padding-top: {30 * widthK}px;
+            padding-bottom: {30 * widthK}px;">{i.name}</p>
       </div>
       <div class="servicepage-dropdown-variant" each="{i in firstLevelArray}" id="{i.type}" if="{formType==4}"
-           ontouchstart="onTouchStartOfDropdown()" ontouchend="onTouchEndOfDropdownTwo({i.type})">
-        <p id="text{i.type}" class="servicepage-dropdown-text-field" style="left: 8%">{i.name}</p>
+           ontouchstart="onTouchStartOfDropdown()" ontouchend="onTouchEndOfDropdownTwo({i.type})"
+           style="height: unset;">
+        <p id="text{i.type}" class="servicepage-dropdown-text-field" style="padding-left: 6%;
+            width: 88%;
+            word-wrap: break-word;
+            overflow: unset;
+            white-space: unset;
+            position: unset;
+            padding-top: {30 * widthK}px;
+            padding-bottom: {30 * widthK}px;">{i.name}</p>
       </div>
     </div>
   </div>
@@ -193,9 +210,23 @@
            ontouchstart="onTouchStartOfDropdownThree()" ontouchend="onTouchEndOfDropdownThree({i.id})">
         <p id="texttwo{i.id}" class="servicepage-dropdown-text-field" style="left: 8%">{i.name}</p>
       </div>
-      <div class="servicepage-dropdown-variant" each="{i in secondLevelArray}" id="{i.code}" if="{formType==4}"
-           ontouchstart="onTouchStartOfDropdownThree()" ontouchend="onTouchEndOfDropdownThree(this.id)">
-        <p id="texttwo{i.code}" class="servicepage-dropdown-text-field" style="left: 8%">{i.name}</p>
+      <div class="servicepage-dropdown-variant"
+           each="{i in secondLevelArray}"
+           id="{i.code}"
+           if="{formType==4}"
+           ontouchstart="onTouchStartOfDropdownThree()"
+           ontouchend="onTouchEndOfDropdownThree(this.id)"
+           style="height: unset;">
+        <p id="texttwo{i.code}" class="servicepage-dropdown-text-field"
+           style="padding-left: 6%;
+            width: 88%;
+            word-wrap: break-word;
+            overflow: unset;
+            white-space: unset;
+            position: unset;
+            padding-top: {30 * widthK}px;
+            padding-bottom: {30 * widthK}px;">
+          {i.name}</p>
       </div>
     </div>
   </div>
@@ -372,7 +403,7 @@
 
       if (!scope.service['amount_editable']) return;
 
-      if (scope.service.form_type != 5) {
+      if (scope.service.form_type != 5 && scope.service.form_type != 6) {
         if (amountForPayTransaction < scope.service.min_pay_limit) {
 
           if (from == 'sum' && amount.value.length != 0) {
@@ -412,7 +443,6 @@
         }
       }
 
-
       if (opts.mode == 'ADDAUTOPAY' && this.autoPayNameInput && this.autoPayNameInput.value.length < 1) {
         console.log("Введите название автоплатежа");
         scope.enterButtonEnabled = false;
@@ -446,8 +476,7 @@
         }
       }
 
-
-      if (scope.formType == 3 || scope.formType == 5) {
+      if (scope.formType == 3 || scope.formType == 5 || scope.formType == 6) {
 
         if (scope.hasSecondLevel)
           opts.communalParam = scope.chosenFieldParamIdThree;
@@ -457,8 +486,15 @@
         if (!opts.communalParam) {
           if (scope.hasSecondLevel)
             console.log("Выберите город и район");
-          else
+          else {
             console.log("Выберите район");
+            if (scope.formType == 6){
+              opts.communalParam = scope.chosenPrefixId;
+              scope.enterButtonEnabled = true;
+              scope.update(scope.enterButtonEnabled);
+              return;
+            }
+          }
 
           scope.enterButtonEnabled = false;
           scope.update(scope.enterButtonEnabled);
@@ -473,7 +509,7 @@
           scope.update(scope.enterButtonEnabled);
           return;
         }
-      } else if (scope.formType != 5) {
+      } else if (scope.formType != 5 && scope.formType != 6) {
 
         if (amountForPayTransaction < scope.service.min_pay_limit) {
           console.log("amount=", amountForPayTransaction);
@@ -1001,6 +1037,8 @@
 
       scope.fieldArray = scope.servicesParamsMapOne[opts.chosenServiceId];
 
+      console.log('field array filled:', JSON.stringify(scope.fieldArray));
+
       if (scope.service.disable_cache && modeOfApp.onlineMode && !modeOfApp.demoVersion) {
 
         window.api.call({
@@ -1421,7 +1459,7 @@
 
       if (Math.abs(servicePageTouchStartY - servicePageTouchEndY) <= 20 && Math.abs(servicePageTouchStartX - servicePageTouchEndX) <= 20) {
         this.blockFirstDropdownId.style.display = 'none';
-        if (scope.formType == 3) {
+        if (scope.formType == 3 || scope.formType == 5 || scope.formType == 6) {
           for (var i = 0; i < scope.firstLevelArray.length; i++) {
             if (scope.firstLevelArray[i].id == id) {
               scope.chosenFieldNameTwo = scope.firstLevelArray[i].name;
@@ -1649,8 +1687,13 @@
     scope.onTouchStartOfEnter = onTouchStartOfEnter = function () {
       event.stopPropagation();
 
-      if (this.enterButtonId && scope.enterButtonEnabled)
-        this.enterButtonId.style.webkitTransform = 'scale(0.8)'
+      if (this.enterButtonId && scope.enterButtonEnabled) {
+        this.enterButtonId.style.webkitTransform = 'scale(0.8)';
+      }
+
+      if (this.formTypeTwoBtnId) {
+        this.formTypeTwoBtnId.style.webkitTransform = 'scale(0.8)';
+      }
 
       enterStartY = event.changedTouches[0].pageY;
       enterStartX = event.changedTouches[0].pageX;
@@ -1750,6 +1793,13 @@
               console.log(ussdQuery)
             }
 
+            if (opts.formtype == 6 && ussdQuery){
+              ussdQuery = ussdQuery.replace('{option}', opts.chosenPrefixId);
+              ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
+              ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
+              console.log(ussdQuery);
+            }
+
             if (ussdQuery === null) {
               scope.clickPinError = false;
               scope.errorNote = ("Сервис временно недоступен!");
@@ -1766,7 +1816,7 @@
 
             console.log('USSD', ussdQuery, opts)
 
-            console.log(ussdQuery)
+            console.log(ussdQuery + "%23")
 
             phonedialer.dial(
 //              "*880*1*" + opts.id + "*" + parseInt(amountForPayTransaction) + "%23",
@@ -1913,6 +1963,10 @@
 
       enterEndY = event.changedTouches[0].pageY;
       enterEndX = event.changedTouches[0].pageX;
+
+      if (this.formTypeTwoBtnId) {
+        this.formTypeTwoBtnId.style.webkitTransform = 'scale(1)';
+      }
 
       if (Math.abs(enterStartY - enterEndY) <= 20 && Math.abs(enterStartX - enterEndX) <= 20) {
 

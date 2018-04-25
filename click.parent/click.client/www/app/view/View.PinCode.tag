@@ -78,13 +78,15 @@
     if (opts[0] == 'view-sms') {
       fromRegistration = true;
       scope.checkPin = true;
-      scope.nowCheckPin = false
+      scope.nowCheckPin = false;
+      scope.backbuttoncheck = true;
       console.log("ASD")
     } else if (opts[0] == 'view-security-settings') {
       fromSettings = true;
       fromAuthorization = false;
       fromRegistration = false;
       fromPayOrTransfer = false;
+      scope.backbuttoncheck = true;
     } else if (opts[0] == 'view-pay-confirm' || opts[0] == 'view-transfer-submit') {
       scope.nowCheckPinTitle = window.languages.ViewPinCodeConfirmPayTransferLabel;
       scope.backbuttoncheck = true;
@@ -96,7 +98,8 @@
     } else if (opts[0] == 'view-authorization') {
       fromAuthorization = true;
       scope.checkPin = true;
-      scope.nowCheckPin = false
+      scope.nowCheckPin = false;
+      scope.backbuttoncheck = true;
       scope.labelOfTitle = "Для удобства пользования, просим установить новый CLICK-PIN из 5 цифр!"
     } else if (opts[0] == 'view-click-pass') {
       console.log('pin-code for view-click-pass');
@@ -258,11 +261,6 @@
           console.log('opts on backkeydown', opts[1]);
           onBackParams.opts = opts[1];
         }
-//        if (toClickPass){
-//          onBackParams.opts = {
-//            pinChecked: false,
-//          };
-//        }
         onBackKeyDown();
       }
     };
@@ -654,12 +652,10 @@
             localStorage.setItem('pinForStand', hex_md5(pin));
             scope.update();
 
-            window.common.alert.show("componentAlertId", {
+            window.common.alert.show("componentSuccessId", {
               parent: scope,
-              clickpinerror: scope.clickPinError,
+              operationmessage: scope.errorNote,
               viewpage: scope.viewpage,
-              errornote: scope.errorNote,
-              errorcode: scope.errorCode,
               step_amount: scope.stepToBack
             });
 

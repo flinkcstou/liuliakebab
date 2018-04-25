@@ -13,8 +13,11 @@
         <p class="sms-text-field-one">{window.languages.ViewSmsFieldOne}</p>
         <input class="sms-phone-input" value="{confirmSms}" ontouchend="onTouchendSmsNumber()" disabled/>
         <div id="inputCaretSms" class="sms-caret"></div>
-        <div class="sms-timer" ontouchend="touchEndResend()" ontouchstart="touchStartResend()">{time}
-          <div class="sms-resend-icon" role="button" aria-label="{window.languages.ViewSmsAriaLabelResendSms}"></div>
+        <div class="sms-timer">{time}
+          <div class="sms-resend-icon" role="button"
+               if="{showResendButton}"
+               aria-label="{window.languages.ViewSmsAriaLabelResendSms}"
+               ontouchend="touchEndResend()" ontouchstart="touchStartResend()"></div>
         </div>
       </div>
       <div class="sms-text-field">
@@ -47,6 +50,7 @@
 
     window.saveHistory('view-sms', opts);
     scope.confirmSms = '';
+    scope.showResendButton = false;
 
     this.on('mount', function () {
 
@@ -238,6 +242,7 @@
       else
         scope.time = minutes + ':' + seconds;
       if (minutes == 0 && seconds == 0) {
+        scope.showResendButton = true;
         scope.messageTitle = window.languages.ViewSmsMessageTitle;
         scope.messageTitleTwo = window.languages.ViewSmsMessageTitleTwo;
         scope.update();
@@ -272,6 +277,7 @@
         seconds = 59;
         minutes--;
       }
+      console.log('tic tac', minutes, seconds);
       scope.update();
     }
     var time = setInterval(timer, 1000);
@@ -350,12 +356,14 @@
               localStorage.setItem('confirm_needed', false);
               if (result[0][0].client_exists == 1) {
                 localStorage.setItem('click_client_registered', true);
+                history.arrayOfHistory.pop();
                 this.riotTags.innerHTML = "<view-authorization>";
                 riot.mount('view-authorization');
                 scope.unmount()
               }
               else {
                 localStorage.setItem('click_client_registered', false);
+                history.arrayOfHistory.pop();
                 riotTags.innerHTML = "<view-pin-code>";
                 riot.mount('view-pin-code', ['view-sms']);
                 scope.unmount()
@@ -410,7 +418,7 @@
           clickpinerror: scope.clickPinError,
           errornote: scope.errorNote
         });
-
+        scope.showResendButton = false;
         scope.update();
         resendSms();
       }
@@ -438,6 +446,11 @@
           console.error(data);
         }
       })
+
+      minutes = 0;
+      seconds = 60;
+
+      time = setInterval(timer, 1000);
     }
 
 

@@ -239,14 +239,20 @@
 
 
     try {
-      if (opts.cost) {
-        scope.amountTextCopy = window.amountTransform(window.inputVerification.spaceDeleter(opts.amountText) * opts.cost);
+      if (opts.cost > 1) {
+        scope.fullAmount = (opts.amountText * opts.cost);
+        scope.intPartAmount = Math.floor(scope.fullAmount).toFixed(0).toString();
+        scope.fracPartAmount = window.getFractionalPart(scope.fullAmount.toString());
+        scope.amountTextCopy = window.amountTransform(window.inputVerification.spaceDeleter(scope.intPartAmount)) + scope.fracPartAmount;
       }
       else {
-        scope.amountTextCopy = window.amountTransform(opts.amountText);
+        scope.intPartAmount = Math.floor(opts.amountText).toFixed(0).toString();
+        scope.fracPartAmount = window.getFractionalPart(opts.amountText.toString());
+        scope.amountTextCopy = window.amountTransform(scope.intPartAmount) + scope.fracPartAmount;
       }
     }
     catch (e) {
+      console.error(e);
       scope.amountTextCopy = opts.amountText;
     }
 
@@ -537,7 +543,9 @@
       sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       phoneNumber = localStorage.getItem('click_client_phoneNumber');
       serviceId = opts.chosenServiceId;
-      amount = inputVerification.spaceDeleter(opts.amountText.toString());
+      fracAmount = window.getFractionalPart(opts.amountText.toString());
+      intAmount = Math.floor(opts.amountText.replace(' ', '').toString()).toFixed(0).toString();
+      amount = inputVerification.spaceDeleter(intAmount) + fracAmount;
 
       // friend help or own payment
 
@@ -567,7 +575,7 @@
           "transaction_id": opts.transactionId
         };
       }
-      else if (opts.formtype == 3 || opts.formtype == 5) {
+      else if (opts.formtype == 3 || opts.formtype == 5 || opts.formtype == 6) {
         payment_data = {
           "param": opts.firstFieldId,
           "value": firstFieldtext,
@@ -595,6 +603,8 @@
       }
 
       if (opts.mode != 'ADDAUTOPAY') {
+
+//        console.log("paymentData = ", payment_data);
 
         paymentFunction(payment_data);
 
@@ -787,15 +797,7 @@
 
       scope.update();
 
-      if (device.platform != 'BrowserStand') {
-        var options = {dimBackground: true};
-
-        SpinnerPlugin.activityStart(languages.Downloading, options, function () {
-          console.log("Spinner start in pay confirm");
-        }, function () {
-          console.log("Spinner stop in pay confirm");
-        });
-      }
+      window.startSpinner();
 
       if (scope.autoPayData) {
         if (scope.autoPayData.autopay_type == 2) {

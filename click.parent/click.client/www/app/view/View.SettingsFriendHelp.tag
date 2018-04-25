@@ -76,7 +76,10 @@
         scope.arrayOfPhoneNumbers.push(personObj)
       }
 
-      if (typeof scope.arrayOfPhoneNumbers === 'undefined' || scope.arrayOfPhoneNumbers.length < 1) return
+      if (typeof scope.arrayOfPhoneNumbers === 'undefined' || scope.arrayOfPhoneNumbers.length < 1) {
+        window.stopSpinner();
+        return;
+      }
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
       var sessionKey = info.session_key;
@@ -150,7 +153,7 @@
           timeOutTimer = setTimeout(function () {
             window.writeLog({
               reason: 'Timeout',
-              method:'check.contact.list',
+              method: 'check.contact.list',
             });
             window.common.alert.show("componentAlertId", {
               parent: scope,
@@ -169,6 +172,7 @@
     }
 
     function onError(contactError) {
+      window.stopSpinner();
       console.log('Clearing timer emergencyStop', timeOutTimer);
       window.clearTimeout(timeOutTimer);
       console.log('error', contactError)
@@ -298,13 +302,14 @@
                 onBackParams.opts = JSON.parse(JSON.stringify(opts));
                 onBackKeyDown();
               }
+              return;
             }
           }
 
         }
       }
 
-    }
+    };
 
     var delButtonStartX, delButtonEndX, delButtonStartY, delButtonEndY;
 

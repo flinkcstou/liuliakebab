@@ -431,6 +431,10 @@
                 }
               }
               if (scope.transferType === 2) {
+
+                if (issuerMaxLimit === 0)
+                  issuerMaxLimit = 99999999999;
+
                 scope.maxLimit = issuerMaxLimit;
                 scope.minLimit = issuerMinLimit;
                 if (scope.sumForTransfer > 0) {

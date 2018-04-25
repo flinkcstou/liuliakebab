@@ -1,67 +1,68 @@
 <view-authorization class="view-authorization riot-tags-main-container">
 
-  <div if="{!firstEnter}" class="authorization-flex-container">
-    <div class="authorization-unchangable-container">
-      <div class="authorization-enter-pin-label">{window.languages.ViewAuthorizationClickPinLabel}</div>
-      <div class="authorization-pin-container">
-        <div class="authorization-pin-field">
-          <div id="circleOne" class="authorization-pin-circles authorization-pin-one"></div>
-          <div id="circleTwo" class="authorization-pin-circles authorization-pin-two"></div>
-          <div id="circleThree" class="authorization-pin-circles authorization-pin-three"></div>
-          <div id="circleFour" class="authorization-pin-circles authorization-pin-four"></div>
-          <div id="circleFive" class="authorization-pin-circles authorization-pin-five"></div>
+  <div class="view-authorization-inner-container" if="{!fingerprintMode}">
+
+    <div if="{!firstEnter}" class="authorization-flex-container">
+      <div class="authorization-unchangable-container">
+        <div class="authorization-enter-pin-label">{window.languages.ViewAuthorizationClickPinLabel}</div>
+        <div class="authorization-pin-container">
+          <div class="authorization-pin-field">
+            <div id="circleOne" class="authorization-pin-circles authorization-pin-one"></div>
+            <div id="circleTwo" class="authorization-pin-circles authorization-pin-two"></div>
+            <div id="circleThree" class="authorization-pin-circles authorization-pin-three"></div>
+            <div id="circleFour" class="authorization-pin-circles authorization-pin-four"></div>
+            <div id="circleFive" class="authorization-pin-circles authorization-pin-five"></div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div if="{firstEnter}" class="authorization-flex-container">
-    <div class="authorization-unchangable-container">
-      <div class="authorization-enter-pin-label">
-        {window.languages.ViewAuthorizationClickPinLabel}
+    <div if="{firstEnter}" class="authorization-flex-container">
+      <div class="authorization-unchangable-container">
+        <div class="authorization-enter-pin-label">
+          {window.languages.ViewAuthorizationClickPinLabel}
+        </div>
+        <div class="authorization-pin-input-first-enter-container" id="firstPinContainerId">
+          <input autofocus="true"
+                 type="password"
+                 class="authorization-pin-input-first-enter"
+                 onfocus="focusColor()"
+                 onblur="inputPinBlur()"
+                 id="firstPinInputId"/>
+          <div id="eyeButtonId" class="authorization-input-eye-button" role="button"
+               aria-label="{window.languages.ViewAuthorizationFirstEnterAriaLabelShowPass}"
+               onclick="eyeClicked()"></div>
+        </div>
       </div>
-      <div class="authorization-pin-input-first-enter-container" id="firstPinContainerId">
-        <input autofocus="true"
-               type="password"
-               class="authorization-pin-input-first-enter"
-               onfocus="focusColor()"
-               onblur="inputPinBlur()"
-               id="firstPinInputId"/>
-        <div id="eyeButtonId" class="authorization-input-eye-button" role="button"
-             aria-label="{window.languages.ViewAuthorizationFirstEnterAriaLabelShowPass}"
-             onclick="eyeClicked()"></div>
+    </div>
+
+    <div id="authorizationButtonsContainerId" class="authorization-buttons-container">
+
+
+      <div id="forgetPinButtonId" class="authorization-button-forget-pin" ontouchstart="pinResetTouchStart()"
+           ontouchend="pinResetTouchEnd()">
+        {window.languages.ViewAuthorizationForgetPinLabel}
+      </div>
+      <div class="hor-line-border">
+      </div>
+      <div id="resetLocalButtonId" class="authorization-button-registration"
+           ontouchstart="resetLocalStorageTouchStart()"
+           ontouchend="resetLocalStorageTouchEnd()">
+        {window.languages.ViewAuthorizationResetLocalStorageLabel}
       </div>
     </div>
-  </div>
 
-  <div id="authorizationButtonsContainerId" class="authorization-buttons-container">
-
-
-    <div id="forgetPinButtonId" class="authorization-button-forget-pin" ontouchstart="pinResetTouchStart()"
-         ontouchend="pinResetTouchEnd()">
-      {window.languages.ViewAuthorizationForgetPinLabel}
-    </div>
-    <div class="hor-line-border">
-    </div>
-    <div id="resetLocalButtonId" class="authorization-button-registration" ontouchstart="resetLocalStorageTouchStart()"
-         ontouchend="resetLocalStorageTouchEnd()">
-      {window.languages.ViewAuthorizationResetLocalStorageLabel}
-    </div>
-  </div>
-
-  <div if="{!firstEnter}" class="authorization-keyboard-centring-container">
-    <div class="authorization-keyboard-field keyboard-field">
+    <div if="{!firstEnter}" class="authorization-keyboard-field keyboard-field">
       <component-keyboard
         fingerprint="{JSON.parse(localStorage.getItem('settings_finger_print'))}"></component-keyboard>
     </div>
-  </div>
 
-  <div if="{firstEnter}" id="firstEnterButtonId" class="bottom-button-container"
-       ontouchend="firstPinEnterTouchEnd()"
-       ontouchstart="firstPinEnterTouchStart()">
-    <div class="button-enter-label">{window.languages.ViewAuthorizationFirstEnterLabel}</div>
-    <div class="button-enter-icon"></div>
-  </div>
+    <div if="{firstEnter}" id="firstEnterButtonId" class="bottom-button-container"
+         ontouchend="firstPinEnterTouchEnd()"
+         ontouchstart="firstPinEnterTouchStart()">
+      <div class="button-enter-label">{window.languages.ViewAuthorizationFirstEnterLabel}</div>
+      <div class="button-enter-icon"></div>
+    </div>
 
   <button id="authOfflineButtonId" hidden="{device.platform == 'iOS'}"
           if="{firstEnter}"
@@ -107,6 +108,36 @@
       </div>
     </div>
   </div>
+    <button id="authOfflineButtonId" hidden="{device.platform == 'iOS'}"
+            class="{authorization-footer-button-container : !firstEnter, authorization-footer-button-container-first : firstEnter}"
+            class="authorization-footer-button-container"
+            ontouchstart="offlineModeTouchStart()"
+            ontouchend="offlineModeTouchEnd()">
+      {window.languages.ViewAuthorizationOfflineModeLabel}
+    </button>
+
+  </div>
+
+  <div class="view-authorization-inner-container" if="{fingerprintMode && device.platform == 'Android'}">
+
+    <div class="auth-fingerprint-logo"></div>
+
+    <div class="auth-fingerprint-body-label">{languages.ViewAuthFingerprintBodyText}</div>
+
+    <div id="fingerPrintIconId" class="auth-fingerprint-icon"
+         style="background-image: url('resources/gifs/auth/wait.gif')"></div>
+
+    <p id="fingerPrintErrorText" class="auth-fingerprint-errortext">{errorMessage}</p>
+
+    <div id="switchModeButton" class="button-auth-fingerprint"
+         ontouchend="goToClickPinAuthorizationEnd()"
+         ontouchstart="goToClickPinAuthorizationStart()">
+      <div class="auth-fingerprint-mode-label">{window.languages.ViewAuthFingerprintModeButtonLabel}</div>
+      <div class="button-auth-fingerprint-clickpin-icon"></div>
+    </div>
+
+  </div>
+
   <component-pin-reset></component-pin-reset>
 
   <script>
@@ -115,6 +146,10 @@
     var timeOutTimer = 0;
     scope.checkAndroid = false;
     scope.errorCode = 0;
+    scope.fingerprintMode = false;
+    window.fingerPrint.fingerprintMode = false;
+
+    console.log("OPTS in Auth", opts);
 
 
     this.on('mount', function () {
@@ -190,6 +225,28 @@
       window.fingerPrint.check = JSON.parse(localStorage.getItem('settings_finger_print_enrolled'));
     }
 
+    if (JSON.parse(localStorage.getItem('settings_finger_print')) && !scope.firstEnter) {
+      scope.fingerprintMode = device.platform == 'iOS' ? false : (opts.fingerPrintMode == false ? false : true);
+      window.fingerPrint.fingerprintMode = scope.fingerprintMode;
+      console.log("opts.fingerprintMode ", opts.fingerPrintMode, scope.fingerprintMode);
+      scope.update();
+    }
+
+
+    //    setTimeout(function () {
+    if (JSON.parse(localStorage.getItem('settings_finger_print'))) {
+      console.log("AUTHORIZATION CALL new OF FINGERPRINT 191");
+
+      try {
+        fingerPrintAsk('fingerPrintIconId');
+      }
+      catch (e) {
+        console.log(e)
+      }
+    } else {
+      window.scannerCanBeAsked = true;
+    }
+    //    }, 500);
 
     var eyeInputShow = false;
 
@@ -217,7 +274,7 @@
 
     focusColor = function () {
       document.getElementById("firstPinContainerId").style.borderColor = "#00a8f1";
-    }
+    };
 
     inputPinFocus = function () {
       console.log("ALert is shown? ", window.common.alert.isShown("componentAlertId"));
@@ -269,8 +326,10 @@
       resetLocalStorageTouchEndY;
 
     resetLocalStorageTouchStart = function () {
-      event.preventDefault();
-      event.stopPropagation();
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
 
       resetLocalButtonId.style.webkitTransform = 'scale(0.8)';
       resetLocalStorageTouchStartX = event.changedTouches[0].pageX;
@@ -279,8 +338,10 @@
     };
 
     resetLocalStorageTouchEnd = function () {
-      event.preventDefault();
-      event.stopPropagation();
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
 
       resetLocalButtonId.style.webkitTransform = 'scale(1)';
 
@@ -288,6 +349,7 @@
       resetLocalStorageTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(resetLocalStorageTouchStartX - resetLocalStorageTouchEndX) <= 20 && Math.abs(resetLocalStorageTouchStartY - resetLocalStorageTouchEndY) <= 20) {
+
         if (scope.firstEnter)
           firstPinInputId.blur();
 
@@ -347,7 +409,13 @@
         if (myValue === "space" && JSON.parse(localStorage.getItem('settings_finger_print')) === true) {
           try {
             console.log("AUTHORIZATION CALL new OF FINGERPRINT 338");
-            fingerPrintAsk();
+            scope.fingerprintMode = device.platform == 'iOS' ? false : true;
+            window.fingerPrint.fingerprintMode = scope.fingerprintMode;
+            updateEnteredPin();
+            scope.update();
+            fingerPrintAsk('fingerPrintIconId');
+            return;
+
           }
           catch (e) {
             console.log(e)
@@ -498,24 +566,40 @@
       }
     };
 
-    setTimeout(function () {
-      if (JSON.parse(localStorage.getItem('settings_finger_print')) && window.scannerCanBeAsked) {
-        console.log("AUTHORIZATION CALL new OF FINGERPRINT 191");
+    var goToClickPinAuthStartX, goToClickPinAuthStartY, goToClickPinAuthEndX, goToClickPinAuthEndY;
 
-        try {
-          fingerPrintAsk();
-        }
-        catch (e) {
-          console.log(e)
-        }
-      } else {
-        window.scannerCanBeAsked = true;
+    goToClickPinAuthorizationStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      switchModeButton.style.webkitTransform = 'scale(0.8)';
+
+      goToClickPinAuthStartX = event.changedTouches[0].pageX;
+      goToClickPinAuthStartY = event.changedTouches[0].pageY;
+    };
+
+    goToClickPinAuthorizationEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      switchModeButton.style.webkitTransform = 'scale(1)';
+
+      goToClickPinAuthEndX = event.changedTouches[0].pageX;
+      goToClickPinAuthEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(goToClickPinAuthStartX - goToClickPinAuthEndX) <= 20 && Math.abs(goToClickPinAuthStartY - goToClickPinAuthEndY) <= 20) {
+        fingerPrintStop();
+        scope.fingerprintMode = false;
+        window.fingerPrint.fingerprintMode = false;
+        window.fingerPrint.fingerPrintInitialize = false;
+        scope.update();
+        console.log("OPEN USUAL :CLICK PIN AUTH, show stop listener");
       }
-    }, 500);
+    };
 
-    enter = function () {
+    enter = function (bool) {
 
-      console.log("Enter of AUTH");
+      console.log("Enter of AUTH, bool input=", bool);
 
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var deviceId = localStorage.getItem('click_client_deviceID');
@@ -526,6 +610,11 @@
       }
       var password = hex_sha512(token + date + pin);
       localStorage.setItem("pinForStand", pin);
+      if (bool == false) {
+        var password = hex_sha512(token + date + hex_md5("sjfhyasdugjhkhiuk"));
+      } else {
+        window.startSpinner();
+      }
       authorization(phoneNumber, deviceId, password, date);
     };
 
@@ -538,9 +627,10 @@
         firstPinInputValue = firstPinInputId.value;
       }
 
+      window.fingerPrint.fingerPrintInitialize = false;
+
       var version = localStorage.getItem('version');
 
-      window.startSpinner();
       window.api.call({
         method: 'app.login',
         stopSpinner: false,
@@ -590,56 +680,78 @@
             }
           }
           else {
-
-            var clickPinError, errorNote, errorCode, viewPage;
-
             window.stopSpinner();
+            if (!scope.fingerprintMode) {
 
-            if (result[0][0].error === -31) {
+              var clickPinError, errorNote, errorCode, viewPage;
 
-              clickPinError = true;
+              if (result[0][0].error === -31) {
 
-            } else if (result[0][0].error === -799) {
+                clickPinError = true;
 
-              errorNote = result[0][0].error_note;
-              errorCode = 2;
+              } else if (result[0][0].error === -799) {
 
-            } else {
-
-              //This conidition cannot be true, need to be deleted in future
-              if (opts.from === "registration-client") {
-                errorNote = "Карта ещё не добавлена. Попробуйте войти через несколько минут";
-              }
-              else {
                 errorNote = result[0][0].error_note;
-                viewPage = "view-authorization";
+                errorCode = 2;
+
+              } else {
+
+                //This conidition cannot be true, need to be deleted in future
+                if (opts.from === "registration-client") {
+                  errorNote = "Карта ещё не добавлена. Попробуйте войти через несколько минут";
+                }
+                else {
+                  errorNote = result[0][0].error_note;
+                  viewPage = "view-authorization";
+                }
+                clickPinError = false;
+
               }
-              clickPinError = false;
+
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: clickPinError,
+                errornote: errorNote,
+                errorcode: errorCode,
+                viewpage: viewPage,
+                fingerprintmodeoff: true
+              });
+              scope.update();
+              enteredPin = '';
+              if (!scope.firstEnter)
+                updateEnteredPin();
+              else {
+                firstPinInputId.value = "";
+                inputPinFocus();
+              }
+              return
+            } else {
+              console.log("fingerprintMode error", result[0][0].error_note);
+              scope.errorMessage = result[0][0].error_note;
+              scope.update();
+
+              setTimeout(function () {
+                if (document.getElementById('fingerPrintErrorText')) {
+                  document.getElementById('fingerPrintErrorText').classList.add("auth-fingerprint-errortext-start");
+                }
+                setTimeout(function () {
+                  if (document.getElementById('fingerPrintErrorText'))
+                    document.getElementById('fingerPrintErrorText').classList.remove("auth-fingerprint-errortext-start");
+
+                  fingerPrintAsk('fingerPrintIconId');
+
+                  if (document.getElementById('fingerPrintIconId'))
+                    document.getElementById('fingerPrintIconId').style.backgroundImage = "url(resources/gifs/auth/wait.gif?p" + new Date().getTime() + ")";
+                }, 2000);
+              }, 500);
 
             }
-
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: clickPinError,
-              errornote: errorNote,
-              errorcode: errorCode,
-              viewpage: viewPage
-            });
-            scope.update();
-            enteredPin = '';
-            if (!scope.firstEnter)
-              updateEnteredPin();
-            else {
-              firstPinInputId.value = "";
-              inputPinFocus();
-            }
-            return
           }
         },
         onFail: function (api_status, api_status_message, data) {
           console.log('Clearing timer onFail', timeOutTimer);
           window.clearTimeout(timeOutTimer);
-          updateAlertComponent(true, null, 'view-authorization', window.languages.ServiceUnavailableText);
+          updateAlertComponent(true, null, 'view-authorization', window.languages.ServiceUnavailableText, true);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error("Error data: ", data);
         },
@@ -649,7 +761,7 @@
               reason: 'Timeout',
               method: 'app.login',
             });
-            updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText);
+            updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText, true);
             window.stopSpinner();
           }, 30000);
           console.log('creating timeOut', timeOutTimer);
@@ -662,15 +774,16 @@
     }
 
 
-    updateAlertComponent = function (showError, stepAmount, viewPage, text) {
-      console.log("OPEN ALERT COMPONENT:", showError, text, stepAmount, viewPage);
+    updateAlertComponent = function (showError, stepAmount, viewPage, text, fingerprintmodeoff) {
+      console.log("OPEN ALERT COMPONENT:", showError, text, stepAmount, viewPage, fingerprintmodeoff);
 
       if (showError) {
 
         window.common.alert.show("componentAlertId", {
           parent: scope,
           viewpage: viewPage,
-          errornote: text
+          errornote: text,
+          fingerprintmodeoff: fingerprintmodeoff
         });
       } else {
 

@@ -272,10 +272,7 @@
 
 
     scope.onTouchStartOfService = onTouchStartOfService = function (id) {
-      event.stopPropagation();
-      event.preventDefault();
-      if (document.getElementById(id))
-        document.getElementById(id).style.webkitTransform = 'scale(0.8)'
+
       onTouchStartY = event.changedTouches[0].pageY;
       onTouchStartX = event.changedTouches[0].pageX;
     };
@@ -286,69 +283,74 @@
     //opts = (!opts.mode || opts.mode == 'USUAL') ? {} : opts;
 
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {
-      event.stopPropagation();
-      event.preventDefault();
-
-      if (document.getElementById(id))
-        document.getElementById(id).style.webkitTransform = 'scale(1)'
 
       onTouchEndY = event.changedTouches[0].pageY;
       onTouchEndX = event.changedTouches[0].pageX;
 
       if ((Math.abs(onTouchStartY - onTouchEndY) <= 15 && Math.abs(onTouchStartX - onTouchEndX) <= 15) || scope.checkOfSearch) {
+
+        event.stopPropagation();
+        event.preventDefault();
         viewPay.categoryScrollTop = categoriesContainerId.scrollTop;
+        if (document.getElementById(id))
+          document.getElementById(id).style.webkitTransform = 'scale(0.8)';
 
-        var newOpts = {};
-        newOpts.mode = opts.mode;
-        newOpts.categoryId = opts.categoryId;
-        opts = JSON.parse(JSON.stringify(newOpts));
-        newOpts = null;
+        setTimeout(function () {
 
-        console.log('ID ID ID', id)
-        if (opts.mode == 'ADDAUTOPAY') {
-          scope.autoPayData = {};
-          opts.chosenServiceId = id;
-          opts.id = id;
-          if (id == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
-            scope.autoPayData.service_id = localStorage.getItem('myNumberOperatorId');
-          } else {
-            scope.autoPayData.service_id = id;
-          }
-          scope.autoPayData.fromView = 'PAY';
-          scope.autoPayData.isNew = true;
+          if (document.getElementById(id))
+            document.getElementById(id).style.webkitTransform = 'scale(1)';
 
+          var newOpts = {};
+          newOpts.mode = opts.mode;
+          newOpts.categoryId = opts.categoryId;
+          opts = JSON.parse(JSON.stringify(newOpts));
+          newOpts = null;
 
-          if (scope.servicesMap[scope.autoPayData.service_id][0].autopay_available) {
-            localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-            event.stopPropagation();
-            riotTags.innerHTML = "<view-autopay-method-new>";
-            riot.mount("view-autopay-method-new", opts);
-            scope.unmount()
-          } else {
-            scope.autoPayData.title = window.languages.ViewAutoPayMethodSchedulerText;
-            scope.autoPayData.autopay_type = 1;
-            localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
-            event.stopPropagation();
-            riotTags.innerHTML = "<view-autopay-schedule-method-new>";
-            riot.mount("view-autopay-schedule-method-new", opts);
-            scope.unmount()
-          }
-        }
-        else {
-          if (!opts.mode) opts.mode = 'USUAL';
-          console.log("id in offline search", typeof id);
-          if (modeOfApp.offlineMode && typeof id === "string" && id.indexOf('mynumber') != -1) {
-            opts.chosenServiceId = 'mynumber';
-          }
-          else {
+          console.log('ID ID ID', id)
+          if (opts.mode == 'ADDAUTOPAY') {
+            scope.autoPayData = {};
             opts.chosenServiceId = id;
             opts.id = id;
+            if (id == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
+              scope.autoPayData.service_id = localStorage.getItem('myNumberOperatorId');
+            } else {
+              scope.autoPayData.service_id = id;
+            }
+            scope.autoPayData.fromView = 'PAY';
+            scope.autoPayData.isNew = true;
+
+
+            if (scope.servicesMap[scope.autoPayData.service_id][0].autopay_available) {
+              localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+              riotTags.innerHTML = "<view-autopay-method-new>";
+              riot.mount("view-autopay-method-new", opts);
+              scope.unmount()
+            } else {
+              scope.autoPayData.title = window.languages.ViewAutoPayMethodSchedulerText;
+              scope.autoPayData.autopay_type = 1;
+              localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
+              riotTags.innerHTML = "<view-autopay-schedule-method-new>";
+              riot.mount("view-autopay-schedule-method-new", opts);
+              scope.unmount()
+            }
           }
-          event.stopPropagation();
-          riotTags.innerHTML = "<view-service-page-new>";
-          riot.mount("view-service-page-new", opts);
-          scope.unmount()
-        }
+          else {
+            if (!opts.mode) opts.mode = 'USUAL';
+            console.log("id in offline search", typeof id);
+            if (modeOfApp.offlineMode && typeof id === "string" && id.indexOf('mynumber') != -1) {
+              opts.chosenServiceId = 'mynumber';
+            }
+            else {
+              opts.chosenServiceId = id;
+              opts.id = id;
+            }
+            riotTags.innerHTML = "<view-service-page-new>";
+            riot.mount("view-service-page-new", opts);
+            scope.unmount()
+          }
+        }, 50);
+
+
       }
     };
 

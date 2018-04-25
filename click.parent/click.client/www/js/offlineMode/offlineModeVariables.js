@@ -3674,6 +3674,40 @@ var offlinePopularServiceList = [{
     "amount_editable"            : true,
     "amount_value"               : null,
     "amount_information_text"    : null
+  }, {
+    "id"                         : 10188,
+    "name"                       : "BIO-PASPORT",
+    "category_id"                : 13,
+    "service_short_name"         : "BIO-PASPORT",
+    "min_pay_limit"              : 1,
+    "max_pay_limit"              : 1000000,
+    "service_parameters"         : "536870912",
+    "status"                     : 1,
+    "priority"                   : 0,
+    "image"                      : "resources/icons/ViewPay/logo_10188.png",
+    "form_type"                  : 6,
+    "cost"                       : 1,
+    "is_mobile"                  : 0,
+    "lang_amount_placeholder"    : "Введите сумму оплаты",
+    "lang_min_amount"            : "Минимальная сумма для оплаты 1.00 сум",
+    "lang_max_amount"            : "Максимальная сумма для оплаты 1000000.00 сум ",
+    "lang_amount_hint"           : null,
+    "lang_amount_title"          : "Сумма",
+    "lang_amount_currency"       : "сум",
+    "is_visible"                 : 1,
+    "options_title"              : "Оплата пошлины за",
+    "validation"                 : null,
+    "autopay_available"          : 0,
+    "autopay_available_schedule" : 1,
+    "autopay_available_amounts"  : null,
+    "autopay_available_steps"    : null,
+    "additional_information_type": 3,
+    "commission_percent"         : 0,
+    "disable_cache"              : false,
+    "amount_editable"            : true,
+    "amount_value"               : null,
+    "amount_information_text"    : null,
+    "show_calc"                  : 0
   }]
 
 offlinePayServiceNamesMap = {
@@ -3784,6 +3818,7 @@ offlinePayServiceNamesMap = {
   "9129": "Xalqbank",
   "9222": "Штрафы ГУБДД",
   "9308": "Turonbank",
+  "10188": "BIO-PASPORT",
   "-2"  : "Переводы Click",
   "-1"  : "Переброс между счетами"
 }
@@ -7292,6 +7327,40 @@ offlineServicesMapByCategory = {
     "amount_editable"            : true,
     "amount_value"               : null,
     "amount_information_text"    : null
+  }, {
+    "id"                         : 10188,
+    "name"                       : "BIO-PASPORT",
+    "category_id"                : 13,
+    "service_short_name"         : "BIO-PASPORT",
+    "min_pay_limit"              : 1,
+    "max_pay_limit"              : 1000000,
+    "service_parameters"         : "536870912",
+    "status"                     : 1,
+    "priority"                   : 0,
+    "image"                      : "resources/icons/ViewPay/logo_10188.png",
+    "form_type"                  : 6,
+    "cost"                       : 1,
+    "is_mobile"                  : 0,
+    "lang_amount_placeholder"    : "Введите сумму оплаты",
+    "lang_min_amount"            : "Минимальная сумма для оплаты 1.00 сум",
+    "lang_max_amount"            : "Максимальная сумма для оплаты 1000000.00 сум ",
+    "lang_amount_hint"           : null,
+    "lang_amount_title"          : "Сумма",
+    "lang_amount_currency"       : "сум",
+    "is_visible"                 : 1,
+    "options_title"              : "Оплата пошлины за",
+    "validation"                 : null,
+    "autopay_available"          : 0,
+    "autopay_available_schedule" : 1,
+    "autopay_available_amounts"  : null,
+    "autopay_available_steps"    : null,
+    "additional_information_type": 3,
+    "commission_percent"         : 0,
+    "disable_cache"              : false,
+    "amount_editable"            : true,
+    "amount_value"               : null,
+    "amount_information_text"    : null,
+    "show_calc"                  : 0
   }]
 },
 
@@ -10856,6 +10925,42 @@ offlineServicesMapByCategory = {
       "amount_value"               : null,
       "amount_information_text"    : null
     }],
+    "10188"    : [{
+      "id"                         : 10188,
+      "name"                       : "BIO-PASPORT",
+      "category_id"                : 13,
+      "service_short_name"         : "BIO-PASPORT",
+      "min_pay_limit"              : 1,
+      "max_pay_limit"              : 1000000,
+      "service_parameters"         : "536870912",
+      "status"                     : 1,
+      "priority"                   : 0,
+      "image"                      : "resources/icons/ViewPay/logo_10188.png",
+      "form_type"                  : 6,
+      "cost"                       : 1,
+      "is_mobile"                  : 0,
+      "lang_amount_placeholder"    : "Введите сумму оплаты",
+      "lang_min_amount"            : "Минимальная сумма для оплаты 1.00 сум",
+      "lang_max_amount"            : "Максимальная сумма для оплаты 1000000.00 сум ",
+      "lang_amount_hint"           : null,
+      "lang_amount_title"          : "Сумма",
+      "lang_amount_currency"       : "сум",
+      "is_visible"                 : 1,
+      "options_title"              : "Оплата пошлины за",
+      "validation"                 : null,
+      "autopay_available"          : 0,
+      "autopay_available_schedule" : 1,
+      "autopay_available_amounts"  : null,
+      "autopay_available_steps"    : null,
+      "additional_information_type": 3,
+      "commission_percent"         : 0,
+      "disable_cache"              : false,
+      "amount_editable"            : true,
+      "amount_value"               : null,
+      "amount_information_text"    : null,
+      "show_calc"                  : 0
+    }],
+
     "-2"      : [{
       "id"                         : -2,
       "name"                       : "Переводы Click",
@@ -12089,6 +12194,16 @@ offlineServicesMapByCategory = {
     "min_len"      : "3",
     "max_len"      : "50",
     "ussd_query"   : null
+  } , {
+    "service_id"   : 10188,
+    "parameter_id" : "536870912",
+    "input_type"   : 1,
+    "title"        : "Номер квитанции",
+    "placeholder"  : "Введите номер квитанции",
+    "error_message": "Не указан номер квитанции",
+    "min_len"      : "4",
+    "max_len"      : "50",
+    "ussd_query"   : "*880*010188999002*{option}*{param}#"
   }], [{
     "service_id"  : 9,
     "id"          : 1,
@@ -13839,7 +13954,7 @@ offlineServicesMapByCategory = {
     "parent"      : 0,
     "code"        : 14,
     "offline_code": "14"
-  }], [{
+  },], [{
     "service_id"    : 44,
     "card_type_id"  : 1,
     "name"          : "Центральный Телеграф",
@@ -14434,7 +14549,25 @@ offlineServicesMapByCategory = {
     "option_id"      : 11,
     "name"           : "wifism",
     "title"          : "wifism"
-  }, {"service_id": 3213, "parent_param_id": 2, "option_id": 12, "name": "wifinm", "title": "wifinm"}]],
+  }, {
+    "service_id"     : 3213,
+    "parent_param_id": 2,
+    "option_id"      : 12,
+    "name"           : "wifinm",
+    "title": "wifinm"
+  }, {
+    "service_id"     : 10188,
+    "parent_param_id": 536870912,
+    "option_id"      : 1,
+    "name"           : "PA",
+    "title"          : "PA"
+  }, {
+    "service_id"     : 10188,
+    "parent_param_id": 536870912,
+    "option_id"      : 2,
+    "name"           : "XA",
+    "title"          : "XA"
+  }]],
 
   offlineServicesParamsMapOne = {
     "2"   : [{
@@ -15659,6 +15792,17 @@ offlineServicesMapByCategory = {
       "min_len"      : "3",
       "max_len"      : "50",
       "ussd_query"   : null
+    }],
+    "10188": [{
+      "service_id"   : 10188,
+      "parameter_id" : "536870912",
+      "input_type"   : 1,
+      "title"        : "Номер квитанции",
+      "placeholder"  : "Введите номер квитанции",
+      "error_message": "Не указан номер квитанции",
+      "min_len"      : "4",
+      "max_len"      : "50",
+      "ussd_query"   : "*880*010188999002*{option}*{param}#"
     }],
     "-2"  : [{
       "service_id"   : -2,
@@ -17502,7 +17646,7 @@ offlineServicesMapByCategory = {
       "parent"      : 0,
       "code"        : 13,
       "offline_code": "13"
-    }, {"service_id": 7045, "id": 14, "name": "Каракалпакстан", "parent": 0, "code": 14, "offline_code": "14"}]
+    }, {"service_id": 7045, "id": 14, "name": "Каракалпакстан", "parent": 0, "code": 14, "offline_code": "14"}],
   },
 
   offlineServicesParamsMapThree = {
@@ -18163,5 +18307,18 @@ offlineServicesParamsMapSix = {
     "option_id"      : 1,
     "name"           : "SP",
     "title"          : "SP"
+  }],
+  "10188": [{
+    "service_id"     : 10188,
+    "parent_param_id": 536870912,
+    "option_id"      : 1,
+    "name"           : "PA",
+    "title"          : "PA"
+  }, {
+    "service_id"     : 10188,
+    "parent_param_id": 536870912,
+    "option_id"      : 2,
+    "name"           : "XA",
+    "title"          : "XA"
   }]
 }
