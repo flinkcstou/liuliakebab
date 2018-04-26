@@ -35,6 +35,7 @@
             ontouchstart="openBarCodeStart()"
             ontouchend="openBarCodeEnd()"></canvas>
 
+
     <div class="click-pass-chosen-card-container"
          ontouchstart="openCardsTouchStart()"
          ontouchend="clickPassCardsMenuOpenTouchEnd()"
@@ -340,6 +341,7 @@
       scope.OTP = updateOtp(deviceId, timeForOtp);
       var luna = generateLuhn(card_id.toString() + scope.OTP.toString());
       var result = card_id.toString() + scope.OTP.toString() + luna;
+      scope.showCodeData = result;
       scope.update();
       return result;
     };
@@ -424,6 +426,7 @@
       var result = card_id.toString() + scope.OTP.toString() + luna;
       generateQrCode(result);
       generateBarCode(result);
+      scope.showCodeData = result;
       scope.update();
     }
 
