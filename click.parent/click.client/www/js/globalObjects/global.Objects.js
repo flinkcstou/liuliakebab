@@ -1421,7 +1421,7 @@ window.fingerPrintAsk = function (fingerprintIconId) {
           if (document.getElementById(fingerprintIconId))
             document.getElementById(fingerprintIconId).style.backgroundImage = "url(resources/gifs/auth/error1.png)";
 
-          enter(false);
+          checkConnection(enterFalse, noInternetFingerPrint);
 
           setTimeout(function () {
 
@@ -1903,4 +1903,8 @@ function noInternetFingerPrint(){
   else {
     showAlertComponent("Интернет-соединение отсутствует. Проверьте подключение.");
   }
+}
+
+function enterFalse(){
+  enter(false);
 }
