@@ -378,7 +378,7 @@
                 clickpinerror: scope.clickPinError,
                 errornote: scope.errorNote
               });
-
+              time = setInterval(timer, 1000);
               scope.update();
             }
         },
