@@ -382,7 +382,48 @@
           }
           localStorage.setItem('click_client_phoneNumber', phoneNumber);
           var date = parseInt(Date.now() / 1000);
-          registrationDevice(phoneNumber, date);
+
+          callRegistrationDevice = function () {
+            registrationDevice(phoneNumber, date);
+          };
+
+          noInternetConfirm = function () {
+            console.log('no internet connection on device registration');
+
+            if (device.platform == 'iOS') {
+              scope.errorNote = 'Интернет-соединение отсутствует. Проверьте подключение.';
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: scope.clickPinError,
+                errornote: scope.errorNote,
+              });
+              scope.update();
+              return;
+            }
+
+            var confirmNote = window.languages.ComponentConfirmNoInternetConnection;
+            var confirmType = 'local';
+
+            scope.result = function (bool) {
+              if (bool) {
+                modeOfApp.onlineMode = false
+                modeOfApp.offlineMode = true;
+
+                riotTags.innerHTML = "<view-main-page>";
+                riot.mount('view-main-page');
+                scope.unmount();
+              }
+            };
+
+            window.common.alert.show("componentConfirmId", {
+              "confirmnote": confirmNote,
+              "confirmtype": confirmType,
+              parent: scope,
+            });
+          };
+
+          checkConnection(callRegistrationDevice, noInternetConfirm);
+//          registrationDevice(phoneNumber, date);
         }
       }
 

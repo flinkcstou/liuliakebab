@@ -355,7 +355,7 @@ var RU_LANGUAGES =
   "ViewAboutSettingsRateUsTitle": "Оцените нас в Google Play",
 
   "ViewSettingsAboutProgramTitleName": "О ПРОГРАММЕ",
-  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 5.9.1",
+  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 5.2.3",
   "ViewSettingsAboutProgramVersionTitleNamePartOneClick": "CLICK Uzbekistan",
   "ViewSettingsAboutProgramVersionTitleNamePartTwo": "22 апреля, 2018",
   "ViewSettingsAboutProgramUserAgreementTitleName": "Пользовательское соглашение",
@@ -603,6 +603,7 @@ var RU_LANGUAGES =
 
   "ComponentConfirmOk": "Ок",
   "ComponentConfirmCancel": "Отмена",
+  "ComponentConfirmNoInternetConnection": "Интернет соединение отсутствует. Перейти в офлайн режим?",
 
   "ViewAutoPayNameFieldText": "Название автоплатежа",
   "ViewAutoPayConditionFieldText": "Условие",
