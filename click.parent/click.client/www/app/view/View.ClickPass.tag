@@ -43,11 +43,7 @@
            style="background-image: url({chosenCard.url})"></div>
       <div class="click-pass-chosen-card-info-container">
         <p class="click-pass-chosen-card-info-text-one"
-           style="{'top: 22%': !showBalance}">{chosenCard.name}</p>
-        <div class="click-pass-chosen-card-balance-currency-container">
-          <p if="{showBalance}" class="click-pass-chosen-card-balance">{(chosenCard.salary) ? (chosenCard.salary) : (window.languages.ComponentCardCarouselBalanceError)}<span class="click-pass-chosen-card-balance-fractional">{(chosenCard.salary_fractional) ? (chosenCard.salary_fractional) : ''}</span></p>
-          <p if="{showBalance && chosenCard.salary}" class="click-pass-chosen-card-currency">{chosenCard.currency}</p>
-        </div>
+           style="top: 22%;">{chosenCard.name}</p>
         <p class="click-pass-chosen-card-info-text-three">{chosenCard.numberPartOne} **** {chosenCard.numberPartTwo}</p>
       </div>
       <div class="click-pass-chosen-card-next-icon"></div>
