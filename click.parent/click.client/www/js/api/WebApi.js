@@ -133,15 +133,15 @@ window.api.initSocket = function () {
               }
               localStorage.setItem('session_broken', true);
               localStorage.setItem("click_client_authorized", false);
-
-              riot.update();
+              console.log("after spinner stop");
+              // riot.update();
               showAlertComponent("Сессия была прервана");
               return;
             }
             if (!window.api.sessionErrorChecker) {
               window.api.sessionErrorChecker = true;
               if (!error) {
-                riot.update();
+                // riot.update();
                 showAlertComponent("Произошла непредвиденная ошибка. Свяжитесь с нашей службой поддержки +998 71 2310880")
                 window.writeLog(
                   {

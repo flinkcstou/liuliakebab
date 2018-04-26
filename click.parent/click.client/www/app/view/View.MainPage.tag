@@ -28,6 +28,8 @@
   <component-tour view="mainpage"></component-tour>
   <script>
 
+    console.log("main page");
+
     viewMainPage.atMainPage = true;
     viewTransfer.check = false;
     viewServicePinCards.friendHelpPaymentMode = false;
@@ -51,6 +53,7 @@
 
 
     this.on('mount', function () {
+      console.log("main page mount");
       if (device.platform !== 'BrowserStand')
         StatusBar.backgroundColorByHexString("#ffffff");
 

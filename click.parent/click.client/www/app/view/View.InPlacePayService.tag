@@ -94,6 +94,7 @@
     scope.searchMode = false;
     scope.showSearchIcon = !opts.searchWord;
     var searchFieldTimeout, searchFieldActive = false, searchWord = opts.searchWord;
+    var qrInited = false;
 
     window.saveHistory('view-inplace-pay-service', opts);
 
@@ -392,9 +393,9 @@
       qrPayEndX = event.changedTouches[0].pageX;
       qrPayEndY = event.changedTouches[0].pageY;
 
-      if (Math.abs(qrPayStartX - qrPayEndX) <= 20 && Math.abs(qrPayStartY - qrPayEndY) <= 20) {
+      if (Math.abs(qrPayStartX - qrPayEndX) <= 20 && Math.abs(qrPayStartY - qrPayEndY) <= 20 && !qrInited) {
         if (modeOfApp.demoVersion) {
-          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
+          var question = window.languages.DemoModeConstraintText;
           scope.errorNote = question;
           window.common.alert.show("componentAlertId", {
             parent: scope,
@@ -408,10 +409,15 @@
         }
         if (device.platform != 'BrowserStand') {
           window.pickContactFromNativeChecker = true;
+          qrInited = true;
+          console.log("qrInited =", qrInited);
 
           cordova.plugins.barcodeScanner.scan(
             function (result) {
               console.log('QR RESULT', result)
+
+              qrInited = false;
+              console.log("qrInited success false");
 
               var string = result.text;
               if (string.indexOf('click.uz') != -1) {
@@ -545,6 +551,9 @@
               }
             },
             function (error) {
+
+              qrInited = false;
+              console.log("qrInited error false");
 
               scope.clickPinError = false;
               scope.errorNote = "Отсутствует доступ";
