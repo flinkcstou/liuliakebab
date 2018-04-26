@@ -527,7 +527,7 @@
         circleFour.style.backgroundColor = '#01cfff';
         circleFive.style.backgroundColor = '#01cfff';
         pin = hex_md5(enteredPin);
-        enter();
+        checkConnection(enter, noInternetConfirm);
       }
     };
 
@@ -554,7 +554,7 @@
 
       if (Math.abs(firstPinEnterTouchStartX - firstPinEnterTouchEndX) <= 20 && Math.abs(firstPinEnterTouchStartY - firstPinEnterTouchEndY) <= 20) {
         pin = hex_md5(firstPinInputId.value);
-        enter()
+        checkConnection(enter, noInternetConfirmFirstEnter);
       }
     };
 
@@ -587,6 +587,82 @@
         scope.update();
         console.log("OPEN USUAL :CLICK PIN AUTH, show stop listener");
       }
+    };
+
+    noInternetConfirm = function () {
+
+      enteredPin = '';
+      updateEnteredPin();
+
+      if (device.platform == 'iOS') {
+        scope.errorNote = 'Интернет-соединение отсутствует. Проверьте подключение.';
+        window.common.alert.show("componentAlertId", {
+          parent: scope,
+          clickpinerror: scope.clickPinError,
+          errornote: scope.errorNote,
+        });
+        scope.update();
+        return;
+      }
+
+      var confirmNote = window.languages.ComponentConfirmNoInternetConnection;
+      var confirmType = 'local';
+
+      scope.result = function (bool) {
+        if (bool) {
+          modeOfApp.onlineMode = false
+          modeOfApp.offlineMode = true;
+
+          riotTags.innerHTML = "<view-main-page>";
+          riot.mount('view-main-page');
+          scope.unmount();
+        }
+      };
+
+      window.common.alert.show("componentConfirmId", {
+        "confirmnote": confirmNote,
+        "confirmtype": confirmType,
+        parent: scope,
+      });
+    };
+
+    noInternetConfirmFirstEnter = function () {
+
+      if (document.getElementById("firstPinInputId")){
+        document.getElementById("firstPinInputId").value = '';
+      }
+
+      var confirmNote = window.languages.ComponentConfirmNoInternetConnection;
+      var confirmType = 'local';
+
+      if (device.platform == 'iOS') {
+        scope.errorNote = 'Интернет-соединение отсутствует. Проверьте подключение.';
+        window.common.alert.show("componentAlertId", {
+          parent: scope,
+          errorcode: scope.errorCode,
+          clickpinerror: scope.clickPinError,
+          errornote: scope.errorNote,
+        });
+        scope.update();
+        return;
+      }
+
+      scope.result = function (bool) {
+        if (bool) {
+          modeOfApp.onlineMode = false
+          modeOfApp.offlineMode = true;
+
+          riotTags.innerHTML = "<view-main-page>";
+          riot.mount('view-main-page');
+          scope.unmount();
+        }
+      };
+
+      window.common.alert.show("componentConfirmId", {
+        "confirmnote": confirmNote,
+        "confirmtype": confirmType,
+        parent: scope,
+      });
     };
 
     enter = function (bool) {

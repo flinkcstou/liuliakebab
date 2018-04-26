@@ -1395,12 +1395,14 @@ window.fingerPrintAsk = function (fingerprintIconId) {
             if (result.withFingerprint) {
 
               pin = localStorage.getItem('click_client_pin');
-              enter();
+              checkConnection(enter, noInternetFingerPrint);
+              // enter();
 
             } else if (result.withBackup) {
 
               pin = localStorage.getItem('click_client_pin');
-              enter();
+              checkConnection(enter, noInternetFingerPrint);
+              // enter();
             }
           }, 1000);
         }, 1000);
@@ -1810,6 +1812,8 @@ function base32tohex(base32) {
   }
   return hex;
 }
+function checkConnection(onAvailable, onNotAvailable){
+  var networkState = navigator.connection.type;
 
 function leftpad(str, len, pad) {
   if (len + 1 >= str.length) {
@@ -1874,4 +1878,28 @@ function getLuhnRemainder(value) {
 
 function generateLuhn(value){
   return ((10 - getLuhnRemainder(value + '0')) % 10).toString();
+}
+  if (device.platform !== 'BrowserStand') {
+    if (Connection.NONE === networkState) {
+      console.log('internet connection is not available');
+      onNotAvailable();
+    } else {
+      console.log('internet connection is available');
+      onAvailable();
+    }
+  } else {
+    console.log('internet connection is available');
+    onAvailable();
+  }
+}
+
+function noInternetFingerPrint(){
+
+  fingerPrintStop();
+
+  if (device.platform === 'Android')
+    showConfirmComponent("Интернет-соединение отсутствует.\nПерейти в офлайн режим ?", 'internet');
+  else {
+    showAlertComponent("Интернет-соединение отсутствует. Проверьте подключение.");
+  }
 }
