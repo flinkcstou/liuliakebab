@@ -51,7 +51,6 @@
       changeCardEndX, changeCardEndY;
 
     scope.on('mount', function () {
-      console.log(opts);
       scope.cardListShowBalance = opts.show_balance;
       scope.cardsArray = scope.parent.cardsArray;
       scope.chosenCard = scope.parent.chosenCard;
@@ -67,8 +66,6 @@
     };
 
     changeCardTouchEnd = function (id) {
-
-      console.log("ID", id);
 
       event.preventDefault();
       event.stopPropagation();

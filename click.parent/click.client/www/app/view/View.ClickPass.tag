@@ -66,6 +66,8 @@
     scope.codeInterval = 0;
     scope.timerInterval = 0;
     scope.showBalance = false;
+    scope.movingInterval = 0;
+    scope.lastPosition = 410;
 
     var goBackButtonStartX, goBackButtonEndX,
       goBackButtonStartY, goBackButtonEndY;
@@ -114,7 +116,6 @@
       }
       if (!scope.chosenCard && JSON.stringify(scope.cardsArray).length > 2) {
         for (var i in scope.cardsArray) {
-//          console.log("card", scope.cardsArray[i]);
           if (scope.cardsArray[i]) {
             scope.chosenCard = scope.cardsArray[i];
           }
@@ -169,6 +170,7 @@
       goBackButtonEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
+        clearInterval(scope.movingInterval);
         clearInterval(scope.codeInterval);
         clearTransitionStatus();
         onBackKeyDown();
@@ -238,7 +240,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      helpButtonId.style.webkitTransform = 'scale(1)'
+      helpButtonId.style.webkitTransform = 'scale(1)';
 
       openHelpTouchEndX = event.changedTouches[0].pageX;
       openHelpTouchEndY = event.changedTouches[0].pageY;
@@ -305,7 +307,6 @@
           scope.chosenCard = scope.cardsArray[i];
         }
       }
-      console.log(scope.chosenCard);
       updateOnlyCardId(scope.chosenCard.card_id);
       scope.update();
     };
@@ -339,13 +340,13 @@
       scope.OTP = updateOtp(deviceId, timeForOtp);
       var luna = generateLuhn(card_id.toString() + scope.OTP.toString());
       var result = card_id.toString() + scope.OTP.toString() + luna;
-//      scope.showCodeData = result;
       scope.update();
       return result;
     };
 
     updateCode = function () {
       if (!document.getElementById("clickPassPageId")) {
+        clearInterval(scope.movingInterval);
         clearInterval(scope.codeInterval);
         return;
       }
@@ -357,18 +358,16 @@
 
     clearTransitionStatus = function () {
       if (document.getElementById("statusBarId")) {
-        statusBarLineId.style.webkitTransition = 'none';
-        statusBarLineId.style.transition = 'none';
-        statusBarLineId.style.width = 410 * widthK + 'px';
+        clearInterval(scope.movingInterval);
+        scope.lastPosition = 410;
         setTimeout(restartTransitionStatus, 100);
       }
     };
 
     restartTransitionStatus = function () {
       if (document.getElementById("statusBarId")) {
-        statusBarLineId.style.webkitTransition = '29.9s linear';
-        statusBarLineId.style.transition = '29.9s linear';
-        statusBarLineId.style.width = 0 * widthK + 'px';
+        clearInterval(scope.movingInterval);
+        scope.movingInterval = setInterval(moveStatusBarJs, 100);
       }
     };
 
@@ -380,10 +379,7 @@
 
     clearRestTransitionStatus = function (restTime) {
       if (document.getElementById("statusBarId")) {
-
-        statusBarLineId.style.webkitTransition = 'none';
-        statusBarLineId.style.transition = 'none';
-        statusBarLineId.style.width = 410 * (restTime / 30) * widthK + 'px';
+        scope.lastPosition = 410 * (restTime / 30);
         setTimeout(function () {
           restartRestTransitionStatus(restTime);
         }, 100);
@@ -393,9 +389,8 @@
     restartRestTransitionStatus = function (restTime) {
 
       if (document.getElementById("statusBarId")) {
-        statusBarLineId.style.webkitTransition = (restTime - 1) + '.9s linear';
-        statusBarLineId.style.transition = (restTime - 1) + '.9s linear';
-        statusBarLineId.style.width = 0 * widthK + 'px';
+        clearInterval(scope.movingInterval);
+        scope.movingInterval = setInterval(moveStatusBarJs, 100);
       }
     };
 
@@ -429,9 +424,14 @@
       var result = card_id.toString() + scope.OTP.toString() + luna;
       generateQrCode(result);
       generateBarCode(result);
-//      scope.showCodeData = result;
       scope.update();
-//      console.log('Updating only card_id', result);
+    }
+
+    function moveStatusBarJs(){
+      if (document.getElementById("statusBarId")) {
+        scope.lastPosition = scope.lastPosition - 410/300;
+        statusBarLineId.style.width = scope.lastPosition * widthK + 'px';
+      }
     }
 
 
