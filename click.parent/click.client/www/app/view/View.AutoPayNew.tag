@@ -19,7 +19,7 @@
         <div class="view-autopay-info-container">
           <p class="view-autopay-info-name">{j.title}</p>
           <div class="view-autopay-info-balance">{j.amount}</div>
-          <div class="view-autopay-info-currency-field">сум</div>
+          <div class="view-autopay-info-currency-field">{j.currency}</div>
           <p class="view-autopay-info-condition">{j.condition_text}</p>
           <p class="view-autopay-info-number">{j.cntrg_param2}</p>
         </div>
@@ -46,6 +46,11 @@
     window.saveHistory('view-auto-pay-new', opts);
 
     var backStartY, backStartX, backEndY, backEndX;
+
+    if (localStorage.getItem("click_client_servicesMap")
+      && JSON.parse(localStorage.getItem("click_client_servicesMap"))){
+      scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
+    }
 
     scope.onTouchStartOfBack = onTouchStartOfBack = function () {
       event.stopPropagation();
@@ -161,6 +166,16 @@
                 }
             }
 //              console.log("ss", result[1][i].service_title, ", dd", result[1][i].service_icon);
+
+            if (scope.servicesMap
+              && scope.servicesMap[result[1][i].service_id]
+              && scope.servicesMap[result[1][i].service_id][0]){
+              result[1][i].currency = scope.servicesMap[result[1][i].service_id][0].lang_amount_currency;
+              console.log(scope.servicesMap[result[1][i].service_id][0]);
+            } else {
+              result[1][i].currency = window.languages.Currency;
+            }
+
             scope.autopayList.push(result[1][i]);
           }
 //            console.log("L=", result[1]);
@@ -230,6 +245,7 @@
             opts.communalParam = scope.autopayList[i].cntrg_param5;
             opts.internetPackageParam = scope.autopayList[i].cntrg_param5;
             opts.cardTypeId = scope.autopayList[i].cntrg_param5;
+            opts.currency = scope.autopayList[i].currency;
 
 
             if (scope.autopayList[i].autopay_type == 2) {

@@ -34,11 +34,6 @@
             class="click-pass-bar-code-canvas"
             ontouchstart="openBarCodeStart()"
             ontouchend="openBarCodeEnd()"></canvas>
-    <div id="showCodeDataId"
-         class="view-click-pass-shot-to-seller"
-         style="top:{204 * widthK}px; background-color: white; color: black;">
-      code data: {showCodeData}
-    </div>
 
     <div class="click-pass-chosen-card-container"
          ontouchstart="openCardsTouchStart()"
@@ -345,7 +340,7 @@
       scope.OTP = updateOtp(deviceId, timeForOtp);
       var luna = generateLuhn(card_id.toString() + scope.OTP.toString());
       var result = card_id.toString() + scope.OTP.toString() + luna;
-      scope.showCodeData = result;
+//      scope.showCodeData = result;
       scope.update();
       return result;
     };
@@ -356,7 +351,6 @@
         return;
       }
       var codeData = prepareCodeData(scope.chosenCard.card_id);
-      console.log('updating code', codeData);
       generateQrCode(codeData);
       generateBarCode(codeData);
       setTimeout(clearTransitionStatus, 0);
@@ -387,7 +381,7 @@
 
     clearRestTransitionStatus = function (restTime) {
       if (document.getElementById("statusBarId")) {
-        console.log(restTime);
+
         statusBarLineId.style.webkitTransition = 'none';
         statusBarLineId.style.transition = 'none';
         statusBarLineId.style.width = 410 * (restTime / 30) * widthK + 'px';
@@ -400,7 +394,6 @@
     restartRestTransitionStatus = function (restTime) {
 
       if (document.getElementById("statusBarId")) {
-        console.log((restTime - 1) + '.9s linear');
         statusBarLineId.style.webkitTransition = (restTime - 1) + '.9s linear';
         statusBarLineId.style.transition = (restTime - 1) + '.9s linear';
         statusBarLineId.style.width = 0 * widthK + 'px';
@@ -437,7 +430,7 @@
       var result = card_id.toString() + scope.OTP.toString() + luna;
       generateQrCode(result);
       generateBarCode(result);
-      scope.showCodeData = result;
+//      scope.showCodeData = result;
       scope.update();
 //      console.log('Updating only card_id', result);
     }

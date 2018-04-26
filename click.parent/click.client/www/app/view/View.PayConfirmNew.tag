@@ -244,17 +244,21 @@
         scope.intPartAmount = Math.floor(scope.fullAmount).toFixed(0).toString();
         scope.fracPartAmount = window.getFractionalPart(scope.fullAmount.toString());
         scope.amountTextCopy = window.amountTransform(window.inputVerification.spaceDeleter(scope.intPartAmount)) + scope.fracPartAmount;
+        console.log('scope1', scope);
       }
       else {
-        scope.intPartAmount = Math.floor(opts.amountText).toFixed(0).toString();
+        scope.intPartAmount = Math.floor(window.inputVerification.spaceDeleter(opts.amountText)).toFixed(0).toString();
         scope.fracPartAmount = window.getFractionalPart(opts.amountText.toString());
-        scope.amountTextCopy = window.amountTransform(scope.intPartAmount) + scope.fracPartAmount;
+        scope.amountTextCopy = window.amountTransform(window.inputVerification.spaceDeleter(scope.intPartAmount)) + scope.fracPartAmount;
+        console.log('scope2', scope);
       }
     }
     catch (e) {
       console.error(e);
       scope.amountTextCopy = opts.amountText;
     }
+
+    console.log(scope);
 
     scope.update(scope.amountTextCopy);
 

@@ -1815,6 +1815,20 @@ function base32tohex(base32) {
 function checkConnection(onAvailable, onNotAvailable){
   var networkState = navigator.connection.type;
 
+  if (device.platform !== 'BrowserStand') {
+    if (Connection.NONE === networkState) {
+      console.log('internet connection is not available');
+      onNotAvailable();
+    } else {
+      console.log('internet connection is available');
+      onAvailable();
+    }
+  } else {
+    console.log('internet connection is available');
+    onAvailable();
+  }
+}
+
 function leftpad(str, len, pad) {
   if (len + 1 >= str.length) {
     str = Array(len + 1 - str.length).join(pad) + str;
@@ -1878,19 +1892,6 @@ function getLuhnRemainder(value) {
 
 function generateLuhn(value){
   return ((10 - getLuhnRemainder(value + '0')) % 10).toString();
-}
-  if (device.platform !== 'BrowserStand') {
-    if (Connection.NONE === networkState) {
-      console.log('internet connection is not available');
-      onNotAvailable();
-    } else {
-      console.log('internet connection is available');
-      onAvailable();
-    }
-  } else {
-    console.log('internet connection is available');
-    onAvailable();
-  }
 }
 
 function noInternetFingerPrint(){
