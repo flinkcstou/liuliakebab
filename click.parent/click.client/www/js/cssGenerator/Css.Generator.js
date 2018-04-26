@@ -8759,11 +8759,51 @@ var css = {
   "font-size: " + 24 * widthK + "px; " +
   "color: gray;" +
   "width: 110%;" +
-  "top: 22%;" +
+  "top: 9%;" +
   "margin-top: 0;" +
   "text-overflow: ellipsis;" +
   "white-space: nowrap;" +
   "overflow: hidden;" +
+  "}",
+
+  clickPassChosenCardBalanceCurrencyContainer: ".click-pass-chosen-card-balance-currency-container" +
+  "{" +
+  "position: absolute;" +
+  "display: inline-block;" +
+  "font-weight: bold;" +
+  "color: rgb(146, 191, 58);" +
+  "width: 140%;" +
+  "max-height: 35%;" +
+  "top: 30%;" +
+  "margin-top: 0;" +
+  "text-overflow: ellipsis;" +
+  "white-space: nowrap;" +
+  "overflow: hidden;" +
+  "}",
+
+  clickPassChosenCardBalance: ".click-pass-chosen-card-balance" +
+  "{" +
+  "position: relative;" +
+  "font-size: " + 41 * widthK + "px; " +
+  "float: left;" +
+  "margin-top: 0;" +
+  "text-overflow: ellipsis;" +
+  "white-space: nowrap;" +
+  "overflow: hidden;" +
+  "}",
+
+  clickPassChosenCardBalanceFractional: ".click-pass-chosen-card-balance-fractional" +
+  "{" +
+  "font-size:" + 33 * widthK + "px;" +
+  "}",
+
+  clickPassChosenCardCurrency: ".click-pass-chosen-card-currency" +
+  "{" +
+  "position: relative;" +
+  "float: left;" +
+  "bottom:" + 38 * widthK + "px;" +
+  "margin-left:" + 9 * widthK + "px;" +
+  "font-size:" + 40 * widthK + "px;" +
   "}",
 
   clickPassChosenCardInfoTextThree: ".click-pass-chosen-card-info-text-three" +

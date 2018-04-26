@@ -29,7 +29,12 @@
         <div class="click-pass-chosen-card-logo-container"
              style="background-image: url({i.url})"></div>
         <div class="click-pass-chosen-card-info-container">
-          <p class="click-pass-chosen-card-info-text-one">{i.name}</p>
+          <p class="click-pass-chosen-card-info-text-one"
+             style="{'top: 22%': !cardListShowBalance}">{i.name}</p>
+          <div class="click-pass-chosen-card-balance-currency-container">
+            <p if="{cardListShowBalance}" class="click-pass-chosen-card-balance">{(i.salary) ? (i.salary) : (window.languages.ComponentCardCarouselBalanceError)}<span class="click-pass-chosen-card-balance-fractional">{(i.salary_fractional) ? (i.salary_fractional) : ''}</span></p>
+            <p if="{cardListShowBalance && chosenCard.salary}" class="click-pass-chosen-card-currency">{i.currency}</p>
+          </div>
           <p class="click-pass-chosen-card-info-text-three">{i.numberPartOne} **** {i.numberPartTwo}</p>
         </div>
         <div class="click-pass-chosen-card-background" if="{false}"></div>
@@ -46,6 +51,8 @@
       changeCardEndX, changeCardEndY;
 
     scope.on('mount', function () {
+      console.log(opts);
+      scope.cardListShowBalance = opts.show_balance;
       scope.cardsArray = scope.parent.cardsArray;
       scope.chosenCard = scope.parent.chosenCard;
       scope.update();

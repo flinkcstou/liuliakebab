@@ -1,7 +1,7 @@
 <view-click-pass class="riot-tags-main-container">
 
   <component-click-pass-help></component-click-pass-help>
-  <component-click-pass-cards></component-click-pass-cards>
+  <component-click-pass-cards show_balance="{showBalance}"></component-click-pass-cards>
 
   <div id="clickPassPageId" class="view-click-pass">
     <div class="page-title">
@@ -42,7 +42,12 @@
       <div class="click-pass-chosen-card-logo-container"
            style="background-image: url({chosenCard.url})"></div>
       <div class="click-pass-chosen-card-info-container">
-        <p class="click-pass-chosen-card-info-text-one">{chosenCard.name}</p>
+        <p class="click-pass-chosen-card-info-text-one"
+           style="{'top: 22%': !showBalance}">{chosenCard.name}</p>
+        <div class="click-pass-chosen-card-balance-currency-container">
+          <p if="{showBalance}" class="click-pass-chosen-card-balance">{(chosenCard.salary) ? (chosenCard.salary) : (window.languages.ComponentCardCarouselBalanceError)}<span class="click-pass-chosen-card-balance-fractional">{(chosenCard.salary_fractional) ? (chosenCard.salary_fractional) : ''}</span></p>
+          <p if="{showBalance && chosenCard.salary}" class="click-pass-chosen-card-currency">{chosenCard.currency}</p>
+        </div>
         <p class="click-pass-chosen-card-info-text-three">{chosenCard.numberPartOne} **** {chosenCard.numberPartTwo}</p>
       </div>
       <div class="click-pass-chosen-card-next-icon"></div>
@@ -64,6 +69,7 @@
     var scope = this;
     scope.codeInterval = 0;
     scope.timerInterval = 0;
+    scope.showBalance = false;
 
     var goBackButtonStartX, goBackButtonEndX,
       goBackButtonStartY, goBackButtonEndY;
@@ -98,13 +104,9 @@
 
     if (opts && opts[0] !== 'fromPinCode') {
       window.saveHistory('view-click-pass', opts);
+      scope.showBalance = true;
+      scope.update(scope.showBalance);
     }
-
-    //    if (opts.pinChecked === false){
-    //      clearInterval(scope.codeInterval);
-    //      onBackKeyDown();
-    //      scope.unmount();
-    //    }
 
     scope.on('mount', function () {
 
@@ -307,6 +309,7 @@
           scope.chosenCard = scope.cardsArray[i];
         }
       }
+      console.log(scope.chosenCard);
       updateOnlyCardId(scope.chosenCard.card_id);
       scope.update();
     };
