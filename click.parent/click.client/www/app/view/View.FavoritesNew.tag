@@ -163,7 +163,16 @@
                     console.log("1");
                     if (result[5][i].service_id == scope.favoritePaymentsList[i].service.id) {
                       console.log("qwerty=", result[5][i].sum_cost);
-                      scope.favoritePaymentsList[i].params.amountText = window.amountTransform(result[5][i].sum_cost.toString())
+
+                      scope.favoritePaymentsList[i].params.intPartAmount = Math.floor(result[5][i].sum_cost.toString().replace(' ', ''))
+                        .toFixed(0).toString();
+
+                      scope.favoritePaymentsList[i].params.fracPartAmount = window.getFractionalPart(result[5][i].sum_cost.toString());
+
+                      scope.favoritePaymentsList[i].params.amountText = window.amountTransform(
+                          window.inputVerification.spaceDeleter(scope.favoritePaymentsList[i].params.intPartAmount))
+                        + scope.favoritePaymentsList[i].params.fracPartAmount;
+
                       scope.update(scope.favoritePaymentsList);
                       break;
                     }
@@ -177,10 +186,19 @@
             }
           });
 
-        } else if (scope.favoritePaymentsList[i].params.amountText)
-          scope.favoritePaymentsList[i].params.amountText = window.amountTransform(scope.favoritePaymentsList[i].params.amountText.toString())
+        } else if (scope.favoritePaymentsList[i].params.amountText) {
+          scope.favoritePaymentsList[i].params.intPartAmount = Math.floor(
+            scope.favoritePaymentsList[i].params.amountText.toString().replace(' ', '')).toFixed(0).toString();
+
+          scope.favoritePaymentsList[i].params.fracPartAmount = window.getFractionalPart(scope.favoritePaymentsList[i].params.amountText.toString());
+
+          scope.favoritePaymentsList[i].params.amountText = window.amountTransform(
+              window.inputVerification.spaceDeleter(scope.favoritePaymentsList[i].params.intPartAmount))
+            + scope.favoritePaymentsList[i].params.fracPartAmount;
+        }
 
       }
+      console.log(scope.favoritePaymentsList);
       if (scope.favoritePaymentsList.length == 0) scope.favoriteListShow = false;
 
       scope.update(scope.favoritePaymentsList);

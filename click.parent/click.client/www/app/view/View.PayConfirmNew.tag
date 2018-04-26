@@ -246,16 +246,15 @@
         scope.amountTextCopy = window.amountTransform(window.inputVerification.spaceDeleter(scope.intPartAmount)) + scope.fracPartAmount;
       }
       else {
-        scope.intPartAmount = Math.floor(opts.amountText).toFixed(0).toString();
+        scope.intPartAmount = Math.floor(opts.amountText.replace(' ', '')).toFixed(0).toString();
         scope.fracPartAmount = window.getFractionalPart(opts.amountText.toString());
-        scope.amountTextCopy = window.amountTransform(scope.intPartAmount) + scope.fracPartAmount;
+        scope.amountTextCopy = window.amountTransform(window.inputVerification.spaceDeleter(scope.intPartAmount)) + scope.fracPartAmount;
       }
     }
     catch (e) {
       console.error(e);
       scope.amountTextCopy = opts.amountText;
     }
-
     scope.update(scope.amountTextCopy);
 
     if (scope.cardOrFriendBool) {
