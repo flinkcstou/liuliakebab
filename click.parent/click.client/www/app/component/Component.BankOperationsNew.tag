@@ -61,6 +61,13 @@
   <script>
 
     var closeIFrameStartX, closeIFrameEndX, closeIFrameStartY, closeIFrameEndY;
+    var qrInited = false;
+    var scope = this;
+    var payStartX, payEndX, payStartY, payEndY;
+    var transferStartX, transferEndX, transferStartY, transferEndY;
+    var autoPayStartX, autoPayEndX, autoPayStartY, autoPayEndY;
+    var qrPayStartX, qrPayEndX, qrPayStartY, qrPayEndY;
+    scope.showIFrame = false;
 
     hideIFrameStart = function (id) {
       closeIFrameStartX = event.changedTouches[0].pageX;
@@ -73,7 +80,7 @@
       closeIFrameEndX = event.changedTouches[0].pageX;
       closeIFrameEndY = event.changedTouches[0].pageY;
 
-      document.getElementById(id).style.webkitTransform = 'scale(1)'
+      document.getElementById(id).style.webkitTransform = 'scale(1)';
 
       if (Math.abs(closeIFrameStartX - closeIFrameEndX) <= 20 && Math.abs(closeIFrameStartY - closeIFrameEndY) <= 20) {
         window.checkShowingComponent = null;
@@ -82,15 +89,9 @@
 
     };
 
-    var scope = this;
-    var payStartX, payEndX, payStartY, payEndY;
-
-    scope.showIFrame = false;
-
     scope.updateOperations = function () {
-      console.log("UPDATE");
       scope.update();
-    }
+    };
 
     goToPayViewStart = function (e) {
       event.preventDefault();
@@ -114,12 +115,10 @@
       if (Math.abs(payStartX - payEndX) <= 20 && Math.abs(payStartY - payEndY) <= 20) {
         riotTags.innerHTML = "<view-pay>";
         riot.mount('view-pay', {mode: 'USUAL'});
-//        scope.unmount()
       }
       else return
     };
 
-    var transferStartX, transferEndX, transferStartY, transferEndY;
     goToTransferViewStart = function (e) {
       event.preventDefault();
       event.stopPropagation();
@@ -140,12 +139,10 @@
       if (Math.abs(transferStartX - transferEndX) <= 20 && Math.abs(transferStartY - transferEndY) <= 20) {
         riotTags.innerHTML = "<view-transfer-new>";
         riot.mount('view-transfer-new');
-//        scope.unmount()
       }
       else return;
     };
 
-    var autoPayStartX, autoPayEndX, autoPayStartY, autoPayEndY;
     goToAutoPayViewStart = function (e) {
       event.preventDefault();
       event.stopPropagation();
@@ -168,31 +165,15 @@
 
       if (Math.abs(autoPayStartX - autoPayEndX) <= 20 && Math.abs(autoPayStartY - autoPayEndY) <= 20) {
         if (modeOfApp.demoVersion) {
-          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
+          var question = window.languages.DemoModeConstraintText;
           scope.errorNote = question;
           window.common.alert.show("componentAlertId", {
             parent: scope,
             clickpinerror: scope.clickPinError,
             errornote: scope.errorNote
           });
-//        confirm(question)
-//          scope.confirmShowBool = true;
-//          scope.confirmNote = question;
-//          scope.confirmType = 'local';
-//          scope.result = function (bool) {
-//            if (bool) {
-//              localStorage.clear();
-//              window.location = 'index.html'
-//              scope.unmount()
-//              return
-//            }
-//            else{
-//              scope.confirmShowBool = false;
-//              return
-//            }
-//          };
-          scope.update();
 
+          scope.update();
           return
         }
 
@@ -200,7 +181,6 @@
 
           riotTags.innerHTML = "<view-auto-pay>";
           riot.mount('view-auto-pay');
-//        scope.unmount();
         } else {
 
           scope.clickPinError = false;
@@ -214,8 +194,6 @@
         }
       }
     };
-
-    var qrPayStartX, qrPayEndX, qrPayStartY, qrPayEndY;
 
     goToInPlacePayStart = function (e) {
       event.preventDefault();
@@ -239,31 +217,15 @@
 
       if (Math.abs(qrPayStartX - qrPayEndX) <= 20 && Math.abs(qrPayStartY - qrPayEndY) <= 20) {
         if (modeOfApp.demoVersion) {
-          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
+          var question = window.languages.DemoModeConstraintText;
           scope.errorNote = question;
           window.common.alert.show("componentAlertId", {
             parent: scope,
             clickpinerror: scope.clickPinError,
             errornote: scope.errorNote
           });
-//        confirm(question)
-//          scope.confirmShowBool = true;
-//          scope.confirmNote = question;
-//          scope.confirmType = 'local';
-//          scope.result = function (bool) {
-//            if (bool) {
-//              localStorage.clear();
-//              window.location = 'index.html'
-//              scope.unmount()
-//              return
-//            }
-//            else{
-//              scope.confirmShowBool = false;
-//              return
-//            }
-//          };
-          scope.update();
 
+          scope.update();
           return
         }
 
@@ -271,7 +233,7 @@
         riotTags.innerHTML = "<view-inplace-pay-category>";
         riot.mount('view-inplace-pay-category');
       }
-    }
+    };
 
     goToQrStart = function (e) {
       event.preventDefault();
@@ -293,41 +255,31 @@
       qrPayEndX = event.changedTouches[0].pageX;
       qrPayEndY = event.changedTouches[0].pageY;
 
-      if (Math.abs(qrPayStartX - qrPayEndX) <= 20 && Math.abs(qrPayStartY - qrPayEndY) <= 20) {
+      if (Math.abs(qrPayStartX - qrPayEndX) <= 20 && Math.abs(qrPayStartY - qrPayEndY) <= 20 && !qrInited) {
+
         if (modeOfApp.demoVersion) {
-          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
+          var question = window.languages.DemoModeConstraintText;
           scope.errorNote = question;
           window.common.alert.show("componentAlertId", {
             parent: scope,
             clickpinerror: scope.clickPinError,
             errornote: scope.errorNote
           });
-//        confirm(question)
-//          scope.confirmShowBool = true;
-//          scope.confirmNote = question;
-//          scope.confirmType = 'local';
-//          scope.result = function (bool) {
-//            if (bool) {
-//              localStorage.clear();
-//              window.location = 'index.html'
-//              scope.unmount()
-//              return
-//            }
-//            else{
-//              scope.confirmShowBool = false;
-//              return
-//            }
-//          };
-          scope.update();
 
+          scope.update();
           return
         }
+
         if (device.platform != 'BrowserStand') {
-          window.pickContactFromNativeChecker = true;
+          qrInited = true;
+          console.log("qrInited =", qrInited);
 
           cordova.plugins.barcodeScanner.scan(
             function (result) {
-              console.log('QR RESULT', result)
+              console.log('QR RESULT', result);
+
+              qrInited = false;
+              console.log("qrInited success false");
 
               var string = result.text;
               if (string.indexOf('click.uz') != -1) {
@@ -353,21 +305,21 @@
                   catch (e) {
                     console.log(e)
                   }
-                  console.log("DECODED STRING", decodeString)
+                  console.log("DECODED STRING", decodeString);
                   var splitedArray = decodeString.split('&');
                   for (var j in splitedArray) {
                     if (splitedArray[j].split("=")[0] == 'id')
-                      id = splitedArray[j].split("=")[1]
+                      id = splitedArray[j].split("=")[1];
 
                     if (splitedArray[j].split("=")[0] == 'amount')
-                      rkAmount = splitedArray[j].split("=")[1]
+                      rkAmount = splitedArray[j].split("=")[1];
 
                     if (splitedArray[j].split("=")[0] == 'order_id')
-                      rkOrder = splitedArray[j].split("=")[1]
+                      rkOrder = splitedArray[j].split("=")[1];
                   }
 
-                  console.log('id', id)
-                  console.log('rkAmount', rkAmount)
+                  console.log('id', id);
+                  console.log('rkAmount', rkAmount);
                   console.log('rkOrder', rkOrder)
                 }
                 if (id) {
@@ -379,7 +331,6 @@
                       "id": id,
                       "image": "resources/icons/ViewPay/logo_indoor.png"
                     });
-//                      scope.unmount()
                   }
                   else {
                     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
@@ -402,8 +353,7 @@
                       input: {
                         phone_num: phoneNumber,
                         session_key: sessionKey,
-                        service_id: id,
-
+                        service_id: id
                       },
 
                       scope: this,
@@ -499,6 +449,9 @@
             },
             function (error) {
 
+              qrInited = false;
+              console.log("qrInited error false");
+
               scope.clickPinError = false;
               scope.errorNote = "Отсутствует доступ";
 
@@ -534,7 +487,7 @@
               input: {
                 phone_num: phoneNumber,
                 session_key: sessionKey,
-                service_id: 1234,
+                service_id: 1234
 
               },
 
@@ -547,7 +500,6 @@
                       closeMenu();
                       riotTags.innerHTML = "<view-qr>";
                       riot.mount('view-qr', result[1][0]);
-//                    scope.unmount()
                     }
                   }
                   console.log("QR PAY", result);
@@ -563,7 +515,6 @@
                     errornote: scope.errorNote
                   });
                   scope.update();
-//                alert(result[0][0].error_note);
                 }
               },
 
@@ -574,7 +525,6 @@
             });
           }
         }
-//        scope.unmount();
 
       }
     }

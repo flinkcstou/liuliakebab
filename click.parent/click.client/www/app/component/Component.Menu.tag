@@ -82,144 +82,131 @@
   <script>
     var scope = this;
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
+    var closeIFrameStartX, closeIFrameEndX, closeIFrameStartY, closeIFrameEndY;
+    var exitModeTouchStartX, exitModeTouchStartY, exitModeTouchEndX, exitModeTouchEndY;
+    var touchStartX, touchEndX, touchMoveX, touchEndMove, timeStartX, timeEndXs;
+    var callTouchStartX, callTouchStartY, callTouchEndX, callTouchEndY;
+    var autoPayTouchStartX, autoPayTouchStartY, autoPayTouchEndX, autoPayTouchEndY;
+    var qrScannerTouchStartX, qrScannerTouchStartY, qrScannerTouchEndX, qrScannerTouchEndY;
+    var settingsTouchStartX, settingsTouchStartY, settingsTouchEndX, settingsTouchEndY;
+    var billingsTouchStartX, billingsTouchStartY, billingsTouchEndX, billingsTouchEndY;
+    var favoritesTouchStartX, favoritesTouchStartY, favoritesTouchEndX, favoritesTouchEndY;
+    var changeModeStart, changeModeEnd;
+    var width = window.innerWidth;
+    var timeOutTimer = 0;
+    scope.showIFrame = false;
+    var qrInited = false;
 
     if (loginInfo) {
       scope.firstName = loginInfo.firstname;
       scope.lastName = loginInfo.lastname;
       scope.photo = loginInfo.profile_image_url;
-
     }
 
     if (modeOfApp.offlineMode) {
       scope.photo = "resources/icons/icon/icon.png"
     }
 
-    scope.showIFrame = false;
 
     if (modeOfApp.onlineMode) {
-      scope.modeOfApplication = window.languages.ComponentMenuOnlineMode
+      scope.modeOfApplication = window.languages.ComponentMenuOnlineMode;
       scope.checkModeOfApplication = true;
     }
     if (modeOfApp.offlineMode) {
-      scope.modeOfApplication = window.languages.ComponentMenuOfflineMode
+      scope.modeOfApplication = window.languages.ComponentMenuOfflineMode;
       scope.checkModeOfApplication = false;
     }
 
     this.on('mount', function () {
       try {
         if (modeOfApp.onlineMode) {
-          scope.modeOfApplication = window.languages.ComponentMenuOnlineMode
+          scope.modeOfApplication = window.languages.ComponentMenuOnlineMode;
           scope.checkModeOfApplication = true;
-          changeModeContainerId.style.backgroundColor = '#92bf3a'
+          changeModeContainerId.style.backgroundColor = '#92bf3a';
           changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_online.png)';
         }
         if (modeOfApp.offlineMode) {
-          scope.modeOfApplication = window.languages.ComponentMenuOfflineMode
+          scope.modeOfApplication = window.languages.ComponentMenuOfflineMode;
           scope.checkModeOfApplication = false;
-          changeModeContainerId.style.backgroundColor = '#e56c47'
+          changeModeContainerId.style.backgroundColor = '#e56c47';
           changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_ussd.png)';
         }
         scope.update();
       } catch (e) {
         console.log(e)
       }
-    })
-
-
-    var closeIFrameStartX, closeIFrameEndX, closeIFrameStartY, closeIFrameEndY;
-    var timeOutTimer = 0;
+    });
 
     hideIFrameStart = function (id) {
       closeIFrameStartX = event.changedTouches[0].pageX;
       closeIFrameStartY = event.changedTouches[0].pageY;
 
       document.getElementById(id).style.webkitTransform = 'scale(0.8)'
-    }
+    };
 
     hideIFrameEnd = function (id) {
       closeIFrameEndX = event.changedTouches[0].pageX;
       closeIFrameEndY = event.changedTouches[0].pageY;
 
-      document.getElementById(id).style.webkitTransform = 'scale(1)'
+      document.getElementById(id).style.webkitTransform = 'scale(1)';
 
       if (Math.abs(closeIFrameStartX - closeIFrameEndX) <= 20 && Math.abs(closeIFrameStartY - closeIFrameEndY) <= 20) {
-        console.log('qweweeee')
-        window.checkShowingComponent = null;
 
-        //scope.update() troubles
+        window.checkShowingComponent = null;
         riot.update()
       }
 
-    }
+    };
 
     userIconTouchEnd = function () {
-      if (modeOfApp.offlineMode) return
+      if (modeOfApp.offlineMode) return;
       closeMenu();
       event.preventDefault();
       event.stopPropagation();
       if (modeOfApp.demoVersion) {
-        var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+        var question = window.languages.DemoModeConstraintText;
 
         window.common.alert.show("componentAlertId", {
           parent: scope,
           errornote: question
         });
-//        confirm(question)
-//        scope.confirmShowBool = true;
-//        scope.confirmNote = question;
-//        scope.confirmType = 'local';
-//        scope.result = function (bool) {
-//          if (bool) {
-//            localStorage.clear();
-//            window.location = 'index.html'
-//            scope.unmount()
-//            return
-//          }
-//          else {
-//            scope.confirmShowBool = false;
-//            return
-//          }
-//        };
+
         scope.update();
 
         return
       }
       riotTags.innerHTML = "<view-general-settings>";
       riot.mount("view-general-settings");
-//      scope.unmount()
-    }
-
-
-    var exitModeTouchStartX, exitModeTouchStartY, exitModeTouchEndX, exitModeTouchEndY;
+    };
 
     exitFromAppTouchStart = function () {
 
-      exitButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)'
+      exitButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
 
-      exitModeTouchStartX = event.changedTouches[0].pageX
-      exitModeTouchStartY = event.changedTouches[0].pageY
-    }
+      exitModeTouchStartX = event.changedTouches[0].pageX;
+      exitModeTouchStartY = event.changedTouches[0].pageY;
+    };
 
     exitFromAppTouchEnd = function () {
 
-      exitButtonId.style.backgroundColor = 'transparent'
+      exitButtonId.style.backgroundColor = 'transparent';
 
-      exitModeTouchEndX = event.changedTouches[0].pageX
-      exitModeTouchEndY = event.changedTouches[0].pageY
+      exitModeTouchEndX = event.changedTouches[0].pageX;
+      exitModeTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(exitModeTouchStartX - exitModeTouchEndX) <= 20 && Math.abs(exitModeTouchStartY - exitModeTouchEndY) <= 20) {
         navigator.app.exitApp();
       }
 
-    }
+    };
 
     closeMenuStart = function () {
       closeMenuButtonId.style.webkitTransform = 'scale(0.8)'
-    }
+    };
 
     closeMenu = function () {
 
-      closeMenuButtonId.style.webkitTransform = 'scale(1)'
+      closeMenuButtonId.style.webkitTransform = 'scale(1)';
 
       if (event) {
         event.preventDefault();
@@ -235,10 +222,7 @@
       mainPageId.style.opacity = '1';
       mainPageId.style.zIndex = '0';
       scope.update();
-    }
-
-    var touchStartX, touchEndX, touchMoveX, touchEndMove, timeStartX, timeEndXs;
-    var width = window.innerWidth;
+    };
 
     sideMenuTouchStart = function () {
       sideMenuId.style.webkitTransition = '0s';
@@ -247,11 +231,10 @@
       touchStartX = event.changedTouches[0].pageX;
       timeStartX = event.timeStamp.toFixed(0);
 
-    }
+    };
 
     sideMenuTouchEnd = function (bool) {
-//      event.preventDefault();
-//      event.stopPropagation();
+
       touchEndX = event.changedTouches[0].pageX;
       timeEndX = event.timeStamp.toFixed(0);
 
@@ -259,7 +242,7 @@
         closeMenu();
       }
       else {
-        console.log('START END', touchStartX, touchEndX)
+        console.log('START END', touchStartX, touchEndX);
         if (Math.abs(touchStartX - touchEndX) < 20 && bool) {
           closeMenu();
           return
@@ -270,39 +253,36 @@
         else
           menuOpenTouchEnd(true)
       }
-    }
+    };
 
     sideMenuTouchMove = function () {
       event.preventDefault();
       event.stopPropagation();
       touchMoveX = event.changedTouches[0].pageX;
-      if (touchStartX < touchMoveX) return
+      if (touchStartX < touchMoveX) return;
       var deltaForMainPage = Math.abs((touchStartX - touchMoveX).toFixed(0) / width * 2);
       var deltaForSideMenuBack = 1 - deltaForMainPage;
       if (deltaForSideMenuBack < 0.1)
-        deltaForSideMenuBack = 0.1
+        deltaForSideMenuBack = 0.1;
 
       sideMenuBackPageId.style.opacity = deltaForSideMenuBack;
-      //console.log('deltaForMainPage', deltaForMainPage)
       mainPageId.style.opacity = deltaForMainPage;
 
       if (touchMoveX - touchStartX <= 0) {
-        sideMenuId.style.webkitTransform = 'translate3d(' + (touchMoveX - touchStartX) + 'px,0,0)'
-        touchEndMove = touchMoveX - touchStartX
+        sideMenuId.style.webkitTransform = 'translate3d(' + (touchMoveX - touchStartX) + 'px,0,0)';
+        touchEndMove = touchMoveX - touchStartX;
         componentMenu.checkOpen = true;
       }
 
-    }
+    };
 
-    var changeModeStart, changeModeEnd;
     changeModeTouchStart = function () {
-      console.log("QWe")
       event.preventDefault();
       event.stopPropagation();
 
       changeModeStart = event.changedTouches[0].pageX;
 
-    }
+    };
 
     changeModeTouchEnd = function () {
 
@@ -314,66 +294,45 @@
       if (Math.abs(changeModeStart - changeModeEnd) < 20) {
 
         if (modeOfApp.demoVersion) {
-          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
-//        confirm(question)
+          var question = window.languages.DemoModeConstraintText;
+
           window.common.alert.show("componentAlertId", {
             parent: scope,
             errornote: question
           });
-//          scope.confirmShowBool = true;
-//          scope.confirmNote = question;
-//          scope.confirmType = 'local';
-//          scope.result = function (bool) {
-//            if (bool) {
-//              localStorage.clear();
-//              window.location = 'index.html'
-//              scope.unmount()
-//              return
-//            }
-//            else {
-//              scope.confirmShowBool = false;
-//              return
-//            }
-//          };
-          scope.update();
 
+          scope.update();
           return
         }
 
-
-        console.log('QQ')
         if (checkBoxChangeId.checked) {
           checkBoxChangeId.checked = false;
         }
         else {
           checkBoxChangeId.checked = true;
         }
-//        scope.update();
         changeMode()
       }
       else sideMenuTouchEnd()
 
-    }
+    };
 
     changeMode = function () {
-      console.log('asd')
-      console.log('MENU PARENT', scope.parent)
+      console.log('MENU PARENT', scope.parent);
       if (event) {
         event.preventDefault();
         event.stopPropagation();
       }
-      console.log(checkBoxChangeId.checked)
+      console.log(checkBoxChangeId.checked);
       if (checkBoxChangeId.checked) {
         modeOfApp.onlineMode = true
         modeOfApp.offlineMode = false;
         if (localStorage.getItem('click_client_token') && localStorage.getItem('click_client_registered')) {
           this.riotTags.innerHTML = "<view-authorization>";
           riot.mount('view-authorization');
-//          scope.unmount()
         } else {
           this.riotTags.innerHTML = "<view-registration-device>";
           riot.mount('view-registration-device');
-//          scope.unmount()
         }
         return
       }
@@ -383,8 +342,8 @@
       }
       if (modeOfApp.onlineMode) {
         scope.parent.tags['component-bank-operations-new'].updateOperations();
-        scope.modeOfApplication = window.languages.ComponentMenuOnlineMode
-        changeModeContainerId.style.backgroundColor = '#92bf3a'
+        scope.modeOfApplication = window.languages.ComponentMenuOnlineMode;
+        changeModeContainerId.style.backgroundColor = '#92bf3a';
         scope.checkModeOfApplication = true;
         changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_online.png)';
       }
@@ -393,79 +352,52 @@
         scope.parent.tags['component-card-carousel'].switchToOfflineMode();
         scope.parent.tags['component-bank-operations-new'].updateOperations();
 
-        scope.modeOfApplication = window.languages.ComponentMenuOfflineMode
+        scope.modeOfApplication = window.languages.ComponentMenuOfflineMode;
         scope.checkModeOfApplication = false;
-        changeModeContainerId.style.backgroundColor = '#e56c47'
+        changeModeContainerId.style.backgroundColor = '#e56c47';
         changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_ussd.png)';
       }
       scope.update()
     };
 
-    //    menuBackPageTouchEnd = function () {
-    //      event.preventDefault();
-    //      event.stopPropagation();
-    //      console.log(event.changedTouches[0].pageX)
-    //      if (event.changedTouches[0].pageX > 550 * widthK)
-    //        closeMenu()
-    //      else return
-    //    }
-
-    var callTouchStartX, callTouchStartY, callTouchEndX, callTouchEndY
     callToClickTouchEnd = function () {
 
-      callButtonId.style.backgroundColor = 'transparent'
+      callButtonId.style.backgroundColor = 'transparent';
 
       callTouchEndX = event.changedTouches[0].pageX;
       callTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(callTouchStartX - callTouchEndX) < 20 && Math.abs(callTouchStartY - callTouchEndY) < 20) {
-        closeMenu()
+        closeMenu();
         componentMenu.checkOpen = false;
         window.open('tel:+998712310880')
       }
       else sideMenuTouchEnd()
 
-    }
+    };
 
     callToClickTouchStart = function () {
 
-      callButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)'
+      callButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
 
       callTouchStartX = event.changedTouches[0].pageX;
       callTouchStartY = event.changedTouches[0].pageY;
-    }
+    };
 
-    var autoPayTouchStartX, autoPayTouchStartY, autoPayTouchEndX, autoPayTouchEndY;
     goToAutoPayEnd = function () {
 
-      autoPayButtonId.style.backgroundColor = 'transparent'
+      autoPayButtonId.style.backgroundColor = 'transparent';
 
       autoPayTouchEndX = event.changedTouches[0].pageX;
       autoPayTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(autoPayTouchStartX - autoPayTouchEndX) <= 20 && Math.abs(autoPayTouchStartY - autoPayTouchEndY) <= 20) {
         if (modeOfApp.demoVersion) {
-          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+          var question = window.languages.DemoModeConstraintText;
           window.common.alert.show("componentAlertId", {
             parent: scope,
             errornote: question
           });
-//        confirm(question)
-//          scope.confirmShowBool = true;
-//          scope.confirmNote = question;
-//          scope.confirmType = 'local';
-//          scope.result = function (bool) {
-//            if (bool) {
-//              localStorage.clear();
-//              window.location = 'index.html'
-//              scope.unmount()
-//              return
-//            }
-//            else {
-//              scope.confirmShowBool = false;
-//              return
-//            }
-//          };
           scope.update();
 
           return
@@ -474,71 +406,55 @@
         closeMenu();
         riotTags.innerHTML = "<view-auto-pay-new>";
         riot.mount('view-auto-pay-new');
-//        scope.unmount()
       }
       else sideMenuTouchEnd()
-
-    }
+    };
 
     goToAutoPayStart = function () {
 
-      autoPayButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)'
+      autoPayButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
 
       autoPayTouchStartX = event.changedTouches[0].pageX;
       autoPayTouchStartY = event.changedTouches[0].pageY;
     };
 
-
-    var qrScannerTouchStartX, qrScannerTouchStartY, qrScannerTouchEndX, qrScannerTouchEndY
-
     goToQrScannerEnd = function () {
 
-      qrScannerButtonId.style.backgroundColor = 'transparent'
+      qrScannerButtonId.style.backgroundColor = 'transparent';
 
       qrScannerTouchEndX = event.changedTouches[0].pageX;
       qrScannerTouchEndY = event.changedTouches[0].pageY;
 
-      if (Math.abs(qrScannerTouchStartX - qrScannerTouchEndX) < 20 && Math.abs(qrScannerTouchStartY - qrScannerTouchEndY) < 20) {
+      if (Math.abs(qrScannerTouchStartX - qrScannerTouchEndX) < 20 && Math.abs(qrScannerTouchStartY - qrScannerTouchEndY) < 20 && !qrInited) {
+
         if (modeOfApp.demoVersion) {
-          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+          var question = window.languages.DemoModeConstraintText;
           window.common.alert.show("componentAlertId", {
             parent: scope,
             errornote: question
           });
-//        confirm(question)
-//          scope.confirmShowBool = true;
-//          scope.confirmNote = question;
-//          scope.confirmType = 'local';
-//          scope.result = function (bool) {
-//            if (bool) {
-//              localStorage.clear();
-//              window.location = 'index.html'
-//              scope.unmount()
-//              return
-//            }
-//            else {
-//              scope.confirmShowBool = false;
-//              return
-//            }
-//          };
-          scope.update();
 
+          scope.update();
           return
         }
-        window.pickContactFromNativeChecker = true;
-//        closeMenu()
-        if (device.platform != 'BrowserStand') {
 
+        window.pickContactFromNativeChecker = true;
+        qrInited = true;
+        console.log("qrInited =", qrInited);
+
+        if (device.platform != 'BrowserStand') {
 
           cordova.plugins.barcodeScanner.scan(
             function (result) {
-              console.log(result)
+
+              qrInited = false;
+              console.log("qrInited success false");
 
               var string = result.text;
               if (string.indexOf('click.uz') != -1) {
 
-                string = string.split('?')[1]
-                string = string.split('&')
+                string = string.split('?')[1];
+                string = string.split('&');
                 var id = '';
                 var rkId = '';
                 var rkAmount = '';
@@ -551,29 +467,29 @@
                 }
 
                 if (!id) {
-                  console.log('string', string)
+                  console.log('string', string);
                   try {
                     var decodeString = atob(string)
                   }
                   catch (e) {
                     console.log(e)
                   }
-                  console.log("DECODED STRING", decodeString)
+                  console.log("DECODED STRING", decodeString);
                   var splitedArray = decodeString.split('&');
                   for (var j in splitedArray) {
                     if (splitedArray[j].split("=")[0] == 'id')
-                      id = splitedArray[j].split("=")[1]
+                      id = splitedArray[j].split("=")[1];
 
                     if (splitedArray[j].split("=")[0] == 'amount')
-                      rkAmount = splitedArray[j].split("=")[1]
+                      rkAmount = splitedArray[j].split("=")[1];
 
                     if (splitedArray[j].split("=")[0] == 'order_id')
                       rkOrder = splitedArray[j].split("=")[1]
                   }
 
-                  console.log('id', id)
-                  console.log('rkAmount', rkAmount)
-                  console.log('rkOrder', rkOrder)
+                  console.log('id', id);
+                  console.log('rkAmount', rkAmount);
+                  console.log('rkOrder', rkOrder);
                 }
                 if (id) {
                   if (modeOfApp.offlineMode) {
@@ -584,29 +500,20 @@
                       "id": id,
                       "image": "resources/icons/ViewPay/logo_indoor.png"
                     });
-//                      scope.unmount()
                   }
                   else {
                     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
                     var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
                     var sessionKey = info.session_key;
 
-                    if (device.platform != 'BrowserStand') {
-                      var options = {dimBackground: true};
-
-                      SpinnerPlugin.activityStart("Сканирование QR", options, function () {
-                        console.log("Started");
-                      }, function () {
-                        console.log("closed");
-                      });
-                    }
+                    window.startSpinner();
 
                     window.api.call({
                       method: 'get.indoor.service',
                       input: {
                         phone_num: phoneNumber,
                         session_key: sessionKey,
-                        service_id: id,
+                        service_id: id
                       },
 
                       scope: this,
@@ -626,18 +533,12 @@
                               }
                               riotTags.innerHTML = "<view-qr>";
                               riot.mount('view-qr', result[1][0]);
-//                                scope.unmount()
                             }
                           }
                           console.log("QR PAY", result);
                         }
                         else {
-//                          if (result[0][0].error == -202) {
-//                            window.checkShowingComponent = scope;
-//                            scope.update();
-//                            iFrameExternalUrlId.src = result[0][0].error_url
-//                            return
-//                          }
+
                           window.common.alert.show("componentAlertId", {
                             parent: scope,
                             clickpinerror: false,
@@ -656,7 +557,7 @@
                         timeOutTimer = setTimeout(function () {
                           window.stopSpinner();
                           return;
-                        }, 15000)
+                        }, 15000);
                         console.log('creating timeOut', timeOutTimer);
                       },
                       onEmergencyStop: function () {
@@ -669,6 +570,9 @@
               }
             },
             function (error) {
+
+              qrInited = false;
+              console.log("qrInited error false");
 
               window.common.alert.show("componentAlertId", {
                 parent: scope,
@@ -701,7 +605,7 @@
             input: {
               phone_num: phoneNumber,
               session_key: sessionKey,
-              service_id: 1234,
+              service_id: 1234
 
             },
 
@@ -714,7 +618,6 @@
                     closeMenu();
                     riotTags.innerHTML = "<view-qr>";
                     riot.mount('view-qr', result[1][0]);
-//                    scope.unmount()
                   }
                 }
                 console.log("QR PAY", result);
@@ -727,7 +630,6 @@
                   errornote: result[0][0].error_note
                 });
                 scope.update();
-//                alert(result[0][0].error_note);
               }
             },
 
@@ -741,81 +643,58 @@
       }
       else sideMenuTouchEnd()
 
-    }
+    };
 
     goToQrScannerStart = function () {
 
-      console.log('qrButtonId', qrButtonId)
+      console.log('qrButtonId', qrButtonId);
 
-      qrScannerButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)'
+      qrScannerButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
 
       qrScannerTouchStartX = event.changedTouches[0].pageX;
       qrScannerTouchStartY = event.changedTouches[0].pageY;
-    }
-
-    var settingsTouchStartX, settingsTouchStartY, settingsTouchEndX, settingsTouchEndY
+    };
 
     goToSettingsEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      settingsButtonId.style.backgroundColor = 'transparent'
+      settingsButtonId.style.backgroundColor = 'transparent';
 
       settingsTouchEndX = event.changedTouches[0].pageX;
       settingsTouchEndY = event.changedTouches[0].pageY;
 
-      console.log('settingsTouchStartX', settingsTouchStartX)
-      console.log('settingsTouchEndX', settingsTouchEndX)
-
       if (Math.abs(settingsTouchStartX - settingsTouchEndX) < 20 && Math.abs(settingsTouchStartY - settingsTouchEndY) < 20) {
         if (modeOfApp.demoVersion) {
-          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+          var question = window.languages.DemoModeConstraintText;
 
           window.common.alert.show("componentAlertId", {
             parent: scope,
             errornote: question
           });
-//        confirm(question)
-//          scope.confirmShowBool = true;
-//          scope.confirmNote = question;
-//          scope.confirmType = 'local';
-//          scope.result = function (bool) {
-//            if (bool) {
-//              localStorage.clear();
-//              window.location = 'index.html'
-//              scope.unmount()
-//              return
-//            }
-//            else {
-//              scope.confirmShowBool = false;
-//              return
-//            }
-//          };
+
           scope.update();
 
           return
         }
-        closeMenu()
+        closeMenu();
         riotTags.innerHTML = "<view-settings>";
         riot.mount("view-settings");
-//        scope.unmount()
         return
       }
       else sideMenuTouchEnd()
-
-    }
+    };
 
     goToSettingsStart = function () {
-      settingsButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)'
+      settingsButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
 
       settingsTouchStartX = event.changedTouches[0].pageX;
       settingsTouchStartY = event.changedTouches[0].pageY;
-    }
+    };
 
-    var billingsTouchStartX, billingsTouchStartY, billingsTouchEndX, billingsTouchEndY;
     goToBillingsTouchStart = function () {
 
-      billngsButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)'
+      billngsButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
 
       billingsTouchStartX = event.changedTouches[0].pageX;
       billingsTouchStartY = event.changedTouches[0].pageY;
@@ -823,34 +702,19 @@
 
     goToBillingsTouchEnd = function () {
 
-      billngsButtonId.style.backgroundColor = 'transparent'
+      billngsButtonId.style.backgroundColor = 'transparent';
 
       billingsTouchEndX = event.changedTouches[0].pageX;
       billingsTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(billingsTouchEndX - billingsTouchStartX) < 20 && Math.abs(billingsTouchStartY - billingsTouchEndY) < 20) {
         if (modeOfApp.demoVersion) {
-          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+          var question = window.languages.DemoModeConstraintText;
           window.common.alert.show("componentAlertId", {
             parent: scope,
             errornote: question
           });
-//        confirm(question)
-//          scope.confirmShowBool = true;
-//          scope.confirmNote = question;
-//          scope.confirmType = 'local';
-//          scope.result = function (bool) {
-//            if (bool) {
-//              localStorage.clear();
-//              window.location = 'index.html'
-//              scope.unmount()
-//              return
-//            }
-//            else {
-//              scope.confirmShowBool = false;
-//              return
-//            }
-//          };
+
           scope.update();
 
           return
@@ -885,48 +749,27 @@
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
         riotTags.innerHTML = "<view-invoice-list>";
         riot.mount("view-invoice-list", params);
-//        scope.unmount()
         return
       }
     };
-
-    var favoritesTouchStartX, favoritesTouchStartY, favoritesTouchEndX, favoritesTouchEndY;
 
     goToFavoritesEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      favouriteButtonId.style.backgroundColor = 'transparent'
+      favouriteButtonId.style.backgroundColor = 'transparent';
 
       favoritesTouchEndX = event.changedTouches[0].pageX;
       favoritesTouchEndY = event.changedTouches[0].pageY;
 
-      console.log('settingsTouchStartX', favoritesTouchStartX)
-      console.log('settingsTouchEndX', favoritesTouchEndX)
-
       if (Math.abs(favoritesTouchStartX - favoritesTouchEndX) < 20 && Math.abs(favoritesTouchStartY - favoritesTouchEndY) < 20) {
         if (modeOfApp.demoVersion) {
-          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!'
+          var question = window.languages.DemoModeConstraintText;
           window.common.alert.show("componentAlertId", {
             parent: scope,
             errornote: question
           });
-//        confirm(question)
-//          scope.confirmShowBool = true;
-//          scope.confirmNote = question;
-//          scope.confirmType = 'local';
-//          scope.result = function (bool) {
-//            if (bool) {
-//              localStorage.clear();
-//              window.location = 'index.html'
-//              scope.unmount()
-//              return
-//            }
-//            else {
-//              scope.confirmShowBool = false;
-//              return
-//            }
-//          };
+
           scope.update();
 
           return
@@ -934,16 +777,15 @@
         closeMenu();
         riotTags.innerHTML = "<view-favorites-new>";
         riot.mount("view-favorites-new");
-//        scope.unmount()
         return
       }
       else sideMenuTouchEnd()
 
-    }
+    };
 
     goToFavoritesStart = function () {
 
-      favouriteButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)'
+      favouriteButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
 
       favoritesTouchStartX = event.changedTouches[0].pageX;
       favoritesTouchStartY = event.changedTouches[0].pageY;
