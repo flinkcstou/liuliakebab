@@ -164,7 +164,7 @@
                     if (result[5][i].service_id == scope.favoritePaymentsList[i].service.id) {
                       console.log("qwerty=", result[5][i].sum_cost);
 
-                      scope.favoritePaymentsList[i].params.intPartAmount = Math.floor(result[5][i].sum_cost.toString().replace(' ', ''))
+                      scope.favoritePaymentsList[i].params.intPartAmount = Math.floor(result[5][i].sum_cost.toString().replace(/\s/g, ''))
                         .toFixed(0).toString();
 
                       scope.favoritePaymentsList[i].params.fracPartAmount = window.getFractionalPart(result[5][i].sum_cost.toString());
@@ -188,7 +188,7 @@
 
         } else if (scope.favoritePaymentsList[i].params.amountText) {
           scope.favoritePaymentsList[i].params.intPartAmount = Math.floor(
-            scope.favoritePaymentsList[i].params.amountText.toString().replace(' ', '')).toFixed(0).toString();
+            scope.favoritePaymentsList[i].params.amountText.toString().replace(/\s/g, '')).toFixed(0).toString();
 
           scope.favoritePaymentsList[i].params.fracPartAmount = window.getFractionalPart(scope.favoritePaymentsList[i].params.amountText.toString());
 

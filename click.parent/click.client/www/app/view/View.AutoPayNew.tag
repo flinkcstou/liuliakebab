@@ -171,7 +171,6 @@
               && scope.servicesMap[result[1][i].service_id]
               && scope.servicesMap[result[1][i].service_id][0]){
               result[1][i].currency = scope.servicesMap[result[1][i].service_id][0].lang_amount_currency;
-              console.log(scope.servicesMap[result[1][i].service_id][0]);
             } else {
               result[1][i].currency = window.languages.Currency;
             }
@@ -246,6 +245,12 @@
             opts.internetPackageParam = scope.autopayList[i].cntrg_param5;
             opts.cardTypeId = scope.autopayList[i].cntrg_param5;
             opts.currency = scope.autopayList[i].currency;
+
+            if (scope.servicesMap && scope.servicesMap[scope.autopayList[i].service_id]){
+              opts.cost = scope.servicesMap[scope.autopayList[i].service_id][0].cost;
+              opts.lang_amount_title = scope.servicesMap[scope.autopayList[i].service_id][0].lang_amount_title;
+              opts.amountWithoutSpace = scope.autopayList[i].amount;
+            }
 
 
             if (scope.autopayList[i].autopay_type == 2) {

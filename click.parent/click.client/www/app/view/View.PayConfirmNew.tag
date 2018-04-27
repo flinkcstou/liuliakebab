@@ -246,7 +246,7 @@
         scope.amountTextCopy = window.amountTransform(window.inputVerification.spaceDeleter(scope.intPartAmount)) + scope.fracPartAmount;
       }
       else {
-        scope.intPartAmount = Math.floor(opts.amountText.replace(' ', '')).toFixed(0).toString();
+        scope.intPartAmount = Math.floor(opts.amountText.replace(/\s/g, '')).toFixed(0).toString();
         scope.fracPartAmount = window.getFractionalPart(opts.amountText.toString());
         scope.amountTextCopy = window.amountTransform(window.inputVerification.spaceDeleter(scope.intPartAmount)) + scope.fracPartAmount;
       }
