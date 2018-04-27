@@ -17717,7 +17717,7 @@ var css = {
   inPlacePayServiceInnerContainer: ".inplace-pay-service-inner-container" +
   "{" +
   "position: absolute;" +
-  "height: 89%; " +
+  "height: 88.7%; " +
   "width: 100%; " +
   "top: 9%; " +
   "bottom:0; " +

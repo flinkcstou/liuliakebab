@@ -2,12 +2,12 @@
 <widget id="air.com.ssdsoftwaresolutions.clickuz"
         android-packageName="air.com.ssdsoftwaresolutions.clickuz"
         ios-CFBundleIdentifier="com.ssdsoftwaresolutions.clickuz"
-        version="5.2.3" xmlns="http://www.w3.org/ns/widgets"
-        android-versionCode="50000023">
+        version="5.10.0" xmlns="http://www.w3.org/ns/widgets"
+        android-versionCode="50000100">
   <name>CLICK Uzbekistan</name>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="Orientation" value="sensorPortrait"/>
-  <preference name="loadUrlTimeoutValue" value="700000" />
+  <preference name="loadUrlTimeoutValue" value="700000"/>
   <author email="chamirkazhiyev@greet-go.com">
     Amirkazhiev Chingis
   </author>

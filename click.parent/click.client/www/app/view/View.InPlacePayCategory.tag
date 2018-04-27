@@ -657,7 +657,7 @@
 
     servicesScroll = function () {
 
-      if ((categoriesContainerId.scrollHeight - categoriesContainerId.scrollTop) == categoriesContainerId.offsetHeight && categoriesContainerId.scrollTop != 0) {
+      if ((categoriesContainerId.scrollHeight - categoriesContainerId.scrollTop) <= categoriesContainerId.offsetHeight && categoriesContainerId.scrollTop != 0) {
 
         if (scope.serviceList.length % 20 == 0 && scope.searchServices) {
           scope.pageNumber++;
