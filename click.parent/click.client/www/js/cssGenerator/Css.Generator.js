@@ -339,7 +339,7 @@ var css = {
   "height:" + 96 * widthK + "px;" +
   "left: 50%;" +
   "top:" + 12 * widthK + "px;" +
-  "border-right:" + 1 * widthK + "px solid #e8e8e8;" +
+  "border-right: 1px solid #e8e8e8;" +
   "background: transparent;" +
   "}",
 
@@ -1617,7 +1617,7 @@ var css = {
   "width: 1%;" +
   "float: left;" +
   "top: 20%;" +
-  "border-right:" + 1 * widthK + "px solid #e8e8e8;" +
+  "border-right: 1px solid #e8e8e8;" +
   "background: transparent;" +
   "}",
 
@@ -6399,7 +6399,7 @@ var css = {
   "height: 80%;" +
   "width: 33.31%;" +
   "top: 10%;" +
-  "border-right:" + 1 * widthK + "px solid #e8e8e8;" +
+  "border-right: 1px solid #e8e8e8;" +
   "background: transparent;" +
   "}",
 
