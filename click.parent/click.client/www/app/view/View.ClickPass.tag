@@ -115,7 +115,7 @@
           scope.chosenCard = scope.cardsArray[i];
         }
       }
-      if (!scope.chosenCard && JSON.stringify(scope.cardsArray).length > 2) {
+      if (!scope.chosenCard && scope.cardsArray && JSON.stringify(scope.cardsArray).length > 2) {
         for (var i in scope.cardsArray) {
           if (scope.cardsArray[i]) {
             scope.chosenCard = scope.cardsArray[i];
@@ -123,13 +123,33 @@
         }
       }
       if (!scope.chosenCard) {
-        scope.errorNote = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
-        window.common.alert.show("componentAlertId", {
-          parent: scope,
-          viewpage: "view-main-page",
-          errornote: scope.errorNote,
-        });
-        return;
+        scope.errorNote = 'Нет доступных карт для оплаты через CLICK PASS';
+        if (opts && opts[0] !== 'fromPinCode') {
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            step_amount: 1,
+            viewmount: true,
+            errornote: scope.errorNote,
+          });
+          return;
+        } else {
+          if (modeOfApp.offlineMode) {
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              step_amount: 1,
+              viewmount: true,
+              errornote: scope.errorNote,
+            });
+            return;
+          } else {
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              viewpage: "view-authorization",
+              errornote: scope.errorNote,
+            });
+            return;
+          }
+        }
       }
       if (correctTime() % 30 != 0) {
         var restOfTime = 30 - correctTime() % 30;
