@@ -122,6 +122,16 @@
           }
         }
       }
+      if (!localStorage.getItem('click_client_otp_time')) {
+        scope.errorNote = 'Для работы раздела CLICK PASS необходимо один раз зайти в онлайн режим';
+        window.common.alert.show("componentAlertId", {
+          parent: scope,
+          viewpage: "view-authorization",
+          errornote: scope.errorNote,
+        });
+        return;
+      }
+
       if (!scope.chosenCard) {
         scope.errorNote = 'Нет доступных карт для оплаты через CLICK PASS';
         if (opts && opts[0] !== 'fromPinCode') {
