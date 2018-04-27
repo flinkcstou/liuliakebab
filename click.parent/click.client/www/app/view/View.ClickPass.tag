@@ -133,6 +133,12 @@
       }
       if (correctTime() % 30 != 0) {
         var restOfTime = 30 - correctTime() % 30;
+
+        if (document.getElementById("statusBarId")) {
+          scope.lastPosition = 410 * restOfTime / 30;
+          statusBarLineId.style.width = scope.lastPosition * widthK + 'px';
+        }
+
         setTimeout(function () {
           updateRestTimeCode();
           clearRestTransitionStatus(restOfTime);
