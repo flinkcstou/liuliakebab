@@ -54,7 +54,7 @@
 
     <div if="{!firstEnter}" class="authorization-keyboard-field keyboard-field">
       <component-keyboard
-        fingerprint="{JSON.parse(localStorage.getItem('settings_finger_print')) && viewAuthorization.fingerPrintErrorCount != 5}"></component-keyboard>
+        fingerprint="{JSON.parse(localStorage.getItem('settings_finger_print'))}"></component-keyboard>
     </div>
 
     <div if="{firstEnter}" id="firstEnterButtonId" class="bottom-button-container"
@@ -800,7 +800,7 @@
 
               console.log("viewAuthorization.fingerPrintErrorCount in Auth=", viewAuthorization.fingerPrintErrorCount);
 
-              if (viewAuthorization.fingerPrintErrorCount == 5) {
+              if (viewAuthorization.fingerPrintErrorCount == 3) {
                 console.log("stopping fingerPrintMode");
                 fingerPrintStop();
                 scope.fingerprintMode = false;
@@ -820,7 +820,7 @@
 
                     if (document.getElementById('fingerPrintIconId'))
                       document.getElementById('fingerPrintIconId').style.backgroundImage = "url(resources/gifs/auth/wait.gif?p" + new Date().getTime() + ")";
-                  }, 2000);
+                  }, 3500);
                 }, 500);
               }
 

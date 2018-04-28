@@ -1419,20 +1419,20 @@ window.fingerPrintAsk = function (fingerprintIconId) {
 
           viewAuthorization.fingerPrintErrorCount++;
           console.log("viewAuthorization.fingerPrintErrorCount =", viewAuthorization.fingerPrintErrorCount);
-          if (viewAuthorization.fingerPrintErrorCount % 2 == 0 || viewAuthorization.fingerPrintErrorCount == 5) {
-            console.log("Sending error app.login");
-            checkConnection(enterFalse, noInternetFingerPrint);
-          } else {
-
-            setTimeout(function () {
-
-              fingerPrintAsk('fingerPrintIconId');
-
-              if (document.getElementById('fingerPrintIconId'))
-                document.getElementById('fingerPrintIconId').style.backgroundImage = "url(resources/gifs/auth/wait.gif?p" + new Date().getTime() + ")";
-            }, 1000);
-
-          }
+          // if (viewAuthorization.fingerPrintErrorCount % 2 == 0 || viewAuthorization.fingerPrintErrorCount == 5) {
+          console.log("Sending error app.login");
+          checkConnection(enterFalse, noInternetFingerPrint);
+          // } else {
+          //
+          //   setTimeout(function () {
+          //
+          //     fingerPrintAsk('fingerPrintIconId');
+          //
+          //     if (document.getElementById('fingerPrintIconId'))
+          //       document.getElementById('fingerPrintIconId').style.backgroundImage = "url(resources/gifs/auth/wait.gif?p" + new Date().getTime() + ")";
+          //   }, 1000);
+          //
+          // }
 
           window.fingerPrint.fingerPrintInitialize = false;
           console.log("FingerprintAuth Error: " + error);
