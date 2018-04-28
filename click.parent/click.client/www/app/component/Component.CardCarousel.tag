@@ -532,7 +532,6 @@
             onSuccess: function (result) {
 
               if (result[0][0].error == 0) {
-                console.log("get accounts response", JSON.stringify(result));
                 if (JSON.parse(localStorage.getItem('click_client_cards')) && !info.update_account_cache) {
                   var cardsArray = JSON.parse(localStorage.getItem('click_client_cards'));
                   var countLocalStorageCard = Object.keys(cardsArray).length;
