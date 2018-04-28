@@ -124,12 +124,22 @@
       }
       if (!localStorage.getItem('click_client_otp_time')) {
         scope.errorNote = 'Для работы раздела CLICK PASS необходимо один раз зайти в онлайн режим';
-        window.common.alert.show("componentAlertId", {
-          parent: scope,
-          viewpage: "view-authorization",
-          errornote: scope.errorNote,
-        });
-        return;
+        if (modeOfApp.offlineMode) {
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            step_amount: 1,
+            viewmount: true,
+            errornote: scope.errorNote,
+          });
+          return;
+        } else {
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            viewpage: "view-authorization",
+            errornote: scope.errorNote,
+          });
+          return;
+        }
       }
 
       if (!scope.chosenCard) {
