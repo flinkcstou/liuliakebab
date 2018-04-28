@@ -65,7 +65,6 @@
 
   <script>
 
-
     var scope = this;
     scope.invoiceLeft = 100 * widthK;
     scope.invoiceList = [];
