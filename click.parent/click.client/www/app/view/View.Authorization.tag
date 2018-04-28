@@ -17,26 +17,26 @@
       </div>
     </div>
 
-  <div if="{firstEnter}" class="authorization-flex-container">
-    <div class="authorization-unchangable-container">
-      <div class="authorization-enter-pin-label">
-        {window.languages.ViewAuthorizationClickPinLabel}
-      </div>
-      <div class="authorization-pin-input-first-enter-container" id="firstPinContainerId">
-        <input autofocus="true"
-               type="password"
-               class="authorization-pin-input-first-enter"
-               onfocus="focusColor()"
-               onblur="inputPinBlur()"
-               id="firstPinInputId"/>
-        <div id="eyeButtonId" class="authorization-input-eye-button" role="button"
-             aria-label="{window.languages.ViewAuthorizationFirstEnterAriaLabelShowPass}"
-             onclick="eyeClicked()"></div>
+    <div if="{firstEnter}" class="authorization-flex-container">
+      <div class="authorization-unchangable-container">
+        <div class="authorization-enter-pin-label">
+          {window.languages.ViewAuthorizationClickPinLabel}
+        </div>
+        <div class="authorization-pin-input-first-enter-container" id="firstPinContainerId">
+          <input autofocus="true"
+                 type="password"
+                 class="authorization-pin-input-first-enter"
+                 onfocus="focusColor()"
+                 onblur="inputPinBlur()"
+                 id="firstPinInputId"/>
+          <div id="eyeButtonId" class="authorization-input-eye-button" role="button"
+               aria-label="{window.languages.ViewAuthorizationFirstEnterAriaLabelShowPass}"
+               onclick="eyeClicked()"></div>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div id="authorizationButtonsContainerId" class="authorization-buttons-container">
+    <div id="authorizationButtonsContainerId" class="authorization-buttons-container">
 
 
       <div id="forgetPinButtonId" class="authorization-button-forget-pin" ontouchstart="pinResetTouchStart()"
@@ -57,57 +57,57 @@
         fingerprint="{JSON.parse(localStorage.getItem('settings_finger_print'))}"></component-keyboard>
     </div>
 
-  <div if="{firstEnter}" id="firstEnterButtonId" class="bottom-button-container"
-       ontouchend="firstPinEnterTouchEnd()"
-       ontouchstart="firstPinEnterTouchStart()">
-    <div class="button-enter-label">{window.languages.ViewAuthorizationFirstEnterLabel}</div>
-    <div class="button-enter-icon"></div>
-  </div>
-
-  <button id="authOfflineButtonId" hidden="{device.platform == 'iOS'}"
-          if="{firstEnter}"
-          class="authorization-footer-button-container-first"
-          ontouchstart="offlineModeTouchStart()"
-          ontouchend="offlineModeTouchEnd()">
-    {window.languages.ViewAuthorizationOfflineModeLabel}
-  </button>
-
-  <div if="{!firstEnter && device.platform != 'iOS'}"
-       class="authorization-footer-button-container">
-    <div id="authOfflineButtonId"
-         class="authorization-footer-not-first-button"
-         ontouchstart="offlineModeTouchStart()"
-         ontouchend="offlineModeTouchEnd()">
-      <div class="authorization-footer-not-first-offline-icon"></div>
-      <div class="authorization-footer-not-first-offline-label">
-        {window.languages.ViewAuthorizationOfflineModeLabel}
-      </div>
+    <div if="{firstEnter}" id="firstEnterButtonId" class="bottom-button-container"
+         ontouchend="firstPinEnterTouchEnd()"
+         ontouchstart="firstPinEnterTouchStart()">
+      <div class="button-enter-label">{window.languages.ViewAuthorizationFirstEnterLabel}</div>
+      <div class="button-enter-icon"></div>
     </div>
-    <div class="authorization-footer-not-first-border-right"></div>
-    <div id="authClickPassButtonId"
-         class="authorization-footer-not-first-button"
-         ontouchstart="clickPassTouchStart()"
-         ontouchend="clickPassTouchEnd()">
-      <div class="authorization-footer-not-first-click-pass-icon"></div>
-      <div class="authorization-footer-not-first-click-pass-label">
-        {window.languages.ViewAuthorizationClickScanLabel}
+
+    <button id="authOfflineButtonId" hidden="{device.platform == 'iOS'}"
+            if="{firstEnter}"
+            class="authorization-footer-button-container-first"
+            ontouchstart="offlineModeTouchStart()"
+            ontouchend="offlineModeTouchEnd()">
+      {window.languages.ViewAuthorizationOfflineModeLabel}
+    </button>
+
+    <div if="{!firstEnter && device.platform != 'iOS'}"
+         class="authorization-footer-button-container">
+      <div id="authOfflineButtonId"
+           class="authorization-footer-not-first-button"
+           ontouchstart="offlineModeTouchStart()"
+           ontouchend="offlineModeTouchEnd()">
+        <div class="authorization-footer-not-first-offline-icon"></div>
+        <div class="authorization-footer-not-first-offline-label">
+          {window.languages.ViewAuthorizationOfflineModeLabel}
+        </div>
       </div>
-    </div>
-  </div>
-  <div if="{!firstEnter && device.platform == 'iOS'}"
-       class="authorization-footer-button-container-ios-for-border">
-    <div class="authorization-footer-button-container-ios"
-         id="authClickPassButtonId"
-         ontouchstart="clickPassTouchStart()"
-         ontouchend="clickPassTouchEnd()">
-      <div class="authorization-footer-not-first-button-ios">
-        <div class="authorization-footer-not-first-click-pass-icon-ios"></div>
-        <div class="authorization-footer-not-first-click-pass-label-ios">
+      <div class="authorization-footer-not-first-border-right"></div>
+      <div id="authClickPassButtonId"
+           class="authorization-footer-not-first-button"
+           ontouchstart="clickPassTouchStart()"
+           ontouchend="clickPassTouchEnd()">
+        <div class="authorization-footer-not-first-click-pass-icon"></div>
+        <div class="authorization-footer-not-first-click-pass-label">
           {window.languages.ViewAuthorizationClickScanLabel}
         </div>
       </div>
     </div>
-  </div>
+    <div if="{!firstEnter && device.platform == 'iOS'}"
+         class="authorization-footer-button-container-ios-for-border">
+      <div class="authorization-footer-button-container-ios"
+           id="authClickPassButtonId"
+           ontouchstart="clickPassTouchStart()"
+           ontouchend="clickPassTouchEnd()">
+        <div class="authorization-footer-not-first-button-ios">
+          <div class="authorization-footer-not-first-click-pass-icon-ios"></div>
+          <div class="authorization-footer-not-first-click-pass-label-ios">
+            {window.languages.ViewAuthorizationClickScanLabel}
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="view-authorization-inner-container" if="{fingerprintMode && device.platform == 'Android'}">
@@ -628,7 +628,7 @@
 
     noInternetConfirmFirstEnter = function () {
 
-      if (document.getElementById("firstPinInputId")){
+      if (document.getElementById("firstPinInputId")) {
         document.getElementById("firstPinInputId").value = '';
       }
 
@@ -719,7 +719,7 @@
             if (!result[1][0].error) {
               console.log("User is authorized");
 
-              localStorage.setItem('click_client_pin', pin)
+              localStorage.setItem('click_client_pin', pin);
               localStorage.setItem('myNumberOperatorId', result[1][0].my_service_id);
               modeOfflineMode.check = false;
               var JsonInfo = JSON.stringify(result[1][0]);
@@ -734,7 +734,7 @@
               viewAuthorization.check = false;
               localStorage.setItem("click_client_authorized", true);
 
-              if (localStorage.getItem('click_client_friends') && JSON.parse(localStorage.getItem('click_client_friends'))) {
+              if (localStorage.getItem('click_client_friends') && JSON.parse(localStorage.getItem('click_client_friends')) && localStorage.getItem('click_client_friendsOuter_count')) {
                 var friends = JSON.parse(localStorage.getItem('click_client_friends'));
                 var outerFriendsCount = JSON.parse(localStorage.getItem('click_client_friendsOuter_count'));
                 friends.splice(friends.length - outerFriendsCount, outerFriendsCount);

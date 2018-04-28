@@ -29,147 +29,152 @@
   <script>
 
     console.log("main page");
+    try {
+      viewMainPage.atMainPage = true;
+      viewTransfer.check = false;
+      viewServicePinCards.friendHelpPaymentMode = false;
+      viewServicePinCards.chosenFriendForHelp = [];
+      componentMenu.check = false;
+      viewServicePage.amountWithoutSpace = 0;
+      viewServicePage.amountTex = 0;
+      onBackParams.opts = null;
+      viewMainPage.myCards = false;
+      viewTransfer.phoneNumber = '';
+      viewTransfer.cardNumber = '';
+      viewTransfer.type = 2;
+      viewTransferStepTwo.sum = '';
+      viewPay = {};
 
-    viewMainPage.atMainPage = true;
-    viewTransfer.check = false;
-    viewServicePinCards.friendHelpPaymentMode = false;
-    viewServicePinCards.chosenFriendForHelp = [];
-    componentMenu.check = false;
-    viewServicePage.amountWithoutSpace = 0;
-    viewServicePage.amountTex = 0;
-    onBackParams.opts = null;
-    viewMainPage.myCards = false;
-    viewTransfer.phoneNumber = '';
-    viewTransfer.cardNumber = '';
-    viewTransfer.type = 2;
-    viewTransferStepTwo.sum = '';
-    viewPay = {};
+      var touchStartX, touchEndX, touchMoveX;
+      var timeStartX, timeEndX;
+      var width = window.innerWidth;
 
-    var touchStartX, touchEndX, touchMoveX;
-    var timeStartX, timeEndX;
-    var width = window.innerWidth;
-
-    var myCardListStartX, myCardListEndX, myCardListStartY, myCardListEndY;
+      var myCardListStartX, myCardListEndX, myCardListStartY, myCardListEndY;
 
 
-    this.on('mount', function () {
-      console.log("main page mount");
-      if (device.platform !== 'BrowserStand')
-        StatusBar.backgroundColorByHexString("#ffffff");
-
-      if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).mainpage) {
-        componentTourId.style.display = "block";
+      this.on('mount', function () {
+        console.log("main page mount");
         if (device.platform !== 'BrowserStand')
           StatusBar.backgroundColorByHexString("#ffffff");
-      }
 
-      if (opts) {
-        if (opts.view === "news" || (sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true)) {
-          console.log("mainPage news");
-          viewNewsId.style.display = 'block';
-          scope.tags['view-news'].showNewsFunction(1, opts.news_id);
-
-          window.saveHistory('view-news', opts);
-          console.log("MOUNT MAIN news to history");
+        if (JSON.parse(localStorage.getItem("tour_data")) && !JSON.parse(localStorage.getItem("tour_data")).mainpage) {
+          componentTourId.style.display = "block";
+          if (device.platform !== 'BrowserStand')
+            StatusBar.backgroundColorByHexString("#ffffff");
         }
-      } else {
-        localStorage.setItem("click_client_authorized", true);
-      }
-    });
+
+        if (opts) {
+          if (opts.view === "news" || (sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true)) {
+            console.log("mainPage news");
+            viewNewsId.style.display = 'block';
+            scope.tags['view-news'].showNewsFunction(1, opts.news_id);
+
+            window.saveHistory('view-news', opts);
+            console.log("MOUNT MAIN news to history");
+          }
+        } else {
+          localStorage.setItem("click_client_authorized", true);
+        }
+      });
 
 
-    var scope = this;
+      var scope = this;
 
 
-    localStorage.setItem('cardNumber', 1);
+      localStorage.setItem('cardNumber', 1);
 
-    history.arrayOfHistory = [];
-    history.arrayOfHistory.push(
-      {
-        "view": 'view-main-page',
-        "params": opts
-      }
-    );
-    window.savePageLogs('view-main-page');
+      history.arrayOfHistory = [];
+      history.arrayOfHistory.push(
+        {
+          "view": 'view-main-page',
+          "params": opts
+        }
+      );
+      window.savePageLogs('view-main-page');
 
-    console.log("main page to history");
-    sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+      console.log("main page to history");
+      sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
 
-    myCardListTouchStart = function () {
-      event.preventDefault();
-      event.stopPropagation();
+      myCardListTouchStart = function () {
+        event.preventDefault();
+        event.stopPropagation();
 
-      myCardButtonId.style.webkitTransform = 'scale(0.7)';
+        myCardButtonId.style.webkitTransform = 'scale(0.7)';
 
-      myCardListStartX = event.changedTouches[0].pageX;
-      myCardListStartY = event.changedTouches[0].pageY;
-    };
-    myCardListTouchEnd = function () {
-      event.preventDefault();
-      event.stopPropagation();
+        myCardListStartX = event.changedTouches[0].pageX;
+        myCardListStartY = event.changedTouches[0].pageY;
+      };
+      myCardListTouchEnd = function () {
+        event.preventDefault();
+        event.stopPropagation();
 
-      myCardButtonId.style.webkitTransform = 'scale(1)';
+        myCardButtonId.style.webkitTransform = 'scale(1)';
 
-      myCardListEndX = event.changedTouches[0].pageX;
-      myCardListEndY = event.changedTouches[0].pageY;
+        myCardListEndX = event.changedTouches[0].pageX;
+        myCardListEndY = event.changedTouches[0].pageY;
 
-      if (Math.abs(myCardListStartX - myCardListEndX) <= 20 && Math.abs(myCardListStartY - myCardListEndY) <= 20) {
+        if (Math.abs(myCardListStartX - myCardListEndX) <= 20 && Math.abs(myCardListStartY - myCardListEndY) <= 20) {
 
-        this.riotTags.innerHTML = "<view-mycard-list>";
-        riot.mount('view-mycard-list');
+          this.riotTags.innerHTML = "<view-mycard-list>";
+          riot.mount('view-mycard-list');
 
-        scope.unmount()
+          scope.unmount()
 
-      }
-      else return
-    };
+        }
+        else return
+      };
 
-    blockForSwipeTouchStart = function () {
-      touchStartX = event.changedTouches[0].pageX;
-      timeStartX = event.timeStamp.toFixed(0);
-      sideMenuId.style.webkitTransition = '0s';
-      mainPageId.style.webkitTransition = '0s';
-      sideMenuBackPageId.style.webkitTransition = '0s';
-    };
+      blockForSwipeTouchStart = function () {
+        touchStartX = event.changedTouches[0].pageX;
+        timeStartX = event.timeStamp.toFixed(0);
+        sideMenuId.style.webkitTransition = '0s';
+        mainPageId.style.webkitTransition = '0s';
+        sideMenuBackPageId.style.webkitTransition = '0s';
+      };
 
-    blockForSwipeTouchEnd = function () {
-      event.stopPropagation();
+      blockForSwipeTouchEnd = function () {
+        event.stopPropagation();
 
-      touchEndX = event.changedTouches[0].pageX;
-      timeEndX = event.timeStamp.toFixed(0);
+        touchEndX = event.changedTouches[0].pageX;
+        timeEndX = event.timeStamp.toFixed(0);
 
-      console.log('touchMoveX', touchMoveX);
-      console.log('widthK', 269 * widthK);
-      if (touchMoveX > 269 * widthK) {
-        menuOpenTouchEnd(true);
-      }
-      else {
-        if (timeEndX - timeStartX < 500 && touchEndX - touchStartX > 20) {
+        console.log('touchMoveX', touchMoveX);
+        console.log('widthK', 269 * widthK);
+        if (touchMoveX > 269 * widthK) {
           menuOpenTouchEnd(true);
         }
-        else
-          closeMenu()
-      }
-    };
+        else {
+          if (timeEndX - timeStartX < 500 && touchEndX - touchStartX > 20) {
+            menuOpenTouchEnd(true);
+          }
+          else
+            closeMenu()
+        }
+      };
 
-    blockForSwipeTouchMove = function () {
-      event.preventDefault();
-      event.stopPropagation();
-      var deltaForSideMenuBack = event.changedTouches[0].pageX.toFixed(0) / width;
-      var deltaForMainPage = 1 - deltaForSideMenuBack;
-      if (deltaForMainPage < 0.1)
-        deltaForMainPage = 0.1;
-      if (event.changedTouches[0].pageX - 538 * widthK <= 0) {
-        sideMenuId.style.webkitTransform = 'translate3d(' + (event.changedTouches[0].pageX - 538 * widthK) + 'px,0,0)'
-        touchMoveX = event.changedTouches[0].pageX;
-      }
-      sideMenuBackPageId.style.opacity = deltaForSideMenuBack;
-      mainPageId.style.opacity = deltaForMainPage;
-    };
+      blockForSwipeTouchMove = function () {
+        event.preventDefault();
+        event.stopPropagation();
+        var deltaForSideMenuBack = event.changedTouches[0].pageX.toFixed(0) / width;
+        var deltaForMainPage = 1 - deltaForSideMenuBack;
+        if (deltaForMainPage < 0.1)
+          deltaForMainPage = 0.1;
+        if (event.changedTouches[0].pageX - 538 * widthK <= 0) {
+          sideMenuId.style.webkitTransform = 'translate3d(' + (event.changedTouches[0].pageX - 538 * widthK) + 'px,0,0)'
+          touchMoveX = event.changedTouches[0].pageX;
+        }
+        sideMenuBackPageId.style.opacity = deltaForSideMenuBack;
+        mainPageId.style.opacity = deltaForMainPage;
+      };
 
-    if (!localStorage.getItem('push_registered')) {
-      window.pushNotificationInitialize();
+      if (!localStorage.getItem('push_registered')) {
+        window.pushNotificationInitialize();
+      }
+
+    }
+    catch (e) {
+      console.log("Exception in main page ", e);
     }
 
 

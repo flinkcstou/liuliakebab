@@ -23,15 +23,6 @@
 
   <script>
     var scope = this;
-
-    //    console.log("OPTS OF ALERT", opts)
-    //    if (opts[0] && opts[0].outerErrorNote) {
-    //      console.log("OPTS OF ALERTGCHFG")
-    //      scope.outerCall = true;
-    //      scope.outerErrorNote = opts[0].outerErrorNote;
-    //      riot.update();
-    //    }
-
     var okButtonStartX, okButtonEndX, okButtonStartY, okButtonEndY;
 
     closeAlertFormStart = function (id) {
@@ -118,7 +109,7 @@
           if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-registration-device') {
             window.common.alert.hide("componentAlertId");
             console.log("Alert to device registration");
-            riot.update()
+//            riot.update()
             riotTags.innerHTML = "<view-registration-device>";
             riot.mount('view-registration-device');
           } else if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-sms') {
@@ -132,14 +123,14 @@
           else {
             console.log("Alert to authorization");
             window.common.alert.hide("componentAlertId");
-            riot.update()
+//            riot.update()
             riotTags.innerHTML = "<view-authorization>";
             riot.mount('view-authorization');
           }
         }
 
         //OK
-        riot.update()
+//        riot.update()
       }
     };
 

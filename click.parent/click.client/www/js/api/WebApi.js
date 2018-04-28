@@ -127,14 +127,10 @@ window.api.initSocket = function () {
             var error_code = parsedData.data[0][0].error;
             console.log("Error in answer from server", error_code);
             if (error_code === -31) {
-              if (device.platform !== 'BrowserStand') {
-                console.log("Spinner stop in webApi (session is broken)");
-                SpinnerPlugin.activityStop();
-              }
+              window.stopSpinner();
               localStorage.setItem('session_broken', true);
               localStorage.setItem("click_client_authorized", false);
               console.log("after spinner stop");
-              // riot.update();
               showAlertComponent("Сессия была прервана");
               return;
             }
@@ -142,7 +138,7 @@ window.api.initSocket = function () {
               window.api.sessionErrorChecker = true;
               if (!error) {
                 // riot.update();
-                showAlertComponent("Произошла непредвиденная ошибка. Свяжитесь с нашей службой поддержки +998 71 2310880")
+                showAlertComponent("Произошла непредвиденная ошибка. Свяжитесь с нашей службой поддержки +998 71 2310880");
                 window.writeLog(
                   {
                     reason: 'unexpected error while working with onSuccess function',

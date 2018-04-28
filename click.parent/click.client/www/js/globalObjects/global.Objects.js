@@ -804,61 +804,65 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
       fingerPrintInit();
       this.riotTags.innerHTML = "<view-main-page>";
       riot.mount('view-main-page');
-      //riot.unmount()
     }
     else {
       console.log("GET ACCOUNT last else ");
-      if (!JSON.parse(localStorage.getItem('onResume')) && !JSON.parse(localStorage.getItem('session_broken')) && !JSON.parse(sessionStorage.getItem("push_news"))) {
-        this.riotTags.innerHTML = "<view-main-page>";
-        riot.mount('view-main-page');
-      }
-      else {
-        if (localStorage.getItem('settings_block') || localStorage.getItem('session_broken') || sessionStorage.getItem("push_news")) {
-          if (JSON.parse(localStorage.getItem('settings_block')) === true || JSON.parse(localStorage.getItem('session_broken')) === true || JSON.parse(sessionStorage.getItem("push_news")) === true) {
-            if (history.arrayOfHistory) {
-              if (history.arrayOfHistory[history.arrayOfHistory.length - 1]) {
-                if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-news') {
-                  this.riotTags.innerHTML = "<view-main-page>";
-                  riot.mount("view-main-page");
-                }
-                else {
-                  if (device.platform !== 'BrowserStand') {
-                    SpinnerPlugin.activityStop();
-                  }
-                  this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
-                  riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
-                }
+      setTimeout(function () {
+        var onResume = localStorage.getItem('onResume') ? JSON.parse(localStorage.getItem('onResume')) : false;
+        var sessionBroken = localStorage.getItem('session_broken') ? JSON.parse(localStorage.getItem('session_broken')) : false;
+        var pushNews = sessionStorage.getItem('push_news') ? JSON.parse(sessionStorage.getItem('push_news')) : false;
+        var settingsBlock = localStorage.getItem('settings_block') ? JSON.parse(localStorage.getItem('settings_block')) : false;
 
-                if (device.platform != 'BrowserStand')
-                  StatusBar.backgroundColorByHexString("#ffffff");
+        console.log("onResume=", onResume);
+        console.log("sessionBroken=", sessionBroken);
+        console.log("pushNews=", pushNews);
+        console.log("settingsBlock=", settingsBlock);
 
-                if (JSON.parse(localStorage.getItem('settings_block')) === true) {
-                  localStorage.setItem('onResume', false);
-                }
-                else {
-                  if (JSON.parse(localStorage.getItem('session_broken')) === true) {
-                    localStorage.setItem('session_broken', false);
-                  }
-                  else {
-                    if (JSON.parse(sessionStorage.getItem("push_news")) === true) {
-                      sessionStorage.setItem("push_news", false)
-                    }
-                  }
-                }
-                return
+        if (!onResume && !sessionBroken && !pushNews) {
+          this.riotTags.innerHTML = "<view-main-page>";
+          riot.mount('view-main-page');
+        }
+        else {
+          if (settingsBlock || sessionBroken || pushNews) {
+            if (history.arrayOfHistory && history.arrayOfHistory[history.arrayOfHistory.length - 1]) {
+
+              if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-news') {
+                this.riotTags.innerHTML = "<view-main-page>";
+                riot.mount("view-main-page");
               }
+              else {
+                window.stopSpinner();
+                this.riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
+                riot.mount(history.arrayOfHistory[history.arrayOfHistory.length - 1].view, history.arrayOfHistory[history.arrayOfHistory.length - 1].params);
+              }
+
+              if (device.platform != 'BrowserStand')
+                StatusBar.backgroundColorByHexString("#ffffff");
+
+              if (settingsBlock) {
+                localStorage.setItem('onResume', false);
+              }
+              else {
+                if (sessionBroken) {
+                  localStorage.setItem('session_broken', false);
+                }
+                else {
+                  if (pushNews) {
+                    sessionStorage.setItem("push_news", false)
+                  }
+                }
+              }
+              return
+
             }
           }
           else {
             this.riotTags.innerHTML = "<view-main-page>";
             riot.mount('view-main-page');
           }
+
         }
-        else {
-          this.riotTags.innerHTML = "<view-main-page>";
-          riot.mount('view-main-page');
-        }
-      }
+      }, 0);
     }
 
     //get list of issuers and bank codes
@@ -1082,9 +1086,9 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
                         localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(favoritePaymentsListForApi));
                         localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
                         console.log("favs processed", favoritePaymentsList);
-                        if (document.getElementById("componentServiceCarouselNew")){
+                        if (document.getElementById("componentServiceCarouselNew")) {
                           var serviceCarouselTag = document.getElementById("componentServiceCarouselNew");
-                          if (serviceCarouselTag._tag){
+                          if (serviceCarouselTag._tag) {
                             serviceCarouselTag._tag.updateWishList();
                           }
                         }
@@ -1784,8 +1788,12 @@ var errorHandler = function (fileName, e) {
   console.log('Error (' + fileName + '): ' + msg);
 }
 
-function dec2hex(s) { return (s < 15.5 ? '0' : '') + Math.round(s).toString(16); }
-function hex2dec(s) { return parseInt(s, 16); }
+function dec2hex(s) {
+  return (s < 15.5 ? '0' : '') + Math.round(s).toString(16);
+}
+function hex2dec(s) {
+  return parseInt(s, 16);
+}
 
 function clearLoaderOnIconLoad(id) {
   if (document.getElementById(id)) {
@@ -1806,13 +1814,13 @@ function base32tohex(base32) {
     bits += leftpad(val.toString(2), 5, '0');
   }
 
-  for (var i = 0; i+4 <= bits.length; i+=4) {
+  for (var i = 0; i + 4 <= bits.length; i += 4) {
     var chunk = bits.substr(i, 4);
-    hex = hex + parseInt(chunk, 2).toString(16) ;
+    hex = hex + parseInt(chunk, 2).toString(16);
   }
   return hex;
 }
-function checkConnection(onAvailable, onNotAvailable){
+function checkConnection(onAvailable, onNotAvailable) {
   var networkState = navigator.connection.type;
 
   if (device.platform !== 'BrowserStand') {
@@ -1890,11 +1898,11 @@ function getLuhnRemainder(value) {
   return accumulator % 10;
 }
 
-function generateLuhn(value){
+function generateLuhn(value) {
   return ((10 - getLuhnRemainder(value + '0')) % 10).toString();
 }
 
-function noInternetFingerPrint(){
+function noInternetFingerPrint() {
 
   fingerPrintStop();
 
@@ -1905,6 +1913,6 @@ function noInternetFingerPrint(){
   }
 }
 
-function enterFalse(){
+function enterFalse() {
   enter(false);
 }
