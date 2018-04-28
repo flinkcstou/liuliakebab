@@ -54,7 +54,7 @@
 
     <div if="{!firstEnter}" class="authorization-keyboard-field keyboard-field">
       <component-keyboard
-        fingerprint="{JSON.parse(localStorage.getItem('settings_finger_print'))}"></component-keyboard>
+        fingerprint="{JSON.parse(localStorage.getItem('settings_finger_print')) && viewAuthorization.fingerPrintErrorCount != 5}"></component-keyboard>
     </div>
 
     <div if="{firstEnter}" id="firstEnterButtonId" class="bottom-button-container"
@@ -798,20 +798,31 @@
               scope.errorMessage = result[0][0].error_note;
               scope.update();
 
-              setTimeout(function () {
-                if (document.getElementById('fingerPrintErrorText')) {
-                  document.getElementById('fingerPrintErrorText').classList.add("auth-fingerprint-errortext-start");
-                }
+              console.log("viewAuthorization.fingerPrintErrorCount in Auth=", viewAuthorization.fingerPrintErrorCount);
+
+              if (viewAuthorization.fingerPrintErrorCount == 5) {
+                console.log("stopping fingerPrintMode");
+                fingerPrintStop();
+                scope.fingerprintMode = false;
+                window.fingerPrint.fingerprintMode = false;
+                scope.update();
+              } else {
+                console.log("continuing fingerPrintMode");
                 setTimeout(function () {
-                  if (document.getElementById('fingerPrintErrorText'))
-                    document.getElementById('fingerPrintErrorText').classList.remove("auth-fingerprint-errortext-start");
+                  if (document.getElementById('fingerPrintErrorText')) {
+                    document.getElementById('fingerPrintErrorText').classList.add("auth-fingerprint-errortext-start");
+                  }
+                  setTimeout(function () {
+                    if (document.getElementById('fingerPrintErrorText'))
+                      document.getElementById('fingerPrintErrorText').classList.remove("auth-fingerprint-errortext-start");
 
-                  fingerPrintAsk('fingerPrintIconId');
+                    fingerPrintAsk('fingerPrintIconId');
 
-                  if (document.getElementById('fingerPrintIconId'))
-                    document.getElementById('fingerPrintIconId').style.backgroundImage = "url(resources/gifs/auth/wait.gif?p" + new Date().getTime() + ")";
-                }, 2000);
-              }, 500);
+                    if (document.getElementById('fingerPrintIconId'))
+                      document.getElementById('fingerPrintIconId').style.backgroundImage = "url(resources/gifs/auth/wait.gif?p" + new Date().getTime() + ")";
+                  }, 2000);
+                }, 500);
+              }
 
             }
           }

@@ -12,6 +12,7 @@ viewMyCards.chosenCardId = '';
 
 window.viewAuthorization = {};
 viewAuthorization.check = false;
+viewAuthorization.fingerPrintErrorCount = 0;
 
 window.isConnected = false;
 window.numberOfAttemps = 0;
@@ -1323,7 +1324,7 @@ window.fingerPrintInit = function () {
           }
         }
 
-        var availableTech = 'Устройтсво поддерживает технологию TouchID';
+        var availableTech = 'Устройство поддерживает технологию TouchID';
         if (device.model == 'iPhone10,3' || device.model == 'iPhone10,6') {
           availableTech = 'Устройство поддерживает технологию FaceID';
         }
@@ -1355,7 +1356,6 @@ window.fingerPrintAsk = function (fingerprintIconId) {
   if (localStorage.getItem('settings_finger_print') !== null) {
 
     window.fingerPrint.fingerPrintInitialize = true;
-
 
     if (device.platform == 'Android') {
 
@@ -1396,18 +1396,10 @@ window.fingerPrintAsk = function (fingerprintIconId) {
             document.getElementById(fingerprintIconId).style.backgroundImage = "url(resources/gifs/auth/success.gif?p" + new Date().getTime() + ")";
 
           setTimeout(function () {
-            if (result.withFingerprint) {
 
-              pin = localStorage.getItem('click_client_pin');
-              checkConnection(enter, noInternetFingerPrint);
-              // enter();
+            pin = localStorage.getItem('click_client_pin');
+            checkConnection(enter, noInternetFingerPrint);
 
-            } else if (result.withBackup) {
-
-              pin = localStorage.getItem('click_client_pin');
-              checkConnection(enter, noInternetFingerPrint);
-              // enter();
-            }
           }, 1000);
         }, 1000);
       }
@@ -1425,17 +1417,26 @@ window.fingerPrintAsk = function (fingerprintIconId) {
           if (document.getElementById(fingerprintIconId))
             document.getElementById(fingerprintIconId).style.backgroundImage = "url(resources/gifs/auth/error1.png)";
 
-          checkConnection(enterFalse, noInternetFingerPrint);
+          viewAuthorization.fingerPrintErrorCount++;
+          console.log("viewAuthorization.fingerPrintErrorCount =", viewAuthorization.fingerPrintErrorCount);
+          if (viewAuthorization.fingerPrintErrorCount % 2 == 0 || viewAuthorization.fingerPrintErrorCount == 5) {
+            console.log("Sending error app.login");
+            checkConnection(enterFalse, noInternetFingerPrint);
+          } else {
 
-          setTimeout(function () {
+            setTimeout(function () {
 
-            window.fingerPrint.fingerPrintInitialize = false;
-            if (error === "Cancelled") {
-              console.log("FingerprintAuth Dialog Cancelled!");
-            } else {
-              console.log("FingerprintAuth Error: " + error);
-            }
-          }, 1500);
+              fingerPrintAsk('fingerPrintIconId');
+
+              if (document.getElementById('fingerPrintIconId'))
+                document.getElementById('fingerPrintIconId').style.backgroundImage = "url(resources/gifs/auth/wait.gif?p" + new Date().getTime() + ")";
+            }, 1000);
+
+          }
+
+          window.fingerPrint.fingerPrintInitialize = false;
+          console.log("FingerprintAuth Error: " + error);
+
         }, 1000);
 
       }
