@@ -435,6 +435,7 @@
 
         if (modeOfApp.offlineMode && typeof id === "string" && id.indexOf('mynumber') != -1) {
           opts.chosenServiceId = 'mynumber';
+          opts.id = 'mynumber';
         }
         else {
           opts.chosenServiceId = id;
