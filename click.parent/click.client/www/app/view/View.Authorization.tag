@@ -719,6 +719,7 @@
             if (!result[1][0].error) {
               console.log("User is authorized");
 
+              viewAuthorization.fingerPrintErrorCount == 0;
               localStorage.setItem('click_client_pin', pin);
               localStorage.setItem('myNumberOperatorId', result[1][0].my_service_id);
               modeOfflineMode.check = false;
@@ -800,19 +801,18 @@
 
               console.log("viewAuthorization.fingerPrintErrorCount in Auth=", viewAuthorization.fingerPrintErrorCount);
 
-              if (viewAuthorization.fingerPrintErrorCount == 3) {
-                console.log("stopping fingerPrintMode");
-                fingerPrintStop();
-                scope.fingerprintMode = false;
-                window.fingerPrint.fingerprintMode = false;
-                scope.update();
-              } else {
-                console.log("continuing fingerPrintMode");
+              setTimeout(function () {
+                if (document.getElementById('fingerPrintErrorText')) {
+                  document.getElementById('fingerPrintErrorText').classList.add("auth-fingerprint-errortext-start");
+                }
                 setTimeout(function () {
-                  if (document.getElementById('fingerPrintErrorText')) {
-                    document.getElementById('fingerPrintErrorText').classList.add("auth-fingerprint-errortext-start");
-                  }
-                  setTimeout(function () {
+                  if (viewAuthorization.fingerPrintErrorCount == 3) {
+                    console.log("stopping fingerPrintMode");
+                    fingerPrintStop();
+                    scope.fingerprintMode = false;
+                    window.fingerPrint.fingerprintMode = false;
+                    scope.update();
+                  } else {
                     if (document.getElementById('fingerPrintErrorText'))
                       document.getElementById('fingerPrintErrorText').classList.remove("auth-fingerprint-errortext-start");
 
@@ -820,9 +820,10 @@
 
                     if (document.getElementById('fingerPrintIconId'))
                       document.getElementById('fingerPrintIconId').style.backgroundImage = "url(resources/gifs/auth/wait.gif?p" + new Date().getTime() + ")";
-                  }, 3500);
-                }, 500);
-              }
+                  }
+                }, 3500);
+              }, 500);
+
 
             }
           }
