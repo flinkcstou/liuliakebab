@@ -140,6 +140,8 @@
     scope.errorCode = 0;
     scope.fingerprintMode = false;
     window.fingerPrint.fingerprintMode = false;
+    modeOfApp.onlineMode = true;
+    modeOfApp.offlineMode = false;
 
     console.log("OPTS in Auth", opts);
 
