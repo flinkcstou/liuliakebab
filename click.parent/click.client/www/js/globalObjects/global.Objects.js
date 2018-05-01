@@ -1294,6 +1294,7 @@ window.fingerPrintInit = function () {
         }
         else {
           window.fingerPrint.check = false;
+          localStorage.setItem('settings_finger_print', false);
           riot.update();
         }
       }
@@ -1301,6 +1302,7 @@ window.fingerPrintInit = function () {
       function isAvailableError(message) {
         console.log("isAvailableError(): " + message);
         localStorage.setItem('settings_finger_print_enrolled', false);
+        localStorage.setItem('settings_finger_print', false);
         window.fingerPrint.check = false;
         riot.update();
       }
@@ -1346,6 +1348,39 @@ window.fingerPrintInit = function () {
 
       window.plugins.touchid.isAvailable(successCallback, notSupportedCallback);
 
+    }
+  }
+};
+
+window.fingerPrintCheck = function () {
+  console.log("G.O. fingerprint check");
+  if (localStorage.getItem('settings_finger_print') !== null) {
+    if (device.platform == 'Android') {
+
+      function isAvailableSuccess(result) {
+        console.log("FingerprintAuth available: " + JSON.stringify(result));
+        if (result.isAvailable) {
+          window.fingerPrint.check = true;
+          localStorage.setItem('settings_finger_print_enrolled', true);
+          localStorage.setItem('settings_finger_print', true);
+
+        }
+        else {
+          window.fingerPrint.check = false;
+          localStorage.setItem('settings_finger_print', false);
+          riot.update();
+        }
+      }
+
+      function isAvailableError(message) {
+        console.log("isAvailableError(): " + message);
+        localStorage.setItem('settings_finger_print_enrolled', false);
+        localStorage.setItem('settings_finger_print', false);
+        window.fingerPrint.check = false;
+        riot.update();
+      }
+
+      FingerprintAuth.isAvailable(isAvailableSuccess, isAvailableError);
     }
   }
 };

@@ -77,6 +77,9 @@
 
   permissionAccess = function () {
 
+    if (localStorage.getItem("settings_finger_print") && JSON.parse(localStorage.getItem("settings_finger_print")) == true)
+      window.fingerPrintCheck();
+
     try {
       var permissions = cordova.plugins.permissions;
       permissions.checkPermission(permissions.CALL_PHONE, checkPermissionCallbackOfCall, null);
@@ -522,6 +525,8 @@
 
 
     history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
+    if (localStorage.getItem("settings_finger_print") && JSON.parse(localStorage.getItem("settings_finger_print")) == true)
+      window.fingerPrintCheck();
 
     MobileAccessibility.usePreferredTextZoom(false);
 

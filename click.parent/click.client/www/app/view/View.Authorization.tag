@@ -140,6 +140,7 @@
     scope.errorCode = 0;
     scope.fingerprintMode = false;
     window.fingerPrint.fingerprintMode = false;
+    scope.settingsFingerPrint = localStorage.getItem("settings_finger_print") ? JSON.parse(localStorage.getItem("settings_finger_print")) : false;
     modeOfApp.onlineMode = true;
     modeOfApp.offlineMode = false;
 
@@ -162,6 +163,7 @@
       scope.update();
       if (device.platform !== 'BrowserStand')
         navigator.splashscreen.hide();
+
     });
 
 
@@ -219,28 +221,22 @@
       window.fingerPrint.check = JSON.parse(localStorage.getItem('settings_finger_print_enrolled'));
     }
 
-    if (JSON.parse(localStorage.getItem('settings_finger_print')) && !scope.firstEnter) {
-      scope.fingerprintMode = device.platform == 'iOS' ? false : (opts.fingerPrintMode == false ? false : true);
-      window.fingerPrint.fingerprintMode = scope.fingerprintMode;
-      console.log("opts.fingerprintMode ", opts.fingerPrintMode, scope.fingerprintMode);
-      scope.update();
-    }
+    setTimeout(function () {
+      if (JSON.parse(localStorage.getItem('settings_finger_print')) && !scope.firstEnter) {
+        scope.fingerprintMode = device.platform == 'iOS' || !scope.settingsFingerPrint ? false : (opts.fingerPrintMode == false ? false : true);
+        window.fingerPrint.fingerprintMode = scope.fingerprintMode;
+        console.log("opts.fingerprintMode ", opts.fingerPrintMode, scope.fingerprintMode);
+        scope.update();
 
-
-    //    setTimeout(function () {
-    if (JSON.parse(localStorage.getItem('settings_finger_print'))) {
-      console.log("AUTHORIZATION CALL new OF FINGERPRINT 191");
-
-      try {
-        fingerPrintAsk('fingerPrintIconId');
+        try {
+          fingerPrintAsk('fingerPrintIconId');
+        }
+        catch (e) {
+          console.log(e)
+        }
       }
-      catch (e) {
-        console.log(e)
-      }
-    } else {
-      window.scannerCanBeAsked = true;
-    }
-    //    }, 500);
+    }, 1000);
+
 
     var eyeInputShow = false;
 
@@ -403,7 +399,7 @@
         if (myValue === "space" && JSON.parse(localStorage.getItem('settings_finger_print')) === true) {
           try {
             console.log("AUTHORIZATION CALL new OF FINGERPRINT 338");
-            scope.fingerprintMode = device.platform == 'iOS' ? false : true;
+            scope.fingerprintMode = device.platform == 'iOS' || !scope.settingsFingerPrint ? false : true;
             window.fingerPrint.fingerprintMode = scope.fingerprintMode;
             updateEnteredPin();
             scope.update();
