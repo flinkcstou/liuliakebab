@@ -221,13 +221,17 @@
       window.fingerPrint.check = JSON.parse(localStorage.getItem('settings_finger_print_enrolled'));
     }
 
+
+    if (JSON.parse(localStorage.getItem('settings_finger_print')) && !scope.firstEnter) {
+      scope.fingerprintMode = device.platform == 'iOS' || !scope.settingsFingerPrint ? false : (opts.fingerPrintMode == false ? false : true);
+      window.fingerPrint.fingerprintMode = scope.fingerprintMode;
+      console.log("opts.fingerprintMode ", opts.fingerPrintMode, scope.fingerprintMode);
+      scope.update();
+    }
+
+
     setTimeout(function () {
       if (JSON.parse(localStorage.getItem('settings_finger_print')) && !scope.firstEnter) {
-        scope.fingerprintMode = device.platform == 'iOS' || !scope.settingsFingerPrint ? false : (opts.fingerPrintMode == false ? false : true);
-        window.fingerPrint.fingerprintMode = scope.fingerprintMode;
-        console.log("opts.fingerprintMode ", opts.fingerPrintMode, scope.fingerprintMode);
-        scope.update();
-
         try {
           fingerPrintAsk('fingerPrintIconId');
         }
