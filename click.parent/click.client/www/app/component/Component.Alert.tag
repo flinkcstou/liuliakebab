@@ -123,9 +123,13 @@
           else {
             console.log("Alert to authorization");
             window.common.alert.hide("componentAlertId");
-//            riot.update()
-            riotTags.innerHTML = "<view-authorization>";
-            riot.mount('view-authorization');
+            if (device.platform === "iOS") {
+              location.reload(true);
+            } else {
+              riotTags.innerHTML = "<view-authorization>";
+              riot.mount('view-authorization');
+            }
+            return;
           }
         }
 

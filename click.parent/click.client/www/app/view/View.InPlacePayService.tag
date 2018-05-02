@@ -262,6 +262,9 @@
       goBackButtonEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
+        console.log('clearing timer on goToBack');
+        window.clearTimeout(timeOutTimer);
+        window.clearTimeout(timeOutTimerThree);
         onBackKeyDown();
         scope.unmount()
       }
