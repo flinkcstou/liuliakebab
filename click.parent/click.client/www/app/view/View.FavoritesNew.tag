@@ -159,22 +159,24 @@
               window.stopSpinner();
               if (result[0][0].error == 0) {
                 if (result[5])
-                  for (var i in result[5]) {
-                    console.log("1");
-                    if (result[5][i].service_id == scope.favoritePaymentsList[i].service.id) {
-                      console.log("qwerty=", result[5][i].sum_cost);
+                  for (var j in result[5]) {
+                    console.log("1", scope.favoritePaymentsList[i]);
+                    if (result[5][j].service_id == scope.favoritePaymentsList[i].service.id) {
+                      if (result[5][j].code == scope.favoritePaymentsList[i].params.internetPackageParam) {
+                        console.log("qwerty=", JSON.stringify(result[5][j].sum_cost));
 
-                      scope.favoritePaymentsList[i].params.intPartAmount = Math.floor(result[5][i].sum_cost.toString().replace(/\s/g, ''))
-                        .toFixed(0).toString();
+                        scope.favoritePaymentsList[i].params.intPartAmount = Math.floor(result[5][j].sum_cost.toString().replace(/\s/g, ''))
+                          .toFixed(0).toString();
 
-                      scope.favoritePaymentsList[i].params.fracPartAmount = window.getFractionalPart(result[5][i].sum_cost.toString());
+                        scope.favoritePaymentsList[i].params.fracPartAmount = window.getFractionalPart(result[5][j].sum_cost.toString());
 
-                      scope.favoritePaymentsList[i].params.amountText = window.amountTransform(
-                          window.inputVerification.spaceDeleter(scope.favoritePaymentsList[i].params.intPartAmount))
-                        + scope.favoritePaymentsList[i].params.fracPartAmount;
+                        scope.favoritePaymentsList[i].params.amountText = window.amountTransform(
+                            window.inputVerification.spaceDeleter(scope.favoritePaymentsList[i].params.intPartAmount))
+                          + scope.favoritePaymentsList[i].params.fracPartAmount;
 
-                      scope.update(scope.favoritePaymentsList);
-                      break;
+                        scope.update(scope.favoritePaymentsList);
+                        break;
+                      }
                     }
                   }
               }
