@@ -50,6 +50,12 @@
           console.log("Alert from parent:", opts.parent);
           window.common.alert.hide("componentAlertId");
 
+          //special for broken session on iOS
+          if (opts.session_broken){
+            location.reload();
+            return;
+          }
+
           if (opts.carddelete) {
             riotTags.innerHTML = "<view-my-cards>";
             riot.mount('view-my-cards');

@@ -131,7 +131,15 @@ window.api.initSocket = function () {
               localStorage.setItem('session_broken', true);
               localStorage.setItem("click_client_authorized", false);
               console.log("after spinner stop");
-              showAlertComponent("Сессия была прервана");
+              if (device.platform == 'iOS'){
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  session_broken: true,
+                  errornote: "Сессия была прервана"
+                });
+              } else {
+                showAlertComponent("Сессия была прервана");
+              }
               return;
             }
             if (!window.api.sessionErrorChecker) {
