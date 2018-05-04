@@ -50,6 +50,8 @@
     scope.leftOfServiceCarousel = 640 * widthK;
     var openFavouriteStartX, openFavouriteStartY, openFavouriteEndX, openFavouriteEndY;
     var delta, touchEndX, touchStartX;
+    scope.internetPackageRequestSent = false;
+    scope.internetPackagesArray = [];
 
     if (modeOfApp.offlineMode) {
       scope.popularServiceList = localStorage.getItem("click_client_popularServiceList") ? (JSON.parse(localStorage.getItem("click_client_popularServiceList"))) : (offlinePopularServiceList);
@@ -489,7 +491,7 @@
           if (scope.favoritePaymentsList[i].id == id) {
 
             scope.favoritePaymentsList[i].params.favoriteId = scope.favoritePaymentsList[i].id;
-
+            console.log("favorite to open ", scope.favoritePaymentsList[i]);
 
             if (modeOfApp.offlineMode) {
               var firstFieldText = inputVerification.spaceDeleter(scope.favoritePaymentsList[i].params.firstFieldText);
@@ -574,54 +576,25 @@
               return
             }
 
-            //scope.service = scope.servicesMap[scope.favoritePaymentsList[i].params.chosenServiceId][0];
-
             if (localStorage.getItem('click_client_cards')) {
 
 
-              if (scope.favoritePaymentsList[i].service.form_type == 4 && scope.favoritePaymentsList[i].service.disable_cache && modeOfApp.onlineMode && !modeOfApp.demoVersion) {
+              if (scope.favoritePaymentsList[i].service.form_type == 4 && scope.favoritePaymentsList[i].service.disable_cache
+                && modeOfApp.onlineMode && !modeOfApp.demoVersion) {
 
-                window.api.call({
-                  method: 'get.service.parameters',
-                  input: {
-                    session_key: sessionKey,
-                    phone_num: phoneNumber,
-                    service_id: scope.favoritePaymentsList[i].service.id
-                  },
+                if (!scope.internetPackageRequestSent) {
 
-                  scope: this,
-
-                  onSuccess: function (result) {
-                    if (result[0][0].error == 0) {
-
-                      if (result[5])
-                        for (var i in result[5]) {
-
-                          if (result[5][i].service_id == scope.favoritePaymentsList[i].service.id) {
-
-                            scope.favoritePaymentsList[i].params.amountText = window.amountTransform(result[5][i].sum_cost.toString())
-                            localStorage.setItem('favoritePaymentsList', JSON.stringify(scope.favoritePaymentsList))
-                            if (scope.favoritePaymentsList[i].service.additional_information_type == 3) {
-                              this.riotTags.innerHTML = "<view-service-info>";
-                              riot.mount('view-service-info', scope.favoritePaymentsList[i].params);
-                              scope.unmount()
-                            } else {
-                              this.riotTags.innerHTML = "<view-service-pincards-new>";
-                              riot.mount('view-service-pincards-new', scope.favoritePaymentsList[i].params);
-                              scope.unmount()
-                            }
-                            break;
-                          }
-                        }
-
+                  var internetPackagesUpdate = internetPackagesSumUpdate;
+                  internetPackagesUpdate(scope.favoritePaymentsList[i].service.id, i, function (index, result) {
+                    if (result[5]) {
+                      scope.internetPackageRequestSent = true;
+                      scope.internetPackagesArray = result[5];
+                      processFavoritePayment(index);
                     }
-                  },
-
-                  onFail: function (api_status, api_status_message, data) {
-                    console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-                    console.error(data);
-                  }
-                });
+                  });
+                } else {
+                  processFavoritePayment(i);
+                }
 
               } else {
 
@@ -658,6 +631,67 @@
       if (touchStartX != touchEndX)
         changePositionOfServiceCarousel();
     };
+
+    processFavoritePayment = function (index) {
+      for (var j in scope.internetPackagesArray) {
+
+        if (scope.internetPackagesArray[j].service_id === scope.favoritePaymentsList[index].service.id) {
+
+          if (scope.internetPackagesArray[j].code === scope.favoritePaymentsList[index].params.internetPackageParam) {
+
+            scope.favoritePaymentsList[index].params.intPartAmount = Math.floor(scope.internetPackagesArray[j].sum_cost.toString().replace(/\s/g, ''))
+              .toFixed(0).toString();
+
+            scope.favoritePaymentsList[index].params.fracPartAmount = window.getFractionalPart(scope.internetPackagesArray[j].sum_cost.toString());
+
+            scope.favoritePaymentsList[index].params.amountText = window.amountTransform(
+                window.inputVerification.spaceDeleter(scope.favoritePaymentsList[index].params.intPartAmount))
+              + scope.favoritePaymentsList[index].params.fracPartAmount;
+
+            localStorage.setItem('favoritePaymentsList', JSON.stringify(scope.favoritePaymentsList));
+            if (scope.favoritePaymentsList[index].service.additional_information_type == 3) {
+              this.riotTags.innerHTML = "<view-service-info>";
+              riot.mount('view-service-info', scope.favoritePaymentsList[index].params);
+              scope.unmount()
+            } else {
+              this.riotTags.innerHTML = "<view-service-pincards-new>";
+              riot.mount('view-service-pincards-new', scope.favoritePaymentsList[index].params);
+              scope.unmount()
+            }
+            break;
+
+          }
+        }
+      }
+    };
+
+    function internetPackagesSumUpdate(serviceId, index, callback) {
+
+      window.api.call({
+        method: 'get.service.parameters',
+        stopSpinner: false,
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          service_id: serviceId
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+          window.stopSpinner();
+          if (result[0][0].error == 0) {
+            callback(index, result);
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+    }
+
 
     scope.ontouchEndOfAddFavorite = ontouchEndOfAddFavorite = function (id) {
       event.stopPropagation();

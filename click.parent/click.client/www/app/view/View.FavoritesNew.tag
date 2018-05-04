@@ -49,7 +49,6 @@
           <p class="empty-list-lower-body-text">{window.languages.ViewFavoriteEmptyBodyText}</p>
         </div>
       </div>
-
     </div>
 
 
@@ -70,6 +69,8 @@
     var openFavouriteStarX, openFavouriteStarY, openFavouriteEndX, openFavouriteEndY;
     var editFavoriteStartY, editFavoriteStartX, editFavoriteEndY, editFavoriteEndX;
     var removeFavoriteStartY, removeFavoriteStartX, removeFavoriteEndY, removeFavoriteEndX;
+    scope.internetPackageRequestSent = false;
+    scope.internetPackagesArray = [];
 
     opts = {};
 
@@ -142,51 +143,22 @@
           scope.favoritePaymentsList[i].params.firstFieldText = firstField;
         }
 
+        console.log("favorite's formType =", scope.favoritePaymentsList[i].service.form_type);
+
         if (scope.favoritePaymentsList[i].service.form_type == 4 && scope.favoritePaymentsList[i].service.disable_cache && modeOfApp.onlineMode && !modeOfApp.demoVersion) {
 
-          window.api.call({
-            method: 'get.service.parameters',
-            stopSpinner: false,
-            input: {
-              session_key: sessionKey,
-              phone_num: phoneNumber,
-              service_id: scope.favoritePaymentsList[i].service.id
-            },
-
-            scope: this,
-
-            onSuccess: function (result) {
-              window.stopSpinner();
-              if (result[0][0].error == 0) {
-                if (result[5])
-                  for (var j in result[5]) {
-                    console.log("1", scope.favoritePaymentsList[i]);
-                    if (result[5][j].service_id == scope.favoritePaymentsList[i].service.id) {
-                      if (result[5][j].code == scope.favoritePaymentsList[i].params.internetPackageParam) {
-                        console.log("qwerty=", JSON.stringify(result[5][j].sum_cost));
-
-                        scope.favoritePaymentsList[i].params.intPartAmount = Math.floor(result[5][j].sum_cost.toString().replace(/\s/g, ''))
-                          .toFixed(0).toString();
-
-                        scope.favoritePaymentsList[i].params.fracPartAmount = window.getFractionalPart(result[5][j].sum_cost.toString());
-
-                        scope.favoritePaymentsList[i].params.amountText = window.amountTransform(
-                            window.inputVerification.spaceDeleter(scope.favoritePaymentsList[i].params.intPartAmount))
-                          + scope.favoritePaymentsList[i].params.fracPartAmount;
-
-                        scope.update(scope.favoritePaymentsList);
-                        break;
-                      }
-                    }
-                  }
+          if (!scope.internetPackageRequestSent) {
+            var internetPackagesUpdate = internetPackagesSumUpdate;
+            internetPackagesUpdate(scope.favoritePaymentsList[i].service.id, i, function (index, result) {
+              if (result[5]) {
+                scope.internetPackageRequestSent = true;
+                scope.internetPackagesArray = result[5];
+                processFavoritePayment(index);
               }
-            },
-
-            onFail: function (api_status, api_status_message, data) {
-              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-              console.error(data);
-            }
-          });
+            });
+          } else {
+            processFavoritePayment(i);
+          }
 
         } else if (scope.favoritePaymentsList[i].params.amountText) {
           scope.favoritePaymentsList[i].params.intPartAmount = Math.floor(
@@ -207,6 +179,55 @@
     } else {
       scope.favoriteListShow = false;
       scope.update();
+    }
+
+    processFavoritePayment = function (index) {
+      for (var j in scope.internetPackagesArray) {
+        if (scope.internetPackagesArray[j].service_id === scope.favoritePaymentsList[index].service.id) {
+
+          if (scope.internetPackagesArray[j].code === scope.favoritePaymentsList[index].params.internetPackageParam) {
+
+            scope.favoritePaymentsList[index].params.intPartAmount = Math.floor(scope.internetPackagesArray[j].sum_cost.toString().replace(/\s/g, ''))
+              .toFixed(0).toString();
+
+            scope.favoritePaymentsList[index].params.fracPartAmount = window.getFractionalPart(scope.internetPackagesArray[j].sum_cost.toString());
+
+            scope.favoritePaymentsList[index].params.amountText = window.amountTransform(
+                window.inputVerification.spaceDeleter(scope.favoritePaymentsList[index].params.intPartAmount))
+              + scope.favoritePaymentsList[index].params.fracPartAmount;
+
+            scope.update(scope.favoritePaymentsList);
+            break;
+          }
+        }
+      }
+    };
+
+    function internetPackagesSumUpdate(serviceId, index, callback) {
+
+      window.api.call({
+        method: 'get.service.parameters',
+        stopSpinner: false,
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          service_id: serviceId
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+          window.stopSpinner();
+          if (result[0][0].error == 0) {
+            callback(index, result);
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
     }
 
 
