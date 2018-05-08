@@ -1,9 +1,9 @@
 <view-pin-code class="view-pincode riot-tags-main-container">
   <div class="pincode-flex-container">
     <div class="page-title">
-    <div id="backButton" ontouchend="goToBackFromPinCodeTouchEnd()" ontouchstart="goToBackFromPinCodeTouchStart()"
-         class="{back-button: backbuttoncheck}">
-    </div>
+      <div id="backButton" ontouchend="goToBackFromPinCodeTouchEnd()" ontouchstart="goToBackFromPinCodeTouchStart()"
+           class="{back-button: backbuttoncheck}">
+      </div>
     </div>
 
     <div class="pincode-unchangable-container">
@@ -32,8 +32,8 @@
 
   <button if="{device.platform != 'iOS'}" id="pinOfflineButtonId" class="authorization-footer-button-container-first"
           style="bottom: 0;"
-       ontouchstart="offlineModeTouchStart()"
-       ontouchend="offlineModeTouchEnd()">
+          ontouchstart="offlineModeTouchStart()"
+          ontouchend="offlineModeTouchEnd()">
     {window.languages.ViewAuthorizationOfflineModeLabel}
   </button>
 
@@ -352,13 +352,46 @@
 
           }
           else if (scope.nowCheckPin) {
-            if (hex_md5(enteredPin) == localStorage.getItem('pinForStand')) {
 
-              if (toClickPass){
-                var optsForClickPass = ['fromPinCode'];
-                riotTags.innerHTML = "<view-click-pass>";
-                riot.mount('view-click-pass', optsForClickPass);
+            if (toClickPass) {
+
+              if (hex_md5(enteredPin) == localStorage.getItem('click_client_pin')) {
+                if (toClickPass) {
+                  var optsForClickPass = ['fromPinCode'];
+                  riotTags.innerHTML = "<view-click-pass>";
+                  riot.mount('view-click-pass', optsForClickPass);
+                }
+              } else {
+                scope.clickPinError = false;
+
+                scope.errorNote = 'Для работы раздела CLICK PASS необходимо один раз зайти в онлайн режим';
+                scope.viewpage = "view-authorization";
+
+                scope.nowCheckPin = true;
+                scope.checkPin = false;
+                scope.checkPinConfirm = false;
+                pinConfirm = '';
+                pin = '';
+                enteredPin = '';
+                updateEnteredPin()
+                scope.update();
+
+                localStorage.removeItem('click_client_otp_time');
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: scope.clickPinError,
+                  viewpage: scope.viewpage,
+                  errornote: scope.errorNote,
+                  errorcode: scope.errorCode,
+                  step_amount: scope.stepToBack
+                });
               }
+              return;
+            }
+
+
+            if (hex_md5(enteredPin) == localStorage.getItem('pinForStand')) {
 
               if (fromPayOrTransfer) {
                 sessionStorage.setItem('payTransferConfirmed', true);
@@ -602,7 +635,7 @@
           timeOutTimer = setTimeout(function () {
             window.writeLog({
               reason: 'Timeout',
-              method:'app.login',
+              method: 'app.login',
             });
             updateAlertComponent(true, null, 'view-authorization', window.languages.WaitingTimeExpiredText);
             window.stopSpinner();

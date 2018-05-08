@@ -475,6 +475,17 @@
 
       if (Math.abs(clickPassTouchStartX - clickPassTouchEndX) <= 20
         && Math.abs(clickPassTouchStartY - clickPassTouchEndY) <= 20) {
+
+        if (!localStorage.getItem('click_client_otp_time')) {
+          var question = 'Для работы раздела CLICK PASS необходимо один раз зайти в онлайн режим';
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: question
+          });
+          scope.update();
+          return;
+        }
+
         window.saveHistory('view-authorization');
         riotTags.innerHTML = "<view-pin-code>";
         riot.mount('view-pin-code', ['view-click-pass']);
