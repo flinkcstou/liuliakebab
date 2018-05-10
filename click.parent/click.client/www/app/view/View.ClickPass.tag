@@ -386,7 +386,10 @@
       scope.showCreatingTime = timeForOtp;
       scope.OTP = updateOtp(deviceId, timeForOtp);
       var luna = generateLuhn(card_id.toString() + scope.OTP.toString());
+      console.log('card_id', card_id);
+      console.log('timeForOtp', timeForOtp);
       var result = card_id.toString() + scope.OTP.toString() + luna;
+      console.log('result', result);
       scope.showCodeData = result;
       scope.update();
       return result;
@@ -460,10 +463,10 @@
     function correctTime() {
       if (localStorage.getItem('click_client_otp_time')) {
         var otpTime = JSON.parse(localStorage.getItem('click_client_otp_time'));
-        var result = parseInt(new Date().getTime() / 1000) + otpTime.diffTime;
+        var result = parseInt(new Date().getTime()) + otpTime.difference;
         return result;
       } else {
-        return parseInt(new Date().getTime() / 1000);
+        return parseInt(new Date().getTime());
       }
     }
 
