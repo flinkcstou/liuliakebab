@@ -95,6 +95,7 @@
     scope.showSearchIcon = !opts.searchWord;
     var searchFieldTimeout, searchFieldActive = false, searchWord = opts.searchWord;
     var qrInited = false;
+    scope.requestSent = false;
 
     window.saveHistory('view-inplace-pay-service', opts);
 
@@ -147,6 +148,7 @@
 
 //      scope.serviceList = [];
 //      window.startSpinner();
+      scope.requestSent = true;
 
       window.api.call({
         method: 'get.indoor.service.list',
@@ -164,6 +166,7 @@
           window.clearTimeout(timeOutTimer);
           window.stopSpinner();
           window.stopLoaderDots();
+          scope.requestSent = false;
 
           if (result[0][0].error == 0) {
             if (result[1][0]) {
@@ -191,6 +194,7 @@
           window.clearTimeout(timeOutTimer);
           window.stopSpinner();
           window.stopLoaderDots();
+          scope.requestSent = false;
           window.common.alert.show("componentAlertId", {
             parent: scope,
             step_amount: stepBack,
@@ -675,7 +679,6 @@
       }
     };
 
-
     servicesBodyContainerTouchMove = function () {
 
       if (device.platform == 'Android') {
@@ -763,9 +766,9 @@
 
     servicesScroll = function () {
 
-      if ((categoriesContainerId.scrollHeight - categoriesContainerId.scrollTop) <= categoriesContainerId.offsetHeight && categoriesContainerId.scrollTop != 0) {
+      if ((categoriesContainerId.scrollHeight - categoriesContainerId.scrollTop) == categoriesContainerId.offsetHeight && categoriesContainerId.scrollTop != 0) {
 
-        if (scope.serviceList.length % 20 == 0) {
+        if (scope.serviceList.length % 20 == 0 && !scope.requestSent) {
           scope.pageNumber++;
           window.startPaginationLoaderDots();
           if (searchInputId.value.length != 0) {
@@ -785,6 +788,7 @@
       if (modeOfApp.onlineMode) {
 
         scope.update();
+        scope.requestSent = true;
 
         window.api.call({
           method: 'get.indoor.service.list',
@@ -799,6 +803,7 @@
           scope: this,
 
           onSuccess: function (result) {
+            scope.requestSent = false;
 
             if (scope.pageNumber == 1)
               scope.serviceList = [];
@@ -830,6 +835,7 @@
           onFail: function (api_status, api_status_message, data) {
             window.stopSpinner();
             window.stopLoaderDots();
+            scope.requestSent = false;
             window.common.alert.show("componentAlertId", {
               parent: scope,
               step_amount: stepBack,
