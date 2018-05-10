@@ -685,7 +685,7 @@
           scope.update();
           return;
         }
-        if (!localStorage.getItem("click_client_loginInfo")){
+        if (!localStorage.getItem("click_client_loginInfo") || !localStorage.getItem('click_client_otp_time')){
           var question = 'Для работы раздела CLICK PASS необходимо один раз зайти в онлайн режим';
           window.common.alert.show("componentAlertId", {
             parent: scope,
