@@ -192,6 +192,7 @@
       MobileAccessibility.usePreferredTextZoom(false);
       window.cordova.plugins.Keyboard.disableScroll(true);
       checkFirstStarting = true;
+      window.scannerCanBeAsked = true;
 
       console.log("Версия приложения из плагина", AppVersion.version);
       console.log("Билд приложения из плагина", AppVersion.build);
@@ -546,23 +547,26 @@
       console.log("NOW MINUTES", nowMinutes);
       console.log(" window.fingerPrint.fingerprintMode =", window.fingerPrint.fingerprintMode);
 
+      window.scannerCanBeAsked = true;
+      var mountAuthorization = false;
+
+
       if ((Math.abs(parseInt(waitingMinutes) - parseInt(nowMinutes)) > 5)) {
         console.log("5 minutes >");
         console.log("SESSION_BROKEN = TRUE");
         localStorage.setItem('session_broken', true);
+        mountAuthorization = true;
+      } else if (JSON.parse(localStorage.getItem('settings_block')) === true || (history.arrayOfHistory.length != 0 && history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-authorization' && window.fingerPrint.fingerprintMode)) {
+        console.log("settings_block or fingerprintMode");
+        mountAuthorization = true;
+      }
+
+      if (mountAuthorization) {
+        console.log("mount authorization");
         riotTags.innerHTML = "<view-authorization>";
         riot.mount('view-authorization');
         return
-      } else if (JSON.parse(localStorage.getItem('settings_block')) === true && window.scannerCanBeAsked) {
-        console.log("authorization mount onResume, block true");
-        riotTags.innerHTML = "<view-authorization>";
-        riot.mount('view-authorization');
-      } else if (history.arrayOfHistory.length != 0 && history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-authorization' && window.fingerPrint.fingerprintMode) {
-        console.log("Auth page!");
-        riotTags.innerHTML = "<view-authorization>";
-        riot.mount('view-authorization');
       }
-      window.scannerCanBeAsked = true;
       setTimeout(function () {
 
         var phoneNumber = localStorage.getItem("click_client_phoneNumber");

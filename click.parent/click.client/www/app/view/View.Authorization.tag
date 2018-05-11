@@ -233,7 +233,13 @@
     setTimeout(function () {
       if (JSON.parse(localStorage.getItem('settings_finger_print')) && !scope.firstEnter) {
         try {
-          fingerPrintAsk('fingerPrintIconId');
+          if (device.platform == 'iOS') {
+            if (window.scannerCanBeAsked) {
+              fingerPrintAsk('fingerPrintIconId');
+            }
+          } else {
+            fingerPrintAsk('fingerPrintIconId');
+          }
         }
         catch (e) {
           console.log(e)
@@ -684,7 +690,7 @@
 
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var deviceId = localStorage.getItem('click_client_deviceID');
-      var date = parseInt(Date.now() / 1000);
+      var date = parseInt(Date.now()).toString();
       var token = localStorage.getItem('click_client_token');
       if (!pin && localStorage.getItem('click_client_pin')) {
         pin = localStorage.getItem('click_client_pin');
@@ -741,11 +747,21 @@
               {
                 var otpTime = result[1][0].sync;
                 otpTime.returned_time = parseInt(new Date().getTime());
+                console.log("getTime : ", new Date().getTime(), Date.now());
+                console.log("returned: ", otpTime.returned_time);
                 otpTime.sending = parseInt(otpTime.receive_time) - parseInt(otpTime.client_time);
+                console.log("receive_time: ", otpTime.receive_time);
+                console.log("client_time: ", otpTime.client_time);
+                console.log("transmit_time: ", otpTime.transmit_time);
+                console.log("sending: ", otpTime.sending);
                 otpTime.receive_diff = otpTime.returned_time - parseInt(otpTime.transmit_time);
                 otpTime.round_trip = otpTime.sending + otpTime.receive_diff;
                 otpTime.oneway = Math.floor(otpTime.round_trip / 2);
                 otpTime.difference = otpTime.sending - otpTime.oneway;
+                console.log("receive_diff: ", otpTime.receive_diff);
+                console.log("round_trip: ", otpTime.round_trip);
+                console.log("oneway: ", otpTime.oneway);
+                console.log("difference", otpTime.difference);
                 localStorage.setItem('click_client_otp_time', JSON.stringify(otpTime));
               }
 

@@ -488,7 +488,7 @@
 
             var phoneNumber = localStorage.getItem('click_client_phoneNumber');
             var deviceId = localStorage.getItem('click_client_deviceID');
-            var date = parseInt(Date.now() / 1000);
+            var date = parseInt(Date.now()).toString();
             var token = localStorage.getItem('click_client_token');
             console.log("pin before=", pin.toString());
             if (localStorage.getItem('click_client_pin')) {
@@ -559,11 +559,16 @@
               localStorage.setItem('myNumberOperatorId', result[1][0].my_service_id);
               modeOfflineMode.check = false;
               var JsonInfo = JSON.stringify(result[1][0]);
-              var otpTime = result[1][0].otp;
-              otpTime.currentTime = parseInt(new Date().getTime() / 1000);
-              otpTime.diffTime = (otpTime.currentTime + otpTime.diff) - otpTime.response_time + otpTime.diff;
-              console.log(JSON.stringify(otpTime));
-              localStorage.setItem('click_client_otp_time', JSON.stringify(otpTime));
+              {
+                var otpTime = result[1][0].sync;
+                otpTime.returned_time = parseInt(new Date().getTime());
+                otpTime.sending = parseInt(otpTime.receive_time) - parseInt(otpTime.client_time);
+                otpTime.receive_diff = otpTime.returned_time - parseInt(otpTime.transmit_time);
+                otpTime.round_trip = otpTime.sending + otpTime.receive_diff;
+                otpTime.oneway = Math.floor(otpTime.round_trip / 2);
+                otpTime.difference = otpTime.sending - otpTime.oneway;
+                localStorage.setItem('click_client_otp_time', JSON.stringify(otpTime));
+              }
               localStorage.setItem('click_client_loginInfo', JsonInfo);
 
               checkSessionKey = true;

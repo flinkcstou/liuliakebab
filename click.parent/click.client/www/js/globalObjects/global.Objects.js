@@ -1503,6 +1503,8 @@ window.fingerPrintAsk = function (fingerprintIconId) {
       function failureCallbackOfAuth(error) {
         window.fingerPrint.fingerPrintInitialize = false;
 
+        window.scannerCanBeAsked = false;
+
         console.log('FAIL FINGER PRINT')
       }
     }
