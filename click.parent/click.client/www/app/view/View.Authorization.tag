@@ -746,13 +746,14 @@
 
               if (result[1][0].sync) {
                 var otpTime = result[1][0].sync;
+
                 otpTime.returned_time = parseInt(new Date().getTime());
+                console.log("receive_time: ", otpTime.receive_time, parseInt(otpTime.receive_time));
+                console.log("client_time: ", otpTime.client_time, parseInt(otpTime.client_time));
+                console.log("transmit_time: ", otpTime.transmit_time, parseInt(otpTime.transmit_time));
                 console.log("getTime : ", new Date().getTime(), Date.now());
                 console.log("returned: ", otpTime.returned_time);
                 otpTime.sending = parseInt(otpTime.receive_time) - parseInt(otpTime.client_time);
-                console.log("receive_time: ", otpTime.receive_time);
-                console.log("client_time: ", otpTime.client_time);
-                console.log("transmit_time: ", otpTime.transmit_time);
                 console.log("sending: ", otpTime.sending);
                 otpTime.receive_diff = otpTime.returned_time - parseInt(otpTime.transmit_time);
                 otpTime.round_trip = otpTime.sending + otpTime.receive_diff;

@@ -20,11 +20,18 @@
         <div class="view-qr-info-menu-title-container">
 
           <div class="view-qr-info-menu-title">Наименование</div>
-          <div class="view-qr-info-menu-title view-qr-info-menu-title-quantity">Кол-во</div>
-          <div class="view-qr-info-menu-title view-qr-info-menu-title-sum">Сумма</div>
+          <div class="view-qr-info-menu-title view-qr-info-menu-title-count">Кол-во</div>
+          <div class="view-qr-info-menu-title view-qr-info-menu-title-amount">Сумма</div>
 
         </div>
         <div class="view-qr-info-menu-body-container">
+          <div class="view-qr-info-menu-body-line-container" each="{i in menu}">
+
+            <div class="view-qr-info-menu-body-line-name">{i.name}</div>
+            <div class="view-qr-info-menu-body-line-name view-qr-info-menu-body-line-count">{i.count}</div>
+            <div class="view-qr-info-menu-body-line-name view-qr-info-menu-body-line-amount">{i.amount}</div>
+
+          </div>
 
         </div>
         <div class="view-qr-info-menu-sum-container">
@@ -49,6 +56,13 @@
     var sumForQrPay;
     var defaultAccount;
     scope.showPlaceHolderError = false;
+    //    scope.menu = opts.menu.item ? [] : opts.menu.item;
+    scope.menu = [{name: "c 001", count: "1", amount: "1000"}, {
+      name: "c 002",
+      count: "1",
+      amount: "1000"
+    }, {name: "c 003", count: "1", amount: "1000"}];
+    scope.amount = opts.amount;
 
     if (!opts.commission_percent)
       scope.showPlaceHolderError = true;

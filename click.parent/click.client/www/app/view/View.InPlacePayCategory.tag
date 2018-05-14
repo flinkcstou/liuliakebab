@@ -410,53 +410,60 @@
                   console.log('rkAmount', rkAmount)
                   console.log('rkOrder', rkOrder)
                 }
-                if (id) {
-                  if (modeOfApp.offlineMode) {
-                    riotTags.innerHTML = "<view-qr>";
-                    riot.mount('view-qr', {
+              } else if (string.indexOf('jowi') != -1) {
+                var jowi_id = string.split("jowi:")[1];
+              }
+              if (id || jowi_id) {
+                if (modeOfApp.offlineMode) {
+                  riotTags.innerHTML = "<view-qr>";
+                  riot.mount('view-qr', {
 //                      "name": result.format,
 //                      "address": result.text,
-                      "id": id,
-                      "image": "resources/icons/ViewPay/logo_indoor.png"
-                    });
+                    "id": id,
+                    "image": "resources/icons/ViewPay/logo_indoor.png"
+                  });
 //                      scope.unmount()
+                }
+                else {
+                  var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+                  var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+                  var sessionKey = info.session_key;
+                  var input = {
+                    phone_num: phoneNumber,
+                    session_key: sessionKey
                   }
-                  else {
-                    var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-                    var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-                    var sessionKey = info.session_key;
+                  if (id) {
+                    input.service_id = id;
+                  } else if (jowi_id) {
+                    input.jowi_id = jowi_id;
+                  }
+                  console.log("input=", input);
 
+                  window.startSpinner();
 
-                    window.startSpinner();
+                  window.api.call({
+                    method: 'get.indoor.service',
+                    input: input,
 
-                    window.api.call({
-                      method: 'get.indoor.service',
-                      input: {
-                        phone_num: phoneNumber,
-                        session_key: sessionKey,
-                        service_id: id,
+                    scope: this,
 
-                      },
-
-                      scope: this,
-
-                      onSuccess: function (result) {
-                        window.clearTimeout(timeOutTimer);
-                        if (result[0][0].error == 0) {
-                          if (result[1]) {
-                            if (result[1][0]) {
-                              if (rkAmount) {
-                                result[1][0].rk_amount = rkAmount
-                              }
-                              if (rkOrder) {
-                                result[1][0].rk_order = rkOrder
-                              }
-                              riotTags.innerHTML = "<view-qr>";
-                              riot.mount('view-qr', result[1][0]);
+                    onSuccess: function (result) {
+                      window.clearTimeout(timeOutTimer);
+                      if (result[0][0].error == 0) {
+                        if (result[1]) {
+                          if (result[1][0]) {
+                            if (rkAmount) {
+                              result[1][0].rk_amount = rkAmount
                             }
+                            if (rkOrder) {
+                              result[1][0].rk_order = rkOrder
+                            }
+                            riotTags.innerHTML = "<view-qr>";
+                            riot.mount('view-qr', result[1][0]);
                           }
                         }
-                        else {
+                      }
+                      else {
 //                          if (result[0][0].error == -202) {
 //                            if (result[0][0].error_url) {
 //
@@ -467,37 +474,37 @@
 //                            }
 //                          }
 
-                          scope.clickPinError = false;
-                          scope.errorNote = result[0][0].error_note;
+                        scope.clickPinError = false;
+                        scope.errorNote = result[0][0].error_note;
 
-                          window.common.alert.show("componentAlertId", {
-                            parent: scope,
-                            clickpinerror: scope.clickPinError,
-                            errornote: scope.errorNote
-                          });
-                          scope.update();
-                        }
-                      },
-
-                      onFail: function (api_status, api_status_message, data) {
-                        window.clearTimeout(timeOutTimer);
-                        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-                        console.error(data);
-                      },
-                      onTimeOut: function () {
-                        timeOutTimer = setTimeout(function () {
-                          window.stopSpinner();
-                        }, 15000);
-                        console.log('creating timeOut', timeOutTimer);
-                      },
-                      onEmergencyStop: function () {
-                        console.log('Clearing timer emergencyStop', timeOutTimer);
-                        window.clearTimeout(timeOutTimer);
+                        window.common.alert.show("componentAlertId", {
+                          parent: scope,
+                          clickpinerror: scope.clickPinError,
+                          errornote: scope.errorNote
+                        });
+                        scope.update();
                       }
-                    }, 15000);
-                  }
+                    },
+
+                    onFail: function (api_status, api_status_message, data) {
+                      window.clearTimeout(timeOutTimer);
+                      console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+                      console.error(data);
+                    },
+                    onTimeOut: function () {
+                      timeOutTimer = setTimeout(function () {
+                        window.stopSpinner();
+                      }, 15000);
+                      console.log('creating timeOut', timeOutTimer);
+                    },
+                    onEmergencyStop: function () {
+                      console.log('Clearing timer emergencyStop', timeOutTimer);
+                      window.clearTimeout(timeOutTimer);
+                    }
+                  }, 15000);
                 }
               }
+
             },
             function (error) {
 
@@ -544,8 +551,8 @@
               if (result[0][0].error == 0) {
                 if (result[1]) {
                   if (result[1][0]) {
-                    riotTags.innerHTML = "<view-qr>";
-                    riot.mount('view-qr', result[1][0]);
+                    riotTags.innerHTML = "<view-qr-info>";
+                    riot.mount('view-qr-info', result[1][0]);
 //                    scope.unmount()
                   }
                 }

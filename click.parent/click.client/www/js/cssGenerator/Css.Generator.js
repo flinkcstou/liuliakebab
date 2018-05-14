@@ -14148,7 +14148,7 @@ var css = {
   "{" +
   "border:" + 1 * widthK + "px solid #e8e8e8;" +
   "position: relative;" +
-  "font-size:" + 26 * widthK + "px; " +
+  "font-size:" + 23 * widthK + "px; " +
   "width:" + 275 * widthK + "px; " +
   "text-align: left; " +
   "margin: 0; " +
@@ -14159,15 +14159,52 @@ var css = {
   "float: left;" +
   "}",
 
-  viewQrInfoMenuTitleQuantity: ".view-qr-info-menu-title-quantity" +
+  viewQrInfoMenuTitleCount: ".view-qr-info-menu-title-count" +
   "{" +
   "width:" + 100 * widthK + "px; " +
   "}",
 
-  viewQrInfoMenuTitleSum: ".view-qr-info-menu-title-sum" +
+  viewQrInfoMenuTitleAmount: ".view-qr-info-menu-title-amount" +
   "{" +
   "width:" + 176 * widthK + "px; " +
+  "text-align: right;" +
+  "}",
+
+  viewQrInfoMenuBodyLineContainer: ".view-qr-info-menu-body-line-container" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "height:" + 50 * widthK + "px;" +
+  "border-bottom:" + 2 * widthK + "px dashed #e8e8e8;" +
+  // "top:" + 56 * widthK + "px;" +
+  "}",
+
+  viewQrInfoMenuBodyLineName: ".view-qr-info-menu-body-line-name" +
+  "{" +
+  "border:" + 1 * widthK + "px solid #e8e8e8;" +
+  "position: relative;" +
+  "font-size:" + 22 * widthK + "px; " +
+  "width:" + 275 * widthK + "px; " +
+  "text-align: left; " +
+  "margin: 0; " +
+  "margin-top:" + 15 * widthK + "px; " +
+  "color: #565d6a;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "float: left;" +
+  "}",
+
+  viewQrInfoMenuBodyLineCount: ".view-qr-info-menu-body-line-count" +
+  "{" +
+  "width:" + 100 * widthK + "px; " +
   "text-align: center;" +
+  "}",
+
+  viewQrInfoMenuBodyLineAmount: ".view-qr-info-menu-body-line-amount" +
+  "{" +
+  "width:" + 176 * widthK + "px; " +
+  "text-align: right;" +
+  "color: #00a8f1;" +
   "}",
 
 
