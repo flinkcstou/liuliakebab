@@ -14100,6 +14100,76 @@ var css = {
   "width: 33%;" +
   "}",
 
+  //VIEW QR INFO
+
+  viewQrInfoMenuContainer: ".view-qr-info-menu-container" +
+  "{" +
+  "position: absolute;" +
+  "left: 6%;" +
+  "width: 88%;" +
+  "height:" + 560 * widthK + "px;" +
+  "border:" + 1 * widthK + "px solid #e8e8e8;" +
+  "color: black;" +
+  "top:" + 56 * widthK + "px;" +
+  "background-color: white;" +
+  "}",
+
+  viewQrInfoMenuTitleContainer: ".view-qr-info-menu-title-container" +
+  "{" +
+  "position: absolute;" +
+  "left: 6%;" +
+  "width: 88%;" +
+  "height:" + 90 * widthK + "px;" +
+  "border-bottom:" + 2 * widthK + "px dashed #e8e8e8;" +
+  // "top:" + 56 * widthK + "px;" +
+  "}",
+
+  viewQrInfoMenuBodyContainer: ".view-qr-info-menu-body-container" +
+  "{" +
+  "position: absolute;" +
+  "left: 6%;" +
+  "width: 88%;" +
+  "height:" + 320 * widthK + "px;" +
+  "border-bottom:" + 1 * widthK + "px solid #e8e8e8;" +
+  "top:" + 90 * widthK + "px;" +
+  "}",
+
+  viewQrInfoMenuSumContainer: ".view-qr-info-menu-sum-container" +
+  "{" +
+  "position: absolute;" +
+  "left: 6%;" +
+  "width: 88%;" +
+  "height:" + 150 * widthK + "px;" +
+  // "border:" + 1 * widthK + "px solid #e8e8e8;" +
+  "top:" + 410 * widthK + "px;" +
+  "}",
+
+  viewQrInfoMenuTitle: ".view-qr-info-menu-title" +
+  "{" +
+  "border:" + 1 * widthK + "px solid #e8e8e8;" +
+  "position: relative;" +
+  "font-size:" + 26 * widthK + "px; " +
+  "width:" + 275 * widthK + "px; " +
+  "text-align: left; " +
+  "margin: 0; " +
+  "margin-top:" + 27 * widthK + "px; " +
+  "color: #565d6a;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "float: left;" +
+  "}",
+
+  viewQrInfoMenuTitleQuantity: ".view-qr-info-menu-title-quantity" +
+  "{" +
+  "width:" + 100 * widthK + "px; " +
+  "}",
+
+  viewQrInfoMenuTitleSum: ".view-qr-info-menu-title-sum" +
+  "{" +
+  "width:" + 176 * widthK + "px; " +
+  "text-align: center;" +
+  "}",
+
 
   //VIEW TRANSFER ON CARD
 

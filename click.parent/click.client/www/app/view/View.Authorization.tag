@@ -744,7 +744,7 @@
               modeOfflineMode.check = false;
               var JsonInfo = JSON.stringify(result[1][0]);
 
-              {
+              if (result[1][0].sync) {
                 var otpTime = result[1][0].sync;
                 otpTime.returned_time = parseInt(new Date().getTime());
                 console.log("getTime : ", new Date().getTime(), Date.now());
