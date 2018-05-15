@@ -29,14 +29,14 @@
 
             <div class="view-qr-info-menu-body-line-name">{i.name}</div>
             <div class="view-qr-info-menu-body-line-name view-qr-info-menu-body-line-count">{i.count}</div>
-            <div class="view-qr-info-menu-body-line-name view-qr-info-menu-body-line-amount">{i.amount}</div>
+            <div class="view-qr-info-menu-body-line-name view-qr-info-menu-body-line-amount">{i.amountTransformed}</div>
 
           </div>
 
         </div>
         <div class="view-qr-info-menu-sum-container">
           <div class="view-qr-info-total-amount-title">Итоговая сумма:</div>
-          <div class="view-qr-info-total-amount">{amount} сум</div>
+          <div class="view-qr-info-total-amount">{amountCopy} сум</div>
         </div>
 
       </div>
@@ -62,23 +62,34 @@
     //      name: "c 002",
     //      count: "1",
     //      amount: "1000"
-    //    }, {name: "c 003", count: "1", amount: "1000"}, {name: "c 004", count: "1", amount: "1000"}, {
+    //    }, {name: "c 003", count: "1", amount: "1000"}, {name: "c 004", count: "1", amount: "100010.33"}, {
     //      name: "c 005",
     //      count: "1",
-    //      amount: "1000"
+    //      amount: "1000520"
     //    }, {name: "c 006", count: "1", amount: "1000"}, {name: "c 007", count: "1", amount: "1000"}];
     scope.amount = opts.amount;
-    //    scope.amount = "7000";
+    //    scope.amount = "7000150";
+
+    transformAmounts = function () {
+      for (var i in scope.menu) {
+        console.log("amount=", scope.menu[i].amount);
+        scope.menu[i].intPartAmount = Math.floor(scope.menu[i].amount.toString().replace(/\s/g, '')).toFixed(0).toString();
+        scope.menu[i].fracPartAmount = window.getFractionalPart(scope.menu[i].amount.toString());
+        scope.menu[i].amountTransformed = window.amountTransform(window.inputVerification.spaceDeleter(scope.menu[i].intPartAmount)) + scope.menu[i].fracPartAmount;
+      }
+      if (scope.amount) {
+        scope.intPartAmount = Math.floor(scope.amount.toString().replace(/\s/g, '')).toFixed(0).toString();
+        scope.fracPartAmount = window.getFractionalPart(scope.amount.toString());
+        scope.amountCopy = window.amountTransform(window.inputVerification.spaceDeleter(scope.intPartAmount)) + scope.fracPartAmount;
+      }
+    };
+
+    transformAmounts();
 
     if (!opts.commission_percent)
       scope.showPlaceHolderError = true;
 
     window.saveHistory('view-qr-info', opts);
-
-    this.on('mount', function () {
-
-
-    });
 
     console.log('QR OPTS', opts);
 

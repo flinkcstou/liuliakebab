@@ -14107,7 +14107,7 @@ var css = {
   "position: absolute;" +
   "left: 6%;" +
   "width: 88%;" +
-  "height:" + 560 * widthK + "px;" +
+  "height:" + 577 * widthK + "px;" +
   // "border:" + 1 * widthK + "px solid #e8e8e8;" +
   "color: black;" +
   "top:" + 56 * widthK + "px;" +
@@ -14133,7 +14133,7 @@ var css = {
   "left: 6%;" +
   "width: 90%;" +
   "height:" + 292 * widthK + "px;" +
-  "top:" + 104 * widthK + "px;" +
+  "top:" + 110 * widthK + "px;" +
   "overflow: hidden;" +
   "overflow-y: auto;" +
   "}",
@@ -14145,7 +14145,7 @@ var css = {
   "width: 88%;" +
   "height:" + 140 * widthK + "px;" +
   "border-top:" + 1 * widthK + "px solid #e8e8e8;" +
-  "top:" + 415 * widthK + "px;" +
+  "top:" + 430 * widthK + "px;" +
   "}",
 
   viewQrInfoMenuTitle: ".view-qr-info-menu-title" +
