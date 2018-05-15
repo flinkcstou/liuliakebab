@@ -14108,10 +14108,13 @@ var css = {
   "left: 6%;" +
   "width: 88%;" +
   "height:" + 560 * widthK + "px;" +
-  "border:" + 1 * widthK + "px solid #e8e8e8;" +
+  // "border:" + 1 * widthK + "px solid #e8e8e8;" +
   "color: black;" +
   "top:" + 56 * widthK + "px;" +
-  "background-color: white;" +
+  // "background-color: white;" +
+  "background-image: url(resources/icons/ViewInPlacePay/qrInfoBack.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
   "}",
 
   viewQrInfoMenuTitleContainer: ".view-qr-info-menu-title-container" +
@@ -14129,9 +14132,8 @@ var css = {
   "position: absolute;" +
   "left: 6%;" +
   "width: 90%;" +
-  "height:" + 320 * widthK + "px;" +
-  "border-bottom:" + 1 * widthK + "px solid #e8e8e8;" +
-  "top:" + 90 * widthK + "px;" +
+  "height:" + 292 * widthK + "px;" +
+  "top:" + 104 * widthK + "px;" +
   "overflow: hidden;" +
   "overflow-y: auto;" +
   "}",
@@ -14141,9 +14143,9 @@ var css = {
   "position: absolute;" +
   "left: 6%;" +
   "width: 88%;" +
-  "height:" + 150 * widthK + "px;" +
-  // "border:" + 1 * widthK + "px solid #e8e8e8;" +
-  "top:" + 410 * widthK + "px;" +
+  "height:" + 140 * widthK + "px;" +
+  "border-top:" + 1 * widthK + "px solid #e8e8e8;" +
+  "top:" + 415 * widthK + "px;" +
   "}",
 
   viewQrInfoMenuTitle: ".view-qr-info-menu-title" +
@@ -14217,7 +14219,7 @@ var css = {
   "width: 100%; " +
   "text-align: center; " +
   "margin: 0; " +
-  "top:" + 27 * widthK + "px; " +
+  "top:" + 20 * widthK + "px; " +
   "color: #565d6a;" +
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
@@ -14227,11 +14229,11 @@ var css = {
   "{" +
   // "border:" + 1 * widthK + "px solid #e8e8e8;" +
   "position: absolute;" +
-  "font-size:" + 40 * widthK + "px; " +
+  "font-size:" + 42 * widthK + "px; " +
   "width: 100%; " +
   "text-align: center; " +
   "margin: 0; " +
-  "top:" + 70 * widthK + "px; " +
+  "top:" + 65 * widthK + "px; " +
   "color: #00a8f1;" +
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
