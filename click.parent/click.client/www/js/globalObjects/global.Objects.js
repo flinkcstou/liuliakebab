@@ -272,6 +272,8 @@ componentReportFilter.pastWeek = 4;
 componentReportFilter.currentMonth = 5;
 componentReportFilter.pastMonth = 6;
 
+window.qrScaner = {};
+
 window.checkShowingComponent = null;
 
 window.pickContactFromNativeChecker = false;
@@ -1953,4 +1955,188 @@ function noInternetFingerPrint() {
 
 function enterFalse() {
   enter(false);
+}
+
+function qrCodeScanner(scope) {
+  cordova.plugins.barcodeScanner.scan(
+    function (result) {
+      console.log('QR RESULT', result)
+
+      qrScaner.qrInited = false;
+      console.log("qrInited success false");
+
+      var string = result.text;
+      if (string.indexOf('click.uz') != -1) {
+
+        string = string.split('?')[1]
+        string = string.split('&')
+        var id = '';
+        var rkId = '';
+        var rkAmount = '';
+        var rkOrder = '';
+        for (var i in string) {
+          if (string[i].split('=')[0] == 'id') {
+            id = string[i].split('=')[1];
+            console.log('ID', id)
+          }
+        }
+
+        if (!id) {
+          console.log('string', string)
+          try {
+            var decodeString = atob(string)
+          }
+          catch (e) {
+            console.log(e)
+          }
+          console.log("DECODED STRING", decodeString)
+          var splitedArray = decodeString.split('&');
+          for (var j in splitedArray) {
+            if (splitedArray[j].split("=")[0] == 'id')
+              id = splitedArray[j].split("=")[1]
+
+            if (splitedArray[j].split("=")[0] == 'amount')
+              rkAmount = splitedArray[j].split("=")[1]
+
+            if (splitedArray[j].split("=")[0] == 'order_id')
+              rkOrder = splitedArray[j].split("=")[1]
+          }
+
+          console.log('id', id)
+          console.log('rkAmount', rkAmount)
+          console.log('rkOrder', rkOrder)
+        }
+      } else if (string.indexOf('jowi') != -1) {
+        var jowi_id = string.split("jowi:")[1];
+      }
+      if (id || jowi_id) {
+        if (modeOfApp.offlineMode) {
+          if (jowi_id) {
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              errornote: window.languages.QrJowiOfflineConstraintText
+            });
+          }
+          else {
+            riotTags.innerHTML = "<view-qr>";
+            riot.mount('view-qr', {
+              "id": id,
+              "image": "resources/icons/ViewPay/logo_indoor.png"
+            });
+          }
+        }
+        else {
+          var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+          var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+          var sessionKey = info.session_key;
+          var input = {
+            phone_num: phoneNumber,
+            session_key: sessionKey
+          }
+          if (id) {
+            input.service_id = id;
+          } else if (jowi_id) {
+            input.jowi_id = jowi_id;
+          }
+          console.log("input=", input);
+
+          window.startSpinner();
+
+          window.api.call({
+            method: 'get.indoor.service',
+            input: input,
+
+            scope: this,
+
+            onSuccess: function (result) {
+              window.clearTimeout(timeOutTimerThree);
+              if (result[0][0].error == 0) {
+                if (result[1] && result[1][0]) {
+                  if (id) {
+                    if (rkAmount) {
+                      result[1][0].rk_amount = rkAmount
+                    }
+                    if (rkOrder) {
+                      result[1][0].rk_order = rkOrder
+                    }
+                    riotTags.innerHTML = "<view-qr>";
+                    riot.mount('view-qr', result[1][0]);
+                  } else if (jowi_id) {
+                    riotTags.innerHTML = "<view-qr-info>";
+                    riot.mount('view-qr-info', result[1][0]);
+                  }
+
+                }
+              }
+              else {
+//                          if (result[0][0].error == -202) {
+//                            if (result[0][0].error_url) {
+//
+//                              window.checkShowingComponent = scope;
+//                              scope.update();
+//                              iFrameExternalUrlId.src = result[0][0].error_url;
+//                              return
+//                            }
+//                          }
+
+                scope.clickPinError = false;
+                scope.errorNote = result[0][0].error_note;
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: scope.clickPinError,
+                  errornote: scope.errorNote
+                });
+                scope.update();
+              }
+            },
+
+            onFail: function (api_status, api_status_message, data) {
+              window.clearTimeout(timeOutTimerThree);
+              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+              console.error(data);
+            },
+            onTimeOut: function () {
+              timeOutTimerThree = setTimeout(function () {
+                window.stopSpinner();
+              }, 15000);
+              console.log('creating timeOut', timeOutTimerThree);
+            },
+            onEmergencyStop: function () {
+              console.log('Clearing timer emergencyStop', timeOutTimerThree);
+              window.clearTimeout(timeOutTimerThree);
+            }
+          }, 15000);
+        }
+      }
+
+    },
+    function (error) {
+
+      qrScaner.qrInited = false;
+      console.log("qrInited error false");
+
+      scope.clickPinError = false;
+      scope.errorNote = "Отсутствует доступ";
+
+      window.common.alert.show("componentAlertId", {
+        parent: scope,
+        clickpinerror: scope.clickPinError,
+        errornote: scope.errorNote
+      });
+      scope.update();
+    },
+    {
+      preferFrontCamera: false, // iOS and Android
+      showFlipCameraButton: false, // iOS and Android
+      showTorchButton: true, // iOS and Android
+      torchOn: false, // Android, launch with the torch switched on (if available)
+      prompt: window.languages.ViewQrLabelOnScanner, // Android
+      resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
+      formats: "QR_CODE", // default: all but PDF_417 and RSS_EXPANDED
+      orientation: "portrait", // Android only (portrait|landscape), default unset so it rotates with the device
+      disableAnimations: true, // iOS
+      disableSuccessBeep: false // iOS
+    }
+  );
 }

@@ -105,9 +105,9 @@
     var favoritesTouchStartX, favoritesTouchStartY, favoritesTouchEndX, favoritesTouchEndY;
     var changeModeStart, changeModeEnd;
     var width = window.innerWidth;
-    var timeOutTimer = 0;
+    var timeOutTimerThree = 0;
     scope.showIFrame = false;
-    var qrInited = false;
+    qrScaner.qrInited = false;
 
     if (loginInfo) {
       scope.firstName = loginInfo.firstname;
@@ -437,7 +437,7 @@
       qrScannerTouchEndX = event.changedTouches[0].pageX;
       qrScannerTouchEndY = event.changedTouches[0].pageY;
 
-      if (Math.abs(qrScannerTouchStartX - qrScannerTouchEndX) < 20 && Math.abs(qrScannerTouchStartY - qrScannerTouchEndY) < 20 && !qrInited) {
+      if (Math.abs(qrScannerTouchStartX - qrScannerTouchEndX) < 20 && Math.abs(qrScannerTouchStartY - qrScannerTouchEndY) < 20 && !qrScaner.qrInited) {
 
         if (modeOfApp.demoVersion) {
           var question = window.languages.DemoModeConstraintText;
@@ -451,161 +451,12 @@
         }
 
         window.pickContactFromNativeChecker = true;
-        qrInited = true;
-        console.log("qrInited =", qrInited);
+        qrScaner.qrInited = true;
+        console.log("qrScaner.qrInited =", qrScaner.qrInited);
 
         if (device.platform != 'BrowserStand') {
 
-          cordova.plugins.barcodeScanner.scan(
-            function (result) {
-
-              qrInited = false;
-              console.log("qrInited success false");
-
-              var string = result.text;
-              if (string.indexOf('click.uz') != -1) {
-
-                string = string.split('?')[1];
-                string = string.split('&');
-                var id = '';
-                var rkId = '';
-                var rkAmount = '';
-                var rkOrder = '';
-                for (var i in string) {
-                  if (string[i].split('=')[0] == 'id') {
-                    id = string[i].split('=')[1];
-                    console.log('ID', id)
-                  }
-                }
-
-                if (!id) {
-                  console.log('string', string);
-                  try {
-                    var decodeString = atob(string)
-                  }
-                  catch (e) {
-                    console.log(e)
-                  }
-                  console.log("DECODED STRING", decodeString);
-                  var splitedArray = decodeString.split('&');
-                  for (var j in splitedArray) {
-                    if (splitedArray[j].split("=")[0] == 'id')
-                      id = splitedArray[j].split("=")[1];
-
-                    if (splitedArray[j].split("=")[0] == 'amount')
-                      rkAmount = splitedArray[j].split("=")[1];
-
-                    if (splitedArray[j].split("=")[0] == 'order_id')
-                      rkOrder = splitedArray[j].split("=")[1]
-                  }
-
-                  console.log('id', id);
-                  console.log('rkAmount', rkAmount);
-                  console.log('rkOrder', rkOrder);
-                }
-                if (id) {
-                  if (modeOfApp.offlineMode) {
-                    riotTags.innerHTML = "<view-qr>";
-                    riot.mount('view-qr', {
-//                      "name": result.format,
-//                      "address": result.text,
-                      "id": id,
-                      "image": "resources/icons/ViewPay/logo_indoor.png"
-                    });
-                  }
-                  else {
-                    var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-                    var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-                    var sessionKey = info.session_key;
-
-                    window.startSpinner();
-
-                    window.api.call({
-                      method: 'get.indoor.service',
-                      input: {
-                        phone_num: phoneNumber,
-                        session_key: sessionKey,
-                        service_id: id
-                      },
-
-                      scope: this,
-                      onSuccess: function (result) {
-                        console.log('Clearing timer onSuccess', timeOutTimer);
-                        window.clearTimeout(timeOutTimer);
-
-                        if (result[0][0].error == 0) {
-                          if (result[1]) {
-                            if (result[1][0]) {
-                              closeMenu();
-                              if (rkAmount) {
-                                result[1][0].rk_amount = rkAmount
-                              }
-                              if (rkOrder) {
-                                result[1][0].rk_order = rkOrder
-                              }
-                              riotTags.innerHTML = "<view-qr>";
-                              riot.mount('view-qr', result[1][0]);
-                            }
-                          }
-                          console.log("QR PAY", result);
-                        }
-                        else {
-
-                          window.common.alert.show("componentAlertId", {
-                            parent: scope,
-                            clickpinerror: false,
-                            errornote: result[0][0].error_note
-                          });
-                          scope.update();
-                        }
-                      },
-                      onFail: function (api_status, api_status_message, data) {
-                        console.log('Clearing timer onFail', timeOutTimer);
-                        window.clearTimeout(timeOutTimer);
-                        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-                        console.error(data);
-                      },
-                      onTimeOut: function () {
-                        timeOutTimer = setTimeout(function () {
-                          window.stopSpinner();
-                          return;
-                        }, 15000);
-                        console.log('creating timeOut', timeOutTimer);
-                      },
-                      onEmergencyStop: function () {
-                        console.log('Clearing timer emergencyStop', timeOutTimer);
-                        window.clearTimeout(timeOutTimer);
-                      }
-                    }, 15000);
-                  }
-                }
-              }
-            },
-            function (error) {
-
-              qrInited = false;
-              console.log("qrInited error false");
-
-              window.common.alert.show("componentAlertId", {
-                parent: scope,
-                clickpinerror: false,
-                errornote: "Отсутствует доступ"
-              });
-              scope.update();
-            },
-            {
-              preferFrontCamera: false, // iOS and Android
-              showFlipCameraButton: true, // iOS and Android
-              showTorchButton: true, // iOS and Android
-              torchOn: false, // Android, launch with the torch switched on (if available)
-              prompt: window.languages.ViewQrLabelOnScanner, // Android
-              resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
-              formats: "QR_CODE", // default: all but PDF_417 and RSS_EXPANDED
-              orientation: "portrait", // Android only (portrait|landscape), default unset so it rotates with the device
-              disableAnimations: true, // iOS
-              disableSuccessBeep: false // iOS
-            }
-          );
+          qrCodeScanner(scope);
         }
         else {
           var phoneNumber = localStorage.getItem("click_client_phoneNumber");
@@ -685,7 +536,7 @@
           scope.update();
           return;
         }
-        if (!localStorage.getItem("click_client_loginInfo") || !localStorage.getItem('click_client_otp_time')){
+        if (!localStorage.getItem("click_client_loginInfo") || !localStorage.getItem('click_client_otp_time')) {
           var question = 'Для работы раздела CLICK PASS необходимо один раз зайти в онлайн режим';
           window.common.alert.show("componentAlertId", {
             parent: scope,
@@ -694,7 +545,7 @@
           scope.update();
           return;
         }
-        if (modeOfApp.offlineMode){
+        if (modeOfApp.offlineMode) {
           riotTags.innerHTML = "<view-pin-code>";
           riot.mount('view-pin-code', ['view-click-pass']);
           return;

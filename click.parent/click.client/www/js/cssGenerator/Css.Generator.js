@@ -14128,10 +14128,12 @@ var css = {
   "{" +
   "position: absolute;" +
   "left: 6%;" +
-  "width: 88%;" +
+  "width: 90%;" +
   "height:" + 320 * widthK + "px;" +
   "border-bottom:" + 1 * widthK + "px solid #e8e8e8;" +
   "top:" + 90 * widthK + "px;" +
+  "overflow: hidden;" +
+  "overflow-y: auto;" +
   "}",
 
   viewQrInfoMenuSumContainer: ".view-qr-info-menu-sum-container" +
@@ -14146,7 +14148,7 @@ var css = {
 
   viewQrInfoMenuTitle: ".view-qr-info-menu-title" +
   "{" +
-  "border:" + 1 * widthK + "px solid #e8e8e8;" +
+  // "border:" + 1 * widthK + "px solid #e8e8e8;" +
   "position: relative;" +
   "font-size:" + 23 * widthK + "px; " +
   "width:" + 275 * widthK + "px; " +
@@ -14175,13 +14177,13 @@ var css = {
   "position: relative;" +
   "width: 100%;" +
   "height:" + 50 * widthK + "px;" +
-  "border-bottom:" + 2 * widthK + "px dashed #e8e8e8;" +
+  // "border-bottom:" + 2 * widthK + "px dashed #e8e8e8;" +
   // "top:" + 56 * widthK + "px;" +
   "}",
 
   viewQrInfoMenuBodyLineName: ".view-qr-info-menu-body-line-name" +
   "{" +
-  "border:" + 1 * widthK + "px solid #e8e8e8;" +
+  // "border:" + 1 * widthK + "px solid #e8e8e8;" +
   "position: relative;" +
   "font-size:" + 22 * widthK + "px; " +
   "width:" + 275 * widthK + "px; " +
@@ -14205,6 +14207,34 @@ var css = {
   "width:" + 176 * widthK + "px; " +
   "text-align: right;" +
   "color: #00a8f1;" +
+  "}",
+
+  viewQrInfoTotalAmountTitle: ".view-qr-info-total-amount-title" +
+  "{" +
+  // "border:" + 1 * widthK + "px solid #e8e8e8;" +
+  "position: absolute;" +
+  "font-size:" + 31 * widthK + "px; " +
+  "width: 100%; " +
+  "text-align: center; " +
+  "margin: 0; " +
+  "top:" + 27 * widthK + "px; " +
+  "color: #565d6a;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "}",
+
+  viewQrInfoTotalAmount: ".view-qr-info-total-amount" +
+  "{" +
+  // "border:" + 1 * widthK + "px solid #e8e8e8;" +
+  "position: absolute;" +
+  "font-size:" + 40 * widthK + "px; " +
+  "width: 100%; " +
+  "text-align: center; " +
+  "margin: 0; " +
+  "top:" + 70 * widthK + "px; " +
+  "color: #00a8f1;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
   "}",
 
 

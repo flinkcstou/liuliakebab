@@ -35,7 +35,8 @@
 
         </div>
         <div class="view-qr-info-menu-sum-container">
-
+          <div class="view-qr-info-total-amount-title">Итоговая сумма:</div>
+          <div class="view-qr-info-total-amount">{amount} сум</div>
         </div>
 
       </div>
@@ -43,7 +44,7 @@
 
     <button id="bottomButtonContainerId" class="bottom-button-container" ontouchend="onTouchEndAccept()"
             ontouchstart="onTouchStartAccept()">
-      {window.languages.ViewQrTitleAccept}
+      {window.languages.ViewQrInfoTitleAccept}
     </button>
 
   </div>
@@ -56,13 +57,18 @@
     var sumForQrPay;
     var defaultAccount;
     scope.showPlaceHolderError = false;
-    //    scope.menu = opts.menu.item ? [] : opts.menu.item;
-    scope.menu = [{name: "c 001", count: "1", amount: "1000"}, {
-      name: "c 002",
-      count: "1",
-      amount: "1000"
-    }, {name: "c 003", count: "1", amount: "1000"}];
+    scope.menu = opts.menu.item ? opts.menu.item : [];
+    //    scope.menu = [{name: "c 001", count: "1", amount: "1000"}, {
+    //      name: "c 002",
+    //      count: "1",
+    //      amount: "1000"
+    //    }, {name: "c 003", count: "1", amount: "1000"}, {name: "c 004", count: "1", amount: "1000"}, {
+    //      name: "c 005",
+    //      count: "1",
+    //      amount: "1000"
+    //    }, {name: "c 006", count: "1", amount: "1000"}, {name: "c 007", count: "1", amount: "1000"}];
     scope.amount = opts.amount;
+    //    scope.amount = "7000";
 
     if (!opts.commission_percent)
       scope.showPlaceHolderError = true;
@@ -106,54 +112,33 @@
 
       if (Math.abs(touchEndAcceptX - touchStartAcceptX) < 20 &&
         Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
-        opts.qrSum = sumForQrPay;
+        opts.qrSum = scope.amount;
         opts.transactionId = parseInt(Date.now() / 1000);
 
-        if (modeOfApp.offlineMode) {
-          phonedialer.dial(
-            "*880*0" + opts.id + "*" + parseInt(sumForQrPay) + "%23",
-            function (err) {
-              if (err == "empty") {
-                scope.clickPinError = false;
-                scope.errorNote = ("Неверный номер");
-                window.common.alert.show("componentAlertId", {
-                  parent: scope,
-                  clickpinerror: scope.clickPinError,
-                  errornote: scope.errorNote
-                });
-                scope.update();
-              }
-              else console.log("Ошибка USSD:" + err);
-            },
-            function (success) {
 
-            }
-          );
-          return
-        }
-        if (parseInt(sumForQrPay) <= opts.max_pay_limit && parseInt(sumForQrPay) >= opts.min_pay_limit) {
-          riotTags.innerHTML = "<view-qr-pincards>";
-          opts.tax = scope.tax;
-          riot.mount('view-qr-pincards', opts);
+//        if (parseInt(sumForQrPay) <= opts.max_pay_limit && parseInt(sumForQrPay) >= opts.min_pay_limit) {
+        riotTags.innerHTML = "<view-qr-pincards>";
+        opts.tax = scope.tax;
+        riot.mount('view-qr-pincards', opts);
 
-          scope.unmount()
-        }
-        else {
-          scope.clickPinError = false;
-          if (parseInt(sumForQrPay) > opts.max_pay_limit) {
-            scope.errorNote = opts.lang_max_amount;
-          }
-          else {
-            scope.errorNote = opts.lang_min_amount
-          }
-
-          window.common.alert.show("componentAlertId", {
-            parent: scope,
-            clickpinerror: scope.clickPinError,
-            errornote: scope.errorNote
-          });
-          scope.update();
-        }
+        scope.unmount()
+//        }
+//        else {
+//          scope.clickPinError = false;
+//          if (parseInt(sumForQrPay) > opts.max_pay_limit) {
+//            scope.errorNote = opts.lang_max_amount;
+//          }
+//          else {
+//            scope.errorNote = opts.lang_min_amount
+//          }
+//
+//          window.common.alert.show("componentAlertId", {
+//            parent: scope,
+//            clickpinerror: scope.clickPinError,
+//            errornote: scope.errorNote
+//          });
+//          scope.update();
+//        }
 
       }
     };

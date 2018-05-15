@@ -484,6 +484,8 @@ var RU_LANGUAGES =
   "ViewQrTitleCancel": "Отменить",
   "ViewQrLabelOnScanner": "Наведите камеру на QR код",
 
+  "ViewQrInfoTitleAccept": "ОПЛАТИТЬ",
+
   "ViewClickPassTitle": "CLICK PASS",
   "ViewClickPassHelpFirst": "КАК РАБОТАЕТ",
   "ViewClickPassHelpSecond": "CLICK PASS",
@@ -681,7 +683,8 @@ var RU_LANGUAGES =
   "ViewInPlacePayTitle": "ОПЛАТА НА МЕСТАХ",
   "InPlaceSearchPlaceHolderText": "Поиск",
   "InPlaceSearchNoMatchText": "Нет совпадений",
-  "InPlacePayGpsErrorText": "Пожалуйста, откройте настройки и разрешите CLICK Uzbekistan использовать ваше местонахождение и убедитесь что у вас включены геоданные"
+  "InPlacePayGpsErrorText": "Пожалуйста, откройте настройки и разрешите CLICK Uzbekistan использовать ваше местонахождение и убедитесь что у вас включены геоданные",
+  "QrJowiOfflineConstraintText": "Оплата за данного поставщика доступна только в онлайн режиме"
 
 
 };

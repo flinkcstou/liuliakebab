@@ -94,7 +94,7 @@
     scope.searchMode = false;
     scope.showSearchIcon = !opts.searchWord;
     var searchFieldTimeout, searchFieldActive = false, searchWord = opts.searchWord;
-    var qrInited = false;
+    qrScaner.qrInited = false;
     scope.requestSent = false;
 
     window.saveHistory('view-inplace-pay-service', opts);
@@ -400,7 +400,7 @@
       qrPayEndX = event.changedTouches[0].pageX;
       qrPayEndY = event.changedTouches[0].pageY;
 
-      if (Math.abs(qrPayStartX - qrPayEndX) <= 20 && Math.abs(qrPayStartY - qrPayEndY) <= 20 && !qrInited) {
+      if (Math.abs(qrPayStartX - qrPayEndX) <= 20 && Math.abs(qrPayStartY - qrPayEndY) <= 20 && !qrScaner.qrInited) {
         if (modeOfApp.demoVersion) {
           var question = window.languages.DemoModeConstraintText;
           scope.errorNote = question;
@@ -416,175 +416,10 @@
         }
         if (device.platform != 'BrowserStand') {
           window.pickContactFromNativeChecker = true;
-          qrInited = true;
-          console.log("qrInited =", qrInited);
+          qrScaner.qrInited = true;
+          console.log("qrScaner.qrInited =", qrScaner.qrInited);
 
-          cordova.plugins.barcodeScanner.scan(
-            function (result) {
-              console.log('QR RESULT', result)
-
-              qrInited = false;
-              console.log("qrInited success false");
-
-              var string = result.text;
-              if (string.indexOf('click.uz') != -1) {
-
-                string = string.split('?')[1]
-                string = string.split('&')
-                var id = '';
-                var rkId = '';
-                var rkAmount = '';
-                var rkOrder = '';
-                for (var i in string) {
-                  if (string[i].split('=')[0] == 'id') {
-                    id = string[i].split('=')[1];
-                    console.log('ID', id)
-                  }
-                }
-
-                if (!id) {
-                  console.log('string', string)
-                  try {
-                    var decodeString = atob(string)
-                  }
-                  catch (e) {
-                    console.log(e)
-                  }
-                  console.log("DECODED STRING", decodeString)
-                  var splitedArray = decodeString.split('&');
-                  for (var j in splitedArray) {
-                    if (splitedArray[j].split("=")[0] == 'id')
-                      id = splitedArray[j].split("=")[1]
-
-                    if (splitedArray[j].split("=")[0] == 'amount')
-                      rkAmount = splitedArray[j].split("=")[1]
-
-                    if (splitedArray[j].split("=")[0] == 'order_id')
-                      rkOrder = splitedArray[j].split("=")[1]
-                  }
-
-                  console.log('id', id)
-                  console.log('rkAmount', rkAmount)
-                  console.log('rkOrder', rkOrder)
-                }
-                if (id) {
-                  if (modeOfApp.offlineMode) {
-                    riotTags.innerHTML = "<view-qr>";
-                    riot.mount('view-qr', {
-//                      "name": result.format,
-//                      "address": result.text,
-                      "id": id,
-                      "image": "resources/icons/ViewPay/logo_indoor.png"
-                    });
-//                      scope.unmount()
-                  }
-                  else {
-                    var phoneNumber = localStorage.getItem("click_client_phoneNumber");
-                    var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
-                    var sessionKey = info.session_key;
-
-
-                    window.startSpinner();
-
-                    window.api.call({
-                      method: 'get.indoor.service',
-                      input: {
-                        phone_num: phoneNumber,
-                        session_key: sessionKey,
-                        service_id: id,
-
-                      },
-
-                      scope: this,
-
-                      onSuccess: function (result) {
-                        window.clearTimeout(timeOutTimerThree);
-                        if (result[0][0].error == 0) {
-                          if (result[1]) {
-                            if (result[1][0]) {
-                              if (rkAmount) {
-                                result[1][0].rk_amount = rkAmount
-                              }
-                              if (rkOrder) {
-                                result[1][0].rk_order = rkOrder
-                              }
-                              riotTags.innerHTML = "<view-qr>";
-                              riot.mount('view-qr', result[1][0]);
-                            }
-                          }
-                        }
-                        else {
-                          if (result[0][0].error == -202) {
-                            if (result[0][0].error_url) {
-
-                              window.checkShowingComponent = scope;
-                              scope.update();
-                              iFrameExternalUrlId.src = result[0][0].error_url;
-
-                              return
-                            }
-                          }
-
-                          scope.clickPinError = false;
-                          scope.errorNote = result[0][0].error_note;
-
-                          window.common.alert.show("componentAlertId", {
-                            parent: scope,
-                            clickpinerror: scope.clickPinError,
-                            errornote: scope.errorNote
-                          });
-                          scope.update();
-                        }
-                      },
-
-                      onFail: function (api_status, api_status_message, data) {
-                        window.clearTimeout(timeOutTimerThree);
-                        console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-                        console.error(data);
-                      },
-                      onTimeOut: function () {
-                        timeOutTimerThree = setTimeout(function () {
-                          window.stopSpinner();
-                        }, 15000);
-                        console.log('creating timeOut', timeOutTimerThree);
-                      },
-                      onEmergencyStop: function () {
-                        console.log('Clearing timer emergencyStop', timeOutTimerThree);
-                        window.clearTimeout(timeOutTimerThree);
-                      }
-                    }, 15000);
-                  }
-                }
-              }
-            },
-            function (error) {
-
-              qrInited = false;
-              console.log("qrInited error false");
-
-              scope.clickPinError = false;
-              scope.errorNote = "Отсутствует доступ";
-
-              window.common.alert.show("componentAlertId", {
-                parent: scope,
-                clickpinerror: scope.clickPinError,
-                errornote: scope.errorNote
-              });
-              scope.update();
-            },
-            {
-              preferFrontCamera: false, // iOS and Android
-              showFlipCameraButton: false, // iOS and Android
-              showTorchButton: true, // iOS and Android
-              torchOn: false, // Android, launch with the torch switched on (if available)
-              prompt: window.languages.ViewQrLabelOnScanner, // Android
-              resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
-              formats: "QR_CODE", // default: all but PDF_417 and RSS_EXPANDED
-              orientation: "portrait", // Android only (portrait|landscape), default unset so it rotates with the device
-              disableAnimations: true, // iOS
-              disableSuccessBeep: false // iOS
-            }
-          );
+          qrCodeScanner(scope);
         }
         else {
 
