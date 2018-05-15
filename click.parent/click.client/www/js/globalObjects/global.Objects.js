@@ -2062,6 +2062,9 @@ function qrCodeScanner(scope) {
                     riotTags.innerHTML = "<view-qr>";
                     riot.mount('view-qr', result[1][0]);
                   } else if (jowi_id) {
+
+                    result[1][0].jowi_id = jowi_id;
+
                     riotTags.innerHTML = "<view-qr-info>";
                     riot.mount('view-qr-info', result[1][0]);
                   }

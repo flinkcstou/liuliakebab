@@ -138,7 +138,9 @@
       scope.update();
     };
 
-    scope.amountTextCopy = window.amountTransform(opts[2].qrSum);
+    scope.intPartAmount = Math.floor(opts[2].qrSum.toString().replace(/\s/g, '')).toFixed(0).toString();
+    scope.fracPartAmount = window.getFractionalPart(opts[2].qrSum.toString());
+    scope.amountTextCopy = window.amountTransform(window.inputVerification.spaceDeleter(scope.intPartAmount)) + scope.fracPartAmount;
 
     if (scope.cardOrFriendBool) {
       var chosenCardId = opts[1];
@@ -194,11 +196,15 @@
 
       if (Math.abs(qrPayButtonStartX - qrPayButtonEndX) <= 20 && Math.abs(qrPayButtonStartY - qrPayButtonEndY) <= 20) {
 
+        var fracAmount = window.getFractionalPart(opts[2].qrSum.toString());
+        var intAmount = Math.floor(opts[2].qrSum.toString().replace(' ', '').toString()).toFixed(0).toString();
+        var amount = inputVerification.spaceDeleter(intAmount) + fracAmount;
+
         var date = parseInt(Date.now() / 1000);
         var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
         var phoneNumber = localStorage.getItem('click_client_phoneNumber');
         var serviceId = opts[2].id;
-        var amount = opts[2].qrSum;
+//        var amount = opts[2].qrSum;
         var transactionId = opts[2].transactionId;
         var accountId;
         var friendPhone;
@@ -216,12 +222,15 @@
         }
         console.log("accountId", accountId);
         console.log("friendPhone", friendPhone);
-        var payment_data = {"transaction_id": transactionId, "is_indoor": 1}
+        var payment_data = {"transaction_id": transactionId, "is_indoor": 1};
 
         var inputObject = {};
         if (opts[2].rk_order) {
-
           payment_data.value = opts[2].rk_order;
+
+        } else if (opts[2].jowi_id) {
+
+          payment_data.value = opts[2].jowi_id;
         }
 
         inputObject = {

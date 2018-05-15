@@ -14107,7 +14107,7 @@ var css = {
   "position: absolute;" +
   "left: 6%;" +
   "width: 88%;" +
-  "height:" + 577 * widthK + "px;" +
+  "height:" + 577 * heightK + "px;" +
   // "border:" + 1 * widthK + "px solid #e8e8e8;" +
   "color: black;" +
   "top:" + 56 * widthK + "px;" +
@@ -14122,7 +14122,7 @@ var css = {
   "position: absolute;" +
   "left: 6%;" +
   "width: 88%;" +
-  "height:" + 90 * widthK + "px;" +
+  "height:" + 90 * heightK + "px;" +
   "border-bottom:" + 2 * widthK + "px dashed #e8e8e8;" +
   // "top:" + 56 * widthK + "px;" +
   "}",
@@ -14132,10 +14132,11 @@ var css = {
   "position: absolute;" +
   "left: 6%;" +
   "width: 90%;" +
-  "height:" + 292 * widthK + "px;" +
-  "top:" + 110 * widthK + "px;" +
-  "overflow: hidden;" +
-  "overflow-y: auto;" +
+  "height:" + 292 * heightK + "px;" +
+  "top:" + 110 * heightK + "px;" +
+  "overflow-y: auto; " +
+  "overflow-x: hidden; " +
+  "-webkit-overflow-scrolling: touch; " +
   "}",
 
   viewQrInfoMenuSumContainer: ".view-qr-info-menu-sum-container" +
@@ -14143,9 +14144,9 @@ var css = {
   "position: absolute;" +
   "left: 6%;" +
   "width: 88%;" +
-  "height:" + 140 * widthK + "px;" +
-  "border-top:" + 1 * widthK + "px solid #e8e8e8;" +
-  "top:" + 430 * widthK + "px;" +
+  "height:" + 140 * heightK + "px;" +
+  "border-top:" + 2 * widthK + "px solid #e8e8e8;" +
+  "top:" + 430 * heightK + "px;" +
   "}",
 
   viewQrInfoMenuTitle: ".view-qr-info-menu-title" +
@@ -14189,6 +14190,7 @@ var css = {
   "position: relative;" +
   "font-size:" + 22 * widthK + "px; " +
   "width:" + 275 * widthK + "px; " +
+  "height:" + 26 * widthK + "px; " +
   "text-align: left; " +
   "margin: 0; " +
   "margin-top:" + 15 * widthK + "px; " +
@@ -14811,8 +14813,7 @@ var css = {
   "width: 100%; " +
   "top: " + 130 * heightK + "px; " +
   "background-color: white;" +
-  "overflow-x: hidden;" +
-  "overflow-y: scroll;" +
+  "overflow: hidden;" +
   "}",
 
   qrPincardPayfromContainer: ".qr-pincard-payfrom-container" +
@@ -15132,7 +15133,7 @@ var css = {
 
   qrServicePageQrTitle: ".qr-servicepage-qr-title" +
   "{" +
-  "top: 57%;" +
+  "top: 20%;" +
   "}",
 
   qrServicePageCategoryField: ".qr-servicepage-category-field" +
