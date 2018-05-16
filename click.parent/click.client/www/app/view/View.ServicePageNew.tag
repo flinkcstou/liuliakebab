@@ -1,4 +1,4 @@
-<view-service-page-new class="view-service-page riot-tags-main-container">
+<view-service-page-new class="view-service-page riot-tags-main-container" id="servicePageId">
   <div class="pay-page-title page-title-shadow" style="border-style: none;">
     <p class="servicepage-title">
       {(opts.mode=='ADDAUTOPAY')?(window.languages.ViewAutoPayTitleName):("")}
@@ -308,6 +308,8 @@
 
   <component-tour view="calculator" focusfield="{true}"></component-tour>
 
+  <component-dropdown></component-dropdown>
+
   </div>
 
   <script>
@@ -488,7 +490,7 @@
             console.log("Выберите город и район");
           else {
             console.log("Выберите район");
-            if (scope.formType == 6){
+            if (scope.formType == 6) {
               opts.communalParam = scope.chosenPrefixId;
               scope.enterButtonEnabled = true;
               scope.update(scope.enterButtonEnabled);
@@ -1294,14 +1296,26 @@
     openDropDown = function () {
 
       window.blurFields();
-      this.blockFirstFieldId.style.display = 'block';
-      console.log("id=", scope.chosenFieldParamId);
-      if (scope.oldFieldParamId) {
-        document.getElementById(scope.oldFieldParamId).style.backgroundColor = 'white';
-        document.getElementById('text' + scope.oldFieldParamId).style.color = '#515151';
-      }
-      document.getElementById(scope.chosenFieldParamId).style.backgroundColor = '#0084E6';
-      document.getElementById('text' + scope.chosenFieldParamId).style.color = 'white';
+
+      componentMenu.checkOpen = true;
+
+      this.sideMenuBackPageId.style.webkitTransition = '0.3s';
+      this.servicePageId.style.webkitTransition = '0.3s';
+      this.servicePageId.style.zIndex = '-1';
+      this.servicePageId.style.opacity = '0.1';
+      this.sideMenuId.style.webkitTransition = '0.3s';
+      this.sideMenuId.style.transform = "translate3d(0, 0, 0)";
+      this.sideMenuId.style.webkitTransform = "translate3d(0, 0, 0)";
+
+      this.sideMenuBackPageId.style.opacity = '1';
+//      this.blockFirstFieldId.style.display = 'block';
+//      console.log("id=", scope.chosenFieldParamId);
+//      if (scope.oldFieldParamId) {
+//        document.getElementById(scope.oldFieldParamId).style.backgroundColor = 'white';
+//        document.getElementById('text' + scope.oldFieldParamId).style.color = '#515151';
+//      }
+//      document.getElementById(scope.chosenFieldParamId).style.backgroundColor = '#0084E6';
+//      document.getElementById('text' + scope.chosenFieldParamId).style.color = 'white';
     };
 
     openDropDownTwo = function () {
@@ -1793,7 +1807,7 @@
               console.log(ussdQuery)
             }
 
-            if (opts.formtype == 6 && ussdQuery){
+            if (opts.formtype == 6 && ussdQuery) {
               ussdQuery = ussdQuery.replace('{option}', opts.chosenPrefixId);
               ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
               ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
