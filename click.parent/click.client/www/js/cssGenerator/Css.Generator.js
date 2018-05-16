@@ -3433,7 +3433,7 @@ var css = {
   "height:" + 150 * widthK + "px;" +
   "width: 65%;" +
   "top: 0;" +
-  "left: 26%;" +
+  "left: 23%;" +
   "}",
 
   myCardsOperationAmounts: ".my-cards-operation-amount " +
@@ -3462,8 +3462,12 @@ var css = {
   "{" +
   "position: absolute;" +
   "color: #919191;" +
-  "bottom:" + 25 * widthK + "px;" +
+  "bottom:" + 20 * widthK + "px;" +
   "font-size:" + 25 * widthK + "px;" +
+  "text-overflow: ellipsis;" +
+  "white-space: nowrap;" +
+  "overflow: hidden;" +
+  "width: 100%;" +
   "}",
 
   myCardsFirmName: "    .my-cards-firm-name" +
@@ -3473,6 +3477,10 @@ var css = {
   "top:" + 15 * widthK + "px;" +
   "font-size:" + 25 * widthK + "px;" +
   "color: #919191;" +
+  "text-overflow: ellipsis;" +
+  "white-space: nowrap;" +
+  "overflow: hidden;" +
+  "width: 100%;" +
   "}",
 
   //VIEW CARD EDIT
@@ -3950,6 +3958,10 @@ var css = {
   "top: 50%;" +
   "left: 8%;" +
   "margin: 0;" +
+  "text-overflow: ellipsis;" +
+  "white-space: nowrap;" +
+  "overflow: hidden;" +
+  "width: 80%;" +
   "}",
 
   viewInfoOperationInfoDate: ".view-info-operation-info-date " +
