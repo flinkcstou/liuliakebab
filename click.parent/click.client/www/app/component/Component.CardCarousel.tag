@@ -758,7 +758,7 @@
     if (info)
       var sessionKey = info.session_key;
 
-    var carouselTouchStartX, carouselTouchEndX;
+    var carouselTouchStartX, carouselTouchEndX, carouselTouchStartY, carouselTouchEndY;
 
     var card;
     scope.cardNumber = JSON.parse(localStorage.getItem('cardNumber'));
@@ -785,6 +785,7 @@
     startTouchCarousel = function () {
 
       carouselTouchStartX = event.changedTouches[0].pageX;
+      carouselTouchStartY = event.changedTouches[0].pageY;
       left = -((540 * scope.cardNumber) * widthK) - carouselTouchStartX;
       delta = left;
 
@@ -796,7 +797,8 @@
       event.stopPropagation()
 
       carouselTouchEndX = event.changedTouches[0].pageX;
-      if (Math.abs(carouselTouchStartX - carouselTouchEndX) > 20) {
+      carouselTouchEndY = event.changedTouches[0].pageY;
+      if (Math.abs(carouselTouchStartX - carouselTouchEndX) > 20 && Math.abs(carouselTouchStartY - carouselTouchEndY) > 20) {
         changePositionCardCarousel();
       }
       else if (!viewMainPage.myCards && !(scope.invoiceCheck && scope.cardNumber == 0)) {

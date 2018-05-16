@@ -1,22 +1,24 @@
 <component-bank-operations-new>
   <div class="bank-operations">
     <div class="top-operations-buttons">
-      <div class="bank-operations-containers"
+      <div class="bank-operations-containers" role="button" ontouchstart="goToPayViewStart()"
+           ontouchend="goToPayViewEnd()"
            style="border-right: 1px solid #e8e8e8;
            width: {window.innerWidth/3 - 1}px">
-        <div class="bank-operation-button bank-operation-button-pay" role="button"
-             aria-label="{window.languages.ComponentBankOperationsPay}" ontouchstart="goToPayViewStart()"
-             ontouchend="goToPayViewEnd()">
+        <div class="bank-operation-button bank-operation-button-pay"
+             aria-label="{window.languages.ComponentBankOperationsPay}">
           <div id="payButtonId" class="bank-operation-icon operation-pay-icon">
           </div>
         </div>
         <label
           class="bank-operation-label bank-operation-label-pay">{window.languages.ComponentBankOperationsPay}</label>
       </div>
-      <div class="bank-operations-containers" style="width:{(window.innerWidth/3) - 1}px">
-        <div class="bank-operation-button bank-operation-button-transfer" role="button"
-             aria-label="{window.languages.ComponentBankOperationsTransfer}" ontouchstart="goToTransferViewStart()"
-             ontouchend="goToTransferViewEnd()">
+
+      <div class="bank-operations-containers" style="width:{(window.innerWidth/3) - 1}px" role="button"
+           ontouchstart="goToTransferViewStart()"
+           ontouchend="goToTransferViewEnd()">
+        <div class="bank-operation-button bank-operation-button-transfer"
+             aria-label="{window.languages.ComponentBankOperationsTransfer}">
           <div id="transferButtonId" class="bank-operation-icon operation-transfer-icon">
           </div>
         </div>
@@ -24,10 +26,10 @@
       </div>
       <div class="bank-operations-containers"
            style="border-left: 1px solid #e8e8e8;
-           width: {(window.innerWidth / 3) - 1}px">
-        <div if="{!modeOfApp.offlineMode}" class="bank-operation-button bank-operation-button-qr" role="button"
-             aria-label="{window.languages.ComponentBankOperationsQr}" ontouchstart="goToInPlacePayStart()"
-             ontouchend="goToInPlacePayEnd()">
+           width: {(window.innerWidth / 3) - 1}px" role="button" ontouchstart="goToInPlacePayStart()"
+           ontouchend="goToInPlacePayEnd()">
+        <div if="{!modeOfApp.offlineMode}" class="bank-operation-button bank-operation-button-qr"
+             aria-label="{window.languages.ComponentBankOperationsQr}">
           <div id="qrButtonId" class="bank-operation-icon operation-qr-icon">
           </div>
         </div>

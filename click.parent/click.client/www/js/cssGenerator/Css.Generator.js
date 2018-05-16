@@ -2356,7 +2356,7 @@ var css = {
   "width:" + 20 * widthK + "px;" +
   //"height:" + 338 * heightK + "px;" +
   "height: 100%;" +
-  "top:" + 0 * heightK + "px;" +
+  "top:" + -6 * heightK + "px;" +
   "right:" + 0 * heightK + "px;" +
   "background-image: url(resources/icons/ViewInfo/open.png);" +
   "background-size: 50%;" +
@@ -2470,14 +2470,15 @@ var css = {
   serviceTitle: ".service-title " +
   "{" +
   "position: relative;" +
-  "top:" + 38 * heightK + "px;" +
-  "width:" + 260 * widthK + "px;" +
+  "top:" + 27 * heightK + "px;" +
+  "width:" + 270 * widthK + "px;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
   "background: transparent;" +
   "background-size: contain;" +
   "color: #565d6a;" +
   "font-size:" + 24 * widthK + "px;" +
+  "height:" + 45 * widthK + "px;" +
   "}",
 
   sideMenuBlockForSwipe: ".side-menu-block-for-swipe " +
@@ -3500,16 +3501,16 @@ var css = {
   checkButton: ".check-button " +
   "{" +
   "position: absolute;" +
-  "width:" + 44 * widthK + "px;" +
-  "height:" + 41 * widthK + "px;" +
-  "right: 6.5%;" +
+  "width:" + 90 * widthK + "px;" +
+  "height:" + 70 * widthK + "px;" +
+  "right: 3.5%;" +
   "background-image: url('resources/icons/ViewService/unchecked.png');" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 100%;" +
+  "-webkit-background-size: 65%;" +
   "background-position-y: center;" +
   "background-position-x: center;" +
-  "background-size: 100%;" +
-  "top: 28%;" +
+  "background-size: 65%;" +
+  "top: 11%;" +
   "}",
 
   cardEditField: ".card-edit-field" +
