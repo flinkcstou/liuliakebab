@@ -16,7 +16,8 @@
 
     <div class="service-component">
       <div id="openFavouriteId" class="service-title" ontouchstart="openFavouriteStart()"
-           ontouchend="openFavouriteEnd()">{window.languages.ComponentFavoritePaymentsTitle}
+           ontouchend="openFavouriteEnd()">
+        {window.languages.ComponentFavoritePaymentsTitle}
         <div class="service-component-open-icon"></div>
       </div>
       <div class="service-container">
@@ -344,14 +345,14 @@
       openFavouriteStartX = event.changedTouches[0].pageX;
       openFavouriteStartY = event.changedTouches[0].pageY;
 
-      openFavouriteId.style.backgroundColor = 'rgba(150,150,150,0.5)'
+      openFavouriteId.style.webkitTransform = 'scale(0.8)';
     };
 
     openFavouriteEnd = function () {
       openFavouriteEndX = event.changedTouches[0].pageX;
       openFavouriteEndY = event.changedTouches[0].pageY;
 
-      openFavouriteId.style.backgroundColor = 'transparent';
+      openFavouriteId.style.webkitTransform = 'scale(1)';
 
       if (Math.abs(openFavouriteStartX - openFavouriteEndX) <= 20 && Math.abs(openFavouriteStartY - openFavouriteEndY) <= 20) {
         if (modeOfApp.demoVersion) {

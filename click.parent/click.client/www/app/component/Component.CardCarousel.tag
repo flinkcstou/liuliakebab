@@ -745,7 +745,7 @@
           console.error(data);
         }
       });
-    }
+    };
 
     var getAccountsCards = [];
     var objectAccount = {};
@@ -798,11 +798,11 @@
 
       carouselTouchEndX = event.changedTouches[0].pageX;
       carouselTouchEndY = event.changedTouches[0].pageY;
-      if (Math.abs(carouselTouchStartX - carouselTouchEndX) > 20 && Math.abs(carouselTouchStartY - carouselTouchEndY) > 20) {
-        changePositionCardCarousel();
-      }
-      else if (!viewMainPage.myCards && !(scope.invoiceCheck && scope.cardNumber == 0)) {
+
+      if (Math.abs(carouselTouchStartX - carouselTouchEndX) < 20 && Math.abs(carouselTouchStartY - carouselTouchEndY) < 20
+        && !viewMainPage.myCards && !(scope.invoiceCheck && scope.cardNumber == 0)) {
         if (!modeOfApp.offlineMode.balance && modeOfApp.onlineMode) {
+
 
           if (scope.invoiceCheck && scope.cardNumber == 0) {
             scope.cardNumber = 1;
@@ -833,13 +833,14 @@
         else
           modeOfApp.offlineMode.balance = false;
       }
-      else
+      else {
         changePositionCardCarousel()
-    }
+      }
+    };
 
     moveTouchCarousel = function () {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
 
 
       document.getElementById('cards').style.transition = '0s';
@@ -852,10 +853,9 @@
 
     scope.changePositionCardCarousel = changePositionCardCarousel = function () {
       if (event) {
-        event.preventDefault()
-        event.stopPropagation()
+        event.preventDefault();
+        event.stopPropagation();
       }
-
 
       if (scope.invoiceCheck) {
         var invoiceVar = 0;
@@ -864,13 +864,16 @@
         var invoiceVar = 1;
       }
 
-      console.log(carouselTouchEndX, carouselTouchStartX, count, scope.cardNumber)
+      console.log(carouselTouchEndX, carouselTouchStartX, count, scope.cardNumber);
+      console.log(carouselTouchEndY, carouselTouchStartY, count, scope.cardNumber);
 
       if (carouselTouchEndX < carouselTouchStartX && scope.cardNumber < count - 1) {
 
         console.log("Move Touch Carousel1", scope.cardNumber);
-
-        ++scope.cardNumber;
+        if (Math.abs(carouselTouchStartX - carouselTouchEndX) > 40) {
+          console.log("touch!!!");
+          ++scope.cardNumber;
+        }
 
         document.getElementById('cards').style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById('cards').style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
@@ -904,7 +907,9 @@
 
         console.log("Move Touch Carousel4", scope.cardNumber);
 
-        --scope.cardNumber;
+        if (Math.abs(carouselTouchStartX - carouselTouchEndX) > 40) {
+          --scope.cardNumber;
+        }
 
         document.getElementById('cards').style.transition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
         document.getElementById('cards').style.webkitTransition = '0.3s cubic-bezier(0.2, 0.05, 0.39, 1.5)';
@@ -912,12 +917,13 @@
         document.getElementById('cards').style.webkitTransform = "translate3d(" + (-scope.cardNumber * 540) * widthK + 'px' + ", 0, 0)";
       }
 
-
-      if (viewMainPage.myCards) {
-        for (var i in scope.cardsarray) {
-          if (scope.cardsarray[i].countCard == scope.cardNumber) {
-
-            scope.parent.cardInformation(scope.cardsarray[i].card_id);
+      if (Math.abs(carouselTouchStartX - carouselTouchEndX) > 40) {
+        if (viewMainPage.myCards) {
+          for (var i in scope.cardsarray) {
+            if (scope.cardsarray[i].countCard == scope.cardNumber) {
+              console.log("card information");
+              scope.parent.cardInformation(scope.cardsarray[i].card_id);
+            }
           }
         }
       }

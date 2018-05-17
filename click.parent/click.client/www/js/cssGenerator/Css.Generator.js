@@ -3506,10 +3506,10 @@ var css = {
   "right: 3.5%;" +
   "background-image: url('resources/icons/ViewService/unchecked.png');" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 65%;" +
+  "-webkit-background-size: 50%;" +
   "background-position-y: center;" +
   "background-position-x: center;" +
-  "background-size: 65%;" +
+  "background-size: 50%;" +
   "top: 11%;" +
   "}",
 
