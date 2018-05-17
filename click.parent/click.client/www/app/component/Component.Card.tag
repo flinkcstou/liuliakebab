@@ -6,8 +6,9 @@
   <div class="card-bank-name" style="background-image: url({opts.bankname})"></div>
   <div class="card-salary-title">{opts.name}</div>
 
-  <div class="card-balance-currency-container">
-    <p if="{!modeOfApp.offlineMode}" class="card-balance">{(opts.salary) ? (opts.salary) : (opts.error_message)}<span class="card-balance-fractional">{(opts.salary_fractional) ? (opts.salary_fractional) : ''}</span></p>
+  <div class="card-balance-currency-container" style="opacity: {opts.fontopacity};">
+    <p if="{!modeOfApp.offlineMode}" class="card-balance">{(opts.salary) ? (opts.salary) : (opts.error_message)}<span
+      class="card-balance-fractional">{(opts.salary_fractional) ? (opts.salary_fractional) : ''}</span></p>
     <p if="{!modeOfApp.offlineMode && opts.salary}" class="card-currency">{opts.currency}</p>
 
     <a if="{modeOfApp.offlineMode}" style="color: rgb({opts.fontcolor});" class="offline-card-balance"
