@@ -14152,6 +14152,16 @@ var css = {
   "-webkit-overflow-scrolling: touch; " +
   "}",
 
+  viewQrInfoMenuBodyContainerScroll: ".view-qr-info-menu-body-container::-webkit-scrollbar" +
+  "{" +
+  "width:" + 2 * widthK + "px; " +
+  "}",
+
+  viewQrInfoMenuBodyContainerScrollThumb: ".view-qr-info-menu-body-container::-webkit-scrollbar-thumb" +
+  "{" +
+  "background-color: rgba(0, 168, 241, 1); " +
+  "}",
+
   viewQrInfoMenuSumContainer: ".view-qr-info-menu-sum-container" +
   "{" +
   "position: absolute;" +
