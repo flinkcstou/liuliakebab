@@ -57,19 +57,25 @@
     var sumForQrPay;
     var defaultAccount;
     scope.showPlaceHolderError = false;
-    scope.menu = opts.menu.item ? opts.menu.item : [];
-    scope.amount = opts.amount;
+    //    scope.menu = opts.menu.item ? opts.menu.item : [];
+    //    scope.amount = opts.amount;
 
-//    scope.menu = [{name: "c 001", count: "1", amount: "1000"}, {
-//      name: "c 002",
-//      count: "1",
-//      amount: "1000"
-//    }, {name: "c 003", count: "1", amount: "1000"}, {name: "c 004", count: "1", amount: "100010.33"}, {
-//      name: "c 005",
-//      count: "1",
-//      amount: "1000520"
-//    }, {name: "c 006", count: "1", amount: "1000"}, {name: "c 007", count: "1", amount: "1000"}];
-//    scope.amount = "700";
+    scope.menu = [{
+      name: "c 001 ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept " +
+      "ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept", count: "1", amount: "1000"
+    }, {
+      name: "c 002",
+      count: "1",
+      amount: "1000"
+    }, {name: "c 003", count: "1", amount: "1000"}, {name: "c 004", count: "1", amount: "100010.33"}, {
+      name: "c 005",
+      count: "1",
+      amount: "1000520"
+    }, {
+      name: "c 006 ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept " +
+      "ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept", count: "1", amount: "1000"
+    }, {name: "c 007", count: "1", amount: "1000"}];
+    scope.amount = "700";
 
     transformAmounts = function () {
       for (var i in scope.menu) {

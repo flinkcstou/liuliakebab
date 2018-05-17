@@ -14192,18 +14192,16 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 100%;" +
-  "height:" + 50 * widthK + "px;" +
-  // "border-bottom:" + 2 * widthK + "px dashed #e8e8e8;" +
-  // "top:" + 56 * widthK + "px;" +
+  "min-height:" + 50 * widthK + "px;" +
+  "float: left;" +
   "}",
 
   viewQrInfoMenuBodyLineName: ".view-qr-info-menu-body-line-name" +
   "{" +
-  // "border:" + 1 * widthK + "px solid #e8e8e8;" +
   "position: relative;" +
   "font-size:" + 22 * widthK + "px; " +
   "width:" + 275 * widthK + "px; " +
-  "height:" + 26 * widthK + "px; " +
+  "max-height:" + 78 * widthK + "px; " +
   "text-align: left; " +
   "margin: 0; " +
   "margin-top:" + 15 * widthK + "px; " +

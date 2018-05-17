@@ -1703,9 +1703,8 @@
       event.stopPropagation();
 
       if (this.enterButtonId && scope.enterButtonEnabled) {
-        console.log("effect enter button 1");
-//        this.enterButtonId.style.webkitTransform = 'scale(0.8)';
-        this.enterButtonId.style.backgroundColor = '#76c1f4';
+        this.enterButtonId.style.webkitTransform = 'scale(0.8)';
+//        this.enterButtonId.style.backgroundColor = '#76c1f4';
       }
 
       if (this.formTypeTwoBtnId) {
@@ -1723,9 +1722,8 @@
       opts.lang_amount_title = scope.service.lang_amount_title;
 
       if (this.enterButtonId && scope.enterButtonEnabled) {
-        console.log("effect enter button 2");
-//        this.enterButtonId.style.webkitTransform = 'scale(1)';
-        this.enterButtonId.style.backgroundColor = '#00a8f1';
+        this.enterButtonId.style.webkitTransform = 'scale(1)';
+//        this.enterButtonId.style.backgroundColor = '#00a8f1';
       }
 
       enterEndY = event.changedTouches[0].pageY;
