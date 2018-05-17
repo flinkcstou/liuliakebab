@@ -218,9 +218,9 @@
 
         console.log("CHECK SUM OF HASH = true");
 
-        for (var i in scope.cardsarray) {
-          scope.cardsarray[i].font_opacity = writeBalanceBool ? 0.5 : 1;
-        }
+//        for (var i in scope.cardsarray) {
+//          scope.cardsarray[i].font_opacity = writeBalanceBool ? 0.5 : 1;
+//        }
 
       } else if (!scope.checkSumOfHash) {
 
@@ -289,7 +289,8 @@
             background_color_bottom: getAccountsCards[i].background_color_bottom,
             background_color_top: getAccountsCards[i].background_color_top,
             font_color: getAccountsCards[i].font_color,
-            font_opacity: writeBalanceBool ? 0.5 : 1,
+//            font_opacity: writeBalanceBool ? 0.5 : 1,
+            font_opacity: 1,
             removable: getAccountsCards[i].removable,
             payment_allowed: getAccountsCards[i].payment_allowed,
             p2p_allowed: getAccountsCards[i].p2p_allowed,

@@ -488,7 +488,7 @@
             console.log("Выберите город и район");
           else {
             console.log("Выберите район");
-            if (scope.formType == 6){
+            if (scope.formType == 6) {
               opts.communalParam = scope.chosenPrefixId;
               scope.enterButtonEnabled = true;
               scope.update(scope.enterButtonEnabled);
@@ -640,15 +640,29 @@
     scope.focusFieldAfterTourClosed = focusFieldAfterTourClosed = function () {
 
       if (opts.mode != 'ADDAUTOPAY' && opts.mode != 'ADDFAVORITE') {
-        if (device.platform == 'iOS') {
-          firstFieldInput.autofocus;
-          firstFieldInput.focus();
+        console.log("focus!!! scope.myNumberMode=", scope.myNumberMode);
+        if (scope.myNumberMode) {
+          if (device.platform == 'iOS') {
+            this.amount.autofocus;
+            this.amount.focus();
+          } else {
+            setTimeout(function () {
+              if (this.amount) {
+                this.amount.focus();
+              }
+            }, 0);
+          }
         } else {
-          setTimeout(function () {
-            if (this.firstFieldInput) {
-              firstFieldInput.focus();
-            }
-          }, 0);
+          if (device.platform == 'iOS') {
+            firstFieldInput.autofocus;
+            firstFieldInput.focus();
+          } else {
+            setTimeout(function () {
+              if (this.firstFieldInput) {
+                firstFieldInput.focus();
+              }
+            }, 0);
+          }
         }
       } else if (opts.mode == 'ADDAUTOPAY') {
         if (device.platform == 'iOS') {
@@ -958,6 +972,7 @@
     if ((opts.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) || (modeOfApp.offlineMode && opts.chosenServiceId == 'mynumber') || opts.chosenServiceId == 'mynumber') {
 
       console.log("MY NUMBER ID");
+      scope.myNumberMode = true;
 
       if (modeOfApp.onlineMode || opts.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
         scope.service = scope.servicesMap[localStorage.getItem('myNumberOperatorId')][0];
@@ -1688,7 +1703,9 @@
       event.stopPropagation();
 
       if (this.enterButtonId && scope.enterButtonEnabled) {
-        this.enterButtonId.style.webkitTransform = 'scale(0.8)';
+        console.log("effect enter button 1");
+//        this.enterButtonId.style.webkitTransform = 'scale(0.8)';
+        this.enterButtonId.style.backgroundColor = '#76c1f4';
       }
 
       if (this.formTypeTwoBtnId) {
@@ -1705,8 +1722,11 @@
       opts.cost = scope.service.cost;
       opts.lang_amount_title = scope.service.lang_amount_title;
 
-      if (this.enterButtonId && scope.enterButtonEnabled)
-        this.enterButtonId.style.webkitTransform = 'scale(1)';
+      if (this.enterButtonId && scope.enterButtonEnabled) {
+        console.log("effect enter button 2");
+//        this.enterButtonId.style.webkitTransform = 'scale(1)';
+        this.enterButtonId.style.backgroundColor = '#00a8f1';
+      }
 
       enterEndY = event.changedTouches[0].pageY;
       enterEndX = event.changedTouches[0].pageX;
@@ -1793,7 +1813,7 @@
               console.log(ussdQuery)
             }
 
-            if (opts.formtype == 6 && ussdQuery){
+            if (opts.formtype == 6 && ussdQuery) {
               ussdQuery = ussdQuery.replace('{option}', opts.chosenPrefixId);
               ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
               ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
