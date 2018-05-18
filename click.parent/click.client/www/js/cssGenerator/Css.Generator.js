@@ -14147,7 +14147,7 @@ var css = {
   "width: 90%;" +
   "height:" + 292 * heightK + "px;" +
   "top:" + 110 * heightK + "px;" +
-  "overflow-y: auto; " +
+  "overflow-y: scroll; " +
   "overflow-x: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
   "}",
@@ -14155,11 +14155,17 @@ var css = {
   viewQrInfoMenuBodyContainerScroll: ".view-qr-info-menu-body-container::-webkit-scrollbar" +
   "{" +
   "width:" + 2 * widthK + "px; " +
+  "-webkit-appearance: none;" +
+  "}",
+
+  viewQrInfoMenuBodyContainerScrollVertical: ".view-qr-info-menu-body-container::-webkit-scrollbar:vertical" +
+  "{" +
+  "width:" + 2 * widthK + "px; " +
   "}",
 
   viewQrInfoMenuBodyContainerScrollThumb: ".view-qr-info-menu-body-container::-webkit-scrollbar-thumb" +
   "{" +
-  "background-color: rgba(0, 168, 241, 1); " +
+  "background: rgba(0, 168, 241, 1); " +
   "}",
 
   viewQrInfoMenuSumContainer: ".view-qr-info-menu-sum-container" +
