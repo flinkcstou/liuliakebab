@@ -81,15 +81,6 @@
     </div>
   </div>
 
-  <div if="{window.checkShowingComponent != null}" class="iFrame-container">
-    <div class="iFrame-toolbar-container">
-      <p class="iFrame-title">QR сканер</p>
-      <div id="iFrameBackButtonId" ontouchstart="hideIFrameStart(this.id)" ontouchend="hideIFrameEnd(this.id)"
-           class="iFrame-back-button">
-      </div>
-    </div>
-    <iframe id="iFrameExternalUrlId" class="iFrame-main" frameborder="0"></iframe>
-  </div>
 
   <script>
     var scope = this;

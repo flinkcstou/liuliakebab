@@ -1887,7 +1887,7 @@ function leftpad(str, len, pad) {
 function updateOtp(deviceId, otpTime) {
   var base = base32.encode(deviceId);
   var key = base32tohex(base);
-  var epoch = Math.round(otpTime);
+  var epoch = Math.round(otpTime/1000);
   var time = leftpad(dec2hex(Math.floor(epoch / 30)), 16, '0');
 
   var shaObj = new jsSHA("SHA-1", "HEX");
