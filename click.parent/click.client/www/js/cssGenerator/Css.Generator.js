@@ -14155,17 +14155,11 @@ var css = {
   viewQrInfoMenuBodyContainerScroll: ".view-qr-info-menu-body-container::-webkit-scrollbar" +
   "{" +
   "width:" + 2 * widthK + "px; " +
-  "-webkit-appearance: none;" +
-  "}",
-
-  viewQrInfoMenuBodyContainerScrollVertical: ".view-qr-info-menu-body-container::-webkit-scrollbar:vertical" +
-  "{" +
-  "width:" + 2 * widthK + "px; " +
   "}",
 
   viewQrInfoMenuBodyContainerScrollThumb: ".view-qr-info-menu-body-container::-webkit-scrollbar-thumb" +
   "{" +
-  "background: rgba(0, 168, 241, 1); " +
+  "background-color: rgba(0, 168, 241, 1); " +
   "}",
 
   viewQrInfoMenuSumContainer: ".view-qr-info-menu-sum-container" +
