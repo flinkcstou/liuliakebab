@@ -298,9 +298,9 @@
 
       if (showResult) {
         window.common.alert.updateView("componentResultId", {
-          parent: scope,
-          resulttext: text,
-          viewpage: viewPage,
+          parent     : scope,
+          resulttext : text,
+          viewpage   : viewPage,
           step_amount: stepAmount
         });
       } else {
@@ -335,7 +335,7 @@
         if (modeOfApp.demoVersion) {
           var question = window.languages.DemoModeConstraintText;
           window.common.alert.show("componentAlertId", {
-            parent: scope,
+            parent   : scope,
             errornote: question
           });
           scope.update();
@@ -359,22 +359,29 @@
           favoritePaymentsListForApi = [];
           for (var i in favoritePaymentsList)
             favoritePaymentsListForApi.push({
-              "id": favoritePaymentsList[i].id,
+              "id"  : favoritePaymentsList[i].id,
               "type": 1,
               "body": JSON.stringify(favoritePaymentsList[i])
             })
         }
 
+
+        //TODO Зачем 2 id?
+        opts.transaction_id = null;
+        opts.transactionId = null;
+
+        console.log("CONSOLE LOG OPTS PAYMENT", opts)
+
         var newFavorite = {
-          "params": opts,
+          "params" : opts,
           "service": scope.service,
-          "ussd": scope.fieldArray[0].ussd_query,
-          "id": id
+          "ussd"   : scope.fieldArray[0].ussd_query,
+          "id"     : id
         };
         favoritePaymentsList.push(newFavorite);
 
         favoritePaymentsListForApi.push({
-          "id": id,
+          "id"  : id,
           "type": 1,
           "body": JSON.stringify(newFavorite)
         });
@@ -382,9 +389,9 @@
 
         window.api.call({
           method: 'add.favourite',
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
+          input : {
+            session_key  : sessionKey,
+            phone_num    : phoneNumber,
             wishlist_data: favoritePaymentsListForApi
           },
 
@@ -399,7 +406,7 @@
             }
             else {
               window.common.alert.show("componentAlertId", {
-                parent: scope,
+                parent   : scope,
                 errornote: result[0][0].error_note
               });
               scope.update();
@@ -452,9 +459,9 @@
 
             window.api.call({
               method: 'delete.favourite',
-              input: {
-                session_key: sessionKey,
-                phone_num: phoneNumber,
+              input : {
+                session_key  : sessionKey,
+                phone_num    : phoneNumber,
                 wishlist_data: [{"id": opts.favoriteId, "type": 1}]
               },
 
@@ -469,9 +476,9 @@
                 }
                 else {
                   window.common.alert.show("componentAlertId", {
-                    parent: scope,
+                    parent       : scope,
                     clickpinerror: false,
-                    errornote: result[0][0].error_note
+                    errornote    : result[0][0].error_note
                   });
                   scope.update();
                   console.log(result[0][0].error_note);
@@ -516,7 +523,7 @@
         if (modeOfApp.demoVersion) {
           var question = window.languages.DemoModeConstraintText;
           window.common.alert.show("componentAlertId", {
-            parent: scope,
+            parent   : scope,
             errornote: question
           });
           scope.update();
@@ -563,21 +570,21 @@
 
       if (opts.formtype == 1) {
         payment_data = {
-          "param": opts.firstFieldId,
-          "value": firstFieldtext,
+          "param"         : opts.firstFieldId,
+          "value"         : firstFieldtext,
           "transaction_id": opts.transactionId
         };
       }
       else if (opts.formtype == 2) {
         payment_data = {
-          "pin_param": opts.cardTypeId,
+          "pin_param"     : opts.cardTypeId,
           "transaction_id": opts.transactionId
         };
       }
       else if (opts.formtype == 3 || opts.formtype == 5 || opts.formtype == 6) {
         payment_data = {
-          "param": opts.firstFieldId,
-          "value": firstFieldtext,
+          "param"         : opts.firstFieldId,
+          "value"         : firstFieldtext,
           "communal_param": opts.communalParam,
           "transaction_id": opts.transactionId
         };
@@ -594,19 +601,15 @@
       }
       else if (opts.formtype == 4) {
         payment_data = {
-          "param": opts.firstFieldId,
-          "value": firstFieldtext,
+          "param"                 : opts.firstFieldId,
+          "value"                 : firstFieldtext,
           "internet_package_param": opts.internetPackageParam,
-          "transaction_id": opts.transactionId
+          "transaction_id"        : opts.transactionId
         };
       }
 
       if (opts.mode != 'ADDAUTOPAY') {
-
-//        console.log("paymentData = ", payment_data);
-
         paymentFunction(payment_data);
-
       } else {
         createAutoPay(payment_data);
       }
@@ -631,14 +634,14 @@
       initResultComponent();
       window.api.call({
         method: 'app.payment',
-        input: {
-          session_key: sessionKey,
-          phone_num: phoneNumber,
-          service_id: Number(serviceId),
-          account_id: Number(accountId),
-          amount: Number(amount),
+        input : {
+          session_key : sessionKey,
+          phone_num   : phoneNumber,
+          service_id  : Number(serviceId),
+          account_id  : Number(accountId),
+          amount      : Number(amount),
           payment_data: payment_data,
-          datetime: date,
+          datetime    : date,
           friend_phone: friendPhone
         },
 
@@ -669,7 +672,7 @@
           }
         },
 
-        onFail: function (api_status, api_status_message, data) {
+        onFail         : function (api_status, api_status_message, data) {
           console.log('Clearing timer onFail', timeOutTimer);
           window.clearTimeout(timeOutTimer);
           updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
@@ -677,7 +680,7 @@
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         },
-        onTimeOut: function () {
+        onTimeOut      : function () {
           timeOutTimer = setTimeout(function () {
             window.writeLog({
               reason: 'Timeout',
@@ -700,10 +703,10 @@
 
       window.api.call({
         method: 'get.payment',
-        input: {
+        input : {
           session_key: sessionKey,
-          phone_num: phoneNumber,
-          payment_id: payment_id
+          phone_num  : phoneNumber,
+          payment_id : payment_id
         },
 
         scope: this,
@@ -727,11 +730,11 @@
                 closeResultComponent();
                 scope.update();
                 window.common.alert.show("componentGeneratedQrId", {
-                  parent: scope,
-                  qr_image: result[1][0].qr_image,
-                  qr_header: result[1][0].qr_header,
-                  qr_footer: result[1][0].qr_footer,
-                  viewpage: scope.viewPage,
+                  parent     : scope,
+                  qr_image   : result[1][0].qr_image,
+                  qr_header  : result[1][0].qr_header,
+                  qr_footer  : result[1][0].qr_footer,
+                  viewpage   : scope.viewPage,
                   step_amount: scope.stepAmount
                 });
                 qrFooterTextId.innerHTML = result[1][0].qr_footer;
@@ -764,7 +767,7 @@
           }
         },
 
-        onFail: function (api_status, api_status_message, data) {
+        onFail         : function (api_status, api_status_message, data) {
           console.log('Clearing timer onFail', timeOutTimer);
           window.clearTimeout(timeOutTimer);
           updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
@@ -803,15 +806,15 @@
 
           window.api.call({
             method: 'autopay.add.by.event',
-            input: {
-              session_key: sessionKey,
-              phone_num: phoneNumber,
-              service_id: Number(serviceId),
-              account_id: Number(accountId),
-              amount: amount,
+            input : {
+              session_key    : sessionKey,
+              phone_num      : phoneNumber,
+              service_id     : Number(serviceId),
+              account_id     : Number(accountId),
+              amount         : amount,
               cntrg_phone_num: inputVerification.spaceDeleter(scope.autoPayData.cntrg_phone_num),
-              step: scope.autoPayData.step,
-              title: scope.autoPayData.name
+              step           : scope.autoPayData.step,
+              title          : scope.autoPayData.name
             },
 
             scope: this,
@@ -825,11 +828,11 @@
                 scope.autoPayData.isNew = false;
                 localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
                 window.common.alert.show("componentSuccessId", {
-                  parent: scope,
+                  parent          : scope,
                   operationmessage: scope.operationMessage,
-                  goback: scope.goBack,
-                  viewpage: scope.viewPage,
-                  step_amount: scope.stepAmount
+                  goback          : scope.goBack,
+                  viewpage        : scope.viewPage,
+                  step_amount     : scope.stepAmount
                 });
 
 
@@ -838,12 +841,12 @@
                 scope.errorMessageFromPayment = result[0][0].error_note;
                 scope.update();
                 window.common.alert.show("componentUnsuccessId", {
-                  parent: scope,
-                  viewpage: scope.viewPage,
-                  step_amount: scope.stepErrorAmount,
-                  goback: scope.goBack,
-                  operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
-                  operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+                  parent                   : scope,
+                  viewpage                 : scope.viewPage,
+                  step_amount              : scope.stepErrorAmount,
+                  goback                   : scope.goBack,
+                  operationmessagepartone  : window.languages.ComponentUnsuccessMessagePart1,
+                  operationmessageparttwo  : window.languages.ComponentUnsuccessMessagePart2,
                   operationmessagepartthree: scope.errorMessageFromPayment
                 });
               }
@@ -852,12 +855,12 @@
             onFail: function (api_status, api_status_message, data) {
 
               window.common.alert.show("componentUnsuccessId", {
-                parent: scope,
-                viewpage: scope.viewPage,
-                step_amount: scope.stepErrorAmount,
-                goback: scope.goBack,
-                operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
-                operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+                parent                   : scope,
+                viewpage                 : scope.viewPage,
+                step_amount              : scope.stepErrorAmount,
+                goback                   : scope.goBack,
+                operationmessagepartone  : window.languages.ComponentUnsuccessMessagePart1,
+                operationmessageparttwo  : window.languages.ComponentUnsuccessMessagePart2,
                 operationmessagepartthree: scope.errorMessageFromPayment
               });
 
@@ -869,18 +872,18 @@
 
           window.api.call({
             method: 'autopay.add.by.schedule',
-            input: {
-              session_key: sessionKey,
-              phone_num: phoneNumber,
-              type: scope.autoPayData.type,
-              service_id: Number(serviceId),
-              account_id: Number(accountId),
-              amount: Number(amount),
+            input : {
+              session_key : sessionKey,
+              phone_num   : phoneNumber,
+              type        : scope.autoPayData.type,
+              service_id  : Number(serviceId),
+              account_id  : Number(accountId),
+              amount      : Number(amount),
               payment_data: payment_data,
-              paytime: scope.autoPayData.paytime,
-              week_day: scope.autoPayData.week_day ? scope.autoPayData.week_day : null,
-              month_day: scope.autoPayData.month_day ? scope.autoPayData.month_day : null,
-              title: scope.autoPayData.name
+              paytime     : scope.autoPayData.paytime,
+              week_day    : scope.autoPayData.week_day ? scope.autoPayData.week_day : null,
+              month_day   : scope.autoPayData.month_day ? scope.autoPayData.month_day : null,
+              title       : scope.autoPayData.name
             },
 
             scope: this,
@@ -893,11 +896,11 @@
                 scope.autoPayData.isNew = false;
                 localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
                 window.common.alert.show("componentSuccessId", {
-                  parent: scope,
+                  parent          : scope,
                   operationmessage: scope.operationMessage,
-                  goback: scope.goBack,
-                  viewpage: scope.viewPage,
-                  step_amount: scope.stepAmount
+                  goback          : scope.goBack,
+                  viewpage        : scope.viewPage,
+                  step_amount     : scope.stepAmount
                 });
 
               }
@@ -907,12 +910,12 @@
                 scope.update();
 
                 window.common.alert.show("componentUnsuccessId", {
-                  parent: scope,
-                  viewpage: scope.viewPage,
-                  step_amount: scope.stepErrorAmount,
-                  goback: scope.goBack,
-                  operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
-                  operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+                  parent                   : scope,
+                  viewpage                 : scope.viewPage,
+                  step_amount              : scope.stepErrorAmount,
+                  goback                   : scope.goBack,
+                  operationmessagepartone  : window.languages.ComponentUnsuccessMessagePart1,
+                  operationmessageparttwo  : window.languages.ComponentUnsuccessMessagePart2,
                   operationmessagepartthree: scope.errorMessageFromPayment
                 });
               }
@@ -920,12 +923,12 @@
 
             onFail: function (api_status, api_status_message, data) {
               window.common.alert.show("componentUnsuccessId", {
-                parent: scope,
-                viewpage: scope.viewPage,
-                step_amount: scope.stepErrorAmount,
-                goback: scope.goBack,
-                operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
-                operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+                parent                   : scope,
+                viewpage                 : scope.viewPage,
+                step_amount              : scope.stepErrorAmount,
+                goback                   : scope.goBack,
+                operationmessagepartone  : window.languages.ComponentUnsuccessMessagePart1,
+                operationmessageparttwo  : window.languages.ComponentUnsuccessMessagePart2,
                 operationmessagepartthree: scope.errorMessageFromPayment
               });
               console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
@@ -971,10 +974,10 @@
         var phoneNumber = localStorage.getItem('click_client_phoneNumber');
         window.api.call({
           method: 'autopay.delete',
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            autopay_id: scope.autoPayData.id,
+          input : {
+            session_key : sessionKey,
+            phone_num   : phoneNumber,
+            autopay_id  : scope.autoPayData.id,
             autopay_type: scope.autoPayData.autopay_type
           },
 
@@ -993,21 +996,21 @@
               scope.update();
 
               window.common.alert.show("componentSuccessId", {
-                parent: scope,
+                parent          : scope,
                 operationmessage: scope.operationMessage,
-                goback: scope.goBack,
-                viewpage: scope.viewPage,
-                step_amount: scope.stepAmount
+                goback          : scope.goBack,
+                viewpage        : scope.viewPage,
+                step_amount     : scope.stepAmount
               });
             }
             else {
               window.common.alert.show("componentUnsuccessId", {
-                parent: scope,
-                viewpage: scope.viewPage,
-                step_amount: scope.stepErrorAmount,
-                goback: scope.goBack,
-                operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
-                operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+                parent                   : scope,
+                viewpage                 : scope.viewPage,
+                step_amount              : scope.stepErrorAmount,
+                goback                   : scope.goBack,
+                operationmessagepartone  : window.languages.ComponentUnsuccessMessagePart1,
+                operationmessageparttwo  : window.languages.ComponentUnsuccessMessagePart2,
                 operationmessagepartthree: scope.errorMessageFromPayment
               });
             }
@@ -1015,12 +1018,12 @@
 
           onFail: function (api_status, api_status_message, data) {
             window.common.alert.show("componentUnsuccessId", {
-              parent: scope,
-              viewpage: scope.viewPage,
-              step_amount: scope.stepErrorAmount,
-              goback: scope.goBack,
-              operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
-              operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+              parent                   : scope,
+              viewpage                 : scope.viewPage,
+              step_amount              : scope.stepErrorAmount,
+              goback                   : scope.goBack,
+              operationmessagepartone  : window.languages.ComponentUnsuccessMessagePart1,
+              operationmessageparttwo  : window.languages.ComponentUnsuccessMessagePart2,
               operationmessagepartthree: scope.errorMessageFromPayment
             });
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
@@ -1041,7 +1044,7 @@
         if (modeOfApp.demoVersion) {
           var question = window.languages.DemoModeConstraintText;
           window.common.alert.show("componentAlertId", {
-            parent: scope,
+            parent   : scope,
             errornote: question
           });
           scope.update();
