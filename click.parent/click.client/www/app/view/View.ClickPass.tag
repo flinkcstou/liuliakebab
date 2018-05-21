@@ -1,7 +1,8 @@
 <view-click-pass class="riot-tags-main-container">
 
   <component-click-pass-help></component-click-pass-help>
-  <component-click-pass-cards show_balance="{showBalance}"></component-click-pass-cards>
+  <component-click-pass-cards show_balance="{showBalance}"
+                              update_balance="{updateBalance}"></component-click-pass-cards>
 
   <div id="clickPassPageId" class="view-click-pass">
     <div class="page-title">
@@ -103,8 +104,16 @@
 
     if (opts && opts[0] !== 'fromPinCode') {
       window.saveHistory('view-click-pass', opts);
+      if (modeOfApp.onlineMode) {
+        scope.showBalance = true;
+        scope.update(scope.showBalance);
+      }
+    }
+    else if (modeOfApp.onlineMode) {
+      console.log("requesting balances");
+      scope.updateBalance = true;
       scope.showBalance = true;
-      scope.update(scope.showBalance);
+      scope.update();
     }
 
     scope.on('mount', function () {
@@ -479,9 +488,9 @@
       scope.update();
     }
 
-    function moveStatusBarJs(){
+    function moveStatusBarJs() {
       if (document.getElementById("statusBarId")) {
-        scope.lastPosition = scope.lastPosition - 410/300;
+        scope.lastPosition = scope.lastPosition - 410 / 300;
         statusBarLineId.style.width = scope.lastPosition * widthK + 'px';
       }
     }

@@ -365,9 +365,6 @@
             })
         }
 
-
-        //TODO Зачем 2 id?
-        opts.transaction_id = null;
         opts.transactionId = null;
 
         console.log("CONSOLE LOG OPTS PAYMENT", opts)

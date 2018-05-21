@@ -773,7 +773,94 @@ window.updateBalanceGlobalFunction = function () {
       }
     });
   }
-}
+};
+
+window.updateBalanceGlobalFunction2 = function (scope, arrayOfCard) {
+
+  var objectAccount = {};
+  var accountsForBalance = [];
+
+  if (localStorage.getItem('click_client_cards')) {
+    var getAccountsCards = JSON.parse(localStorage.getItem('click_client_cards'));
+    // var arrayOfCard = JSON.parse(localStorage.getItem('click_client_cards'));
+    var phoneNumber = JSON.parse(localStorage.getItem('click_client_phoneNumber'));
+    var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+    if (loginInfo)
+      var sessionKey = loginInfo.session_key;
+  }
+
+  // console.log("JSON.parse(localStorage.getItem('click_client_cards'))", JSON.parse(localStorage.getItem('click_client_cards')))
+
+
+  for (var j in getAccountsCards) {
+    objectAccount.account_id = getAccountsCards[j].id;
+    objectAccount.card_num_hash = getAccountsCards[j].card_num_hash;
+    objectAccount.card_num_crypted = getAccountsCards[j].card_num_crypted;
+    accountsForBalance.push(objectAccount);
+    objectAccount = {};
+  }
+
+  console.log('getAccountsCards', getAccountsCards);
+  window.api.call({
+    method: 'get.balance.multiple',
+    stopSpinner: false,
+    input: {
+      session_key: sessionKey,
+      phone_num: phoneNumber,
+      accounts: accountsForBalance
+    },
+    scope: this,
+    onSuccess: function (result) {
+      if (result[0][0].error == 0) {
+        if (result[1]) {
+          try {
+
+            var balances = {};
+            for (var i in result[1]) {
+              balances[result[1][i].account_id] = result[1][i];
+            }
+
+            for (var i in arrayOfCard) {
+              if (balances[i]) {
+                arrayOfCard[balances[i].account_id].salaryOriginal = balances[i].balance.toFixed(0);
+                balances[i].balance_fractional = window.getFractionalPart(balances[i].balance.toString());
+                balances[i].balance = Math.floor(balances[i].balance).toFixed(0).toString();
+
+                if (balances[i].balance !== 0)
+                  balances[i].balance = window.amountTransform(balances[i].balance.toString());
+
+                arrayOfCard[balances[i].account_id].salary = balances[i].balance;
+                arrayOfCard[balances[i].account_id].salary_fractional = balances[i].balance_fractional;
+              } else {
+                arrayOfCard[i].salary = null;
+                arrayOfCard[i].salary_fractional = '';
+                arrayOfCard[i].error_message = window.languages.ComponentCardCarouselBalanceError;
+              }
+            }
+            scope.cardsArray = arrayOfCard;
+            localStorage.setItem('click_client_cards', JSON.stringify(arrayOfCard));
+            scope.update();
+
+          } catch (Error) {
+            console.log("Error on parse result fro get.balance.multiple", Error);
+          }
+        }
+      }
+      else {
+        for (var i in arrayOfCard) {
+          arrayOfCard[i].salary = null;
+          arrayOfCard[i].error_message = window.languages.ComponentCardCarouselBalanceError;
+        }
+
+        localStorage.setItem('click_client_cards', JSON.stringify(arrayOfCard));
+      }
+    },
+    onFail: function (api_status, api_status_message, data) {
+      console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+      console.error(data);
+    }
+  });
+};
 
 window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
 
@@ -1887,7 +1974,7 @@ function leftpad(str, len, pad) {
 function updateOtp(deviceId, otpTime) {
   var base = base32.encode(deviceId);
   var key = base32tohex(base);
-  var epoch = Math.round(otpTime/1000);
+  var epoch = Math.round(otpTime / 1000);
   var time = leftpad(dec2hex(Math.floor(epoch / 30)), 16, '0');
 
   var shaObj = new jsSHA("SHA-1", "HEX");
