@@ -1,11 +1,14 @@
 <component-dropdown>
-  <div id="dropdownBackPageId" class="side-menu-back-page"></div>
+  <div id="dropdownBackPageId" class="dropdown-back-page"></div>
 
-  <div id="dropdownId" class="side-menu">
+  <div id="dropdownId" class="dropdown-menu">
 
-    <div id="closeMenuButtonId" role="button" aria-label="{window.languages.Close}" class="side-menu-inside-button"
+    <div id="closeMenuButtonId" role="button" aria-label="{window.languages.Close}" class="dropdown-close-button "
          ontouchstart="closeMenuStart()"
-         ontouchend="closeMenu()"></div>
+         ontouchend="closeMenu()">
+
+
+    </div>
 
   </div>
 
@@ -36,10 +39,10 @@
       dropdownId.style.webkitTransition = '0.3s';
       dropdownBackPageId.style.opacity = '0';
       dropdownBackPageId.style.webkitTransition = '0';
-      dropdownId.style.webkitTransform = "translate3d(-100%, 0, 0)";
-      dropdownId.style.Transform = "translate3d(-100%, 0, 0)";
+      dropdownId.style.webkitTransform = "translate3d(100%, 0, 0)";
+      dropdownId.style.Transform = "translate3d(100%, 0, 0)";
       servicePageId.style.opacity = '1';
-      servicePageId.style.zIndex = '0';
+      servicePageId.style.zIndex = '1';
       scope.update();
     };
 

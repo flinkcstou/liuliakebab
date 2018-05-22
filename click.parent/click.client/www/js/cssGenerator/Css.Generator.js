@@ -4161,17 +4161,14 @@ var css = {
   //"background-image: url('resources/icons/background/transparent.png');" +
   //"}",
 
-  //viewServicePage: ".view-service-page" +
-  //"{" +
-  //"position: absolute;" +
-  //"width: 100%;" +
-  //"height: 100%;" +
-  //"overflow: hidden;" +
-  //"background-size: contain;" +
-  //"background-repeat: no-repeat;" +
-  //  //"background-image: url('resources/draft/servicepage.png')" +
-  //"background-image: url('resources/icons/background/transparent.png');" +
-  //"}",
+  viewServicePage: ".view-service-page" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height: 100%;" +
+  "overflow: hidden;" +
+  "z-index: 1;" +
+  "}",
 
   //viewServicePincards: ".view-service-pincards" +
   //"{" +
@@ -4869,6 +4866,52 @@ var css = {
   "-o-transform: rotate(90deg);" +
   "transform: rotate(90deg);" +
   "}",
+
+  //Component dropdown
+
+
+  dropdownMenu: ".dropdown-menu " +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "width:" + 538 * widthK + "px;" +
+  "overflow: hidden;" +
+  "transform: translate3d(100%, 0, 0);" +
+  "-webkit-transform: translate3d(100%, 0,0);" +
+  "-ms-transform: translate3d(100%, 0,0);" +
+  // "background-color: #22a0e0;" +
+  "background-color: #ffffff;" +
+  // "z-index: 1;" +
+  "right: 0;" +
+  "}",
+
+  dropdownBackPage: ".dropdown-back-page " +
+  "{" +
+  "position: absolute;" +
+  "height: 100%;" +
+  "width: 100%;" +
+  "overflow: hidden;" +
+  "transform: translate3d(0, 0,0);" +
+  "-webkit-transform: translate3d(0, 0,0);" +
+  "-ms-transform: translate3d(0, 0,0);" +
+  "background-color: rgba(0, 0, 0, 0);" +
+  "opacity: 0;" +
+  "}",
+
+  dropdownCloseButton: ".dropdown-close-button " +
+  "{" +
+  "position: absolute;" +
+  "height: 5%;" +
+  "width: 23%;" +
+  "top: 1%;" +
+  // "left: 4%;" +
+  "background-image: url(resources/icons/toolbar/menus.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: 30%;" +
+  "background-position: center;" +
+  "}",
+
+  //Component Calc
 
   componentCalc: ".component-calc" +
   "{" +
