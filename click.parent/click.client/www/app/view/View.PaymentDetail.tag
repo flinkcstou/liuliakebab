@@ -262,7 +262,7 @@
 
     paymentDetailOnTouchStartAccept = function () {
 
-      paymentAcceptButtonId.style.webkitTransform = 'scale(0.8)'
+      paymentAcceptButtonId.style.webkitTransform = 'scale(0.8)';
 
       touchStartAcceptX = event.changedTouches[0].pageX;
       touchStartAcceptY = event.changedTouches[0].pageY;
@@ -270,7 +270,7 @@
 
     paymentDetailOnTouchEndAccept = function () {
 
-      paymentAcceptButtonId.style.webkitTransform = 'scale(1)'
+      paymentAcceptButtonId.style.webkitTransform = 'scale(1)';
 
       touchEndAcceptX = event.changedTouches[0].pageX;
       touchEndAcceptY = event.changedTouches[0].pageY;

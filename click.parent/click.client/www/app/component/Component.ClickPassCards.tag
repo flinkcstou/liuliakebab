@@ -32,7 +32,10 @@
           <p class="click-pass-chosen-card-info-text-one"
              style="{'top: 22%': !cardListShowBalance}">{i.name}</p>
           <div class="click-pass-chosen-card-balance-currency-container">
-            <p if="{cardListShowBalance}" class="click-pass-chosen-card-balance">{(i.salary) ? (i.salary) : (window.languages.ComponentCardCarouselBalanceError)}<span class="click-pass-chosen-card-balance-fractional">{(i.salary_fractional) ? (i.salary_fractional) : ''}</span></p>
+            <p if="{cardListShowBalance}" class="click-pass-chosen-card-balance">{(i.salary) ? (i.salary) :
+              (window.languages.ComponentCardCarouselBalanceError)}<span
+                class="click-pass-chosen-card-balance-fractional">{(i.salary_fractional) ? (i.salary_fractional) : ''}</span>
+            </p>
             <p if="{cardListShowBalance && chosenCard.salary}" class="click-pass-chosen-card-currency">{i.currency}</p>
           </div>
           <p class="click-pass-chosen-card-info-text-three">{i.numberPartOne} **** {i.numberPartTwo}</p>
@@ -50,10 +53,15 @@
     var changeCardStartX, changeCardStartY,
       changeCardEndX, changeCardEndY;
 
+
     scope.on('mount', function () {
       scope.cardListShowBalance = opts.show_balance;
       scope.cardsArray = scope.parent.cardsArray;
       scope.chosenCard = scope.parent.chosenCard;
+
+      if (opts.update_balance) {
+        window.updateBalanceGlobalFunction2(scope, scope.cardsArray);
+      }
       scope.update();
     });
 

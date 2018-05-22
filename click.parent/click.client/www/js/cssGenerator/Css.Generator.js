@@ -3506,10 +3506,10 @@ var css = {
   "right: 3.5%;" +
   "background-image: url('resources/icons/ViewService/unchecked.png');" +
   "background-repeat: no-repeat;" +
-  "-webkit-background-size: 65%;" +
+  "-webkit-background-size: 50%;" +
   "background-position-y: center;" +
   "background-position-x: center;" +
-  "background-size: 65%;" +
+  "background-size: 50%;" +
   "top: 11%;" +
   "}",
 
@@ -14147,9 +14147,19 @@ var css = {
   "width: 90%;" +
   "height:" + 292 * heightK + "px;" +
   "top:" + 110 * heightK + "px;" +
-  "overflow-y: auto; " +
+  "overflow-y: scroll; " +
   "overflow-x: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
+  "}",
+
+  viewQrInfoMenuBodyContainerScroll: ".view-qr-info-menu-body-container::-webkit-scrollbar" +
+  "{" +
+  "width:" + 2 * widthK + "px; " +
+  "}",
+
+  viewQrInfoMenuBodyContainerScrollThumb: ".view-qr-info-menu-body-container::-webkit-scrollbar-thumb" +
+  "{" +
+  "background-color: rgba(0, 168, 241, 1); " +
   "}",
 
   viewQrInfoMenuSumContainer: ".view-qr-info-menu-sum-container" +
@@ -14192,18 +14202,16 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 100%;" +
-  "height:" + 50 * widthK + "px;" +
-  // "border-bottom:" + 2 * widthK + "px dashed #e8e8e8;" +
-  // "top:" + 56 * widthK + "px;" +
+  "min-height:" + 50 * widthK + "px;" +
+  "float: left;" +
   "}",
 
   viewQrInfoMenuBodyLineName: ".view-qr-info-menu-body-line-name" +
   "{" +
-  // "border:" + 1 * widthK + "px solid #e8e8e8;" +
   "position: relative;" +
   "font-size:" + 22 * widthK + "px; " +
   "width:" + 275 * widthK + "px; " +
-  "height:" + 26 * widthK + "px; " +
+  "max-height:" + 78 * widthK + "px; " +
   "text-align: left; " +
   "margin: 0; " +
   "margin-top:" + 15 * widthK + "px; " +
@@ -14252,6 +14260,70 @@ var css = {
   "color: #00a8f1;" +
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
+  "}",
+
+  //VIEW QR ONLY
+
+  viewQrOnlyContainer: ".view-qr-only-container" +
+  "{" +
+  "position: absolute;" +
+  "left: 10%;" +
+  "width: 80%;" +
+  "height:" + 427 * heightK + "px;" +
+  // "border:" + 1 * widthK + "px solid #e8e8e8;" +
+  "color: black;" +
+  "top:" + 65 * widthK + "px;" +
+  // "background-color: white;" +
+  "background-image: url(resources/icons/ViewInPlacePay/jowi_frame.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
+  "}",
+
+  viewQrOnlyScanContainer: ".view-qr-only-scan-container" +
+  "{ " +
+  "position: absolute;" +
+  "width: " + 345 * widthK + "px;" +
+  "height: " + 256 * widthK + "px;" +
+  "top: 35%;" +
+  "left: 20%;" +
+  "}",
+
+  viewQrOnlyScanButton: ".view-qr-only-scan-button" +
+  "{ " +
+  "position: absolute;" +
+  "width: 48%;" +
+  "height: 66%;" +
+  "top: 5%;" +
+  "left: 26%;" +
+  "background-image: url(resources/icons/ViewInPlacePay/jowi_qr.png);" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "z-index: 9999999;" +
+  "border-radius: " + 100 * widthK + "px;" +
+  "}",
+
+  viewQrOnlyScanLabel: ".view-qr-only-scan-label" +
+  "{" +
+  "position: absolute;" +
+  "width:" + 240 * widthK + "px;" +
+  "bottom: 8%;" +
+  "left: 14%;" +
+  "color: #00a8f1;" +
+  "font-size:" + 26 * widthK + "px;" +
+  "text-align: center;" +
+  "}",
+
+  viewQrOnlyScanInstructionLabel: ".view-qr-only-scan-instruction-label" +
+  "{" +
+  "position: absolute;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "width: 92%;" +
+  "top: 12%;" +
+  "left: 4%;" +
+  "text-align: center;" +
+  "color: #00a8f1;" +
+  "font-size:" + 30 * widthK + "px;" +
   "}",
 
 

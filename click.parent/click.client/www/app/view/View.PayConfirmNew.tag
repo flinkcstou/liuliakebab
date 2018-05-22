@@ -352,6 +352,7 @@
 
         var id = Math.floor((Math.random() * 1000000) + 1);
         opts.favoriteId = id;
+        opts.transactionId = null;
         var favoritePaymentsList = localStorage.getItem('favoritePaymentsList') ? JSON.parse(localStorage.getItem('favoritePaymentsList')) : [];
         var favoritePaymentsListForApi = localStorage.getItem('favoritePaymentsListForApi') ? JSON.parse(localStorage.getItem('favoritePaymentsListForApi')) : [];
 
@@ -364,6 +365,8 @@
               "body": JSON.stringify(favoritePaymentsList[i])
             })
         }
+
+        console.log("CONSOLE LOG OPTS PAYMENT", opts)
 
         var newFavorite = {
           "params": opts,
@@ -602,12 +605,9 @@
       }
 
       if (opts.mode != 'ADDAUTOPAY') {
-
-//        console.log("paymentData = ", payment_data);
-
         paymentFunction(payment_data);
-
       } else {
+        payment_data.transaction_id = null;
         createAutoPay(payment_data);
       }
 

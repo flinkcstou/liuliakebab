@@ -65,9 +65,9 @@
         var sign_string = hex_md5(phoneNumber.substring(0, 5) + timeStamp + phoneNumber.substring(phoneNumber.length - 4, phoneNumber.length));
         window.api.call({
           method: 'pin.reset',
-          input: {
-            timestamp: timeStamp,
-            phone_num: phoneNumber,
+          input : {
+            timestamp  : timeStamp,
+            phone_num  : phoneNumber,
             sign_string: sign_string
           },
 
@@ -76,11 +76,13 @@
           onSuccess: function (result) {
             console.log('pin.reset', result);
             if (result[0][0].error == 0) {
-              console.log("resetting account");
-              localStorage.removeItem('click_client_cards');
-              localStorage.removeItem('click_client_accountInfo');
-              localStorage.removeItem('cardNumber');
-              localStorage.removeItem('click_client_countCard');
+              // console.log("resetting account");
+              // localStorage.removeItem('click_client_cards');
+              // localStorage.removeItem('click_client_accountInfo');
+              // localStorage.removeItem('cardNumber');
+              // localStorage.removeItem('click_client_countCard');
+
+              localStorage.clear();
               scope.firstMessage = result[1][0].text1;
               scope.secondMessage = result[1][0].text2;
               scope.firstStage = false;
@@ -89,9 +91,9 @@
             else {
 
               window.common.alert.show("componentAlertId", {
-                parent: scope,
+                parent       : scope,
                 clickpinerror: false,
-                errornote: result[0][0].error_note
+                errornote    : result[0][0].error_note
               });
               scope.update();
             }

@@ -642,15 +642,29 @@
     scope.focusFieldAfterTourClosed = focusFieldAfterTourClosed = function () {
 
       if (opts.mode != 'ADDAUTOPAY' && opts.mode != 'ADDFAVORITE') {
-        if (device.platform == 'iOS') {
-          firstFieldInput.autofocus;
-          firstFieldInput.focus();
+        console.log("focus!!! scope.myNumberMode=", scope.myNumberMode);
+        if (scope.myNumberMode) {
+          if (device.platform == 'iOS') {
+            this.amount.autofocus;
+            this.amount.focus();
+          } else {
+            setTimeout(function () {
+              if (this.amount) {
+                this.amount.focus();
+              }
+            }, 0);
+          }
         } else {
-          setTimeout(function () {
-            if (this.firstFieldInput) {
-              firstFieldInput.focus();
-            }
-          }, 0);
+          if (device.platform == 'iOS') {
+            firstFieldInput.autofocus;
+            firstFieldInput.focus();
+          } else {
+            setTimeout(function () {
+              if (this.firstFieldInput) {
+                firstFieldInput.focus();
+              }
+            }, 0);
+          }
         }
       } else if (opts.mode == 'ADDAUTOPAY') {
         if (device.platform == 'iOS') {
@@ -960,6 +974,7 @@
     if ((opts.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) || (modeOfApp.offlineMode && opts.chosenServiceId == 'mynumber') || opts.chosenServiceId == 'mynumber') {
 
       console.log("MY NUMBER ID");
+      scope.myNumberMode = true;
 
       if (modeOfApp.onlineMode || opts.chosenServiceId == 'mynumber' + localStorage.getItem('myNumberOperatorId')) {
         scope.service = scope.servicesMap[localStorage.getItem('myNumberOperatorId')][0];
@@ -1703,6 +1718,7 @@
 
       if (this.enterButtonId && scope.enterButtonEnabled) {
         this.enterButtonId.style.webkitTransform = 'scale(0.8)';
+//        this.enterButtonId.style.backgroundColor = '#76c1f4';
       }
 
       if (this.formTypeTwoBtnId) {
@@ -1719,8 +1735,10 @@
       opts.cost = scope.service.cost;
       opts.lang_amount_title = scope.service.lang_amount_title;
 
-      if (this.enterButtonId && scope.enterButtonEnabled)
+      if (this.enterButtonId && scope.enterButtonEnabled) {
         this.enterButtonId.style.webkitTransform = 'scale(1)';
+//        this.enterButtonId.style.backgroundColor = '#00a8f1';
+      }
 
       enterEndY = event.changedTouches[0].pageY;
       enterEndX = event.changedTouches[0].pageX;
@@ -1741,7 +1759,6 @@
         opts.chosenPrefixTitle = scope.chosenPrefixTitle;
         opts.chosenPrefixId = scope.chosenPrefixId;
         opts.chosenPrefixName = scope.chosenPrefixName;
-        opts.transactionId = parseInt(Date.now() / 1000);
 
         history.arrayOfHistory[history.arrayOfHistory.length - 1].params = opts;
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
@@ -1750,6 +1767,7 @@
         if (opts.mode == 'USUAL' || opts.mode == 'POPULAR' || !opts.mode) {
 
           opts.isInFavorites = !scope.enterButton;
+          opts.transactionId = parseInt(Date.now() / 1000);
 
           event.preventDefault();
           event.stopPropagation();

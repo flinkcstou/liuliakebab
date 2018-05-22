@@ -381,6 +381,28 @@
               if (result[0][0].error == 0) {
                 if (result[1]) {
                   if (result[1][0]) {
+                    result[1][0].menu = {
+                      item: [{
+                        name: "c 001 ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept " +
+                        "ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept", count: "1", amount: "1000"
+                      }, {
+                        name: "c 002",
+                        count: "1",
+                        amount: "1000"
+                      }, {name: "c 003", count: "1", amount: "1000"}, {
+                        name: "c 004",
+                        count: "1",
+                        amount: "100010.33"
+                      }, {
+                        name: "c 005",
+                        count: "1",
+                        amount: "1000520"
+                      }, {
+                        name: "c 006 ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept " +
+                        "ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept", count: "1", amount: "1000"
+                      }, {name: "c 007", count: "1", amount: "1000"}]
+                    };
+                    result[1][0].amount = "700";
                     riotTags.innerHTML = "<view-qr-info>";
                     riot.mount('view-qr-info', result[1][0]);
 //                    scope.unmount()
@@ -691,8 +713,14 @@
               history.arrayOfHistory[history.arrayOfHistory.length - 1].params.searchWord = searchWord;
               sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
-              riotTags.innerHTML = "<view-qr>";
-              riot.mount('view-qr', scope.serviceList[i]);
+              console.log("service to open", scope.serviceList[i]);
+              if (scope.serviceList[i].qr_only == 1) {
+                riotTags.innerHTML = "<view-qr-only>";
+                riot.mount('view-qr-only', scope.serviceList[i]);
+              } else {
+                riotTags.innerHTML = "<view-qr>";
+                riot.mount('view-qr', scope.serviceList[i]);
+              }
 
               break;
             }

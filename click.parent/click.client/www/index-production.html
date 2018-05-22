@@ -358,6 +358,12 @@
         } catch (error) {
           console.error(error);
         }
+        try {
+          if (this.bottomButtonContainerId)
+            bottomButtonContainerId.style.bottom = e.keyboardHeight + "px";
+        } catch (error) {
+          console.error(error);
+        }
 
       }
 
@@ -421,6 +427,12 @@
         try {
           if (this.nextButtonId)
             nextButtonId.style.bottom = "0px";
+        } catch (error) {
+          console.error(error);
+        }
+        try {
+          if (this.bottomButtonContainerId)
+            bottomButtonContainerId.style.bottom = "0px";
         } catch (error) {
           console.error(error);
         }
