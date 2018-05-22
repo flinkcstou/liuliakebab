@@ -28,11 +28,6 @@
       </div>
     </div>
 
-    <button id="bottomButtonContainerId" class="bottom-button-container" ontouchend="onTouchEndAccept()"
-            ontouchstart="onTouchStartAccept()">
-      {window.languages.ViewQrInfoTitleAccept}
-    </button>
-
   </div>
 
   <script>
@@ -41,6 +36,10 @@
     this.titleName = window.languages.ViewQrTitle;
     var touchStartAcceptX, touchStartAcceptY, touchStartDeclineX, touchStartDeclineY;
     scope.showPlaceHolderError = false;
+    var qrPayStartX, qrPayEndX, qrPayStartY, qrPayEndY;
+    var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+    var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
+    var sessionKey = loginInfo.session_key;
 
     window.saveHistory('view-qr-only', opts);
 
@@ -54,31 +53,116 @@
       scope.unmount()
     };
 
-    onTouchStartAccept = function () {
 
-      touchStartAcceptX = event.changedTouches[0].pageX;
-      touchStartAcceptY = event.changedTouches[0].pageY;
+    goToQrTouchStart = function (e) {
+      event.preventDefault();
+      event.stopPropagation();
 
-      bottomButtonContainerId.style.webkitTransform = 'scale(0.8)';
+      qrButtonId.style.webkitTransform = 'scale(0.7)';
+
+      qrPayStartX = event.changedTouches[0].pageX;
+      qrPayStartY = event.changedTouches[0].pageY;
+
     };
 
-    onTouchEndAccept = function () {
+    goToQrTouchEnd = function (e) {
+      event.preventDefault();
+      event.stopPropagation();
 
-      touchEndAcceptX = event.changedTouches[0].pageX;
-      touchEndAcceptY = event.changedTouches[0].pageY;
+      qrButtonId.style.webkitTransform = 'scale(1)';
 
-      bottomButtonContainerId.style.webkitTransform = 'scale(1)';
+      qrPayEndX = event.changedTouches[0].pageX;
+      qrPayEndY = event.changedTouches[0].pageY;
 
-      if (Math.abs(touchEndAcceptX - touchStartAcceptX) < 20 &&
-        Math.abs(touchEndAcceptY - touchStartAcceptY) < 20) {
-        opts.qrSum = scope.amount;
-        opts.transactionId = parseInt(Date.now() / 1000);
+      if (Math.abs(qrPayStartX - qrPayEndX) <= 20 && Math.abs(qrPayStartY - qrPayEndY) <= 20 && !qrScaner.qrInited) {
 
-        riotTags.innerHTML = "<view-qr-pincards>";
-        opts.tax = scope.tax;
-        riot.mount('view-qr-pincards', opts);
+        if (modeOfApp.demoVersion) {
+          var question = window.languages.DemoModeConstraintText;
+          scope.errorNote = question;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote
+          });
 
-        scope.unmount()
+          scope.update();
+          return
+        }
+
+        if (device.platform != 'BrowserStand') {
+          window.pickContactFromNativeChecker = true;
+          qrScaner.qrInited = true;
+          console.log("qrScaner.qrInited =", qrScaner.qrInited);
+
+          qrCodeScanner(scope);
+        }
+        else {
+
+          window.api.call({
+            method: 'get.indoor.service',
+            input: {
+              phone_num: phoneNumber,
+              session_key: sessionKey,
+              service_id: 1234
+            },
+
+            scope: this,
+
+            onSuccess: function (result) {
+              if (result[0][0].error == 0) {
+                if (result[1]) {
+                  if (result[1][0]) {
+                    result[1][0].menu = {
+                      item: [{
+                        name: "c 001 ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept " +
+                        "ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept", count: "1", amount: "1000"
+                      }, {
+                        name: "c 002",
+                        count: "1",
+                        amount: "1000"
+                      }, {name: "c 003", count: "1", amount: "1000"}, {
+                        name: "c 004",
+                        count: "1",
+                        amount: "100010.33"
+                      }, {
+                        name: "c 005",
+                        count: "1",
+                        amount: "1000520"
+                      }, {
+                        name: "c 006 ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept " +
+                        "ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept", count: "1", amount: "1000"
+                      }, {name: "c 007", count: "1", amount: "1000"}]
+                    };
+                    result[1][0].amount = "700";
+                    riotTags.innerHTML = "<view-qr-info>";
+                    riot.mount('view-qr-info', result[1][0]);
+//                    scope.unmount()
+                  }
+                }
+                console.log("QR PAY", result);
+              }
+              else {
+
+                scope.clickPinError = false;
+                scope.errorNote = result[0][0].error_note;
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: scope.clickPinError,
+                  errornote: scope.errorNote
+                });
+                scope.update();
+//                alert(result[0][0].error_note);
+              }
+            },
+
+            onFail: function (api_status, api_status_message, data) {
+              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+              console.error(data);
+            }
+          });
+        }
+//        scope.unmount();
 
       }
     };
