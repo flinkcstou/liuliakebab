@@ -54,9 +54,6 @@
     var scope = this;
     this.titleName = window.languages.ViewQrTitle;
     var touchStartAcceptX, touchStartAcceptY, touchStartDeclineX, touchStartDeclineY;
-    var sumForQrPay;
-    var defaultAccount;
-    scope.showPlaceHolderError = false;
     scope.menu = opts.menu.item ? opts.menu.item : [];
     scope.amount = opts.amount;
 
@@ -76,18 +73,9 @@
 
     transformAmounts();
 
-    if (!opts.commission_percent)
-      scope.showPlaceHolderError = true;
-
     window.saveHistory('view-qr-info', opts);
 
     console.log('QR OPTS', opts);
-
-    var cards = JSON.parse(localStorage.getItem('click_client_cards'));
-    for (var i in cards) {
-      if (cards[i].default_account === true)
-        defaultAccount = cards[i];
-    }
 
     goToBack = function () {
       event.preventDefault();
@@ -117,29 +105,11 @@
         opts.transactionId = parseInt(Date.now() / 1000);
 
 
-//        if (parseInt(sumForQrPay) <= opts.max_pay_limit && parseInt(sumForQrPay) >= opts.min_pay_limit) {
         riotTags.innerHTML = "<view-qr-pincards>";
         opts.tax = scope.tax;
         riot.mount('view-qr-pincards', opts);
 
         scope.unmount()
-//        }
-//        else {
-//          scope.clickPinError = false;
-//          if (parseInt(sumForQrPay) > opts.max_pay_limit) {
-//            scope.errorNote = opts.lang_max_amount;
-//          }
-//          else {
-//            scope.errorNote = opts.lang_min_amount
-//          }
-//
-//          window.common.alert.show("componentAlertId", {
-//            parent: scope,
-//            clickpinerror: scope.clickPinError,
-//            errornote: scope.errorNote
-//          });
-//          scope.update();
-//        }
 
       }
     };

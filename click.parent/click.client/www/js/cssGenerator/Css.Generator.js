@@ -14262,6 +14262,70 @@ var css = {
   "overflow: hidden;" +
   "}",
 
+  //VIEW QR ONLY
+
+  viewQrOnlyContainer: ".view-qr-only-container" +
+  "{" +
+  "position: absolute;" +
+  "left: 10%;" +
+  "width: 80%;" +
+  "height:" + 427 * heightK + "px;" +
+  // "border:" + 1 * widthK + "px solid #e8e8e8;" +
+  "color: black;" +
+  "top:" + 65 * widthK + "px;" +
+  // "background-color: white;" +
+  "background-image: url(resources/icons/ViewInPlacePay/jowi_frame.png);" +
+  "background-repeat: no-repeat;" +
+  "background-size: 100%;" +
+  "}",
+
+  viewQrOnlyScanContainer: ".view-qr-only-scan-container" +
+  "{ " +
+  "position: absolute;" +
+  "width: " + 345 * widthK + "px;" +
+  "height: " + 256 * widthK + "px;" +
+  "top: 35%;" +
+  "left: 20%;" +
+  "}",
+
+  viewQrOnlyScanButton: ".view-qr-only-scan-button" +
+  "{ " +
+  "position: absolute;" +
+  "width: 48%;" +
+  "height: 66%;" +
+  "top: 5%;" +
+  "left: 26%;" +
+  "background-image: url(resources/icons/ViewInPlacePay/jowi_qr.png);" +
+  "background-size: contain;" +
+  "background-repeat: no-repeat;" +
+  "z-index: 9999999;" +
+  "border-radius: " + 100 * widthK + "px;" +
+  "}",
+
+  viewQrOnlyScanLabel: ".view-qr-only-scan-label" +
+  "{" +
+  "position: absolute;" +
+  "width:" + 240 * widthK + "px;" +
+  "bottom: 8%;" +
+  "left: 14%;" +
+  "color: #00a8f1;" +
+  "font-size:" + 26 * widthK + "px;" +
+  "text-align: center;" +
+  "}",
+
+  viewQrOnlyScanInstructionLabel: ".view-qr-only-scan-instruction-label" +
+  "{" +
+  "position: absolute;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "width: 92%;" +
+  "top: 12%;" +
+  "left: 4%;" +
+  "text-align: center;" +
+  "color: #00a8f1;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "}",
+
 
   //VIEW TRANSFER ON CARD
 

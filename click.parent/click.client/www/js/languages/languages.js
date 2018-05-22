@@ -684,7 +684,9 @@ var RU_LANGUAGES =
   "InPlaceSearchPlaceHolderText": "Поиск",
   "InPlaceSearchNoMatchText": "Нет совпадений",
   "InPlacePayGpsErrorText": "Пожалуйста, откройте настройки и разрешите CLICK Uzbekistan использовать ваше местонахождение и убедитесь что у вас включены геоданные",
-  "QrJowiOfflineConstraintText": "Оплата за данного поставщика доступна только в онлайн режиме"
+  "QrJowiOfflineConstraintText": "Оплата за данного поставщика доступна только в онлайн режиме",
+  "QrOnlyStartQrText": "Запустите QR сканер и отсканируйте QR-код в предоставленном чеке",
+  "QrOnlyQrText": "QR сканер"
 
 
 };

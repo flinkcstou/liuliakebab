@@ -502,10 +502,17 @@
               history.arrayOfHistory[history.arrayOfHistory.length - 1].params.searchWord = searchWord;
               sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
-              riotTags.innerHTML = "<view-qr>";
-              riot.mount('view-qr', scope.serviceList[i]);
+              console.log("service to open", scope.serviceList[i]);
+              if (scope.serviceList[i].qr_only == 1) {
+                riotTags.innerHTML = "<view-qr-only>";
+                riot.mount('view-qr-only', scope.serviceList[i]);
+              } else {
+                riotTags.innerHTML = "<view-qr>";
+                riot.mount('view-qr', scope.serviceList[i]);
+              }
 
               break;
+
             }
           }
 
