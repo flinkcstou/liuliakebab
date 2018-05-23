@@ -4904,11 +4904,33 @@ var css = {
   "height: 5%;" +
   "width: 23%;" +
   "top: 1%;" +
-  // "left: 4%;" +
-  "background-image: url(resources/icons/toolbar/menus.png);" +
+  "right: 0;" +
+  "background-image: url(resources/icons/ComponentDropdown/close.png);" +
   "background-repeat: no-repeat;" +
   "background-size: 30%;" +
   "background-position: center;" +
+  "}",
+
+  dropdownTitle: ".dropdown-title" +
+  "{" +
+  "position: absolute;" +
+  "color: #00a8f1;" +
+  "top: " + 100 * widthK + "px; " +
+  "font-size: " + 28 * widthK + "px; " +
+  "left:" + 30 * widthK + "px; " +
+  "width:" + 460 * widthK + "px; " +
+  "height:" + 53 * widthK + "px; " +
+  "border-bottom:  " + 1 * widthK + "px solid lightgray;" +
+  "}",
+
+  dropdownElement: ".dropdown-element" +
+  "{" +
+  "position: relative;" +
+  "font-size:" + 28 * widthK + "px; " +
+  "color: #595759;" +
+  "top:" + 190 * widthK + "px; " +
+  "left:" + 30 * widthK + "px; " +
+  "margin-bottom:" + 40 * widthK + "px; " +
   "}",
 
   //Component Calc

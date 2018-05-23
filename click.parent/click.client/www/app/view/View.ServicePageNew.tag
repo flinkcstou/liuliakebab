@@ -35,7 +35,8 @@
                onkeyup="paymentNameVerificationKeyUp()" onfocus="colorField('favorite')"/>
       </div>
 
-      <div class="servicepage-fields-dropdown" if="{dropDownOn}" ontouchend="openDropDown()" id="firstFieldChoiceId">
+      <div class="servicepage-fields-dropdown" if="{dropDownOn}" ontouchend="openFirstFieldDropDown()"
+           id="firstFieldChoiceId">
         <p class="servicepage-dropdown-text-field">{chosenFieldName}</p>
         <div class="servicepage-dropdown-icon"></div>
       </div>
@@ -133,20 +134,6 @@
 
     </div>
 
-    <div id="blockFirstFieldId" class="component-first-field">
-      <div type="button" class="servicepage-fields-dropdown-close-button" role="button"
-           aria-label="{window.languages.Close}"
-           ontouchend="closeFirstFieldDropdownTouchEnd()" ontouchstart="closeFirstFieldDropdownTouchStart()"></div>
-      <div class="servicepage-fields-dropdown-two">
-        <p class="servicepage-dropdown-text-field" style="color: white;">{chosenFieldName}</p>
-      </div>
-      <div class="servicepage-dropdown-container">
-        <div class="servicepage-dropdown-variant" each="{i in fieldArray}" id="{i.parameter_id}"
-             ontouchstart="onTouchStartOfDropdown()" ontouchend="chooseFirstField(this.id)">
-          <p id="text{i.parameter_id}" class="servicepage-dropdown-text-field" style="left: 8%">{i.title}</p>
-        </div>
-      </div>
-    </div>
 
     <div id="blockPrefixId" class="component-first-field">
       <div type="button" class="servicepage-fields-dropdown-close-button" role="button"
@@ -159,44 +146,6 @@
         <div class="servicepage-dropdown-variant" each="{i in prefixesArray}" id="e{i.option_id}"
              ontouchstart="onTouchStartOfDropdown()" ontouchend="choosePrefix(this.id)">
           <p id="text{i.option_id}" class="servicepage-dropdown-text-field" style="left: 8%">{i.title}</p>
-        </div>
-      </div>
-    </div>
-
-    <div id="blockFirstDropdownId" class="component-first-field">
-      <div type="button" class="servicepage-fields-dropdown-close-button" role="button"
-           aria-label="{window.languages.Close}"
-           ontouchend="closeFirstDropdownTouchEnd()" ontouchstart="closeFirstDropdownTouchStart()"></div>
-      <div class="servicepage-fields-dropdown-two">
-        <p class="servicepage-dropdown-text-field" style="color: white;">
-          {(service.options_title)?(service.options_title):((firstLevelArray &&
-          firstLevelArray[0])?(firstLevelArray[0].name):(""))}</p>
-      </div>
-      <div class="servicepage-dropdown-container">
-        <div class="servicepage-dropdown-variant" each="{i in firstLevelArray}" id="{i.id}"
-             if="{formType==3 || formType==5  || formType==6}"
-             ontouchstart="onTouchStartOfDropdown()" ontouchend="onTouchEndOfDropdownTwo({i.id})"
-             style="height: unset;">
-          <p id="text{i.id}" class="servicepage-dropdown-text-field" style="padding-left: 6%;
-            width: 88%;
-            word-wrap: break-word;
-            overflow: unset;
-            white-space: unset;
-            position: unset;
-            padding-top: {30 * widthK}px;
-            padding-bottom: {30 * widthK}px;">{i.name}</p>
-        </div>
-        <div class="servicepage-dropdown-variant" each="{i in firstLevelArray}" id="{i.type}" if="{formType==4}"
-             ontouchstart="onTouchStartOfDropdown()" ontouchend="onTouchEndOfDropdownTwo({i.type})"
-             style="height: unset;">
-          <p id="text{i.type}" class="servicepage-dropdown-text-field" style="padding-left: 6%;
-            width: 88%;
-            word-wrap: break-word;
-            overflow: unset;
-            white-space: unset;
-            position: unset;
-            padding-top: {30 * widthK}px;
-            padding-bottom: {30 * widthK}px;">{i.name}</p>
         </div>
       </div>
     </div>
@@ -314,7 +263,7 @@
 
   </div>
 
-  <component-dropdown></component-dropdown>
+  <component-dropdown dropdownlist="dropdownList"></component-dropdown>
   <component-tour view="calculator" focusfield="{true}"></component-tour>
 
   <script>
@@ -329,12 +278,8 @@
     var closeStartY, closeStartX, closeEndY, closeEndX;
     var acceptStartY, acceptStartX, acceptEndY, acceptEndX;
     var servicePageTouchStartY, servicePageTouchEndY, servicePageTouchStartX, servicePageTouchEndX;
-    var closeFirstFieldDropdownTouchStartX, closeFirstFieldDropdownTouchStartY,
-      closeFirstFieldDropdownTouchEndX, closeFirstFieldDropdownTouchEndY;
     var closePrefixDropdownTouchStartX, closePrefixDropdownTouchStartY,
       closePrefixDropdownTouchEndX, closePrefixDropdownTouchEndY;
-    var closeFirstDropdownTouchStartX, closeFirstDropdownTouchStartY,
-      closeFirstDropdownTouchEndX, closeFirstDropdownTouchEndY;
     var closeSecondDropdownTouchStartX, closeSecondDropdownTouchStartY,
       closeSecondDropdownTouchEndX, closeSecondDropdownTouchEndY;
     var enterStartY, enterStartX, enterEndY, enterEndX;
@@ -1312,59 +1257,8 @@
 
     // }
 
-    blockForSwipeTouchStart = function () {
-      touchStartX = event.changedTouches[0].pageX;
-      timeStartX = event.timeStamp.toFixed(0);
-      sideMenuId.style.webkitTransition = '0s';
-      mainPageId.style.webkitTransition = '0s';
-      sideMenuBackPageId.style.webkitTransition = '0s';
-    };
-
-    blockForSwipeTouchEnd = function () {
-      event.stopPropagation();
-
-      touchEndX = event.changedTouches[0].pageX;
-      timeEndX = event.timeStamp.toFixed(0);
-
-      console.log('touchMoveX', touchMoveX);
-      console.log('widthK', 269 * widthK);
-      if (touchMoveX > 269 * widthK) {
-        menuOpenTouchEnd(true);
-      }
-      else {
-        if (timeEndX - timeStartX < 500 && touchEndX - touchStartX > 20) {
-          menuOpenTouchEnd(true);
-        }
-        else
-          closeMenu()
-      }
-    };
-
-    blockForSwipeTouchMove = function () {
-      event.preventDefault();
-      event.stopPropagation();
-      var deltaForSideMenuBack = event.changedTouches[0].pageX.toFixed(0) / width;
-      var deltaForMainPage = 1 - deltaForSideMenuBack;
-      if (deltaForMainPage < 0.1)
-        deltaForMainPage = 0.1;
-      if (event.changedTouches[0].pageX - 538 * widthK <= 0) {
-        sideMenuId.style.webkitTransform = 'translate3d(' + (event.changedTouches[0].pageX - 538 * widthK) + 'px,0,0)'
-        touchMoveX = event.changedTouches[0].pageX;
-      }
-      sideMenuBackPageId.style.opacity = deltaForSideMenuBack;
-      mainPageId.style.opacity = deltaForMainPage;
-    };
-
-
-    openDropDown = function () {
-
-      console.log("open drop down");
-
+    openDropdownComponent = function () {
       window.blurFields();
-
-
-//      componentMenu.checkOpen = true;
-
       this.dropdownBackPageId.style.webkitTransition = '0.3s';
       this.servicePageId.style.webkitTransition = '0.3s';
       this.servicePageId.style.zIndex = '0';
@@ -1372,30 +1266,37 @@
       this.dropdownId.style.webkitTransition = '0.3s';
       this.dropdownId.style.transform = "translate3d(0, 0, 0)";
       this.dropdownId.style.webkitTransform = "translate3d(0, 0, 0)";
-
       this.dropdownBackPageId.style.opacity = '1';
-//      this.blockFirstFieldId.style.display = 'block';
-//      console.log("id=", scope.chosenFieldParamId);
-//      if (scope.oldFieldParamId) {
-//        document.getElementById(scope.oldFieldParamId).style.backgroundColor = 'white';
-//        document.getElementById('text' + scope.oldFieldParamId).style.color = '#515151';
-//      }
-//      document.getElementById(scope.chosenFieldParamId).style.backgroundColor = '#0084E6';
-//      document.getElementById('text' + scope.chosenFieldParamId).style.color = 'white';
+    };
+
+    scope.processDropdown = processDropdown = function (id, title) {
+      console.log("id got from dropdown =", id, title);
+      switch (scope.dropDownType) {
+        case "firstField": {
+          chooseFirstField(id);
+        }
+        case "firstLevel": {
+          chooseDropdownTwo(id);
+        }
+      }
+
+    };
+
+    openFirstFieldDropDown = function () {
+
+      console.log("open drop down", scope.fieldArray, scope.chosenFieldParamId);
+      scope.dropDownType = "firstField";
+      updateDropdownList(scope.fieldArray, "parameter_id", scope.chosenFieldParamId, "title");
+      openDropdownComponent();
     };
 
     openDropDownTwo = function () {
 
-      window.blurFields();
-      this.blockFirstDropdownId.style.display = 'block';
-      if (scope.oldFieldParamIdTwo) {
-        document.getElementById(scope.oldFieldParamIdTwo).style.backgroundColor = 'white';
-        document.getElementById('text' + scope.oldFieldParamIdTwo).style.color = '#515151';
-      }
-      if (scope.chosenFieldParamIdTwo) {
-        document.getElementById(scope.chosenFieldParamIdTwo).style.backgroundColor = '#0084E6';
-        document.getElementById('text' + scope.chosenFieldParamIdTwo).style.color = 'white';
-      }
+      console.log("open drop down two", scope.fieldArray, scope.chosenFieldParamIdTwo);
+      scope.dropDownType = "firstLevel";
+      var idParam = scope.formType == 4 ? "type" : "id";
+      updateDropdownList(scope.firstLevelArray, idParam, scope.chosenFieldParamIdTwo, "name");
+      openDropdownComponent();
     };
 
     openDropDownThree = function () {
@@ -1434,69 +1335,61 @@
     };
 
     chooseFirstField = function (id) {
-      event.stopPropagation();
 
-      servicePageTouchEndY = event.changedTouches[0].pageY;
-      servicePageTouchEndX = event.changedTouches[0].pageX;
-
-      if (Math.abs(servicePageTouchStartY - servicePageTouchEndY) <= 20 && Math.abs(servicePageTouchStartX - servicePageTouchEndX) <= 20) {
-
-        this.blockFirstFieldId.style.display = 'none';
-
-        for (var i = 0; i < scope.fieldArray.length; i++) {
+      for (var i = 0; i < scope.fieldArray.length; i++) {
 
 //        console.log("Yahoo2", id, scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].parameter_id);
 
-          if (scope.fieldArray[i].parameter_id == id) {
-            scope.chosenFieldName = scope.fieldArray[i].title;
-            scope.chosenFieldPlaceholder = scope.fieldArray[i].placeholder;
-            console.log("PARAMETER ID ", scope.fieldArray[i].parameter_id);
-            scope.phoneFieldBool = scope.fieldArray[i].parameter_id == "1" || scope.fieldArray[0].parameter_id == "65536" || scope.fieldArray[0].parameter_id == "128";
-            scope.inputMaxLength = scope.fieldArray[i].max_len;
+        if (scope.fieldArray[i].parameter_id == id) {
+          scope.chosenFieldName = scope.fieldArray[i].title;
+          scope.chosenFieldPlaceholder = scope.fieldArray[i].placeholder;
+          console.log("PARAMETER ID ", scope.fieldArray[i].parameter_id);
+          scope.phoneFieldBool = scope.fieldArray[i].parameter_id == "1" || scope.fieldArray[0].parameter_id == "65536" || scope.fieldArray[0].parameter_id == "128";
+          scope.inputMaxLength = scope.fieldArray[i].max_len;
 
 
 //          console.log("Yahoooo_2", scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].input_type);
 
-            if (scope.fieldArray[i].input_type == '1' && modeOfApp.onlineMode) {
-              scope.inputType = 'tel';
-              scope.isNumber = true;
-            }
-            else if (scope.fieldArray[i].input_type == '2' && modeOfApp.onlineMode) {
-              scope.inputType = 'text';
-              scope.isNumber = false;
-            }
-            else if (modeOfApp.offlineMode) {
-              scope.inputType = 'tel';
-              scope.isNumber = true;
-            }
-            scope.oldFieldParamId = scope.chosenFieldParamId;
-            scope.chosenFieldParamId = id;
-            firstFieldInput.value = '';
-            scope.chosenPrefixTitle = null;
-            scope.chosenPrefixId = null;
-            scope.chosenPrefixName = null;
-
-            if (scope.servicesParamsMapSix[opts.chosenServiceId]) {
-              scope.hasPrefixes = false;
-              scope.prefixesArray = [];
-              for (var i in scope.servicesParamsMapSix[opts.chosenServiceId]) {
-                if (scope.servicesParamsMapSix[opts.chosenServiceId][i].parent_param_id == scope.chosenFieldParamId)
-                  scope.prefixesArray.push(scope.servicesParamsMapSix[opts.chosenServiceId][i]);
-              }
-              if (scope.prefixesArray.length > 0) {
-                scope.hasPrefixes = true;
-                scope.chosenPrefixTitle = scope.prefixesArray[0].title;
-                scope.chosenPrefixId = scope.prefixesArray[0].option_id;
-                scope.chosenPrefixName = scope.prefixesArray[0].name;
-                console.log("scope.hasPrefixes", scope.hasPrefixes);
-              }
-            }
-
-            scope.update();
-            break;
+          if (scope.fieldArray[i].input_type == '1' && modeOfApp.onlineMode) {
+            scope.inputType = 'tel';
+            scope.isNumber = true;
           }
+          else if (scope.fieldArray[i].input_type == '2' && modeOfApp.onlineMode) {
+            scope.inputType = 'text';
+            scope.isNumber = false;
+          }
+          else if (modeOfApp.offlineMode) {
+            scope.inputType = 'tel';
+            scope.isNumber = true;
+          }
+          scope.oldFieldParamId = scope.chosenFieldParamId;
+          scope.chosenFieldParamId = id;
+          firstFieldInput.value = '';
+          scope.chosenPrefixTitle = null;
+          scope.chosenPrefixId = null;
+          scope.chosenPrefixName = null;
+
+          if (scope.servicesParamsMapSix[opts.chosenServiceId]) {
+            scope.hasPrefixes = false;
+            scope.prefixesArray = [];
+            for (var i in scope.servicesParamsMapSix[opts.chosenServiceId]) {
+              if (scope.servicesParamsMapSix[opts.chosenServiceId][i].parent_param_id == scope.chosenFieldParamId)
+                scope.prefixesArray.push(scope.servicesParamsMapSix[opts.chosenServiceId][i]);
+            }
+            if (scope.prefixesArray.length > 0) {
+              scope.hasPrefixes = true;
+              scope.chosenPrefixTitle = scope.prefixesArray[0].title;
+              scope.chosenPrefixId = scope.prefixesArray[0].option_id;
+              scope.chosenPrefixName = scope.prefixesArray[0].name;
+              console.log("scope.hasPrefixes", scope.hasPrefixes);
+            }
+          }
+
+          scope.update();
+          break;
         }
       }
+
     };
 
     choosePrefix = function (id) {
@@ -1525,80 +1418,47 @@
       }
     };
 
-    scope.onTouchStartOfDropdown = onTouchStartOfDropdown = function () {
-      event.stopPropagation();
-      servicePageTouchStartY = event.changedTouches[0].pageY;
-      servicePageTouchStartX = event.changedTouches[0].pageX;
-    };
+    chooseDropdownTwo = function (id) {
 
-    scope.onTouchEndOfDropdownTwo = onTouchEndOfDropdownTwo = function (id) {
-      event.stopPropagation();
-
-      servicePageTouchEndY = event.changedTouches[0].pageY;
-      servicePageTouchEndX = event.changedTouches[0].pageX;
-
-      if (Math.abs(servicePageTouchStartY - servicePageTouchEndY) <= 20 && Math.abs(servicePageTouchStartX - servicePageTouchEndX) <= 20) {
-        this.blockFirstDropdownId.style.display = 'none';
-        if (scope.formType == 3 || scope.formType == 5 || scope.formType == 6) {
-          for (var i = 0; i < scope.firstLevelArray.length; i++) {
-            if (scope.firstLevelArray[i].id == id) {
-              scope.chosenFieldNameTwo = scope.firstLevelArray[i].name;
-              scope.oldFieldParamIdTwo = scope.chosenFieldParamIdTwo;
-              scope.chosenFieldParamIdTwo = id;
-              if (scope.hasSecondLevel) {
-                scope.secondLevelArray = scope.secondLevelMap[id];
-                if (scope.oldFieldParamIdTwo != scope.chosenFieldParamIdTwo) {
-                  scope.chosenFieldNameThree = '';
-                  scope.oldFieldParamIdThree = null;
-                  scope.chosenFieldParamIdThree = null;
-                }
+      if (scope.formType == 3 || scope.formType == 5 || scope.formType == 6) {
+        for (var i = 0; i < scope.firstLevelArray.length; i++) {
+          if (scope.firstLevelArray[i].id == id) {
+            scope.chosenFieldNameTwo = scope.firstLevelArray[i].name;
+            scope.oldFieldParamIdTwo = scope.chosenFieldParamIdTwo;
+            scope.chosenFieldParamIdTwo = id;
+            if (scope.hasSecondLevel) {
+              scope.secondLevelArray = scope.secondLevelMap[id];
+              if (scope.oldFieldParamIdTwo != scope.chosenFieldParamIdTwo) {
+                scope.chosenFieldNameThree = '';
+                scope.oldFieldParamIdThree = null;
+                scope.chosenFieldParamIdThree = null;
               }
-              scope.update();
+            }
+            scope.update();
 
-              break;
-            }
-          }
-        } else if (scope.formType == 4) {
-          for (var i = 0; i < scope.firstLevelArray.length; i++) {
-            if (scope.firstLevelArray[i].type == id) {
-              scope.chosenFieldNameTwo = scope.firstLevelArray[i].name;
-              scope.oldFieldParamIdTwo = scope.chosenFieldParamIdTwo;
-              scope.chosenFieldParamIdTwo = id;
-              if (scope.hasSecondLevel) {
-                scope.secondLevelArray = scope.secondLevelMap[id];
-                if (scope.oldFieldParamIdTwo != scope.chosenFieldParamIdTwo) {
-                  scope.chosenFieldNameThree = '';
-                  scope.oldFieldParamIdThree = null;
-                  scope.chosenFieldParamIdThree = null;
-                }
-              }
-              scope.update();
-              break;
-            }
+            break;
           }
         }
-        checkFieldsToActivateNext();
+      } else if (scope.formType == 4) {
+        for (var i = 0; i < scope.firstLevelArray.length; i++) {
+          if (scope.firstLevelArray[i].type == id) {
+            scope.chosenFieldNameTwo = scope.firstLevelArray[i].name;
+            scope.oldFieldParamIdTwo = scope.chosenFieldParamIdTwo;
+            scope.chosenFieldParamIdTwo = id;
+            if (scope.hasSecondLevel) {
+              scope.secondLevelArray = scope.secondLevelMap[id];
+              if (scope.oldFieldParamIdTwo != scope.chosenFieldParamIdTwo) {
+                scope.chosenFieldNameThree = '';
+                scope.oldFieldParamIdThree = null;
+                scope.chosenFieldParamIdThree = null;
+              }
+            }
+            scope.update();
+            break;
+          }
+        }
       }
-    };
-
-    closeFirstFieldDropdownTouchStart = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      closeFirstFieldDropdownTouchStartX = event.changedTouches[0].pageX;
-      closeFirstFieldDropdownTouchStartY = event.changedTouches[0].pageY;
-    };
-
-    closeFirstFieldDropdownTouchEnd = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      closeFirstFieldDropdownTouchEndX = event.changedTouches[0].pageX;
-      closeFirstFieldDropdownTouchEndY = event.changedTouches[0].pageY;
-
-      if (Math.abs(closeFirstFieldDropdownTouchStartX - closeFirstFieldDropdownTouchEndX) <= 20 && Math.abs(closeFirstFieldDropdownTouchStartY - closeFirstFieldDropdownTouchEndY) <= 20) {
-        this.blockFirstFieldId.style.display = 'none';
-      }
+      checkFieldsToActivateNext();
     };
 
     closePrefixDropdownTouchStart = function () {
@@ -1618,26 +1478,6 @@
 
       if (Math.abs(closePrefixDropdownTouchStartX - closePrefixDropdownTouchEndX) <= 20 && Math.abs(closePrefixDropdownTouchStartY - closePrefixDropdownTouchEndY) <= 20) {
         this.blockPrefixId.style.display = 'none';
-      }
-    };
-
-    closeFirstDropdownTouchStart = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      closeFirstDropdownTouchStartX = event.changedTouches[0].pageX;
-      closeFirstDropdownTouchStartY = event.changedTouches[0].pageY;
-    };
-
-    closeFirstDropdownTouchEnd = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      closeFirstDropdownTouchEndX = event.changedTouches[0].pageX;
-      closeFirstDropdownTouchEndY = event.changedTouches[0].pageY;
-
-      if (Math.abs(closeFirstDropdownTouchStartX - closeFirstDropdownTouchEndX) <= 20 && Math.abs(closeFirstDropdownTouchStartY - closeFirstDropdownTouchEndY) <= 20) {
-        this.blockFirstDropdownId.style.display = 'none';
       }
     };
 

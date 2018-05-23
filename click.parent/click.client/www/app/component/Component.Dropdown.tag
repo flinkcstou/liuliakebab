@@ -4,29 +4,38 @@
   <div id="dropdownId" class="dropdown-menu">
 
     <div id="closeMenuButtonId" role="button" aria-label="{window.languages.Close}" class="dropdown-close-button "
-         ontouchstart="closeMenuStart()"
-         ontouchend="closeMenu()">
+         ontouchstart="closeDropdownStart()"
+         ontouchend="closeDropdown()"></div>
 
-
+    <div class="dropdown-title">ВЫБЕРИТЕ ПАКЕТ</div>
+    <div class="dropdown-element" each="{i in dropdownList}" id="{i[idParam]}" name="{i[titleParam]}"
+         ontouchstart="onTouchStartDropdownElement()"
+         ontouchend="onTouchEndDropdownElement(this.id, this.getAttribute('name'))">{i[titleParam]}
     </div>
+
 
   </div>
 
   <script>
     var scope = this;
     var touchStartX, touchEndX, touchMoveX, touchEndMove, timeStartX, timeEndXs;
-    var width = window.innerWidth;
+    var dropdownTouchStartX, dropdownTouchStartY, dropdownTouchEndX, dropdownTouchEndY;
+    scope.dropdownList = [];
+    scope.idParam = "";
+    scope.titleParam = "";
+    scope.chosenId = "";
+    scope.oldId = "";
 
 
     this.on('mount', function () {
 
     });
 
-    closeMenuStart = function () {
+    closeDropdownStart = function () {
       closeMenuButtonId.style.webkitTransform = 'scale(0.8)'
     };
 
-    closeMenu = function () {
+    closeDropdown = function () {
 
       closeMenuButtonId.style.webkitTransform = 'scale(1)';
 
@@ -97,6 +106,46 @@
     //      }
     //
     //    };
+
+
+    updateDropdownList = function (array, idParam, chosenId, titleParam) {
+      scope.dropdownList = array;
+      scope.idParam = idParam;
+      scope.chosenId = chosenId;
+      scope.titleParam = titleParam;
+      console.log("list= ", scope.dropdownList, idParam, chosenId, titleParam);
+      scope.update();
+      if (document.getElementById(scope.chosenId)) {
+        document.getElementById(scope.chosenId).style.color = '#00a8f1';
+      }
+    };
+
+    scope.onTouchStartDropdownElement = onTouchStartDropdownElement = function () {
+      event.stopPropagation();
+      dropdownTouchStartY = event.changedTouches[0].pageY;
+      dropdownTouchStartX = event.changedTouches[0].pageX;
+    };
+
+    scope.onTouchEndDropdownElement = onTouchEndDropdownElement = function (id, title) {
+      event.stopPropagation();
+
+      dropdownTouchEndY = event.changedTouches[0].pageY;
+      dropdownTouchEndX = event.changedTouches[0].pageX;
+
+      if (Math.abs(dropdownTouchStartY - dropdownTouchEndY) <= 20 && Math.abs(dropdownTouchStartX - dropdownTouchEndX) <= 20) {
+        console.log("dropdown touch ", id, title);
+        scope.oldId = scope.chosenId;
+        scope.chosenId = id;
+        if (scope.oldId) {
+          document.getElementById(scope.oldId).style.color = '#595759';
+        }
+        if (scope.chosenId) {
+          document.getElementById(scope.chosenId).style.color = '#00a8f1';
+        }
+        scope.parent.processDropdown(scope.chosenId, title);
+        closeDropdown();
+      }
+    }
 
 
   </script>
