@@ -4379,6 +4379,11 @@ var css = {
   "background-position: center;" +
   "top: 45%;" +
   "left: 80%;" +
+  "-webkit-transform: rotate(90deg);" +
+  "-moz-transform: rotate(90deg);" +
+  "-ms-transform: rotate(90deg);" +
+  "-o-transform: rotate(90deg);" +
+  "transform: rotate(90deg);" +
   "}",
 
   servicePageFieldsDropdownCloseButton: ".servicepage-fields-dropdown-close-button " +
@@ -4894,7 +4899,7 @@ var css = {
   "transform: translate3d(0, 0,0);" +
   "-webkit-transform: translate3d(0, 0,0);" +
   "-ms-transform: translate3d(0, 0,0);" +
-  "background-color: rgba(0, 0, 0, 0);" +
+  "background-color: rgba(86, 93, 106, 0.29);" +
   "opacity: 0;" +
   "}",
 
@@ -4923,14 +4928,34 @@ var css = {
   "border-bottom:  " + 1 * widthK + "px solid lightgray;" +
   "}",
 
+  dropdownElementsContainer: ".dropdown-elements-container " +
+  "{" +
+  "position: absolute;" +
+  "height: 84%;" +
+  "width: 95%;" +
+  "top: 15%;" +
+  "overflow-y: auto;" +
+  "overflow-x: hidden;" +
+  "}",
+
+  dropdownElementsContainerScroll: ".dropdown-elements-container::-webkit-scrollbar" +
+  "{" +
+  "width:" + 5 * widthK + "px; " +
+  "}",
+
+  dropdownElementsContainerScrollThumb: ".dropdown-elements-container::-webkit-scrollbar-thumb" +
+  "{" +
+  "background-color: rgba(0, 0, 0, .15); " +
+  "}",
+
   dropdownElement: ".dropdown-element" +
   "{" +
   "position: relative;" +
   "font-size:" + 28 * widthK + "px; " +
   "color: #595759;" +
-  "top:" + 190 * widthK + "px; " +
+  "height:" + 65 * widthK + "px; " +
   "left:" + 30 * widthK + "px; " +
-  "margin-bottom:" + 40 * widthK + "px; " +
+  "margin-bottom:" + 10 * widthK + "px; " +
   "}",
 
   //Component Calc

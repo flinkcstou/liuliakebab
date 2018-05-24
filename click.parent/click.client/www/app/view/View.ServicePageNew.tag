@@ -135,55 +135,6 @@
     </div>
 
 
-    <div id="blockPrefixId" class="component-first-field">
-      <div type="button" class="servicepage-fields-dropdown-close-button" role="button"
-           aria-label="{window.languages.Close}"
-           ontouchend="closePrefixDropdownTouchEnd()" ontouchstart="closePrefixDropdownTouchStart()"></div>
-      <div class="servicepage-fields-dropdown-two">
-        <p class="servicepage-dropdown-text-field" style="color: white;">{chosenPrefixTitle}</p>
-      </div>
-      <div class="servicepage-dropdown-container">
-        <div class="servicepage-dropdown-variant" each="{i in prefixesArray}" id="e{i.option_id}"
-             ontouchstart="onTouchStartOfDropdown()" ontouchend="choosePrefix(this.id)">
-          <p id="text{i.option_id}" class="servicepage-dropdown-text-field" style="left: 8%">{i.title}</p>
-        </div>
-      </div>
-    </div>
-
-    <div id="blockSecondDropdownId" class="component-first-field">
-      <div type="button" class="servicepage-fields-dropdown-close-button" role="button"
-           aria-label="{window.languages.Close}"
-           ontouchend="closeSecondDropdownTouchEnd()" ontouchstart="closeSecondDropdownTouchStart()"></div>
-      <div class="servicepage-fields-dropdown-two">
-        <p class="servicepage-dropdown-text-field" style="color: white;">
-          {(secondLevelArray && secondLevelArray[0])?(secondLevelArray[0].name):("")}</p>
-      </div>
-      <div class="servicepage-dropdown-container">
-        <div class="servicepage-dropdown-variant" each="{i in secondLevelArray}" id="two{i.id}" if="{formType==3}"
-             ontouchstart="onTouchStartOfDropdownThree()" ontouchend="onTouchEndOfDropdownThree({i.id})">
-          <p id="texttwo{i.id}" class="servicepage-dropdown-text-field" style="left: 8%">{i.name}</p>
-        </div>
-        <div class="servicepage-dropdown-variant"
-             each="{i in secondLevelArray}"
-             id="{i.code}"
-             if="{formType==4}"
-             ontouchstart="onTouchStartOfDropdownThree()"
-             ontouchend="onTouchEndOfDropdownThree(this.id)"
-             style="height: unset;">
-          <p id="texttwo{i.code}" class="servicepage-dropdown-text-field"
-             style="padding-left: 6%;
-            width: 88%;
-            word-wrap: break-word;
-            overflow: unset;
-            white-space: unset;
-            position: unset;
-            padding-top: {30 * widthK}px;
-            padding-bottom: {30 * widthK}px;">
-            {i.name}</p>
-        </div>
-      </div>
-    </div>
-
     <div class="servicepage-formtype-two-container" if="{formType==2}">
 
       <div id="autopayField" class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDAUTOPAY'}">
@@ -263,7 +214,7 @@
 
   </div>
 
-  <component-dropdown dropdownlist="dropdownList"></component-dropdown>
+  <component-dropdown></component-dropdown>
   <component-tour view="calculator" focusfield="{true}"></component-tour>
 
   <script>
@@ -278,10 +229,6 @@
     var closeStartY, closeStartX, closeEndY, closeEndX;
     var acceptStartY, acceptStartX, acceptEndY, acceptEndX;
     var servicePageTouchStartY, servicePageTouchEndY, servicePageTouchStartX, servicePageTouchEndX;
-    var closePrefixDropdownTouchStartX, closePrefixDropdownTouchStartY,
-      closePrefixDropdownTouchEndX, closePrefixDropdownTouchEndY;
-    var closeSecondDropdownTouchStartX, closeSecondDropdownTouchStartY,
-      closeSecondDropdownTouchEndX, closeSecondDropdownTouchEndY;
     var enterStartY, enterStartX, enterEndY, enterEndX;
     var contactStopChanging = false;
     scope.showErrorOfLimit = false;
@@ -1274,12 +1221,21 @@
       switch (scope.dropDownType) {
         case "firstField": {
           chooseFirstField(id);
+          break;
         }
         case "firstLevel": {
           chooseDropdownTwo(id);
+          break;
+        }
+        case "secondLevel": {
+          chooseDropdownThree(id);
+          break;
+        }
+        case "prefixes": {
+          choosePrefix(id);
+          break;
         }
       }
-
     };
 
     openFirstFieldDropDown = function () {
@@ -1292,7 +1248,7 @@
 
     openDropDownTwo = function () {
 
-      console.log("open drop down two", scope.fieldArray, scope.chosenFieldParamIdTwo);
+      console.log("open drop down two", scope.firstLevelArray, scope.chosenFieldParamIdTwo);
       scope.dropDownType = "firstLevel";
       var idParam = scope.formType == 4 ? "type" : "id";
       updateDropdownList(scope.firstLevelArray, idParam, scope.chosenFieldParamIdTwo, "name");
@@ -1301,37 +1257,21 @@
 
     openDropDownThree = function () {
 
-      window.blurFields();
-      if (scope.secondLevelArray) {
-        this.blockSecondDropdownId.style.display = 'block';
-        if (scope.oldFieldParamIdThree) {
-          if (scope.formType == 3)
-            document.getElementById('two' + scope.oldFieldParamIdThree).style.backgroundColor = 'white';
-          else if (scope.formType == 4)
-            document.getElementById(scope.oldFieldParamIdThree).style.backgroundColor = 'white';
-          document.getElementById('texttwo' + scope.oldFieldParamIdThree).style.color = '#515151';
-        }
-        if (scope.chosenFieldParamIdThree) {
-          if (scope.formType == 3)
-            document.getElementById('two' + scope.chosenFieldParamIdThree).style.backgroundColor = '#0084E6';
-          else if (scope.formType == 4)
-            document.getElementById(scope.chosenFieldParamIdThree).style.backgroundColor = '#0084E6';
-          document.getElementById('texttwo' + scope.chosenFieldParamIdThree).style.color = 'white';
-        }
-      }
+      console.log("open drop down three", scope.secondLevelArray, scope.chosenFieldParamIdThree);
+      scope.dropDownType = "secondLevel";
+      var idParam = scope.formType == 4 ? "code" : "id";
+      updateDropdownList(scope.secondLevelArray, idParam, scope.chosenFieldParamIdThree, "name");
+      openDropdownComponent();
+
     };
 
     openPrefixesDropDown = function () {
 
-      window.blurFields();
-      this.blockPrefixId.style.display = 'block';
+      console.log("open prefixes drop down", scope.prefixesArray, scope.chosenPrefixId);
+      scope.dropDownType = "prefixes";
+      updateDropdownList(scope.prefixesArray, "option_id", scope.chosenPrefixId, "name");
+      openDropdownComponent();
 
-      if (scope.oldPrefixId) {
-        document.getElementById('e' + scope.oldPrefixId).style.backgroundColor = 'white';
-        document.getElementById('text' + scope.oldPrefixId).style.color = '#515151';
-      }
-      document.getElementById('e' + scope.chosenPrefixId).style.backgroundColor = '#0084E6';
-      document.getElementById('text' + scope.chosenPrefixId).style.color = 'white';
     };
 
     chooseFirstField = function (id) {
@@ -1393,32 +1333,24 @@
     };
 
     choosePrefix = function (id) {
-      event.stopPropagation();
 
-      servicePageTouchEndY = event.changedTouches[0].pageY;
-      servicePageTouchEndX = event.changedTouches[0].pageX;
+      for (var i = 0; i < scope.prefixesArray.length; i++) {
 
-      if (Math.abs(servicePageTouchStartY - servicePageTouchEndY) <= 20 && Math.abs(servicePageTouchStartX - servicePageTouchEndX) <= 20) {
-        id = id.substr(1);
+        if (scope.prefixesArray[i].option_id == id) {
+          scope.chosenPrefixTitle = scope.prefixesArray[i].title;
+          scope.chosenPrefixName = scope.prefixesArray[i].name;
 
-        this.blockPrefixId.style.display = 'none';
-
-        for (var i = 0; i < scope.prefixesArray.length; i++) {
-
-          if (scope.prefixesArray[i].option_id == id) {
-            scope.chosenPrefixTitle = scope.prefixesArray[i].title;
-            scope.chosenPrefixName = scope.prefixesArray[i].name;
-
-            scope.oldPrefixId = scope.chosenPrefixId;
-            scope.chosenPrefixId = id;
-            scope.update(scope.chosenPrefixTitle);
-            break;
-          }
+          scope.oldPrefixId = scope.chosenPrefixId;
+          scope.chosenPrefixId = id;
+          scope.update(scope.chosenPrefixTitle);
+          break;
         }
       }
+
     };
 
     chooseDropdownTwo = function (id) {
+      console.log("chooseDropdownTwo function");
 
       if (scope.formType == 3 || scope.formType == 5 || scope.formType == 6) {
         for (var i = 0; i < scope.firstLevelArray.length; i++) {
@@ -1461,86 +1393,36 @@
       checkFieldsToActivateNext();
     };
 
-    closePrefixDropdownTouchStart = function () {
-      event.preventDefault();
-      event.stopPropagation();
+    chooseDropdownThree = function (id) {
+      console.log("chooseDropdownThree function");
 
-      closePrefixDropdownTouchStartX = event.changedTouches[0].pageX;
-      closePrefixDropdownTouchStartY = event.changedTouches[0].pageY;
-    };
+      if (scope.formType == 3) {
+        for (var i = 0; i < scope.secondLevelArray.length; i++) {
+          if (scope.secondLevelArray[i].id == id) {
+            scope.chosenFieldNameThree = scope.secondLevelArray[i].name;
+            if (scope.chosenFieldParamIdThree)
+              scope.oldFieldParamIdThree = scope.chosenFieldParamIdThree;
+            scope.chosenFieldParamIdThree = id;
 
-    closePrefixDropdownTouchEnd = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      closePrefixDropdownTouchEndX = event.changedTouches[0].pageX;
-      closePrefixDropdownTouchEndY = event.changedTouches[0].pageY;
-
-      if (Math.abs(closePrefixDropdownTouchStartX - closePrefixDropdownTouchEndX) <= 20 && Math.abs(closePrefixDropdownTouchStartY - closePrefixDropdownTouchEndY) <= 20) {
-        this.blockPrefixId.style.display = 'none';
-      }
-    };
-
-    closeSecondDropdownTouchStart = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      closeSecondDropdownTouchStartX = event.changedTouches[0].pageX;
-      closeSecondDropdownTouchStartY = event.changedTouches[0].pageY;
-    };
-
-    closeSecondDropdownTouchEnd = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      closeSecondDropdownTouchEndX = event.changedTouches[0].pageX;
-      closeSecondDropdownTouchEndY = event.changedTouches[0].pageY;
-
-      if (Math.abs(closeSecondDropdownTouchStartX - closeSecondDropdownTouchEndX) <= 20 && Math.abs(closeSecondDropdownTouchStartY - closeSecondDropdownTouchEndY) <= 20) {
-        this.blockSecondDropdownId.style.display = 'none';
-      }
-    };
-
-    scope.onTouchStartOfDropdownThree = onTouchStartOfDropdownThree = function () {
-      event.stopPropagation();
-      servicePageTouchStartY = event.changedTouches[0].pageY;
-    };
-
-    scope.onTouchEndOfDropdownThree = onTouchEndOfDropdownThree = function (id) {
-      event.stopPropagation();
-
-      servicePageTouchEndY = event.changedTouches[0].pageY;
-
-      if (Math.abs(servicePageTouchStartY - servicePageTouchEndY) <= 20) {
-        this.blockSecondDropdownId.style.display = 'none';
-        if (scope.formType == 3) {
-          for (var i = 0; i < scope.secondLevelArray.length; i++) {
-            if (scope.secondLevelArray[i].id == id) {
-              scope.chosenFieldNameThree = scope.secondLevelArray[i].name;
-              if (scope.chosenFieldParamIdThree)
-                scope.oldFieldParamIdThree = scope.chosenFieldParamIdThree;
-              scope.chosenFieldParamIdThree = id;
-
-              scope.update(scope.chosenFieldNameThree);
-              break;
-            }
-          }
-        } else if (scope.formType == 4) {
-          for (var i = 0; i < scope.secondLevelArray.length; i++) {
-            if (scope.secondLevelArray[i].code == id) {
-              scope.chosenFieldNameThree = scope.secondLevelArray[i].name;
-              if (scope.chosenFieldParamIdThree)
-                scope.oldFieldParamIdThree = scope.chosenFieldParamIdThree;
-              scope.chosenFieldParamIdThree = id;
-              opts.amountText = scope.secondLevelArray[i].usd_cost;
-              amountForPayTransaction = scope.secondLevelArray[i].sum_cost;
-              scope.update();
-              break;
-            }
+            scope.update(scope.chosenFieldNameThree);
+            break;
           }
         }
-        checkFieldsToActivateNext();
+      } else if (scope.formType == 4) {
+        for (var i = 0; i < scope.secondLevelArray.length; i++) {
+          if (scope.secondLevelArray[i].code == id) {
+            scope.chosenFieldNameThree = scope.secondLevelArray[i].name;
+            if (scope.chosenFieldParamIdThree)
+              scope.oldFieldParamIdThree = scope.chosenFieldParamIdThree;
+            scope.chosenFieldParamIdThree = id;
+            opts.amountText = scope.secondLevelArray[i].usd_cost;
+            amountForPayTransaction = scope.secondLevelArray[i].sum_cost;
+            scope.update();
+            break;
+          }
+        }
       }
+      checkFieldsToActivateNext();
     };
 
     eraseAmountDefault = function () {

@@ -8,11 +8,12 @@
          ontouchend="closeDropdown()"></div>
 
     <div class="dropdown-title">ВЫБЕРИТЕ ПАКЕТ</div>
-    <div class="dropdown-element" each="{i in dropdownList}" id="{i[idParam]}" name="{i[titleParam]}"
-         ontouchstart="onTouchStartDropdownElement()"
-         ontouchend="onTouchEndDropdownElement(this.id, this.getAttribute('name'))">{i[titleParam]}
+    <div class="dropdown-elements-container">
+      <div class="dropdown-element" each="{i in dropdownList}" id="{i[idParam]}" name="{i[titleParam]}"
+           ontouchstart="onTouchStartDropdownElement()"
+           ontouchend="onTouchEndDropdownElement(this.id, this.getAttribute('name'))">{i[titleParam]}
+      </div>
     </div>
-
 
   </div>
 
