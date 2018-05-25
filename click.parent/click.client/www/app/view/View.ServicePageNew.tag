@@ -1204,7 +1204,7 @@
 
     // }
 
-    openDropdownComponent = function () {
+    scope.openDropdownComponent = openDropdownComponent = function () {
       window.blurFields();
       this.dropdownBackPageId.style.webkitTransition = '0.3s';
       this.servicePageId.style.webkitTransition = '0.3s';

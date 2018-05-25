@@ -1,5 +1,6 @@
 <component-dropdown>
-  <div id="dropdownBackPageId" class="dropdown-back-page"></div>
+  <div id="dropdownBackPageId" ontouchend="dropdownMenuTouchEnd(true)" ontouchstart="dropdownMenuTouchStart()"
+       ontouchmove="dropdownMenuTouchMove()" class="dropdown-back-page"></div>
 
   <div id="dropdownId" class="dropdown-menu">
 
@@ -7,7 +8,7 @@
          ontouchstart="closeDropdownStart()"
          ontouchend="closeDropdown()"></div>
 
-    <div class="dropdown-title">ВЫБЕРИТЕ ПАКЕТ</div>
+    <div class="dropdown-title">ВЫБРАТЬ</div>
     <div class="dropdown-elements-container">
       <div class="dropdown-element" each="{i in dropdownList}" id="{idParam? i[idParam]: i}"
            name="{titleParam ? i[titleParam]: i}"
@@ -57,57 +58,59 @@
       scope.update();
     };
 
-    //    sideMenuTouchStart = function () {
-    //      sideMenuId.style.webkitTransition = '0s';
-    //      servicePageId.style.webkitTransition = '0s';
-    //      sideMenuBackPageId.style.webkitTransition = '0s';
-    //      touchStartX = event.changedTouches[0].pageX;
-    //      timeStartX = event.timeStamp.toFixed(0);
-    //
-    //    };
-    //
-    //    sideMenuTouchEnd = function (bool) {
-    //
-    //      touchEndX = event.changedTouches[0].pageX;
-    //      timeEndX = event.timeStamp.toFixed(0);
-    //
-    //      if ((Math.abs(touchEndMove) > 230 * widthK)) {
-    //        closeMenu();
-    //      }
-    //      else {
-    //        console.log('START END', touchStartX, touchEndX);
-    //        if (Math.abs(touchStartX - touchEndX) < 20 && bool) {
-    //          closeMenu();
-    //          return
-    //        }
-    //        if (timeEndX - timeStartX < 500 && touchStartX - touchEndX > 20) {
-    //          closeMenu();
-    //        }
-    //        else
-    //          menuOpenTouchEnd(true)
-    //      }
-    //    };
+    dropdownMenuTouchStart = function () {
+      dropdownId.style.webkitTransition = '0s';
+      document.getElementById(scope.pageId).style.webkitTransition = '0s';
+      dropdownBackPageId.style.webkitTransition = '0s';
+      touchStartX = event.changedTouches[0].pageX;
+      timeStartX = event.timeStamp.toFixed(0);
 
-    //    sideMenuTouchMove = function () {
-    //      event.preventDefault();
-    //      event.stopPropagation();
-    //      touchMoveX = event.changedTouches[0].pageX;
-    //      if (touchStartX < touchMoveX) return;
-    //      var deltaForMainPage = Math.abs((touchStartX - touchMoveX).toFixed(0) / width * 2);
-    //      var deltaForSideMenuBack = 1 - deltaForMainPage;
-    //      if (deltaForSideMenuBack < 0.1)
-    //        deltaForSideMenuBack = 0.1;
-    //
-    //      sideMenuBackPageId.style.opacity = deltaForSideMenuBack;
-    //      servicePageId.style.opacity = deltaForMainPage;
-    //
-    //      if (touchMoveX - touchStartX <= 0) {
-    //        sideMenuId.style.webkitTransform = 'translate3d(' + (touchMoveX - touchStartX) + 'px,0,0)';
-    //        touchEndMove = touchMoveX - touchStartX;
-    //        componentMenu.checkOpen = true;
-    //      }
-    //
-    //    };
+    };
+
+    dropdownMenuTouchEnd = function (bool) {
+
+      touchEndX = event.changedTouches[0].pageX;
+      timeEndX = event.timeStamp.toFixed(0);
+
+      if ((Math.abs(touchEndMove) > 230 * widthK)) {
+        closeDropdown();
+      }
+      else {
+        console.log('START END', touchStartX, touchEndX);
+        if (Math.abs(touchStartX - touchEndX) < 20 && bool) {
+          closeDropdown();
+          return
+        }
+        if (timeEndX - timeStartX < 500 && touchStartX - touchEndX > 20) {
+          closeDropdown();
+        } else {
+          console.log("else else")
+          scope.parent.openDropdownComponent();
+        }
+
+      }
+    };
+
+    dropdownMenuTouchMove = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      touchMoveX = event.changedTouches[0].pageX;
+      if (touchStartX < touchMoveX) return;
+      var deltaForMainPage = Math.abs((touchStartX - touchMoveX).toFixed(0) / width * 2);
+      var deltaForSideMenuBack = 1 - deltaForMainPage;
+      if (deltaForSideMenuBack < 0.1)
+        deltaForSideMenuBack = 0.1;
+
+      dropdownBackPageId.style.opacity = deltaForSideMenuBack;
+      document.getElementById(scope.pageId).style.opacity = deltaForMainPage;
+
+      if (touchMoveX - touchStartX <= 0) {
+        dropdownId.style.webkitTransform = 'translate3d(' + (touchMoveX - touchStartX) + 'px,0,0)';
+        touchEndMove = touchMoveX - touchStartX;
+        componentMenu.checkOpen = true;
+      }
+
+    };
 
 
     updateDropdownList = function (array, idParam, chosenId, titleParam, pageId) {
