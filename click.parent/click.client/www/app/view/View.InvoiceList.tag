@@ -12,13 +12,13 @@
 
   <div class="invoice-list-content-holder">
     <div class="invoice-list-nav-buttons-holder {invoice-list-invoices-in: toUser, invoice-list-invoices-out: !toUser}">
-      <div class="invoice-list-nav-button-to-user" ontouchend="getInvoiceListToUser()">
+      <div class="invoice-list-nav-button-to-user" ontouchend="toUserTabTouchEnd()">
         <img class="invoice-list-nav-buttons-icon"
              src="{(toUser)?('resources/icons/invoice/invoices_in_on.png'):('resources/icons/invoice/invoices_in_off.png')}">
         <p class="invoice-list-nav-buttons-title {invoice-list-nav-button-not-selected: !toUser}">
           {languages.ViewInvoiceListToUser}</p>
       </div>
-      <div class="invoice-list-nav-button-from-user" ontouchend="getInvoiceListFromUser()">
+      <div class="invoice-list-nav-button-from-user" ontouchend="fromUserTabTouchEnd()">
         <img class="invoice-list-nav-buttons-icon"
              src="{(toUser)?('resources/icons/invoice/invoices_out_off.png'):('resources/icons/invoice/invoices_out_on.png')}">
         <p class="invoice-list-nav-buttons-title {invoice-list-nav-button-not-selected: toUser}">
@@ -107,7 +107,7 @@
     }
 
     if (localStorage.getItem("click_client_servicesMap")
-      && JSON.parse(localStorage.getItem("click_client_servicesMap"))){
+      && JSON.parse(localStorage.getItem("click_client_servicesMap"))) {
       scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
     }
 
@@ -137,16 +137,28 @@
         console.log(scope.toUser)
         if (scope.toUser) {
           invoiceListPageNumber++;
-          getInvoiceListToUser()
+          getInvoiceListToUser(true)
         }
         else {
           invoiceListPageNumber++;
-          getInvoiceListFromUser()
+          getInvoiceListFromUser(true)
         }
       }
     };
 
     scope.invoiceList = [];
+
+    toUserTabTouchEnd = function () {
+
+      if (!scope.toUser)
+        getInvoiceListToUser();
+    };
+
+    fromUserTabTouchEnd = function () {
+
+      if (scope.toUser)
+        getInvoiceListFromUser();
+    };
 
     getInvoiceListToUser = function () {
 
@@ -199,7 +211,7 @@
 
                   if (scope.servicesMap
                     && scope.servicesMap[result[1][i].service_id]
-                    && scope.servicesMap[result[1][i].service_id][0]){
+                    && scope.servicesMap[result[1][i].service_id][0]) {
                     result[1][i].currency = scope.servicesMap[result[1][i].service_id][0].lang_amount_currency;
                     console.log(scope.servicesMap[result[1][i].service_id][0]);
                   } else {
@@ -304,7 +316,7 @@
 
                   if (scope.servicesMap
                     && scope.servicesMap[result[1][i].service_id]
-                    && scope.servicesMap[result[1][i].service_id][0]){
+                    && scope.servicesMap[result[1][i].service_id][0]) {
                     result[1][i].currency = scope.servicesMap[result[1][i].service_id][0].lang_amount_currency;
                     console.log(scope.servicesMap[result[1][i].service_id][0]);
                   } else {
