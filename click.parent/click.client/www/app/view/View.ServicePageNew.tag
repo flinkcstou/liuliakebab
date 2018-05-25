@@ -1,6 +1,6 @@
 <view-service-page-new class="riot-tags-main-container">
 
-  <div id="servicePageId" class="view-service-page">
+  <div id="servicePageId" class="view-common-page">
 
     <div class="pay-page-title page-title-shadow" style="border-style: none;">
       <p class="servicepage-title">
@@ -1242,7 +1242,7 @@
 
       console.log("open drop down", scope.fieldArray, scope.chosenFieldParamId);
       scope.dropDownType = "firstField";
-      updateDropdownList(scope.fieldArray, "parameter_id", scope.chosenFieldParamId, "title");
+      updateDropdownList(scope.fieldArray, "parameter_id", scope.chosenFieldParamId, "title", "servicePageId");
       openDropdownComponent();
     };
 
@@ -1251,7 +1251,7 @@
       console.log("open drop down two", scope.firstLevelArray, scope.chosenFieldParamIdTwo);
       scope.dropDownType = "firstLevel";
       var idParam = scope.formType == 4 ? "type" : "id";
-      updateDropdownList(scope.firstLevelArray, idParam, scope.chosenFieldParamIdTwo, "name");
+      updateDropdownList(scope.firstLevelArray, idParam, scope.chosenFieldParamIdTwo, "name", "servicePageId");
       openDropdownComponent();
     };
 
@@ -1260,7 +1260,7 @@
       console.log("open drop down three", scope.secondLevelArray, scope.chosenFieldParamIdThree);
       scope.dropDownType = "secondLevel";
       var idParam = scope.formType == 4 ? "code" : "id";
-      updateDropdownList(scope.secondLevelArray, idParam, scope.chosenFieldParamIdThree, "name");
+      updateDropdownList(scope.secondLevelArray, idParam, scope.chosenFieldParamIdThree, "name", "servicePageId");
       openDropdownComponent();
 
     };
@@ -1269,7 +1269,7 @@
 
       console.log("open prefixes drop down", scope.prefixesArray, scope.chosenPrefixId);
       scope.dropDownType = "prefixes";
-      updateDropdownList(scope.prefixesArray, "option_id", scope.chosenPrefixId, "name");
+      updateDropdownList(scope.prefixesArray, "option_id", scope.chosenPrefixId, "name", "servicePageId");
       openDropdownComponent();
 
     };

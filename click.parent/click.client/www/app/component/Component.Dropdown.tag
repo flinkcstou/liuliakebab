@@ -9,9 +9,10 @@
 
     <div class="dropdown-title">ВЫБЕРИТЕ ПАКЕТ</div>
     <div class="dropdown-elements-container">
-      <div class="dropdown-element" each="{i in dropdownList}" id="{i[idParam]}" name="{i[titleParam]}"
+      <div class="dropdown-element" each="{i in dropdownList}" id="{idParam? i[idParam]: i}"
+           name="{titleParam ? i[titleParam]: i}"
            ontouchstart="onTouchStartDropdownElement()"
-           ontouchend="onTouchEndDropdownElement(this.id, this.getAttribute('name'))">{i[titleParam]}
+           ontouchend="onTouchEndDropdownElement(this.id, this.getAttribute('name'))">{titleParam ? i[titleParam]: i}
       </div>
     </div>
 
@@ -51,8 +52,8 @@
       dropdownBackPageId.style.webkitTransition = '0';
       dropdownId.style.webkitTransform = "translate3d(100%, 0, 0)";
       dropdownId.style.Transform = "translate3d(100%, 0, 0)";
-      servicePageId.style.opacity = '1';
-      servicePageId.style.zIndex = '1';
+      document.getElementById(scope.pageId).style.opacity = '1';
+      document.getElementById(scope.pageId).style.zIndex = '1';
       scope.update();
     };
 
@@ -109,11 +110,15 @@
     //    };
 
 
-    updateDropdownList = function (array, idParam, chosenId, titleParam) {
+    updateDropdownList = function (array, idParam, chosenId, titleParam, pageId) {
+      if (document.getElementById(scope.chosenId)) {
+        document.getElementById(scope.chosenId).style.color = '#595759';
+      }
       scope.dropdownList = array;
       scope.idParam = idParam;
       scope.chosenId = chosenId;
       scope.titleParam = titleParam;
+      scope.pageId = pageId;
       console.log("list= ", scope.dropdownList, idParam, chosenId, titleParam);
       scope.update();
       if (document.getElementById(scope.chosenId)) {

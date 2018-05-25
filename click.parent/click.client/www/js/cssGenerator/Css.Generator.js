@@ -4161,7 +4161,7 @@ var css = {
   //"background-image: url('resources/icons/background/transparent.png');" +
   //"}",
 
-  viewServicePage: ".view-service-page" +
+  viewCommonPage: ".view-common-page" +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
@@ -4379,11 +4379,7 @@ var css = {
   "background-position: center;" +
   "top: 45%;" +
   "left: 80%;" +
-  "-webkit-transform: rotate(90deg);" +
-  "-moz-transform: rotate(90deg);" +
-  "-ms-transform: rotate(90deg);" +
-  "-o-transform: rotate(90deg);" +
-  "transform: rotate(90deg);" +
+
   "}",
 
   servicePageFieldsDropdownCloseButton: ".servicepage-fields-dropdown-close-button " +
@@ -16957,6 +16953,11 @@ var css = {
   "background-position: center;" +
   "top: 35%;" +
   "left: 92%;" +
+  "-webkit-transform: rotate(90deg);" +
+  "-moz-transform: rotate(90deg);" +
+  "-ms-transform: rotate(90deg);" +
+  "-o-transform: rotate(90deg);" +
+  "transform: rotate(90deg);" +
   "}",
 
   autopayEventStepText: ".autopay-event-step-text" +

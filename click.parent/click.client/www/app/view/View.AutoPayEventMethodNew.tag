@@ -1,5 +1,6 @@
-<view-autopay-event-method-new>
-  <div class="riot-tags-main-container">
+<view-autopay-event-method-new class="riot-tags-main-container">
+  <div id="autopayEventPageId" class="view-common-page">
+
     <div class="pay-page-title" style="border-style: none;">
       <p class="servicepage-title">{titleName} {serviceName}</p>
       <p class="servicepage-category-field">{window.languages.ViewAutoPayMethodEventText}</p>
@@ -12,14 +13,13 @@
       </div>
     </div>
 
-
     <div class="autopay-method-body-container">
 
       <div class="servicepage-first-field autopay-event-name-field">
         <p class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
 
         <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="autoPayNameInput"
-               autofocus="true" onkeyup="autoPayEventNameVerificationKeyUp()"/>
+               value="{defaultName}" autofocus="true" onkeyup="autoPayEventNameVerificationKeyUp()"/>
       </div>
 
       <div class="servicepage-first-field autopay-event-number-field" id="firstField">
@@ -37,7 +37,7 @@
         <p class="autopay-event-step-field-text">{window.languages.ViewAutoPayMethodEventPutBalansText}</p>
 
         <div class="autopay-event-step-container" if="{stepsArrayExist}" ontouchend="openStepsDropDown()">
-          <div class="autopay-event-step-text">{chosenStep}</div>
+          <div class="autopay-event-step-text">{chosenStepTitle}</div>
           <div class="autopay-event-step-dropdown-icon"></div>
         </div>
       </div>
@@ -63,36 +63,7 @@
 
   </div>
 
-  <div id="blockAmountFieldId" class="autopay-event-amount-dropdown-component">
-    <div type="button" class="servicepage-fields-dropdown-close-button" role="button"
-         aria-label="{window.languages.Close}"
-         ontouchend="closeDropdownTouchEnd()" ontouchstart="closeDropdownTouchStart()"></div>
-    <div class="autopay-event-amount-dropdown-field-two">
-      <p class="autopay-event-dropdown-text-field" style="color: white;">{chosenAmount}</p>
-    </div>
-    <div class="autopay-event-dropdown-container">
-      <div class="autopay-event-dropdown-variant" each="{i in amountsArray}" id="{i}"
-           ontouchstart="onTouchStartOfAmountDropdown()" ontouchend="onTouchEndOfAmountDropdown(this.id)">
-        <p id="text{i}" class="autopay-event-dropdown-text-field" style="left: 8%">{i}</p>
-      </div>
-    </div>
-  </div>
-
-  <div id="blockStepFieldId" class="autopay-event-amount-dropdown-component">
-    <div type="button" class="servicepage-fields-dropdown-close-button" role="button"
-         aria-label="{window.languages.Close}"
-         ontouchend="closeStepsDropdownTouchEnd()" ontouchstart="closeStepsDropdownTouchStart()"></div>
-    <div class="autopay-event-amount-dropdown-field-two">
-      <p class="autopay-event-dropdown-text-field" style="color: white;">{chosenStep}</p>
-    </div>
-    <div class="autopay-event-dropdown-container">
-      <div class="autopay-event-dropdown-variant" each="{i in stepsArray}" id="{i.step_value}"
-           ontouchstart="onTouchStartOfStepDropdown()" ontouchend="onTouchEndOfStepDropdown(this.id)">
-        <p id="step{i.step_value}" class="autopay-event-dropdown-text-field" style="left: 8%">{i.step_title}</p>
-      </div>
-    </div>
-  </div>
-
+  <component-dropdown></component-dropdown>
   <component-alert if="{showError}" clickpinerror="{clickPinError}"
                    errornote="{errorNote}"></component-alert>
 
@@ -126,7 +97,7 @@
     };
 
 
-    this.titleName = window.languages.ViewAutoPayTitleName;
+    scope.titleName = window.languages.ViewAutoPayTitleName;
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     scope.servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
@@ -149,9 +120,9 @@
       scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telVerificationWithSpace(opts.firstFieldText);
 
     } else {
-      this.serviceName = scope.servicesMap[scope.autoPayData.service_id][0].name;
-      this.serviceIcon = scope.servicesMap[scope.autoPayData.service_id][0].image;
-      if (scope.autoPayData.fromView == 'PAYCONFIRM' && opts.firstFieldText) {
+      scope.serviceName = scope.servicesMap[scope.autoPayData.service_id][0].name;
+      scope.serviceIcon = scope.servicesMap[scope.autoPayData.service_id][0].image;
+      if (opts.firstFieldText) {
         if (opts.firstFieldId == 1) {
           scope.defaultNumber = !opts.firstFieldText ? null : (inputVerification.telVerificationWithSpace(opts.firstFieldText));
         }
@@ -162,38 +133,37 @@
     }
 
     scope.defaultAmount = !opts.amountText ? 0 : opts.amountText;
+    scope.defaultName = scope.autoPayData.name ? scope.autoPayData.name : "";
 
-    this.amountsArray = scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_amounts;
-    this.stepsArray = scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_steps;
-    scope.amountsArrayExist = this.amountsArray ? true : false;
-    scope.stepsArrayExist = this.stepsArray ? true : false;
-    scope.chosenStep = this.stepsArray ? this.stepsArray[0].step_value : null;
+    scope.amountsArray = scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_amounts;
+    scope.stepsArray = scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_steps;
+    scope.amountsArrayExist = !!scope.amountsArray;
+    scope.stepsArrayExist = !!scope.stepsArray;
     scope.amountsCanBeText = "";
 
-    console.log("stepsArray=", scope.stepsArray)
+    console.log("stepsArray=", scope.stepsArray);
 
 
     if (scope.amountsArrayExist) {
-      scope.chosenFieldParamId = this.amountsArray[0];
-      scope.chosenAmount = this.amountsArray[0];
+      scope.chosenFieldParamId = scope.autoPayData.amount ? scope.autoPayData.amount : scope.amountsArray[0];
+      scope.chosenAmount = scope.autoPayData.amount ? scope.autoPayData.amount : scope.amountsArray[0];
 
-      for (var i = 0; i < this.amountsArray.length; i++) {
-        if (i === this.amountsArray.length - 1)
-          scope.amountsCanBeText += 'или ' + this.amountsArray[i] + ' ';
-        else if (i === this.amountsArray.length - 2)
-          scope.amountsCanBeText += this.amountsArray[i] + ' ';
+      for (var i = 0; i < scope.amountsArray.length; i++) {
+        if (i === scope.amountsArray.length - 1)
+          scope.amountsCanBeText += 'или ' + scope.amountsArray[i] + ' ';
+        else if (i === scope.amountsArray.length - 2)
+          scope.amountsCanBeText += scope.amountsArray[i] + ' ';
         else
-          scope.amountsCanBeText += this.amountsArray[i] + ', ';
+          scope.amountsCanBeText += scope.amountsArray[i] + ', ';
       }
     }
 
     if (scope.stepsArrayExist) {
-      scope.chosenStep = this.stepsArray[0].step_title;
-      scope.chosenStepId = this.stepsArray[0].step_value;
-      chosenStep = this.stepsArray[0].step_value;
+      scope.chosenStepTitle = scope.autoPayData.stepTitle ? scope.autoPayData.stepTitle : scope.stepsArray[0].step_title;
+      scope.chosenStepId = scope.autoPayData.step ? scope.autoPayData.step : scope.stepsArray[0].step_value;
     }
 
-    scope.update(scope.amountsCanBeText);
+    scope.update();
 
     this.on('mount', function () {
       if (device.platform === 'iOS') {
@@ -208,104 +178,75 @@
     });
 
 
-    var oldChosenStep, chosenStep;
-
-    chooseStep = function (id) {
-      oldChosenStep = chosenStep;
-      chosenStep = id;
-      document.getElementById(chosenStep).style.backgroundImage = "url(resources/icons/ViewService/radio_selected.png)";
-      if (oldChosenStep && oldChosenStep !== id)
-        document.getElementById(oldChosenStep).style.backgroundImage = "url(resources/icons/ViewService/radio_unselected.png)";
-      checkFieldsEventToActivateNext();
+    openDropdownComponent = function () {
+      window.blurFields();
+      this.dropdownBackPageId.style.webkitTransition = '0.3s';
+      this.autopayEventPageId.style.webkitTransition = '0.3s';
+      this.autopayEventPageId.style.zIndex = '0';
+      this.autopayEventPageId.style.opacity = '0.1';
+      this.dropdownId.style.webkitTransition = '0.3s';
+      this.dropdownId.style.transform = "translate3d(0, 0, 0)";
+      this.dropdownId.style.webkitTransform = "translate3d(0, 0, 0)";
+      this.dropdownBackPageId.style.opacity = '1';
     };
 
-    openDropDown = function () {
-      this.blockAmountFieldId.style.display = 'block';
-      console.log("id=", scope.chosenFieldParamId);
-      if (scope.oldFieldParamId) {
-        document.getElementById(scope.oldFieldParamId).style.backgroundColor = 'white';
-        document.getElementById('text' + scope.oldFieldParamId).style.color = '#515151';
-      }
-      if (scope.chosenFieldParamId) {
-        document.getElementById(scope.chosenFieldParamId).style.backgroundColor = '#0084E6';
-        document.getElementById('text' + scope.chosenFieldParamId).style.color = 'white';
-      }
-    };
-
-
-    openStepsDropDown = function () {
-      this.blockStepFieldId.style.display = 'block';
-      console.log(" step id=", scope.chosenStepId);
-      if (scope.oldStepId) {
-        document.getElementById(scope.oldStepId).style.backgroundColor = 'white';
-        document.getElementById('step' + scope.oldStepId).style.color = '#515151';
-      }
-      if (scope.chosenStepId) {
-        document.getElementById(scope.chosenStepId).style.backgroundColor = '#0084E6';
-        document.getElementById('step' + scope.chosenStepId).style.color = 'white';
-      }
-    };
-
-    var amountOnTouchStartX, amountOnTouchStartY, amountOnTouchEndY, amountOnTouchEndX;
-
-    scope.onTouchStartOfAmountDropdown = onTouchStartOfAmountDropdown = function () {
-      event.stopPropagation();
-      amountOnTouchStartY = event.changedTouches[0].pageY;
-      amountOnTouchStartX = event.changedTouches[0].pageX;
-    };
-
-    scope.onTouchEndOfAmountDropdown = onTouchEndOfAmountDropdown = function (id) {
-      event.stopPropagation();
-
-      amountOnTouchEndY = event.changedTouches[0].pageY;
-      amountOnTouchEndX = event.changedTouches[0].pageX;
-
-      if (Math.abs(amountOnTouchStartY - amountOnTouchEndY) <= 20 && Math.abs(amountOnTouchStartX - amountOnTouchEndX) <= 20) {
-
-        this.blockAmountFieldId.style.display = 'none';
-
-        for (var i = 0; i < scope.amountsArray.length; i++) {
-          if (scope.amountsArray[i] == id) {
-            scope.chosenAmount = scope.amountsArray[i];
-
-            scope.oldFieldParamId = scope.chosenFieldParamId;
-            scope.chosenFieldParamId = id;
-            scope.update(scope.chosenAmount);
-            break;
-          }
+    scope.processDropdown = processDropdown = function (id, title) {
+      console.log("id got from dropdown =", id, title);
+      switch (scope.dropDownType) {
+        case "amount": {
+          chooseAmount(id);
+          break;
+        }
+        case "step": {
+          chooseStep(id);
+          break;
         }
       }
     };
 
-    var stepOnTouchStartX, stepOnTouchStartY, stepOnTouchEndY, stepOnTouchEndX;
+    openDropDown = function () {
 
-    scope.onTouchStartOfStepDropdown = onTouchStartOfStepDropdown = function () {
-      event.stopPropagation();
-      stepOnTouchStartY = event.changedTouches[0].pageY;
-      stepOnTouchStartX = event.changedTouches[0].pageX;
+      console.log("open amounts drop down", scope.amountsArray, scope.chosenFieldParamId);
+      scope.dropDownType = "amount";
+      updateDropdownList(scope.amountsArray, null, scope.chosenFieldParamId, null, "autopayEventPageId");
+      openDropdownComponent();
+
     };
 
-    scope.onTouchEndOfStepDropdown = onTouchEndOfStepDropdown = function (id) {
-      event.stopPropagation();
 
-      stepOnTouchEndY = event.changedTouches[0].pageY;
-      stepOnTouchEndX = event.changedTouches[0].pageX;
+    openStepsDropDown = function () {
 
-      if (Math.abs(stepOnTouchStartY - stepOnTouchEndY) <= 20 && Math.abs(stepOnTouchStartX - stepOnTouchEndX) <= 20) {
+      console.log("open steps drop down", scope.stepsArray, scope.chosenStepId);
+      scope.dropDownType = "step";
+      updateDropdownList(scope.stepsArray, "step_value", scope.chosenStepId, "step_title", "autopayEventPageId");
+      openDropdownComponent();
+    };
 
-        this.blockStepFieldId.style.display = 'none';
 
-        for (var i = 0; i < scope.stepsArray.length; i++) {
-          if (scope.stepsArray[i].step_value === id) {
-            scope.chosenStep = scope.stepsArray[i].step_title;
-            chosenStep = id;
+    chooseAmount = function (id) {
 
-            scope.oldStepId = scope.chosenStepId;
-            scope.chosenStepId = id;
-            scope.update(scope.chosenStep);
+      for (var i = 0; i < scope.amountsArray.length; i++) {
+        if (scope.amountsArray[i] == id) {
+          scope.chosenAmount = scope.amountsArray[i];
 
-            break;
-          }
+          scope.chosenFieldParamId = id;
+          scope.update(scope.chosenAmount);
+          break;
+        }
+      }
+
+    };
+
+
+    chooseStep = function (id) {
+
+      for (var i = 0; i < scope.stepsArray.length; i++) {
+        if (scope.stepsArray[i].step_value === id) {
+          scope.chosenStepTitle = scope.stepsArray[i].step_title;
+          scope.chosenStepId = id;
+          scope.update(scope.chosenStepTitle);
+
+          break;
         }
       }
     };
@@ -427,7 +368,7 @@
         return;
       }
 
-//      if (!chosenStep) {
+//      if (!scope.chosenStepId) {
 //        console.log("Выберите условную сумму для пополнения баланса");
 //        scope.enterButtonEnabled = false;
 //        scope.update(scope.enterButtonEnabled);
@@ -499,7 +440,7 @@
 //          return;
 //        }
 
-//        if (!chosenStep) {
+//        if (!scope.chosenStepId) {
 //          scope.clickPinError = false;
 //          scope.errorNote = "Выберите условную сумму для пополнения баланса";
 //          scope.showError = true;
@@ -509,21 +450,22 @@
 
         scope.autoPayData.name = autoPayNameInput.value;
         scope.autoPayData.isNew = true;
-        scope.autoPayData.step = chosenStep;
+        scope.autoPayData.step = scope.chosenStepId;
+        scope.autoPayData.stepTitle = scope.chosenStepTitle;
         scope.autoPayData.cntrg_phone_num = inputVerification.spaceDeleter(PhoneNumberInput.value);
         scope.autoPayData.amount = scope.chosenAmount;
         opts.amountText = scope.chosenAmount;
 
         for (var j in scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_steps) {
           console.log("STep =", scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_steps[j]);
-          if (scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_steps[j].step_value == chosenStep) {
+          if (scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_steps[j].step_value == scope.chosenStepId) {
             scope.autoPayData.condition_text = window.languages.ViewAutoPayAfterMinimumBalansText + scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_steps[j].step_title;
             console.log("STep title=", scope.servicesMap[scope.autoPayData.service_id][0].autopay_available_steps[j].step_title);
             break;
           }
         }
         console.log("Autopay Data=", scope.autoPayData);
-//      scope.autoPayData.condition_text = window.languages.ViewAutoPayAfterMinimumBalansText + chosenStep;
+//      scope.autoPayData.condition_text = window.languages.ViewAutoPayAfterMinimumBalansText + scope.chosenStepId;
         localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
 
 
@@ -546,53 +488,6 @@
           scope.unmount()
 
         }
-      }
-    };
-
-    var closeDropdownTouchStartX, closeDropdownTouchStartY, closeDropdownTouchEndX,
-      closeDropdownTouchEndY;
-
-    closeDropdownTouchStart = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      closeDropdownTouchStartX = event.changedTouches[0].pageX;
-      closeDropdownTouchStartY = event.changedTouches[0].pageY;
-    };
-
-    closeDropdownTouchEnd = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      closeDropdownTouchEndX = event.changedTouches[0].pageX;
-      closeDropdownTouchEndY = event.changedTouches[0].pageY;
-
-      if (Math.abs(closeDropdownTouchStartX - closeDropdownTouchEndX) <= 20 && Math.abs(closeDropdownTouchStartY - closeDropdownTouchEndY) <= 20) {
-        this.blockAmountFieldId.style.display = 'none';
-      }
-    };
-
-
-    var closeStepDropdownStartX, closeStepDropdownStartY, closeStepDropdownEndX,
-      closeStepDropdownEndY;
-
-    closeStepsDropdownTouchStart = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      closeStepDropdownStartX = event.changedTouches[0].pageX;
-      closeStepDropdownStartY = event.changedTouches[0].pageY;
-    };
-
-    closeStepsDropdownTouchEnd = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      closeStepDropdownEndX = event.changedTouches[0].pageX;
-      closeStepDropdownEndY = event.changedTouches[0].pageY;
-
-      if (Math.abs(closeStepDropdownStartX - closeStepDropdownEndX) <= 20 && Math.abs(closeStepDropdownStartY - closeStepDropdownEndY) <= 20) {
-        this.blockStepFieldId.style.display = 'none';
       }
     };
 
