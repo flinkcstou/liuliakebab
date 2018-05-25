@@ -1374,9 +1374,9 @@ window.fingerPrintInit = function () {
           };
 
           navigator.notification.confirm(
-            'Хотите использовать ее для CLICK?',  // message
+            'Хотите использовать сканер отпечатка пальца для входа в CLICK?',  // message
             onConfirm,              // callback to invoke with index of button pressed
-            'Устройтсво поддерживает технологию TouchID',            // title
+            'Устройство поддерживает технологию Fingerprint',            // title
             ['Да', 'Нет']          // buttonLabels
           );
 
@@ -1421,7 +1421,7 @@ window.fingerPrintInit = function () {
         }
 
         navigator.notification.confirm(
-          'Хотите использовать ее для CLICK?',  // message
+          'Хотите использовать её для входа в CLICK?',  // message
           onConfirm,              // callback to invoke with index of button pressed
           availableTech,            // title
           ['Да', 'Нет']          // buttonLabels
