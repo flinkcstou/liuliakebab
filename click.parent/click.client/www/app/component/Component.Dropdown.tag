@@ -2,7 +2,9 @@
   <div id="dropdownBackPageId" ontouchend="dropdownMenuTouchEnd(true)" ontouchstart="dropdownMenuTouchStart()"
        ontouchmove="dropdownMenuTouchMove()" class="dropdown-back-page"></div>
 
-  <div id="dropdownId" class="dropdown-menu">
+  <div id="dropdownId" class="dropdown-menu" ontouchend="dropdownMenuTouchEnd(true)"
+       ontouchstart="dropdownMenuTouchStart()"
+       ontouchmove="dropdownMenuTouchMove()">
 
     <div id="closeMenuButtonId" role="button" aria-label="{window.languages.Close}" class="dropdown-close-button "
          ontouchstart="closeDropdownStart()"
@@ -23,6 +25,7 @@
     var scope = this;
     var touchStartX, touchEndX, touchMoveX, touchEndMove, timeStartX, timeEndXs;
     var dropdownTouchStartX, dropdownTouchStartY, dropdownTouchEndX, dropdownTouchEndY;
+    var width = window.innerWidth;
     scope.dropdownList = [];
     scope.idParam = "";
     scope.titleParam = "";
@@ -95,7 +98,8 @@
       event.preventDefault();
       event.stopPropagation();
       touchMoveX = event.changedTouches[0].pageX;
-      if (touchStartX < touchMoveX) return;
+      if (touchStartX > touchMoveX) return;
+
       var deltaForMainPage = Math.abs((touchStartX - touchMoveX).toFixed(0) / width * 2);
       var deltaForSideMenuBack = 1 - deltaForMainPage;
       if (deltaForSideMenuBack < 0.1)
@@ -104,10 +108,9 @@
       dropdownBackPageId.style.opacity = deltaForSideMenuBack;
       document.getElementById(scope.pageId).style.opacity = deltaForMainPage;
 
-      if (touchMoveX - touchStartX <= 0) {
+      if (touchStartX - touchMoveX <= 0) {
         dropdownId.style.webkitTransform = 'translate3d(' + (touchMoveX - touchStartX) + 'px,0,0)';
         touchEndMove = touchMoveX - touchStartX;
-        componentMenu.checkOpen = true;
       }
 
     };
