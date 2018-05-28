@@ -1206,14 +1206,6 @@
 
     scope.openDropdownComponent = openDropdownComponent = function () {
       window.blurFields();
-//      this.dropdownBackPageId.style.webkitTransition = '0.3s';
-//      this.servicePageId.style.webkitTransition = '0.3s';
-//      this.servicePageId.style.zIndex = '0';
-//      this.servicePageId.style.opacity = '0.1';
-//      this.dropdownId.style.webkitTransition = '0.3s';
-//      this.dropdownId.style.transform = "translate3d(0, 0, 0)";
-//      this.dropdownId.style.webkitTransform = "translate3d(0, 0, 0)";
-//      this.dropdownBackPageId.style.opacity = '1';
 
       dropdownBackPageId.style.webkitTransition = '0.3s';
       servicePageId.style.webkitTransition = '0.3s';
