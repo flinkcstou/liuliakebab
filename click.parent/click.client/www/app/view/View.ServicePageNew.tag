@@ -1205,7 +1205,6 @@
     // }
 
     scope.openDropdownComponent = openDropdownComponent = function () {
-      window.blurFields();
 
       dropdownBackPageId.style.webkitTransition = '0.3s';
       servicePageId.style.webkitTransition = '0.3s';
@@ -1215,6 +1214,10 @@
       dropdownId.style.transform = "translate3d(0, 0, 0)";
       dropdownId.style.webkitTransform = "translate3d(0, 0, 0)";
       dropdownBackPageId.style.opacity = '1';
+      setTimeout(function () {
+        window.blurFields();
+      }, 200);
+
     };
 
     scope.processDropdown = processDropdown = function (id, title) {

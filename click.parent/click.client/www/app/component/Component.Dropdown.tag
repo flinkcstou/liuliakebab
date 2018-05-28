@@ -6,7 +6,7 @@
        ontouchstart="dropdownMenuTouchStart()"
        ontouchmove="dropdownMenuTouchMove()">
 
-    <div id="closeMenuButtonId" role="button" aria-label="{window.languages.Close}" class="dropdown-close-button "
+    <div id="closeDropdownButtonId" role="button" aria-label="{window.languages.Close}" class="dropdown-close-button "
          ontouchstart="closeDropdownStart()"
          ontouchend="closeDropdown()"></div>
 
@@ -38,26 +38,26 @@
     });
 
     closeDropdownStart = function () {
-      closeMenuButtonId.style.webkitTransform = 'scale(0.8)'
+      closeDropdownButtonId.style.webkitTransform = 'scale(0.8)'
     };
 
     closeDropdown = function () {
 
-      closeMenuButtonId.style.webkitTransform = 'scale(1)';
+      closeDropdownButtonId.style.webkitTransform = 'scale(1)';
 
       if (event) {
         event.preventDefault();
         event.stopPropagation();
       }
-//      componentMenu.checkOpen = false;
 
       dropdownId.style.webkitTransition = '0.3s';
       dropdownBackPageId.style.opacity = '0';
-      dropdownBackPageId.style.webkitTransition = '0';
+      dropdownBackPageId.style.webkitTransition = '0.3s';
       dropdownId.style.webkitTransform = "translate3d(100%, 0, 0)";
       dropdownId.style.Transform = "translate3d(100%, 0, 0)";
       document.getElementById(scope.pageId).style.opacity = '1';
       document.getElementById(scope.pageId).style.zIndex = '1';
+      document.getElementById(scope.pageId).style.webkitTransition = '0.3s';
       scope.update();
     };
 

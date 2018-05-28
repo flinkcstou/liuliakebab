@@ -4380,6 +4380,11 @@ var css = {
   "background-position: center;" +
   "top: 45%;" +
   "left: 80%;" +
+  "-webkit-transform: rotate(90deg);" +
+  "-moz-transform: rotate(90deg);" +
+  "-ms-transform: rotate(90deg);" +
+  "-o-transform: rotate(90deg);" +
+  "transform: rotate(90deg);" +
 
   "}",
 
@@ -4586,7 +4591,7 @@ var css = {
   "top: 25%;" +
   "padding: 0;" +
   "margin: 0;" +
-  "margin-left: 3%;" +
+  "left: 4%;" +
   "width: 57%;" +
   "font-size:" + 54 * widthK + "px; " +
   "font-family: 'SFUIDisplay-Light';" +
