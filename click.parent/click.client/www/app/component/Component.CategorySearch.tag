@@ -8,21 +8,10 @@
   <div id="searchContainerId" class="search-container">
     <input autofocus="true" id="searchInputId" class="search-input" onkeyup="searchSuggestion()"/>
     <div class="search-suggestion-container">
-      <div id="suggestionOneId" class="search-suggestion-field-one" ontouchstart="suggestionFieldOneTouchStart()"
+      <div class="search-suggestion-field-one" each="{i in suggestions}" ontouchstart="suggestionFieldOneTouchStart()"
            ontouchend="suggestionFieldOneTouchEnd()">
-        <p class="search-part-of-suggestion">{onePartOne}<mark class="search-selected-field-color">{onePartTwo}</mark>{onePartThree}</p>
-      </div>
-      <div id="suggestionTwoId" class="search-suggestion-field-two" ontouchstart="suggestionFieldTwoTouchStart()"
-           ontouchend="suggestionFieldTwoTouchEnd()">
-        <p class="search-part-of-suggestion">{twoPartOne}<mark class="search-selected-field-color">{twoPartTwo}</mark>{twoPartThree}</p>
-      </div>
-      <div id="suggestionThreeId" class="search-suggestion-field-three" ontouchstart="suggestionFieldThreeTouchStart()"
-           ontouchend="suggestionFieldThreeTouchEnd()">
-        <p class="search-part-of-suggestion">{threePartOne}<mark class="search-selected-field-color">{threePartTwo}</mark>{threePartThree}</p>
-      </div>
-      <div id="suggestionFourId" class="search-suggestion-field-four" ontouchstart="suggestionFieldFourTouchStart()"
-           ontouchend="suggestionFieldFourTouchEnd()">
-        <p class="search-part-of-suggestion">{fourPartOne}<mark class="search-selected-field-color">{fourPartTwo}</mark>{fourPartThree}</p>
+        <p class="search-part-of-suggestion">{i.name}
+        </p>
       </div>
     </div>
   </div>
@@ -123,135 +112,25 @@
 
     searchSuggestion = function () {
 
-      var countOfSuggestionWord = 0;
-      var check = false;
       event.preventDefault();
       event.stopPropagation();
 
       if (event.keyCode != 16 && event.keyCode != 18)
         scope.searchWord = event.target.value.toLowerCase();
 
-      scope.suggestionOne = {};
-      scope.suggestionTwo = {};
-      scope.suggestionThree = {};
-      scope.suggestionFour = {};
+      scope.suggestions = [];
 
       if (scope.searchWord.length != 0)
         arrayOfConnectedSuggestion.filter(function (wordOfFunction) {
 
           var index = wordOfFunction.name.toLowerCase().indexOf(scope.searchWord);
-          if (index != -1 && countOfSuggestionWord <= 4) {
-
-            check = true;
-            if (countOfSuggestionWord == 3) {
-
-              suggestionOneId.style.display = 'block';
-              suggestionTwoId.style.display = 'block';
-              suggestionThreeId.style.display = 'block';
-              suggestionFourId.style.display = 'block';
-
-              scope.suggestionFour.name = wordOfFunction.name;
-
-              scope.suggestionFour.id = wordOfFunction.id;
-
-              if (wordOfFunction.form_type) {
-                scope.suggestionFour.form_type = wordOfFunction.form_type;
-              }
-
-              scope.fourPartOne = scope.suggestionFour.name.substring(0, index);
-              scope.fourPartTwo = scope.suggestionFour.name.substring(index, scope.searchWord.length + scope.fourPartOne.length);
-              scope.fourPartThree = scope.suggestionFour.name.substring(scope.fourPartTwo.length + scope.fourPartOne.length, scope.suggestionFour.name.length);
-
-              scope.update();
-            }
-            if (countOfSuggestionWord == 2) {
-
-              suggestionOneId.style.display = 'block';
-              suggestionTwoId.style.display = 'block';
-              suggestionThreeId.style.display = 'block';
-              suggestionFourId.style.display = 'none';
-
-              scope.suggestionThree.name = wordOfFunction.name;
-
-              scope.suggestionThree.id = wordOfFunction.id;
-
-              if (wordOfFunction.form_type) {
-                scope.suggestionThree.form_type = wordOfFunction.form_type;
-              }
-
-              scope.threePartOne = scope.suggestionThree.name.substring(0, index);
-              scope.threePartTwo = scope.suggestionThree.name.substring(index, scope.searchWord.length + scope.threePartOne.length);
-              scope.threePartThree = scope.suggestionThree.name.substring(scope.threePartTwo.length + scope.threePartOne.length, scope.suggestionThree.name.length);
-
-              scope.update();
-
-            }
-            if (countOfSuggestionWord == 1) {
-
-              suggestionOneId.style.display = 'block';
-              suggestionTwoId.style.display = 'block';
-              suggestionThreeId.style.display = 'none';
-              suggestionFourId.style.display = 'none';
-
-              scope.suggestionTwo.name = wordOfFunction.name;
-              scope.suggestionTwo.id = wordOfFunction.id;
-
-              if (wordOfFunction.form_type) {
-                scope.suggestionTwo.form_type = wordOfFunction.form_type;
-              }
-
-              scope.twoPartOne = scope.suggestionTwo.name.substring(0, index);
-              scope.twoPartTwo = scope.suggestionTwo.name.substring(index, scope.searchWord.length + scope.twoPartOne.length);
-              scope.twoPartThree = scope.suggestionTwo.name.substring(scope.twoPartTwo.length + scope.twoPartOne.length, scope.suggestionTwo.name.length);
-
-              scope.update();
-
-            }
-            if (countOfSuggestionWord == 0) {
-
-              suggestionOneId.style.display = 'block';
-              suggestionTwoId.style.display = 'none';
-              suggestionThreeId.style.display = 'none';
-              suggestionFourId.style.display = 'none';
-
-              scope.suggestionOne.name = wordOfFunction.name;
-              scope.suggestionOne.id = wordOfFunction.id;
-
-              if (wordOfFunction.form_type) {
-                scope.suggestionOne.form_type = wordOfFunction.form_type;
-              }
-
-
-              scope.onePartOne = scope.suggestionOne.name.substring(0, index);
-              scope.onePartTwo = scope.suggestionOne.name.substring(index, scope.searchWord.length + scope.onePartOne.length);
-              scope.onePartThree = scope.suggestionOne.name.substring(scope.onePartTwo.length + scope.onePartOne.length, scope.suggestionOne.name.length);
-
-              console.log("scope.suggestionOne.name=", scope.suggestionOne.name)
-              console.log("scope.onePartOne=", "!" + scope.onePartOne, "!" + scope.suggestionOne.name.substring(0, index) + "!")
-              console.log("scope.onePartTwo=" + "!" + scope.onePartTwo + "!" + scope.suggestionOne.name.substring(index, scope.searchWord.length + scope.onePartOne.length) + "!")
-              console.log("scope.onePartThree=" + "'" + scope.onePartThree + "'" + scope.suggestionOne.name.substring(scope.onePartTwo.length + scope.onePartOne.length, scope.suggestionOne.name.length) + "!")
-              console.log("sample=" + "q" + "asd" + "q");
-
-
-              scope.update();
-            }
-            if (countOfSuggestionWord == 3)
-              return
-
-            countOfSuggestionWord++;
+          if (index != -1) {
+            console.log("found ", wordOfFunction);
+            scope.suggestions.push(wordOfFunction);
           }
-          else {
-            if (!check) {
-              suggestionOneId.style.display = 'none';
-              suggestionTwoId.style.display = 'none';
-              suggestionThreeId.style.display = 'none';
-              suggestionFourId.style.display = 'none';
-            }
-            return
-          }
+        });
 
-
-        })
+      scope.update();
     };
 
     var suggestionOneTouchStartX,

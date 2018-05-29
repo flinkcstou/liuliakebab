@@ -5883,12 +5883,12 @@ var css = {
 
   searchSuggestionFieldOne: ".search-suggestion-field-one " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "top: 3%;" +
   "width: 103%;" +
   "left: -1%;" +
   "height: 22%;" +
-  "display: none;" +
+  // "display: none;" +
   "background-color: white;" +
   "}",
 
