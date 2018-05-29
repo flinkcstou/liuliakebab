@@ -18,7 +18,7 @@
 
       <div class="inplace-pay-search-container">
         <div class="inplace-pay-search-field" id="searchContainerId">
-          <input class="inplace-pay-search-input-part" type="text" id="searchInputId"
+          <input class="inplace-pay-search-input-part" type="text" id="searchInputId" value="{opts.searchWord}"
                  onfocus="colorFieldInplaceSearch()"
                  onblur="blurFieldInplaceSearch()"
                  onkeydown="keyDownFieldInplaceSearch()"
@@ -41,7 +41,7 @@
           <li each="{i in suggestions}" style="overflow: hidden;">
             <div class="pay-service-block-containter" id="{i.id}"
                  ontouchstart="onTouchStartOfService(this.id)"
-                 ontouchend="onTouchEndOfService(this.id, true)">
+                 onclick="onTouchEndOfService(this.id, true)">
               <div class="pay-category-icon" style="background-image: url({i.image})"></div>
               <div class="pay-category-name-field">{i.name}
               </div>
@@ -70,7 +70,7 @@
                     if="{j.autopay_available_schedule || j.autopay_available || !j.form_type}">
                   <div class="pay-service-icon" style="background-image: url({j.image})" id="{j.id}" role="button"
                        aria-label="{j.name}"
-                       ontouchend="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
+                       onclick="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
                     <div class="pay-service-name-field">{j.name}</div>
                   </div>
                 </li>
@@ -95,7 +95,7 @@
                     each="{j in currentList}">
                   <div class="pay-service-icon" style="background-image: url({j.image})" id="{j.id}" role="button"
                        aria-label="{j.name}"
-                       ontouchend="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
+                       onclick="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
                     <div class="pay-service-name-field">{j.name}</div>
                   </div>
                 </li>
@@ -130,7 +130,7 @@
     scope.servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
     scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
     scope.searchServices = viewPay.searchServices ? viewPay.searchServices : false;
-    scope.showSearchIcon = true;
+    scope.showSearchIcon = !opts.searchWord;
     var arrayOfConnectedSuggestion = scope.categoryList.concat(scope.serviceList);
     scope.suggestions = sessionStorage.getItem('click_client_suggestions') ? JSON.parse(sessionStorage.getItem('click_client_suggestions')) : [];
 
@@ -187,16 +187,17 @@
 
     scope.on('mount', function () {
       console.log("OPTS in Pay", opts, opts.mode);
-      if (opts.categoryId) {
+      if (opts.categoryId && !viewPay.searchServices) {
         document.getElementById("tick" + viewPay.categoryId).style.backgroundImage = "url(resources/icons/ViewPay/catclose.png)";
         hintUpdate(viewPay.categoryId);
         scope.index = viewPay.categoryId;
         scope.show = true;
         scope.currentList = scope.servicesMapByCategory[viewPay.categoryId];
       }
-      if (opts.categoryId || viewPay.searchServices)
+      if (opts.categoryId || viewPay.searchServices) {
         categoriesContainerId.scrollTop = viewPay.categoryScrollTop;
-
+        viewPay.categoryScrollTop = null;
+      }
 
       console.log("viewPay.categoryScrollTop = ", viewPay.categoryScrollTop);
 
@@ -422,10 +423,6 @@
         event.stopPropagation();
         event.preventDefault();
 
-        viewPay.categoryScrollTop = categoriesContainerId.scrollTop;
-
-        viewPay.searchServices = scope.searchServices;
-
         if (document.getElementById(id))
           document.getElementById(id).style.webkitTransform = 'scale(0.8)';
 
@@ -439,6 +436,10 @@
           newOpts.categoryId = opts.categoryId;
           opts = JSON.parse(JSON.stringify(newOpts));
           newOpts = null;
+
+          viewPay.categoryScrollTop = categoriesContainerId.scrollTop;
+          viewPay.searchServices = scope.searchServices;
+          opts.searchWord = searchInputId.value;
 
           console.log('ID ID ID', id)
           if (opts.mode == 'ADDAUTOPAY') {
