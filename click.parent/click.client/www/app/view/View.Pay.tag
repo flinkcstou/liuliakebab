@@ -33,7 +33,7 @@
                   each="{j in currentList}" if="{j.autopay_available_schedule || j.autopay_available || !j.form_type}">
                 <div class="pay-service-icon" style="background-image: url({j.image})" id="{j.id}" role="button"
                      aria-label="{j.name}"
-                     ontouchend="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
+                     onclick="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
                   <div class="pay-service-name-field">{j.name}</div>
                 </div>
               </li>
@@ -58,7 +58,7 @@
                   each="{j in currentList}">
                 <div class="pay-service-icon" style="background-image: url({j.image})" id="{j.id}" role="button"
                      aria-label="{j.name}"
-                     ontouchend="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
+                     onclick="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
                   <div class="pay-service-name-field">{j.name}</div>
                 </div>
               </li>
@@ -273,6 +273,8 @@
 
     scope.onTouchStartOfService = onTouchStartOfService = function (id) {
 
+      event.stopPropagation();
+
       onTouchStartY = event.changedTouches[0].pageY;
       onTouchStartX = event.changedTouches[0].pageX;
     };
@@ -284,8 +286,8 @@
 
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {
 
-      onTouchEndY = event.changedTouches[0].pageY;
-      onTouchEndX = event.changedTouches[0].pageX;
+      onTouchEndY = event.pageY;
+      onTouchEndX = event.pageX;
 
       if ((Math.abs(onTouchStartY - onTouchEndY) <= 15 && Math.abs(onTouchStartX - onTouchEndX) <= 15) || scope.checkOfSearch) {
 
