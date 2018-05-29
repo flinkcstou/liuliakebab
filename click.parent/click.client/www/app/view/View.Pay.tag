@@ -401,6 +401,8 @@
 
     scope.onTouchStartOfService = onTouchStartOfService = function (id) {
 
+      event.stopPropagation();
+
       onTouchStartY = event.changedTouches[0].pageY;
       onTouchStartX = event.changedTouches[0].pageX;
     };
@@ -412,10 +414,8 @@
 
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {
 
-      if (event) {
-        onTouchEndY = event.changedTouches[0].pageY;
-        onTouchEndX = event.changedTouches[0].pageX;
-      }
+      onTouchEndY = event.pageY;
+      onTouchEndX = event.pageX;
 
       if ((Math.abs(onTouchStartY - onTouchEndY) <= 15 && Math.abs(onTouchStartX - onTouchEndX) <= 15) || scope.checkOfSearch) {
 
