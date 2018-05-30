@@ -21,7 +21,7 @@
           <input class="inplace-pay-search-input-part" type="text" id="searchInputId" value="{opts.searchWord}"
                  onfocus="colorFieldInplaceSearch()"
                  onblur="blurFieldInplaceSearch()"
-                 onkeydown="keyDownFieldInplaceSearch()"
+                 onkeyup="keyUpFieldInplaceSearch()"
                  oninput="onInputSearchField()"
                  placeholder="{window.languages.InPlaceSearchPlaceHolderText}"/>
           <div if="{showSearchIcon}" id="searchIcon"
@@ -153,7 +153,7 @@
         searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search.png)';
     };
 
-    keyDownFieldInplaceSearch = function () {
+    keyUpFieldInplaceSearch = function () {
 
       console.log("search suggestions 1", event.target.value);
 
@@ -171,7 +171,7 @@
         if (scope.searchWord.length != 0)
           arrayOfConnectedSuggestion.filter(function (wordOfFunction) {
 
-            var index = wordOfFunction.name.toLowerCase().indexOf(scope.searchWord);
+            var index = wordOfFunction.name.toLowerCase().search(scope.searchWord.toString());
             if (index != -1) {
               console.log("found ", wordOfFunction);
               scope.suggestions.push(wordOfFunction);
