@@ -698,7 +698,9 @@
       var password = hex_sha512(token + date + pin);
       localStorage.setItem("pinForStand", pin);
       if (bool == false) {
-        var password = hex_sha512(token + date + hex_md5("sjfhyasdugjhkhiuk"));
+        password = hex_sha512(token + date + hex_md5("sjfhyasdugjhkhiuk"));
+        scope.fingerprintError = true;
+
       } else {
         window.startSpinner();
       }
@@ -832,6 +834,7 @@
               }
               return
             } else {
+
               console.log("fingerprintMode error", result[0][0].error_note);
               scope.errorMessage = result[0][0].error_note;
               scope.update();
@@ -843,7 +846,7 @@
                   document.getElementById('fingerPrintErrorText').classList.add("auth-fingerprint-errortext-start");
                 }
                 setTimeout(function () {
-                  if (viewAuthorization.fingerPrintErrorCount == 3) {
+                  if (viewAuthorization.fingerPrintErrorCount == 3 || !scope.fingerprintError) {
                     console.log("stopping fingerPrintMode");
                     fingerPrintStop();
                     scope.fingerprintMode = false;
