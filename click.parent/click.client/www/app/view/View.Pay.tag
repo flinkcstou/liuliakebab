@@ -249,14 +249,16 @@
         scope.suggestions = [];
 
         if (scope.searchWord.length != 0)
-          arrayOfConnectedSuggestion.filter(function (wordOfFunction) {
+          arrayOfConnectedSuggestion.filter(function (service) {
 
-            var index = wordOfFunction.name.toLowerCase().search(scope.searchWord.toString());
-            if (index != -1) {
-              console.log("wordOfFunction.name.toLowerCase() =", wordOfFunction.name.toLowerCase(), scope.searchWord);
-              console.log("found ", index, wordOfFunction.name);
-              scope.suggestions.push(wordOfFunction);
-              sessionStorage.setItem('click_client_suggestions', JSON.stringify(scope.suggestions));
+            var index = service.name.toLowerCase().search(scope.searchWord.toString());
+            if (index != -1 && service.is_visible) {
+              if (opts.mode != "ADDAUTOPAY" || (opts.mode == "ADDAUTOPAY" && (service.autopay_available_schedule || service.autopay_available || !service.form_type))) {
+                console.log("service is visible=", service.is_visible);
+                console.log("found ", index, service.name);
+                scope.suggestions.push(service);
+                sessionStorage.setItem('click_client_suggestions', JSON.stringify(scope.suggestions));
+              }
             }
           });
         console.log("array ", scope.suggestions);
