@@ -1,4 +1,4 @@
-<view-pay>
+<view-pay-services>
   <div id="viewPayId" class="view-pay riot-tags-main-container">
     <div class="page-title">
       <p class="name-title">{titleName}</p>
@@ -21,7 +21,7 @@
           <input class="inplace-pay-search-input-part" type="text" id="searchInputId" value="{opts.searchWord}"
                  onfocus="colorFieldInplaceSearch()"
                  onblur="blurFieldInplaceSearch()"
-                 onkeyup="keyUpFieldInplaceSearch()"
+                 onkeydown="keyDownFieldInplaceSearch()"
                  oninput="onInputSearchField()"
                  placeholder="{window.languages.InPlaceSearchPlaceHolderText}"/>
           <div if="{showSearchIcon}" id="searchIcon"
@@ -35,7 +35,7 @@
         </div>
       </div>
 
-      <div class="inplace-pay-category-inner-container" if="{searchServices}" id="categoriesContainerId">
+      <div class="inplace-pay-category-inner-container" id="categoriesContainerId">
 
         <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
           <li each="{i in suggestions}" style="overflow: hidden;">
@@ -52,61 +52,6 @@
         </ul>
       </div>
 
-      <div class="inplace-pay-category-inner-container" if="{!searchServices}" id="categoriesContainerId"
-           onscroll="onTouchMoveOfCategory()">
-
-        <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;" if="{opts.mode == 'ADDAUTOPAY'}">
-          <li each="{i in categoryList}" style="overflow: hidden;">
-            <div if="{!(modeOfApp.offlineMode && i.id == 11)}" class="pay-service-block-containter" id="{i.id}"
-                 ontouchstart="onTouchStartOfCategory(this.id)"
-                 onclick="onTouchEndOfCategory(this.id)">
-              <div class="pay-category-icon" style="background-image: url({i.icon})"></div>
-              <div class="pay-category-name-field">{i.name}
-              </div>
-              <div class="pay-icon-tick" id="tick{i.id}"></div>
-              <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
-                <li class="pay-service-containter"
-                    each="{j in currentList}"
-                    if="{j.autopay_available_schedule || j.autopay_available || !j.form_type}">
-                  <div class="pay-service-icon" style="background-image: url({j.image})" id="{j.id}" role="button"
-                       aria-label="{j.name}"
-                       onclick="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
-                    <div class="pay-service-name-field">{j.name}</div>
-                  </div>
-                </li>
-              </ul>
-              <div class="title-bottom-border">
-              </div>
-            </div>
-          </li>
-        </ul>
-
-        <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;" if="{opts.mode != 'ADDAUTOPAY'}">
-          <li each="{i in categoryList}" style="overflow: hidden;">
-            <div if="{!(modeOfApp.offlineMode && i.id == 11)}" class="pay-service-block-containter" id="{i.id}"
-                 ontouchstart="onTouchStartOfCategory(this.id)"
-                 onclick="onTouchEndOfCategory(this.id)">
-              <div class="pay-category-icon" style="background-image: url({i.icon})"></div>
-              <div class="pay-category-name-field">{i.name}
-              </div>
-              <div class="pay-icon-tick" id="tick{i.id}"></div>
-              <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
-                <li class="pay-service-containter"
-                    each="{j in currentList}">
-                  <div class="pay-service-icon" style="background-image: url({j.image})" id="{j.id}" role="button"
-                       aria-label="{j.name}"
-                       onclick="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
-                    <div class="pay-service-name-field">{j.name}</div>
-                  </div>
-                </li>
-              </ul>
-              <div class="title-bottom-border">
-              </div>
-            </div>
-          </li>
-        </ul>
-
-      </div>
 
     </div>
   </div>
@@ -120,30 +65,16 @@
       this.titleName = window.languages.ViewAutoPayTitleName;
     else this.titleName = window.languages.ViewPayTitleName;
 
-    window.saveHistory('view-pay', opts);
+    window.saveHistory('view-pay-services', opts);
 
     scope.categoryList = (JSON.parse(localStorage.getItem("click_client_payCategoryList"))) ? (JSON.parse(localStorage.getItem("click_client_payCategoryList"))) : (offlinePayCategoryList);
     scope.serviceList = (JSON.parse(localStorage.getItem("click_client_payServiceList"))) ? (JSON.parse(localStorage.getItem("click_client_payServiceList"))) : (offlinePayServiceList);
-    scope.serviceNamesMap = (JSON.parse(localStorage.getItem("click_client_payServiceNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_payServiceNamesMap"))) : (offlinePayServiceNamesMap);
-    scope.servicesMapByCategory = (JSON.parse(localStorage.getItem("click_client_servicesMapByCategory"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMapByCategory"))) : (offlineServicesMapByCategory);
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
-    scope.servicesParams = (JSON.parse(localStorage.getItem("click_client_servicesParams"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParams"))) : (offlineServicesParams);
-    scope.servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
-    scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
-    scope.searchServices = false;
     scope.showSearchIcon = !opts.searchWord;
     var searchFieldTimeout;
     var arrayOfConnectedSuggestion = scope.categoryList.concat(scope.serviceList);
     scope.suggestions = sessionStorage.getItem('click_client_suggestions') ? JSON.parse(sessionStorage.getItem('click_client_suggestions')) : [];
 
-    //    console.log("click_client_payCategoryList", localStorage.getItem("click_client_payCategoryList"));
-    //    console.log("click_client_payServiceList", localStorage.getItem("click_client_payServiceList"));
-    //    console.log("click_client_payServiceNamesMap", localStorage.getItem("click_client_payServiceNamesMap"));
-    //    console.log("click_client_servicesMapByCategory", localStorage.getItem("click_client_servicesMapByCategory"));
-    //    console.log("click_client_servicesMap", localStorage.getItem("click_client_servicesMap"));
-    //    console.log("click_client_servicesParams", localStorage.getItem("click_client_servicesParams"));
-    //    console.log("click_client_servicesParamsMapOne", localStorage.getItem("click_client_servicesParamsMapOne"));
-    //    console.log("click_client_categoryNamesMap", localStorage.getItem("click_client_categoryNamesMap"));
 
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
@@ -188,18 +119,11 @@
     };
 
     scope.on('mount', function () {
-      console.log("OPTS in Pay", opts, opts.mode);
-      if (opts.categoryId && !viewPay.searchServices) {
-        document.getElementById("tick" + viewPay.categoryId).style.backgroundImage = "url(resources/icons/ViewPay/catclose.png)";
-        hintUpdate(viewPay.categoryId);
-        scope.index = viewPay.categoryId;
-        scope.show = true;
-        scope.currentList = scope.servicesMapByCategory[viewPay.categoryId];
-      }
-      if (opts.categoryId || viewPay.searchServices) {
-        categoriesContainerId.scrollTop = viewPay.categoryScrollTop;
-        viewPay.categoryScrollTop = null;
-      }
+      console.log("OPTS in Pay services", opts, opts.mode);
+
+      categoriesContainerId.scrollTop = viewPay.categoryScrollTop;
+      viewPay.categoryScrollTop = null;
+
 
       console.log("viewPay.categoryScrollTop = ", viewPay.categoryScrollTop);
 
@@ -229,7 +153,7 @@
         searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search.png)';
     };
 
-    keyUpFieldInplaceSearch = function () {
+    keyDownFieldInplaceSearch = function () {
 
       console.log("search suggestions 1", event.target.value);
 
@@ -241,28 +165,23 @@
       clearTimeout(searchFieldTimeout);
 
       searchFieldTimeout = setTimeout(function () {
-        if (!scope.searchServices) scope.searchServices = true;
-
-//      scope.update();
-        window.saveHistory('view-pay-services', {searchWord: scope.searchWord});
 
         scope.suggestions = [];
 
         if (scope.searchWord.length != 0)
           arrayOfConnectedSuggestion.filter(function (wordOfFunction) {
 
-            var index = wordOfFunction.name.toLowerCase().search(scope.searchWord.toString());
+            var index = wordOfFunction.name.toLowerCase().indexOf(scope.searchWord);
             if (index != -1) {
-              console.log("wordOfFunction.name.toLowerCase() =", wordOfFunction.name.toLowerCase(), scope.searchWord);
-              console.log("found ", index, wordOfFunction.name);
+              console.log("found ", wordOfFunction);
               scope.suggestions.push(wordOfFunction);
               sessionStorage.setItem('click_client_suggestions', JSON.stringify(scope.suggestions));
             }
           });
         console.log("array ", scope.suggestions);
         scope.update();
-      });
 
+      });
     };
 
     onInputSearchField = function () {
@@ -297,123 +216,13 @@
       searchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(searchStartX - searchEndX) <= 20 && Math.abs(searchStartY - searchEndY) <= 20) {
-        searchInputId.value = "";
-        scope.showSearchIcon = true;
-        scope.searchMode = false;
-        scope.searchServices = false;
-        scope.update();
+//        searchInputId.value = "";
+//        scope.showSearchIcon = true;
+//        scope.searchMode = false;
+//        scope.update();
+
+        onBackKeyDown();
       }
-    };
-
-
-    scope.onTouchStartOfCategory = onTouchStartOfCategory = function (id) {
-      event.stopPropagation();
-
-      window.blurFields();
-      onTouchStartY = event.changedTouches[0].pageY;
-      onTouchStartX = event.changedTouches[0].pageX;
-    };
-
-    scope.onTouchEndOfCategory = onTouchEndOfCategory = function (id) {
-
-      if (scope.index != id)
-        document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)'
-
-
-      setTimeout(function () {
-        document.getElementById(id).style.backgroundColor = 'transparent'
-      }, 100)
-
-
-      onTouchEndY = event.pageY;
-      onTouchEndX = event.pageX;
-
-
-      setTimeout(function () {
-
-
-        if ((Math.abs(onTouchStartY - onTouchEndY) <= 20 && Math.abs(onTouchStartX - onTouchEndX) <= 20) || scope.checkOfSearch) {
-
-
-          if (scope.index == id) {
-            scope.index = -1;
-          } else {
-            if (scope.index != -1) {
-              document.getElementById("tick" + scope.index).style.backgroundImage = "url(resources/icons/ViewPay/catopen.png)";
-            }
-            scope.index = id;
-          }
-
-          scope.currentList = scope.servicesMapByCategory[id];
-//        count = 1;
-
-          console.log("currentList=", scope.currentList);
-
-
-          if (!scope.currentList) {
-            scope.show = false;
-          } else {
-            scope.show = true;
-            document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catopen.png)";
-          }
-
-          if (scope.index == id && scope.show) {
-            document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catclose.png)";
-            viewPay.categoryId = id;
-            opts.categoryId = id;
-            hintUpdate(scope.index);
-          }
-
-          document.getElementById(id).scrollIntoView();
-//        categoriesContainerId.scrollIntoView(document.getElementById(id).offsetTop)
-
-//        categoriesContainerId.scrollTop = event.changedTouches[0].pageY;
-
-          scope.update();
-        }
-      }, 100)
-    };
-
-    scope.hintShow = false;
-
-    hintUpdate = function (index) {
-//      console.log("in get top=", categoriesContainerId.scrollTop, document.getElementById(index).offsetTop);
-      if (categoriesContainerId.scrollTop - 40 > document.getElementById(index).offsetTop) {
-        scope.hintShow = true;
-        scope.showCategoryIcon = scope.categoryNamesMap[scope.index].icon;
-        scope.showCategoryName = scope.categoryNamesMap[scope.index].name;
-        scope.update();
-      } else {
-        scope.hintShow = false;
-        scope.update();
-      }
-    };
-
-
-    onTouchMoveOfCategory = function () {
-
-      event.stopPropagation();
-
-      // For preventing click to service on stop scrolling categories
-      scope.scrolling = true;
-      setTimeout(function () {
-        scope.scrolling = false;
-      }, 350);
-
-      var element = document.getElementById(scope.index);
-
-      if (element) {
-        if (categoriesContainerId.scrollTop - 40 > element.offsetTop) {
-          scope.hintShow = true;
-          scope.showCategoryIcon = scope.categoryNamesMap[scope.index].icon;
-          scope.showCategoryName = scope.categoryNamesMap[scope.index].name;
-          scope.update();
-        } else {
-          scope.hintShow = false;
-          scope.update();
-        }
-      }
-      scope.update();
     };
 
 
@@ -430,7 +239,6 @@
       }
 
       event.stopPropagation();
-
 
       onTouchStartY = event.changedTouches[0].pageY;
       onTouchStartX = event.changedTouches[0].pageX;
@@ -524,4 +332,4 @@
     };
 
   </script>
-</view-pay>
+</view-pay-services>
