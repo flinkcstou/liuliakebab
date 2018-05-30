@@ -81,6 +81,7 @@
     var qrPayButtonStartX, qrPayButtonEndX, qrPayButtonStartY,
       qrPayButtonEndY;
 
+
     goToBack = function () {
       event.preventDefault();
       event.stopPropagation();
@@ -98,6 +99,8 @@
     scope.serviceIcon = opts[2].image;
     scope.categoryName = opts[2].location ? opts[2].category_name : opts[2].name;
     scope.tax = opts[2].tax;
+    var fromQrScan = opts[2].fromQrScan;
+    console.log("fromQrScan =", fromQrScan);
 
     scope.update();
 
@@ -341,7 +344,8 @@
               viewServicePage.phoneText = null;
               viewServicePage.amountText = null;
               viewServicePinCards.friendHelpPaymentMode = false;
-              updateResultComponent(true, successStep, null, 'success', window.languages.ComponentResultQRSuccess);
+              var successText = fromQrScan ? window.languages.ComponentResultQRScanSuccess : window.languages.ComponentResultQRFormSuccess;
+              updateResultComponent(true, successStep, null, 'success', successText);
 
             } else if (result[1][0].state == 1) {
               qrCounter++;
