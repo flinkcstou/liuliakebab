@@ -437,6 +437,7 @@
               if (result[0][0].error == 0) {
                 if (result[1]) {
                   if (result[1][0]) {
+                    result[1][0].fromQrScan = true;
                     riotTags.innerHTML = "<view-qr>";
                     riot.mount('view-qr', result[1][0]);
 //                    scope.unmount()
@@ -502,6 +503,7 @@
               history.arrayOfHistory[history.arrayOfHistory.length - 1].params.searchWord = searchWord;
               sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
 
+              scope.serviceList[i].fromQrScan = false;
               console.log("service to open", scope.serviceList[i]);
               if (scope.serviceList[i].qr_only == 1) {
                 riotTags.innerHTML = "<view-qr-only>";
