@@ -2139,6 +2139,9 @@ function qrCodeScanner(scope) {
               window.clearTimeout(timeOutTimerThree);
               if (result[0][0].error == 0) {
                 if (result[1] && result[1][0]) {
+
+                  result[1][0].fromQrScan = true;
+
                   if (id) {
                     if (rkAmount) {
                       result[1][0].rk_amount = rkAmount

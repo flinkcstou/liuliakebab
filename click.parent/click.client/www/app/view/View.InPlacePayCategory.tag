@@ -381,6 +381,7 @@
               if (result[0][0].error == 0) {
                 if (result[1]) {
                   if (result[1][0]) {
+                    result[1][0].fromQrScan = true;
                     result[1][0].menu = {
                       item: [{
                         name: "c 001 ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept ViewQrInfoTitleAccept " +
