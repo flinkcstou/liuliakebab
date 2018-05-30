@@ -76,6 +76,7 @@
     //TODO: OPTIMIZE THIS PAGE SLOW DOWNLOADING CATEGORIES AND SERVICES
     var scope = this;
     scope.checkOfSearch = false;
+    scope.scrolling = false;
 
     if (opts.mode == 'ADDAUTOPAY')
       this.titleName = window.languages.ViewAutoPayTitleName;
@@ -254,6 +255,13 @@
     onTouchMoveOfCategory = function () {
 
       event.stopPropagation();
+
+      // For preventing click to service on stop scrolling categories
+      scope.scrolling = true;
+      setTimeout(function () {
+        scope.scrolling = false;
+      }, 350);
+
       var element = document.getElementById(scope.index);
 
       if (element) {
@@ -273,6 +281,15 @@
 
     scope.onTouchStartOfService = onTouchStartOfService = function (id) {
 
+      // For preventing click to service on stop scrolling categories
+      if (scope.scrolling){
+        event.stopPropagation();
+        event.preventDefault();
+        onTouchStartY = 0;
+        onTouchStartX = 0;
+        return;
+      }
+
       event.stopPropagation();
 
       onTouchStartY = event.changedTouches[0].pageY;
@@ -285,6 +302,13 @@
     //opts = (!opts.mode || opts.mode == 'USUAL') ? {} : opts;
 
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {
+
+      // For preventing click to service on stop scrolling categories
+      if (scope.scrolling){
+        event.stopPropagation();
+        event.preventDefault();
+        return;
+      }
 
       onTouchEndY = event.pageY;
       onTouchEndX = event.pageX;
