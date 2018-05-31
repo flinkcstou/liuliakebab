@@ -4150,6 +4150,18 @@ var css = {
   "float: left;" +
   "}",
 
+  paySearchServicesIcon: ".pay-search-services-icon" +
+  "{" +
+  "position: relative;" +
+  "width: 13%;" +
+  "height:" + 95 * widthK + "px; " +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "float: left;" +
+  "left: 3%;" +
+  "background-size: 100%;" +
+  "}",
+
 
   //viewPay: ".view-pay" +
   //"{" +

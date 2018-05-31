@@ -42,7 +42,7 @@
             <div class="pay-service-block-containter" id="{i.id}"
                  ontouchstart="onTouchStartOfService(this.id)"
                  onclick="onTouchEndOfService(this.id, true)">
-              <div class="pay-category-icon" style="background-image: url({i.image})"></div>
+              <div class="pay-search-services-icon" style="background-image: url({i.image})"></div>
               <div class="pay-category-name-field">{i.name}
               </div>
               <div class="title-bottom-border">
@@ -319,7 +319,7 @@
     scope.onTouchEndOfCategory = onTouchEndOfCategory = function (id) {
 
       if (scope.index != id)
-        document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)'
+        document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
 
 
       setTimeout(function () {
@@ -457,16 +457,25 @@
 
       if ((Math.abs(onTouchStartY - onTouchEndY) <= 15 && Math.abs(onTouchStartX - onTouchEndX) <= 15) || scope.checkOfSearch) {
 
-        event.stopPropagation();
         event.preventDefault();
+        event.stopPropagation();
 
-        if (document.getElementById(id))
-          document.getElementById(id).style.webkitTransform = 'scale(0.8)';
+        if (document.getElementById(id)) {
+          if (searchInputId.value.length == 0)
+            document.getElementById(id).style.webkitTransform = 'scale(0.8)';
+          else
+            document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
+
+        }
 
         setTimeout(function () {
 
-          if (document.getElementById(id))
-            document.getElementById(id).style.webkitTransform = 'scale(1)';
+          if (document.getElementById(id)) {
+            if (searchInputId.value.length == 0)
+              document.getElementById(id).style.webkitTransform = 'scale(1)';
+            else
+              document.getElementById(id).style.backgroundColor = 'transparent';
+          }
 
           var newOpts = {};
           newOpts.mode = opts.mode;
