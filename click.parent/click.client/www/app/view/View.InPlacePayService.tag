@@ -17,7 +17,7 @@
                  id="searchInputId"
                  onfocus="colorFieldInplaceSearch()"
                  onblur="blurFieldInplaceSearch()"
-                 onkeydown="keyDownFieldInplaceSearch()"
+                 onkeyup="keyUpFieldInplaceSearch()"
                  oninput="onInputSearchField()"
                  placeholder="{window.languages.InPlaceSearchPlaceHolderText}"/>
           <div if="{showSearchIcon}" id="searchIcon"
@@ -113,8 +113,6 @@
     });
 
     findLocation = function () {
-
-      window.startSpinner();
 
       console.log("find location method");
 
@@ -233,13 +231,14 @@
       scope.serviceList = JSON.parse(sessionStorage.getItem('click_client_inPlacePayServiceList'));
       scope.update();
 
-    } else if (inPlacePay.latitude && inPlacePay.longitude) {
-      getServiceList();
-
     } else if (localStorage.getItem('location_find') && JSON.parse(localStorage.getItem('location_find'))) {
+      //      window.startSpinner();
+      window.startLoaderDots();
       findLocation();
 
     } else {
+      //      window.startSpinner();
+      window.startLoaderDots();
       getServiceList();
     }
 
@@ -288,7 +287,7 @@
         searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search.png)';
     };
 
-    keyDownFieldInplaceSearch = function () {
+    keyUpFieldInplaceSearch = function () {
 
       if (event.keyCode === input_codes.ENTER) {
         window.blurFields();
@@ -302,6 +301,7 @@
         scope.update();
         scope.searchMode = false;
         console.log("key down");
+        window.startLoaderDots();
         searchServiceByWord();
       }, 500);
     };
