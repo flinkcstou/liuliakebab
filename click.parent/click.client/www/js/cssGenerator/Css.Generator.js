@@ -18378,6 +18378,7 @@ var css = {
   "height:" + 160 * widthK + "px;" +
   "bottom:" + 36 * widthK + "px;" +
   "right:" + 54 * widthK + "px;" +
+  "z-index: 9999999;" +
   "}",
 
   inPlacePayGoToQrButton: ".inplace-pay-gotoqr-button" +
@@ -18390,7 +18391,6 @@ var css = {
   "background-image: url(resources/icons/ViewInPlacePay/indoor_qr.png);" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-  "z-index: 9999999;" +
   "border-radius: " + 100 * widthK + "px;" +
   "-webkit-box-shadow: 0px " + 5 * widthK + "px " + 12 * widthK + "px " + -7 * widthK + "px " + "rgba(0,0,0,1);" +
   "-moz-box-shadow: 0px " + 5 * widthK + "px " + 12 * widthK + "px " + -7 * widthK + "px " + "rgba(0,0,0,1);" +

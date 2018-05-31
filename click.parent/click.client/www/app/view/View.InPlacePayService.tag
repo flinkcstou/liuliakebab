@@ -65,6 +65,7 @@
   <div class="inplace-pay-gotoqr-container">
     <div id="qrButtonId" class="inplace-pay-gotoqr-button" ontouchstart="goToQrTouchStart()"
          ontouchend="goToQrTouchEnd()"></div>
+    <div class="inplace-pay-gotoqr-label">{window.languages.QrScanerText}</div>
   </div>
 
   <script>
