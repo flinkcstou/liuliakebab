@@ -381,12 +381,38 @@
 
     var keyboardTouchStartX, keyboardTouchStartY, keyboardTouchEndX, keyboardTouchEndY;
 
-    componentKeyboard.returnStartValue = function (id) {
+    componentKeyboard.returnStartValue = function (myValue, id) {
 
       document.getElementById(id).style.webkitTransform = 'scale(0.8)';
 
       keyboardTouchStartX = event.changedTouches[0].pageX;
       keyboardTouchStartY = event.changedTouches[0].pageY;
+
+      if (enteredPin.length < 5 && myValue !== 'x' && myValue !== 'space') {
+        enteredPin += myValue;
+      }
+      if (myValue === 'x') {
+        enteredPin = enteredPin.substring(0, enteredPin.length - 1);
+      }
+
+      if (myValue === "space" && JSON.parse(localStorage.getItem('settings_finger_print')) === true) {
+        try {
+          console.log("AUTHORIZATION CALL new OF FINGERPRINT 338");
+          scope.fingerprintMode = device.platform == 'iOS' || !scope.settingsFingerPrint ? false : true;
+          window.fingerPrint.fingerprintMode = scope.fingerprintMode;
+          updateEnteredPin();
+          scope.update();
+          fingerPrintAsk('fingerPrintIconId');
+          return;
+
+        }
+        catch (e) {
+          console.log(e)
+        }
+      }
+
+      scope.update();
+      updateEnteredPin();
     };
 
     componentKeyboard.returnValue = function (myValue, id) {
@@ -399,31 +425,6 @@
 
       if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20) {
 
-        if (enteredPin.length < 5 && myValue !== 'x' && myValue !== 'space') {
-          enteredPin += myValue;
-        }
-        if (myValue === 'x') {
-          enteredPin = enteredPin.substring(0, enteredPin.length - 1);
-        }
-
-        if (myValue === "space" && JSON.parse(localStorage.getItem('settings_finger_print')) === true) {
-          try {
-            console.log("AUTHORIZATION CALL new OF FINGERPRINT 338");
-            scope.fingerprintMode = device.platform == 'iOS' || !scope.settingsFingerPrint ? false : true;
-            window.fingerPrint.fingerprintMode = scope.fingerprintMode;
-            updateEnteredPin();
-            scope.update();
-            fingerPrintAsk('fingerPrintIconId');
-            return;
-
-          }
-          catch (e) {
-            console.log(e)
-          }
-        }
-
-        scope.update();
-        updateEnteredPin();
       }
     };
 
