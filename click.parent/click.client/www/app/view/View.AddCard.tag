@@ -371,6 +371,9 @@
                 if (exists) {
                   cardDesignId.classList.add('add-card-card-design-appear');
                   cardInputFieldsId.classList.add('add-card-card-input-fields-reduce');
+                  if (bank.font_color) {
+                    cardInputFieldsId.style.color = 'rgb(' + bank.font_color + ')';
+                  }
                 } else {
                   console.log('image does not exist');
                 }
@@ -387,6 +390,7 @@
           bankIconId.style.display = 'none';
           cardDesignId.classList.remove('add-card-card-design-appear');
           cardInputFieldsId.classList.remove('add-card-card-input-fields-reduce');
+          cardInputFieldsId.style.color = '';
         }
       }
     };

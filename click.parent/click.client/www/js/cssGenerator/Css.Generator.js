@@ -13325,6 +13325,7 @@ var css = {
   "-webkit-transition: 0.7s;" +
   "transition: 0.7s;" +
   "overflow: hidden;" +
+  "color: #757389;" +
   "}",
 
   addCardCardInputFieldsReduce: ".add-card-card-input-fields-reduce" +
@@ -13454,7 +13455,6 @@ var css = {
   "position: absolute;" +
   "margin: 0;" +
   "background-size: contain;" +
-  "color: #757389;" +
   "font-size:" + 28 * widthK + "px;" +
   "}",
 
