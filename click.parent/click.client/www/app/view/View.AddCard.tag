@@ -16,25 +16,28 @@
 
 
     <div class="add-card-card-field">
-      <div id="processingIconId" class="add-card-uzcard-icon" style="background-image: url({processingImage});"></div>
-      <p class="add-card-card-text add-card-card-number-text">{window.languages.ViewAddCardNumberTitle}</p>
-      <div id="cardNumberInput" class="add-card-card-number">
-        <input type="tel" onpaste="boxOnePaste()" onkeyup="boxOneKeyUp()"
-               onkeydown="boxOneKeyDown()" autofocus="true" oninput="boxOneChange()"
-               id="boxOne"
-               class="add-card-card-number-box add-card-card-number-box-one">
-        </input>
-      </div>
+      <img id="cardDesignId" class="add-card-card-design">
+      <div id="cardInputFieldsId" class="add-card-card-input-fields">
+        <div id="processingIconId" class="add-card-uzcard-icon" style="background-image: url({processingImage});"></div>
+        <p class="add-card-card-text add-card-card-number-text">{window.languages.ViewAddCardNumberTitle}</p>
+        <div id="cardNumberInput" class="add-card-card-number">
+          <input type="tel" onpaste="boxOnePaste()" onkeyup="boxOneKeyUp()"
+                 onkeydown="boxOneKeyDown()" autofocus="true" oninput="boxOneChange()"
+                 id="boxOne"
+                 class="add-card-card-number-box add-card-card-number-box-one">
+          </input>
+        </div>
 
-      <p id="cardDateInputTitleId" class="add-card-card-text add-card-card-text-date">
-        {window.languages.ViewAddCardDateTitle}</p>
-      <div id="cardDateInputId" class="add-card-card-date" type="text">
-        <input type="tel" onkeyup="boxDateKeyUp()" maxlength="5" id="boxDate"
-               class="add-card-card-date-box">
-        </input>
-      </div>
+        <p id="cardDateInputTitleId" class="add-card-card-text add-card-card-text-date">
+          {window.languages.ViewAddCardDateTitle}</p>
+        <div id="cardDateInputId" class="add-card-card-date" type="text">
+          <input type="tel" onkeyup="boxDateKeyUp()" maxlength="5" id="boxDate"
+                 class="add-card-card-date-box">
+          </input>
+        </div>
 
-      <div id="bankIconId" class="add-card-bankIcon" style="background-image: url({bankImage});"></div>
+        <div id="bankIconId" class="add-card-bankIcon" style="background-image: url({bankImage});"></div>
+      </div>
     </div>
 
 
@@ -84,6 +87,7 @@
     scope.doMainCard = false;
     scope.bankImage = '';
     scope.processingImage = '';
+    scope.local_card_background_dir = 'resources/icons/cards/';
     if (localStorage.getItem('click_client_loginInfo')) {
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
       var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
@@ -346,7 +350,7 @@
           processingIdInInput = boxOne.value.replace(/\s/g, '').substring(0, parseInt(issuer.prefix_length));
           if (issuer.prefix === processingIdInInput) {
             scope.processingImage = issuer.url;
-            processingIconId.style.display = 'block';
+//            processingIconId.style.display = 'block';
             processingIconFound = true;
             currentIssuer = issuer;
           }
@@ -357,8 +361,20 @@
           currentIssuer.item.forEach(function (bank) {
             if (bank.code === bankIdInInput) {
               scope.bankImage = bank.image;
-              bankIconId.style.display = 'block';
+//              bankIconId.style.display = 'block';
               bankIconFound = true;
+              var url_splitted = bank.card_background_url.toString().split("/");
+              var background_file_name = url_splitted[url_splitted.length - 1];
+              cardDesignId.src = scope.local_card_background_dir + background_file_name;
+              console.log(scope.local_card_background_dir + background_file_name);
+              checkImageExists(cardDesignId.src, function (exists) {
+                if (exists) {
+                  cardDesignId.classList.add('add-card-card-design-appear');
+                  cardInputFieldsId.classList.add('add-card-card-input-fields-reduce');
+                } else {
+                  console.log('image does not exist');
+                }
+              });
             }
           });
         }
@@ -369,6 +385,8 @@
         if (bankIconFound === false) {
           scope.bankImage = '';
           bankIconId.style.display = 'none';
+          cardDesignId.classList.remove('add-card-card-design-appear');
+          cardInputFieldsId.classList.remove('add-card-card-input-fields-reduce');
         }
       }
     };
@@ -496,7 +514,18 @@
           boxOne.focus()
         }, 0)
       }
-    })
+    });
+
+    checkImageExists = function (url, callback) {
+      var img = new Image();
+      img.onload = function () {
+        callback(true);
+      };
+      img.onerror = function () {
+        callback(false);
+      };
+      img.src = url;
+    };
 
 
   </script>
