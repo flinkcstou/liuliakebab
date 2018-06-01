@@ -2,16 +2,14 @@
   <div id="dropdownBackPageId" ontouchend="dropdownMenuTouchEnd(true)" ontouchstart="dropdownMenuTouchStart()"
        ontouchmove="dropdownMenuTouchMove()" class="dropdown-back-page"></div>
 
-  <div id="dropdownId" class="dropdown-menu" ontouchend="dropdownMenuTouchEnd(true)"
-       ontouchstart="dropdownMenuTouchStart()"
-       ontouchmove="dropdownMenuTouchMove()">
+  <div id="dropdownId" class="dropdown-menu">
 
     <div id="closeDropdownButtonId" role="button" aria-label="{window.languages.Close}" class="dropdown-close-button "
          ontouchstart="closeDropdownStart()"
          ontouchend="closeDropdown()"></div>
 
     <div class="dropdown-title">ВЫБРАТЬ</div>
-    <div class="dropdown-elements-container">
+    <div class="dropdown-elements-container" ontouchstart="touchStart()">
       <div class="dropdown-element" each="{i in dropdownList}" id="{idParam? i[idParam]: i}"
            name="{titleParam ? i[titleParam]: i}"
            ontouchstart="onTouchStartDropdownElement()"
@@ -23,7 +21,7 @@
 
   <script>
     var scope = this;
-    var touchStartX, touchEndX, touchMoveX, touchEndMove, timeStartX, timeEndXs;
+    var touchStartX, touchStartY, touchEndX, touchMoveX, touchMoveY, touchEndMove, timeStartX, timeEndXs;
     var dropdownTouchStartX, dropdownTouchStartY, dropdownTouchEndX, dropdownTouchEndY;
     var width = window.innerWidth;
     scope.dropdownList = [];
@@ -66,6 +64,7 @@
       document.getElementById(scope.pageId).style.webkitTransition = '0s';
       dropdownBackPageId.style.webkitTransition = '0s';
       touchStartX = event.changedTouches[0].pageX;
+      touchStartY = event.changedTouches[0].pageY;
       timeStartX = event.timeStamp.toFixed(0);
 
     };
@@ -94,10 +93,17 @@
       }
     };
 
-    dropdownMenuTouchMove = function () {
+    touchStart = function () {
       event.preventDefault();
       event.stopPropagation();
+//      console.log("touch start dropdown elements container");
+    };
+
+    dropdownMenuTouchMove = function () {
+//      event.preventDefault();
+//      event.stopPropagation();
       touchMoveX = event.changedTouches[0].pageX;
+      touchMoveY = event.changedTouches[0].pageY;
       if (touchStartX > touchMoveX) return;
 
       var deltaForMainPage = Math.abs((touchStartX - touchMoveX).toFixed(0) / width * 2);
@@ -108,7 +114,8 @@
       dropdownBackPageId.style.opacity = deltaForSideMenuBack;
       document.getElementById(scope.pageId).style.opacity = deltaForMainPage;
 
-      if (touchStartX - touchMoveX <= 0) {
+      console.log("diff =", touchStartX - touchMoveX, Math.abs(touchStartY - touchMoveY));
+      if (touchStartX - touchMoveX <= 0 && Math.abs(touchStartX - touchMoveX) > 40) {
         dropdownId.style.webkitTransform = 'translate3d(' + (touchMoveX - touchStartX) + 'px,0,0)';
         touchEndMove = touchMoveX - touchStartX;
       }
