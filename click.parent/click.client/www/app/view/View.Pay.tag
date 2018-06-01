@@ -524,9 +524,17 @@
               opts.chosenServiceId = id;
               opts.id = id;
             }
-            riotTags.innerHTML = "<view-service-page-new>";
-            riot.mount("view-service-page-new", opts);
+            console.log("form type=", scope.servicesMap[id][0].form_type, scope.servicesMap[id][0]);
+//            if (scope.servicesMap[scope.autoPayData.service_id][0].form_type == 7) {
+            riotTags.innerHTML = "<view-formtype-seven>";
+            riot.mount("view-formtype-seven", opts);
             scope.unmount()
+//            } else {
+//              riotTags.innerHTML = "<view-service-page-new>";
+//              riot.mount("view-service-page-new", opts);
+//              scope.unmount()
+//            }
+
           }
         }, 50);
 
