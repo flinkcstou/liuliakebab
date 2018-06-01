@@ -17,7 +17,7 @@
                  id="searchInputId"
                  onfocus="colorFieldInplaceSearch()"
                  onblur="blurFieldInplaceSearch()"
-                 onkeydown="keyDownFieldInplaceSearch()"
+                 onkeyup="keyUpFieldInplaceSearch()"
                  oninput="onInputSearchField()"
                  placeholder="{window.languages.InPlaceSearchPlaceHolderText}"/>
           <div if="{showSearchIcon}" id="searchIcon"
@@ -65,6 +65,7 @@
   <div class="inplace-pay-gotoqr-container">
     <div id="qrButtonId" class="inplace-pay-gotoqr-button" ontouchstart="goToQrTouchStart()"
          ontouchend="goToQrTouchEnd()"></div>
+    <div class="inplace-pay-gotoqr-label">{window.languages.QrScanerText}</div>
   </div>
 
   <script>
@@ -113,8 +114,6 @@
     });
 
     findLocation = function () {
-
-      window.startSpinner();
 
       console.log("find location method");
 
@@ -166,6 +165,7 @@
           window.clearTimeout(timeOutTimer);
           window.stopSpinner();
           window.stopLoaderDots();
+          categoriesContainerId.style.height = "88.7%";
           scope.requestSent = false;
 
           if (result[0][0].error == 0) {
@@ -177,7 +177,7 @@
 
             }
             sessionStorage.setItem('click_client_inPlacePayServiceList', JSON.stringify(scope.serviceList));
-            console.log("Update");
+            console.log("Update", scope.serviceList);
             scope.update();
           } else {
             window.common.alert.show("componentAlertId", {
@@ -233,13 +233,14 @@
       scope.serviceList = JSON.parse(sessionStorage.getItem('click_client_inPlacePayServiceList'));
       scope.update();
 
-    } else if (inPlacePay.latitude && inPlacePay.longitude) {
-      getServiceList();
-
     } else if (localStorage.getItem('location_find') && JSON.parse(localStorage.getItem('location_find'))) {
+      //      window.startSpinner();
+      window.startLoaderDots();
       findLocation();
 
     } else {
+      //      window.startSpinner();
+      window.startLoaderDots();
       getServiceList();
     }
 
@@ -288,7 +289,7 @@
         searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search.png)';
     };
 
-    keyDownFieldInplaceSearch = function () {
+    keyUpFieldInplaceSearch = function () {
 
       if (event.keyCode === input_codes.ENTER) {
         window.blurFields();
@@ -302,6 +303,7 @@
         scope.update();
         scope.searchMode = false;
         console.log("key down");
+        window.startLoaderDots();
         searchServiceByWord();
       }, 500);
     };
@@ -614,7 +616,8 @@
 
         if (scope.serviceList.length % 20 == 0 && !scope.requestSent) {
           scope.pageNumber++;
-          window.startPaginationLoaderDots();
+          categoriesContainerId.style.height = "70%";
+          window.startPaginationLoaderDots("categoriesContainerId");
           if (searchInputId.value.length != 0) {
             searchServiceByWord();
           }
@@ -655,6 +658,8 @@
             scope.searchMode = true;
             window.stopSpinner();
             window.stopLoaderDots();
+            categoriesContainerId.style.height = "88.7%";
+
 
             if (result[0][0].error == 0) {
               if (result[1][0]) {

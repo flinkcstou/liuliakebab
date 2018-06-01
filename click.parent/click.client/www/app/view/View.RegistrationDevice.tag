@@ -130,54 +130,55 @@
 
     var keyboardTouchStartX, keyboardTouchStartY, keyboardTouchEndX, keyboardTouchEndY;
 
-    componentKeyboard.returnStartValue = function (id) {
+    componentKeyboard.returnStartValue = function (myValue, id) {
 
       document.getElementById(id).style.webkitTransform = 'scale(0.8)'
 
       keyboardTouchStartX = event.changedTouches[0].pageX
       keyboardTouchStartY = event.changedTouches[0].pageY
-    }
+
+      if (window.inputVerification.spaceDeleter(scope.maskPhoneNumber).length < 9 && myValue != 'x') {
+
+        if (inputFocusIndex <= 2) {
+          scope.maskPhoneNumber = window.inputVerification.phoneEnterTransform(inputFocusIndex, myValue, scope.maskPhoneNumber);
+          scope.phoneNumber = '+' + window.languages.CodeOfCountry + window.inputVerification.spaceDeleter(scope.maskPhoneNumber);
+          inputFocusIndex = inputFocusIndex == 2 ? 4 : (inputFocusIndex == 1 ? 2 : 1);
+        } else {
+          scope.maskPhoneNumber = scope.maskPhoneNumber.slice(0, inputFocusIndex) + myValue + scope.maskPhoneNumber.slice(inputFocusIndex);
+          scope.phoneNumber = '+' + window.languages.CodeOfCountry + window.inputVerification.spaceDeleter(scope.maskPhoneNumber);
+          ++inputFocusIndex
+        }
+        inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, inputFocusIndex)).width + inputLocalStartX - 3 * widthK + 'px';
+      }
+
+      if (myValue == 'x' && inputFocusIndex != 0) {
+
+        if (inputFocusIndex <= 4) {
+
+          scope.maskPhoneNumber = window.inputVerification.phoneDelTransform(inputFocusIndex, scope.maskPhoneNumber);
+          inputFocusIndex = inputFocusIndex == 4 ? 2 : ((inputFocusIndex == 3 || inputFocusIndex == 2) ? 1 : 0);
+        }
+        else {
+          scope.maskPhoneNumber = scope.maskPhoneNumber.slice(0, inputFocusIndex - 1) + scope.maskPhoneNumber.slice(inputFocusIndex);
+          --inputFocusIndex;
+        }
+        scope.phoneNumber = '+' + window.languages.CodeOfCountry + window.inputVerification.spaceDeleter(scope.maskPhoneNumber);
+        inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, inputFocusIndex)).width + inputLocalStartX - 3 * widthK + 'px';
+      }
+
+      scope.update();
+    };
 
 
     componentKeyboard.returnValue = function (myValue, id) {
 
-      document.getElementById(id).style.webkitTransform = 'scale(1)'
+      document.getElementById(id).style.webkitTransform = 'scale(1)';
 
-      keyboardTouchEndX = event.changedTouches[0].pageX
-      keyboardTouchEndY = event.changedTouches[0].pageY
+      keyboardTouchEndX = event.changedTouches[0].pageX;
+      keyboardTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20) {
 
-        if (window.inputVerification.spaceDeleter(scope.maskPhoneNumber).length < 9 && myValue != 'x') {
-
-          if (inputFocusIndex <= 2) {
-            scope.maskPhoneNumber = window.inputVerification.phoneEnterTransform(inputFocusIndex, myValue, scope.maskPhoneNumber);
-            scope.phoneNumber = '+' + window.languages.CodeOfCountry + window.inputVerification.spaceDeleter(scope.maskPhoneNumber);
-            inputFocusIndex = inputFocusIndex == 2 ? 4 : (inputFocusIndex == 1 ? 2 : 1);
-          } else {
-            scope.maskPhoneNumber = scope.maskPhoneNumber.slice(0, inputFocusIndex) + myValue + scope.maskPhoneNumber.slice(inputFocusIndex);
-            scope.phoneNumber = '+' + window.languages.CodeOfCountry + window.inputVerification.spaceDeleter(scope.maskPhoneNumber);
-            ++inputFocusIndex
-          }
-          inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, inputFocusIndex)).width + inputLocalStartX - 3 * widthK + 'px';
-        }
-
-        if (myValue == 'x' && inputFocusIndex != 0) {
-
-          if (inputFocusIndex <= 4) {
-
-            scope.maskPhoneNumber = window.inputVerification.phoneDelTransform(inputFocusIndex, scope.maskPhoneNumber);
-            inputFocusIndex = inputFocusIndex == 4 ? 2 : ((inputFocusIndex == 3 || inputFocusIndex == 2) ? 1 : 0);
-          }
-          else {
-            scope.maskPhoneNumber = scope.maskPhoneNumber.slice(0, inputFocusIndex - 1) + scope.maskPhoneNumber.slice(inputFocusIndex);
-            --inputFocusIndex;
-          }
-          scope.phoneNumber = '+' + window.languages.CodeOfCountry + window.inputVerification.spaceDeleter(scope.maskPhoneNumber);
-          inputCaret.style.left = ctx.measureText(scope.maskPhoneNumber.substring(0, inputFocusIndex)).width + inputLocalStartX - 3 * widthK + 'px';
-        }
-
-        scope.update();
       }
       return
     };

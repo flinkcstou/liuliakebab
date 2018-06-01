@@ -13318,12 +13318,50 @@ var css = {
   "background-image: url(resources/icons/cards/addCard/new_card.png);" +
   "background-repeat: no-repeat;" +
   "background-size: cover;" +
+  "overflow: hidden;" +
+  "}",
+
+  addCardCardInputFields: ".add-card-card-input-fields " +
+  "{" +
+  "position: absolute;" +
+  "width:" + 610 * widthK + "px;" +
+  "height:" + 340 * heightK + "px;" +
+  "transform-origin: bottom left;" +
+  "-webkit-transition: 0.7s;" +
+  "transition: 0.7s;" +
+  "overflow: hidden;" +
+  "color: #757389;" +
+  "}",
+
+  addCardCardInputFieldsReduce: ".add-card-card-input-fields-reduce" +
+  "{" +
+  "transform: scale(0.7);" +
+  "}",
+
+  addCardCardDesign: ".add-card-card-design" +
+  "{" +
+  "position: absolute;" +
+  "-webkit-transition: 0.7s;" +
+  "transition: 0.7s;" +
+  "opacity: 0;" +
+  "top: -" + 1 * widthK + "px;" +
+  "left: -" + 1 * widthK + "px;" +
+  "width:" + 612 * widthK + "px;" +
+  "height:" + 342 * heightK + "px;" +
+  "border-radius:" + 10 * heightK + "px;" +
+  "}",
+
+  addCardCardDesignAppear: ".add-card-card-design-appear" +
+  "{" +
+  // "-webkit-transition: 0.7s;" +
+  // "transition: 0.7s;" +
+  "opacity: 1;" +
   "}",
 
 
   addCardUzcardIcon: ".add-card-uzcard-icon " +
   "{" +
-  // "visibility: hidden;" +
+  "display: none;" +
   "position: absolute;" +
   "top:5%;" +
   "right:1%;" +
@@ -13422,7 +13460,6 @@ var css = {
   "position: absolute;" +
   "margin: 0;" +
   "background-size: contain;" +
-  "color: #757389;" +
   "font-size:" + 28 * widthK + "px;" +
   "}",
 
@@ -13457,6 +13494,7 @@ var css = {
   addCardBankIcon: ".add-card-bankIcon" +
   "{" +
   "position: absolute;" +
+  "display: none;" +
   "width:" + 185 * widthK + "px;" +
   "height:" + 90 * widthK + "px;" +
   "bottom: 13%;" +
@@ -18345,6 +18383,7 @@ var css = {
   "height:" + 160 * widthK + "px;" +
   "bottom:" + 36 * widthK + "px;" +
   "right:" + 54 * widthK + "px;" +
+  "z-index: 9999999;" +
   "}",
 
   inPlacePayGoToQrButton: ".inplace-pay-gotoqr-button" +
@@ -18357,7 +18396,6 @@ var css = {
   "background-image: url(resources/icons/ViewInPlacePay/indoor_qr.png);" +
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
-  "z-index: 9999999;" +
   "border-radius: " + 100 * widthK + "px;" +
   "-webkit-box-shadow: 0px " + 5 * widthK + "px " + 12 * widthK + "px " + -7 * widthK + "px " + "rgba(0,0,0,1);" +
   "-moz-box-shadow: 0px " + 5 * widthK + "px " + 12 * widthK + "px " + -7 * widthK + "px " + "rgba(0,0,0,1);" +

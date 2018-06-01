@@ -13,7 +13,7 @@
           <input class="inplace-pay-search-input-part" type="text" id="searchInputId"
                  onfocus="colorFieldInplaceSearch()"
                  onblur="blurFieldInplaceSearch()"
-                 onkeydown="keyDownFieldInplaceSearch()"
+                 onkeyup="keyUpFieldInplaceSearch()"
                  oninput="onInputSearchField()"
                  placeholder="{window.languages.InPlaceSearchPlaceHolderText}"/>
           <div if="{showSearchIcon}" id="searchIcon"
@@ -81,7 +81,7 @@
   <div class="inplace-pay-gotoqr-container">
     <div id="qrButtonId" class="inplace-pay-gotoqr-button" ontouchstart="goToQrTouchStart()"
          ontouchend="goToQrTouchEnd()"></div>
-    <div class="inplace-pay-gotoqr-label">Сканер QR</div>
+    <div class="inplace-pay-gotoqr-label">{window.languages.QrScanerText}</div>
   </div>
 
 
@@ -162,7 +162,8 @@
     else if (modeOfApp.onlineMode) {
 
       scope.categoryList = [];
-      window.startSpinner();
+//      window.startSpinner();
+      window.startLoaderDots();
 
       window.api.call({
         method: 'get.indoor.category.list',
@@ -175,7 +176,7 @@
         onSuccess: function (result) {
           console.log('Clearing timer onSuccess', timeOutTimer);
           window.clearTimeout(timeOutTimer);
-          window.stopSpinner();
+          window.stopLoaderDots();
 
           if (result[0][0].error == 0) {
             if (result[1][0]) {
@@ -487,7 +488,7 @@
         searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search.png)';
     };
 
-    keyDownFieldInplaceSearch = function () {
+    keyUpFieldInplaceSearch = function () {
 
       if (event.keyCode === input_codes.ENTER) {
         window.blurFields();
@@ -502,6 +503,7 @@
 //        if (!scope.searchServices) scope.searchServices = true;
         window.saveHistory('view-inplace-pay-service', {categoryId: 0, categoryName: scope.titleName});
         scope.update();
+        window.startLoaderDots();
         searchServiceByWord();
       }, 500);
     };
@@ -521,6 +523,7 @@
 
         if (scope.serviceList.length % 20 == 0 && scope.searchServices) {
           scope.pageNumber++;
+          categoriesContainerId.style.height = "70%";
           window.startPaginationLoaderDots();
           searchServiceByWord();
         }
@@ -644,6 +647,7 @@
             scope.searchMode = true;
 //            window.stopSpinner();
             window.stopLoaderDots();
+            categoriesContainerId.style.height = "88.7%";
 
             if (result[0][0].error == 0) {
               if (result[1][0]) {

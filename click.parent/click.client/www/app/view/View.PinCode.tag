@@ -117,37 +117,38 @@
 
     var keyboardTouchStartX, keyboardTouchStartY, keyboardTouchEndX, keyboardTouchEndY;
 
-    componentKeyboard.returnStartValue = function (id) {
+    componentKeyboard.returnStartValue = function (myValue, id) {
 
-      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)';
 
-      keyboardTouchStartX = event.changedTouches[0].pageX
-      keyboardTouchStartY = event.changedTouches[0].pageY
-    }
+      keyboardTouchStartX = event.changedTouches[0].pageX;
+      keyboardTouchStartY = event.changedTouches[0].pageY;
+
+      if (enteredPin.length < 5 && myValue != 'x') {
+        enteredPin += myValue;
+      }
+      if (myValue == 'x') {
+        enteredPin = enteredPin.substring(0, enteredPin.length - 1);
+      }
+
+      scope.update();
+      updateEnteredPin();
+    };
 
     componentKeyboard.returnValue = function (myValue, id) {
       event.preventDefault();
       event.stopPropagation();
 
-      document.getElementById(id).style.webkitTransform = 'scale(1)'
+      document.getElementById(id).style.webkitTransform = 'scale(1)';
 
-      keyboardTouchEndX = event.changedTouches[0].pageX
-      keyboardTouchEndY = event.changedTouches[0].pageY
+      keyboardTouchEndX = event.changedTouches[0].pageX;
+      keyboardTouchEndY = event.changedTouches[0].pageY;
 
 
       if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20) {
 
-        if (enteredPin.length < 5 && myValue != 'x') {
-          enteredPin += myValue;
-        }
-        if (myValue == 'x') {
-          enteredPin = enteredPin.substring(0, enteredPin.length - 1);
-        }
-
-        scope.update();
-        updateEnteredPin();
       }
-    }
+    };
 
     var offlineModeTouchStartX, offlineModeTouchEndX, offlineModeTouchStartY, offlineModeTouchEndY;
 

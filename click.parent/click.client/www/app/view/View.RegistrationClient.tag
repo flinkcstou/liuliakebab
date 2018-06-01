@@ -272,140 +272,141 @@
 
     var keyboardTouchStartX, keyboardTouchStartY, keyboardTouchEndX, keyboardTouchEndY;
 
-    componentKeyboard.returnStartValue = function (id) {
+    componentKeyboard.returnStartValue = function (myValue, id) {
 
-      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)';
 
-      keyboardTouchStartX = event.changedTouches[0].pageX
-      keyboardTouchStartY = event.changedTouches[0].pageY
-    }
+      keyboardTouchStartX = event.changedTouches[0].pageX;
+      keyboardTouchStartY = event.changedTouches[0].pageY;
+
+      scope.checkReturn = false;
+
+
+      if (myValue != 'x') {
+        if (!scope.checkReturn && checkOne && scope.cardNumberPartOne.length < 4) {
+          scope.cardNumberPartOne += myValue;
+          scope.update(scope.cardNumberPartOne)
+          if (scope.cardNumberPartOne.length == 4) {
+            if (scope.cardNumberPartOne == '8600') {
+              checkDate = true;
+              checkPin = false;
+              scope.cardPin = '';
+              scope.update();
+            }
+            else {
+              checkDate = false;
+              checkPin = true;
+            }
+            touchEndBoxTwo()
+            scope.checkReturn = true;
+          }
+        }
+
+        if (!scope.checkReturn && checkTwo && scope.cardNumberPartTwo.length < 4) {
+          scope.cardNumberPartTwo += myValue;
+          scope.update(scope.cardNumberPartTwo)
+          if (scope.cardNumberPartTwo.length == 4) {
+            touchEndBoxThree()
+            scope.checkReturn = true;
+          }
+        }
+
+        if (!scope.checkReturn && checkThree && scope.cardNumberPartThree.length < 4) {
+          scope.cardNumberPartThree += myValue;
+          scope.update(scope.cardNumberPartThree)
+          if (scope.cardNumberPartThree.length == 4) {
+            touchEndBoxFour()
+            scope.checkReturn = true;
+          }
+        }
+
+        if (checkDateCopy && !checkOne && !checkTwo && !checkThree && !checkFour && scope.cardDate.length < 5) {
+          if (scope.cardDate.length == 2)
+            scope.cardDate += '/'
+          scope.cardDate += myValue;
+          scope.cardDateOriginal += myValue;
+          scope.update(scope.cardDate)
+          if (scope.cardDate.length == 4) {
+            scope.checkReturn = true;
+          }
+        }
+
+        if (!scope.checkReturn && checkFour && scope.cardNumberPartFour.length < 4) {
+          scope.cardNumberPartFour += myValue;
+          scope.update(scope.cardNumberPartFour)
+          if (scope.cardNumberPartFour.length == 4) {
+            if (checkDate)
+              touchEndBoxData()
+            if (checkPin)
+              touchEndBoxPin()
+            scope.checkReturn = true;
+          }
+        }
+
+        if (checkPinCopy && !checkOne && !checkTwo && !checkThree && !checkFour && scope.cardPinOriginal.length < 4) {
+          scope.cardPin += ' * ';
+          scope.cardPinOriginal += myValue;
+          scope.update(scope.cardPin)
+          if (scope.cardPin.length == 4) {
+            scope.checkReturn = true;
+          }
+        }
+
+      }
+      else {
+        if (checkOne) {
+          scope.cardNumberPartOne = scope.cardNumberPartOne.substring(0, scope.cardNumberPartOne.length - 1);
+          scope.update(scope.cardNumberPartOne)
+        }
+
+        if (checkTwo) {
+          scope.cardNumberPartTwo = scope.cardNumberPartTwo.substring(0, scope.cardNumberPartTwo.length - 1);
+          scope.update(scope.cardNumberPartTwo)
+        }
+
+        if (checkThree) {
+          scope.cardNumberPartThree = scope.cardNumberPartThree.substring(0, scope.cardNumberPartThree.length - 1);
+          scope.update(scope.cardNumberPartThree)
+        }
+
+        if (checkFour) {
+          scope.cardNumberPartFour = scope.cardNumberPartFour.substring(0, scope.cardNumberPartFour.length - 1);
+          scope.update(scope.cardNumberPartFour)
+        }
+
+        if (checkDateCopy) {
+          scope.cardDate = scope.cardDate.substring(0, scope.cardDate.length - 1);
+          scope.cardDateOriginal = scope.cardDateOriginal.substring(0, scope.cardDateOriginal.length - 1);
+          scope.update(scope.cardDate)
+        }
+        if (checkPinCopy) {
+          scope.cardPin = scope.cardPin.substring(0, scope.cardPin.length - 3);
+          scope.cardPinOriginal = scope.cardPinOriginal.substring(0, scope.cardPinOriginal.length - 1);
+
+          scope.update(scope.cardPin)
+        }
+      }
+
+      cardNumber = scope.cardNumberPartOne + scope.cardNumberPartTwo + scope.cardNumberPartThree + scope.cardNumberPartFour;
+      console.log('cardNumberPartOne', scope.cardNumberPartOne)
+      console.log('cardNumberPartTwo', scope.cardNumberPartTwo)
+      console.log('cardNumberPartThree', scope.cardNumberPartThree)
+      console.log('cardNumberPartFour', scope.cardNumberPartFour)
+    };
 
     componentKeyboard.returnValue = function (myValue, id) {
 
-      document.getElementById(id).style.webkitTransform = 'scale(1)'
+      document.getElementById(id).style.webkitTransform = 'scale(1)';
 
-      keyboardTouchEndX = event.changedTouches[0].pageX
-      keyboardTouchEndY = event.changedTouches[0].pageY
+      keyboardTouchEndX = event.changedTouches[0].pageX;
+      keyboardTouchEndY = event.changedTouches[0].pageY;
 
 
       if (Math.abs(keyboardTouchStartX - keyboardTouchEndX) <= 20 && Math.abs(keyboardTouchStartY - keyboardTouchEndY) <= 20) {
 
-        scope.checkReturn = false;
-
-
-        if (myValue != 'x') {
-          if (!scope.checkReturn && checkOne && scope.cardNumberPartOne.length < 4) {
-            scope.cardNumberPartOne += myValue;
-            scope.update(scope.cardNumberPartOne)
-            if (scope.cardNumberPartOne.length == 4) {
-              if (scope.cardNumberPartOne == '8600') {
-                checkDate = true;
-                checkPin = false;
-                scope.cardPin = '';
-                scope.update();
-              }
-              else {
-                checkDate = false;
-                checkPin = true;
-              }
-              touchEndBoxTwo()
-              scope.checkReturn = true;
-            }
-          }
-
-          if (!scope.checkReturn && checkTwo && scope.cardNumberPartTwo.length < 4) {
-            scope.cardNumberPartTwo += myValue;
-            scope.update(scope.cardNumberPartTwo)
-            if (scope.cardNumberPartTwo.length == 4) {
-              touchEndBoxThree()
-              scope.checkReturn = true;
-            }
-          }
-
-          if (!scope.checkReturn && checkThree && scope.cardNumberPartThree.length < 4) {
-            scope.cardNumberPartThree += myValue;
-            scope.update(scope.cardNumberPartThree)
-            if (scope.cardNumberPartThree.length == 4) {
-              touchEndBoxFour()
-              scope.checkReturn = true;
-            }
-          }
-
-          if (checkDateCopy && !checkOne && !checkTwo && !checkThree && !checkFour && scope.cardDate.length < 5) {
-            if (scope.cardDate.length == 2)
-              scope.cardDate += '/'
-            scope.cardDate += myValue;
-            scope.cardDateOriginal += myValue;
-            scope.update(scope.cardDate)
-            if (scope.cardDate.length == 4) {
-              scope.checkReturn = true;
-            }
-          }
-
-          if (!scope.checkReturn && checkFour && scope.cardNumberPartFour.length < 4) {
-            scope.cardNumberPartFour += myValue;
-            scope.update(scope.cardNumberPartFour)
-            if (scope.cardNumberPartFour.length == 4) {
-              if (checkDate)
-                touchEndBoxData()
-              if (checkPin)
-                touchEndBoxPin()
-              scope.checkReturn = true;
-            }
-          }
-
-          if (checkPinCopy && !checkOne && !checkTwo && !checkThree && !checkFour && scope.cardPinOriginal.length < 4) {
-            scope.cardPin += ' * ';
-            scope.cardPinOriginal += myValue;
-            scope.update(scope.cardPin)
-            if (scope.cardPin.length == 4) {
-              scope.checkReturn = true;
-            }
-          }
-
-        }
-        else {
-          if (checkOne) {
-            scope.cardNumberPartOne = scope.cardNumberPartOne.substring(0, scope.cardNumberPartOne.length - 1);
-            scope.update(scope.cardNumberPartOne)
-          }
-
-          if (checkTwo) {
-            scope.cardNumberPartTwo = scope.cardNumberPartTwo.substring(0, scope.cardNumberPartTwo.length - 1);
-            scope.update(scope.cardNumberPartTwo)
-          }
-
-          if (checkThree) {
-            scope.cardNumberPartThree = scope.cardNumberPartThree.substring(0, scope.cardNumberPartThree.length - 1);
-            scope.update(scope.cardNumberPartThree)
-          }
-
-          if (checkFour) {
-            scope.cardNumberPartFour = scope.cardNumberPartFour.substring(0, scope.cardNumberPartFour.length - 1);
-            scope.update(scope.cardNumberPartFour)
-          }
-
-          if (checkDateCopy) {
-            scope.cardDate = scope.cardDate.substring(0, scope.cardDate.length - 1);
-            scope.cardDateOriginal = scope.cardDateOriginal.substring(0, scope.cardDateOriginal.length - 1);
-            scope.update(scope.cardDate)
-          }
-          if (checkPinCopy) {
-            scope.cardPin = scope.cardPin.substring(0, scope.cardPin.length - 3);
-            scope.cardPinOriginal = scope.cardPinOriginal.substring(0, scope.cardPinOriginal.length - 1);
-
-            scope.update(scope.cardPin)
-          }
-        }
-
-        cardNumber = scope.cardNumberPartOne + scope.cardNumberPartTwo + scope.cardNumberPartThree + scope.cardNumberPartFour;
-        console.log('cardNumberPartOne', scope.cardNumberPartOne)
-        console.log('cardNumberPartTwo', scope.cardNumberPartTwo)
-        console.log('cardNumberPartThree', scope.cardNumberPartThree)
-        console.log('cardNumberPartFour', scope.cardNumberPartFour)
       }
 
-    }
+    };
 
     var goToPinCodeTouchStartX, goToPinCodeTouchStartY, goToPinCodeTouchEndX, goToPinCodeTouchEndY;
 
