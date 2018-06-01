@@ -165,6 +165,7 @@
           window.clearTimeout(timeOutTimer);
           window.stopSpinner();
           window.stopLoaderDots();
+          categoriesContainerId.style.height = "88.7%";
           scope.requestSent = false;
 
           if (result[0][0].error == 0) {
@@ -176,7 +177,7 @@
 
             }
             sessionStorage.setItem('click_client_inPlacePayServiceList', JSON.stringify(scope.serviceList));
-            console.log("Update");
+            console.log("Update", scope.serviceList);
             scope.update();
           } else {
             window.common.alert.show("componentAlertId", {
@@ -615,7 +616,8 @@
 
         if (scope.serviceList.length % 20 == 0 && !scope.requestSent) {
           scope.pageNumber++;
-          window.startPaginationLoaderDots();
+          categoriesContainerId.style.height = "70%";
+          window.startPaginationLoaderDots("categoriesContainerId");
           if (searchInputId.value.length != 0) {
             searchServiceByWord();
           }
@@ -656,6 +658,8 @@
             scope.searchMode = true;
             window.stopSpinner();
             window.stopLoaderDots();
+            categoriesContainerId.style.height = "88.7%";
+
 
             if (result[0][0].error == 0) {
               if (result[1][0]) {

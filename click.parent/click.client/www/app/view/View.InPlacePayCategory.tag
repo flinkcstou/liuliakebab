@@ -523,6 +523,7 @@
 
         if (scope.serviceList.length % 20 == 0 && scope.searchServices) {
           scope.pageNumber++;
+          categoriesContainerId.style.height = "70%";
           window.startPaginationLoaderDots();
           searchServiceByWord();
         }
@@ -646,6 +647,7 @@
             scope.searchMode = true;
 //            window.stopSpinner();
             window.stopLoaderDots();
+            categoriesContainerId.style.height = "88.7%";
 
             if (result[0][0].error == 0) {
               if (result[1][0]) {

@@ -141,15 +141,8 @@ var css = {
 
   loaderDotsPagination: ".loader-dots-pagination" +
   "{" +
-  "top:" + 1080 * widthK + "px;" +
+  "top:" + 1160 * widthK + "px;" +
   "bottom: 0;" +
-  "width: 100%;" +
-  "height: " + 151 * widthK + "px;" +
-  "left: 0;" +
-  "background-position-x: 48%;" +
-  "background-position-y: 80%;" +
-  "background-size: 25%;" +
-  "background-color: white;" +
   "}",
 
   //DEMO
