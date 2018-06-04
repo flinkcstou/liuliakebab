@@ -492,6 +492,9 @@
           if (scope.favoritePaymentsList[i].id == id) {
 
             scope.favoritePaymentsList[i].params.favoriteId = scope.favoritePaymentsList[i].id;
+            if (scope.favoritePaymentsList[i].params.transactionId)
+              scope.favoritePaymentsList[i].params.transactionId = null;
+            console.log("fav transaction id=", scope.favoritePaymentsList[i].params.transactionId);
             console.log("favorite to open ", scope.favoritePaymentsList[i]);
 
             if (modeOfApp.offlineMode) {

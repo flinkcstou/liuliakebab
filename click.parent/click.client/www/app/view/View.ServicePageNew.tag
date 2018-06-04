@@ -1926,6 +1926,9 @@
       if (favoritePaymentsListForApi.length != favoritePaymentsList.length) {
         favoritePaymentsListForApi = [];
         for (var i in favoritePaymentsList) {
+          if (favoritePaymentsList[i].params.transactionId)
+            favoritePaymentsList[i].params.transactionId = null;
+          console.log("fav transaction id=", favoritePaymentsList[i].params.transactionId);
           favoritePaymentsListForApi.push({
             "id": favoritePaymentsList[i].id,
             "type": 1,

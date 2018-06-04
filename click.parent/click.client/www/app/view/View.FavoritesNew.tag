@@ -170,11 +170,14 @@
               window.inputVerification.spaceDeleter(scope.favoritePaymentsList[i].params.intPartAmount))
             + scope.favoritePaymentsList[i].params.fracPartAmount;
         }
-
+        if (scope.favoritePaymentsList[i].params.transactionId)
+          scope.favoritePaymentsList[i].params.transactionId = null;
+        console.log("fav transaction id=", scope.favoritePaymentsList[i].params.transactionId);
       }
       console.log(scope.favoritePaymentsList);
       if (scope.favoritePaymentsList.length == 0) scope.favoriteListShow = false;
 
+      localStorage.setItem('favoritePaymentsList', JSON.stringify(scope.favoritePaymentsList));
       scope.update(scope.favoritePaymentsList);
     } else {
       scope.favoriteListShow = false;
@@ -195,6 +198,7 @@
             scope.favoritePaymentsList[index].params.amountText = window.amountTransform(
                 window.inputVerification.spaceDeleter(scope.favoritePaymentsList[index].params.intPartAmount))
               + scope.favoritePaymentsList[index].params.fracPartAmount;
+
 
             scope.update(scope.favoritePaymentsList);
             break;
