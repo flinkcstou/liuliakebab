@@ -358,12 +358,16 @@
 
         if (favoritePaymentsListForApi.length !== favoritePaymentsList.length) {
           favoritePaymentsListForApi = [];
-          for (var i in favoritePaymentsList)
+          for (var i in favoritePaymentsList) {
+            if (favoritePaymentsList[i].params.transactionId)
+              favoritePaymentsList[i].params.transactionId = null;
+            console.log("fav transaction id=", favoritePaymentsList[i].params.transactionId);
             favoritePaymentsListForApi.push({
               "id": favoritePaymentsList[i].id,
               "type": 1,
               "body": JSON.stringify(favoritePaymentsList[i])
             })
+          }
         }
 
         console.log("CONSOLE LOG OPTS PAYMENT", opts)
