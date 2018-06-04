@@ -530,9 +530,6 @@
 
             opts.categoryContainerScroll = categoriesContainerId.scrollTop;
 
-            riotTags.innerHTML = "<view-service-page-new>";
-            riot.mount("view-service-page-new", opts);
-            scope.unmount()
 //            } else {
 //              riotTags.innerHTML = "<view-service-page-new>";
 //              riot.mount("view-service-page-new", opts);
