@@ -2234,3 +2234,45 @@ function qrCodeScanner(scope) {
     }
   );
 }
+
+function compareImages(url_a, url_b) {
+  var a = new Image(),
+    b = new Image();
+  a.src = url_a;
+  b.src = url_b;
+
+  // might need to wait until a and b have actually loaded, ignoring this for now
+  var a_base64 = getBase64Image(a),
+    b_base64 = getBase64Image(b);
+
+  if (a_base64 === b_base64)
+  {
+    // they are identical
+    console.log('images are identical');
+  }
+  else
+  {
+    // you can probably guess what this means
+    console.log('images are not identical');
+  }
+
+}
+
+function getBase64Image(img) {
+  // Create an empty canvas element
+  var canvas = document.createElement("canvas");
+  canvas.width = img.width;
+  canvas.height = img.height;
+
+  // Copy the image contents to the canvas
+  var ctx = canvas.getContext("2d");
+  ctx.drawImage(img, 0, 0);
+
+  // Get the data-URL formatted image
+  // Firefox supports PNG and JPEG. You could check img.src to
+  // guess the original format, but be aware the using "image/jpg"
+  // will re-encode the image.
+  var dataURL = canvas.toDataURL("image/png");
+
+  return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+}

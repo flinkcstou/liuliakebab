@@ -153,11 +153,15 @@
         scope.show = true;
         scope.currentList = scope.servicesMapByCategory[viewPay.categoryId];
       }
-      if (opts.categoryId)
-        categoriesContainerId.scrollTop = viewPay.categoryScrollTop;
+//      if (opts.categoryId)
+//        categoriesContainerId.scrollTop = viewPay.categoryScrollTop;
+
+      if (opts.categoryContainerScroll) {
+        categoriesContainerId.scrollTop = opts.categoryContainerScroll;
+      }
 
       setTimeout(function () {
-        riot.update();
+        scope.update();
       }, 0);
     });
 
@@ -244,11 +248,10 @@
         scope.hintShow = true;
         scope.showCategoryIcon = scope.categoryNamesMap[scope.index].icon;
         scope.showCategoryName = scope.categoryNamesMap[scope.index].name;
-        scope.update();
       } else {
         scope.hintShow = false;
-        scope.update();
       }
+//      scope.update();
     };
 
 
@@ -370,6 +373,9 @@
               opts.chosenServiceId = id;
               opts.id = id;
             }
+
+            opts.categoryContainerScroll = categoriesContainerId.scrollTop;
+
             riotTags.innerHTML = "<view-service-page-new>";
             riot.mount("view-service-page-new", opts);
             scope.unmount()
@@ -378,6 +384,11 @@
 
 
       }
+    };
+
+
+    moveToService = function () {
+      console.log(categoriesContainerId);
     };
 
   </script>

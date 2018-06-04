@@ -1,41 +1,46 @@
 <component-transfer-to-card>
   <p class="transfer-new-card-text-field">{window.languages.ViewPayTransferNewCardTextField}</p>
   <div id="cardContainer" class="transfer-new-card-container">
-    <div id="bankIconId" class="transfer-new-card-bankIcon" style="background-image: url({bankImage});"></div>
-    <div id="processingIconId" class="transfer-new-card-processingIcon"
-         style="background-image: url({processingImage});"></div>
-    <div id="cardInputContainer"
-         class="transfer-new-card-number-input-container"
-         ontouchstart="cardNumberFormTouchStart()"
-         ontouchend="cardNumberFormTouchEnd()">
-      <input id="cardInputId"
-             class="transfer-new-card-number-input"
-             type="tel"
-             onpaste="onPasteTriggerCard()"
-             oninput="cardBlurAndChange()"
-             onchange="cardBlurAndChange()"
-             onkeydown="cardOnKeyDown(this)"
-             onkeyup="searchCard()"
-             onfocus="cardFocus()"
-             onblur="cardBlur()"/>
-    </div>
-
-    <div id="cardSuggestions" class="transfer-new-card-suggestions-container">
-      <div each="{i in cardSuggestionsArray}"
-           class="transfer-new-card-found-container"
-           ontouchstart="cardSuggestionTouchStart()"
-           ontouchend="cardSuggestionTouchEnd({i.id})">
-        <div class="transfer-card-found-photo" style="background-image: url({i.image})"></div>
-        <div class="transfer-contact-found-text-container">
-          <div class="transfer-contact-found-text-one">{i.name}</div>
-        </div>
-        <div class="transfer-new-card-found-text-two">{i.cardNumber.substring(0,4)} **** ****
-          {i.cardNumber.substring(i.cardNumber.length-4,i.cardNumber.length)}</div>
+    <img id="cardDesignId" class="transfer-new-card-design">
+    <div id="cardInputFieldsId" class="transfer-new-card-input-fields">
+      <div id="bankIconId" class="transfer-new-card-bankIcon" style="background-image: url({bankImage});"></div>
+      <div id="processingIconId" class="transfer-new-card-processingIcon"
+           style="background-image: url({processingImage});"></div>
+      <div id="cardInputContainer"
+           class="transfer-new-card-number-input-container"
+           ontouchstart="cardNumberFormTouchStart()"
+           ontouchend="cardNumberFormTouchEnd()">
+        <input id="cardInputId"
+               class="transfer-new-card-number-input"
+               type="tel"
+               onpaste="onPasteTriggerCard()"
+               oninput="cardBlurAndChange()"
+               onchange="cardBlurAndChange()"
+               onkeydown="cardOnKeyDown(this)"
+               onkeyup="searchCard()"
+               onfocus="cardFocus()"
+               onblur="cardBlur()"/>
       </div>
-    </div>
-    <div id="cardOwnerId" class="transfer-new-card-owner-container" hidden>
-      <p class="transfer-new-card-owner-title">{window.languages.ViewPayTransferNewCardOwnerTitle}</p>
-      <p class="transfer-new-card-owner-info">{cardOwner}</p>
+      <div class="transfer-new-card-number-input-container-bottom-shadow"></div>
+
+      <div id="cardSuggestions" class="transfer-new-card-suggestions-container">
+        <div each="{i in cardSuggestionsArray}"
+             class="transfer-new-card-found-container"
+             ontouchstart="cardSuggestionTouchStart()"
+             ontouchend="cardSuggestionTouchEnd({i.id})">
+          <div class="transfer-card-found-photo" style="background-image: url({i.image})"></div>
+          <div class="transfer-contact-found-text-container">
+            {i.name}
+          </div>
+          <div class="transfer-new-card-found-text-two">{i.cardNumber.substring(0,4)} **** ****
+            {i.cardNumber.substring(i.cardNumber.length-4,i.cardNumber.length)}
+          </div>
+        </div>
+      </div>
+      <div id="cardOwnerId" class="transfer-new-card-owner-container" hidden>
+        <p class="transfer-new-card-owner-title">{window.languages.ViewPayTransferNewCardOwnerTitle}</p>
+        <p class="transfer-new-card-owner-info">{cardOwner}</p>
+      </div>
     </div>
   </div>
   <button if="{showBottomButton}"
@@ -80,6 +85,7 @@
     scope.issuerList = [];
     scope.p2pStatusOfBank = false;
     scope.nameOfBank = '';
+    scope.local_card_background_dir = 'resources/icons/cards/';
 
     scope.on('mount', function () {
       if (opts && JSON.stringify(opts) !== '{}') {
@@ -130,12 +136,12 @@
         && event.keyCode !== input_codes.ENTER;
     };
 
-    cardFocus = function(){
+    cardFocus = function () {
       betweenAmountId.readOnly = true;
       contactPhoneNumberId.readOnly = true;
     };
 
-    cardBlur = function(){
+    cardBlur = function () {
       betweenAmountId.readOnly = false;
       contactPhoneNumberId.readOnly = false;
     };
@@ -205,7 +211,7 @@
       checkForIcons();
       checkCardNumberLength();
       scope.update();
-      if (event.keyCode === input_codes.ENTER){
+      if (event.keyCode === input_codes.ENTER) {
         if (device.platform !== 'BrowserStand')
           cordova.plugins.Keyboard.close();
       }
@@ -274,7 +280,7 @@
           processingIdInInput = cardInputId.value.replace(/\s/g, '').substring(0, parseInt(issuer.prefix_length));
           if (issuer.prefix === processingIdInInput) {
             scope.processingImage = issuer.url;
-            processingIconId.style.display = 'block';
+//            processingIconId.style.display = 'block';
             processingIconFound = true;
             currentIssuer = issuer;
             scope.procType = issuer.prefix;
@@ -288,7 +294,7 @@
             if (bank.code === bankIdInInput) {
               scope.bank = bank;
               scope.bankImage = bank.image;
-              bankIconId.style.display = 'block';
+//              bankIconId.style.display = 'block';
               bankIconFound = true;
               scope.minLimit = parseInt(bank.p2p_min_limit);
               scope.maxLimit = parseInt(bank.p2p_max_limit);
@@ -296,6 +302,22 @@
               scope.bankIdentified = true;
               scope.p2pStatusOfBank = parseInt(bank.p2p_status);
               scope.nameOfBank = bank.bank_name;
+
+              var url_splitted = bank.card_background_url.toString().split("/");
+              var background_file_name = url_splitted[url_splitted.length - 1];
+              cardDesignId.src = scope.local_card_background_dir + background_file_name;
+
+              checkImageExists(cardDesignId.src, function (exists) {
+                if (exists) {
+                  cardDesignId.classList.add('transfer-new-card-design-appear');
+                  cardInputFieldsId.classList.add('transfer-new-card-input-fields-reduce');
+                  if (bank.font_color) {
+                    cardInputFieldsId.style.color = 'rgb(' + bank.font_color + ')';
+                  }
+                } else {
+                  console.log('image does not exist');
+                }
+              });
             }
           });
         }
@@ -307,6 +329,8 @@
         if (bankIconFound === false) {
           scope.bankImage = '';
           bankIconId.style.display = 'none';
+          cardDesignId.classList.remove('transfer-new-card-design-appear');
+          cardInputFieldsId.classList.remove('transfer-new-card-input-fields-reduce');
         }
       }
     };
@@ -399,7 +423,7 @@
 
       if (Math.abs(transferCardTouchStartX - transferCardTouchEndX) <= 20
         && Math.abs(transferCardTouchStartY - transferCardTouchEndY) <= 20) {
-        if (scope.issuerList.length === 0 && !modeOfApp.demoVersion && !modeOfApp.offlineMode){
+        if (scope.issuerList.length === 0 && !modeOfApp.demoVersion && !modeOfApp.offlineMode) {
           cardInputId.blur();
           scope.errorNote = 'Подождите, данные для обработки информации еще не прогрузились';
 
@@ -413,18 +437,18 @@
           scope.update();
           return;
         }
-        if (scope.p2pStatusOfBank === 0){
-            cardInputId.blur();
-            scope.errorNote = 'Карта "' + scope.nameOfBank + '" банка временно недоступна для перевода средств';
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote,
-              pathtosettings: scope.pathToSettings,
-              permissionerror: scope.permissionError,
-            });
-            scope.update();
-            return;
+        if (scope.p2pStatusOfBank === 0) {
+          cardInputId.blur();
+          scope.errorNote = 'Карта "' + scope.nameOfBank + '" банка временно недоступна для перевода средств';
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            clickpinerror: scope.clickPinError,
+            errornote: scope.errorNote,
+            pathtosettings: scope.pathToSettings,
+            permissionerror: scope.permissionError,
+          });
+          scope.update();
+          return;
         }
         checkForIcons();
         params = {
@@ -443,6 +467,17 @@
         riotTags.innerHTML = "<view-transfer-submit>";
         riot.mount('view-transfer-submit', params);
       }
+    };
+
+    checkImageExists = function (url, callback) {
+      var img = new Image();
+      img.onload = function () {
+        callback(true);
+      };
+      img.onerror = function () {
+        callback(false);
+      };
+      img.src = url;
     };
 
   </script>

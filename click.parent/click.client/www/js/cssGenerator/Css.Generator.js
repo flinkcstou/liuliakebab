@@ -6774,6 +6774,43 @@ var css = {
   "background-position: center;" +
   "background-repeat: no-repeat;" +
   "background-image: url('resources/icons/ViewTransfer/transfer_card.png');" +
+  "-webkit-transition: 0.7s;" +
+  "transition: 0.7s;" +
+  "}",
+
+  transferNewCardDesign: ".transfer-new-card-design" +
+  "{" +
+  "position: absolute;" +
+  "left: -" + 1 * widthK + "px;" +
+  "top: -" + 1 * widthK + "px;" +
+  "height:" + 347 * widthK + "px;" +
+  "width:" + 609 * widthK + "px;" +
+  "border-radius: " + 10 * widthK + "px;" +
+  "-webkit-transition: 0.7s;" +
+  "transition: 0.7s;" +
+  "opacity: 0;" +
+  "}",
+
+  transferNewCardInputFields: ".transfer-new-card-input-fields" +
+  "{" +
+  "position: absolute;" +
+  "height:" + 345 * widthK + "px;" +
+  "width:" + 607 * widthK + "px;" +
+  "-webkit-transition: 0.7s;" +
+  "transition: 0.7s;" +
+  "transform-origin: bottom left;" +
+  "overflow: hidden;" +
+  "color: #757389;" +
+  "}",
+
+  transferNewCardInputFieldsReduce: ".transfer-new-card-input-fields-reduce" +
+  "{" +
+  "transform: scale(0.7);" +
+  "}",
+
+  transferNewCardDesignAppear: ".transfer-new-card-design-appear" +
+  "{" +
+  "opacity: 1;" +
   "}",
 
   transferNewCardNumberInputContainer: ".transfer-new-card-number-input-container" +
@@ -6785,8 +6822,26 @@ var css = {
   "left:" + 28 * widthK + "px;" +
   "width:" + 547 * widthK + "px;" +
   "height:" + 75 * widthK + "px;" +
+  "border:" + 1 + "px solid #e7e7e7;" +
   "background-color: white;" +
   "margin: 0%;" +
+  "padding: 0;" +
+  "}",
+
+  transferNewCardNumberInputContainerBottomShadow: ".transfer-new-card-number-input-container-bottom-shadow" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "top:" + 214 * widthK + "px;" +
+  "left:" + 28 * widthK + "px;" +
+  "width:" + 547 * widthK + "px;" +
+  "height:" + 31.25 * widthK + "px;" +
+  "background-image: url('resources/icons/ViewTransfer/input_bottom_shadow.png');" +
+  "background-repeat: no-repeat;" +
+  "background-size: cover;" +
+  "z-index: 2;" +
+  "margin: 0;" +
   "padding: 0;" +
   "}",
 
@@ -6817,7 +6872,6 @@ var css = {
   "{" +
   "position: relative;" +
   "font-size:" + 32 * widthK + "px;" +
-  "color: #c1c1c1;" +
   "margin: 0;" +
   "float: left;" +
   "}",
@@ -6829,12 +6883,12 @@ var css = {
   "margin: 0;" +
   "float: left;" +
   "padding-left:" + 8 * widthK + "px;" +
-  "color: #626062;" +
   "}",
 
   transferNewCardProcessingIcon: ".transfer-new-card-processingIcon" +
   "{" +
   "position: absolute;" +
+  "display: none;" +
   "width:" + 129 * widthK + "px;" +
   "height:" + 37 * widthK + "px;" +
   "top:" + 34 * widthK + "px;" +
@@ -6849,6 +6903,7 @@ var css = {
   transferNewCardBankIcon: ".transfer-new-card-bankIcon" +
   "{" +
   "position: absolute;" +
+  "display: none;" +
   "width:" + 185 * widthK + "px;" +
   "height:" + 90 * widthK + "px;" +
   "top:" + 20 * widthK + "px;" +
@@ -6862,15 +6917,29 @@ var css = {
 
   transferNewCardSuggestionsContainer: ".transfer-new-card-suggestions-container" +
   "{" +
-  "padding-top:" + 207 * widthK + "px;" +
+  "padding-top:" + 204 * widthK + "px;" +
+  "-webkit-transition: 0.7s;" +
+  "transition: 0.7s;" +
   "}",
 
   transferNewContactFoundContainer: ".transfer-new-card-found-container" +
   "{" +
   "position: relative;" +
   "width: 90%;" +
-  "height:" + 117 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
   "background-color: #F0F1F4;" +
+  "left: 5%;" +
+  "margin-top:" + 13 * widthK + "px;" +
+  "-webkit-transition: 0.7s;" +
+  "transition: 0.7s;" +
+  "}",
+
+  transferNewContactFoundContainerReduce: ".transfer-new-card-input-fields-reduce .transfer-new-card-found-container" +
+  "{" +
+  "position: relative;" +
+  "width: 90%;" +
+  "height:" + 100 * widthK + "px;" +
+  "background-color: #FFFFFF;" +
   "left: 5%;" +
   "margin-top:" + 13 * widthK + "px;" +
   "}",
@@ -6879,14 +6948,15 @@ var css = {
   "{" +
   "position: absolute;" +
   "margin: 0;" +
-  "left:" + 315 * widthK + "px;" +
+  "left: 31%;" +
   "color: gray;" +
   "font-size:" + 24 * widthK + "px;" +
-  "top: 40%;" +
-  "max-width:" + 231 * widthK + "px;" +
+  "top: 28%;" +
+  "max-width: 68%;" +
   "overflow: hidden;" +
   "text-overflow: ellipsis;" +
   "white-space: nowrap;" +
+  "font-family: SFUIDisplay-Semibold;" +
   "}",
 
   transferNewContactSuggestionsContainer: ".transfer-new-contact-suggestions-container" +
@@ -7334,22 +7404,25 @@ var css = {
   transferCardFoundPhoto: ".transfer-card-found-photo" +
   "{" +
   "position: absolute;" +
-  "width: 20%;" +
+  "width: 28%;" +
   "height: 100%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
-  "left: 5%;" +
+  "left: 1%;" +
   "background-size: 100%;" +
   "}",
 
   transferContactFoundTextContainer: ".transfer-contact-found-text-container" +
   "{" +
   "position: absolute;" +
-  "left: 30%;" +
+  "left: 31%;" +
+  "top: 68%;" +
   "color: gray;" +
-  "width: 20%;" +
-  "height: 100%;" +
-  "display: table;" +
+  "max-width: 65%;" +
+  "font-size:" + 23 * widthK + "px;" +
+  "overflow: hidden;" +
+  "text-overflow: ellipsis;" +
+  "white-space: nowrap;" +
   "}",
 
 
@@ -13341,8 +13414,6 @@ var css = {
 
   addCardCardDesignAppear: ".add-card-card-design-appear" +
   "{" +
-  // "-webkit-transition: 0.7s;" +
-  // "transition: 0.7s;" +
   "opacity: 1;" +
   "}",
 
