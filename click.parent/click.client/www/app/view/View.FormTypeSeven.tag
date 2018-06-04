@@ -1,4 +1,4 @@
-<view-formtype-sevenview-formtype-seven class="riot-tags-main-container">
+<view-formtype-seven class="riot-tags-main-container">
 
   <div id="servicePageId" class="view-common-page">
 
@@ -38,7 +38,6 @@
       <div class="servicepage-first-field" id="firstField"
            hidden="{modeOfApp.offlineMode && opts.chosenServiceId == 'mynumber'}">
         <p id="firstFieldTitle" class="servicepage-text-field">{chosenFieldName}</p>
-        <p class="servicepage-number-first-part" if="{phoneFieldBool}">+{window.languages.CodeOfCountry}</p>
 
         <input class="servicepage-number-input-part" type="{inputType}" id="firstFieldInput"
                onfocus="colorField('firstField')" value="{defaultNumber || opts.first_field_value}"
@@ -143,7 +142,7 @@
 
         if (scope.phoneFieldBool && firstFieldInput && opts.chosenServiceId != "mynumber") {
 
-          if (firstFieldInput.value.length < 10) {
+          if (firstFieldInput.value.length < 7) {
             scope.enterButtonEnabled = false;
             scope.update(scope.enterButtonEnabled);
             return;
@@ -188,28 +187,28 @@
     };
 
     telPayVerificationKeyUp = function () {
-
-      if (contactStopChanging) {
-        firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
-      }
-
-      cursorPositionSelectionStart = firstFieldInput.selectionStart;
-      cursorPositionSelectionEnd = firstFieldInput.selectionEnd;
-      oldValueOfNumber = firstFieldInput.value;
-
-      if (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
-        if (firstFieldInput.type != 'text' && scope.phoneFieldBool)
-          firstFieldInput.value = inputVerification.telVerificationWithSpace(inputVerification.telVerification(firstFieldInput.value));
-
-        if (!onPaste) {
-          firstFieldInput.selectionStart = cursorPositionSelectionStart;
-          firstFieldInput.selectionEnd = cursorPositionSelectionEnd;
-        }
-
-        if (oldValueOfNumber != firstFieldInput.value && cursorPositionSelectionStart == 3)
-          firstFieldInput.selectionStart = cursorPositionSelectionStart + 1;
-
-      }
+//
+//      if (contactStopChanging) {
+//        firstFieldInput.value = event.target.value.substring(0, event.target.value.length - 1);
+//      }
+//
+//      cursorPositionSelectionStart = firstFieldInput.selectionStart;
+//      cursorPositionSelectionEnd = firstFieldInput.selectionEnd;
+//      oldValueOfNumber = firstFieldInput.value;
+//
+//      if (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
+//        if (firstFieldInput.type != 'text' && scope.phoneFieldBool)
+//          firstFieldInput.value = inputVerification.telVerificationWithSpace(inputVerification.telVerification(firstFieldInput.value));
+//
+//        if (!onPaste) {
+//          firstFieldInput.selectionStart = cursorPositionSelectionStart;
+//          firstFieldInput.selectionEnd = cursorPositionSelectionEnd;
+//        }
+//
+//        if (oldValueOfNumber != firstFieldInput.value && cursorPositionSelectionStart == 3)
+//          firstFieldInput.selectionStart = cursorPositionSelectionStart + 1;
+//
+//      }
 
       checkFieldsToActivateNext();
     };
@@ -711,4 +710,4 @@
 
 
   </script>
-</view-formtype-sevenview-formtype-seven>
+</view-formtype-seven>
