@@ -78,6 +78,7 @@
 
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
+    scope.servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
     scope.servicesParamsMapThree = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"))) : (offlineServicesParamsMapThree);
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
 
@@ -189,7 +190,7 @@
     }
     scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
     scope.formType = scope.service.form_type;
-
+    scope.fieldArray = scope.servicesParamsMapOne[opts.chosenServiceId];
     scope.pincardsMap = {};
     scope.pincardIds = [];
     if (scope.servicesParamsMapThree[scope.service.id]) {
@@ -244,6 +245,18 @@
         formTypeTwoBtnId.style.backgroundColor = '#00a8f1';
         scope.update(formTypeTwoBtnId);
       }
+    };
+
+    scope.onTouchStartOfEnter = onTouchStartOfEnter = function () {
+      event.stopPropagation();
+
+      if (this.enterButtonId && scope.enterButtonEnabled) {
+        this.enterButtonId.style.webkitTransform = 'scale(0.8)';
+//        this.enterButtonId.style.backgroundColor = '#76c1f4';
+      }
+
+      enterStartY = event.changedTouches[0].pageY;
+      enterStartX = event.changedTouches[0].pageX;
     };
 
     formTypeTwoButtonFunction = function () {
@@ -328,14 +341,14 @@
             opts.favoriteName = favoriteNameInput.value;
 
             if (opts.isInFavorites) {
-              editFavorite(opts);
+              editFavoritePayment(params, opts.favoriteId, scope);
               event.preventDefault();
               event.stopPropagation();
               onBackKeyDown();
             }
             else {
               opts.isInFavorites = true;
-              addToFavoritesinServicePage(opts);
+              addPaymentToFavorites(opts, scope.service, scope.fieldArray[0].ussd_query, scope);
               event.preventDefault();
               event.stopPropagation();
               onBackKeyDown();
@@ -367,7 +380,6 @@
               clickpinerror: scope.clickPinError,
               errornote: scope.errorNote,
             });
-
             scope.update();
             return;
           }
@@ -389,158 +401,6 @@
         }
       }
 
-    };
-
-    addToFavoritesinServicePage = function (array) {
-
-      var favoritePaymentsList, favoritePaymentsListForApi;
-
-      var id = Math.floor((Math.random() * 1000000) + 1);
-
-      favoritePaymentsList = localStorage.getItem('favoritePaymentsList') ? JSON.parse(localStorage.getItem('favoritePaymentsList')) : [];
-      favoritePaymentsListForApi = localStorage.getItem('favoritePaymentsListForApi') ? JSON.parse(localStorage.getItem('favoritePaymentsListForApi')) : [];
-
-
-      if (favoritePaymentsListForApi.length != favoritePaymentsList.length) {
-        favoritePaymentsListForApi = [];
-        for (var i in favoritePaymentsList) {
-          if (favoritePaymentsList[i].params.transactionId)
-            favoritePaymentsList[i].params.transactionId = null;
-          console.log("fav transaction id=", favoritePaymentsList[i].params.transactionId);
-          favoritePaymentsListForApi.push({
-            "id": favoritePaymentsList[i].id,
-            "type": 1,
-            "body": JSON.stringify(favoritePaymentsList[i])
-          })
-        }
-      }
-
-      var newfavorite = {
-        "params": array,
-        "service": scope.service,
-        "ussd": scope.fieldArray[0].ussd_query,
-        "id": id
-      };
-
-      favoritePaymentsList.push(newfavorite);
-      favoritePaymentsListForApi.push({
-        "id": id,
-        "type": 1,
-        "body": JSON.stringify(newfavorite)
-      });
-
-      localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
-      localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(favoritePaymentsListForApi));
-
-
-      window.api.call({
-        method: 'add.favourite',
-        input: {
-          session_key: sessionKey,
-          phone_num: phoneNumber,
-          wishlist_data: favoritePaymentsListForApi
-        },
-
-        scope: this,
-
-        onSuccess: function (result) {
-
-          if (result[0][0].error == 0) {
-
-            console.log("SUCCESSFULLY ADDED")
-
-          }
-          else {
-            scope.clickPinError = false;
-            scope.errorNote = result[0][0].error_note;
-
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote
-            });
-
-            scope.update();
-            console.log(result[0][0].error_note);
-          }
-        },
-
-        onFail: function (api_status, api_status_message, data) {
-          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
-        }
-      });
-
-
-    };
-
-    editFavorite = function (params) {
-
-      var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
-      var favoritePaymentsListForApi = JSON.parse(localStorage.getItem('favoritePaymentsListForApi'));
-
-      for (var i in favoritePaymentsList) {
-        if (favoritePaymentsList[i].id == opts.favoriteId) {
-          favoritePaymentsList[i].params = params;
-
-          var editedfavorite = {
-            "id": favoritePaymentsList[i].id,
-            "type": 1,
-            "body": JSON.stringify(favoritePaymentsList[i])
-          };
-
-          for (var j in favoritePaymentsListForApi) {
-            if (favoritePaymentsListForApi[i].id == opts.favoriteId) {
-              favoritePaymentsListForApi[i] = editedfavorite;
-              break;
-            }
-          }
-
-          window.api.call({
-            method: 'update.favourite',
-            input: {
-              session_key: sessionKey,
-              phone_num: phoneNumber,
-              wishlist_data: editedfavorite
-            },
-
-            scope: this,
-
-            onSuccess: function (result) {
-
-              if (result[0][0].error == 0) {
-
-                console.log("SUCCESSFULLY edited")
-
-              }
-              else {
-                scope.clickPinError = false;
-                scope.errorNote = result[0][0].error_note;
-
-                window.common.alert.show("componentAlertId", {
-                  parent: scope,
-                  clickpinerror: scope.clickPinError,
-                  errornote: scope.errorNote
-                });
-
-                scope.update();
-                console.log(result[0][0].error_note);
-              }
-            },
-
-            onFail: function (api_status, api_status_message, data) {
-              console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-              console.error(data);
-            }
-          });
-
-          localStorage.setItem('favoritePaymentsList', JSON.stringify(favoritePaymentsList));
-          localStorage.setItem('favoritePaymentsListForApi', JSON.stringify(favoritePaymentsListForApi));
-
-          break;
-
-        }
-      }
     };
 
 

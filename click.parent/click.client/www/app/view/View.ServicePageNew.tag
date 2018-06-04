@@ -1937,6 +1937,8 @@
         }
       }
 
+      console.log("fav fieldArray", scope.fieldArray[0], scope.service);
+
       var newfavorite = {
         "params": array,
         "service": scope.service,
