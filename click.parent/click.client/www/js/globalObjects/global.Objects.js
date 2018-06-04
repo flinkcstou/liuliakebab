@@ -2245,13 +2245,11 @@ function compareImages(url_a, url_b) {
   var a_base64 = getBase64Image(a),
     b_base64 = getBase64Image(b);
 
-  if (a_base64 === b_base64)
-  {
+  if (a_base64 === b_base64) {
     // they are identical
     console.log('images are identical');
   }
-  else
-  {
+  else {
     // you can probably guess what this means
     console.log('images are not identical');
   }
@@ -2275,4 +2273,8 @@ function getBase64Image(img) {
   var dataURL = canvas.toDataURL("image/png");
 
   return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+}
+
+function addPaymentToFavorites() {
+
 }

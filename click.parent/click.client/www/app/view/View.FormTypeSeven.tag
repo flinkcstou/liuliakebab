@@ -1,4 +1,4 @@
-<view-formtype-seven class="riot-tags-main-container">
+<view-formtype-sevenview-formtype-seven class="riot-tags-main-container">
 
   <div id="servicePageId" class="view-common-page">
 
@@ -70,7 +70,7 @@
     var contactStopChanging = false;
     var onPaste = false;
 
-    console.log("opts in ServicePageNew", opts);
+    console.log("opts in FormTypeSeven", opts);
 
     window.saveHistory('view-formtype-seven', opts);
 
@@ -709,4 +709,4 @@
 
 
   </script>
-</view-formtype-seven>
+</view-formtype-sevenview-formtype-seven>

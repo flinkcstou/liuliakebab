@@ -523,18 +523,30 @@
               opts.chosenServiceId = id;
               opts.id = id;
             }
-            console.log("form type=", scope.servicesMap[id][0].form_type, scope.servicesMap[id][0]);
-//            if (scope.servicesMap[scope.autoPayData.service_id][0].form_type == 7) {
-            riotTags.innerHTML = "<view-formtype-seven>";
-            riot.mount("view-formtype-seven", opts);
 
             opts.categoryContainerScroll = categoriesContainerId.scrollTop;
 
-//            } else {
-//              riotTags.innerHTML = "<view-service-page-new>";
-//              riot.mount("view-service-page-new", opts);
-//              scope.unmount()
-//            }
+            if (scope.servicesMap[id] && scope.servicesMap[id][0]) {
+              console.log("form type=", scope.servicesMap[id][0].form_type, scope.servicesMap[id][0]);
+              if (scope.servicesMap[id][0].form_type == 7) {
+                riotTags.innerHTML = "<view-formtype-seven>";
+                riot.mount("view-formtype-seven", opts);
+              }
+              else if (scope.servicesMap[id][0].form_type == 2) {
+                riotTags.innerHTML = "<view-formtype-two>";
+                riot.mount("view-formtype-two", opts);
+              }
+              else {
+                riotTags.innerHTML = "<view-service-page-new>";
+                riot.mount("view-service-page-new", opts);
+                scope.unmount()
+              }
+            } else {
+              riotTags.innerHTML = "<view-service-page-new>";
+              riot.mount("view-service-page-new", opts);
+              scope.unmount()
+            }
+
 
           }
         }, 50);
