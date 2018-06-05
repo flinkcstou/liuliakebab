@@ -315,6 +315,14 @@ window.dateAddZero = function (date) {
   return date;
 };
 
+window.deleteLeadingZeros = function (amount) {
+  if (typeof amount === 'string'){
+    amount = amount.replace(/^0+/, '');
+    console.log('amount without leading zeros', amount);
+  }
+  return amount;
+};
+
 window.amountTransform = function (amount) {
   if (amount) {
     amount = amount.toString()
