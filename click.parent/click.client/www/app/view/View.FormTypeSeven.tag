@@ -338,7 +338,7 @@
         opts.firstFieldId = scope.chosenFieldParamId;
         opts.firstFieldText = firstFieldInput.value;
         opts.firstFieldTitle = scope.chosenFieldName;
-        opts.cardTypeId = null;
+        opts.secondFieldValue = secondFieldInput.value;
 
         history.arrayOfHistory[history.arrayOfHistory.length - 1].params = opts;
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
@@ -426,9 +426,9 @@
               riot.mount('view-service-pincards-new', opts);
               scope.unmount()
             } else {
-              localStorage.setItem('click_client_infoCacheEnabled', null)
-              this.riotTags.innerHTML = "<view-service-info-new>";
-              riot.mount('view-service-info-new', opts);
+              localStorage.setItem('click_client_infoCacheEnabled', null);
+              this.riotTags.innerHTML = "<view-formtype-seven-getinfo>";
+              riot.mount('view-formtype-seven-getinfo', opts);
               scope.unmount()
             }
 

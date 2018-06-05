@@ -155,8 +155,6 @@
 
     keyUpFieldInplaceSearch = function () {
 
-      console.log("search suggestions 1", event.target.value);
-
       if (event.keyCode === input_codes.ENTER) {
         window.blurFields();
       }
@@ -173,7 +171,6 @@
 
             var index = wordOfFunction.name.toLowerCase().search(scope.searchWord.toString());
             if (index != -1) {
-              console.log("found ", wordOfFunction);
               scope.suggestions.push(wordOfFunction);
               sessionStorage.setItem('click_client_suggestions', JSON.stringify(scope.suggestions));
             }

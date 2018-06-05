@@ -235,7 +235,6 @@
       searchFieldTimeout = setTimeout(function () {
         if (!scope.searchServices) scope.searchServices = true;
 
-//      scope.update();
         window.saveHistory('view-pay-services', {searchWord: scope.searchWord});
 
         scope.suggestions = [];
@@ -246,8 +245,6 @@
             var index = service.name.toLowerCase().search(scope.searchWord.toString());
             if (index != -1 && service.is_visible) {
               if (opts.mode != "ADDAUTOPAY" || (opts.mode == "ADDAUTOPAY" && (service.autopay_available_schedule || service.autopay_available || !service.form_type))) {
-                console.log("service is visible=", service.is_visible);
-                console.log("found ", index, service.name);
                 scope.suggestions.push(service);
                 sessionStorage.setItem('click_client_suggestions', JSON.stringify(scope.suggestions));
               }
