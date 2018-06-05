@@ -76,6 +76,7 @@
             <div class="my-cards-operation-amount">- {i.amount}</div>
             <div class="my-cards-operation-currency">{i.lang_amount_currency}</div>
             <div class="my-cards-operation-date">{i.cntrg_info_param2}</div>
+            <div class="view-info-state-image" style="background-image: url({i.state_image})"></div>
           </div>
           <p class="my-cards-last-operation-info-time">{i.paymentTime}</p>
 
@@ -110,8 +111,8 @@
     scope.lastOperationsMap = {};
 
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key,
-      phoneNumber = localStorage.getItem('click_client_phoneNumber'),
-      myCardsOnTouchStartY, myCardsOnTouchStartX, myCardsOnTouchEndY, myCardsOnTouchEndX;
+        phoneNumber = localStorage.getItem('click_client_phoneNumber'),
+        myCardsOnTouchStartY, myCardsOnTouchStartX, myCardsOnTouchEndY, myCardsOnTouchEndX;
 
     if (opts[0]) {
       scope.cardId = opts[0];
@@ -276,7 +277,7 @@
         event.stopPropagation();
 
         var cardNumber = localStorage.getItem("cardNumber"),
-          cards = scope.tags["component-card-carousel"].cardsarray;
+            cards = scope.tags["component-card-carousel"].cardsarray;
         cardNumber = JSON.parse(cardNumber);
 
         for (card in cards) {
