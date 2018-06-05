@@ -2468,3 +2468,26 @@ function openPayServiceById(id, opts) {
 
   }
 }
+
+function colorFieldGlobal(fieldId, fieldTitleId) {
+  window[fieldId].style.borderBottom = 3 * widthK + 'px solid #01cfff';
+  window[fieldTitleId].style.color = '#01cfff';
+}
+
+function blurFieldGlobal(fieldId, fieldTitleId) {
+  window[fieldId].style.borderBottom = 3 * widthK + 'px solid lightgrey';
+  window[fieldTitleId].style.color = 'gray';
+}
+
+function focusFieldGlobal(fieldId) {
+  if (window[fieldId]) {
+    if (device.platform == 'iOS') {
+      window[fieldId].autofocus;
+      window[fieldId].focus();
+    } else {
+      setTimeout(function () {
+        window[fieldId].focus();
+      }, 0);
+    }
+  }
+}

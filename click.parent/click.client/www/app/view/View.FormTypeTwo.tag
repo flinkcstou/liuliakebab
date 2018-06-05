@@ -24,7 +24,9 @@
         <p id="autoPayNameTitle" class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
 
         <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="autoPayNameInput"
-               autofocus="true" onkeyup="paymentNameVerificationKeyUp()" onfocus="colorFieldFormTypeTwo('autopay')"/>
+               autofocus="true" onkeyup="paymentNameVerificationKeyUp()"
+               onfocus="colorFieldGlobal('autopayField','autoPayNameTitle')"
+               onblur="blurFieldGlobal('autopayField','autoPayNameTitle')"/>
       </div>
 
       <div id="favoriteField" class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDFAVORITE'}">
@@ -33,7 +35,8 @@
         <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="favoriteNameInput"
                placeholder="{window.languages.ViewServicePageFavoriteNamePlaceholder}" autofocus="true"
                value="{opts.favoriteName}"
-               onkeyup="paymentNameVerificationKeyUp()" onfocus="colorFieldFormTypeTwo('favorite')"/>
+               onkeyup="paymentNameVerificationKeyUp()" onfocus="colorFieldGlobal('favoriteField','favoriteNameTitle')"
+               onblur="blurFieldGlobal('favoriteField','favoriteNameTitle')"/>
       </div>
 
       <div
@@ -82,13 +85,8 @@
     scope.servicesParamsMapThree = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"))) : (offlineServicesParamsMapThree);
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
 
-    scope.enterButton = opts.mode == 'ADDFAVORITE' ? false : true;
-    var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
-    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-    if (loginInfo)
-      var sessionKey = loginInfo.session_key;
-
-    scope.update(scope.categoryNamesMap);
+    scope.enterButton = opts.mode != 'ADDFAVORITE';
+    scope.update();
 
 
     scope.onTouchStartOfBack = onTouchStartOfBack = function () {
@@ -149,37 +147,15 @@
     scope.focusFieldAfterTourClosed = focusFieldAfterTourClosed = function () {
 
       if (opts.mode == 'ADDAUTOPAY') {
-        if (device.platform == 'iOS') {
-          autoPayNameInput.autofocus;
-          autoPayNameInput.focus();
-        } else {
-          setTimeout(function () {
-            if (this.autoPayNameInput)
-              autoPayNameInput.focus();
-          }, 0);
-        }
+
+        focusFieldGlobal('autoPayNameInput');
+
       } else if (opts.mode == 'ADDFAVORITE') {
-        if (device.platform == 'iOS') {
-          favoriteNameInput.autofocus;
-          favoriteNameInput.focus();
-        } else {
-          setTimeout(function () {
-            if (this.favoriteNameInput)
-              favoriteNameInput.focus();
-          }, 0);
-        }
+
+        focusFieldGlobal('favoriteNameInput');
+
       }
       scope.update()
-    };
-
-    colorFieldFormTypeTwo = function (field) {
-      if (field == 'autopay') {
-        autopayField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
-        autoPayNameTitle.style.color = '#01cfff';
-      } else if (field == 'favorite') {
-        favoriteField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
-        favoriteNameTitle.style.color = '#01cfff';
-      }
     };
 
 
@@ -224,16 +200,12 @@
         opts.amountText = nominal;
 
         if (opts.mode == 'ADDAUTOPAY') {
-          autopayField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
-          autoPayNameTitle.style.color = 'gray';
 
           if (this.autoPayNameInput.value.length < 1) {
             console.log("Введите название автоплатежа");
             return;
           }
         } else if (opts.mode == 'ADDFAVORITE') {
-          favoriteField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
-          favoriteNameTitle.style.color = 'gray';
 
           if (this.favoriteNameInput.value.length < 1) {
             console.log("Введите название избранного");

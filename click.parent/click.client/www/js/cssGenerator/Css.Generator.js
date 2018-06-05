@@ -4468,7 +4468,7 @@ var css = {
   "left: 10%;" +
   "width: 79.5%;" +
   "height: 10%;" +
-  "border-bottom:  " + 3 * widthK + "px solid #01cfff;" +
+  "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
   "color: white;" +
   "top: 8%;" +
   "}",
@@ -4884,6 +4884,14 @@ var css = {
   "-ms-transform: rotate(90deg);" +
   "-o-transform: rotate(90deg);" +
   "transform: rotate(90deg);" +
+  "}",
+
+  //FormTypeSeven
+
+  formTypeSevenSecondField: ".formtype-seven-second-field" +
+  "{" +
+  "top: 14%;" +
+  "border-bottom:  " + 3 * widthK + "px solid lightgrey;" +
   "}",
 
   //Component dropdown

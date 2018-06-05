@@ -520,37 +520,6 @@
 
             openPayServiceById(id, opts);
 
-//            if (scope.servicesMap[id] && scope.servicesMap[id][0]) {
-//              console.log("form type=", scope.servicesMap[id][0].form_type, scope.servicesMap[id][0]);
-//              if (scope.servicesMap[id][0].form_type == 7) {
-//                riotTags.innerHTML = "<view-formtype-seven>";
-//                riot.mount("view-formtype-seven", opts);
-//              }
-//              else if (scope.servicesMap[id][0].form_type == 2) {
-//                riotTags.innerHTML = "<view-formtype-two>";
-//                riot.mount("view-formtype-two", opts);
-//              } else if (scope.servicesMap[id][0].form_type == 1) {
-//                riotTags.innerHTML = "<view-formtype-one>";
-//                riot.mount("view-formtype-one", opts);
-//              }
-//              else {
-//                riotTags.innerHTML = "<view-service-page-new>";
-//                riot.mount("view-service-page-new", opts);
-//              }
-//            }
-//            else if (id.indexOf('mynumber') != -1) {
-//              console.log("my number mode");
-//              riotTags.innerHTML = "<view-formtype-mynumber>";
-//              riot.mount("view-formtype-mynumber", opts);
-//            }
-//            else {
-//              console.log(" else mode");
-//              riotTags.innerHTML = "<view-service-page-new>";
-//              riot.mount("view-service-page-new", opts);
-//
-//            }
-
-
             scope.unmount()
 
           }
