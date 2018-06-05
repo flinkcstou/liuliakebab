@@ -411,8 +411,9 @@
             window.checkShowingComponent = null;
           }
 
-          riotTags.innerHTML = "<view-service-page-new>";
-          riot.mount("view-service-page-new", opts);
+//          riotTags.innerHTML = "<view-service-page-new>";
+//          riot.mount("view-service-page-new", opts);
+          openPayServiceById(opts.chosenServiceId, opts);
 
           scope.update();
 //        scope.unmount()

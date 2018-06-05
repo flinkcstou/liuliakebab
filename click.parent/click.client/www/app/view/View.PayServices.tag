@@ -331,12 +331,14 @@
               opts.id = id;
             }
 
-            riotTags.innerHTML = "<view-formtype-seven>";
-            riot.mount("view-formtype-seven", opts);
-            scope.unmount()
+//            riotTags.innerHTML = "<view-formtype-seven>";
+//            riot.mount("view-formtype-seven", opts);
+//            scope.unmount()
 //            riotTags.innerHTML = "<view-service-page-new>";
 //            riot.mount("view-service-page-new", opts);
 //            scope.unmount()
+
+            openPayServiceById(id, opts);
           }
         }, 50);
 

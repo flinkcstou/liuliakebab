@@ -50,16 +50,16 @@
     </div>
 
     <div
-        class="{schedule-date-block-days-outer-container: !timeMode && !weekMode && dayMode,schedule-date-block-week-outer-container: !timeMode && weekMode && !dayMode, schedule-date-block-time-outer-container: timeMode && !weekMode && !dayMode}">
+      class="{schedule-date-block-days-outer-container: !timeMode && !weekMode && dayMode,schedule-date-block-week-outer-container: !timeMode && weekMode && !dayMode, schedule-date-block-time-outer-container: timeMode && !weekMode && !dayMode}">
       <div id="dateContainerId"
            class="{schedule-date-block-days-container: !timeMode && (weekMode || dayMode), schedule-date-block-hours-container:timeMode && !weekMode && !dayMode}"
            ontouchstart="dateContainerTouchStart()"
            ontouchend="dateContainerTouchEnd()"
            ontouchmove="dateContainerTouchMove()">
         <div
-            class="{schedule-date-block-day:!timeMode && !weekMode && dayMode,schedule-date-block-week:!timeMode && weekMode && !dayMode,schedule-date-block-time:timeMode && !weekMode && !dayMode}"
-            each="{i in dateBlockArray}"
-            style="top:{topOfOperations*i.k}px;">
+          class="{schedule-date-block-day:!timeMode && !weekMode && dayMode,schedule-date-block-week:!timeMode && weekMode && !dayMode,schedule-date-block-time:timeMode && !weekMode && !dayMode}"
+          each="{i in dateBlockArray}"
+          style="top:{topOfOperations*i.k}px;">
           <p id="day{i.k-1}"
              class="{schedule-date-block-day-text: !timeMode && !weekMode && dayMode, schedule-date-block-week-text: !timeMode && weekMode && !dayMode, schedule-date-block-time-text: timeMode && !weekMode && !dayMode}">
             {i.v}</p>
@@ -320,8 +320,9 @@
           localStorage.setItem('autoPayData', JSON.stringify(scope.autoPayData));
           event.stopPropagation();
           onBackParams.opts = JSON.parse(JSON.stringify(opts));
-          riotTags.innerHTML = "<view-service-page-new>";
-          riot.mount("view-service-page-new", opts);
+//          riotTags.innerHTML = "<view-service-page-new>";
+//          riot.mount("view-service-page-new", opts);
+          openPayServiceById(opts.id, opts);
 
           scope.unmount()
         } else {

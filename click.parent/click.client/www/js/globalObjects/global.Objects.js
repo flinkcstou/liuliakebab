@@ -316,7 +316,7 @@ window.dateAddZero = function (date) {
 };
 
 window.deleteLeadingZeros = function (amount) {
-  if (typeof amount === 'string'){
+  if (typeof amount === 'string') {
     amount = amount.replace(/^0+/, '');
     console.log('amount without leading zeros', amount);
   }
@@ -2432,5 +2432,39 @@ function editFavoritePayment(params, favoriteId, scope) {
 
     }
   }
+}
 
+function openPayServiceById(id, opts) {
+  var servicesMap = scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
+
+  console.log("openPayServiceById method");
+  if (servicesMap[id] && servicesMap[id][0]) {
+    console.log("form type=", servicesMap[id][0].form_type, servicesMap[id][0]);
+    if (servicesMap[id][0].form_type == 7) {
+      riotTags.innerHTML = "<view-formtype-seven>";
+      riot.mount("view-formtype-seven", opts);
+    }
+    else if (servicesMap[id][0].form_type == 2) {
+      riotTags.innerHTML = "<view-formtype-two>";
+      riot.mount("view-formtype-two", opts);
+    } else if (servicesMap[id][0].form_type == 1) {
+      riotTags.innerHTML = "<view-formtype-one>";
+      riot.mount("view-formtype-one", opts);
+    }
+    else {
+      riotTags.innerHTML = "<view-service-page-new>";
+      riot.mount("view-service-page-new", opts);
+    }
+  }
+  else if (id.indexOf('mynumber') != -1) {
+    console.log("my number mode");
+    riotTags.innerHTML = "<view-formtype-mynumber>";
+    riot.mount("view-formtype-mynumber", opts);
+  }
+  else {
+    console.log(" else mode");
+    riotTags.innerHTML = "<view-service-page-new>";
+    riot.mount("view-service-page-new", opts);
+
+  }
 }

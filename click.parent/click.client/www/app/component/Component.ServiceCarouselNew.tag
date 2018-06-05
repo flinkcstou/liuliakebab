@@ -447,8 +447,9 @@
         opts.mode = 'POPULAR';
 
         localStorage.setItem('chosenServiceId', id);
-        riotTags.innerHTML = "<view-service-page-new>";
-        riot.mount("view-service-page-new", opts);
+//        riotTags.innerHTML = "<view-service-page-new>";
+//        riot.mount("view-service-page-new", opts);
+        openPayServiceById(id, opts);
         scope.unmount();
 
         return

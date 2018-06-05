@@ -373,9 +373,11 @@
 
             scope.favoritePaymentsList[i].params.mode = 'ADDFAVORITE';
             scope.favoritePaymentsList[i].params.favoriteId = scope.favoritePaymentsList[i].id;
+//
+//            this.riotTags.innerHTML = "<view-service-page-new>";
+//            riot.mount('view-service-page-new', scope.favoritePaymentsList[i].params);
 
-            this.riotTags.innerHTML = "<view-service-page-new>";
-            riot.mount('view-service-page-new', scope.favoritePaymentsList[i].params);
+            openPayServiceById(id, scope.favoritePaymentsList[i].params);
 
             scope.unmount()
 

@@ -142,9 +142,9 @@
 
             console.log('ID', id)
             if (id) {
-              riotTags.innerHTML = "<view-service-page-new>";
-              riot.mount("view-service-page-new", opts);
-
+//              riotTags.innerHTML = "<view-service-page-new>";
+//              riot.mount("view-service-page-new", opts);
+              openPayServiceById(id, opts);
               scope.unmount()
             }
             else {
@@ -208,9 +208,10 @@
             opts.chosenServiceId = id;
             opts.number = phone;
 
-            riotTags.innerHTML = "<view-service-page-new>";
-            riot.mount("view-service-page-new", opts);
+//            riotTags.innerHTML = "<view-service-page-new>";
+//            riot.mount("view-service-page-new", opts);
 
+            openPayServiceById(id, opts);
             scope.unmount()
           }
           else {
