@@ -136,14 +136,6 @@
     var arrayOfConnectedSuggestion = scope.categoryList.concat(scope.serviceList);
     scope.suggestions = sessionStorage.getItem('click_client_suggestions') ? JSON.parse(sessionStorage.getItem('click_client_suggestions')) : [];
 
-    //    console.log("click_client_payCategoryList", localStorage.getItem("click_client_payCategoryList"));
-    //    console.log("click_client_payServiceList", localStorage.getItem("click_client_payServiceList"));
-    //    console.log("click_client_payServiceNamesMap", localStorage.getItem("click_client_payServiceNamesMap"));
-    //    console.log("click_client_servicesMapByCategory", localStorage.getItem("click_client_servicesMapByCategory"));
-    //    console.log("click_client_servicesMap", localStorage.getItem("click_client_servicesMap"));
-    //    console.log("click_client_servicesParams", localStorage.getItem("click_client_servicesParams"));
-    //    console.log("click_client_servicesParamsMapOne", localStorage.getItem("click_client_servicesParamsMapOne"));
-    //    console.log("click_client_categoryNamesMap", localStorage.getItem("click_client_categoryNamesMap"));
 
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
@@ -526,28 +518,36 @@
 
             opts.categoryContainerScroll = categoriesContainerId.scrollTop;
 
-//            if (scope.servicesMap[id] && scope.servicesMap[id][0]) {
-//              console.log("form type=", scope.servicesMap[id][0].form_type, scope.servicesMap[id][0]);
-//              if (scope.servicesMap[id][0].form_type == 7) {
-            riotTags.innerHTML = "<view-formtype-seven>";
-            riot.mount("view-formtype-seven", opts);
-            scope.unmount()
-//              }
-//              else if (scope.servicesMap[id][0].form_type == 2) {
-//                riotTags.innerHTML = "<view-formtype-two>";
-//                riot.mount("view-formtype-two", opts);
-//              }
-//              else {
-//                riotTags.innerHTML = "<view-service-page-new>";
-//                riot.mount("view-service-page-new", opts);
-//                scope.unmount()
-//              }
-//            } else {
-//              riotTags.innerHTML = "<view-service-page-new>";
-//              riot.mount("view-service-page-new", opts);
-//              scope.unmount()
-//            }
+            if (scope.servicesMap[id] && scope.servicesMap[id][0]) {
+              console.log("form type=", scope.servicesMap[id][0].form_type, scope.servicesMap[id][0]);
+              if (scope.servicesMap[id][0].form_type == 7) {
+                riotTags.innerHTML = "<view-formtype-seven>";
+                riot.mount("view-formtype-seven", opts);
+              }
+              else if (scope.servicesMap[id][0].form_type == 2) {
+                riotTags.innerHTML = "<view-formtype-two>";
+                riot.mount("view-formtype-two", opts);
+              } else if (scope.servicesMap[id][0].form_type == 1) {
+                riotTags.innerHTML = "<view-formtype-one>";
+                riot.mount("view-formtype-one", opts);
+              }
+              else {
+                riotTags.innerHTML = "<view-service-page-new>";
+                riot.mount("view-service-page-new", opts);
+              }
+            }
+            else if (id.indexOf('mynumber') != -1) {
+              console.log("my number mode");
+              riotTags.innerHTML = "<view-formtype-mynumber>";
+              riot.mount("view-formtype-mynumber", opts);
+            }
+            else {
+              console.log(" else mode");
+              riotTags.innerHTML = "<view-service-page-new>";
+              riot.mount("view-service-page-new", opts);
 
+            }
+            scope.unmount()
 
           }
         }, 50);
