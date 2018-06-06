@@ -103,7 +103,7 @@
         "communal_param": opts.communalParam,
         "transaction_id": opts.transactionId
       };
-      if (opts.formtype == 6){
+      if (opts.formtype == 6) {
         payment_data = {
           "param": opts.chosenPrefixId,
           "value": opts.chosenPrefixName + opts.firstFieldText,
@@ -228,12 +228,13 @@
         onFail: function (api_status, api_status_message, data) {
           console.log('Clearing timer onFail', timeOutTimer);
           window.clearTimeout(timeOutTimer);
+          scope.stepAmount = 1;
           window.common.alert.show("componentUnsuccessId", {
             parent: scope,
             step_amount: scope.stepAmount,
             operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
             operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
-            operationmessagepartthree: scope.errorMessage
+            operationmessagepartthree: api_status_message
           });
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
@@ -242,7 +243,7 @@
           timeOutTimer = setTimeout(function () {
             window.writeLog({
               reason: 'Timeout',
-              method: 'get.additional.information',
+              method: 'get.additional.information'
             });
             scope.errorNote = "Сервис временно недоступен";
             scope.stepAmount = 1;
@@ -250,21 +251,19 @@
 
             window.common.alert.show("componentAlertId", {
               parent: scope,
-              clickpinerror: scope.clickPinError,
               step_amount: scope.stepAmount,
-              viewpage: scope.viewPage,
               viewmount: true,
               errornote: scope.errorNote,
             });
             window.stopSpinner();
-          }, 10000);
+          }, 15000);
           console.log('creating timeOut', timeOutTimer);
         },
         onEmergencyStop: function () {
           console.log('Clearing timer emergencyStop', timeOutTimer);
           window.clearTimeout(timeOutTimer);
         }
-      }, 10000);
+      }, 15000);
     }
 
 

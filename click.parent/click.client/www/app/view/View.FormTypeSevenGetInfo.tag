@@ -36,7 +36,8 @@
                readonly="{!service['amount_editable']}"
                pattern="[0-9]"
                placeholder="{placeHolderText}"
-               onfocus="colorField('amount')"
+               onfocus="colorFieldGlobal('amountField','amountFieldTitle')"
+               onblur="blurFieldGlobal('amountField','amountFieldTitle')"
                onmouseup="eraseAmountDefault()" onkeyup="sumForPay()" oninput="sumForPay()"/>
         <div if="{!modeOfApp.offlineMode && service['amount_editable'] && calcOn}" class="servicepage-amount-icon"
              ontouchstart="onTouchStartOfAmountCalculator()" role="button"
@@ -109,12 +110,27 @@
     var acceptStartY, acceptStartX, acceptEndY, acceptEndX;
     var enterStartY, enterStartX, enterEndY, enterEndX;
     scope.showErrorOfLimit = false;
-    var onPaste = false;
     scope.selectedId = '';
+    scope.options = [];
+    var maskOne = /[0-9]/g,
+      maskTwo = /[0-9' ']/g,
+      amountForPayTransaction = 0,
+      checkFirst = false;
 
-    console.log("opts in FormTypeSeven GetInfo", opts);
+    scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
+    scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
+    scope.servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
+    scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
+    scope.enterButton = opts.mode != 'ADDFAVORITE';
+    scope.enterButtonEnabled = false;
+    scope.showConfirm = false;
+    var payment_data, timeOutTimer = 0;
+    var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
+    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+    if (loginInfo)
+      var sessionKey = loginInfo.session_key;
 
-    window.saveHistory('view-formtype-seven-getinfo', opts);
+    scope.update();
 
     if (opts.id) {
       opts.chosenServiceId = opts.id;
@@ -125,30 +141,114 @@
       scope.update();
     }
 
-    scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
-    scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
-    scope.servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
-    scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
+    console.log("opts in FormTypeSeven GetInfo", opts);
+    window.saveHistory('view-formtype-seven-getinfo', opts);
 
-    scope.enterButton = opts.mode == 'ADDFAVORITE' ? false : true;
-    scope.enterButtonEnabled = false;
-    scope.showConfirm = false;
-    var payment_data;
-    var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
-    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-    if (loginInfo)
-      var sessionKey = loginInfo.session_key;
-
-    scope.update();
 
     if (opts.formtype == 7) {
       payment_data = {
         "value": opts.firstFieldText,
-        "secondary_value": opts.secondFieldValue
+        "secondary_value": opts.secondFieldValue,
+        "transaction_id": opts.transactionId
       };
     }
 
     console.log("payment data =", payment_data);
+
+    window.startSpinner();
+
+    console.log("enable_information_cache", localStorage.getItem('click_client_infoCacheEnabled'))
+
+    if (localStorage.getItem('click_client_infoCacheEnabled') && !JSON.parse(localStorage.getItem('click_client_infoCacheEnabled'))) {
+      console.log("get information");
+      getInformation();
+    }
+
+    function getInformation() {
+
+      window.api.call({
+        method: 'get.additional.information',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          service_id: opts.chosenServiceId,
+          payment_data: payment_data
+        },
+        scope: this,
+
+        onSuccess: function (result) {
+          console.log('Clearing timer onSuccess', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
+          if (result[0][0].error == 0) {
+            if (result[1]) {
+              localStorage.setItem('click_client_infoCacheEnabled', result[1][0].enable_information_cache);
+              if (result[1][0].enable_information_cache) {
+                localStorage.setItem("click_client_infoCached", JSON.stringify(result[1][0]));
+              }
+              scope.options = result[1][0].options;
+              if (scope.options && scope.options.length > 1) {
+                scope.dropDownOn = true;
+                scope.chosenFieldName = opts.contractValue ? opts.contractValue : scope.options[0].option_value;
+                scope.chosenFieldParamId = opts.contractValue ? opts.contractValue : scope.options[0].option_value;
+              }
+              console.log("options array", scope.options)
+              scope.update();
+            }
+          }
+          else {
+            scope.errorMessage = result[0][0].error_note;
+            scope.stepAmount = 1;
+            window.common.alert.show("componentUnsuccessId", {
+              parent: scope,
+              step_amount: scope.stepAmount,
+              operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
+              operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+              operationmessagepartthree: scope.errorMessage
+            });
+            scope.update();
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.log('Clearing timer onFail', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
+          scope.stepAmount = 1;
+          window.common.alert.show("componentUnsuccessId", {
+            parent: scope,
+            step_amount: scope.stepAmount,
+            operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
+            operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+            operationmessagepartthree: api_status_message
+          });
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        },
+        onTimeOut: function () {
+          timeOutTimer = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method: 'get.additional.information'
+            });
+            scope.errorNote = "Сервис временно недоступен";
+            scope.stepAmount = 1;
+            scope.update();
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+              step_amount: scope.stepAmount,
+              viewmount: true,
+              errornote: scope.errorNote
+            });
+            window.stopSpinner();
+          }, 15000);
+          console.log('creating timeOut', timeOutTimer);
+        },
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
+        }
+      }, 15000);
+    }
 
 
     scope.onTouchStartOfBack = onTouchStartOfBack = function () {
@@ -237,25 +337,6 @@
         return;
       }
 
-      if (this.firstFieldInput) {
-
-        if (scope.phoneFieldBool && firstFieldInput && opts.chosenServiceId != "mynumber") {
-
-          if (firstFieldInput.value.length < 10) {
-
-            scope.enterButtonEnabled = false;
-            scope.update(scope.enterButtonEnabled);
-            return;
-          }
-
-        } else if (firstFieldInput && firstFieldInput.value.length == 0 && opts.chosenServiceId != "mynumber") {
-          console.log("Нет значения первого поля");
-          scope.enterButtonEnabled = false;
-          scope.update(scope.enterButtonEnabled);
-          return;
-        }
-      }
-
 
       if (amountForPayTransaction < scope.service.min_pay_limit) {
         console.log("amount=", amountForPayTransaction);
@@ -274,13 +355,6 @@
       scope.enterButtonEnabled = true;
       scope.update(scope.enterButtonEnabled);
 
-
-    };
-
-
-    paymentNameVerificationKeyUp = function () {
-
-      checkFieldsToActivateNext();
 
     };
 
@@ -477,6 +551,7 @@
       scope.serviceIcon = scope.service.image;
       scope.commissionPercent = scope.service.commission_percent;
     }
+    console.log("Service ", scope.service)
 
     //Editing amount input for non editable situations
 
@@ -491,85 +566,20 @@
       scope.update();
     }
 
-    scope.fieldArray = scope.servicesParamsMapOne[opts.chosenServiceId];
-    console.log('field array filled:', JSON.stringify(scope.fieldArray));
     scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
     scope.formType = scope.service.form_type;
+    scope.amountFieldTitle = scope.service.lang_amount_title;
+    scope.calcOn = scope.service.cost == 1;
 
-    var maskOne = /[0-9]/g,
-      maskTwo = /[0-9' ']/g,
-      amountForPayTransaction = 0,
-      checkFirst = false;
-
-    console.log("Yahoo1 formType=", scope.formType);
-
-    if (scope.fieldArray) {
-      scope.dropDownOn = scope.fieldArray.length > 1;
-      scope.chosenFieldName = opts.firstFieldTitle ? opts.firstFieldTitle : scope.fieldArray[0].title;
-      scope.chosenFieldParamId = opts.firstFieldId ? opts.firstFieldId : scope.fieldArray[0].parameter_id;
-      opts.first_field_value = opts.firstFieldText ? opts.firstFieldText : null;
-      scope.amountFieldTitle = scope.service.lang_amount_title;
-      console.log("PARAMETER ID ", scope.fieldArray[0].parameter_id, scope.fieldArray[0])
-      console.log("Service ", scope.service)
-      scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1" || scope.fieldArray[0].parameter_id == "65536" || scope.fieldArray[0].parameter_id == "128";
-      scope.calcOn = scope.service.cost == 1;
-
-      if (scope.phoneFieldBool) {
-        scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telVerificationWithSpace(inputVerification.telVerification(opts.firstFieldText));
-        console.log("PHONE FIELD", scope.defaultNumber);
-      }
-      scope.inputMaxLength = scope.fieldArray[0].max_len;
-//      scope.hasPrefixes = false;
-//      scope.prefixesArray = [];
-//
-//      if (scope.servicesParamsMapSix[opts.chosenServiceId]) {
-//
-//        for (var i in scope.servicesParamsMapSix[opts.chosenServiceId]) {
-//          if (scope.servicesParamsMapSix[opts.chosenServiceId][i].parent_param_id == scope.chosenFieldParamId)
-//            scope.prefixesArray.push(scope.servicesParamsMapSix[opts.chosenServiceId][i]);
-//        }
-//        if (scope.prefixesArray.length > 0) {
-//          scope.hasPrefixes = true;
-//          scope.chosenPrefixTitle = opts.chosenPrefixTitle ? opts.chosenPrefixTitle : scope.prefixesArray[0].title;
-//          scope.chosenPrefixId = opts.chosenPrefixId ? opts.chosenPrefixId : scope.prefixesArray[0].option_id;
-//          scope.chosenPrefixName = opts.chosenPrefixName ? opts.chosenPrefixName : scope.prefixesArray[0].name;
-//        }
-//      }
-
-//          console.log("Yahoooo_2", scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].input_type);
-
-      if (opts.amountText) {
-        scope.defaultAmount = window.amountTransform(opts.amountText);
-        amountForPayTransaction = inputVerification.spaceDeleter(opts.amountText)
-      }
-
-
-      if (!scope.placeHolderText)
-        scope.placeHolderText = "от " + window.amountTransform(scope.service.min_pay_limit) + " " + scope.service.lang_amount_currency + " до " + window.amountTransform(scope.service.max_pay_limit) + " " + scope.service.lang_amount_currency
-
-      scope.update();
-      scope.inputMaxLength = scope.fieldArray[0].max_len;
-
-      if (scope.dropDownOn) {
-        scope.chosenFieldParamId = opts.firstFieldId ? opts.firstFieldId : scope.fieldArray[0].parameter_id;
-//          scope.oldFieldParamId = scope.fieldArray[1].parameter_id;
-      }
-
-      if (scope.fieldArray[0].input_type == '1' && modeOfApp.onlineMode) {
-        scope.inputType = 'tel';
-        scope.isNumber = true;
-      }
-      else if (scope.fieldArray[0].input_type == '2' && modeOfApp.onlineMode) {
-        scope.inputType = 'text';
-        scope.isNumber = false;
-      }
-      else if (modeOfApp.offlineMode) {
-        scope.inputType = 'tel';
-        scope.isNumber = true;
-      }
-      scope.amountLength = ("" + scope.service.max_pay_limit).length;
+    if (opts.amountText) {
+      scope.defaultAmount = window.amountTransform(opts.amountText);
+      amountForPayTransaction = inputVerification.spaceDeleter(opts.amountText)
     }
 
+    if (!scope.placeHolderText)
+      scope.placeHolderText = "от " + window.amountTransform(scope.service.min_pay_limit) + " " + scope.service.lang_amount_currency + " до " + window.amountTransform(scope.service.max_pay_limit) + " " + scope.service.lang_amount_currency
+
+    scope.update();
     checkFieldsToActivateNext();
 
 
@@ -591,83 +601,28 @@
 
     scope.processDropdown = processDropdown = function (id, title) {
       console.log("id got from dropdown =", id, title);
-      switch (scope.dropDownType) {
-        case "firstField": {
-          chooseFirstField(id);
-          break;
-        }
-        case "prefixes": {
-          choosePrefix(id);
-          break;
-        }
-      }
+
+      chooseFirstField(id);
+
     };
 
     openFirstFieldDropDown = function () {
 
-      console.log("open drop down", scope.fieldArray, scope.chosenFieldParamId);
+      console.log("open drop down", scope.options, scope.chosenFieldParamId);
       scope.dropDownType = "firstField";
-      updateDropdownList(scope.fieldArray, "parameter_id", scope.chosenFieldParamId, "title", "servicePageId");
+      updateDropdownList(scope.options, "option_value", scope.chosenFieldParamId, "option_value", "servicePageId");
       openDropdownComponent();
     };
 
 
     chooseFirstField = function (id) {
-
-      for (var i = 0; i < scope.fieldArray.length; i++) {
-
-//        console.log("Yahoo2", id, scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].parameter_id);
-
-        if (scope.fieldArray[i].parameter_id == id) {
-          scope.chosenFieldName = scope.fieldArray[i].title;
-          scope.chosenFieldPlaceholder = scope.fieldArray[i].placeholder;
-          console.log("PARAMETER ID ", scope.fieldArray[i].parameter_id);
-          scope.phoneFieldBool = scope.fieldArray[i].parameter_id == "1" || scope.fieldArray[0].parameter_id == "65536" || scope.fieldArray[0].parameter_id == "128";
-          scope.inputMaxLength = scope.fieldArray[i].max_len;
-
-
-//          console.log("Yahoooo_2", scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].input_type);
-
-          if (scope.fieldArray[i].input_type == '1' && modeOfApp.onlineMode) {
-            scope.inputType = 'tel';
-            scope.isNumber = true;
-          }
-          else if (scope.fieldArray[i].input_type == '2' && modeOfApp.onlineMode) {
-            scope.inputType = 'text';
-            scope.isNumber = false;
-          }
-          else if (modeOfApp.offlineMode) {
-            scope.inputType = 'tel';
-            scope.isNumber = true;
-          }
-          scope.oldFieldParamId = scope.chosenFieldParamId;
-          scope.chosenFieldParamId = id;
-          firstFieldInput.value = '';
-          scope.chosenPrefixTitle = null;
-          scope.chosenPrefixId = null;
-          scope.chosenPrefixName = null;
-
-          if (scope.servicesParamsMapSix[opts.chosenServiceId]) {
-            scope.hasPrefixes = false;
-            scope.prefixesArray = [];
-            for (var i in scope.servicesParamsMapSix[opts.chosenServiceId]) {
-              if (scope.servicesParamsMapSix[opts.chosenServiceId][i].parent_param_id == scope.chosenFieldParamId)
-                scope.prefixesArray.push(scope.servicesParamsMapSix[opts.chosenServiceId][i]);
-            }
-            if (scope.prefixesArray.length > 0) {
-              scope.hasPrefixes = true;
-              scope.chosenPrefixTitle = scope.prefixesArray[0].title;
-              scope.chosenPrefixId = scope.prefixesArray[0].option_id;
-              scope.chosenPrefixName = scope.prefixesArray[0].name;
-              console.log("scope.hasPrefixes", scope.hasPrefixes);
-            }
-          }
-
+      for (var i in scope.options) {
+        if (scope.options[i].option_value == id) {
+          console.log("chosen contract =", scope.options[i]);
+          scope.chosenFieldName = scope.options[i].option_value;
           scope.update();
-          break;
         }
       }
-
     };
 
 

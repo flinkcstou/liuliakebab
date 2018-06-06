@@ -38,8 +38,7 @@
                onblur="blurFieldGlobal('favoriteField','favoriteNameTitle')"/>
       </div>
 
-      <div class="servicepage-first-field" id="firstField"
-           hidden="{modeOfApp.offlineMode && opts.chosenServiceId == 'mynumber'}">
+      <div class="servicepage-first-field" id="firstField">
         <p id="firstFieldTitle" class="servicepage-text-field">{chosenFieldName}</p>
 
         <input class="servicepage-number-input-part" type="{inputType}" id="firstFieldInput"
@@ -55,7 +54,7 @@
 
         <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="secondFieldInput"
                onkeyup="checkFieldsToActivateNext()" onfocus="colorFieldGlobal('secondFieldId','secondFieldTitle')"
-               onblur="blurFieldGlobal('secondFieldId','secondFieldTitle')"/>
+               onblur="blurFieldGlobal('secondFieldId','secondFieldTitle')" value="{opts.secondFieldValue}"/>
       </div>
 
 
@@ -129,7 +128,7 @@
       }
     };
 
-    checkFieldsToActivateNext = function (from) {
+    checkFieldsToActivateNext = function () {
 
       console.log("CHECK fields");
 
@@ -147,52 +146,55 @@
         return;
       }
 
-      if (this.firstFieldInput) {
+      if (scope.phoneFieldBool && this.firstFieldInput) {
 
-        if (scope.phoneFieldBool && firstFieldInput) {
-
-          if (firstFieldInput.value.length < 7) {
-            scope.enterButtonEnabled = false;
-            scope.update(scope.enterButtonEnabled);
-            return;
-          }
-
-        } else if (firstFieldInput && firstFieldInput.value.length == 0) {
-          console.log("Нет значения первого поля");
+        if (firstFieldInput.value.length < 7) {
           scope.enterButtonEnabled = false;
           scope.update(scope.enterButtonEnabled);
           return;
         }
+
+      } else if (this.firstFieldInput && firstFieldInput.value.length == 0) {
+        console.log("Нет значения первого поля");
+        scope.enterButtonEnabled = false;
+        scope.update(scope.enterButtonEnabled);
+        return;
+      }
+
+      if (this.secondFieldInput && secondFieldInput.value.length == 0) {
+        console.log("Нет значения второго поля");
+        scope.enterButtonEnabled = false;
+        scope.update(scope.enterButtonEnabled);
+        return;
       }
 
       scope.enterButtonEnabled = true;
       scope.update(scope.enterButtonEnabled);
 
-
     };
 
     telPayVerificationKeyDown = function (input) {
-
-      if (scope.phoneFieldBool)
-        if (input.value.length >= 10 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
-          contactStopChanging = true;
-        }
-        else {
-          contactStopChanging = false;
-        }
+//
+//      if (scope.phoneFieldBool)
+//        if (input.value.length >= 10 && event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT) {
+//          contactStopChanging = true;
+//        }
+//        else {
+//          contactStopChanging = false;
+//        }
     };
 
     telVerificationOnPaste = function () {
-      onPaste = true;
+//      onPaste = true;
     };
 
     telVerificationOnInput = function () {
-      if (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT && onPaste) {
-        if (firstFieldInput.type != 'text' && scope.phoneFieldBool)
-          firstFieldInput.value = inputVerification.telVerificationWithSpace(inputVerification.telVerification(firstFieldInput.value))
-
-        onPaste = false;
-      }
+//      if (event.keyCode != input_codes.BACKSPACE_CODE && event.keyCode != input_codes.NEXT && onPaste) {
+//        if (firstFieldInput.type != 'text' && scope.phoneFieldBool)
+//          firstFieldInput.value = inputVerification.telVerificationWithSpace(inputVerification.telVerification(firstFieldInput.value))
+//
+//        onPaste = false;
+//      }
     };
 
     telPayVerificationKeyUp = function () {
@@ -227,10 +229,10 @@
 
       focusFieldAfterTourClosed();
 
-      if (opts && opts.number) {
-        firstFieldInput.value = inputVerification.telVerificationWithSpace(inputVerification.telVerification(opts.number));
-        scope.update();
-      }
+//      if (opts && opts.number) {
+//        firstFieldInput.value = inputVerification.telVerificationWithSpace(inputVerification.telVerification(opts.number));
+//        scope.update();
+//      }
 
       checkFieldsToActivateNext();
 
@@ -262,12 +264,9 @@
 
 
     scope.fieldArray = scope.servicesParamsMapOne[opts.chosenServiceId];
-    console.log('field array filled:', JSON.stringify(scope.fieldArray));
-
     scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
     scope.formType = scope.service.form_type;
     scope.secondFieldTitle = scope.service.options_title;
-
     console.log("Yahoo1 formType=", scope.formType);
 
     if (scope.fieldArray) {
@@ -279,13 +278,10 @@
 
 
       if (scope.phoneFieldBool) {
-        scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telVerificationWithSpace(inputVerification.telVerification(opts.firstFieldText));
+//        scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telVerificationWithSpace(inputVerification.telVerification(opts.firstFieldText));
+        scope.defaultNumber = opts.firstFieldText;
         console.log("PHONE FIELD", scope.defaultNumber);
       }
-      scope.inputMaxLength = scope.fieldArray[0].max_len;
-
-      if (!scope.placeHolderText)
-        scope.placeHolderText = "от " + window.amountTransform(scope.service.min_pay_limit) + " " + scope.service.lang_amount_currency + " до " + window.amountTransform(scope.service.max_pay_limit) + " " + scope.service.lang_amount_currency
 
       scope.update();
       scope.inputMaxLength = scope.fieldArray[0].max_len;
@@ -303,6 +299,7 @@
         scope.isNumber = true;
       }
     }
+
     checkFieldsToActivateNext();
 
 
