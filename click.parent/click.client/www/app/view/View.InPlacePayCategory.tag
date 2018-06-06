@@ -54,7 +54,7 @@
              id="{i.id}"
              ontouchstart="onTouchStartOfService(this.id)"
              ontouchend="onTouchEndOfService(this.id)">
-          <img id="{i.id+'_image'}"
+          <img id="{i.id+'_image'}" if="{i.image}"
                class="inplace-pay-service-icon" src="{i.image}"
                onload="clearLoaderOnIconLoad(this.id)">
           <div class="inplace-pay-service-info">
@@ -65,7 +65,7 @@
               <div class="inplace-pay-service-distance-field">{i.distance}</div>
             </div>
           </div>
-          <div class="inplace-pay-service-icon-tick"></div>
+          <div class="inplace-pay-service-icon-tick" if="{i.name}"></div>
           <div class="inplace-title-bottom-border"></div>
         </div>
 
@@ -521,11 +521,10 @@
 
       if ((categoriesContainerId.scrollHeight - categoriesContainerId.scrollTop) == categoriesContainerId.offsetHeight && categoriesContainerId.scrollTop != 0) {
 
-        if (scope.serviceList.length % 20 == 0 && scope.searchServices) {
+        if (scope.serviceList.length % 20 == 1 && scope.searchServices) {
           scope.pageNumber++;
-          categoriesContainerId.style.height = "70%";
           window.startPaginationLoaderDots();
-          searchServiceByWord();
+          searchServiceByWord(true);
         }
       }
 
@@ -615,7 +614,7 @@
 
     };
 
-    scope.searchServiceByWord = searchServiceByWord = function () {
+    scope.searchServiceByWord = searchServiceByWord = function (fromScroll) {
 
       searchWord = searchInputId.value;
 
@@ -647,13 +646,18 @@
             scope.searchMode = true;
 //            window.stopSpinner();
             window.stopLoaderDots();
-            categoriesContainerId.style.height = "88.7%";
+            if (fromScroll) {
+              scope.serviceList.pop();
+            }
 
             if (result[0][0].error == 0) {
               if (result[1][0]) {
 
                 for (var i in result[1]) {
                   scope.serviceList.push(result[1][i]);
+                }
+                if (scope.serviceList.length % 20 == 0) {
+                  scope.serviceList.push({});
                 }
 
               }
