@@ -43,6 +43,8 @@
           <img id="{i.id+'_image'}" if="{i.image}"
                class="inplace-pay-service-icon" src="{i.image}"
                onload="clearLoaderOnIconLoad(this.id)">
+          <img if="{!i.image}"
+               class="loader-dots-pagination-in-container" src="resources/gifs/loader_dots.gif">
           <div class="inplace-pay-service-info">
             <div class="inplace-pay-service-name-field">{i.name}</div>
             <div class="inplace-pay-service-address-field">{i.address}</div>
@@ -52,7 +54,7 @@
             </div>
           </div>
           <div class="inplace-pay-service-icon-tick" if="{i.name}"></div>
-          <div class="inplace-title-bottom-border"></div>
+          <div class="inplace-title-bottom-border" if="{i.name}"></div>
         </div>
 
         <div if="{serviceList.length==0 && searchMode}" class="inplace-pay-search-no-match">
@@ -621,7 +623,7 @@
 
         if (scope.serviceList.length % 20 == 1 && !scope.requestSent) {
           scope.pageNumber++;
-          window.startPaginationLoaderDots("categoriesContainerId");
+//          window.startPaginationLoaderDots("categoriesContainerId");
           if (searchInputId.value.length != 0) {
             searchServiceByWord(true);
           }

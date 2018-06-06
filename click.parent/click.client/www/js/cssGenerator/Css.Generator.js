@@ -145,6 +145,14 @@ var css = {
   "bottom: 0;" +
   "}",
 
+  loaderDotsPaginationInContainer: ".loader-dots-pagination-in-container" +
+  "{" +
+  "position: absolute;" +
+  "width:" + 190 * widthK + "px;" +
+  "left:" + 240 * widthK + "px;" +
+  "top:" + 55 * widthK + "px;" +
+  "}",
+
   //DEMO
 
   demoVersionButtonExit: ".demo-version-button-exit" +
