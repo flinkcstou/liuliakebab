@@ -1,4 +1,8 @@
 <component-transfer-to-card>
+  <input type="tel"
+         id="hiddenInputId"
+         readonly="readonly"
+         class="transfer-new-card-hidden-input"/>
   <p class="transfer-new-card-text-field">{window.languages.ViewPayTransferNewCardTextField}</p>
   <div id="cardContainer" class="transfer-new-card-container">
     <img id="cardDesignId" class="transfer-new-card-design">
@@ -67,6 +71,7 @@
     var phoneNumber = '';
     var bankIconFound = false;
     var processingIconFound = false;
+    var cardStopChanging = false;
     scope.cardSuggestionsArray = [];
     scope.bankImage = '';
     scope.processingImage = '';
@@ -309,10 +314,19 @@
 
               checkImageExists(cardDesignId.src, function (exists) {
                 if (exists) {
-                  cardDesignId.classList.add('transfer-new-card-design-appear');
-                  cardInputFieldsId.classList.add('transfer-new-card-input-fields-reduce');
-                  if (bank.font_color) {
-                    cardInputFieldsId.style.color = 'rgb(' + bank.font_color + ')';
+
+                  if (cardDesignId.classList.value.indexOf('transfer-new-card-design-appear') === -1){
+                    hiddenInputId.readOnly = false;
+                    hiddenInputId.focus();
+                    setTimeout(function () {
+                      cardInputId.focus();
+                      hiddenInputId.readOnly = true;
+                    }, 700);
+                    cardDesignId.classList.add('transfer-new-card-design-appear');
+                    cardInputFieldsId.classList.add('transfer-new-card-input-fields-reduce');
+                    if (bank.font_color) {
+                      cardInputFieldsId.style.color = 'rgb(' + bank.font_color + ')';
+                    }
                   }
                 } else {
                   console.log('image does not exist');
@@ -329,8 +343,18 @@
         if (bankIconFound === false) {
           scope.bankImage = '';
           bankIconId.style.display = 'none';
-          cardDesignId.classList.remove('transfer-new-card-design-appear');
-          cardInputFieldsId.classList.remove('transfer-new-card-input-fields-reduce');
+
+          if (cardDesignId.classList.value.indexOf('transfer-new-card-design-appear') !== -1){
+            hiddenInputId.readOnly = false;
+            hiddenInputId.focus();
+            setTimeout(function () {
+              cardInputId.focus();
+              hiddenInputId.readOnly = true;
+            }, 700);
+            cardDesignId.classList.remove('transfer-new-card-design-appear');
+            cardInputFieldsId.classList.remove('transfer-new-card-input-fields-reduce');
+            cardInputFieldsId.style.color = '';
+          }
         }
       }
     };

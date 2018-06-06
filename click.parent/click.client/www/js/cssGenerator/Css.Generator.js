@@ -6806,11 +6806,24 @@ var css = {
   transferNewCardInputFieldsReduce: ".transfer-new-card-input-fields-reduce" +
   "{" +
   "transform: scale(0.7);" +
+  "-webkit-transform: scale(0.7);" +
   "}",
 
   transferNewCardDesignAppear: ".transfer-new-card-design-appear" +
   "{" +
   "opacity: 1;" +
+  "}",
+
+  transferNewCardHiddenInput: ".transfer-new-card-hidden-input" +
+  "{" +
+  "border: none;" +
+  "outline: none;" +
+  "position: absolute;" +
+  "width:" + 1 * widthK + "px;" +
+  "height:" + 1 * widthK + "px;" +
+  "margin: 0;" +
+  "padding: 0;" +
+  "opacity: 0;" +
   "}",
 
   transferNewCardNumberInputContainer: ".transfer-new-card-number-input-container" +
@@ -13397,6 +13410,7 @@ var css = {
   addCardCardInputFieldsReduce: ".add-card-card-input-fields-reduce" +
   "{" +
   "transform: scale(0.7);" +
+  "-webkit-transform: scale(0.7);" +
   "}",
 
   addCardCardDesign: ".add-card-card-design" +
