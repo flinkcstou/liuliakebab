@@ -235,13 +235,24 @@
     var onPaste = false;
     scope.selectedId = '';
     var options = {
-      symbol : "",
-      decimal : ".",
+      symbol: "",
+      decimal: ".",
       thousand: " ",
-      precision : 0,
+      precision: 0,
       format: {
         pos: "%v",
         zero: ""
+      }
+    };
+
+    var options_for_calc = {
+      symbol: "",
+      decimal: ".",
+      thousand: " ",
+      precision: 0,
+      format: {
+        pos: "%v",
+        zero: "0"
       }
     };
 
@@ -821,11 +832,31 @@
     };
 
     convertAmount = function () {
+
+      event.stopPropagation();
+      event.preventDefault();
+
       var converted;
       scope.convertedAmount = 0;
 
-      scope.convertedAmount = Math.ceil(amountCalcInputId.value * scope.currencyRate);
-      converted = window.amountTransform(scope.convertedAmount.toString());
+      var amountInput = accounting.formatMoney(amountCalcInputId.value, options);
+
+      var selectionStart = amountCalcInputId.selectionStart,
+        notVerifiedValue = amountCalcInputId.value,
+        delta;
+
+      delta = notVerifiedValue.length - amountInput.length;
+
+      selectionStart = selectionStart - delta;
+      selectionStart = (selectionStart < 0) ? (0) : (selectionStart);
+
+      amountCalcInputId.value = amountInput;
+
+      amountCalcInputId.selectionStart = selectionStart;
+      amountCalcInputId.selectionEnd = selectionStart;
+
+      scope.convertedAmount = Math.ceil(accounting.unformat(amountCalcInputId.value) * scope.currencyRate);
+      converted = accounting.formatMoney(scope.convertedAmount.toString(), options_for_calc);
 
       if (scope.convertedAmount > scope.service.max_pay_limit) {
         convertedAmountFieldId.style.borderBottomColor = 'red';
