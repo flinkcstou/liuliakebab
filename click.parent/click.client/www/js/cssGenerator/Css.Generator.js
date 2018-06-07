@@ -13423,8 +13423,8 @@ var css = {
 
   addCardCardInputFieldsReduce: ".add-card-card-input-fields-reduce" +
   "{" +
-  // "transform: scale(0.7);" +
-  // "-webkit-transform: scale(0.7);" +
+  "transform: scale(0.7);" +
+  "-webkit-transform: scale(0.7);" +
   "}",
 
   addCardCardDesign: ".add-card-card-design" +
