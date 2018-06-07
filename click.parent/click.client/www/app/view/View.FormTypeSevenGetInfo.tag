@@ -85,6 +85,7 @@
     scope.showErrorOfLimit = false;
     scope.selectedId = '';
     scope.options = [];
+    scope.optionChosen = null;
     scope.optionsObject = null;
     var maskOne = /[0-9]/g,
       maskTwo = /[0-9' ']/g,
@@ -172,6 +173,7 @@
               scope.options = result[1][0].options;
               if (scope.options && scope.options.length > 1) {
                 scope.dropDownOn = true;
+                scope.optionChosen = scope.options[0];
                 scope.chosenFieldName = opts.contractValue ? opts.contractValue : scope.options[0].option_value;
                 scope.chosenFieldParamId = opts.contractValue ? opts.contractValue : scope.options[0].option_value;
                 scope.optionObject = scope.options[0].option_object;
@@ -426,6 +428,7 @@
       for (var i in scope.options) {
         if (scope.options[i].option_value == id) {
           console.log("chosen contract =", scope.options[i]);
+          scope.optionChosen = scope.options[i];
           scope.chosenFieldName = scope.options[i].option_value;
           scope.chosenFieldParamId = scope.options[i].option_value;
           scope.optionObject = scope.options[i].option_object;
@@ -532,7 +535,8 @@
 
       if (Math.abs(enterStartY - enterEndY) <= 20 && Math.abs(enterStartX - enterEndX) <= 20) {
 
-        opts.paymentDataAttributes = scope.optionObject.payment_data_attributes;
+        console.log("optionChosen ", scope.optionChosen);
+        opts.paymentDataAttributes = scope.optionChosen.payment_data_attributes;
 
         this.riotTags.innerHTML = "<view-service-pincards-new>";
         riot.mount('view-service-pincards-new', opts);

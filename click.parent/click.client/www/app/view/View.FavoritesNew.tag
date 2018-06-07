@@ -269,6 +269,7 @@
                 var formtype = scope.favoritePaymentsList[i].params.formtype;
                 var communalParam = scope.favoritePaymentsList[i].params.communalParam;
                 var firstFieldId = scope.favoritePaymentsList[i].params.firstFieldId;
+                var chosenPrefixId = scope.favoritePaymentsList[i].params.chosenPrefixId;
 
 
                 var ussdQuery = scope.favoritePaymentsList[i].ussd;
@@ -310,9 +311,16 @@
 
                 if (formtype == 4) {
                   ussdQuery = ussdQuery.replace('{param}', firstFieldText);
+                  ussdQuery = ussdQuery.replace('{option}', chosenPrefixId);
                   ussdQuery = ussdQuery.replace('{amount}', amountText);
                   ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
                   console.log(ussdQuery)
+                }
+                if (formtype == 6) {
+                  ussdQuery = ussdQuery.replace('{option}', chosenPrefixId);
+                  ussdQuery = ussdQuery.replace('{param}', firstFieldText);
+                  ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
+                  console.log(ussdQuery);
                 }
 
                 phonedialer.dial(
@@ -334,10 +342,16 @@
               }
 
               if (scope.favoritePaymentsList[i].service.additional_information_type == 3) {
-                localStorage.setItem('click_client_infoCacheEnabled', null)
-                this.riotTags.innerHTML = "<view-service-info-new>";
-                riot.mount('view-service-info-new', scope.favoritePaymentsList[i].params);
-                scope.unmount()
+                localStorage.setItem('click_client_infoCacheEnabled', null);
+                if (scope.favoritePaymentsList[i].service.form_type == 7) {
+                  this.riotTags.innerHTML = "<view-formtype-seven-getinfo>";
+                  riot.mount('view-formtype-seven-getinfo', scope.favoritePaymentsList[i].params);
+                  scope.unmount()
+                } else {
+                  this.riotTags.innerHTML = "<view-service-info-new>";
+                  riot.mount('view-service-info-new', scope.favoritePaymentsList[i].params);
+                  scope.unmount()
+                }
               } else {
                 this.riotTags.innerHTML = "<view-service-pincards-new>";
                 riot.mount('view-service-pincards-new', scope.favoritePaymentsList[i].params);

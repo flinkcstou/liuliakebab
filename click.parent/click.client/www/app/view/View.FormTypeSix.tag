@@ -177,7 +177,7 @@
       }
     };
 
-    checkFieldsToActivateNext = function (from) {
+    checkFieldsToActivateNext = function () {
 
       console.log("CHECK fields");
 

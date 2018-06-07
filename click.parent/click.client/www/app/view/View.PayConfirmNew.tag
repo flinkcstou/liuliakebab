@@ -617,7 +617,6 @@
       if (opts.mode != 'ADDAUTOPAY') {
         paymentFunction(payment_data);
       } else {
-        payment_data.transaction_id = null;
         createAutoPay(payment_data);
       }
 

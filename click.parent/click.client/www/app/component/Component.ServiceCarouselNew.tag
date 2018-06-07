@@ -546,6 +546,12 @@
                 ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
                 console.log(ussdQuery)
               }
+              if (formtype == 6 && ussdQuery) {
+                ussdQuery = ussdQuery.replace('{option}', chosenPrefixId);
+                ussdQuery = ussdQuery.replace('{param}', firstFieldText);
+                ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
+                console.log(ussdQuery);
+              }
 
               if (ussdQuery === null) {
 
@@ -655,9 +661,15 @@
 
             localStorage.setItem('favoritePaymentsList', JSON.stringify(scope.favoritePaymentsList));
             if (scope.favoritePaymentsList[index].service.additional_information_type == 3) {
-              this.riotTags.innerHTML = "<view-service-info>";
-              riot.mount('view-service-info', scope.favoritePaymentsList[index].params);
-              scope.unmount()
+              if (scope.favoritePaymentsList[index].service.form_type == 7) {
+                this.riotTags.innerHTML = "<view-formtype-seven-getinfo>";
+                riot.mount('view-formtype-seven-getinfo', scope.favoritePaymentsList[index].params);
+                scope.unmount()
+              } else {
+                this.riotTags.innerHTML = "<view-service-info>";
+                riot.mount('view-service-info', scope.favoritePaymentsList[index].params);
+                scope.unmount()
+              }
             } else {
               this.riotTags.innerHTML = "<view-service-pincards-new>";
               riot.mount('view-service-pincards-new', scope.favoritePaymentsList[index].params);
