@@ -356,23 +356,23 @@
 
             var ussdQuery = scope.fieldArray[0].ussd_query;
 
-            console.log('opts.formtype', opts)
-            console.log("opts in ussd", JSON.stringify(opts))
-
-
-            if (opts.formtype == 7 && ussdQuery) {
-              if (opts.firstFieldText) {
-                ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
-              }
-              else {
-                ussdQuery = ussdQuery.replace('*{param}', opts.firstFieldText);
-              }
-//              ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
-              ussdQuery = ussdQuery.replace('{option}', opts.chosenPrefixId);
-              ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
-              ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
-              console.log(ussdQuery)
-            }
+//            console.log('opts.formtype', opts)
+//            console.log("opts in ussd", JSON.stringify(opts))
+//
+//
+//            if (opts.formtype == 7 && ussdQuery) {
+//              if (opts.firstFieldText) {
+//                ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
+//              }
+//              else {
+//                ussdQuery = ussdQuery.replace('*{param}', opts.firstFieldText);
+//              }
+////              ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
+//              ussdQuery = ussdQuery.replace('{option}', opts.chosenPrefixId);
+//              ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
+//              ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
+//              console.log(ussdQuery)
+//            }
 
 
             if (ussdQuery === null) {
@@ -440,14 +440,16 @@
           viewServicePinCards.chosenFriendForHelp = null;
 
           if (opts.isInFavorites) {
-            editFavorite(opts);
+//            editFavorite(opts);
+            editFavoritePayment(opts, opts.favoriteId, scope);
             event.preventDefault();
             event.stopPropagation();
             onBackKeyDown();
           }
           else {
             opts.isInFavorites = true;
-            addToFavoritesinServicePage(opts);
+//            addToFavoritesinServicePage(opts);
+            addPaymentToFavorites(opts, scope.service, scope.fieldArray[0].ussd_query, scope);
             event.preventDefault();
             event.stopPropagation();
             onBackKeyDown();
@@ -486,22 +488,9 @@
 
           }
 
-
         }
 
       }
-    };
-
-
-    addToFavoritesinServicePage = function (array) {
-
-      addPaymentToFavorites(array, scope.service, scope.fieldArray[0].ussd_query, scope);
-
-    };
-
-    editFavorite = function (params) {
-
-      editFavoritePayment(params, opts.favoriteId, scope);
     };
 
 

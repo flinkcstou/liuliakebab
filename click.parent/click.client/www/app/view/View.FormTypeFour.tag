@@ -1,4 +1,4 @@
-<view-formtype-one class="riot-tags-main-container">
+<view-formtype-four class="riot-tags-main-container">
 
   <div id="servicePageId" class="view-common-page">
 
@@ -41,6 +41,22 @@
         <div class="servicepage-dropdown-icon"></div>
       </div>
 
+      <div class="servicepage-second-dropdown-field" if="{hasFirstLevel && service.category_id!=11}"
+           ontouchend="openDropDownTwo()" role="button" aria-label="{chosenFieldNameTwo}">
+        <p class="servicepage-text-field servicepage-second-dropdown-field-text">
+          {(service.options_title)?(service.options_title):("")}</p>
+        <p class="servicepage-dropdown-text-field">{chosenFieldNameTwo}</p>
+        <div class="servicepage-dropdown-icon"></div>
+      </div>
+
+      <div
+        class="servicepage-second-dropdown-field"
+        if="{hasSecondLevel&& service.category_id!=11}"
+        ontouchend="openDropDownThree()" role="button" aria-label="{chosenFieldNameThree}">
+        <p class="servicepage-dropdown-text-field">{chosenFieldNameThree}</p>
+        <div class="servicepage-dropdown-icon"></div>
+      </div>
+
       <div class="servicepage-first-field" id="firstField"
            hidden="{modeOfApp.offlineMode && opts.chosenServiceId == 'mynumber'}">
         <p id="firstFieldTitle" class="servicepage-text-field">{chosenFieldName}</p>
@@ -66,6 +82,22 @@
         <div class="servicepage-phone-icon" role="button" aria-label="{window.languages.ChooseFromContacts}"
              if="{phoneFieldBool}" ontouchstart="onTouchStartOfSearchContact()"
              ontouchend="onTouchEndOfSearchContact()"></div>
+      </div>
+
+      <div class="servicepage-second-dropdown-field-pakety" role="button" aria-label="{chosenFieldNameTwo}"
+           if="{hasFirstLevel&& service.category_id==11}"
+           ontouchend="openDropDownTwo()" role="button" aria-label="{chosenFieldNameTwo}">
+        <p class="servicepage-text-field servicepage-second-dropdown-field-text">
+          {(service.options_title)?(service.options_title):("")}</p>
+        <p class="servicepage-dropdown-text-field">{chosenFieldNameTwo}</p>
+        <div class="servicepage-dropdown-icon"></div>
+      </div>
+
+      <div class="servicepage-second-dropdown-field-pakety" role="button" aria-label="{chosenFieldNameThree}"
+           if="{hasSecondLevel&& service.category_id==11}"
+           ontouchend="openDropDownThree()" role="button" aria-label="{chosenFieldNameThree}">
+        <p class="servicepage-dropdown-text-field">{chosenFieldNameThree}</p>
+        <div class="servicepage-dropdown-icon"></div>
       </div>
 
       <div class="{servicepage-amount-field: !dropDownOn, servicepage-amount-field-two: dropDownOn}"
@@ -158,10 +190,20 @@
     scope.showErrorOfLimit = false;
     var onPaste = false;
     scope.selectedId = '';
+    var options = {
+      symbol: "",
+      decimal: ".",
+      thousand: " ",
+      precision: 0,
+      format: {
+        pos: "%v",
+        zero: ""
+      }
+    };
 
-    console.log("opts in FormTypeOne", opts);
+    console.log("opts in FormTypeFour", opts);
 
-    window.saveHistory('view-formtype-one', opts);
+    window.saveHistory('view-formtype-four', opts);
 
     if (opts.id) {
       opts.chosenServiceId = opts.id;
@@ -281,7 +323,7 @@
 
       if (this.firstFieldInput) {
 
-        if (scope.phoneFieldBool && firstFieldInput && opts.chosenServiceId != "mynumber") {
+        if (scope.phoneFieldBool && firstFieldInput) {
 
           if (firstFieldInput.value.length < 10) {
 
@@ -290,7 +332,7 @@
             return;
           }
 
-        } else if (firstFieldInput && firstFieldInput.value.length == 0 && opts.chosenServiceId != "mynumber") {
+        } else if (firstFieldInput && firstFieldInput.value.length == 0) {
           console.log("Нет значения первого поля");
           scope.enterButtonEnabled = false;
           scope.update(scope.enterButtonEnabled);
@@ -298,16 +340,9 @@
         }
       }
 
-
-      if (amountForPayTransaction < scope.service.min_pay_limit) {
-        console.log("amount=", amountForPayTransaction);
-        console.log(scope.service.lang_min_amount);
-        scope.enterButtonEnabled = false;
-        scope.update(scope.enterButtonEnabled);
-        return;
-      }
-      if (amountForPayTransaction > scope.service.max_pay_limit) {
-        console.log(scope.service.lang_max_amount);
+      if (scope.chosenFieldParamIdThree)
+        opts.internetPackageParam = scope.chosenFieldParamIdThree;
+      else {
         scope.enterButtonEnabled = false;
         scope.update(scope.enterButtonEnabled);
         return;
@@ -315,7 +350,6 @@
 
       scope.enterButtonEnabled = true;
       scope.update(scope.enterButtonEnabled);
-
 
     };
 
@@ -386,13 +420,12 @@
         checkFirst = true;
         amountForPayTransaction = opts.amountWithoutSpace;
       }
-      else {
+      else if (scope.formType != 2) {
         checkFieldsToActivateNext();
       }
     });
 
     scope.focusFieldAfterTourClosed = focusFieldAfterTourClosed = function () {
-
       if (opts.mode != 'ADDAUTOPAY' && opts.mode != 'ADDFAVORITE') {
 
         focusFieldGlobal('firstFieldInput');
@@ -451,6 +484,7 @@
       }
 
     };
+
 
     scope.onTouchStartOfSearchContact = onTouchStartOfSearchContact = function () {
       event.stopPropagation();
@@ -694,12 +728,122 @@
         scope.showErrorOfLimit = true;
         scope.placeHolderText = scope.service['amount_information_text']
       }
+
       scope.enterButtonEnabled = true;
       scope.update();
     }
 
     scope.fieldArray = scope.servicesParamsMapOne[opts.chosenServiceId];
+
     console.log('field array filled:', JSON.stringify(scope.fieldArray));
+
+    if (scope.service.disable_cache && modeOfApp.onlineMode && !modeOfApp.demoVersion) {
+
+      window.api.call({
+        method: 'get.service.parameters',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          service_id: opts.chosenServiceId
+        },
+
+        scope: this,
+
+        onSuccess: function (result) {
+          if (result[0][0].error == 0) {
+            console.log('GET SERVICE PARAMETERS BY SERVICE', JSON.parse(JSON.stringify(result)))
+
+            if (result[4]) {
+              scope.servicesParamsMapFour = {};
+              for (var i in result[4]) {
+                if (!scope.servicesParamsMapFour[result[4][i].service_id]) {
+                  scope.servicesParamsMapFour[result[4][i].service_id] = [];
+                  scope.servicesParamsMapFour[result[4][i].service_id].push(result[4][i]);
+                }
+                else
+                  scope.servicesParamsMapFour[result[4][i].service_id].push(result[4][i]);
+              }
+            }
+            if (result[5]) {
+              scope.servicesParamsMapFive = {};
+              for (var i in result[5]) {
+                if (!scope.servicesParamsMapFive[result[5][i].service_id]) {
+                  scope.servicesParamsMapFive[result[5][i].service_id] = [];
+                  scope.servicesParamsMapFive[result[5][i].service_id].push(result[5][i]);
+                }
+                else
+                  scope.servicesParamsMapFive[result[5][i].service_id].push(result[5][i]);
+              }
+            }
+
+            fill();
+
+            localStorage.setItem("click_client_servicesParamsMapFour", JSON.stringify(scope.servicesParamsMapFour));
+            localStorage.setItem("click_client_servicesParamsMapFive", JSON.stringify(scope.servicesParamsMapFive));
+
+            function fill() {
+
+              if (scope.formType == 4 && scope.servicesParamsMapFour[scope.service.id] && scope.servicesParamsMapFive[scope.service.id]) {
+                //scope.on('mount', function () {
+                console.log(scope);
+                amountField.style.display = 'none';
+                //});
+                scope.firstLevelArray = [];
+                scope.secondLevelMap = {};
+                scope.chosenFieldNameTwo = scope.servicesParamsMapFour[scope.service.id][0].name;
+                scope.hasSecondLevel = true;
+                scope.hasFirstLevel = true;
+
+                for (var i = 0; i < scope.servicesParamsMapFour[scope.service.id].length; i++) {
+                  scope.firstLevelArray.push(scope.servicesParamsMapFour[scope.service.id][i]);
+                }
+                for (var i = 0; i < scope.servicesParamsMapFive[scope.service.id].length; i++) {
+                  if (!scope.secondLevelMap[scope.servicesParamsMapFive[scope.service.id][i].type]) {
+                    scope.secondLevelMap[scope.servicesParamsMapFive[scope.service.id][i].type] = [];
+                    scope.secondLevelMap[scope.servicesParamsMapFive[scope.service.id][i].type].push(scope.servicesParamsMapFive[scope.service.id][i]);
+                  }
+                  else {
+                    scope.secondLevelMap[scope.servicesParamsMapFive[scope.service.id][i].type].push(scope.servicesParamsMapFive[scope.service.id][i]);
+                  }
+                }
+
+                if (!scope.hasSecondLevel && opts.internetPackageParam) {
+                  scope.chosenFieldParamIdTwo = opts.internetPackageParam;
+                  scope.chosenFieldNameTwo = opts.firstLevelFieldName;
+                  amountForPayTransaction = opts.amountText ? opts.amountText : opts.amountWithoutSpace;
+                }
+                else if (scope.hasSecondLevel && opts.internetPackageParam && opts.firstLevelParamId) {
+                  scope.chosenFieldParamIdTwo = opts.firstLevelParamId;
+                  scope.chosenFieldNameTwo = opts.firstLevelFieldName;
+                  scope.chosenFieldParamIdThree = opts.internetPackageParam;
+                  scope.chosenFieldNameThree = opts.secondLevelFieldName;
+                  amountForPayTransaction = opts.amountText ? opts.amountText : opts.amountWithoutSpace;
+
+                } else
+                  scope.chosenFieldParamIdTwo = scope.firstLevelArray[0].type;
+
+
+                if (scope.hasSecondLevel && scope.secondLevelMap[scope.firstLevelArray[0].type]) {
+                  var chosenFirstLevelId = scope.firstLevelArray[0].type;
+                  if (scope.chosenFieldParamIdTwo)
+                    chosenFirstLevelId = scope.chosenFieldParamIdTwo;
+                  scope.secondLevelArray = scope.secondLevelMap[chosenFirstLevelId];
+                }
+                checkFieldsToActivateNext();
+              }
+            }
+
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        }
+      });
+    }
+
+
     scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
     scope.formType = scope.service.form_type;
 
@@ -777,6 +921,47 @@
       scope.amountLength = ("" + scope.service.max_pay_limit).length;
     }
 
+    console.log("Yahoooo_1", scope.servicesParamsMapOne[scope.service.id], scope.servicesParamsMapTwo[scope.service.id],
+      scope.servicesParamsMapThree[scope.service.id], scope.servicesParamsMapFour[scope.service.id], scope.servicesParamsMapFive[scope.service.id]);
+    scope.hasFirstLevel = false;
+    if (scope.servicesParamsMapTwo[scope.service.id]) {
+      scope.firstLevelArray = [];
+      scope.secondLevelMap = {};
+      scope.chosenFieldNameTwo = scope.servicesParamsMapTwo[scope.service.id][0].name;
+      scope.hasSecondLevel = false;
+      scope.hasFirstLevel = true;
+
+      for (var i = 0; i < scope.servicesParamsMapTwo[scope.service.id].length; i++) {
+        if (scope.servicesParamsMapTwo[scope.service.id][i].parent == 0) {
+          scope.firstLevelArray.push(scope.servicesParamsMapTwo[scope.service.id][i]);
+        } else {
+          scope.hasSecondLevel = true;
+          if (!scope.secondLevelMap[scope.servicesParamsMapTwo[scope.service.id][i].parent]) {
+            scope.secondLevelMap[scope.servicesParamsMapTwo[scope.service.id][i].parent] = [];
+            scope.secondLevelMap[scope.servicesParamsMapTwo[scope.service.id][i].parent].push(scope.servicesParamsMapTwo[scope.service.id][i]);
+          }
+          else {
+            scope.secondLevelMap[scope.servicesParamsMapTwo[scope.service.id][i].parent].push(scope.servicesParamsMapTwo[scope.service.id][i]);
+          }
+        }
+      }
+      if (!scope.hasSecondLevel && opts.communalParam) {
+        scope.chosenFieldParamIdTwo = opts.communalParam;
+        scope.chosenFieldNameTwo = opts.firstLevelFieldName;
+      }
+      else if (scope.hasSecondLevel && opts.communalParam && opts.firstLevelParamId) {
+        scope.chosenFieldParamIdTwo = opts.firstLevelParamId;
+        scope.chosenFieldNameTwo = opts.firstLevelFieldName;
+        scope.chosenFieldParamIdThree = opts.communalParam;
+        scope.chosenFieldNameThree = opts.secondLevelFieldName;
+
+      } else
+        scope.chosenFieldParamIdTwo = scope.firstLevelArray[0].id;
+      if (scope.hasSecondLevel && scope.secondLevelMap[scope.firstLevelArray[0].id]) {
+        scope.secondLevelArray = scope.secondLevelMap[scope.firstLevelArray[0].id];
+      }
+
+    }
     checkFieldsToActivateNext();
 
 
@@ -803,6 +988,14 @@
           chooseFirstField(id);
           break;
         }
+        case "firstLevel": {
+          chooseDropdownTwo(id);
+          break;
+        }
+        case "secondLevel": {
+          chooseDropdownThree(id);
+          break;
+        }
         case "prefixes": {
           choosePrefix(id);
           break;
@@ -818,6 +1011,24 @@
       openDropdownComponent();
     };
 
+    openDropDownTwo = function () {
+
+      console.log("open drop down two", scope.firstLevelArray, scope.chosenFieldParamIdTwo);
+      scope.dropDownType = "firstLevel";
+      var idParam = "type";
+      updateDropdownList(scope.firstLevelArray, idParam, scope.chosenFieldParamIdTwo, "name", "servicePageId");
+      openDropdownComponent();
+    };
+
+    openDropDownThree = function () {
+
+      console.log("open drop down three", scope.secondLevelArray, scope.chosenFieldParamIdThree);
+      scope.dropDownType = "secondLevel";
+      var idParam = "code";
+      updateDropdownList(scope.secondLevelArray, idParam, scope.chosenFieldParamIdThree, "name", "servicePageId");
+      openDropdownComponent();
+
+    };
 
     openPrefixesDropDown = function () {
 
@@ -903,21 +1114,56 @@
 
     };
 
+    chooseDropdownTwo = function (id) {
+      console.log("chooseDropdownTwo function");
+
+      for (var i = 0; i < scope.firstLevelArray.length; i++) {
+        if (scope.firstLevelArray[i].type == id) {
+          scope.chosenFieldNameTwo = scope.firstLevelArray[i].name;
+          scope.oldFieldParamIdTwo = scope.chosenFieldParamIdTwo;
+          scope.chosenFieldParamIdTwo = id;
+          if (scope.hasSecondLevel) {
+            scope.secondLevelArray = scope.secondLevelMap[id];
+            if (scope.oldFieldParamIdTwo != scope.chosenFieldParamIdTwo) {
+              scope.chosenFieldNameThree = '';
+              scope.oldFieldParamIdThree = null;
+              scope.chosenFieldParamIdThree = null;
+            }
+          }
+          scope.update();
+          break;
+        }
+      }
+
+      checkFieldsToActivateNext();
+    };
+
+    chooseDropdownThree = function (id) {
+      console.log("chooseDropdownThree function");
+
+      for (var i = 0; i < scope.secondLevelArray.length; i++) {
+        if (scope.secondLevelArray[i].code == id) {
+          scope.chosenFieldNameThree = scope.secondLevelArray[i].name;
+          if (scope.chosenFieldParamIdThree)
+            scope.oldFieldParamIdThree = scope.chosenFieldParamIdThree;
+          scope.chosenFieldParamIdThree = id;
+          opts.amountText = scope.secondLevelArray[i].usd_cost;
+          amountForPayTransaction = scope.secondLevelArray[i].sum_cost;
+          scope.update();
+          break;
+        }
+      }
+
+      checkFieldsToActivateNext();
+    };
+
     eraseAmountDefault = function () {
       console.log("in erase amount default");
       event.preventDefault();
       event.stopPropagation();
 
       if (!checkFirst) {
-//        amount.value = '';
         checkFirst = true;
-      }
-      if (amount.value.match(maskOne) != null && amount.value.match(maskOne).length != null) {
-        amount.selectionStart = amount.value.match(maskTwo).length;
-        amount.selectionEnd = amount.value.match(maskTwo).length;
-      } else {
-        amount.selectionStart = 0;
-        amount.selectionEnd = 0;
       }
 
       checkFieldsToActivateNext('sum')
@@ -928,29 +1174,23 @@
       event.preventDefault();
       event.stopPropagation();
 
-      if (amount.value.length == 1) {
-        amount.value = window.amountTransform(amount.value)
-      }
+      var amountInput = accounting.formatMoney(amount.value, options);
 
-      if (event.keyCode == 8) {
-        amountForPayTransaction = amountForPayTransaction.substring(0, amountForPayTransaction.length - 1)
-      }
+      var selectionStart = amount.selectionStart,
+        notVerifiedValue = amount.value,
+        delta;
 
-      if (amount.value.match(maskTwo) != null && amount.value.match(maskTwo).length != null) {
+      delta = notVerifiedValue.length - amountInput.length;
 
-        amount.value = amount.value.substring(0, event.target.value.match(maskTwo).length);
-        amount.selectionStart = amount.value.match(maskTwo).length;
-        amount.selectionEnd = amount.value.match(maskTwo).length;
+      selectionStart = selectionStart - delta;
+      selectionStart = (selectionStart < 0) ? (0) : (selectionStart);
 
-        amountForPayTransaction = amount.value.substring(0, amount.value.match(maskTwo).length);
-        amountForPayTransaction = amountForPayTransaction.replace(new RegExp(' ', 'g'), '');
+      amount.value = amountInput;
 
-        amount.value = window.amountTransform(amountForPayTransaction);
+      amount.selectionStart = selectionStart;
+      amount.selectionEnd = selectionStart;
 
-      } else {
-        amount.selectionStart = 0;
-        amount.selectionEnd = 0;
-      }
+      amountForPayTransaction = accounting.unformat(amount.value);
 
       opts.amountText = amount.value;
       opts.amountWithoutSpace = amountForPayTransaction;
@@ -1029,15 +1269,10 @@
             console.log('opts.formtype', opts)
             console.log("opts in ussd", JSON.stringify(opts))
 
-
             if (ussdQuery) {
-              if (opts.firstFieldText) {
-                ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
-              }
-              else {
-                ussdQuery = ussdQuery.replace('*{param}', opts.firstFieldText);
-              }
+              console.log('ussdQuery', ussdQuery)
 //              ussdQuery = ussdQuery.replace('{communal_param}', opts.communalParam);
+              ussdQuery = ussdQuery.replace('{param}', opts.firstFieldText);
               ussdQuery = ussdQuery.replace('{option}', opts.chosenPrefixId);
               ussdQuery = ussdQuery.replace('{amount}', opts.amountText);
               ussdQuery = ussdQuery.substring(0, ussdQuery.length - 1);
@@ -1109,7 +1344,7 @@
           viewServicePinCards.chosenFriendForHelp = null;
 
           if (opts.isInFavorites) {
-            editFavoritePayment(params, opts.favoriteId, scope);
+            editFavoritePayment(opts, opts.favoriteId, scope);
             event.preventDefault();
             event.stopPropagation();
             onBackKeyDown();
@@ -1155,6 +1390,7 @@
 
           }
 
+
         }
 
       }
@@ -1162,4 +1398,4 @@
 
 
   </script>
-</view-formtype-one>
+</view-formtype-four>
