@@ -21,9 +21,15 @@
         <div id="processingIconId" class="add-card-uzcard-icon" style="background-image: url({processingImage});"></div>
         <p class="add-card-card-text add-card-card-number-text">{window.languages.ViewAddCardNumberTitle}</p>
         <div id="cardNumberInput" class="add-card-card-number">
-          <input type="tel" onpaste="boxOnePaste()" onkeyup="boxOneKeyUp()"
-                 onkeydown="boxOneKeyDown()" autofocus="true" oninput="boxOneChange()"
-                 id="boxOne"
+          <input id="boxOne"
+                 type="tel"
+                 value="8600 "
+                 onpaste="boxOnePaste()"
+                 onkeyup="boxOneKeyUp()"
+                 onkeydown="boxOneKeyDown()"
+                 autofocus="true"
+                 oninput="boxOneChange()"
+                 onfocus="var temp_value=this.value; this.value=''; this.value=temp_value"
                  class="add-card-card-number-box add-card-card-number-box-one">
           </input>
         </div>
@@ -369,10 +375,13 @@
               console.log(scope.local_card_background_dir + background_file_name);
               checkImageExists(cardDesignId.src, function (exists) {
                 if (exists) {
-                  cardDesignId.classList.add('add-card-card-design-appear');
-                  cardInputFieldsId.classList.add('add-card-card-input-fields-reduce');
-                  if (bank.font_color) {
-                    cardInputFieldsId.style.color = 'rgb(' + bank.font_color + ')';
+
+                  if (cardDesignId.className.indexOf('add-card-card-design-appear') === -1) {
+                    cardDesignId.classList.add('add-card-card-design-appear');
+                    cardInputFieldsId.classList.add('add-card-card-input-fields-reduce');
+                    if (bank.font_color) {
+                      cardInputFieldsId.style.color = 'rgb(' + bank.font_color + ')';
+                    }
                   }
                 } else {
                   console.log('image does not exist');
@@ -388,9 +397,12 @@
         if (bankIconFound === false) {
           scope.bankImage = '';
           bankIconId.style.display = 'none';
-          cardDesignId.classList.remove('add-card-card-design-appear');
-          cardInputFieldsId.classList.remove('add-card-card-input-fields-reduce');
-          cardInputFieldsId.style.color = '';
+
+          if (cardDesignId.className.indexOf('add-card-card-design-appear') !== -1) {
+            cardDesignId.classList.remove('add-card-card-design-appear');
+            cardInputFieldsId.classList.remove('add-card-card-input-fields-reduce');
+            cardInputFieldsId.style.color = '';
+          }
         }
       }
     };

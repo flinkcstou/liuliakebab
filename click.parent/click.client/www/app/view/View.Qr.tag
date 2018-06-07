@@ -48,10 +48,10 @@
     scope.showPlaceHolderError = false;
 
     var options = {
-      symbol : "",
-      decimal : ".",
+      symbol: "",
+      decimal: ".",
       thousand: " ",
-      precision : 0,
+      precision: 0,
       format: {
         pos: "%v",
         zero: ""
