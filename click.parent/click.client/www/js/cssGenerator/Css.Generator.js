@@ -4909,29 +4909,74 @@ var css = {
   "height:" + 690 * heightK + "px;" +
   "color: black;" +
   "top:" + 410 * widthK + "px;" +
-  "background-color: #f4f3f3;" +
+  "background-color: #f8f7f7;" +
   "}",
 
   formTypeSevenInfoTitleContainer: ".formtype-seven-info-title-container" +
   "{" +
   "position: relative;" +
-  "left: 6%;" +
-  "width: 88%;" +
+  "left: 9%;" +
+  "width: 82%;" +
   "height:" + 75 * heightK + "px;" +
   "border-bottom:" + 2 * widthK + "px solid #e8e8e8;" +
-  // "top:" + 56 * widthK + "px;" +
+  "top: 8%;" +
   "}",
 
   formTypeSevenInfoBodyContainer: ".formtype-seven-info-body-container" +
   "{" +
   "position: relative;" +
-  "left: 6%;" +
-  "width: 90%;" +
-  "height:" + 292 * heightK + "px;" +
-  "top:" + 25 * heightK + "px;" +
+  "left: 9%;" +
+  "width: 82%;" +
+  "height:" + 280 * heightK + "px;" +
+  "top:" + 95 * heightK + "px;" +
   "overflow-y: scroll; " +
   "overflow-x: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
+  "}",
+
+  formTypeSevenInfoTitle: ".formtype-seven-info-title" +
+  "{" +
+  "position: absolute;" +
+  "background-size: contain;" +
+  "font-size:" + 30 * widthK + "px;" +
+  "top: 32%;" +
+  "margin: 0;" +
+  "color: #515151;" +
+  "width: 100%;" +
+  "white-space: nowrap;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "}",
+
+  formTypeSevenInfoLineContainer: ".formtype-seven-info-line-container" +
+  "{" +
+  "position: relative;" +
+  "width: 100%;" +
+  "min-height:" + 65 * widthK + "px;" +
+  "float: left;" +
+  "}",
+
+  formTypeSevenInfoLineName: ".formtype-seven-info-line-name" +
+  "{" +
+  "position: relative;" +
+  "font-size:" + 24 * widthK + "px; " +
+  "width:" + 275 * widthK + "px; " +
+  "max-height:" + 78 * widthK + "px; " +
+  "text-align: left; " +
+  "margin: 0; " +
+  "margin-top:" + 15 * widthK + "px; " +
+  "color: gray;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "float: left;" +
+  "}",
+
+  formTypeSevenInfoLineAmount: ".formtype-seven-info-line-amount" +
+  "{" +
+  "width:" + 176 * widthK + "px; " +
+  "text-align: right;" +
+  "color: #00a8f1;" +
+  "float: right;" +
   "}",
 
   //Component dropdown

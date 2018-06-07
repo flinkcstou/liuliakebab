@@ -606,6 +606,12 @@
           "internet_package_param": opts.internetPackageParam,
           "transaction_id": opts.transactionId
         };
+      } else if (opts.formtype == 7) {
+        payment_data = {
+          "value": opts.firstFieldText,
+          "secondary_value": opts.secondFieldValue,
+          "transaction_id": opts.transactionId
+        };
       }
 
       if (opts.mode != 'ADDAUTOPAY') {

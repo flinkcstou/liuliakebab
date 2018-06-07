@@ -43,29 +43,21 @@
         <p if="{showErrorOfLimit}" id="placeHolderSumId" class="servicepage-limit-title">{placeHolderText}</p>
       </div>
 
-      <div class="formtype-seven-info-container">
-        <div class="formtype-seven-info-title-container">
-          <div class="view-qr-info-menu-body-line-name">Кадыров Владислав Сергеевич</div>
+      <div class="formtype-seven-info-container" if="{optionObject}">
+
+        <div class="formtype-seven-info-title-container" if="{optionObject[0]}">
+          <div class="formtype-seven-info-title">{optionObject[0].value}</div>
         </div>
-        <div class="formtype-seven-info-title-container">
-          <div class="view-qr-info-menu-body-line-name">Дог 405 12 октября 2017 г.</div>
+
+        <div class="formtype-seven-info-title-container" if="{optionObject[1]}">
+          <div class="formtype-seven-info-title">{optionObject[1].value}</div>
         </div>
+
         <div class="formtype-seven-info-body-container">
-          <div class="view-qr-info-menu-body-line-container">
-            <div class="view-qr-info-menu-body-line-name">Сумма кредита:</div>
-            <div class="view-qr-info-menu-body-line-name view-qr-info-menu-body-line-amount">hvhjvuvb</div>
-          </div>
-          <div class="view-qr-info-menu-body-line-container">
-            <div class="view-qr-info-menu-body-line-name">Задолженность:</div>
-            <div class="view-qr-info-menu-body-line-name view-qr-info-menu-body-line-amount">hvhjvuvb</div>
-          </div>
-          <div class="view-qr-info-menu-body-line-container">
-            <div class="view-qr-info-menu-body-line-name">К оплате:</div>
-            <div class="view-qr-info-menu-body-line-name view-qr-info-menu-body-line-amount">hvhjvuvb</div>
-          </div>
-          <div class="view-qr-info-menu-body-line-container">
-            <div class="view-qr-info-menu-body-line-name">Остаток:</div>
-            <div class="view-qr-info-menu-body-line-name view-qr-info-menu-body-line-amount">hvhjvuvb</div>
+          <div class="formtype-seven-info-line-container" each="{i in optionObject}" if="{i.index > 1}">
+            <div class="formtype-seven-info-line-name">{i.title}:</div>
+            <div class="formtype-seven-info-line-name formtype-seven-info-line-amount">{i.value} сум
+            </div>
           </div>
         </div>
       </div>
@@ -93,6 +85,7 @@
     scope.showErrorOfLimit = false;
     scope.selectedId = '';
     scope.options = [];
+    scope.optionsObject = null;
     var maskOne = /[0-9]/g,
       maskTwo = /[0-9' ']/g,
       amountForPayTransaction = 0,
@@ -110,6 +103,16 @@
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
     if (loginInfo)
       var sessionKey = loginInfo.session_key;
+    var options = {
+      symbol: "",
+      decimal: ".",
+      thousand: " ",
+      precision: 0,
+      format: {
+        pos: "%v",
+        zero: ""
+      }
+    };
 
     scope.update();
 
@@ -171,6 +174,12 @@
                 scope.dropDownOn = true;
                 scope.chosenFieldName = opts.contractValue ? opts.contractValue : scope.options[0].option_value;
                 scope.chosenFieldParamId = opts.contractValue ? opts.contractValue : scope.options[0].option_value;
+                scope.optionObject = scope.options[0].option_object;
+                for (var k in scope.optionObject) {
+                  if (k > 1)
+                    scope.optionObject[k].value = accounting.formatMoney(scope.optionObject[k].value, options);
+                  scope.optionObject[k].index = k;
+                }
               }
               console.log("options array", scope.options);
               scope.update();
@@ -349,7 +358,7 @@
       scope.serviceIcon = scope.service.image;
       scope.commissionPercent = scope.service.commission_percent;
     }
-    console.log("Service ", scope.service)
+    console.log("Service ", scope.service);
 
     //Editing amount input for non editable situations
 
@@ -420,7 +429,11 @@
           scope.chosenFieldName = scope.options[i].option_value;
           scope.chosenFieldParamId = scope.options[i].option_value;
           scope.optionObject = scope.options[i].option_object;
-
+          for (var k in scope.optionObject) {
+            if (k > 1)
+              scope.optionObject[k].value = accounting.formatMoney(scope.optionObject[k].value, options);
+            scope.optionObject[k].index = k;
+          }
           scope.update();
         }
       }
@@ -519,6 +532,11 @@
 
       if (Math.abs(enterStartY - enterEndY) <= 20 && Math.abs(enterStartX - enterEndX) <= 20) {
 
+        opts.paymentDataAttributes = scope.optionObject.payment_data_attributes;
+
+        this.riotTags.innerHTML = "<view-service-pincards-new>";
+        riot.mount('view-service-pincards-new', opts);
+        scope.unmount()
 
       }
     };
