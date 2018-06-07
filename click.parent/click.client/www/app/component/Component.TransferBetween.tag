@@ -111,6 +111,16 @@
     var counter = 0;
     var pageToReturnIfError = 'view-main-page';
     var timeOutTimer = 0;
+    var options = {
+      symbol : "",
+      decimal : ".",
+      thousand: " ",
+      precision : 0,
+      format: {
+        pos: "%v",
+        zero: ""
+      }
+    };
 
     scope.on('mount', function () {
       if (opts && JSON.stringify(opts) !== '{}') {
@@ -148,14 +158,14 @@
     amountMouseUp = function () {
       event.preventDefault();
       event.stopPropagation();
-      if (betweenAmountId.value.match(scope.maskOne) !== null
-        && betweenAmountId.value.match(scope.maskOne).length !== null) {
-        betweenAmountId.selectionStart = betweenAmountId.value.match(scope.maskTwo).length;
-        betweenAmountId.selectionEnd = betweenAmountId.value.match(scope.maskTwo).length;
-      } else {
-        betweenAmountId.selectionStart = 0;
-        betweenAmountId.selectionEnd = 0;
-      }
+//      if (betweenAmountId.value.match(scope.maskOne) !== null
+//        && betweenAmountId.value.match(scope.maskOne).length !== null) {
+//        betweenAmountId.selectionStart = betweenAmountId.value.match(scope.maskTwo).length;
+//        betweenAmountId.selectionEnd = betweenAmountId.value.match(scope.maskTwo).length;
+//      } else {
+//        betweenAmountId.selectionStart = 0;
+//        betweenAmountId.selectionEnd = 0;
+//      }
     };
 
     amountOnBlur = function () {
@@ -175,45 +185,57 @@
       amountFieldTitle.style.color = '#01cfff';
       amountField.style.borderBottom = "" + 3 * widthK + "px solid #01cfff";
 
-      if (betweenAmountId.value.length === 1 && betweenAmountId.value[0] === '0') {
-        betweenAmountId.value = '';
-      }
       contactPhoneNumberId.readOnly = true;
       cardInputId.readOnly = true;
     };
 
     amountKeyUp = function () {
-      if (betweenAmountId.value.length === 1) {
-        betweenAmountId.value = window.amountTransform(betweenAmountId.value.toString());
-      }
+//      if (betweenAmountId.value.length === 1) {
+//        betweenAmountId.value = window.amountTransform(betweenAmountId.value.toString());
+//      }
 
-      if (event.keyCode === 8) {
-        scope.sumForTransfer = scope.sumForTransfer.substring(0, scope.sumForTransfer.length - 1);
-      }
+//      if (event.keyCode === 8) {
+//        scope.sumForTransfer = scope.sumForTransfer.substring(0, scope.sumForTransfer.length - 1);
+//      }
 
-      if (betweenAmountId.value.match(scope.maskTwo) !== null && betweenAmountId.value.match(scope.maskTwo).length !== null) {
+//      if (betweenAmountId.value.match(scope.maskTwo) !== null && betweenAmountId.value.match(scope.maskTwo).length !== null) {
+//
+//        betweenAmountId.value = betweenAmountId.value.substring(0, event.target.value.match(scope.maskTwo).length);
+//        betweenAmountId.selectionStart = betweenAmountId.value.match(scope.maskTwo).length;
+//        betweenAmountId.selectionEnd = betweenAmountId.value.match(scope.maskTwo).length;
+//
+//
+//        betweenAmountId.value = window.amountTransform(scope.sumForTransfer.toString());
+//        betweenAmountId.selectionStart = betweenAmountId.value.match(scope.maskTwo).length;
+//        betweenAmountId.selectionEnd = betweenAmountId.value.match(scope.maskTwo).length;
+//
+//      } else {
+//        betweenAmountId.selectionStart = 0;
+//        betweenAmountId.selectionEnd = 0;
+//      }
 
-        betweenAmountId.value = betweenAmountId.value.substring(0, event.target.value.match(scope.maskTwo).length);
-        betweenAmountId.selectionStart = betweenAmountId.value.match(scope.maskTwo).length;
-        betweenAmountId.selectionEnd = betweenAmountId.value.match(scope.maskTwo).length;
+      var amountInput = accounting.formatMoney(betweenAmountId.value, options);
 
-        scope.sumForTransfer = betweenAmountId.value.substring(0, betweenAmountId.value.match(scope.maskTwo).length);
-        scope.sumForTransfer = scope.sumForTransfer.replace(new RegExp(' ', 'g'), '');
+      var selectionStart = betweenAmountId.selectionStart,
+        notVerifiedValue = betweenAmountId.value,
+        delta;
 
-        betweenAmountId.value = window.amountTransform(scope.sumForTransfer.toString());
-        betweenAmountId.selectionStart = betweenAmountId.value.match(scope.maskTwo).length;
-        betweenAmountId.selectionEnd = betweenAmountId.value.match(scope.maskTwo).length;
+      delta = notVerifiedValue.length - amountInput.length;
 
-      } else {
-        betweenAmountId.selectionStart = 0;
-        betweenAmountId.selectionEnd = 0;
-      }
+      selectionStart = selectionStart - delta;
+      selectionStart = (selectionStart < 0) ? (0) : (selectionStart);
+
+      betweenAmountId.value = amountInput;
+
+      betweenAmountId.selectionStart = selectionStart;
+      betweenAmountId.selectionEnd = selectionStart;
+
+      scope.sumForTransfer = accounting.unformat(amountInput);
 
       if (scope.sumForTransfer) {
         scope.tax = scope.sumForTransfer * scope.taxPercent / 100;
         scope.showCommission = true;
-      }
-      else {
+      } else {
         scope.tax = 0
       }
 

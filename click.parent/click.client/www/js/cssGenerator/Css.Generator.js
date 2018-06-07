@@ -6830,7 +6830,9 @@ var css = {
   "top:" + 20 * widthK + "px;" +
   "height:" + 345 * widthK + "px;" +
   "width:" + 607 * widthK + "px;" +
-  "background-size: cover;" +
+  "border:" + 1 + "px solid #e7e7e7;" +
+  "border-radius:" + 10 + "px;" +
+  "background-size: 102%;" +
   "background-position: center;" +
   "background-repeat: no-repeat;" +
   "background-image: url('resources/icons/ViewTransfer/transfer_card.png');" +
@@ -6859,6 +6861,7 @@ var css = {
   "-webkit-transition: 0.7s;" +
   "transition: 0.7s;" +
   "transform-origin: bottom left;" +
+  "-webkit-transform-origin: bottom left;" +
   "overflow: hidden;" +
   "color: #757389;" +
   "}",
@@ -6874,7 +6877,7 @@ var css = {
   "opacity: 1;" +
   "}",
 
-  transferNewCardHiddenInput: ".transfer-new-card-hidden-input" +
+  hiddenInput: ".hidden-input" +
   "{" +
   "border: none;" +
   "outline: none;" +
@@ -6896,6 +6899,7 @@ var css = {
   "width:" + 547 * widthK + "px;" +
   "height:" + 75 * widthK + "px;" +
   "border:" + 1 + "px solid #e7e7e7;" +
+  "border-radius:" + 10 * widthK + "px;" +
   "background-color: white;" +
   "margin: 0%;" +
   "padding: 0;" +
@@ -13451,7 +13455,8 @@ var css = {
   "border-radius:" + 10 * heightK + "px;" +
   "background-image: url(resources/icons/cards/addCard/new_card.png);" +
   "background-repeat: no-repeat;" +
-  "background-size: cover;" +
+  "background-size: 102%;" +
+  "background-position: center;" +
   "overflow: hidden;" +
   "}",
 
@@ -13461,6 +13466,7 @@ var css = {
   "width:" + 610 * widthK + "px;" +
   "height:" + 340 * heightK + "px;" +
   "transform-origin: bottom left;" +
+  "-webkit-transform-origin: bottom left;" +
   "-webkit-transition: 0.7s;" +
   "transition: 0.7s;" +
   "overflow: hidden;" +
@@ -13469,8 +13475,8 @@ var css = {
 
   addCardCardInputFieldsReduce: ".add-card-card-input-fields-reduce" +
   "{" +
-  "transform: scale(0.7);" +
-  "-webkit-transform: scale(0.7);" +
+  // "transform: scale(0.7);" +
+  // "-webkit-transform: scale(0.7);" +
   "}",
 
   addCardCardDesign: ".add-card-card-design" +
@@ -13563,6 +13569,7 @@ var css = {
   "border:" + 1 + "px solid #e7e7e7;" +
   "width:" + 550 * widthK + "px;" +
   "height:" + 71 * widthK + "px;" +
+  "border-radius:" + 10 * widthK + "px;" +
   "left: 5%;" +
   "top: 27%;" +
   "}",
@@ -13619,6 +13626,7 @@ var css = {
   "border:" + 1 + "px solid #e7e7e7;" +
   "width: 29%;" +
   "height:" + 71 * widthK + "px;" +
+  "border-radius:" + 10 * widthK + "px;" +
   "left: 5%;" +
   "top: 66%;" +
   "}",
@@ -15921,6 +15929,8 @@ var css = {
   "left: 3%;" +
   "top: 52%;" +
   "font-size: " + 29 * widthK + "px; " +
+  "user-select: unset;" +
+  "-webkit-user-select: unset;" +
   "color: gray;" +
   "}",
 
