@@ -39,12 +39,35 @@
                onfocus="colorFieldGlobal('amountField','amountFieldTitle')"
                onblur="blurFieldGlobal('amountField','amountFieldTitle')"
                onmouseup="eraseAmountDefault()" onkeyup="sumForPay()" oninput="sumForPay()"/>
-        <div if="{!modeOfApp.offlineMode && service['amount_editable'] && calcOn}" class="servicepage-amount-icon"
-             ontouchstart="onTouchStartOfAmountCalculator()" role="button"
-             aria-label="{window.languages.ViewServicePageVoiceOverOpenCalculator}"
-             ontouchend="onTouchEndOfAmountCalculator()"></div>
 
         <p if="{showErrorOfLimit}" id="placeHolderSumId" class="servicepage-limit-title">{placeHolderText}</p>
+      </div>
+
+      <div class="formtype-seven-info-container">
+        <div class="formtype-seven-info-title-container">
+          <div class="view-qr-info-menu-body-line-name">Кадыров Владислав Сергеевич</div>
+        </div>
+        <div class="formtype-seven-info-title-container">
+          <div class="view-qr-info-menu-body-line-name">Дог 405 12 октября 2017 г.</div>
+        </div>
+        <div class="formtype-seven-info-body-container">
+          <div class="view-qr-info-menu-body-line-container">
+            <div class="view-qr-info-menu-body-line-name">Сумма кредита:</div>
+            <div class="view-qr-info-menu-body-line-name view-qr-info-menu-body-line-amount">hvhjvuvb</div>
+          </div>
+          <div class="view-qr-info-menu-body-line-container">
+            <div class="view-qr-info-menu-body-line-name">Задолженность:</div>
+            <div class="view-qr-info-menu-body-line-name view-qr-info-menu-body-line-amount">hvhjvuvb</div>
+          </div>
+          <div class="view-qr-info-menu-body-line-container">
+            <div class="view-qr-info-menu-body-line-name">К оплате:</div>
+            <div class="view-qr-info-menu-body-line-name view-qr-info-menu-body-line-amount">hvhjvuvb</div>
+          </div>
+          <div class="view-qr-info-menu-body-line-container">
+            <div class="view-qr-info-menu-body-line-name">Остаток:</div>
+            <div class="view-qr-info-menu-body-line-name view-qr-info-menu-body-line-amount">hvhjvuvb</div>
+          </div>
+        </div>
       </div>
 
 
@@ -58,56 +81,14 @@
 
     </div>
 
-    <div hidden="{!showComponent}" id="blockAmountCalculatorId" class="component-calc">
-      <div id="rightButton" type="button" role="button" aria-label="{window.languages.Close}"
-           class="component-banklist-close-button" ontouchstart="closeCalculatorTouchStart()"
-           ontouchend="closeCalculatorTouchEnd()"></div>
-      <div class="component-calc-name-title">{window.languages.ViewAmountCalculatorNameTitle}</div>
-
-      <div class="component-calc-fields-container">
-
-        <div class="component-calc-first-field">
-          <p class="component-calc-first-field-text">{window.languages.ViewAmountCalculatorTextOne}</p>
-          <input id="amountCalcInputId" class="component-calc-first-field-input-part" type="tel" autofocus="true"
-                 maxlength="19" onkeyup="convertAmount()"/>
-        </div>
-
-        <p class="component-calc-currency-text">{window.languages.ViewAmountCalculatorTextTwo} {currencyRate} сум</p>
-        <div id="convertedAmountFieldId" class="component-calc-second-field">
-          <p class="component-calc-second-field-text">{window.languages.ViewAmountCalculatorTextThree}</p>
-          <p class="component-calc-second-field-input-part">{convertedAmount} сум</p>
-        </div>
-
-        <div class="component-calc-buttons-container">
-          <div class="component-calc-button component-calc-cancel-button"
-               ontouchstart="closeAmountComponentTouchStart()"
-               ontouchend="closeAmountComponentTouchEnd()">
-            <p class="component-calc-button-label component-calc-cancel-button-label">
-              {window.languages.ViewAmountCalculatorCancelText}</p>
-          </div>
-          <div id="acceptConvertedBtnId" class="component-calc-button" ontouchstart="acceptConvertedAmountTouchStart()"
-               ontouchend="acceptConvertedAmountTouchEnd()">
-            <p class="component-calc-button-label">{window.languages.ViewAmountCalculatorAcceptText}</p>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
   </div>
 
   <component-dropdown></component-dropdown>
 
   <script>
 
-    window.checkShowingComponent = null;
     var scope = this;
     var backStartY, backStartX, backEndY, backEndX;
-    var amountCalcStartY, amountCalcStartX, amountCalcEndY, amountCalcEndX;
-    var closeIconStartY, closeIconStartX, closeIconEndY, closeIconEndX;
-    var closeStartY, closeStartX, closeEndY, closeEndX;
-    var acceptStartY, acceptStartX, acceptEndY, acceptEndX;
     var enterStartY, enterStartX, enterEndY, enterEndX;
     scope.showErrorOfLimit = false;
     scope.selectedId = '';
@@ -191,7 +172,7 @@
                 scope.chosenFieldName = opts.contractValue ? opts.contractValue : scope.options[0].option_value;
                 scope.chosenFieldParamId = opts.contractValue ? opts.contractValue : scope.options[0].option_value;
               }
-              console.log("options array", scope.options)
+              console.log("options array", scope.options);
               scope.update();
             }
           }
@@ -362,189 +343,6 @@
 
     });
 
-    scope.onTouchStartOfAmountCalculator = onTouchStartOfAmountCalculator = function () {
-      event.stopPropagation();
-      amountCalcStartY = event.changedTouches[0].pageY;
-      amountCalcStartX = event.changedTouches[0].pageX;
-    };
-
-    scope.onTouchEndOfAmountCalculator = onTouchEndOfAmountCalculator = function () {
-      event.stopPropagation();
-
-      amountCalcEndY = event.changedTouches[0].pageY;
-      amountCalcEndX = event.changedTouches[0].pageX;
-
-      if (Math.abs(amountCalcStartY - amountCalcEndY) <= 20 && Math.abs(amountCalcStartX - amountCalcEndX) <= 20) {
-        if (modeOfApp.demoVersion) {
-          var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
-
-          scope.confirmNote = question;
-          scope.confirmType = 'local';
-
-          window.common.alert.show("componentConfirmId", {
-            parent: scope,
-            "confirmnote": scope.confirmNote,
-            "confirmtype": scope.confirmType
-          });
-
-          scope.result = function (bool) {
-            if (bool) {
-              localStorage.clear();
-              window.location = 'index.html';
-              scope.unmount();
-              return
-            }
-            else {
-              window.common.alert.hide("componentConfirmId");
-              return
-            }
-          };
-          scope.update();
-
-          return
-        }
-
-        window.api.call({
-          method: 'rate.convert',
-          input: {
-            session_key: sessionKey,
-            phone_num: phoneNumber,
-            amount: 1
-          },
-
-          scope: this,
-
-          onSuccess: function (result) {
-            console.log('rate.convert', result);
-            if (result[0][0].error == 0) {
-
-              scope.currencyRate = result[1][0].current_rate;
-              scope.update(scope.currencyRate);
-            }
-            else {
-              scope.errorNote = result[0][0].error_note;
-
-              window.common.alert.show("componentAlertId", {
-                parent: scope,
-                errornote: scope.errorNote
-              });
-
-              scope.update();
-            }
-          },
-
-          onFail: function (api_status, api_status_message, data) {
-            window.common.alert.show("componentAlertId", {
-              parent: scope,
-              errornote: api_status_message
-            });
-          }
-        });
-
-        window.blurFields();
-
-        scope.showComponent = true;
-        window.checkShowingComponent = scope;
-        amountCalcInputId.focus();
-        scope.update();
-      }
-    };
-
-    scope.closeCalculatorTouchStart = closeCalculatorTouchStart = function () {
-      event.stopPropagation();
-      closeIconStartY = event.changedTouches[0].pageY;
-      closeIconStartX = event.changedTouches[0].pageX;
-    };
-
-    scope.closeCalculatorTouchEnd = closeCalculatorTouchEnd = function () {
-      event.stopPropagation();
-
-      closeIconEndY = event.changedTouches[0].pageY;
-      closeIconEndX = event.changedTouches[0].pageX;
-
-      if (Math.abs(closeIconStartY - closeIconEndY) <= 20 && Math.abs(closeIconStartX - closeIconEndX) <= 20) {
-        scope.showComponent = false;
-        window.checkShowingComponent = null;
-        scope.update();
-      }
-    };
-
-    scope.closeAmountComponentTouchStart = closeAmountComponentTouchStart = function () {
-      event.stopPropagation();
-      closeStartY = event.changedTouches[0].pageY;
-      closeStartX = event.changedTouches[0].pageX;
-    };
-
-    scope.closeAmountComponentTouchEnd = closeAmountComponentTouchEnd = function () {
-      event.stopPropagation();
-
-      closeEndY = event.changedTouches[0].pageY;
-      closeEndX = event.changedTouches[0].pageX;
-
-      if (Math.abs(closeStartY - closeEndY) <= 20 && Math.abs(closeStartX - closeEndX) <= 20) {
-        scope.showComponent = false;
-        window.checkShowingComponent = null;
-        scope.update();
-      }
-    };
-
-    convertAmount = function () {
-      var converted;
-      scope.convertedAmount = 0;
-
-      scope.convertedAmount = Math.ceil(amountCalcInputId.value * scope.currencyRate);
-      converted = window.amountTransform(scope.convertedAmount.toString());
-
-      if (scope.convertedAmount > scope.service.max_pay_limit) {
-        convertedAmountFieldId.style.borderBottomColor = 'red';
-        acceptConvertedBtnId.style.pointerEvents = 'none';
-        scope.convertedAmount = converted;
-        scope.update(scope.convertedAmount);
-      } else {
-        convertedAmountFieldId.style.borderBottomColor = '#01cfff';
-        acceptConvertedBtnId.style.pointerEvents = 'auto';
-        scope.convertedAmount = converted;
-        scope.update(scope.convertedAmount);
-      }
-    };
-
-    scope.acceptConvertedAmountTouchStart = acceptConvertedAmountTouchStart = function () {
-      event.stopPropagation();
-      acceptStartY = event.changedTouches[0].pageY;
-      acceptStartX = event.changedTouches[0].pageX;
-    };
-
-    scope.acceptConvertedAmountTouchEnd = acceptConvertedAmountTouchEnd = function () {
-      event.stopPropagation();
-
-      acceptEndY = event.changedTouches[0].pageY;
-      acceptEndX = event.changedTouches[0].pageX;
-
-      if (Math.abs(acceptStartY - acceptEndY) <= 20 && Math.abs(acceptStartX - acceptEndX) <= 20) {
-        convertAmount();
-        amount.value = scope.convertedAmount;
-
-
-        if (amount.value.match(maskTwo) != null && amount.value.match(maskTwo).length != null) {
-
-          amount.value = amount.value.substring(0, amount.value.match(maskTwo).length);
-
-          amountForPayTransaction = amount.value.substring(0, amount.value.match(maskTwo).length);
-          amountForPayTransaction = amountForPayTransaction.replace(new RegExp(' ', 'g'), '');
-
-          amount.value = window.amountTransform(amountForPayTransaction);
-          checkFirst = true;
-        }
-
-        opts.amountText = amount.value;
-        opts.amountWithoutSpace = amountForPayTransaction;
-        scope.showComponent = false;
-        window.checkShowingComponent = null;
-        scope.update();
-        checkFieldsToActivateNext();
-      }
-    };
-
     if (scope.servicesMap[opts.chosenServiceId]) {
       scope.service = scope.servicesMap[opts.chosenServiceId][0];
       scope.titleName = scope.service.name;
@@ -620,6 +418,9 @@
         if (scope.options[i].option_value == id) {
           console.log("chosen contract =", scope.options[i]);
           scope.chosenFieldName = scope.options[i].option_value;
+          scope.chosenFieldParamId = scope.options[i].option_value;
+          scope.optionObject = scope.options[i].option_object;
+
           scope.update();
         }
       }
@@ -644,7 +445,6 @@
       }
 
       checkFieldsToActivateNext('sum')
-
     };
 
     sumForPay = function () {

@@ -4902,6 +4902,38 @@ var css = {
   "border-bottom:  " + 3 * widthK + "px solid lightgrey;" +
   "}",
 
+  formTypeSevenInfoContainer: ".formtype-seven-info-container" +
+  "{" +
+  "position: absolute;" +
+  "width: 100%;" +
+  "height:" + 690 * heightK + "px;" +
+  "color: black;" +
+  "top:" + 410 * widthK + "px;" +
+  "background-color: #f4f3f3;" +
+  "}",
+
+  formTypeSevenInfoTitleContainer: ".formtype-seven-info-title-container" +
+  "{" +
+  "position: relative;" +
+  "left: 6%;" +
+  "width: 88%;" +
+  "height:" + 75 * heightK + "px;" +
+  "border-bottom:" + 2 * widthK + "px solid #e8e8e8;" +
+  // "top:" + 56 * widthK + "px;" +
+  "}",
+
+  formTypeSevenInfoBodyContainer: ".formtype-seven-info-body-container" +
+  "{" +
+  "position: relative;" +
+  "left: 6%;" +
+  "width: 90%;" +
+  "height:" + 292 * heightK + "px;" +
+  "top:" + 25 * heightK + "px;" +
+  "overflow-y: scroll; " +
+  "overflow-x: hidden; " +
+  "-webkit-overflow-scrolling: touch; " +
+  "}",
+
   //Component dropdown
 
 
