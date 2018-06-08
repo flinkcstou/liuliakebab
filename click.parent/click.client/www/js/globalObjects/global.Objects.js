@@ -2440,20 +2440,47 @@ function openPayServiceById(id, opts) {
   console.log("openPayServiceById method");
   if (servicesMap[id] && servicesMap[id][0]) {
     console.log("form type=", servicesMap[id][0].form_type, servicesMap[id][0]);
-    if (servicesMap[id][0].form_type == 7) {
-      riotTags.innerHTML = "<view-formtype-seven>";
-      riot.mount("view-formtype-seven", opts);
-    }
-    else if (servicesMap[id][0].form_type == 2) {
-      riotTags.innerHTML = "<view-formtype-two>";
-      riot.mount("view-formtype-two", opts);
-    } else if (servicesMap[id][0].form_type == 1) {
-      riotTags.innerHTML = "<view-formtype-one>";
-      riot.mount("view-formtype-one", opts);
-    }
-    else {
-      riotTags.innerHTML = "<view-service-page-new>";
-      riot.mount("view-service-page-new", opts);
+    switch (servicesMap[id][0].form_type) {
+      case 1: {
+        riotTags.innerHTML = "<view-formtype-one>";
+        riot.mount("view-formtype-one", opts);
+        break;
+      }
+      case 2: {
+        riotTags.innerHTML = "<view-formtype-two>";
+        riot.mount("view-formtype-two", opts);
+        break;
+      }
+      case 3: {
+        riotTags.innerHTML = "<view-formtype-three>";
+        riot.mount("view-formtype-three", opts);
+        break;
+      }
+      case 4: {
+        riotTags.innerHTML = "<view-formtype-four>";
+        riot.mount("view-formtype-four", opts);
+        break;
+      }
+      case 5: {
+        riotTags.innerHTML = "<view-formtype-five>";
+        riot.mount("view-formtype-five", opts);
+        break;
+      }
+      case 6: {
+        riotTags.innerHTML = "<view-formtype-six>";
+        riot.mount("view-formtype-six", opts);
+        break;
+      }
+      case 7: {
+        riotTags.innerHTML = "<view-formtype-seven>";
+        riot.mount("view-formtype-seven", opts);
+        break;
+      }
+      default: {
+        riotTags.innerHTML = "<view-service-page-new>";
+        riot.mount("view-service-page-new", opts);
+        break;
+      }
     }
   }
   else if (id.indexOf('mynumber') != -1) {

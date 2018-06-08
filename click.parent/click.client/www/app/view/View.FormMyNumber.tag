@@ -23,7 +23,9 @@
         <p id="autoPayNameTitle" class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
 
         <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="autoPayNameInput"
-               autofocus="true" onkeyup="paymentNameVerificationKeyUp()" onfocus="colorField('autopay')"/>
+               autofocus="true" onkeyup="checkFieldsToActivateNext()"
+               onfocus="colorFieldGlobal('autopayField','autoPayNameTitle')"
+               onblur="blurFieldGlobal('autopayField','autoPayNameTitle')"/>
       </div>
 
       <div id="favoriteField" class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDFAVORITE'}">
@@ -32,7 +34,8 @@
         <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="favoriteNameInput"
                placeholder="{window.languages.ViewServicePageFavoriteNamePlaceholder}" autofocus="true"
                value="{opts.favoriteName}"
-               onkeyup="paymentNameVerificationKeyUp()" onfocus="colorField('favorite')"/>
+               onkeyup="checkFieldsToActivateNext()" onfocus="colorFieldGlobal('favoriteField','favoriteNameTitle')"
+               onblur="blurFieldGlobal('favoriteField','favoriteNameTitle')"/>
       </div>
 
 
@@ -46,7 +49,8 @@
                readonly="{!service['amount_editable']}"
                pattern="[0-9]"
                placeholder="{placeHolderText}"
-               onfocus="colorField('amount')"
+               onfocus="colorFieldGlobal('amountField','amountFieldTitle')"
+               onblur="blurFieldGlobal('amountField','amountFieldTitle')"
                onmouseup="eraseAmountDefault()" onkeyup="sumForPay()" oninput="sumForPay()"/>
         <div if="{!modeOfApp.offlineMode && service['amount_editable'] && calcOn}" class="servicepage-amount-icon"
              ontouchstart="onTouchStartOfAmountCalculator()" role="button"
@@ -254,73 +258,21 @@
     };
 
 
-    paymentNameVerificationKeyUp = function () {
-
-      checkFieldsToActivateNext();
-
-    };
-
     scope.focusFieldAfterTourClosed = focusFieldAfterTourClosed = function () {
 
       if (opts.mode != 'ADDAUTOPAY' && opts.mode != 'ADDFAVORITE') {
-        if (device.platform == 'iOS') {
-          this.amount.autofocus;
-          this.amount.focus();
-        } else {
-          setTimeout(function () {
-            if (this.amount) {
-              this.amount.focus();
-            }
-          }, 0);
-        }
+
+        focusFieldGlobal('amount');
 
       } else if (opts.mode == 'ADDAUTOPAY') {
-        if (device.platform == 'iOS') {
-          autoPayNameInput.autofocus;
-          autoPayNameInput.focus();
-        } else {
-          setTimeout(function () {
-            if (this.autoPayNameInput)
-              autoPayNameInput.focus();
-          }, 0);
-        }
+
+        focusFieldGlobal('autoPayNameInput');
+
       } else if (opts.mode == 'ADDFAVORITE') {
-        if (device.platform == 'iOS') {
-          favoriteNameInput.autofocus;
-          favoriteNameInput.focus();
-        } else {
-          setTimeout(function () {
-            if (this.favoriteNameInput)
-              favoriteNameInput.focus();
-          }, 0);
-        }
+
+        focusFieldGlobal('favoriteNameInput');
       }
       scope.update()
-    };
-
-    colorField = function (field) {
-      if (field == 'amount') {
-        amountField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
-        amountFieldTitle.style.color = '#01cfff';
-        if (opts.mode == 'ADDAUTOPAY') {
-          autopayField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
-          autoPayNameTitle.style.color = 'gray';
-        } else if (opts.mode == 'ADDFAVORITE') {
-          favoriteField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
-          favoriteNameTitle.style.color = 'gray';
-        }
-      } else if (field == 'autopay') {
-        autopayField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
-        autoPayNameTitle.style.color = '#01cfff';
-        amountField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
-        amountFieldTitle.style.color = 'gray';
-      } else if (field == 'favorite') {
-        favoriteField.style.borderBottom = 3 * widthK + 'px solid #01cfff';
-        favoriteNameTitle.style.color = '#01cfff';
-        amountField.style.borderBottom = 3 * widthK + 'px solid lightgrey';
-        amountFieldTitle.style.color = 'gray';
-      }
-
     };
 
 
