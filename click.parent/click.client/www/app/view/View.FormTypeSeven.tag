@@ -45,6 +45,7 @@
                onfocus="colorFieldGlobal('firstField','firstFieldTitle')"
                onblur="blurFieldGlobal('firstField','firstFieldTitle')"
                value="{defaultNumber || opts.first_field_value}"
+               maxlength="7"
                oninput="telVerificationOnInput()" onpaste="telVerificationOnPaste()"
                onkeyup="telPayVerificationKeyUp()" onkeydown="telPayVerificationKeyDown(this)"/>
       </div>
@@ -423,10 +424,7 @@
               riot.mount('view-service-pincards-new', opts);
               scope.unmount()
             } else {
-              localStorage.setItem('click_client_infoCacheEnabled', null);
-              this.riotTags.innerHTML = "<view-formtype-seven-getinfo>";
-              riot.mount('view-formtype-seven-getinfo', opts);
-              scope.unmount()
+              getInformation();
             }
 
 
@@ -440,7 +438,6 @@
           viewServicePinCards.chosenFriendForHelp = null;
 
           if (opts.isInFavorites) {
-//            editFavorite(opts);
             editFavoritePayment(opts, opts.favoriteId, scope);
             event.preventDefault();
             event.stopPropagation();
@@ -448,7 +445,6 @@
           }
           else {
             opts.isInFavorites = true;
-//            addToFavoritesinServicePage(opts);
             addPaymentToFavorites(opts, scope.service, scope.fieldArray[0].ussd_query, scope);
             event.preventDefault();
             event.stopPropagation();
@@ -492,6 +488,122 @@
 
       }
     };
+
+    function getInformation() {
+
+      var payment_data, timeOutTimer = 0;
+      var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
+      var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+      if (loginInfo)
+        var sessionKey = loginInfo.session_key;
+
+      window.startSpinner();
+
+      payment_data = {
+        "value": opts.firstFieldText,
+        "secondary_value": opts.secondFieldValue,
+        "transaction_id": opts.transactionId
+      };
+
+      console.log("payment data =", payment_data);
+
+      window.api.call({
+        method: 'get.additional.information',
+        input: {
+          session_key: sessionKey,
+          phone_num: phoneNumber,
+          service_id: opts.chosenServiceId,
+          payment_data: payment_data
+        },
+        scope: this,
+
+        onSuccess: function (result) {
+          console.log('Clearing timer onSuccess', timeOutTimer);
+          window.stopSpinner();
+          window.clearTimeout(timeOutTimer);
+          if (result[0][0].error == 0) {
+            opts.getInformation = result[1];
+            localStorage.setItem('click_client_infoCacheEnabled', null);
+            this.riotTags.innerHTML = "<view-formtype-seven-getinfo>";
+            riot.mount('view-formtype-seven-getinfo', opts);
+            scope.unmount();
+
+//            if (result[1]) {
+//              localStorage.setItem('click_client_infoCacheEnabled', result[1][0].enable_information_cache);
+//              if (result[1][0].enable_information_cache) {
+//                localStorage.setItem("click_client_infoCached", JSON.stringify(result[1][0]));
+//              }
+//              scope.options = result[1][0].options;
+//              if (scope.options && scope.options.length > 1) {
+//                scope.dropDownOn = true;
+//                scope.optionChosen = scope.options[0];
+//                scope.chosenFieldName = opts.contractValue ? opts.contractValue : scope.options[0].option_value;
+//                scope.chosenFieldParamId = opts.contractValue ? opts.contractValue : scope.options[0].option_value;
+//                scope.optionObject = scope.options[0].option_object;
+//                for (var k in scope.optionObject) {
+//                  if (k > 1)
+//                    scope.optionObject[k].value = accounting.formatMoney(scope.optionObject[k].value, options);
+//                  scope.optionObject[k].index = k;
+//                }
+//              }
+//              console.log("options array", scope.options);
+//              scope.update();
+//            }
+          }
+          else {
+            scope.errorMessage = result[0][0].error_note;
+            scope.stepAmount = 1;
+            window.common.alert.show("componentUnsuccessId", {
+              parent: scope,
+//              step_amount: scope.stepAmount,
+              operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
+              operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+              operationmessagepartthree: scope.errorMessage
+            });
+            scope.update();
+          }
+        },
+
+        onFail: function (api_status, api_status_message, data) {
+          console.log('Clearing timer onFail', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
+          scope.stepAmount = 1;
+          window.common.alert.show("componentUnsuccessId", {
+            parent: scope,
+//            step_amount: scope.stepAmount,
+            operationmessagepartone: window.languages.ComponentUnsuccessMessagePart1,
+            operationmessageparttwo: window.languages.ComponentUnsuccessMessagePart2,
+            operationmessagepartthree: api_status_message
+          });
+          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+          console.error(data);
+        },
+        onTimeOut: function () {
+          timeOutTimer = setTimeout(function () {
+            window.writeLog({
+              reason: 'Timeout',
+              method: 'get.additional.information'
+            });
+            scope.errorNote = "Сервис временно недоступен";
+            scope.stepAmount = 1;
+            scope.update();
+
+            window.common.alert.show("componentAlertId", {
+              parent: scope,
+//              step_amount: scope.stepAmount,
+              viewmount: true,
+              errornote: scope.errorNote
+            });
+            window.stopSpinner();
+          }, 15000);
+          console.log('creating timeOut', timeOutTimer);
+        },
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimer);
+          window.clearTimeout(timeOutTimer);
+        }
+      }, 15000);
+    }
 
 
   </script>
