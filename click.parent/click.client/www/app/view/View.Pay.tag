@@ -23,6 +23,7 @@
                  onblur="blurFieldInplaceSearch()"
                  onkeyup="keyUpFieldInplaceSearch()"
                  oninput="onInputSearchField()"
+                 onkeydown="keyDownFieldInplaceSearch()"
                  placeholder="{window.languages.InPlaceSearchPlaceHolderText}"/>
           <div if="{showSearchIcon}" id="searchIcon"
                class="inplace-pay-search-icon"
@@ -50,6 +51,9 @@
             </div>
           </li>
         </ul>
+        <div if="{suggestions.length==0}" class="inplace-pay-search-no-match">
+          {window.languages.InPlaceSearchNoMatchText}
+        </div>
       </div>
 
       <div class="inplace-pay-category-inner-container" if="{!searchServices}" id="categoriesContainerId"
@@ -133,8 +137,8 @@
     scope.searchServices = false;
     scope.showSearchIcon = !opts.searchWord;
     var searchFieldTimeout;
-    var arrayOfConnectedSuggestion = scope.categoryList.concat(scope.serviceList);
-    scope.suggestions = sessionStorage.getItem('click_client_suggestions') ? JSON.parse(sessionStorage.getItem('click_client_suggestions')) : [];
+    var arrayOfConnectedSuggestion = scope.serviceList;
+    scope.suggestions = sessionStorage.getItem('suggestions') ? JSON.parse(sessionStorage.getItem('suggestions')) : [];
 
 
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
@@ -238,23 +242,34 @@
         window.saveHistory('view-pay-services', {searchWord: scope.searchWord});
 
         scope.suggestions = [];
+//        var tempSearchList = [];
+//        console.log("");
 
-        if (scope.searchWord.length != 0)
+        if (scope.searchWord.length != 0) {
           arrayOfConnectedSuggestion.filter(function (service) {
 
             var index = service.name.toLowerCase().search(scope.searchWord.toString());
             if (index != -1 && service.is_visible) {
               if (opts.mode != "ADDAUTOPAY" || (opts.mode == "ADDAUTOPAY" && (service.autopay_available_schedule || service.autopay_available || !service.form_type))) {
+                console.log("adding ", service.name);
                 scope.suggestions.push(service);
-                sessionStorage.setItem('click_client_suggestions', JSON.stringify(scope.suggestions));
               }
             }
           });
+          scope.update();
+        } else {
+          scope.suggestions = scope.serviceList;
+        }
+        sessionStorage.setItem('suggestions', JSON.stringify(scope.suggestions));
         console.log("array ", scope.suggestions);
         scope.update();
-      });
+      }, 500);
 
     };
+
+    keyDownFieldInplaceSearch = function () {
+      scope.update();
+    }
 
     onInputSearchField = function () {
       if (document.getElementById('searchInputId').value.length == 0) {
