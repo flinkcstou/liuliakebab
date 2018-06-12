@@ -4133,6 +4133,7 @@ var css = {
   "float: left;" +
   "left: 3%;" +
   "background-size: 50%;" +
+  "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
   "}",
 
   payCategoryNameField: ".pay-category-name-field" +
@@ -4168,6 +4169,18 @@ var css = {
   "float: left;" +
   "left: 3%;" +
   "background-size: 100%;" +
+  "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
+
+  // "position: absolute;" +
+  // "width:" + 167 * widthK + "px; " +
+  // "height:" + 167 * widthK + "px; " +
+  // "background-repeat: no-repeat;" +
+  // "background-position: center;" +
+  // "float: left;" +
+  // "left: 1%;" +
+  // "top:" + 31 * widthK + "px; " +
+  // "background-size: 50%;" +
+  // "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
   "}",
 
 

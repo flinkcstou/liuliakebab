@@ -43,7 +43,10 @@
             <div class="pay-service-block-containter" id="{i.id}"
                  ontouchstart="onTouchStartOfService(this.id)"
                  onclick="onTouchEndOfService(this.id, true)">
-              <div class="pay-search-services-icon" style="background-image: url({i.image})"></div>
+              <div if="{false}" class="pay-search-services-icon" style="background-image: url({i.image})"></div>
+              <img id="{i.id+'_image'}" if="{i.image}"
+                   class="pay-search-services-icon" src="{i.image}"
+                   onload="clearLoaderOnIconLoad(this.id)">
               <div class="pay-category-name-field">{i.name}
               </div>
               <div class="title-bottom-border">
@@ -64,7 +67,10 @@
             <div if="{!(modeOfApp.offlineMode && i.id == 11)}" class="pay-service-block-containter" id="{i.id}"
                  ontouchstart="onTouchStartOfCategory(this.id)"
                  onclick="onTouchEndOfCategory(this.id)">
-              <div class="pay-category-icon" style="background-image: url({i.icon})"></div>
+              <div if="{false}" class="pay-category-icon" style="background-image: url({i.icon})"></div>
+              <img id="{i.id+'_icon'}" if="{i.icon}"
+                   class="pay-category-icon" src="{i.icon}"
+                   onload="clearLoaderOnIconLoad(this.id)">
               <div class="pay-category-name-field">{i.name}
               </div>
               <div class="pay-icon-tick" id="tick{i.id}"></div>
