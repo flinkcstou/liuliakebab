@@ -81,8 +81,8 @@
                   <div class="pay-service-icon" style="background-image: url({j.image})" id="{j.id}" role="button"
                        aria-label="{j.name}"
                        onclick="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
-                    <div class="pay-service-name-field">{j.name}</div>
                   </div>
+                  <div class="pay-service-name-field">{j.name}</div>
                 </li>
               </ul>
               <div class="title-bottom-border">
@@ -96,18 +96,25 @@
             <div if="{!(modeOfApp.offlineMode && i.id == 11)}" class="pay-service-block-containter" id="{i.id}"
                  ontouchstart="onTouchStartOfCategory(this.id)"
                  onclick="onTouchEndOfCategory(this.id)">
-              <div class="pay-category-icon" style="background-image: url({i.icon})"></div>
+              <div if="{false}" class="pay-category-icon" style="background-image: url({i.icon})"></div>
+              <img id="{i.id+'_icon'}" if="{i.icon}"
+                   class="pay-category-icon" src="{i.icon}"
+                   onload="clearLoaderOnIconLoad(this.id)">
               <div class="pay-category-name-field">{i.name}
               </div>
               <div class="pay-icon-tick" id="tick{i.id}"></div>
               <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
                 <li class="pay-service-containter"
                     each="{j in currentList}">
-                  <div class="pay-service-icon" style="background-image: url({j.image})" id="{j.id}" role="button"
+                  <div if="{false}" class="pay-service-icon" style="background-image: url({j.image})" id="{j.id}"
+                       role="button"
                        aria-label="{j.name}"
                        onclick="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
-                    <div class="pay-service-name-field">{j.name}</div>
                   </div>
+                  <img id="{j.id+'_image'}" if="{j.image}"
+                       class="pay-service-icon" src="{j.image}"
+                       onload="clearLoaderOnIconLoad(this.id)">
+                  <div class="pay-service-name-field">{j.name}</div>
                 </li>
               </ul>
               <div class="title-bottom-border">

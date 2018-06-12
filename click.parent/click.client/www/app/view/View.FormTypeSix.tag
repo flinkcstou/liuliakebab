@@ -719,7 +719,7 @@
         opts.secondLevelFieldName = scope.chosenFieldNameThree;
         opts.chosenPrefixTitle = scope.chosenPrefixTitle;
         opts.chosenPrefixId = scope.chosenPrefixId;
-        opts.chosenPrefixName = scope.chosenPrefixName;
+        opts.chosenPrefixName = scope.chosenPrefixName ? scope.chosenPrefixName : "";
 
         history.arrayOfHistory[history.arrayOfHistory.length - 1].params = opts;
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));

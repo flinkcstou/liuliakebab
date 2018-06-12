@@ -4098,13 +4098,18 @@ var css = {
   payServiceIcon: ".pay-service-icon" +
   "{" +
   "position: relative;" +
-  "width: 75%;" +
-  "height: " + 150 * widthK + "px; " +
+  "width:  " + 120 * widthK + "px; " +
+  "height: " + 120 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   //"border-radius: " + 100 * widthK + "px;" +
   //"border: " + 1 + "px solid white;" +
+  "margin-left: " + 15 * widthK + "px; " +
+  "margin-top: " + 15 * widthK + "px; " +
+  "margin-right: " + 15 * widthK + "px; " +
+  "margin-bottom: " + 15 * widthK + "px; " +
   "background-size: 80%;" +
+  "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
   "}",
 
   payServiceNameField: ".pay-service-name-field" +
@@ -4112,6 +4117,7 @@ var css = {
   "position: relative;" +
   "background-size: contain;" +
   "font-size:" + 24 * widthK + "px; " +
+  "right:" + 20 * widthK + "px; " +
   "color: gray;" +
   "text-align: center;" +
   "margin-right: auto;" +
@@ -4126,13 +4132,15 @@ var css = {
   payCategoryIcon: ".pay-category-icon" +
   "{" +
   "position: relative;" +
-  "width: 13%;" +
-  "height:" + 95 * widthK + "px; " +
+  "width:" + 50 * widthK + "px; " +
+  "height:" + 50 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "float: left;" +
-  "left: 3%;" +
-  "background-size: 50%;" +
+  "left: 4%;" +
+  "top:" + 20 * widthK + "px; " +
+  "margin-right:" + 15 * widthK + "px; " +
+  "background-size: 80%;" +
   "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
   "}",
 
@@ -4162,7 +4170,7 @@ var css = {
   paySearchServicesIcon: ".pay-search-services-icon" +
   "{" +
   "position: relative;" +
-  "width: 13%;" +
+  "width:" + 95 * widthK + "px; " +
   "height:" + 95 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
