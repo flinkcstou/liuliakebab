@@ -293,10 +293,8 @@
     {
       transitionEnd = function () {
         if (event.target.id != transferType.id) {
-          console.log(event.target.id, transferType.id);
           return;
         }
-        console.log('transitionEnd', scope.transferTypeNumber);
         if (scope.transferTypeNumber === 0) {
           changeIconTransferByContact();
           setTimeout(function () {

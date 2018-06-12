@@ -1,8 +1,4 @@
 <component-transfer-to-card>
-  <input type="tel"
-         id="hiddenInputId"
-         readonly="readonly"
-         class="transfer-new-card-hidden-input"/>
   <p class="transfer-new-card-text-field">{window.languages.ViewPayTransferNewCardTextField}</p>
   <div id="cardContainer" class="transfer-new-card-container">
     <img id="cardDesignId" class="transfer-new-card-design">
@@ -17,12 +13,13 @@
         <input id="cardInputId"
                class="transfer-new-card-number-input"
                type="tel"
+               value="8600 "
                onpaste="onPasteTriggerCard()"
                oninput="cardBlurAndChange()"
                onchange="cardBlurAndChange()"
                onkeydown="cardOnKeyDown(this)"
                onkeyup="searchCard()"
-               onfocus="cardFocus()"
+               onfocus="cardFocus(event)"
                onblur="cardBlur()"/>
       </div>
       <div class="transfer-new-card-number-input-container-bottom-shadow"></div>
@@ -141,7 +138,10 @@
         && event.keyCode !== input_codes.ENTER;
     };
 
-    cardFocus = function () {
+    cardFocus = function (event) {
+      var temp_value= event.target.value;
+      event.target.value = '';
+      event.target.value = temp_value;
       betweenAmountId.readOnly = true;
       contactPhoneNumberId.readOnly = true;
     };
@@ -315,13 +315,7 @@
               checkImageExists(cardDesignId.src, function (exists) {
                 if (exists) {
 
-                  if (cardDesignId.classList.value.indexOf('transfer-new-card-design-appear') === -1){
-                    hiddenInputId.readOnly = false;
-                    hiddenInputId.focus();
-                    setTimeout(function () {
-                      cardInputId.focus();
-                      hiddenInputId.readOnly = true;
-                    }, 700);
+                  if (cardDesignId.className.indexOf('transfer-new-card-design-appear') === -1){
                     cardDesignId.classList.add('transfer-new-card-design-appear');
                     cardInputFieldsId.classList.add('transfer-new-card-input-fields-reduce');
                     if (bank.font_color) {
@@ -344,13 +338,7 @@
           scope.bankImage = '';
           bankIconId.style.display = 'none';
 
-          if (cardDesignId.classList.value.indexOf('transfer-new-card-design-appear') !== -1){
-            hiddenInputId.readOnly = false;
-            hiddenInputId.focus();
-            setTimeout(function () {
-              cardInputId.focus();
-              hiddenInputId.readOnly = true;
-            }, 700);
+          if (cardDesignId.className.indexOf('transfer-new-card-design-appear') !== -1){
             cardDesignId.classList.remove('transfer-new-card-design-appear');
             cardInputFieldsId.classList.remove('transfer-new-card-input-fields-reduce');
             cardInputFieldsId.style.color = '';

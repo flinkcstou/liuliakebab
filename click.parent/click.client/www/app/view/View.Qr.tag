@@ -47,6 +47,17 @@
       defaultAccount;
     scope.showPlaceHolderError = false;
 
+    var options = {
+      symbol: "",
+      decimal: ".",
+      thousand: " ",
+      precision: 0,
+      format: {
+        pos: "%v",
+        zero: ""
+      }
+    };
+
     if (!opts.commission_percent)
       scope.showPlaceHolderError = true;
 
@@ -161,18 +172,6 @@
     sumMouseUp = function () {
       event.preventDefault();
       event.stopPropagation();
-      if (!checkFirst) {
-        sumValueId.value = '';
-        checkFirst = true;
-      }
-
-      if (sumValueId.value.match(maskOne) != null && sumValueId.value.match(maskOne).length != null) {
-        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length;
-        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length;
-      } else {
-        sumValueId.selectionStart = 0;
-        sumValueId.selectionEnd = 0;
-      }
     };
 
     sumOnBlur = function () {
@@ -182,9 +181,6 @@
       sumField.style.borderBottom = "" + 3 * widthK + "px solid #e8e8e8";
       sumFieldTitle.style.color = '#565d6a';
 
-      if (sumValueId.value.length == 0) {
-        sumValueId.value = '0';
-      }
     };
 
     sumFocus = function () {
@@ -194,9 +190,6 @@
       sumField.style.borderBottom = "" + 3 * widthK + "px solid #01cfff";
       sumFieldTitle.style.color = '#01cfff';
 
-      if (sumValueId.value.length == 1 && sumValueId.value[0] == '0') {
-        sumValueId.value = ''
-      }
     };
 
     sumKeyUp = function () {
@@ -205,28 +198,23 @@
         sumValueId.value = window.amountTransform(sumValueId.value.toString())
       }
 
-      if (event.keyCode == input_codes.BACKSPACE_CODE) {
-        sumForQrPay = sumForQrPay.substring(0, sumForQrPay.length - 1)
-      }
+      var amountInput = accounting.formatMoney(sumValueId.value, options);
 
-      if (sumValueId.value.match(maskTwo) != null && sumValueId.value.match(maskTwo).length != null) {
+      var selectionStart = sumValueId.selectionStart,
+        notVerifiedValue = sumValueId.value,
+        delta;
 
-        sumValueId.value = sumValueId.value.substring(0, event.target.value.match(maskTwo).length);
-        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length;
-        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length;
+      delta = notVerifiedValue.length - amountInput.length;
 
-        sumForQrPay = sumValueId.value.substring(0, sumValueId.value.match(maskTwo).length);
-        sumForQrPay = sumForQrPay.replace(new RegExp(' ', 'g'), '');
+      selectionStart = selectionStart - delta;
+      selectionStart = (selectionStart < 0) ? (0) : (selectionStart);
 
-        sumValueId.value = window.amountTransform(sumForQrPay.toString());
-        sumValueId.selectionStart = sumValueId.value.match(maskTwo).length;
-        sumValueId.selectionEnd = sumValueId.value.match(maskTwo).length
+      sumValueId.value = amountInput;
 
+      sumValueId.selectionStart = selectionStart;
+      sumValueId.selectionEnd = selectionStart;
 
-      } else {
-        sumValueId.selectionStart = 0;
-        sumValueId.selectionEnd = 0
-      }
+      sumForQrPay = accounting.unformat(amountInput);
 
       if (sumForQrPay)
         scope.tax = sumForQrPay * opts.commission_percent / 100;
