@@ -21,12 +21,13 @@
 
       <div class="servicepage-fields-dropdown" ontouchend="openFirstFieldDropDown()"
            id="firstFieldChoiceId">
+        <p class="servicepage-text-field servicepage-second-dropdown-field-text">
+          {optionsHeader}</p>
         <p class="servicepage-dropdown-text-field">{chosenFieldName}</p>
         <div class="servicepage-dropdown-icon"></div>
       </div>
 
-      <div class="{servicepage-amount-field: !dropDownOn, servicepage-amount-field-two: dropDownOn}"
-           id="amountField">
+      <div class="servicepage-amount-field-two" id="amountField">
         <p id="amountFieldTitle" class="servicepage-text-field">{amountFieldTitle}</p>
         <p if="{commissionPercent}" class="servicepage-amount-tax-text-field">
           {window.languages.ViewServicePageAmountTaxText} {tax}
@@ -46,6 +47,8 @@
       <div class="formtype-seven-info-container" if="{optionObject}">
 
         <div class="formtype-seven-info-title-container" if="{optionObject[0]}">
+          <p class="servicepage-text-field servicepage-second-dropdown-field-text">
+            {optionObject[0].title}</p>
           <div class="formtype-seven-info-title">{optionObject[0].value}</div>
         </div>
 
@@ -87,6 +90,7 @@
     scope.options = [];
     scope.optionChosen = null;
     scope.optionsObject = null;
+    scope.optionsHeader = "";
     var maskOne = /[0-9]/g,
       maskTwo = /[0-9' ']/g,
       amountForPayTransaction = 0,
@@ -99,11 +103,6 @@
     scope.enterButton = opts.mode != 'ADDFAVORITE';
     scope.enterButtonEnabled = false;
     scope.showConfirm = false;
-    var payment_data, timeOutTimer = 0;
-    var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
-    var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-    if (loginInfo)
-      var sessionKey = loginInfo.session_key;
     var options = {
       symbol: "",
       decimal: ".",
@@ -137,6 +136,7 @@
         localStorage.setItem("click_client_infoCached", JSON.stringify(opts.getInformation[0]));
       }
       scope.options = opts.getInformation[0].options;
+      scope.optionsHeader = opts.getInformation[0].options_header;
       if (scope.options && scope.options.length >= 1) {
         scope.dropDownOn = true;
         scope.optionChosen = scope.options[0];
@@ -144,7 +144,7 @@
         scope.chosenFieldParamId = opts.contractValue ? opts.contractValue : scope.options[0].option_value;
         scope.optionObject = scope.options[0].option_object;
         for (var k in scope.optionObject) {
-          if (k > 1)
+          if (k > 1 && scope.optionObject[k].value != 0)
             scope.optionObject[k].value = accounting.formatMoney(scope.optionObject[k].value, options);
           scope.optionObject[k].index = k;
         }
@@ -442,7 +442,7 @@
           scope.chosenFieldParamId = scope.options[i].option_value;
           scope.optionObject = scope.options[i].option_object;
           for (var k in scope.optionObject) {
-            if (k > 1)
+            if (k > 1 && scope.optionObject[k].value != 0)
               scope.optionObject[k].value = accounting.formatMoney(scope.optionObject[k].value, options);
             scope.optionObject[k].index = k;
           }

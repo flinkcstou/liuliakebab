@@ -41,7 +41,7 @@
       <div class="servicepage-first-field" id="firstField">
         <p id="firstFieldTitle" class="servicepage-text-field">{chosenFieldName}</p>
 
-        <input class="servicepage-number-input-part" type="{inputType}" id="firstFieldInput"
+        <input class="servicepage-number-input-part autopay-name-input-part" type="{inputType}" id="firstFieldInput"
                onfocus="colorFieldGlobal('firstField','firstFieldTitle')"
                onblur="blurFieldGlobal('firstField','firstFieldTitle')"
                value="{defaultNumber || opts.first_field_value}"
