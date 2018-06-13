@@ -43,7 +43,10 @@
             <div class="pay-service-block-containter" id="{i.id}"
                  ontouchstart="onTouchStartOfService(this.id)"
                  onclick="onTouchEndOfService(this.id, true)">
-              <div class="pay-search-services-icon" style="background-image: url({i.image})"></div>
+              <div if="{false}" class="pay-search-services-icon" style="background-image: url({i.image})"></div>
+              <img id="{i.id+'_image'}" if="{i.image}"
+                   class="pay-search-services-icon" src="{i.image}"
+                   onload="clearLoaderOnIconLoad(this.id)">
               <div class="pay-category-name-field">{i.name}
               </div>
               <div class="title-bottom-border">
@@ -71,8 +74,12 @@
 
     window.saveHistory('view-pay-services', opts);
 
-    scope.categoryList = (JSON.parse(localStorage.getItem("click_client_payCategoryList"))) ? (JSON.parse(localStorage.getItem("click_client_payCategoryList"))) : (offlinePayCategoryList);
-    scope.serviceList = (JSON.parse(localStorage.getItem("click_client_payServiceList"))) ? (JSON.parse(localStorage.getItem("click_client_payServiceList"))) : (offlinePayServiceList);
+    var categoryList = localStorage.getItem("click_client_payCategoryList");
+    var serviceList = localStorage.getItem("click_client_payServiceList");
+    console.log("mode ", modeOfApp.onlineMode, modeOfApp.offlineMode);
+
+    scope.categoryList = modeOfApp.onlineMode ? (categoryList ? JSON.parse(categoryList) : offlinePayCategoryList) : offlinePayCategoryList;
+    scope.serviceList = modeOfApp.onlineMode ? (serviceList ? JSON.parse(serviceList) : offlinePayServiceList) : offlinePayServiceList;
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
     scope.showSearchIcon = !opts.searchWord;
     var searchFieldTimeout;
@@ -183,7 +190,7 @@
           });
           scope.update();
         } else {
-          scope.suggestions = scope.serviceList;
+          onBackKeyDown();
         }
         sessionStorage.setItem('suggestions', JSON.stringify(scope.suggestions));
         console.log("array ", scope.suggestions);
@@ -228,10 +235,6 @@
       searchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(searchStartX - searchEndX) <= 20 && Math.abs(searchStartY - searchEndY) <= 20) {
-//        searchInputId.value = "";
-//        scope.showSearchIcon = true;
-//        scope.searchMode = false;
-//        scope.update();
 
         onBackKeyDown();
       }

@@ -106,15 +106,15 @@
               <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
                 <li class="pay-service-containter"
                     each="{j in currentList}">
-                  <div if="{false}" class="pay-service-icon" style="background-image: url({j.image})" id="{j.id}"
+                  <div class="pay-service-icon" id="{j.id}"
                        role="button"
                        aria-label="{j.name}"
                        onclick="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
+                    <img id="{j.id+'_image'}" if="{j.image}"
+                         class="pay-service-image" src="{j.image}"
+                         onload="clearLoaderOnIconLoad(this.id)">
+                    <div class="pay-service-name-field">{j.name}</div>
                   </div>
-                  <img id="{j.id+'_image'}" if="{j.image}"
-                       class="pay-service-icon" src="{j.image}"
-                       onload="clearLoaderOnIconLoad(this.id)">
-                  <div class="pay-service-name-field">{j.name}</div>
                 </li>
               </ul>
               <div class="title-bottom-border">
@@ -139,14 +139,18 @@
 
     window.saveHistory('view-pay', opts);
 
-    scope.categoryList = (JSON.parse(localStorage.getItem("click_client_payCategoryList"))) ? (JSON.parse(localStorage.getItem("click_client_payCategoryList"))) : (offlinePayCategoryList);
-    scope.serviceList = (JSON.parse(localStorage.getItem("click_client_payServiceList"))) ? (JSON.parse(localStorage.getItem("click_client_payServiceList"))) : (offlinePayServiceList);
-    scope.serviceNamesMap = (JSON.parse(localStorage.getItem("click_client_payServiceNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_payServiceNamesMap"))) : (offlinePayServiceNamesMap);
-    scope.servicesMapByCategory = (JSON.parse(localStorage.getItem("click_client_servicesMapByCategory"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMapByCategory"))) : (offlineServicesMapByCategory);
-    scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
-    scope.servicesParams = (JSON.parse(localStorage.getItem("click_client_servicesParams"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParams"))) : (offlineServicesParams);
-    scope.servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
-    scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
+    var categoryList = localStorage.getItem("click_client_payCategoryList");
+    var serviceList = localStorage.getItem("click_client_payServiceList");
+    console.log("mode ", modeOfApp.onlineMode, modeOfApp.offlineMode);
+
+    scope.categoryList = modeOfApp.onlineMode ? (categoryList ? JSON.parse(categoryList) : offlinePayCategoryList) : offlinePayCategoryList;
+    scope.serviceList = modeOfApp.onlineMode ? (serviceList ? JSON.parse(serviceList) : offlinePayServiceList) : offlinePayServiceList;
+    scope.serviceNamesMap = localStorage.getItem("click_client_payServiceNamesMap") ? (JSON.parse(localStorage.getItem("click_client_payServiceNamesMap"))) : (offlinePayServiceNamesMap);
+    scope.servicesMapByCategory = localStorage.getItem("click_client_servicesMapByCategory") ? (JSON.parse(localStorage.getItem("click_client_servicesMapByCategory"))) : (offlineServicesMapByCategory);
+    scope.servicesMap = localStorage.getItem("click_client_servicesMap") ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
+    scope.servicesParams = localStorage.getItem("click_client_servicesParams") ? (JSON.parse(localStorage.getItem("click_client_servicesParams"))) : (offlineServicesParams);
+    scope.servicesParamsMapOne = localStorage.getItem("click_client_servicesParamsMapOne") ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
+    scope.categoryNamesMap = localStorage.getItem("click_client_categoryNamesMap") ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
     scope.searchServices = false;
     scope.showSearchIcon = !opts.searchWord;
     var searchFieldTimeout;
@@ -271,7 +275,10 @@
           });
           scope.update();
         } else {
-          scope.suggestions = scope.serviceList;
+          scope.showSearchIcon = true;
+          scope.searchMode = false;
+          scope.searchServices = false;
+          scope.update();
         }
         sessionStorage.setItem('suggestions', JSON.stringify(scope.suggestions));
         console.log("array ", scope.suggestions);
@@ -282,7 +289,7 @@
 
     keyDownFieldInplaceSearch = function () {
       scope.update();
-    }
+    };
 
     onInputSearchField = function () {
       if (document.getElementById('searchInputId').value.length == 0) {

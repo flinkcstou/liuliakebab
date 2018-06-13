@@ -4098,6 +4098,18 @@ var css = {
   payServiceIcon: ".pay-service-icon" +
   "{" +
   "position: relative;" +
+  "width: 75%;" +
+  "height: " + 150 * widthK + "px; " +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  //"border-radius: " + 100 * widthK + "px;" +
+  //"border: " + 1 + "px solid white;" +
+  "background-size: 80%;" +
+  "}",
+
+  payServiceImage: ".pay-service-image" +
+  "{" +
+  "position: relative;" +
   "width:  " + 120 * widthK + "px; " +
   "height: " + 120 * widthK + "px; " +
   "background-repeat: no-repeat;" +
@@ -4117,11 +4129,11 @@ var css = {
   "position: relative;" +
   "background-size: contain;" +
   "font-size:" + 24 * widthK + "px; " +
-  "right:" + 20 * widthK + "px; " +
+  // "right:" + 20 * widthK + "px; " +
   "color: gray;" +
   "text-align: center;" +
   "margin-right: auto;" +
-  "top: 104%;" +
+  // "top: 104%;" +
   "width: 100%;" +
   "height: 40%;" +
   "text-overflow: ellipsis;" +
@@ -4176,7 +4188,7 @@ var css = {
   "background-position: center;" +
   "float: left;" +
   "left: 3%;" +
-  "background-size: 100%;" +
+  "background-size: 60%;" +
   "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
 
   // "position: absolute;" +
