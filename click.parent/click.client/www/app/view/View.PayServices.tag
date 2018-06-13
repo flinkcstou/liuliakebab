@@ -67,10 +67,7 @@
     var scope = this;
     scope.checkOfSearch = false;
     scope.scrolling = false;
-
-    if (opts.mode == 'ADDAUTOPAY')
-      this.titleName = window.languages.ViewAutoPayTitleName;
-    else this.titleName = window.languages.ViewPayTitleName;
+    scope.titleName = opts.mode == 'ADDAUTOPAY' ? window.languages.ViewAutoPayTitleName : window.languages.ViewPayTitleName;
 
     window.saveHistory('view-pay-services', opts);
 

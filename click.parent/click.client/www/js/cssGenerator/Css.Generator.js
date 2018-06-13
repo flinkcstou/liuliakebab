@@ -2384,14 +2384,17 @@ var css = {
   serviceButtons: ".service-buttons " +
   "{" +
   "position: relative;" +
-  "width:" + 125 * widthK + "px;" +
-  "height:" + 125 * widthK + "px;" +
+  "width:" + 100 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   //"border-radius:" + 100 * widthK + "px;" +
   "background-size: 80%;" +
   "float: left;" +
-  "margin-right: 20px;" +
+  "margin-right:" + 20 * widthK + "px;" +
+  "margin-left:" + 15 * widthK + "px;" +
+  "margin-top:" + 20 * widthK + "px;" +
+  "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
   "}",
 
 
@@ -5093,9 +5096,10 @@ var css = {
   "position: relative;" +
   "font-size:" + 28 * widthK + "px; " +
   "color: #595759;" +
-  "height:" + 65 * widthK + "px; " +
+  "min-height:" + 65 * widthK + "px; " +
   "left:" + 30 * widthK + "px; " +
   "margin-bottom:" + 10 * widthK + "px; " +
+  "width:" + 485 * widthK + "px; " +
   "}",
 
   //Component Calc

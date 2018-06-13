@@ -5,10 +5,15 @@
       <div class="service-title">{window.languages.ComponentPopularServicesTitle}</div>
       <div class="service-container">
         <div class="service-each-container" each="{i in popularServiceList}">
-          <div id="{i.id}" class="service-buttons" ontouchstart="ontouchStartOfService(this.id)"
+          <div if="{false}" id="{i.id}" class="service-buttons" ontouchstart="ontouchStartOfService(this.id)"
                ontouchend="ontouchEndOfService(this.id)" ontouchmove="ontouchMoveOfService()"
                style="background-image: url({i.image})">
           </div>
+
+          <img id="{i.id}" class="service-buttons" ontouchstart="ontouchStartOfService(this.id)"
+               ontouchend="ontouchEndOfService(this.id)" ontouchmove="ontouchMoveOfService()" if="{i.image}"
+               src="{i.image}" onload="clearLoaderOnIconLoad(this.id)">
+
           <p class="service-labels">{i.name}</p>
         </div>
       </div>
@@ -22,10 +27,16 @@
       </div>
       <div class="service-container">
         <div class="service-each-container" each="{i in favPaymentsList}">
-          <div id="{i.id}" class="service-buttons" ontouchstart="ontouchStartOfPayment(this.id)"
+
+          <div if="{false}" id="{i.id}" class="service-buttons" ontouchstart="ontouchStartOfPayment(this.id)"
                ontouchend="ontouchEndOfPayment(this.id)" style="background-image: url({i.service.image})" role="button"
                aria-label="{i.params.favoriteName?i.params.favoriteName: i.service.name}">
           </div>
+
+          <img id="{i.id}" class="service-buttons" ontouchstart="ontouchStartOfPayment(this.id)"
+               ontouchend="ontouchEndOfPayment(this.id)" ontouchmove="ontouchMoveOfService()" if="{i.service.image}"
+               src="{i.service.image}" onload="clearLoaderOnIconLoad(this.id)">
+
           <p class="service-labels">{i.params.favoriteName?i.params.favoriteName: i.service.name}</p>
         </div>
         <div class="service-each-container" if="{addFavoriteBool}">

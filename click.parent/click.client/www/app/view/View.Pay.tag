@@ -78,11 +78,15 @@
                 <li class="pay-service-containter"
                     each="{j in currentList}"
                     if="{j.autopay_available_schedule || j.autopay_available || !j.form_type}">
-                  <div class="pay-service-icon" style="background-image: url({j.image})" id="{j.id}" role="button"
+                  <div class="pay-service-icon" id="{j.id}"
+                       role="button"
                        aria-label="{j.name}"
                        onclick="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
+                    <img id="{j.id+'_image'}" if="{j.image}"
+                         class="pay-service-image" src="{j.image}"
+                         onload="clearLoaderOnIconLoad(this.id)">
+                    <div class="pay-service-name-field">{j.name}</div>
                   </div>
-                  <div class="pay-service-name-field">{j.name}</div>
                 </li>
               </ul>
               <div class="title-bottom-border">
@@ -132,10 +136,7 @@
     var scope = this;
     scope.checkOfSearch = false;
     scope.scrolling = false;
-
-    if (opts.mode == 'ADDAUTOPAY')
-      this.titleName = window.languages.ViewAutoPayTitleName;
-    else this.titleName = window.languages.ViewPayTitleName;
+    scope.titleName = opts.mode == 'ADDAUTOPAY' ? window.languages.ViewAutoPayTitleName : window.languages.ViewPayTitleName;
 
     window.saveHistory('view-pay', opts);
 
