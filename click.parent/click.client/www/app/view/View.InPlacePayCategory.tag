@@ -70,10 +70,9 @@
           <div class="inplace-pay-service-icon-tick" if="{i.name}"></div>
           <div class="inplace-title-bottom-border" if="{i.name}"></div>
 
-
-          <div if="{serviceList.length==0 && searchMode}" class="inplace-pay-search-no-match">
-            {window.languages.InPlaceSearchNoMatchText}
-          </div>
+        </div>
+        <div if="{serviceList.length==0 && searchMode}" class="inplace-pay-search-no-match">
+          {window.languages.InPlaceSearchNoMatchText}
         </div>
 
       </div>
