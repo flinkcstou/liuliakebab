@@ -111,8 +111,8 @@
     scope.lastOperationsMap = {};
 
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key,
-        phoneNumber = localStorage.getItem('click_client_phoneNumber'),
-        myCardsOnTouchStartY, myCardsOnTouchStartX, myCardsOnTouchEndY, myCardsOnTouchEndX;
+      phoneNumber = localStorage.getItem('click_client_phoneNumber'),
+      myCardsOnTouchStartY, myCardsOnTouchStartX, myCardsOnTouchEndY, myCardsOnTouchEndX;
 
     if (opts[0]) {
       scope.cardId = opts[0];
@@ -134,12 +134,17 @@
     });
 
     lastOperationsTouchStart = function () {
+      event.preventDefault();
+      event.stopPropagation();
       lastOperationButtonStartX = event.changedTouches[0].pageX;
       lastOperationButtonStartY = event.changedTouches[0].pageY;
       lastOperationTimeStart = event.timeStamp.toFixed(0);
     };
 
     lastOperationsTouchEnd = function () {
+
+      event.preventDefault();
+      event.stopPropagation();
 
       lastOperationButtonEndX = event.changedTouches[0].pageX;
       lastOperationButtonEndY = event.changedTouches[0].pageY;
@@ -277,7 +282,7 @@
         event.stopPropagation();
 
         var cardNumber = localStorage.getItem("cardNumber"),
-            cards = scope.tags["component-card-carousel"].cardsarray;
+          cards = scope.tags["component-card-carousel"].cardsarray;
         cardNumber = JSON.parse(cardNumber);
 
         for (card in cards) {
