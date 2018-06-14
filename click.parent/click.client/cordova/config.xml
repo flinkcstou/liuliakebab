@@ -102,7 +102,7 @@
   </platform>
   <platform name="android">
     <allow-intent href="market:*"/>
-    <preference name="android-minSdkVersion" value="19"/>
+    <preference name="android-minSdkVersion" value="14"/>
     <preference name="android-targetSdkVersion" value="26"/>
     <preference name="Fullscreen" value="false"/>
     <preference name="AndroidPersistentFileLocation" value="Internal"/>

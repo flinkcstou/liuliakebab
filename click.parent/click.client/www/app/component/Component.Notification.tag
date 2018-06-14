@@ -35,6 +35,9 @@
     if (device.platform !== 'BrowserStand') {
       window.FirebasePlugin.onNotificationOpen(function (notification) {
 
+        console.log("any alert open? " + window.common.alert.anyOpen());
+        if (window.common.alert.anyOpen()) return;
+        console.log("not returned ");
         window.scannerCanBeAsked = false;
 
         if (notification.message) {

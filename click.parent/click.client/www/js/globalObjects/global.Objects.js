@@ -176,6 +176,21 @@ window.common.alert = {
     }
 
     return false;
+  },
+
+  anyOpen: function () {
+    for (var i = 0; i < window.common.alert.ids.length; i++) {
+
+      var element = window.common.alert.ids[i];
+
+      if (window.common.alert.isShown(element)) {
+
+        console.log("Is Shown", element);
+        return true;
+      }
+
+    }
+    return false;
   }
 };
 
