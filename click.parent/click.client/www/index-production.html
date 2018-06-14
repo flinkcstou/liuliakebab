@@ -578,6 +578,8 @@
 
       if (mountAuthorization) {
         console.log("mount authorization");
+        window.stopLoaderDots();
+        window.stopSpinner();
         riotTags.innerHTML = "<view-authorization>";
         riot.mount('view-authorization');
         return
