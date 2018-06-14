@@ -221,7 +221,7 @@
       var firstFieldtext = inputVerification.spaceDeleter(opts.firstFieldText);
 
     }
-    else if (opts.chosenPrefixId) {
+    else if (opts.chosenPrefixId && opts.chosenPrefixName) {
 
       this.firstFieldText = opts.chosenPrefixName + opts.firstFieldText;
       var firstFieldtext = opts.chosenPrefixName + opts.firstFieldText;
