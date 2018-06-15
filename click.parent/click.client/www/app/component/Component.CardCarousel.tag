@@ -9,9 +9,7 @@
              style="left: {invoiceLeft}px;"
              ontouchend="invoiceBlockTouchEnd(this.title)" ontouchstart="invoiceBlockTouchStart()">
           <div id="transfer-container" class="invoice-card-info-holder" if="{invoice.is_p2p}">
-            <p class="invoice-card-from-label">Получен перевод стредств от:</p>
-            <div class="invoice-card-from-sender-holder">{(invoice.service_id == -4)?("+"):("")} {invoice.parameter}
-            </div>
+            <p class="invoice-card-from-label">{invoice.description}</p>
             <p class="invoice-card-date">{invoice.time} {invoice.date}</p>
             <div class="invoice-card-transfer-sum-holder">
               <p class="invoice-card-sum">{invoice.amount}</p>
@@ -19,12 +17,7 @@
             </div>
           </div>
           <div id="payment-container" class="invoice-card-info-holder" if="{!invoice.is_p2p}">
-            <p class="invoice-card-from-label">Вам выставлен счёт:</p>
-            <div class="invoice-card-from-sender-holder">
-              <p class="invoice-card-from-sender-service-name">{invoice.service_name}</p>
-              <p class="invoice-card-from-sender-number"> {(invoice.service_id == -4)?("+"):("")}
-                {invoice.parameter}</p>
-            </div>
+            <p class="invoice-card-from-label">{invoice.description}</p>
             <p class="invoice-card-date">{invoice.time} {invoice.date}</p>
             <div class="invoice-card-payment-sum-holder">
               <p class="invoice-card-sum">{invoice.amount}</p>
@@ -158,7 +151,8 @@
             amount: invoice.amount,
             invoiceId: invoice.invoice_id,
             time: invoice.time,
-            date: invoice.date
+            date: invoice.date,
+            description: invoice.description
           };
 
           history.arrayOfHistory.push({view: "view-transfer-detail"});
@@ -176,7 +170,8 @@
             is_friend_help: invoice.is_friend_help,
             friend_name: invoice.friend_name,
             commission_percent: invoice.commission_percent,
-            service_id: invoice.service_id
+            service_id: invoice.service_id,
+            description: invoice.description
           };
 
           history.arrayOfHistory.push({view: "view-payment-detail"});

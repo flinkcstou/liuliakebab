@@ -12,10 +12,7 @@
     </div>
     <div class="transfer-detail-transfer-icon"></div>
     <p class="transfer-detail-transfer-icon-title-part-one">
-      {window.languages.ViewTransferDetailTransferIconTitleOne}</p>
-
-    <p class="transfer-detail-transfer-icon-title-part-two">
-      {window.languages.ViewTransferDetailTransferIconTitleTwo}</p>
+      {opts.description}</p>
 
     <p class="transfer-detail-transfer-icon-title-phone">
       +{opts.phoneNumber ? (opts.phoneNumber.substring(0, 3) + ' ' +
