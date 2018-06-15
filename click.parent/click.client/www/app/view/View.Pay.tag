@@ -109,14 +109,15 @@
               <div class="pay-icon-tick" id="tick{i.id}"></div>
               <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
                 <li class="pay-service-containter"
-                    each="{j in currentList}">
+                    each="{j in currentList}"
+                    if="{modeOfApp.onlineMode || (modeOfApp.offlineMode && servicesParamsMapOne[j.id] && servicesParamsMapOne[j.id][0].ussd_query)}">
                   <div class="pay-service-icon" id="{j.id}"
                        role="button"
                        aria-label="{j.name}"
                        onclick="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
                     <img id="{j.id+'_image'}" if="{j.image}"
                          class="pay-service-image" src="{j.image}"
-                         onload="clearLoaderOnIconLoad(this.id)">
+                         onload="clearLoaderOnIconLoad(this.id)" onerror="">
                     <div class="pay-service-name-field">{j.name}</div>
                   </div>
                 </li>
