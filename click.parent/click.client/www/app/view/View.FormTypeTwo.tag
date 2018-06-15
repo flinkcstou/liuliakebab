@@ -313,7 +313,7 @@
             opts.favoriteName = favoriteNameInput.value;
 
             if (opts.isInFavorites) {
-              editFavoritePayment(params, opts.favoriteId, scope);
+              editFavoritePaymentGlobal(opts, opts.favoriteId, scope);
               event.preventDefault();
               event.stopPropagation();
               onBackKeyDown();

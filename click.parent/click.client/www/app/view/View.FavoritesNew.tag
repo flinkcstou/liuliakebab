@@ -391,7 +391,9 @@
 //            this.riotTags.innerHTML = "<view-service-page-new>";
 //            riot.mount('view-service-page-new', scope.favoritePaymentsList[i].params);
 
-            openPayServiceById(scope.favoritePaymentsList[i].service.id, scope.favoritePaymentsList[i].params);
+            console.log("id to open", scope.favoritePaymentsList[i].params.chosenServiceId);
+
+            openPayServiceById(scope.favoritePaymentsList[i].params.id, scope.favoritePaymentsList[i].params);
 
             scope.unmount()
 

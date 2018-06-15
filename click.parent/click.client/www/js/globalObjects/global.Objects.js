@@ -2379,7 +2379,9 @@ function addPaymentToFavorites(params, service, ussdQuery, scope) {
   });
 }
 
-function editFavoritePayment(params, favoriteId, scope) {
+function editFavoritePaymentGlobal(params, favoriteId, scope) {
+
+  console.log("editfavoritePayment method ", params, favoriteId);
 
   var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
   var favoritePaymentsListForApi = JSON.parse(localStorage.getItem('favoritePaymentsListForApi'));
@@ -2452,9 +2454,10 @@ function editFavoritePayment(params, favoriteId, scope) {
 function openPayServiceById(id, opts) {
   var servicesMap = scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
 
-  console.log("openPayServiceById method");
+  console.log("openPayServiceById method", id, opts);
+
   if (servicesMap[id] && servicesMap[id][0]) {
-    console.log("form type=", servicesMap[id][0].form_type, servicesMap[id][0]);
+    // console.log("form type=", servicesMap[id][0].form_type, servicesMap[id][0]);
     switch (servicesMap[id][0].form_type) {
       case 1: {
         riotTags.innerHTML = "<view-formtype-one>";

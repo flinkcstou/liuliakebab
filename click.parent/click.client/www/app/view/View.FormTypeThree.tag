@@ -1206,7 +1206,7 @@
           viewServicePinCards.chosenFriendForHelp = null;
 
           if (opts.isInFavorites) {
-            editFavoritePayment(opts, opts.favoriteId, scope);
+            editFavoritePaymentGlobal(opts, opts.favoriteId, scope);
             event.preventDefault();
             event.stopPropagation();
             onBackKeyDown();
