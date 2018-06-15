@@ -428,10 +428,16 @@ var css = {
 
   invoiceListInvoiceSumHolder: ".invoice-list-invoice-sum-holder" +
   "{" +
-  "padding-right:" + 36 * widthK + "px;" +
+  "margin-right: 5.5%;" +
   "float: right;" +
-  "width:" + 295 * widthK + "px;" +
+  "width: 40%;" +
   "height:" + 120 * widthK + "px;" +
+  "}",
+
+  invoiceListInvoiceInfoHolder: ".invoice-list-invoice-info-holder" +
+  "{" +
+  "float: left;" +
+  "width: 53%;" +
   "}",
 
   invoiceListInvoiceSum: ".invoice-list-invoice-sum" +

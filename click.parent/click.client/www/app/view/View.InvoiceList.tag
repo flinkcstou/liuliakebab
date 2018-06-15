@@ -34,25 +34,23 @@
            id="{invoice.invoice_id}"
            ontouchend="goToInvoiceHistoryDetailTouchEnd(this.title, this.id)"
            ontouchstart="goToInvoiceHistoryDetailTouchStart(this.id)">
+        <div class="invoice-list-invoice-info-holder">
+          <p class="invoice-list-from-whom-label invoice-list-invoice-is-not-p2p" if="{invoice.is_p2p == 0 && toUser}">
+            {invoice.description}</p>
+          <p class="invoice-list-from-whom-label invoice-list-invoice-is-not-p2p" if="{invoice.is_p2p == 0 && !toUser}">
+            {invoice.description}</p>
+          <p class="invoice-list-from-whom-label invoice-list-invoice-is-p2p" if="{invoice.is_p2p == 1 && toUser}">
+            {invoice.description}</p>
+          <p class="invoice-list-from-whom-label invoice-list-invoice-is-not-p2p" if="{invoice.is_p2p == 1 && !toUser}">
+            {invoice.description}</p>
+          <p class="invoice-list-invoice-date">{invoice.date} {invoice.time}</p>
+        </div>
+
         <div
           class="invoice-list-invoice-sum-holder {invoice-list-invoice-is-p2p: invoice.is_p2p == 1 && toUser, invoice-list-invoice-is-not-p2p: invoice.is_p2p == 0 || !toUser}">
-          <mark class="invoice-list-invoice-sum-sym">{invoice.currency}</mark>
-          <p class="invoice-list-invoice-sum">{invoice.amount}</p>
+          <p class="invoice-list-invoice-sum">{invoice.amount} <span class="invoice-list-invoice-sum-sym">{invoice.currency}</span>
+          </p>
         </div>
-        <p class="invoice-list-from-whom-label invoice-list-invoice-is-not-p2p" if="{invoice.is_p2p == 0 && toUser}">
-          {languages.ViewInvoiceListInvoiceIsNot2P2ToUser}</p>
-        <p class="invoice-list-from-whom-label invoice-list-invoice-is-not-p2p" if="{invoice.is_p2p == 0 && !toUser}">
-          {languages.ViewInvoiceListInvoiceIsNot2P2FromUser}</p>
-        <p class="invoice-list-from-whom-label invoice-list-invoice-is-p2p" if="{invoice.is_p2p == 1 && toUser}">
-          {languages.ViewInvoiceListInvoiceIsP2PToUser}</p>
-        <p class="invoice-list-from-whom-label invoice-list-invoice-is-not-p2p" if="{invoice.is_p2p == 1 && !toUser}">
-          {languages.ViewInvoiceListInvoiceIsP2PFromUser}</p>
-        <div class="invoice-list-invoice-phone-number-holder">
-          <p class="invoice-list-invoice-phone-number">{(invoice.service_id == -4)?("+"):("")}
-            {invoice.parameter||invoice.cntrg_info_param3}</p>
-          <p class="invoice-list-invoice-service-name" if="{invoice.is_p2p == 0}">{invoice.service_name}</p>
-        </div>
-        <p class="invoice-list-invoice-date">{invoice.date} {invoice.time}</p>
       </div>
     </div>
 
