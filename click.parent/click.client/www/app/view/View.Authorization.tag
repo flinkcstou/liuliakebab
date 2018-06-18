@@ -143,6 +143,7 @@
     scope.settingsFingerPrint = localStorage.getItem("settings_finger_print") ? JSON.parse(localStorage.getItem("settings_finger_print")) : false;
     modeOfApp.onlineMode = true;
     modeOfApp.offlineMode = false;
+    onBackParams.opts = 'fromAuthorization';
 
     console.log("OPTS in Auth", opts);
 

@@ -448,6 +448,14 @@
 
     console.log("onBackKeyDown", JSON.parse(sessionStorage.getItem('history')));
 
+    if (onBackParams.opts) {
+      if (onBackParams.opts === 'fromAuthorization') {
+        // do not allow user use backButton in authorization page
+        navigator.app.exitApp();
+        return;
+      }
+    }
+
 
     for (var i in window.common.alert.tags) {
       if (window.common.alert.isShown(i)) {
@@ -516,9 +524,9 @@
   }
 
 
-  var waitingMinutes = 0;
+  var waitingTime = 0;
   function onPauseFunction() {
-    waitingMinutes = new Date().getMinutes();
+    waitingTime = new Date().getTime();
     console.log('ON onResume EVENT IS TRIGGERED')
 
     if (componentMenu.check === true || window.pickContactFromNativeChecker === true || modeOfApp.offlineMode) {
@@ -555,9 +563,9 @@
 
     if (!checkFirstStarting && localStorage.getItem('click_client_token') && localStorage.getItem('click_client_loginInfo') &&
       !(sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true)) {
-      var nowMinutes = new Date().getMinutes();
-      console.log("BEFORE MINUTES", waitingMinutes);
-      console.log("NOW MINUTES", nowMinutes);
+      var nowTime = new Date().getTime();
+      console.log("BEFORE MINUTES", waitingTime);
+      console.log("NOW MINUTES", nowTime);
       console.log(" window.fingerPrint.fingerprintMode =", window.fingerPrint.fingerprintMode);
 
       window.scannerCanBeAsked = true;
@@ -565,7 +573,7 @@
       var sessionbroken = false;
 
 
-      if ((Math.abs(parseInt(waitingMinutes) - parseInt(nowMinutes)) > 5)) {
+      if ((Math.abs(parseInt(waitingTime) - parseInt(nowTime)) / 60000 > 5)) {
         console.log("5 minutes >");
         console.log("SESSION_BROKEN = TRUE");
         localStorage.setItem('session_broken', true);
