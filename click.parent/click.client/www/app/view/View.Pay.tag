@@ -110,7 +110,7 @@
               <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
                 <li class="pay-service-containter"
                     each="{j in currentList}"
-                    if="{modeOfApp.onlineMode || (modeOfApp.offlineMode && servicesParamsMapOne[j.id] && servicesParamsMapOne[j.id][0].ussd_query)}">
+                    if="{modeOfApp.onlineMode || j.id.toString().search('mynumber')!=-1 || (modeOfApp.offlineMode && servicesParamsMapOne[j.id] && servicesParamsMapOne[j.id][0].ussd_query)}">
                   <div class="pay-service-icon" id="{j.id}"
                        role="button"
                        aria-label="{j.name}"
