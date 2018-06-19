@@ -469,7 +469,8 @@
               transferCode: invoice.p2p_secret_code,
               time: invoice.time,
               date: invoice.date,
-              status: invoice.status_note
+              status: invoice.status_note,
+              description: invoice.description
             };
 
             if (invoice.cntrg_info_param3)
@@ -493,7 +494,8 @@
                 amount: invoice.amount,
                 invoiceId: invoice.invoice_id,
                 time: invoice.time,
-                date: invoice.date
+                date: invoice.date,
+                description: invoice.description
               };
 
               console.log('PARAMS IN INVOICE LIST', params);
@@ -516,7 +518,8 @@
                 phoneNumber: invoice.merchant_phone,
                 accountNumber: invoice.parameter,
                 serviceName: invoice.service_name,
-                is_friend_help: invoice.is_friend_help
+                is_friend_help: invoice.is_friend_help,
+                description: invoice.description
               };
 
               console.log("PAYMENT PARAMS", params);
