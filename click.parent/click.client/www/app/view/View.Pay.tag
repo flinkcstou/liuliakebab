@@ -64,7 +64,8 @@
 
         <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
           <li each="{i in categoryList}" style="overflow: hidden;">
-            <div if="{!(modeOfApp.offlineMode && i.id == 11)}" class="pay-service-block-containter" id="{i.id}"
+            <div if="{!(modeOfApp.offlineMode && i.id == 11) && i.currentList && i.currentList.length !=0}"
+                 class="pay-service-block-containter" id="{i.id}"
                  ontouchstart="onTouchStartOfCategory(this.id)"
                  onclick="onTouchEndOfCategory(this.id)">
               <div if="{false}" class="pay-category-icon" style="background-image: url({i.icon})"></div>
@@ -76,7 +77,7 @@
               <div class="pay-icon-tick" id="tick{i.id}"></div>
               <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
                 <li class="pay-service-containter"
-                    each="{j in currentList}">
+                    each="{j in i.currentList}">
                   <div class="pay-service-icon" id="{j.id}"
                        role="button"
                        aria-label="{j.name}"
@@ -138,6 +139,20 @@
       var sessionKey = loginInfo.session_key;
     }
 
+    for (var j in scope.categoryList) {
+      scope.categoryList[j].currentList = [];
+      var id = scope.categoryList[j].id;
+      for (var i in scope.servicesMapByCategory[id]) {
+        if ((opts.mode != 'ADDAUTOPAY' && (modeOfApp.onlineMode || scope.servicesMapByCategory[id][i].id.toString().search('mynumber') != -1 || (modeOfApp.offlineMode && scope.servicesParamsMapOne[scope.servicesMapByCategory[id][i].id] && scope.servicesParamsMapOne[scope.servicesMapByCategory[id][i].id][0].ussd_query))) ||
+          (opts.mode == 'ADDAUTOPAY' && (scope.servicesMapByCategory[id][i].autopay_available_schedule || scope.servicesMapByCategory[id][i].autopay_available || !scope.servicesMapByCategory[id][i].form_type))) {
+          scope.categoryList[j].currentList.push(scope.servicesMapByCategory[id][i]);
+        }
+      }
+    }
+
+    console.log("scope.categoryList = ", scope.categoryList);
+
+
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 
     goToBackStart = function () {
@@ -175,7 +190,6 @@
         hintUpdate(viewPay.categoryId);
         scope.index = viewPay.categoryId;
         scope.show = true;
-        scope.currentList = scope.servicesMapByCategory[viewPay.categoryId];
       }
       if (opts.categoryId || viewPay.searchServices) {
         categoriesContainerId.scrollTop = viewPay.categoryScrollTop;
@@ -336,27 +350,27 @@
             scope.index = id;
           }
 
-          scope.currentList = [];
-
-          for (var i in scope.servicesMapByCategory[id]) {
-            if ((opts.mode != 'ADDAUTOPAY' && (modeOfApp.onlineMode || scope.servicesMapByCategory[id][i].id.toString().search('mynumber') != -1 || (modeOfApp.offlineMode && scope.servicesParamsMapOne[scope.servicesMapByCategory[id][i].id] && scope.servicesParamsMapOne[scope.servicesMapByCategory[id][i].id][0].ussd_query))) ||
-              (opts.mode == 'ADDAUTOPAY' && (scope.servicesMapByCategory[id][i].autopay_available_schedule || scope.servicesMapByCategory[id][i].autopay_available || !scope.servicesMapByCategory[id][i].form_type))) {
-              scope.currentList.push(scope.servicesMapByCategory[id][i]);
-            }
-          }
+//          scope.currentList = [];
+//
+//          for (var i in scope.servicesMapByCategory[id]) {
+//            if ((opts.mode != 'ADDAUTOPAY' && (modeOfApp.onlineMode || scope.servicesMapByCategory[id][i].id.toString().search('mynumber') != -1 || (modeOfApp.offlineMode && scope.servicesParamsMapOne[scope.servicesMapByCategory[id][i].id] && scope.servicesParamsMapOne[scope.servicesMapByCategory[id][i].id][0].ussd_query))) ||
+//              (opts.mode == 'ADDAUTOPAY' && (scope.servicesMapByCategory[id][i].autopay_available_schedule || scope.servicesMapByCategory[id][i].autopay_available || !scope.servicesMapByCategory[id][i].form_type))) {
+//              scope.currentList.push(scope.servicesMapByCategory[id][i]);
+//            }
+//          }
 
 //          scope.currentList = scope.servicesMapByCategory[id];
 //        count = 1;
 
-          console.log("currentList=", scope.currentList);
+//          console.log("click currentList=", scope.categoryList[id].currentList);
 
 
-          if (!scope.currentList) {
-            scope.show = false;
-          } else {
-            scope.show = true;
-            document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catopen.png)";
-          }
+//          if (!scope.categoryList[id].currentList) {
+//            scope.show = false;
+//          } else {
+          scope.show = true;
+          document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catopen.png)";
+//          }
 
           if (scope.index == id && scope.show) {
             document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catclose.png)";

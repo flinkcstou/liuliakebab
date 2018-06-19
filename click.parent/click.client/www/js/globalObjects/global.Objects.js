@@ -1114,7 +1114,7 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
         onSuccess: function (result) {
           if (result[0][0].error == 0)
             if (result[1][0]) {
-              var firstService;
+              var firstService = {};
 
               for (var i in result[1]) {
                 if (result[1][i].is_visible == 1) {
