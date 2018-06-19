@@ -48,8 +48,10 @@
 
         <div
           class="invoice-list-invoice-sum-holder {invoice-list-invoice-is-p2p: invoice.is_p2p == 1 && toUser, invoice-list-invoice-is-not-p2p: invoice.is_p2p == 0 || !toUser}">
-          <p class="invoice-list-invoice-sum">{invoice.amount} <span class="invoice-list-invoice-sum-sym">{invoice.currency}</span>
-          </p>
+          <div class="invoice-list-invoice-sum-float-container">
+            <p class="invoice-list-invoice-sum">{invoice.amount}</p>
+            <p class="invoice-list-invoice-sum-sym">{invoice.currency}</p>
+          </div>
         </div>
       </div>
     </div>

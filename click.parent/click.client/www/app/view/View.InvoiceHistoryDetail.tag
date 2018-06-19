@@ -15,7 +15,7 @@
         class="invoice-history-detail-icon {invoice-history-detail-payment-icon: !opts.is_p2p, invoice-history-detail-transfer-icon: opts.is_p2p}">
     </div>
     <p class="invoice-history-detail-title-part-one">
-      {(opts.is_p2p)?(languages.ViewInvoiceHistoryDetailTransferToNumberLabel):(languages.ViewInvoiceHistoryDetailPaymentToNumberLabel)}</p>
+      {opts.description}</p>
 
     <p class="invoice-history-detail-title-phone-number">
       {(opts.is_p2p)?("+"):("")} {opts.inParameter}</p>

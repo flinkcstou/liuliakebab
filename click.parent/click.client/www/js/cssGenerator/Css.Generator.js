@@ -440,12 +440,21 @@ var css = {
   "width: 53%;" +
   "}",
 
+  invoiceListInvoiceSumFloatContainer: ".invoice-list-invoice-sum-float-container" +
+  "{" +
+  "float: right;" +
+  "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
+  "max-width: 100%;" +
+  "white-space: nowrap;" +
+  "color: #595759;" +
+  "}",
+
   invoiceListInvoiceSum: ".invoice-list-invoice-sum" +
   "{" +
+  "display: inline;" +
   "margin: 0;" +
   "font-size:" + 47 * widthK + "px;" +
-  "float: right;" +
-  "margin-right:" + 6 * widthK + "px;" +
   "color: inherit;" +
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
@@ -456,12 +465,12 @@ var css = {
 
   invoiceListInvoiceSumSym: ".invoice-list-invoice-sum-sym" +
   "{" +
+  "display: inline;" +
   "font-size:" + 24 * widthK + "px;" +
   "margin: 0;" +
   "line-height:" + 70 * widthK + "px;" +
   "background-color: transparent;" +
   "color: inherit;" +
-  "float: right;" +
   "color: #595759;" +
   "}",
 
