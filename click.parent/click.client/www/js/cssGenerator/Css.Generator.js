@@ -7589,14 +7589,11 @@ var css = {
   transferContactFoundTextContainer: ".transfer-contact-found-text-container" +
   "{" +
   "position: absolute;" +
-  "left: 31%;" +
-  "top: 68%;" +
+  "left: 27%;" +
   "color: gray;" +
-  "max-width: 65%;" +
-  "font-size:" + 23 * widthK + "px;" +
-  "overflow: hidden;" +
-  "text-overflow: ellipsis;" +
-  "white-space: nowrap;" +
+  "width: 20%;" +
+  "height: 100%;" +
+  "display: table;" +
   "}",
 
 
