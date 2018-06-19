@@ -381,7 +381,7 @@
             hintUpdate(scope.index);
           }
 
-          document.getElementById(id).scrollIntoView();
+//          document.getElementById(id).scrollIntoView();
 //        categoriesContainerId.scrollIntoView(document.getElementById(id).offsetTop)
 
 //        categoriesContainerId.scrollTop = event.changedTouches[0].pageY;

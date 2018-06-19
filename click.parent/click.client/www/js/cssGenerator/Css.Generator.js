@@ -18334,7 +18334,7 @@ var css = {
   inPlacePayCategoryInnerContainer: ".inplace-pay-category-inner-container" +
   "{" +
   "position: absolute;" +
-  "height:90%; " +
+  "height:92%; " +
   "width: 100%; " +
   "top: 9%; " +
   "bottom:0; " +
