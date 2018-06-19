@@ -261,14 +261,12 @@
         window.saveHistory('view-pay-services', {searchWord: scope.searchWord});
 
         scope.suggestions = [];
-//        var tempSearchList = [];
-//        console.log("");
 
         if (scope.searchWord.length != 0) {
           arrayOfConnectedSuggestion.filter(function (service) {
 
             var index = service.name.toLowerCase().search(scope.searchWord.toString());
-            if (index != -1 && service.is_visible) {
+            if (index != -1 && service.is_visible && (modeOfApp.onlineMode || (modeOfApp.offlineMode && scope.servicesParamsMapOne[service.id] && scope.servicesParamsMapOne[service.id][0].ussd_query))) {
               if (opts.mode != "ADDAUTOPAY" || (opts.mode == "ADDAUTOPAY" && (service.autopay_available_schedule || service.autopay_available || !service.form_type))) {
                 console.log("adding ", service.name);
                 scope.suggestions.push(service);

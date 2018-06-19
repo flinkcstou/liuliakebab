@@ -78,6 +78,7 @@
     scope.categoryList = modeOfApp.onlineMode ? (categoryList ? JSON.parse(categoryList) : offlinePayCategoryList) : offlinePayCategoryList;
     scope.serviceList = modeOfApp.onlineMode ? (serviceList ? JSON.parse(serviceList) : offlinePayServiceList) : offlinePayServiceList;
     scope.servicesMap = (JSON.parse(localStorage.getItem("click_client_servicesMap"))) ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
+    scope.servicesParamsMapOne = localStorage.getItem("click_client_servicesParamsMapOne") ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
     scope.showSearchIcon = !opts.searchWord;
     var searchFieldTimeout;
     var arrayOfConnectedSuggestion = scope.categoryList.concat(scope.serviceList);
@@ -179,7 +180,7 @@
           arrayOfConnectedSuggestion.filter(function (service) {
 
             var index = service.name.toLowerCase().search(scope.searchWord.toString());
-            if (index != -1 && service.is_visible) {
+            if (index != -1 && service.is_visible && (modeOfApp.onlineMode || (modeOfApp.offlineMode && scope.servicesParamsMapOne[service.id] && scope.servicesParamsMapOne[service.id][0].ussd_query))) {
               if (opts.mode != "ADDAUTOPAY" || (opts.mode == "ADDAUTOPAY" && (service.autopay_available_schedule || service.autopay_available || !service.form_type))) {
                 scope.suggestions.push(service);
               }

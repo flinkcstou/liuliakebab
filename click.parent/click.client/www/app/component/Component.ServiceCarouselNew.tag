@@ -620,17 +620,23 @@
 
               } else {
 
-
                 if (scope.favoritePaymentsList[i].service.additional_information_type == 3) {
-                  localStorage.setItem('click_client_infoCacheEnabled', null)
-                  this.riotTags.innerHTML = "<view-service-info-new>";
-                  riot.mount('view-service-info-new', scope.favoritePaymentsList[i].params);
-                  scope.unmount()
+                  localStorage.setItem('click_client_infoCacheEnabled', null);
+                  if (scope.favoritePaymentsList[i].service.form_type == 7) {
+                    this.riotTags.innerHTML = "<view-formtype-seven-getinfo>";
+                    riot.mount('view-formtype-seven-getinfo', scope.favoritePaymentsList[i].params);
+                    scope.unmount()
+                  } else {
+                    this.riotTags.innerHTML = "<view-service-info>";
+                    riot.mount('view-service-info', scope.favoritePaymentsList[i].params);
+                    scope.unmount()
+                  }
                 } else {
                   this.riotTags.innerHTML = "<view-service-pincards-new>";
                   riot.mount('view-service-pincards-new', scope.favoritePaymentsList[i].params);
                   scope.unmount()
                 }
+
               }
 
             } else {
@@ -672,6 +678,7 @@
 
             localStorage.setItem('favoritePaymentsList', JSON.stringify(scope.favoritePaymentsList));
             if (scope.favoritePaymentsList[index].service.additional_information_type == 3) {
+              localStorage.setItem('click_client_infoCacheEnabled', null);
               if (scope.favoritePaymentsList[index].service.form_type == 7) {
                 this.riotTags.innerHTML = "<view-formtype-seven-getinfo>";
                 riot.mount('view-formtype-seven-getinfo', scope.favoritePaymentsList[index].params);
