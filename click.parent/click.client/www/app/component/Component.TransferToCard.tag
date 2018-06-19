@@ -30,7 +30,7 @@
              ontouchstart="cardSuggestionTouchStart()"
              ontouchend="cardSuggestionTouchEnd({i.id})">
           <div class="transfer-card-found-photo" style="background-image: url({i.image})"></div>
-          <div class="transfer-contact-found-text-container">
+          <div class="transfer-contact-found-text-container-for-card">
             {i.name}
           </div>
           <div class="transfer-new-card-found-text-two">{i.cardNumber.substring(0,4)} **** ****
@@ -139,7 +139,7 @@
     };
 
     cardFocus = function (event) {
-      var temp_value= event.target.value;
+      var temp_value = event.target.value;
       event.target.value = '';
       event.target.value = temp_value;
       betweenAmountId.readOnly = true;
@@ -315,7 +315,7 @@
               checkImageExists(cardDesignId.src, function (exists) {
                 if (exists) {
 
-                  if (cardDesignId.className.indexOf('transfer-new-card-design-appear') === -1){
+                  if (cardDesignId.className.indexOf('transfer-new-card-design-appear') === -1) {
                     cardDesignId.classList.add('transfer-new-card-design-appear');
                     cardInputFieldsId.classList.add('transfer-new-card-input-fields-reduce');
                     if (bank.font_color) {
@@ -338,7 +338,7 @@
           scope.bankImage = '';
           bankIconId.style.display = 'none';
 
-          if (cardDesignId.className.indexOf('transfer-new-card-design-appear') !== -1){
+          if (cardDesignId.className.indexOf('transfer-new-card-design-appear') !== -1) {
             cardDesignId.classList.remove('transfer-new-card-design-appear');
             cardInputFieldsId.classList.remove('transfer-new-card-input-fields-reduce');
             cardInputFieldsId.style.color = '';

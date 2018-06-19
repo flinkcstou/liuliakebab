@@ -6927,7 +6927,6 @@ var css = {
   "top:" + 20 * widthK + "px;" +
   "height:" + 345 * widthK + "px;" +
   "width:" + 607 * widthK + "px;" +
-  "border:" + 1 + "px solid #e7e7e7;" +
   "border-radius:" + 10 + "px;" +
   "background-size: 102%;" +
   "background-position: center;" +
@@ -6935,6 +6934,9 @@ var css = {
   "background-image: url('resources/icons/ViewTransfer/transfer_card.png');" +
   "-webkit-transition: 0.7s;" +
   "transition: 0.7s;" +
+  "-webkit-box-shadow: " + "0px " + 5 * widthK + "px " + 60 * widthK + "px " + 4 * widthK + "px " + "rgba(86, 93, 106, 0.29);" +
+  "-moz-box-shadow: " + "0px " + 5 * widthK + "px " + 60 * widthK + "px " + 4 * widthK + "px " + "rgba(86, 93, 106, 0.29);" +
+  "box-shadow: " + "0px " + 5 * widthK + "px " + 60 * widthK + "px " + 4 * widthK + "px " + "rgba(86, 93, 106, 0.29);" +
   "}",
 
   transferNewCardDesign: ".transfer-new-card-design" +
@@ -7594,6 +7596,19 @@ var css = {
   "width: 20%;" +
   "height: 100%;" +
   "display: table;" +
+  "}",
+
+  transferContactFoundTextContainerForCard: ".transfer-contact-found-text-container-for-card" +
+  "{" +
+  "position: absolute;" +
+  "left: 31%;" +
+  "top: 68%;" +
+  "color: gray;" +
+  "max-width: 65%;" +
+  "font-size:" + 23 * widthK + "px;" +
+  "overflow: hidden;" +
+  "text-overflow: ellipsis;" +
+  "white-space: nowrap;" +
   "}",
 
 
