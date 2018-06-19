@@ -62,7 +62,7 @@
       <div class="inplace-pay-category-inner-container" if="{!searchServices}" id="categoriesContainerId"
            onscroll="onTouchMoveOfCategory()">
 
-        <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;" if="{opts.mode == 'ADDAUTOPAY'}">
+        <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
           <li each="{i in categoryList}" style="overflow: hidden;">
             <div if="{!(modeOfApp.offlineMode && i.id == 11)}" class="pay-service-block-containter" id="{i.id}"
                  ontouchstart="onTouchStartOfCategory(this.id)"
@@ -76,8 +76,7 @@
               <div class="pay-icon-tick" id="tick{i.id}"></div>
               <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
                 <li class="pay-service-containter"
-                    each="{j in currentList}"
-                    if="{j.autopay_available_schedule || j.autopay_available || !j.form_type}">
+                    each="{j in currentList}">
                   <div class="pay-service-icon" id="{j.id}"
                        role="button"
                        aria-label="{j.name}"
@@ -85,39 +84,6 @@
                     <img id="{j.id+'_image'}" if="{j.image}"
                          class="pay-service-image" src="{j.image}"
                          onload="clearLoaderOnIconLoad(this.id)">
-                    <div class="pay-service-name-field">{j.name}</div>
-                  </div>
-                </li>
-              </ul>
-              <div class="title-bottom-border">
-              </div>
-            </div>
-          </li>
-        </ul>
-
-        <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;" if="{opts.mode != 'ADDAUTOPAY'}">
-          <li each="{i in categoryList}" style="overflow: hidden;">
-            <div if="{!(modeOfApp.offlineMode && i.id == 11)}" class="pay-service-block-containter" id="{i.id}"
-                 ontouchstart="onTouchStartOfCategory(this.id)"
-                 onclick="onTouchEndOfCategory(this.id)">
-              <div if="{false}" class="pay-category-icon" style="background-image: url({i.icon})"></div>
-              <img id="{i.id+'_icon'}" if="{i.icon}"
-                   class="pay-category-icon" src="{i.icon}"
-                   onload="clearLoaderOnIconLoad(this.id)">
-              <div class="pay-category-name-field">{i.name}
-              </div>
-              <div class="pay-icon-tick" id="tick{i.id}"></div>
-              <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
-                <li class="pay-service-containter"
-                    each="{j in currentList}"
-                    if="{modeOfApp.onlineMode || j.id.toString().search('mynumber')!=-1 || (modeOfApp.offlineMode && servicesParamsMapOne[j.id] && servicesParamsMapOne[j.id][0].ussd_query)}">
-                  <div class="pay-service-icon" id="{j.id}"
-                       role="button"
-                       aria-label="{j.name}"
-                       onclick="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
-                    <img id="{j.id+'_image'}" if="{j.image}"
-                         class="pay-service-image" src="{j.image}"
-                         onload="clearLoaderOnIconLoad(this.id)" onerror="">
                     <div class="pay-service-name-field">{j.name}</div>
                   </div>
                 </li>
@@ -370,7 +336,16 @@
             scope.index = id;
           }
 
-          scope.currentList = scope.servicesMapByCategory[id];
+          scope.currentList = [];
+
+          for (var i in scope.servicesMapByCategory[id]) {
+            if ((opts.mode != 'ADDAUTOPAY' && (modeOfApp.onlineMode || scope.servicesMapByCategory[id][i].id.toString().search('mynumber') != -1 || (modeOfApp.offlineMode && scope.servicesParamsMapOne[scope.servicesMapByCategory[id][i].id] && scope.servicesParamsMapOne[scope.servicesMapByCategory[id][i].id][0].ussd_query))) ||
+              (opts.mode == 'ADDAUTOPAY' && (scope.servicesMapByCategory[id][i].autopay_available_schedule || scope.servicesMapByCategory[id][i].autopay_available || !scope.servicesMapByCategory[id][i].form_type))) {
+              scope.currentList.push(scope.servicesMapByCategory[id][i]);
+            }
+          }
+
+//          scope.currentList = scope.servicesMapByCategory[id];
 //        count = 1;
 
           console.log("currentList=", scope.currentList);
