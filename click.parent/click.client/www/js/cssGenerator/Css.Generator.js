@@ -6961,7 +6961,6 @@ var css = {
   "transition: 0.7s;" +
   "transform-origin: bottom left;" +
   "-webkit-transform-origin: bottom left;" +
-  "overflow: hidden;" +
   "color: #757389;" +
   "}",
 
@@ -7118,6 +7117,7 @@ var css = {
   "background-color: #FFFFFF;" +
   "left: 5%;" +
   "margin-top:" + 13 * widthK + "px;" +
+  "border: 2px solid #e7e7e7;" +
   "}",
 
   transferNewCardFoundTextTwo: ".transfer-new-card-found-text-two" +
