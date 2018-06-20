@@ -348,6 +348,8 @@
           } else {
             if (scope.index != -1) {
               document.getElementById("tick" + scope.index).style.backgroundImage = "url(resources/icons/ViewPay/catopen.png)";
+              scope.show = false;
+              scope.update();
             }
             scope.index = id;
           }
