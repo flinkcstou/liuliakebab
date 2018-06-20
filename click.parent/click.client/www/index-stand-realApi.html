@@ -162,6 +162,13 @@
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
         riotTags.innerHTML = "<" + history.arrayOfHistory[history.arrayOfHistory.length - 1].view + ">";
         if (onBackParams.opts) {
+
+          if (onBackParams.opts === 'fromAuthorization') {
+            // do not allow user use backButton in authorization page
+            //navigator.app.exitApp();
+            return;
+          }
+
           console.log("111", onBackParams.opts);
           tempOpts = JSON.parse(JSON.stringify(onBackParams.opts));
           onBackParams.opts = null;

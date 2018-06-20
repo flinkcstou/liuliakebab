@@ -476,6 +476,8 @@
       event.preventDefault();
       event.stopPropagation();
 
+      onBackParams.opts = null;
+
       authClickPassButtonId.style.webkitTransform = 'scale(1)';
 
       clickPassTouchEndX = event.changedTouches[0].pageX;
