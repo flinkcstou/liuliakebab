@@ -285,7 +285,9 @@
           processingIdInInput = cardInputId.value.replace(/\s/g, '').substring(0, parseInt(issuer.prefix_length));
           if (issuer.prefix === processingIdInInput) {
             scope.processingImage = issuer.url;
-//            processingIconId.style.display = 'block';
+            if (device.platform == 'iOS') {
+              processingIconId.style.display = 'block';
+            }
             processingIconFound = true;
             currentIssuer = issuer;
             scope.procType = issuer.prefix;
@@ -299,7 +301,9 @@
             if (bank.code === bankIdInInput) {
               scope.bank = bank;
               scope.bankImage = bank.image;
-//              bankIconId.style.display = 'block';
+              if (device.platform == 'iOS') {
+                bankIconId.style.display = 'block';
+              }
               bankIconFound = true;
               scope.minLimit = parseInt(bank.p2p_min_limit);
               scope.maxLimit = parseInt(bank.p2p_max_limit);
@@ -315,11 +319,13 @@
               checkImageExists(cardDesignId.src, function (exists) {
                 if (exists) {
 
-                  if (cardDesignId.className.indexOf('transfer-new-card-design-appear') === -1) {
-                    cardDesignId.classList.add('transfer-new-card-design-appear');
-                    cardInputFieldsId.classList.add('transfer-new-card-input-fields-reduce');
-                    if (bank.font_color) {
-                      cardInputFieldsId.style.color = 'rgb(' + bank.font_color + ')';
+                  if (device.platform != 'iOS') {
+                    if (cardDesignId.className.indexOf('transfer-new-card-design-appear') === -1) {
+                      cardDesignId.classList.add('transfer-new-card-design-appear');
+                      cardInputFieldsId.classList.add('transfer-new-card-input-fields-reduce');
+                      if (bank.font_color) {
+                        cardInputFieldsId.style.color = 'rgb(' + bank.font_color + ')';
+                      }
                     }
                   }
                 } else {
@@ -338,10 +344,12 @@
           scope.bankImage = '';
           bankIconId.style.display = 'none';
 
-          if (cardDesignId.className.indexOf('transfer-new-card-design-appear') !== -1) {
-            cardDesignId.classList.remove('transfer-new-card-design-appear');
-            cardInputFieldsId.classList.remove('transfer-new-card-input-fields-reduce');
-            cardInputFieldsId.style.color = '';
+          if (device.platform != 'iOS') {
+            if (cardDesignId.className.indexOf('transfer-new-card-design-appear') !== -1) {
+              cardDesignId.classList.remove('transfer-new-card-design-appear');
+              cardInputFieldsId.classList.remove('transfer-new-card-input-fields-reduce');
+              cardInputFieldsId.style.color = '';
+            }
           }
         }
       }
@@ -359,15 +367,14 @@
       } else {
         scope.showBottomButton = false;
         cardSuggestions.style.display = 'block';
-        cardContainer.style.background = 'linear-gradient(to top, white, rgba(255, 255, 255, 0)), ' +
+        cardContainer.style.background = 'linear-gradient(to top, white, rgba(255, 255, 255, 0) 50%), ' +
           'url(resources/icons/ViewTransfer/transfer_card.png)';
-        cardContainer.style.background += '-webkit-linear-gradient(bottom, white, rgba(255, 255, 255, 0)), ' +
+        cardContainer.style.background += '-webkit-linear-gradient(bottom, white, rgba(255, 255, 255, 0) 50%), ' +
           'url(resources/icons/ViewTransfer/transfer_card.png)';
-        cardContainer.style.backgroundSize = 'cover';
+        cardContainer.style.backgroundSize = '102%';
         cardContainer.style.backgroundRepeat = 'no-repeat';
         cardContainer.style.backgroundPosition = 'center';
 //        cardInputContainer.style.top = '' + 133 * widthK + 'px';
-        cardInputContainer.style.border = '' + 3 * widthK + 'px solid #F0F1F4';
         cardOwnerId.style.display = 'none';
         scope.cardOwner = '';
       }

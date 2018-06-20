@@ -356,7 +356,9 @@
           processingIdInInput = boxOne.value.replace(/\s/g, '').substring(0, parseInt(issuer.prefix_length));
           if (issuer.prefix === processingIdInInput) {
             scope.processingImage = issuer.url;
-//            processingIconId.style.display = 'block';
+            if (device.platform == 'iOS') {
+              processingIconId.style.display = 'block';
+            }
             processingIconFound = true;
             currentIssuer = issuer;
           }
@@ -367,7 +369,9 @@
           currentIssuer.item.forEach(function (bank) {
             if (bank.code === bankIdInInput) {
               scope.bankImage = bank.image;
-//              bankIconId.style.display = 'block';
+              if (device.platform == 'iOS') {
+                bankIconId.style.display = 'block';
+              }
               bankIconFound = true;
               var url_splitted = bank.card_background_url.toString().split("/");
               var background_file_name = url_splitted[url_splitted.length - 1];
@@ -376,11 +380,13 @@
               checkImageExists(cardDesignId.src, function (exists) {
                 if (exists) {
 
-                  if (cardDesignId.className.indexOf('add-card-card-design-appear') === -1) {
-                    cardDesignId.classList.add('add-card-card-design-appear');
-                    cardInputFieldsId.classList.add('add-card-card-input-fields-reduce');
-                    if (bank.font_color) {
-                      cardInputFieldsId.style.color = 'rgb(' + bank.font_color + ')';
+                  if (device.platform != 'iOS') {
+                    if (cardDesignId.className.indexOf('add-card-card-design-appear') === -1) {
+                      cardDesignId.classList.add('add-card-card-design-appear');
+                      cardInputFieldsId.classList.add('add-card-card-input-fields-reduce');
+                      if (bank.font_color) {
+                        cardInputFieldsId.style.color = 'rgb(' + bank.font_color + ')';
+                      }
                     }
                   }
                 } else {
@@ -398,10 +404,12 @@
           scope.bankImage = '';
           bankIconId.style.display = 'none';
 
-          if (cardDesignId.className.indexOf('add-card-card-design-appear') !== -1) {
-            cardDesignId.classList.remove('add-card-card-design-appear');
-            cardInputFieldsId.classList.remove('add-card-card-input-fields-reduce');
-            cardInputFieldsId.style.color = '';
+          if (device.platform != 'iOS') {
+            if (cardDesignId.className.indexOf('add-card-card-design-appear') !== -1) {
+              cardDesignId.classList.remove('add-card-card-design-appear');
+              cardInputFieldsId.classList.remove('add-card-card-input-fields-reduce');
+              cardInputFieldsId.style.color = '';
+            }
           }
         }
       }
