@@ -337,6 +337,7 @@
         opts.firstFieldText = firstFieldInput.value;
         opts.firstFieldTitle = scope.chosenFieldName;
         opts.secondFieldValue = secondFieldInput.value;
+        opts.amountText = 0;
 
         history.arrayOfHistory[history.arrayOfHistory.length - 1].params = opts;
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));

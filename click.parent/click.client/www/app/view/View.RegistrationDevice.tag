@@ -73,10 +73,31 @@
         StatusBar.backgroundColorByHexString("#ffffff");
       canvas = document.getElementById('canvas');
       ctx = canvas.getContext("2d");
-    })
+    });
 
     var checkRemember = false;
     var timeOutTimer = 0;
+    var deviceImei;
+
+    //    function deviceImei() {
+
+    if (device.platform == "BrowserStand" || device.platform == 'iOS') {
+      deviceImei = (device.uuid.substring(0, device.uuid.length / 2));
+    } else {
+      window.plugins.imei.get(
+        function (imei) {
+          console.log("got imei: " + imei);
+          deviceImei = imei;
+        },
+        function () {
+          console.log("error loading imei");
+        }
+      );
+    }
+
+    //    }
+
+    //    deviceImei();
 
     var rememberTouchStartX, rememberTouchStartY, rememberTouchEndX, rememberTouchEndY;
     rememberTouchStart = function () {
@@ -469,28 +490,6 @@
       return device.model;
     }
 
-    var deviceImei;
-
-    function deviceImei() {
-
-      if (device.platform == "BrowserStand" || device.platform == 'iOS') {
-        deviceImei = (device.uuid.substring(0, device.uuid.length / 2));
-      } else {
-        window.plugins.imei.get(
-          function (imei) {
-            console.log("got imei: " + imei);
-            deviceImei = imei;
-          },
-          function () {
-            console.log("error loading imei");
-          }
-        );
-      }
-
-    }
-
-    deviceImei();
-
     function deviceInfo() {
       return device.manufacturer + ' ' + device.version + ' ' + device.model;
     }
@@ -576,8 +575,6 @@
           window.clearTimeout(timeOutTimer);
         }
       });
-
-
     }
 
     updateAlertComponent = function (showError, stepAmount, viewPage, text) {
