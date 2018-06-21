@@ -129,11 +129,9 @@
 
     console.log("enable_information_cache", localStorage.getItem('click_client_infoCacheEnabled'));
 
-    if (opts.getInformation && !opts.isInFavorites) {
-      localStorage.setItem('click_client_infoCacheEnabled', opts.getInformation[0].enable_information_cache);
-      if (opts.getInformation[0].enable_information_cache) {
-        localStorage.setItem("click_client_infoCached", JSON.stringify(opts.getInformation[0]));
-      }
+    if ((opts.getInformation && !opts.isInFavorites) || (localStorage.getItem('click_client_infoCacheEnabled') && JSON.parse(localStorage.getItem('click_client_infoCacheEnabled')))) {
+      if (!opts.getInformation)
+        opts.getInformation = JSON.parse(localStorage.getItem("click_client_infoCached"));
       scope.options = opts.getInformation[0].options;
       scope.optionsHeader = opts.getInformation[0].options_header;
       if (scope.options && scope.options.length >= 1) {
@@ -190,7 +188,7 @@
             if (result[1]) {
               localStorage.setItem('click_client_infoCacheEnabled', result[1][0].enable_information_cache);
               if (result[1][0].enable_information_cache) {
-                localStorage.setItem("click_client_infoCached", JSON.stringify(result[1][0]));
+                localStorage.setItem("click_client_infoCached", JSON.stringify(result[1]));
               }
               scope.options = result[1][0].options;
               if (scope.options && scope.options.length > 1) {
@@ -200,7 +198,7 @@
                 scope.chosenFieldParamId = opts.contractValue ? opts.contractValue : scope.options[0].option_value;
                 scope.optionObject = scope.options[0].option_object;
                 for (var k in scope.optionObject) {
-                  if (k > 1)
+                  if (k > 1 && scope.optionObject[k].value != 0)
                     scope.optionObject[k].value = accounting.formatMoney(scope.optionObject[k].value, options);
                   scope.optionObject[k].index = k;
                 }
