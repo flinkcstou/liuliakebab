@@ -554,11 +554,16 @@
 
     if (modeOfApp.offlineMode) return;
 
-    if (modeOfApp.onlineMode && window.isConnected) {
-      console.log('HIDE CONFIRM and ALERT');
+    console.log("qrScaner.qrInited before hiding", qrScaner.qrInited);
+
+    if (modeOfApp.onlineMode && window.isConnected && qrScaner.qrInited == null) {
+      console.log('HIDE CONFIRM and ALERT', qrScaner.qrInited);
       window.common.alert.hide("componentConfirmId");
       window.common.alert.hide("componentAlertId");
     }
+
+    if (qrScaner.qrInited != null)
+      qrScaner.qrInited = null;
 
     if (!checkFirstStarting && localStorage.getItem('click_client_token') && localStorage.getItem('click_client_loginInfo') &&
       !(sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true)) {

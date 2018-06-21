@@ -288,6 +288,7 @@ componentReportFilter.currentMonth = 5;
 componentReportFilter.pastMonth = 6;
 
 window.qrScaner = {};
+qrScaner.qrInited = null;
 
 window.checkShowingComponent = null;
 

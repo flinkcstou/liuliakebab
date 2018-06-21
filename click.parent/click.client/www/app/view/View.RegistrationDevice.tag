@@ -67,6 +67,7 @@
   </div>
 
   <script>
+    var scope = this;
 
     this.on('mount', function () {
       if (device.platform != 'BrowserStand')
@@ -77,27 +78,27 @@
 
     var checkRemember = false;
     var timeOutTimer = 0;
-    var deviceImei;
 
-    //    function deviceImei() {
+    scope.deviceimei;
 
-    if (device.platform == "BrowserStand" || device.platform == 'iOS') {
-      deviceImei = (device.uuid.substring(0, device.uuid.length / 2));
-    } else {
-      window.plugins.imei.get(
-        function (imei) {
-          console.log("got imei: " + imei);
-          deviceImei = imei;
-        },
-        function () {
-          console.log("error loading imei");
-        }
-      );
+    function deviceImei() {
+
+      if (device.platform == "BrowserStand" || device.platform == 'iOS') {
+        scope.deviceimei = (device.uuid.substring(0, device.uuid.length / 2));
+      } else {
+        window.plugins.imei.get(
+          function (imei) {
+            console.log("got imei: " + imei);
+            scope.deviceimei = imei;
+          },
+          function () {
+            console.log("error loading imei");
+          }
+        );
+      }
     }
 
-    //    }
-
-    //    deviceImei();
+    deviceImei();
 
     var rememberTouchStartX, rememberTouchStartY, rememberTouchEndX, rememberTouchEndY;
     rememberTouchStart = function () {
@@ -377,6 +378,9 @@
         var correctPhoneNumber = true;
         var phoneNumber = scope.phoneNumber.substring(1, scope.phoneNumber.length);
 
+        if (!scope.deviceimei)
+          deviceImei();
+
         if (phoneNumber.length != 12) {
           scope.clickPinError = false;
           scope.errorNote = "Неправильно введен номер телефона";
@@ -496,85 +500,92 @@
 
     function registrationDevice(phoneNumber, date) {
       window.startSpinner();
+      var timeOut = 0;
+      if (!scope.deviceimei)
+        timeOut = 1000;
 
-      window.api.call({
-        method: 'device.register.request',
-        stopSpinner: false,
-        input: {
-          phone_num: phoneNumber,
-          device_info: deviceInfo(),
-          device_name: deviceName(),
-          device_type: deviceType(),
-          datetime: date,
-          imei: deviceImei,
-          app_version: AppVersion.version
-        },
+      setTimeout(function () {
+        console.log("scope.deviceimei =", scope.deviceimei);
 
-        scope: this,
+        window.api.call({
+          method: 'device.register.request',
+          stopSpinner: false,
+          input: {
+            phone_num: phoneNumber,
+            device_info: deviceInfo(),
+            device_name: deviceName(),
+            device_type: deviceType(),
+            datetime: date,
+            imei: scope.deviceimei,
+            app_version: AppVersion.version
+          },
 
-        onSuccess: function (result) {
-          console.log('Clearing timer onSuccess', timeOutTimer);
-          window.clearTimeout(timeOutTimer);
-          window.stopSpinner();
-          console.log("Device.register.request method answer: fail");
+          scope: this,
 
-          if (result[0][0].error == 0) {
-            if (result[1][0]) {
+          onSuccess: function (result) {
+            console.log('Clearing timer onSuccess', timeOutTimer);
+            window.clearTimeout(timeOutTimer);
+            window.stopSpinner();
+            console.log("Device.register.request method answer: fail");
 
-              localStorage.setItem('onResume', false);
+            if (result[0][0].error == 0) {
+              if (result[1][0]) {
 
-              var deviceId = result[1][0].device_id;
-              localStorage.setItem('click_client_deviceID', deviceId);
-              token = hex_sha512(deviceId + date + phoneNumber);
-              localStorage.setItem('click_client_token', token);
-              if (result[1][0].confirm_needed) {
-                localStorage.setItem('confirm_needed', true);
-                this.riotTags.innerHTML = "<view-sms>";
-                riot.mount('view-sms');
-                scope.unmount()
-              }
-              else {
-                window.pushNotificationInitialize();
-                localStorage.setItem('confirm_needed', false);
-                localStorage.setItem('click_client_registered', true);
-                this.riotTags.innerHTML = "<view-authorization>";
-                riot.mount('view-authorization');
-                scope.unmount()
+                localStorage.setItem('onResume', false);
+
+                var deviceId = result[1][0].device_id;
+                localStorage.setItem('click_client_deviceID', deviceId);
+                token = hex_sha512(deviceId + date + phoneNumber);
+                localStorage.setItem('click_client_token', token);
+                if (result[1][0].confirm_needed) {
+                  localStorage.setItem('confirm_needed', true);
+                  this.riotTags.innerHTML = "<view-sms>";
+                  riot.mount('view-sms');
+                  scope.unmount()
+                }
+                else {
+                  window.pushNotificationInitialize();
+                  localStorage.setItem('confirm_needed', false);
+                  localStorage.setItem('click_client_registered', true);
+                  this.riotTags.innerHTML = "<view-authorization>";
+                  riot.mount('view-authorization');
+                  scope.unmount()
+                }
               }
             }
-          }
-          else {
-            scope.clickPinError = false;
-            updateAlertComponent(true, null, 'view-registration-device', result[0][0].error_note);
-          }
-        },
+            else {
+              scope.clickPinError = false;
+              updateAlertComponent(true, null, 'view-registration-device', result[0][0].error_note);
+            }
+          },
 
-        onFail: function (api_status, api_status_message, data) {
-          console.log('Clearing timer onFail', timeOutTimer);
-          window.clearTimeout(timeOutTimer);
-          console.log("Device.register.request method answer: fail");
-          window.stopSpinner();
-          updateAlertComponent(true, null, 'view-registration-device', "Сервис временно не доступен");
-          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
-        },
-        onTimeOut: function () {
-          timeOutTimer = setTimeout(function () {
-            window.writeLog({
-              reason: 'Timeout',
-              method: 'device.register.request',
-            });
-            updateAlertComponent(true, null, 'view-registration-device', window.languages.WaitingTimeExpiredText);
+          onFail: function (api_status, api_status_message, data) {
+            console.log('Clearing timer onFail', timeOutTimer);
+            window.clearTimeout(timeOutTimer);
+            console.log("Device.register.request method answer: fail");
             window.stopSpinner();
-            window.api.forceClose();
-          }, 30000);
-          console.log('creating timeOut', timeOutTimer);
-        },
-        onEmergencyStop: function () {
-          console.log('Clearing timer emergencyStop', timeOutTimer);
-          window.clearTimeout(timeOutTimer);
-        }
-      });
+            updateAlertComponent(true, null, 'view-registration-device', "Сервис временно не доступен");
+            console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
+            console.error(data);
+          },
+          onTimeOut: function () {
+            timeOutTimer = setTimeout(function () {
+              window.writeLog({
+                reason: 'Timeout',
+                method: 'device.register.request',
+              });
+              updateAlertComponent(true, null, 'view-registration-device', window.languages.WaitingTimeExpiredText);
+              window.stopSpinner();
+              window.api.forceClose();
+            }, 30000);
+            console.log('creating timeOut', timeOutTimer);
+          },
+          onEmergencyStop: function () {
+            console.log('Clearing timer emergencyStop', timeOutTimer);
+            window.clearTimeout(timeOutTimer);
+          }
+        });
+      }, timeOut);
     }
 
     updateAlertComponent = function (showError, stepAmount, viewPage, text) {
