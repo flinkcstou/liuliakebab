@@ -36,7 +36,8 @@
         </div>
       </div>
 
-      <div class="inplace-pay-category-inner-container" if="{searchServices}" id="categoriesContainerId">
+      <div class="inplace-pay-category-inner-container" style="height: 91%;" if="{searchServices}"
+           id="categoriesContainerId">
 
         <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
           <li each="{i in suggestions}" style="overflow: hidden;">
@@ -59,7 +60,8 @@
         </div>
       </div>
 
-      <div class="inplace-pay-category-inner-container" if="{!searchServices}" id="categoriesContainerId"
+      <div class="inplace-pay-category-inner-container" style="height: 91%;" if="{!searchServices}"
+           id="categoriesContainerId"
            onscroll="onTouchMoveOfCategory()">
 
         <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">

@@ -11586,7 +11586,7 @@ var css = {
 
   changedHeightForPaymentDetail: ".changed-height-for-payment-detail" +
   "{" +
-  "height: 48%;" +
+  "height: 57%;" +
   "}",
 
   changedHeightForFilterAccount: ".changed-height-for-filter-account" +
@@ -18334,7 +18334,7 @@ var css = {
   inPlacePayCategoryInnerContainer: ".inplace-pay-category-inner-container" +
   "{" +
   "position: absolute;" +
-  "height:92%; " +
+  "height:90%; " +
   "width: 100%; " +
   "top: 9%; " +
   "bottom:0; " +
