@@ -14,8 +14,8 @@
     <p class="transfer-to-card-transfer-title-part-one">
       {opts.description}</p>
 
-    <p class="transfer-to-card-transfer-title-phone" if="{opts.is_friend_help}">{opts.friend_name?opts.friend_name:
-      ('+'+opts.phoneNumber)}</p>
+    <p class="transfer-to-card-transfer-title-phone" if="{opts.is_friend_help}">За {opts.serviceName} -
+      {opts.parameter}</p>
     <div class="title-bottom-border">
     </div>
   </div>
@@ -67,8 +67,8 @@
 
     //Get currency for this service
     if (localStorage.getItem("click_client_servicesMap")
-      && JSON.parse(localStorage.getItem("click_client_servicesMap"))){
-      if (JSON.parse(localStorage.getItem("click_client_servicesMap"))[opts.service_id]){
+      && JSON.parse(localStorage.getItem("click_client_servicesMap"))) {
+      if (JSON.parse(localStorage.getItem("click_client_servicesMap"))[opts.service_id]) {
         scope.currency = JSON.parse(localStorage.getItem("click_client_servicesMap"))[opts.service_id][0].lang_amount_currency;
         console.log('currency', scope.currency);
       }
@@ -200,7 +200,7 @@
           },
           scope: this,
           onSuccess: function (result) {
-            console.log('Clearing timer onSuccess',timeOutTimer);
+            console.log('Clearing timer onSuccess', timeOutTimer);
             window.clearTimeout(timeOutTimer);
 
             if (result[0][0].error == 0) {
@@ -218,7 +218,7 @@
           },
 
           onFail: function (api_status, api_status_message, data) {
-            console.log('Clearing timer onFail',timeOutTimer);
+            console.log('Clearing timer onFail', timeOutTimer);
             window.clearTimeout(timeOutTimer);
             window.common.alert.show("componentAlertId", {
               parent: scope,
@@ -234,21 +234,21 @@
             timeOutTimer = setTimeout(function () {
               window.writeLog({
                 reason: 'Timeout',
-                method:'invoice.action',
+                method: 'invoice.action',
               });
-                window.common.alert.show("componentAlertId", {
-                  parent: scope,
-                  clickpinerror: false,
-                  errornote: window.languages.WaitingTimeExpiredText,
-                  errorcode: scope.errorCode,
-                  viewpage: 'view-main-page'
-                });
-                window.stopSpinner();
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                clickpinerror: false,
+                errornote: window.languages.WaitingTimeExpiredText,
+                errorcode: scope.errorCode,
+                viewpage: 'view-main-page'
+              });
+              window.stopSpinner();
             }, 30000);
             console.log('creating timeOut', timeOutTimer);
           },
-          onEmergencyStop: function(){
-            console.log('Clearing timer emergencyStop',timeOutTimer);
+          onEmergencyStop: function () {
+            console.log('Clearing timer emergencyStop', timeOutTimer);
             window.clearTimeout(timeOutTimer);
           }
         }, 30000);
@@ -321,7 +321,7 @@
               }, 2000);
             }
             else {
-              console.log('Clearing timer onSuccess',timeOutTimer);
+              console.log('Clearing timer onSuccess', timeOutTimer);
               window.clearTimeout(timeOutTimer);
 
               history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1)
@@ -333,7 +333,7 @@
           },
 
           onFail: function (api_status, api_status_message, data) {
-            console.log('Clearing timer onFail',timeOutTimer);
+            console.log('Clearing timer onFail', timeOutTimer);
             window.clearTimeout(timeOutTimer);
             updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
@@ -343,14 +343,14 @@
             timeOutTimer = setTimeout(function () {
               window.writeLog({
                 reason: 'Timeout',
-                method:'invoice.action',
+                method: 'invoice.action',
               });
-                updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
+              updateResultComponent(true, null, pageToReturnIfError, 'waiting', window.languages.WaitingTimeExpiredText);
             }, 40000);
             console.log('creating timeOut', timeOutTimer);
           },
-          onEmergencyStop: function(){
-            console.log('Clearing timer emergencyStop',timeOutTimer);
+          onEmergencyStop: function () {
+            console.log('Clearing timer emergencyStop', timeOutTimer);
             window.clearTimeout(timeOutTimer);
           }
         }, 40000);
@@ -383,7 +383,7 @@
             window.checkShowingComponent = null;
             console.log("result of get.payment success=", result);
             if (result[1][0].state == -1) {
-              console.log('Clearing timer onSuccess',timeOutTimer);
+              console.log('Clearing timer onSuccess', timeOutTimer);
               window.clearTimeout(timeOutTimer);
 
               history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1);
@@ -392,7 +392,7 @@
               updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', result[1][0].error);
 
             } else if (result[1][0].state == 2) {
-              console.log('Clearing timer onSuccess',timeOutTimer);
+              console.log('Clearing timer onSuccess', timeOutTimer);
               window.clearTimeout(timeOutTimer);
 
               window.updateBalanceGlobalFunction();
@@ -409,7 +409,7 @@
                   checkPaymentStatus(result[1][0].payment_id);
                 }, 2000);
               } else {
-                console.log('Clearing timer onSuccess',timeOutTimer);
+                console.log('Clearing timer onSuccess', timeOutTimer);
                 window.clearTimeout(timeOutTimer);
 
                 history.arrayOfHistory = history.arrayOfHistory.slice(0, history.arrayOfHistory.length - 1);
@@ -420,22 +420,22 @@
             }
           }
           else {
-            console.log('Clearing timer onSuccess',timeOutTimer);
+            console.log('Clearing timer onSuccess', timeOutTimer);
             window.clearTimeout(timeOutTimer);
             updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', result[1][0].error);
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
-          console.log('Clearing timer onFail',timeOutTimer);
+          console.log('Clearing timer onFail', timeOutTimer);
           window.clearTimeout(timeOutTimer);
 
           updateResultComponent(true, null, pageToReturnIfError, 'unsuccess', api_status_message);
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         },
-        onEmergencyStop: function(){
-          console.log('Clearing timer emergencyStop',timeOutTimer);
+        onEmergencyStop: function () {
+          console.log('Clearing timer emergencyStop', timeOutTimer);
           window.clearTimeout(timeOutTimer);
         }
       });

@@ -166,6 +166,7 @@
             invoiceId: invoice.invoice_id,
             phoneNumber: invoice.merchant_phone,
             accountNumber: invoice.parameter,
+            parameter: invoice.parameter,
             serviceName: invoice.service_name,
             is_friend_help: invoice.is_friend_help,
             friend_name: invoice.friend_name,

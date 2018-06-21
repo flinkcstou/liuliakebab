@@ -1495,30 +1495,6 @@
       event.preventDefault();
       event.stopPropagation();
 
-//      if (amount.value.length == 1) {
-//        amount.value = window.amountTransform(amount.value)
-//      }
-//
-//      if (event.keyCode == 8) {
-//        amountForPayTransaction = amountForPayTransaction.substring(0, amountForPayTransaction.length - 1)
-//      }
-
-//      if (amount.value.match(maskTwo) != null && amount.value.match(maskTwo).length != null) {
-//
-//        amount.value = amount.value.substring(0, event.target.value.match(maskTwo).length);
-//        amount.selectionStart = amount.value.match(maskTwo).length;
-//        amount.selectionEnd = amount.value.match(maskTwo).length;
-//
-//        amountForPayTransaction = amount.value.substring(0, amount.value.match(maskTwo).length);
-//        amountForPayTransaction = amountForPayTransaction.replace(new RegExp(' ', 'g'), '');
-//
-//        amount.value = window.amountTransform(amountForPayTransaction);
-//
-//      } else {
-//        amount.selectionStart = 0;
-//        amount.selectionEnd = 0;
-//      }
-
       var amountInput = accounting.formatMoney(amount.value, options);
 
       var selectionStart = amount.selectionStart,

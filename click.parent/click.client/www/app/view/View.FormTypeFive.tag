@@ -114,16 +114,6 @@
     scope.showErrorOfLimit = false;
     var onPaste = false;
     scope.selectedId = '';
-    var options = {
-      symbol: "",
-      decimal: ".",
-      thousand: " ",
-      precision: 0,
-      format: {
-        pos: "%v",
-        zero: ""
-      }
-    };
 
     console.log("opts in FormTypeFive", opts);
 

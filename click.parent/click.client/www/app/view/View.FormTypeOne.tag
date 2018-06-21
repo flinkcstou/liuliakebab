@@ -163,6 +163,27 @@
     scope.showErrorOfLimit = false;
     var onPaste = false;
     scope.selectedId = '';
+    var options = {
+      symbol: "",
+      decimal: ".",
+      thousand: " ",
+      precision: 0,
+      format: {
+        pos: "%v",
+        zero: ""
+      }
+    };
+
+    var options_for_calc = {
+      symbol: "",
+      decimal: ".",
+      thousand: " ",
+      precision: 0,
+      format: {
+        pos: "%v",
+        zero: "0"
+      }
+    };
 
     console.log("opts in FormTypeOne", opts);
 
@@ -584,11 +605,31 @@
     };
 
     convertAmount = function () {
+
+      event.stopPropagation();
+      event.preventDefault();
+
       var converted;
       scope.convertedAmount = 0;
 
-      scope.convertedAmount = Math.ceil(amountCalcInputId.value * scope.currencyRate);
-      converted = window.amountTransform(scope.convertedAmount.toString());
+      var amountInput = accounting.formatMoney(amountCalcInputId.value, options);
+
+      var selectionStart = amountCalcInputId.selectionStart,
+        notVerifiedValue = amountCalcInputId.value,
+        delta;
+
+      delta = notVerifiedValue.length - amountInput.length;
+
+      selectionStart = selectionStart - delta;
+      selectionStart = (selectionStart < 0) ? (0) : (selectionStart);
+
+      amountCalcInputId.value = amountInput;
+
+      amountCalcInputId.selectionStart = selectionStart;
+      amountCalcInputId.selectionEnd = selectionStart;
+
+      scope.convertedAmount = Math.ceil(accounting.unformat(amountCalcInputId.value) * scope.currencyRate);
+      converted = accounting.formatMoney(scope.convertedAmount.toString(), options_for_calc);
 
       if (scope.convertedAmount > scope.service.max_pay_limit) {
         convertedAmountFieldId.style.borderBottomColor = 'red';
@@ -874,13 +915,6 @@
 //        amount.value = '';
         checkFirst = true;
       }
-      if (amount.value.match(maskOne) != null && amount.value.match(maskOne).length != null) {
-        amount.selectionStart = amount.value.match(maskTwo).length;
-        amount.selectionEnd = amount.value.match(maskTwo).length;
-      } else {
-        amount.selectionStart = 0;
-        amount.selectionEnd = 0;
-      }
 
       checkFieldsToActivateNext('sum')
 
@@ -890,29 +924,23 @@
       event.preventDefault();
       event.stopPropagation();
 
-      if (amount.value.length == 1) {
-        amount.value = window.amountTransform(amount.value)
-      }
+      var amountInput = accounting.formatMoney(amount.value, options);
 
-      if (event.keyCode == 8) {
-        amountForPayTransaction = amountForPayTransaction.substring(0, amountForPayTransaction.length - 1)
-      }
+      var selectionStart = amount.selectionStart,
+        notVerifiedValue = amount.value,
+        delta;
 
-      if (amount.value.match(maskTwo) != null && amount.value.match(maskTwo).length != null) {
+      delta = notVerifiedValue.length - amountInput.length;
 
-        amount.value = amount.value.substring(0, event.target.value.match(maskTwo).length);
-        amount.selectionStart = amount.value.match(maskTwo).length;
-        amount.selectionEnd = amount.value.match(maskTwo).length;
+      selectionStart = selectionStart - delta;
+      selectionStart = (selectionStart < 0) ? (0) : (selectionStart);
 
-        amountForPayTransaction = amount.value.substring(0, amount.value.match(maskTwo).length);
-        amountForPayTransaction = amountForPayTransaction.replace(new RegExp(' ', 'g'), '');
+      amount.value = amountInput;
 
-        amount.value = window.amountTransform(amountForPayTransaction);
+      amount.selectionStart = selectionStart;
+      amount.selectionEnd = selectionStart;
 
-      } else {
-        amount.selectionStart = 0;
-        amount.selectionEnd = 0;
-      }
+      amountForPayTransaction = accounting.unformat(amount.value);
 
       opts.amountText = amount.value;
       opts.amountWithoutSpace = amountForPayTransaction;

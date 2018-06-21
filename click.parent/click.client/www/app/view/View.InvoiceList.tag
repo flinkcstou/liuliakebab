@@ -521,7 +521,8 @@
                 accountNumber: invoice.parameter,
                 serviceName: invoice.service_name,
                 is_friend_help: invoice.is_friend_help,
-                description: invoice.description
+                description: invoice.description,
+                parameter: invoice.parameter
               };
 
               console.log("PAYMENT PARAMS", params);
