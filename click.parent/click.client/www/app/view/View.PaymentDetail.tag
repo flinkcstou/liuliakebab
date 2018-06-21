@@ -14,8 +14,8 @@
     <p class="transfer-to-card-transfer-title-part-one">
       {opts.description}</p>
 
-    <p class="transfer-to-card-transfer-title-phone" if="{opts.is_friend_help}">За {opts.serviceName} -
-      {opts.parameter}</p>
+    <p class="transfer-to-card-transfer-title-phone" if="{opts.is_friend_help}">За {opts.serviceName}:</p>
+    <p class="transfer-to-card-transfer-title-phone" if="{opts.is_friend_help}">{opts.parameter}</p>
     <div class="title-bottom-border">
     </div>
   </div>
