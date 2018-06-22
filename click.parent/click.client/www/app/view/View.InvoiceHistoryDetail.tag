@@ -32,7 +32,7 @@
       <p class="invoice-history-detail-invoice-title">{languages.ViewInvoiceHistoryDetailTransferCommissionLabel}</p>
       <p class="invoice-history-detail-number">{opts.commission} сум</p>
     </div>
-    <div if="{false}" class="invoice-history-detail-invoice-container">
+    <div if="{opts.transferCode}" class="invoice-history-detail-invoice-container">
       <p class="invoice-history-detail-invoice-title">{languages.ViewInvoiceHistoryDetailTransferCodeLabel}</p>
       <p class="invoice-history-detail-data">{opts.transferCode}</p>
     </div>
