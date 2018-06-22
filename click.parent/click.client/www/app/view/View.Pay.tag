@@ -245,6 +245,9 @@
         scope.suggestions = [];
 
         if (scope.searchWord.length != 0) {
+
+          console.log("transliterated text =", transliterateText(scope.searchWord));
+
           arrayOfConnectedSuggestion.filter(function (service) {
 
             var index = service.name.toLowerCase().search(scope.searchWord.toString());
