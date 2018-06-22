@@ -84,7 +84,7 @@
     scope.servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
     scope.servicesParamsMapThree = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapThree"))) : (offlineServicesParamsMapThree);
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
-
+    onBackParams.opts = JSON.parse(JSON.stringify(opts));
     scope.enterButton = opts.mode != 'ADDFAVORITE';
     scope.update();
 
