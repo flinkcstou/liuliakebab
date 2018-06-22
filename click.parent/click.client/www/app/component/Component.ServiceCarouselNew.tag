@@ -103,61 +103,61 @@
           if (result[0][0].error == 0) {
             if (result[1][0]) {
 
-              if (device.platform != 'BrowserStand') {
-                window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
-                  var j = -1;
-
-                  for (var i = 0; i < 3; i++) {
-                    j++;
-                    scope.popularServiceList.push(result[1][i]);
-
-                    var icon = result[1][i].image;
-                    var filename = icon.substr(icon.lastIndexOf('/') + 1);
-
-                    var newIconBool = checkImageURL;
-                    newIconBool('www/resources/icons/ViewPay/', 'ViewPay', filename, icon, j, function (bool, index, fileName) {
-
-                      if (bool) {
-                        scope.popularServiceList[index].image = cordova.file.dataDirectory + fileName;
-                      } else {
-                        scope.popularServiceList[index].image = 'resources/icons/ViewPay/' + fileName;
-                      }
-
-                      if (scope.popularServiceList.length == 3) {
-                        var myNumberObject = {};
-                        myNumberObject.name = 'Мой номер';
-                        myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
-                        myNumberObject.id = 'mynumber' + localStorage.getItem('myNumberOperatorId');
-                        scope.popularServiceList.push(myNumberObject);
-                        scope.update();
-                        localStorage.setItem('click_client_popularServiceList', JSON.stringify(scope.popularServiceList));
-                      }
-                    });
-                  }
-
-
-                }, onErrorLoadFs);
+//              if (device.platform != 'BrowserStand') {
+//                window.requestFileSystem(window.TEMPORARY, 1000, function (fs) {
+//                  var j = -1;
+//
+//                  for (var i = 0; i < 3; i++) {
+//                    j++;
+//                    scope.popularServiceList.push(result[1][i]);
+//
+//                    var icon = result[1][i].image;
+//                    var filename = icon.substr(icon.lastIndexOf('/') + 1);
+//
+//                    var newIconBool = checkImageURL;
+//                    newIconBool('www/resources/icons/ViewPay/', 'ViewPay', filename, icon, j, function (bool, index, fileName) {
+//
+//                      if (bool) {
+//                        scope.popularServiceList[index].image = cordova.file.dataDirectory + fileName;
+//                      } else {
+//                        scope.popularServiceList[index].image = 'resources/icons/ViewPay/' + fileName;
+//                      }
+//
+//                      if (scope.popularServiceList.length == 3) {
+//                        var myNumberObject = {};
+//                        myNumberObject.name = 'Мой номер';
+//                        myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
+//                        myNumberObject.id = 'mynumber' + localStorage.getItem('myNumberOperatorId');
+//                        scope.popularServiceList.push(myNumberObject);
+//                        scope.update();
+//                        localStorage.setItem('click_client_popularServiceList', JSON.stringify(scope.popularServiceList));
+//                      }
+//                    });
+//                  }
+//
+//
+//                }, onErrorLoadFs);
+//              }
+//              else {
+              for (var i in result[1]) {
+                if (scope.popularServiceList.length < 4) {
+                  console.log("FTYFJUKVG", result[1][i]);
+                  scope.popularServiceList.push(result[1][i]);
+                }
               }
-              else {
-                for (var i in result[1]) {
-                  if (scope.popularServiceList.length < 4) {
-                    console.log("FTYFJUKVG", result[1][i]);
-                    scope.popularServiceList.push(result[1][i]);
-                  }
-                }
-                if (scope.popularServiceList.length == 3) {
-                  var myNumberObject = {};
-                  myNumberObject.name = 'Мой номер';
-                  myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
-                  myNumberObject.id = 'mynumber' + localStorage.getItem('myNumberOperatorId');
-                  scope.popularServiceList.push(myNumberObject);
-                }
+              if (scope.popularServiceList.length == 3) {
+                var myNumberObject = {};
+                myNumberObject.name = 'Мой номер';
+                myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
+                myNumberObject.id = 'mynumber' + localStorage.getItem('myNumberOperatorId');
+                scope.popularServiceList.push(myNumberObject);
+              }
 
-                console.log("popular services", scope.popularServiceList);
-                scope.update();
-                localStorage.setItem('click_client_popularServiceList', JSON.stringify(scope.popularServiceList));
+              console.log("popular services", scope.popularServiceList);
+              scope.update();
+              localStorage.setItem('click_client_popularServiceList', JSON.stringify(scope.popularServiceList));
 //              popularServiceImagesCaching();
-              }
+//              }
             }
           }
           else {

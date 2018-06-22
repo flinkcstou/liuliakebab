@@ -475,8 +475,8 @@
               description: invoice.description
             };
 
-            if (invoice.cntrg_info_param3)
-              params.inParameter = invoice.cntrg_info_param3;
+            if (invoice.cntrg_info_param2)
+              params.inParameter = invoice.cntrg_info_param2;
 
             scope.showComponent = true;
             scope.showComponentHistory = true;
