@@ -503,6 +503,7 @@
               console.log('PARAMS IN INVOICE LIST', params);
 
               scope.showComponent = true;
+              scope.showComponentPayment = false;
               scope.showComponentTransfer = true;
               scope.tags['view-transfer-detail'].opts = params;
               console.log("scope.tags['view-transfer-detail'].opts", scope.tags['view-transfer-detail'].opts)
@@ -528,6 +529,7 @@
               console.log("PAYMENT PARAMS", params);
 
               scope.showComponent = true;
+              scope.showComponentTransfer = false;
               scope.showComponentPayment = true;
               scope.tags['view-payment-detail'].opts = params;
               window.checkShowingComponent = scope.tags['view-payment-detail'];
