@@ -94,7 +94,7 @@
     scope.categoryNamesMap = (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
     scope.servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
     scope.autoPayData = JSON.parse(localStorage.getItem('autoPayData'));
-
+    onBackParams.opts = JSON.parse(JSON.stringify(opts));
     scope.enterButton = opts.mode == 'ADDFAVORITE' ? false : true;
     scope.enterButtonEnabled = false;
     scope.showConfirm = false;

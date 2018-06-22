@@ -12,7 +12,7 @@
     </div>
 
     <div
-        class="invoice-history-detail-icon {invoice-history-detail-payment-icon: !opts.is_p2p, invoice-history-detail-transfer-icon: opts.is_p2p}">
+      class="invoice-history-detail-icon {invoice-history-detail-payment-icon: !opts.is_p2p, invoice-history-detail-transfer-icon: opts.is_p2p}">
     </div>
     <p class="invoice-history-detail-title-part-one">
       {opts.description}</p>
@@ -32,7 +32,7 @@
       <p class="invoice-history-detail-invoice-title">{languages.ViewInvoiceHistoryDetailTransferCommissionLabel}</p>
       <p class="invoice-history-detail-number">{opts.commission} сум</p>
     </div>
-    <div class="invoice-history-detail-invoice-container">
+    <div if="{false}" class="invoice-history-detail-invoice-container">
       <p class="invoice-history-detail-invoice-title">{languages.ViewInvoiceHistoryDetailTransferCodeLabel}</p>
       <p class="invoice-history-detail-data">{opts.transferCode}</p>
     </div>

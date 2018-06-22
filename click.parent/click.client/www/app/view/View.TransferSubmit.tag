@@ -251,14 +251,7 @@
       amountMouseUp = function () {
         event.preventDefault();
         event.stopPropagation();
-//        if (submitAmountId.value.match(scope.maskOne) !== null
-//          && submitAmountId.value.match(scope.maskOne).length !== null) {
-//          submitAmountId.selectionStart = submitAmountId.value.match(scope.maskTwo).length;
-//          submitAmountId.selectionEnd = submitAmountId.value.match(scope.maskTwo).length;
-//        } else {
-//          submitAmountId.selectionStart = 0;
-//          submitAmountId.selectionEnd = 0;
-//        }
+
       };
 
       amountOnBlur = function () {
@@ -289,28 +282,6 @@
         if (submitAmountId.value.length === 1) {
           submitAmountId.value = window.amountTransform(submitAmountId.value.toString());
         }
-
-//        if (event.keyCode === 8) {
-//          scope.sumForTransfer = scope.sumForTransfer.substring(0, scope.sumForTransfer.length - 1);
-//        }
-
-//        if (submitAmountId.value.match(scope.maskTwo) !== null && submitAmountId.value.match(scope.maskTwo).length !== null) {
-//
-//          submitAmountId.value = submitAmountId.value.substring(0, event.target.value.match(scope.maskTwo).length);
-//          submitAmountId.selectionStart = submitAmountId.value.match(scope.maskTwo).length;
-//          submitAmountId.selectionEnd = submitAmountId.value.match(scope.maskTwo).length;
-//
-//          scope.sumForTransfer = submitAmountId.value.substring(0, submitAmountId.value.match(scope.maskTwo).length);
-//          scope.sumForTransfer = scope.sumForTransfer.replace(new RegExp(' ', 'g'), '');
-//
-//          submitAmountId.value = window.amountTransform(scope.sumForTransfer.toString());
-//          submitAmountId.selectionStart = submitAmountId.value.match(scope.maskTwo).length;
-//          submitAmountId.selectionEnd = submitAmountId.value.match(scope.maskTwo).length;
-//
-//        } else {
-//          submitAmountId.selectionStart = 0;
-//          submitAmountId.selectionEnd = 0;
-//        }
 
         var amountInput = accounting.formatMoney(submitAmountId.value, options);
 
