@@ -85,7 +85,7 @@
                placeholder="{placeHolderText}"
                onfocus="colorFieldGlobal('amountField','amountFieldTitle')"
                onblur="blurFieldGlobal('amountField','amountFieldTitle')"
-               onmouseup="eraseAmountDefault()" onkeyup="sumForPay()" oninput="sumForPay()"/>
+               onmouseup="eraseAmountDefault()" onkeyup="sumForPay()"/>
         <div if="{!modeOfApp.offlineMode && service['amount_editable'] && calcOn}" class="servicepage-amount-icon"
              ontouchstart="onTouchStartOfAmountCalculator()" role="button"
              aria-label="{window.languages.ViewServicePageVoiceOverOpenCalculator}"
@@ -614,14 +614,22 @@
 
       var amountInput = accounting.formatMoney(amountCalcInputId.value, options);
 
+      console.log("amountInput =", amountInput);
+
       var selectionStart = amountCalcInputId.selectionStart,
         notVerifiedValue = amountCalcInputId.value,
         delta;
 
       delta = notVerifiedValue.length - amountInput.length;
 
+      console.log("selectionStart 1=", JSON.stringify(selectionStart));
+      console.log("notVerifiedValue =", notVerifiedValue);
+      console.log("delta =", delta);
+
       selectionStart = selectionStart - delta;
       selectionStart = (selectionStart < 0) ? (0) : (selectionStart);
+
+      console.log("selectionStart 2=", JSON.stringify(selectionStart));
 
       amountCalcInputId.value = amountInput;
 
@@ -926,14 +934,23 @@
 
       var amountInput = accounting.formatMoney(amount.value, options);
 
+      console.log("amountInput =", JSON.stringify(amountInput));
+
       var selectionStart = amount.selectionStart,
         notVerifiedValue = amount.value,
         delta;
 
       delta = notVerifiedValue.length - amountInput.length;
 
+      console.log("selectionStart 1=", JSON.stringify(selectionStart));
+      console.log("notVerifiedValue =", JSON.stringify(notVerifiedValue));
+      console.log("delta =", JSON.stringify(delta));
+
       selectionStart = selectionStart - delta;
       selectionStart = (selectionStart < 0) ? (0) : (selectionStart);
+
+      console.log("selectionStart 2=", JSON.stringify(selectionStart));
+      console.log("");
 
       amount.value = amountInput;
 
