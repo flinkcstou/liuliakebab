@@ -3,7 +3,6 @@
   "dependencies": {
     "fs-extra": "1.0.0",
     "riot": "3.0.7",
-    "lodash.frompairs": "4.0.1",
     "lodash.reduce": "4.6.0"
   },
   "scripts": {
