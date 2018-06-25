@@ -2,8 +2,7 @@
   "name": "click",
   "dependencies": {
     "fs-extra": "1.0.0",
-    "riot": "3.0.7",
-    "lodash.reduce": "4.6.0"
+    "riot": "3.0.7"
   },
   "scripts": {
     "postinstall": "node postinstall.js",

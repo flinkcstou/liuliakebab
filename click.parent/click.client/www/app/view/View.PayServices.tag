@@ -177,10 +177,14 @@
         console.log("emtying");
 
         if (scope.searchWord.length != 0) {
+          var translitSearchWord = transliterateText(scope.searchWord);
+          console.log("transliterated text =", translitSearchWord);
+
           arrayOfConnectedSuggestion.filter(function (service) {
 
             var index = service.name.toLowerCase().search(scope.searchWord.toString());
-            if (index != -1 && service.is_visible && (modeOfApp.onlineMode || (modeOfApp.offlineMode && scope.servicesParamsMapOne[service.id] && scope.servicesParamsMapOne[service.id][0].ussd_query))) {
+            var translitBool = translitSearchWord.test(service.name);
+            if ((index != -1 || translitBool) && service.is_visible && (modeOfApp.onlineMode || (modeOfApp.offlineMode && scope.servicesParamsMapOne[service.id] && scope.servicesParamsMapOne[service.id][0].ussd_query))) {
               if (opts.mode != "ADDAUTOPAY" || (opts.mode == "ADDAUTOPAY" && (service.autopay_available_schedule || service.autopay_available || !service.form_type))) {
                 scope.suggestions.push(service);
               }

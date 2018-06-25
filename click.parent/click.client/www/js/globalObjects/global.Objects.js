@@ -2541,7 +2541,6 @@ function focusFieldGlobal(fieldId) {
 
 //Translit
 
-
 const cyrillicPattern = /^[\u0400-\u04FF_\s-]+$/;
 const latinPattern = /^[\u0020-\u007F_\s-]+$/;
 
@@ -2577,8 +2576,7 @@ function transProcess(abc, syllable, text) {
     for (var j = 0; j < syllable.length; j++) {
       if (restOfText.indexOf(syllable[j][0]) === 0) {
         if (Array.isArray(syllable[j][1])) {
-          var exp = _.reduce(
-            syllable[j][1],
+          var exp = syllable[j][1].reduce(
             function (text, char) {
               return text + (text ? "|" : "") + char;
             }, "");
@@ -2592,8 +2590,7 @@ function transProcess(abc, syllable, text) {
     }
 
     if (Array.isArray(abc[text[i]])) {
-      var exp = _.reduce(
-        abc[text[i]],
+      var exp = abc[text[i]].reduce(
         function (text, char) {
           return text + (text ? "|" : "") + char;
         },
@@ -2609,45 +2606,8 @@ function transProcess(abc, syllable, text) {
   return new RegExp(newStr, "gi");
 }
 
-const cyrillic = [
-  ["а", "a"],
-  ["б", "b"],
-  ["в", ["v", "w"]],
-  ["г", "g"],
-  ["д", "d"],
-  ["е", ["e", "ye"]],
-  ["ё", ["e", "yo"]],
-  ["ж", ["zh", "j"]],
-  ["з", "z"],
-  ["и", ["i", "ee"]],
-  ["й", ["i", "y", "j"]],
-  ["к", "k"],
-  ["л", "l"],
-  ["м", "m"],
-  ["н", "n"],
-  ["о", "o"],
-  ["п", "p"],
-  ["р", "r"],
-  ["с", ["s", "c"]],
-  ["т", "t"],
-  ["у", "u", "oo"],
-  ["ф", "f"],
-  ["х", "h"],
-  ["ц", "c"],
-  ["ч", "ch"],
-  ["ш", "sh"],
-  ["щ", "sh"],
-  ["ъ", ""],
-  ["ы", "i"],
-  ["ь", ""],
-  ["э", ["e", "a"]],
-  ["ю", ["yu", "u", "ju"]],
-  ["я", ["ya", "ja"]]
-];
-
 const cyrillicSyllable = [["ай", "i"], ["аи", "i"], ["кс", ["x", "ks"]]];
 
-// const cyrillicObj = _.fromPairs(cyrillic);
 const cyrillicObj = {
   "а": "a",
   "б": "b",
@@ -2684,35 +2644,6 @@ const cyrillicObj = {
   "я": ["ya", "ja"]
 };
 
-const latin = [
-  ["a", ["а", "э"]],
-  ["b", "б"],
-  ["c", ["ц", "с"]],
-  ["d", "д"],
-  ["e", ["е", "э"]],
-  ["f", "ф"],
-  ["g", "г"],
-  ["h", ["х", "г"]],
-  ["i", ["и", "ай", "ы"]],
-  ["j", ["й", "ж"]],
-  ["k", "к"],
-  ["l", "л"],
-  ["m", "м"],
-  ["n", "н"],
-  ["o", "о"],
-  ["p", "п"],
-  ["q", "к"],
-  ["r", "р"],
-  ["s", "с"],
-  ["t", "т"],
-  ["u", ["у", "ю"]],
-  ["v", "в"],
-  ["w", "в"],
-  ["x", ["кс", "кз", "з"]],
-  ["y", ["й", "и"]],
-  ["z", "з"]
-];
-
 const latinSyllable = [
   ["ph", "ф"],
   ["oo", "у"],
@@ -2722,7 +2653,6 @@ const latinSyllable = [
   ["sh", "ш"]
 ];
 
-// const latinObj = _.fromPairs(latin);
 const latinObj = {
   "a": ["а", "э"],
   "b": "б",
