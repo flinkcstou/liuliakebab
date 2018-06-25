@@ -30,8 +30,7 @@
              onfocus="amountFocus()"
              onmouseup="amountMouseUp()"
              onblur="amountOnBlur()"
-             onkeyup="amountKeyUp()"
-             oninput="amountKeyUp()">
+             onkeyup="amountKeyUp()">
       <p if="{showPlaceHolderError && maxLimit && minLimit}"
          id="placeHolderSumId"
          style="color: red;"
@@ -170,10 +169,10 @@
     var pageToReturnIfError = 'view-main-page';
     var timeOutTimer = 0;
     var options = {
-      symbol : "",
-      decimal : ".",
+      symbol: "",
+      decimal: ".",
       thousand: " ",
-      precision : 0,
+      precision: 0,
       format: {
         pos: "%v",
         zero: ""

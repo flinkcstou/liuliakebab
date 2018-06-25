@@ -114,7 +114,7 @@
                pattern="[0-9]"
                placeholder="{placeHolderText}"
                onfocus="colorField('amount')"
-               onmouseup="eraseAmountDefault()" onkeyup="sumForPay()" oninput="sumForPay()"/>
+               onmouseup="eraseAmountDefault()" onkeyup="sumForPay()"/>
         <div if="{!modeOfApp.offlineMode && service['amount_editable'] && calcOn}" class="servicepage-amount-icon"
              ontouchstart="onTouchStartOfAmountCalculator()" role="button"
              aria-label="{window.languages.ViewServicePageVoiceOverOpenCalculator}"

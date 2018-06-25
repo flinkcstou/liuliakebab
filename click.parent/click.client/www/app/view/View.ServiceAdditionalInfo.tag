@@ -48,7 +48,7 @@
              readonly="{!service['amount_editable']}"
              pattern="[0-9]"
              placeholder="{placeHolderText}"
-             onmouseup="eraseAmountDefault()" onkeyup="sumForPay()" oninput="sumForPay()"/>
+             onmouseup="eraseAmountDefault()" onkeyup="sumForPay()"/>
       <div if="{!modeOfApp.offlineMode && service['amount_editable'] && calcOn}" class="service-addinfo-amount-icon"
            ontouchstart="onTouchStartOfAmountCalculator()" role="button"
            aria-label="{window.languages.ViewServicePageVoiceOverOpenCalculator}"

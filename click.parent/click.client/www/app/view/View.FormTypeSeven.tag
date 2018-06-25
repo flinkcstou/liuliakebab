@@ -528,28 +528,6 @@
             this.riotTags.innerHTML = "<view-formtype-seven-getinfo>";
             riot.mount('view-formtype-seven-getinfo', opts);
             scope.unmount();
-
-//            if (result[1]) {
-//              localStorage.setItem('click_client_infoCacheEnabled', result[1][0].enable_information_cache);
-//              if (result[1][0].enable_information_cache) {
-//                localStorage.setItem("click_client_infoCached", JSON.stringify(result[1][0]));
-//              }
-//              scope.options = result[1][0].options;
-//              if (scope.options && scope.options.length > 1) {
-//                scope.dropDownOn = true;
-//                scope.optionChosen = scope.options[0];
-//                scope.chosenFieldName = opts.contractValue ? opts.contractValue : scope.options[0].option_value;
-//                scope.chosenFieldParamId = opts.contractValue ? opts.contractValue : scope.options[0].option_value;
-//                scope.optionObject = scope.options[0].option_object;
-//                for (var k in scope.optionObject) {
-//                  if (k > 1)
-//                    scope.optionObject[k].value = accounting.formatMoney(scope.optionObject[k].value, options);
-//                  scope.optionObject[k].index = k;
-//                }
-//              }
-//              console.log("options array", scope.options);
-//              scope.update();
-//            }
           }
           else {
             scope.errorMessage = result[0][0].error_note;
