@@ -479,6 +479,8 @@
               params.inParameter = invoice.cntrg_info_param2;
 
             scope.showComponent = true;
+            scope.showComponentTransfer = false;
+            scope.showComponentPayment = false;
             scope.showComponentHistory = true;
             scope.tags['view-invoice-history-detail'].opts = params;
             window.checkShowingComponent = scope.tags['view-invoice-history-detail'];
@@ -503,6 +505,8 @@
               console.log('PARAMS IN INVOICE LIST', params);
 
               scope.showComponent = true;
+              scope.showComponentPayment = false;
+              scope.showComponentHistory = false;
               scope.showComponentTransfer = true;
               scope.tags['view-transfer-detail'].opts = params;
               console.log("scope.tags['view-transfer-detail'].opts", scope.tags['view-transfer-detail'].opts)
@@ -528,6 +532,8 @@
               console.log("PAYMENT PARAMS", params);
 
               scope.showComponent = true;
+              scope.showComponentTransfer = false;
+              scope.showComponentHistory = false;
               scope.showComponentPayment = true;
               scope.tags['view-payment-detail'].opts = params;
               window.checkShowingComponent = scope.tags['view-payment-detail'];
