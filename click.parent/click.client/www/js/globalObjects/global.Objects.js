@@ -2603,7 +2603,7 @@ function transProcess(abc, syllable, text) {
     }
   }
 
-  return new RegExp(newStr, "gi");
+  return new RegExp(newStr, "i");
 }
 
 const cyrillicSyllable = [["ай", "i"], ["аи", "i"], ["кс", ["x", "ks"]]];
