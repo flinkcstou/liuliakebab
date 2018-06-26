@@ -650,7 +650,7 @@
           break;
         }
       }
-
+      focusFieldGlobal('firstFieldInput');
     };
 
     chooseDropdownTwo = function (id) {

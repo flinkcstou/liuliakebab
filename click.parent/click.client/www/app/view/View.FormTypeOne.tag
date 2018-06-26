@@ -911,7 +911,7 @@
           break;
         }
       }
-
+      focusFieldGlobal('firstFieldInput');
     };
 
     eraseAmountDefault = function () {
