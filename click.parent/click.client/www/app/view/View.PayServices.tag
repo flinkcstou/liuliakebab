@@ -135,6 +135,7 @@
 
 
       console.log("viewPay.categoryScrollTop = ", viewPay.categoryScrollTop);
+      focusFieldGlobal('searchInputId');
 
       setTimeout(function () {
         riot.update();
@@ -176,7 +177,7 @@
         scope.suggestions = [];
         console.log("emtying");
 
-        if (scope.searchWord.length != 0) {
+        if (scope.searchWord.length != 0 && scope.searchWord != ' ') {
           var translitSearchWord = transliterateText(scope.searchWord);
           console.log("transliterated text =", translitSearchWord);
 
