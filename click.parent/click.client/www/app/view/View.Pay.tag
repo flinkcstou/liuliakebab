@@ -263,11 +263,11 @@
           });
           scope.update();
         } else {
-//          scope.showSearchIcon = true;
-//          scope.searchMode = false;
+          scope.showSearchIcon = true;
+          scope.searchMode = false;
 //          scope.searchServices = false;
-//          scope.update();
-          onBackKeyDown();
+          scope.update();
+//          onBackKeyDown();
         }
         sessionStorage.setItem('suggestions', JSON.stringify(scope.suggestions));
         console.log("array ", scope.suggestions);
@@ -313,11 +313,12 @@
 
       if (Math.abs(searchStartX - searchEndX) <= 20 && Math.abs(searchStartY - searchEndY) <= 20) {
         searchInputId.value = "";
-//        scope.showSearchIcon = true;
-//        scope.searchMode = false;
+        scope.suggestions = [];
+        scope.showSearchIcon = true;
+        scope.searchMode = false;
 //        scope.searchServices = false;
-//        scope.update();
-        onBackKeyDown();
+        scope.update();
+//        onBackKeyDown();
       }
     };
 

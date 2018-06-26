@@ -192,7 +192,9 @@
           });
           scope.update();
         } else {
-          onBackKeyDown();
+          scope.showSearchIcon = true;
+          scope.update();
+//          onBackKeyDown();
         }
         sessionStorage.setItem('suggestions', JSON.stringify(scope.suggestions));
         console.log("array ", scope.suggestions);
@@ -237,8 +239,11 @@
       searchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(searchStartX - searchEndX) <= 20 && Math.abs(searchStartY - searchEndY) <= 20) {
-
-        onBackKeyDown();
+        scope.showSearchIcon = true;
+        searchInputId.value = "";
+        scope.suggestions = [];
+        scope.update();
+//        onBackKeyDown();
       }
     };
 
