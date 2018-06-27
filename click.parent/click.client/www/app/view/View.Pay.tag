@@ -247,16 +247,12 @@
         if (scope.searchWord.length != 0 && scope.searchWord != ' ') {
 
           var translitSearchWord = transliterateText(scope.searchWord);
-          console.log("transliterated text =", translitSearchWord);
 
           arrayOfConnectedSuggestion.filter(function (service) {
             var index = service.name.toLowerCase().search(scope.searchWord.toString());
             var translitBool = translitSearchWord.test(service.name);
-            console.log("transliterated text =", translitBool);
             if ((index != -1 || translitBool) && service.is_visible && (modeOfApp.onlineMode || (modeOfApp.offlineMode && scope.servicesParamsMapOne[service.id] && scope.servicesParamsMapOne[service.id][0].ussd_query))) {
-              console.log("in", service);
               if (opts.mode != "ADDAUTOPAY" || (opts.mode == "ADDAUTOPAY" && (service.autopay_available_schedule || service.autopay_available || !service.form_type))) {
-                console.log("adding ", service.name);
                 scope.suggestions.push(service);
               }
             }

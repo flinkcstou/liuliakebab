@@ -179,7 +179,6 @@
 
         if (scope.searchWord.length != 0 && scope.searchWord != ' ') {
           var translitSearchWord = transliterateText(scope.searchWord);
-          console.log("transliterated text =", translitSearchWord);
 
           arrayOfConnectedSuggestion.filter(function (service) {
 

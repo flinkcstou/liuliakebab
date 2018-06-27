@@ -1253,6 +1253,7 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
                 counter++;
                 serviceList[index].image = cordova.file.dataDirectory + fileName;
                 servicesMap[serviceList[index].id + ''][0].image = cordova.file.dataDirectory + fileName;
+                servicesMap[serviceList[index].id + ''][0].image_cached = true;
 
                 for (var k = 0; k < servicesMapByCategory[serviceList[index].category_id].length; k++) {
                   if (servicesMapByCategory[serviceList[index].category_id][k].id != ('mynumber' + localStorage.getItem('myNumberOperatorId')) &&
@@ -2541,8 +2542,83 @@ function focusFieldGlobal(fieldId) {
 
 //Translit
 
-const cyrillicPattern = /^[\u0400-\u04FF_\s-]+$/;
-const latinPattern = /^[\u0020-\u007F_\s-]+$/;
+var cyrillicPattern = /^[\u0400-\u04FF_\s-]+$/;
+var latinPattern = /^[\u0020-\u007F_\s-]+$/;
+var cyrillicSyllable = [["ай", "i"], ["аи", "i"], ["кс", ["x", "ks"]]];
+
+var cyrillicObj = {
+  "а": "a",
+  "б": "b",
+  "в": ["v", "w"],
+  "г": "g",
+  "д": "d",
+  "е": ["e", "ye"],
+  "ё": ["e", "yo"],
+  "ж": ["zh", "j"],
+  "з": "z",
+  "и": ["i", "ee"],
+  "й": ["i", "y", "j"],
+  "к": "k",
+  "л": "l",
+  "м": "m",
+  "н": "n",
+  "о": "o",
+  "п": "p",
+  "р": "r",
+  "с": ["s", "c"],
+  "т": "t",
+  "у": "u",
+  "ф": "f",
+  "х": "h",
+  "ц": "c",
+  "ч": "ch",
+  "ш": "sh",
+  "щ": "sh",
+  "ъ": "",
+  "ы": "i",
+  "ь": "",
+  "э": ["e", "a"],
+  "ю": ["yu", "u", "ju"],
+  "я": ["ya", "ja"]
+};
+
+var latinSyllable = [
+  ["ph", "ф"],
+  ["oo", "у"],
+  ["ee", "и"],
+  ["ew", "ью"],
+  ["ch", ["ч", "к"]],
+  ["sh", "ш"]
+];
+
+var latinObj = {
+  "a": ["а", "э"],
+  "b": "б",
+  "c": ["ц", "с"],
+  "d": "д",
+  "e": ["е", "э"],
+  "f": "ф",
+  "g": "г",
+  "h": ["х", "г"],
+  "i": ["и", "ай", "ы"],
+  "j": ["й", "ж"],
+  "k": "к",
+  "l": "л",
+  "m": "м",
+  "n": "н",
+  "o": "о",
+  "p": "п",
+  "q": "к",
+  "r": "р",
+  "s": "с",
+  "t": "т",
+  "u": ["у", "ю"],
+  "v": "в",
+  "w": "в",
+  "x": ["кс", "кз", "з"],
+  "y": ["й", "и"],
+  "z": "з"
+};
 
 function transliterateText(text) {
   if (cyrillicPattern.test(text)) {
@@ -2580,7 +2656,7 @@ function transProcess(abc, syllable, text) {
             function (text, char) {
               return text + (text ? "|" : "") + char;
             }, "");
-          newStr += `(${exp})`;
+          newStr += '(' + exp + ')';
         } else {
           newStr += syllable[j][1];
         }
@@ -2597,7 +2673,7 @@ function transProcess(abc, syllable, text) {
         ""
         )
       ;
-      newStr += `(${exp})`;
+      newStr += '(' + exp + ')';
     } else {
       newStr += abc[text[i]] || "";
     }
@@ -2606,78 +2682,4 @@ function transProcess(abc, syllable, text) {
   return new RegExp(newStr, "i");
 }
 
-const cyrillicSyllable = [["ай", "i"], ["аи", "i"], ["кс", ["x", "ks"]]];
 
-const cyrillicObj = {
-  "а": "a",
-  "б": "b",
-  "в": ["v", "w"],
-  "г": "g",
-  "д": "d",
-  "е": ["e", "ye"],
-  "ё": ["e", "yo"],
-  "ж": ["zh", "j"],
-  "з": "z",
-  "и": ["i", "ee"],
-  "й": ["i", "y", "j"],
-  "к": "k",
-  "л": "l",
-  "м": "m",
-  "н": "n",
-  "о": "o",
-  "п": "p",
-  "р": "r",
-  "с": ["s", "c"],
-  "т": "t",
-  "у": "u",
-  "ф": "f",
-  "х": "h",
-  "ц": "c",
-  "ч": "ch",
-  "ш": "sh",
-  "щ": "sh",
-  "ъ": "",
-  "ы": "i",
-  "ь": "",
-  "э": ["e", "a"],
-  "ю": ["yu", "u", "ju"],
-  "я": ["ya", "ja"]
-};
-
-const latinSyllable = [
-  ["ph", "ф"],
-  ["oo", "у"],
-  ["ee", "и"],
-  ["ew", "ью"],
-  ["ch", ["ч", "к"]],
-  ["sh", "ш"]
-];
-
-const latinObj = {
-  "a": ["а", "э"],
-  "b": "б",
-  "c": ["ц", "с"],
-  "d": "д",
-  "e": ["е", "э"],
-  "f": "ф",
-  "g": "г",
-  "h": ["х", "г"],
-  "i": ["и", "ай", "ы"],
-  "j": ["й", "ж"],
-  "k": "к",
-  "l": "л",
-  "m": "м",
-  "n": "н",
-  "o": "о",
-  "p": "п",
-  "q": "к",
-  "r": "р",
-  "s": "с",
-  "t": "т",
-  "u": ["у", "ю"],
-  "v": "в",
-  "w": "в",
-  "x": ["кс", "кз", "з"],
-  "y": ["й", "и"],
-  "z": "з"
-};
