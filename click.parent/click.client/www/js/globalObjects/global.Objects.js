@@ -20,7 +20,7 @@ window.scannerCanBeAsked = true;
 
 window.common = {};
 window.common.alert = {
-  ids: [
+  ids        : [
     "componentAlertId", //component-alert
     "componentConfirmId", //component-confirm
     "componentInProcessingId", //component-in-processing
@@ -29,26 +29,26 @@ window.common.alert = {
     "componentUnsuccessId", //component-unsuccess
     "componentGeneratedQrId" //component-generated-qr
   ],
-  priorities: {
-    "componentAlertId": 4,
-    "componentConfirmId": 6,
+  priorities : {
+    "componentAlertId"       : 4,
+    "componentConfirmId"     : 6,
     "componentInProcessingId": 2,
-    "componentResultId": 1,
-    "componentSuccessId": 3,
-    "componentUnsuccessId": 3,
-    "componentGeneratedQrId": 3
+    "componentResultId"      : 1,
+    "componentSuccessId"     : 3,
+    "componentUnsuccessId"   : 3,
+    "componentGeneratedQrId" : 3
   },
-  tags: {
-    "componentAlertId": "component-alert",
-    "componentConfirmId": "component-confirm",
+  tags       : {
+    "componentAlertId"       : "component-alert",
+    "componentConfirmId"     : "component-confirm",
     "componentInProcessingId": "component-in-processing",
-    "componentResultId": "component-result",
-    "componentSuccessId": "component-success",
-    "componentUnsuccessId": "component-unsuccess",
-    "componentGeneratedQrId": "component-generated-qr"
+    "componentResultId"      : "component-result",
+    "componentSuccessId"     : "component-success",
+    "componentUnsuccessId"   : "component-unsuccess",
+    "componentGeneratedQrId" : "component-generated-qr"
   },
-  scopes: {},
-  hide: function (id) {
+  scopes     : {},
+  hide       : function (id) {
 
     console.log(id);
 
@@ -62,7 +62,7 @@ window.common.alert = {
       console.error(error);
     }
   },
-  updateView: function (id, params) {
+  updateView : function (id, params) {
 
     if (!window.common.alert.isShown(id)) {
       window.common.alert.show(id, params);
@@ -93,7 +93,7 @@ window.common.alert = {
     if (window.common.alert.priorities[id1] < window.common.alert.priorities[id2]) return -1;
     if (window.common.alert.priorities[id1] === window.common.alert.priorities[id2]) return 0;
   },
-  show: function (id, params) {
+  show       : function (id, params) {
 
     window.clearTimers();
 
@@ -148,7 +148,7 @@ window.common.alert = {
       }
     }
   },
-  isShown: function (id) {
+  isShown    : function (id) {
 
     // console.log(id);
     //
@@ -507,12 +507,12 @@ window.pushNotificationSaveTokenToServer = function (token) {
   console.log('token', token);
   window.api.call({
     method: 'push.register.token',
-    input: {
-      phone_num: phoneNumber,
-      token: token,
-      sign_string: signString,
+    input : {
+      phone_num    : phoneNumber,
+      token        : token,
+      sign_string  : signString,
       device_vendor: device.manufacturer,
-      device_model: device.model
+      device_model : device.model
 
     },
 
@@ -523,7 +523,7 @@ window.pushNotificationSaveTokenToServer = function (token) {
         localStorage.setItem('push_registered', token);
 
         window.FirebasePlugin.logEvent("Registration", {
-          token: token,
+          token  : token,
           item_id: phoneNumber
         });
 
@@ -574,12 +574,12 @@ window.pushNotificationActions = {
     var sessionKey = loginInfo.session_key;
 
     window.api.call({
-      method: 'invoice.list',
-      input: {
+      method   : 'invoice.list',
+      input    : {
         session_key: sessionKey,
-        phone_num: phoneNumber
+        phone_num  : phoneNumber
       },
-      scope: this,
+      scope    : this,
       onSuccess: function (result) {
         if (result[0][0].error == 0) {
           if (result[1]) {
@@ -600,10 +600,10 @@ window.pushNotificationActions = {
                     params = {
 
                       phoneNumber: invoice.parameter,
-                      amount: invoice.amount,
-                      invoiceId: invoice.invoice_id,
-                      time: invoice.time,
-                      date: invoice.date
+                      amount     : invoice.amount,
+                      invoiceId  : invoice.invoice_id,
+                      time       : invoice.time,
+                      date       : invoice.date
                     };
 
                     history.arrayOfHistory.push({view: "view-transfer-detail"});
@@ -614,11 +614,11 @@ window.pushNotificationActions = {
 
                     params = {
 
-                      amount: invoice.amount,
-                      invoiceId: invoice.invoice_id,
-                      phoneNumber: invoice.merchant_phone,
+                      amount       : invoice.amount,
+                      invoiceId    : invoice.invoice_id,
+                      phoneNumber  : invoice.merchant_phone,
                       accountNumber: invoice.parameter,
-                      serviceName: invoice.service_name
+                      serviceName  : invoice.service_name
                     };
 
                     history.arrayOfHistory.push({view: "view-payment-detail"});
@@ -651,7 +651,7 @@ window.pushNotificationActions = {
       }
     });
   },
-  getPaymentList: function (paymentId) {
+  getPaymentList    : function (paymentId) {
 
     var phoneNumber = localStorage.getItem("click_client_phoneNumber");
     var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
@@ -662,11 +662,11 @@ window.pushNotificationActions = {
     scope.paymentsList = [];
     window.api.call({
       method: 'get.payment.list',
-      input: {
+      input : {
         session_key: sessionKey,
-        phone_num: phoneNumber
+        phone_num  : phoneNumber
       },
-      scope: this,
+      scope : this,
 
       onSuccess: function (result) {
         console.log(result)
@@ -689,7 +689,7 @@ window.pushNotificationActions = {
         }
 
       },
-      onFail: function (api_status, api_status_message, data) {
+      onFail   : function (api_status, api_status_message, data) {
         console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
         console.error(data);
       }
@@ -707,7 +707,7 @@ window.pushNotificationActions = {
     riot.mount("view-main-page", {view: "news", news_id: newsId});
   },
 
-  refreshCardCarousel: function (cardId) {
+  refreshCardCarousel     : function (cardId) {
 
     var view = history.arrayOfHistory[history.arrayOfHistory.length - 1].view;
 
@@ -751,18 +751,18 @@ window.updateBalanceGlobalFunction = function () {
 
   for (var i in getAccountsCards) {
     window.api.call({
-      method: 'get.balance',
+      method     : 'get.balance',
       stopSpinner: false,
-      input: {
-        session_key: sessionKey,
-        phone_num: phoneNumber,
-        account_id: getAccountsCards[i].id,
-        card_num_hash: getAccountsCards[i].card_num_hash,
+      input      : {
+        session_key     : sessionKey,
+        phone_num       : phoneNumber,
+        account_id      : getAccountsCards[i].id,
+        card_num_hash   : getAccountsCards[i].card_num_hash,
         card_num_crypted: getAccountsCards[i].card_num_crypted
       },
       //TODO: DO CARDS
-      scope: this,
-      onSuccess: function (result) {
+      scope      : this,
+      onSuccess  : function (result) {
         if (result[0][0].error == 0) {
           if (result[1][0]) {
             try {
@@ -826,15 +826,15 @@ window.updateBalanceGlobalFunction2 = function (scope, arrayOfCard) {
 
   console.log('getAccountsCards', getAccountsCards);
   window.api.call({
-    method: 'get.balance.multiple',
+    method     : 'get.balance.multiple',
     stopSpinner: false,
-    input: {
+    input      : {
       session_key: sessionKey,
-      phone_num: phoneNumber,
-      accounts: accountsForBalance
+      phone_num  : phoneNumber,
+      accounts   : accountsForBalance
     },
-    scope: this,
-    onSuccess: function (result) {
+    scope      : this,
+    onSuccess  : function (result) {
       if (result[0][0].error == 0) {
         if (result[1]) {
           try {
@@ -879,7 +879,7 @@ window.updateBalanceGlobalFunction2 = function (scope, arrayOfCard) {
         localStorage.setItem('click_client_cards', JSON.stringify(arrayOfCard));
       }
     },
-    onFail: function (api_status, api_status_message, data) {
+    onFail     : function (api_status, api_status_message, data) {
       console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
       console.error(data);
     }
@@ -985,11 +985,11 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
         if (modeOfApp.onlineMode) {
           window.api.call({
             method: 'issuer.list',
-            input: {
+            input : {
               session_key: sessionKey,
-              phone_num: phoneNumber
+              phone_num  : phoneNumber
             },
-            scope: this,
+            scope : this,
 
             onSuccess: function (result) {
               if (result[0][0].error == 0) {
@@ -1001,16 +1001,16 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
               } else {
                 scope.errorNote = result[0][0].error_note;
                 window.common.alert.show("componentAlertId", {
-                  parent: scope,
-                  clickpinerror: scope.clickPinError,
-                  errornote: scope.errorNote,
-                  pathtosettings: scope.pathToSettings,
+                  parent         : scope,
+                  clickpinerror  : scope.clickPinError,
+                  errornote      : scope.errorNote,
+                  pathtosettings : scope.pathToSettings,
                   permissionerror: scope.permissionError,
                 });
                 scope.update();
               }
             },
-            onFail: function (api_status, api_status_message, data) {
+            onFail   : function (api_status, api_status_message, data) {
               console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
               console.error(data);
             }
@@ -1024,13 +1024,13 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
       var categoryList = [];
       var categoryNamesMap = {};
       window.api.call({
-        method: 'get.service.category.list',
+        method     : 'get.service.category.list',
         stopSpinner: false,
-        input: {
+        input      : {
           session_key: sessionKey,
-          phone_num: phoneNumber
+          phone_num  : phoneNumber
         },
-        scope: this,
+        scope      : this,
 
         onSuccess: function (result) {
           if (result[0][0].error == 0)
@@ -1084,7 +1084,7 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
           scope.id = 0;
 
         },
-        onFail: function (api_status, api_status_message, data) {
+        onFail   : function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -1100,17 +1100,17 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
     var serviceNamesMap = {};
 
     if ((!(localStorage.getItem("click_client_payServiceList") && localStorage.getItem("click_client_servicesMapByCategory")
-      && localStorage.getItem("click_client_servicesMap")) || info.update_services) && modeOfApp.onlineMode) {
+        && localStorage.getItem("click_client_servicesMap")) || info.update_services) && modeOfApp.onlineMode) {
 
       var operatorKey = phoneNumber.substr(3, 2);
       window.api.call({
-        method: 'get.service.list',
+        method     : 'get.service.list',
         stopSpinner: false,
-        input: {
+        input      : {
           session_key: sessionKey,
-          phone_num: phoneNumber
+          phone_num  : phoneNumber
         },
-        scope: this,
+        scope      : this,
 
         onSuccess: function (result) {
           if (result[0][0].error == 0)
@@ -1170,13 +1170,13 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
 
               {
                 window.api.call({
-                  method: 'get.wishlist',
-                  input: {
+                  method   : 'get.wishlist',
+                  input    : {
                     session_key: sessionKey,
-                    phone_num: phoneNumber,
-                    type: 1
+                    phone_num  : phoneNumber,
+                    type       : 1
                   },
-                  scope: this,
+                  scope    : this,
                   onSuccess: function (result) {
 
                     if (result[0][0].error == 0) {
@@ -1192,7 +1192,7 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
                         }
                         for (var i in favoritePaymentsList)
                           favoritePaymentsListForApi.push({
-                            "id": favoritePaymentsList[i].id,
+                            "id"  : favoritePaymentsList[i].id,
                             "type": 1,
                             "body": JSON.stringify(favoritePaymentsList[i])
                           })
@@ -1210,14 +1210,14 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
                     }
                     else {
                       window.common.alert.show("componentAlertId", {
-                        parent: scope,
+                        parent       : scope,
                         clickpinerror: false,
-                        errornote: result[0][0].error_note
+                        errornote    : result[0][0].error_note
                       });
                       console.log(result[0][0].error_note);
                     }
                   },
-                  onFail: function (api_status, api_status_message, data) {
+                  onFail   : function (api_status, api_status_message, data) {
                     console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
                     console.error(data);
                   }
@@ -1228,7 +1228,7 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
             }
           servicesParamsInit();
         },
-        onFail: function (api_status, api_status_message, data) {
+        onFail   : function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -1284,11 +1284,11 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
       var servicesParamsMapFive = {};
       var servicesParamsMapSix = {};
       window.api.call({
-        method: 'get.service.parameters.list',
+        method     : 'get.service.parameters.list',
         stopSpinner: false,
-        input: {
+        input      : {
           session_key: sessionKey,
-          phone_num: phoneNumber
+          phone_num  : phoneNumber
         },
 
         scope: this,
@@ -1513,15 +1513,15 @@ window.fingerPrintAsk = function (fingerprintIconId) {
 
       if (!sessionStorage.getItem("push_news") || JSON.parse(sessionStorage.getItem("push_news")) !== true) {
         var encryptConfig = {
-          clientId: "myAppName",
-          clientSecret: "currentUser",
-          password: "currentUser",
-          token: "currentUser",
-          locale: "ru",
+          clientId     : "myAppName",
+          clientSecret : "currentUser",
+          password     : "currentUser",
+          token        : "currentUser",
+          locale       : "ru",
           disableBackup: true,
 //              userAuthRequired: false,
-          dialogHint: "Повторите попытку",
-          dialogTitle: "Сканирование для CLICK"
+          dialogHint   : "Повторите попытку",
+          dialogTitle  : "Сканирование для CLICK"
 
         }; // See config object for required parameters
 
@@ -1716,7 +1716,7 @@ window.saveHistory = function (viewName, viewOpts) {
   if (history.arrayOfHistory.length != 0 && history.arrayOfHistory[history.arrayOfHistory.length - 1].view !== viewName) {
     history.arrayOfHistory.push(
       {
-        "view": viewName,
+        "view"  : viewName,
         "params": viewOpts
       }
     );
@@ -1781,8 +1781,8 @@ window.getPosition = function (el) {
 
 window.sendToLog = function (data) {
   params = {
-    method: 'report.issue',
-    input: data,
+    method   : 'report.issue',
+    input    : data,
     onSuccess: function (result) {
       if (result[0][0].error === 0) {
         if (result[1][0]) {
@@ -1797,7 +1797,7 @@ window.sendToLog = function (data) {
         //to do something else
       }
     },
-    onFail: function (api_status, api_status_message, data) {
+    onFail   : function (api_status, api_status_message, data) {
       console.log('cannot save logs to server');
       console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
       console.error(data);
@@ -1830,10 +1830,10 @@ window.writeLog = function (logToSave) {
   sign_string = hex_md5(sign_time + report_id + 'x-report');
   console.log('sign_string before send', sign_string);
   log = {
-    phone_num: phoneNumber,
-    report_id: report_id,
+    phone_num  : phoneNumber,
+    report_id  : report_id,
     report_data: logToSave,
-    sign_time: sign_time,
+    sign_time  : sign_time,
     sign_string: sign_string,
   };
   console.log('log before read', log);
@@ -1944,14 +1944,27 @@ var errorHandler = function (fileName, e) {
 function dec2hex(s) {
   return (s < 15.5 ? '0' : '') + Math.round(s).toString(16);
 }
+
 function hex2dec(s) {
   return parseInt(s, 16);
 }
 
 function clearLoaderOnIconLoad(id) {
+
+  console.log('image loaded')
+
   if (document.getElementById(id)) {
     setTimeout(function () {
       document.getElementById(id).style.backgroundImage = 'none';
+    }, 0);
+  }
+}
+
+function errorDownloadImage(id) {
+  if (document.getElementById(id)) {
+    setTimeout(function () {
+      document.getElementById(id).style.backgroundImage = 'none';
+      document.getElementById(id).src = 'resources/icons/ViewInPlacePay/loader.gif';
     }, 0);
   }
 }
@@ -1973,6 +1986,7 @@ function base32tohex(base32) {
   }
   return hex;
 }
+
 function checkConnection(onAvailable, onNotAvailable) {
   var networkState = navigator.connection.type;
 
@@ -2126,14 +2140,14 @@ function qrCodeScanner(scope) {
         if (modeOfApp.offlineMode) {
           if (jowi_id) {
             window.common.alert.show("componentAlertId", {
-              parent: scope,
+              parent   : scope,
               errornote: window.languages.QrJowiOfflineConstraintText
             });
           }
           else {
             riotTags.innerHTML = "<view-qr>";
             riot.mount('view-qr', {
-              "id": id,
+              "id"   : id,
               "image": "resources/icons/ViewPay/logo_indoor.png"
             });
           }
@@ -2143,7 +2157,7 @@ function qrCodeScanner(scope) {
           var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
           var sessionKey = info.session_key;
           var input = {
-            phone_num: phoneNumber,
+            phone_num  : phoneNumber,
             session_key: sessionKey
           }
           if (id) {
@@ -2157,7 +2171,7 @@ function qrCodeScanner(scope) {
 
           window.api.call({
             method: 'get.indoor.service',
-            input: input,
+            input : input,
 
             scope: this,
 
@@ -2202,20 +2216,20 @@ function qrCodeScanner(scope) {
                 scope.errorNote = result[0][0].error_note;
 
                 window.common.alert.show("componentAlertId", {
-                  parent: scope,
+                  parent       : scope,
                   clickpinerror: scope.clickPinError,
-                  errornote: scope.errorNote
+                  errornote    : scope.errorNote
                 });
                 scope.update();
               }
             },
 
-            onFail: function (api_status, api_status_message, data) {
+            onFail         : function (api_status, api_status_message, data) {
               window.clearTimeout(timeOutTimerThree);
               console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
               console.error(data);
             },
-            onTimeOut: function () {
+            onTimeOut      : function () {
               timeOutTimerThree = setTimeout(function () {
                 window.stopSpinner();
               }, 15000);
@@ -2239,23 +2253,23 @@ function qrCodeScanner(scope) {
       scope.errorNote = "Отсутствует доступ";
 
       window.common.alert.show("componentAlertId", {
-        parent: scope,
+        parent       : scope,
         clickpinerror: scope.clickPinError,
-        errornote: scope.errorNote
+        errornote    : scope.errorNote
       });
       scope.update();
     },
     {
-      preferFrontCamera: false, // iOS and Android
-      showFlipCameraButton: false, // iOS and Android
-      showTorchButton: true, // iOS and Android
-      torchOn: false, // Android, launch with the torch switched on (if available)
-      prompt: window.languages.ViewQrLabelOnScanner, // Android
+      preferFrontCamera    : false, // iOS and Android
+      showFlipCameraButton : false, // iOS and Android
+      showTorchButton      : true, // iOS and Android
+      torchOn              : false, // Android, launch with the torch switched on (if available)
+      prompt               : window.languages.ViewQrLabelOnScanner, // Android
       resultDisplayDuration: 500, // Android, display scanned text for X ms. 0 suppresses it entirely, default 1500
-      formats: "QR_CODE", // default: all but PDF_417 and RSS_EXPANDED
-      orientation: "portrait", // Android only (portrait|landscape), default unset so it rotates with the device
-      disableAnimations: true, // iOS
-      disableSuccessBeep: false // iOS
+      formats              : "QR_CODE", // default: all but PDF_417 and RSS_EXPANDED
+      orientation          : "portrait", // Android only (portrait|landscape), default unset so it rotates with the device
+      disableAnimations    : true, // iOS
+      disableSuccessBeep   : false // iOS
     }
   );
 }
@@ -2320,7 +2334,7 @@ function addPaymentToFavorites(params, service, ussdQuery, scope) {
         favoritePaymentsList[i].params.transactionId = null;
       console.log("fav transaction id=", favoritePaymentsList[i].params.transactionId);
       favoritePaymentsListForApi.push({
-        "id": favoritePaymentsList[i].id,
+        "id"  : favoritePaymentsList[i].id,
         "type": 1,
         "body": JSON.stringify(favoritePaymentsList[i])
       })
@@ -2328,15 +2342,15 @@ function addPaymentToFavorites(params, service, ussdQuery, scope) {
   }
 
   var newfavorite = {
-    "params": params,
+    "params" : params,
     "service": service,
-    "ussd": ussdQuery,
-    "id": id
+    "ussd"   : ussdQuery,
+    "id"     : id
   };
 
   favoritePaymentsList.push(newfavorite);
   favoritePaymentsListForApi.push({
-    "id": id,
+    "id"  : id,
     "type": 1,
     "body": JSON.stringify(newfavorite)
   });
@@ -2347,9 +2361,9 @@ function addPaymentToFavorites(params, service, ussdQuery, scope) {
 
   window.api.call({
     method: 'add.favourite',
-    input: {
-      session_key: sessionKey,
-      phone_num: phoneNumber,
+    input : {
+      session_key  : sessionKey,
+      phone_num    : phoneNumber,
       wishlist_data: favoritePaymentsListForApi
     },
 
@@ -2365,7 +2379,7 @@ function addPaymentToFavorites(params, service, ussdQuery, scope) {
       else {
 
         window.common.alert.show("componentAlertId", {
-          parent: scope,
+          parent   : scope,
           errornote: result[0][0].error_note
         });
 
@@ -2397,7 +2411,7 @@ function editFavoritePaymentGlobal(params, favoriteId, scope) {
       favoritePaymentsList[i].params = params;
 
       var editedfavorite = {
-        "id": favoritePaymentsList[i].id,
+        "id"  : favoritePaymentsList[i].id,
         "type": 1,
         "body": JSON.stringify(favoritePaymentsList[i])
       };
@@ -2411,9 +2425,9 @@ function editFavoritePaymentGlobal(params, favoriteId, scope) {
 
       window.api.call({
         method: 'update.favourite',
-        input: {
-          session_key: sessionKey,
-          phone_num: phoneNumber,
+        input : {
+          session_key  : sessionKey,
+          phone_num    : phoneNumber,
           wishlist_data: editedfavorite
         },
 
@@ -2429,7 +2443,7 @@ function editFavoritePaymentGlobal(params, favoriteId, scope) {
           else {
 
             window.common.alert.show("componentAlertId", {
-              parent: scope,
+              parent   : scope,
               errornote: result[0][0].error_note
             });
 
