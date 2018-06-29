@@ -2401,6 +2401,7 @@ var css = {
   "position: relative;" +
   "width:" + 100 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
+  "border: 0px;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   //"border-radius:" + 100 * widthK + "px;" +
