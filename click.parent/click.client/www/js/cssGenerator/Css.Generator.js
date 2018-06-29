@@ -4071,7 +4071,7 @@ var css = {
   "min-height:" + 100 * widthK + "px; " +
   "width: 100%;" +
   "padding-top: 1%;" +
-  // "border-bottom:" + 1 + "px solid gainsboro;" +
+  "border-bottom:" + 1 + "px solid #e8e8e8;" +
   "background-color: transparent;" +
   "}",
 
@@ -4108,7 +4108,7 @@ var css = {
   "position: relative;" +
   "width: 100%;" +
   "margin-bottom: 4%;" +
-  "margin-top: 10%;" +
+  "margin-top: 5%;" +
   "margin-left:" + 35 * widthK + "px;" +
   "padding: 0;" +
   "overflow: hidden;" +

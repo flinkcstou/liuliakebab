@@ -60,7 +60,7 @@
         </div>
       </div>
 
-      <div class="inplace-pay-category-inner-container" style="height: 91%;" if="{!searchServices}"
+      <div class="inplace-pay-category-inner-container" style="height: 93%;" if="{!searchServices}"
            id="categoriesContainerId"
            onscroll="onTouchMoveOfCategory()">
 
@@ -91,15 +91,14 @@
                   </div>
                 </li>
               </ul>
-              <div class="title-bottom-border">
-              </div>
             </div>
-          </li>
-        </ul>
-
       </div>
+      </li>
+      </ul>
 
     </div>
+
+  </div>
   </div>
   <script>
     //TODO: OPTIMIZE THIS PAGE SLOW DOWNLOADING CATEGORIES AND SERVICES

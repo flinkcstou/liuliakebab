@@ -100,7 +100,7 @@
         event.preventDefault();
         event.stopPropagation();
 
-        myCardButtonId.style.webkitTransform = 'scale(0.7)';
+        myCardButtonId.style.webkitTransform = 'scale(0.9)';
 
         myCardListStartX = event.changedTouches[0].pageX;
         myCardListStartY = event.changedTouches[0].pageY;
