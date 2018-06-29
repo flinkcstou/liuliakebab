@@ -92,13 +92,12 @@
                 </li>
               </ul>
             </div>
+          </li>
+        </ul>
+
       </div>
-      </li>
-      </ul>
 
     </div>
-
-  </div>
   </div>
   <script>
     //TODO: OPTIMIZE THIS PAGE SLOW DOWNLOADING CATEGORIES AND SERVICES
