@@ -4060,8 +4060,7 @@ var css = {
   "top:" + 86 * widthK + "px; " +
   "bottom:0; " +
   "background-color: white; " +
-  "overflow-y: scroll; " +
-  "overflow-x: hidden; " +
+  "overflow: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
   "}",
 
@@ -4070,7 +4069,7 @@ var css = {
   "position: relative;" +
   "min-height:" + 100 * widthK + "px; " +
   "width: 100%;" +
-  "padding-top: 1%;" +
+  // "padding-top: 1%;" +
   "border-bottom:" + 1 + "px solid #e8e8e8;" +
   "background-color: transparent;" +
   "}",
@@ -4083,7 +4082,7 @@ var css = {
   //"margin-top: 1%;" +
   "z-index: 999;" +
   "background-color: white;" +
-  "top:" + 86 * widthK + "px; " +
+  "top:" + 160 * widthK + "px; " +
   //"display: none;" +
   //"box-shadow: 0 0 20px rgba(0,0,0,0.5);" +
   "-webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.5);" +

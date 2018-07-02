@@ -8,7 +8,7 @@
       <div class="title-bottom-border">
       </div>
     </div>
-    <div class="pay-service-hint-containter" id="hintContainerId" if="{hintShow}">
+    <div class="pay-service-hint-containter" id="hintContainerId" if="{false && hintShow}">
       <div class="pay-category-icon" style="background-image: url({showCategoryIcon})"></div>
       <div class="pay-category-name-field">{showCategoryName}
       </div>
@@ -187,7 +187,7 @@
       console.log("OPTS in Pay", opts, opts.mode);
       if (opts.categoryId && !viewPay.searchServices) {
         document.getElementById("tick" + viewPay.categoryId).style.backgroundImage = "url(resources/icons/ViewPay/catclose.png)";
-        hintUpdate(viewPay.categoryId);
+//        hintUpdate(viewPay.categoryId);
         scope.index = viewPay.categoryId;
         scope.show = true;
       }
@@ -383,15 +383,17 @@
             document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catclose.png)";
             viewPay.categoryId = id;
             opts.categoryId = id;
-            hintUpdate(scope.index);
+//            hintUpdate(scope.index);
           }
-
-//          document.getElementById(id).scrollIntoView();
-//        categoriesContainerId.scrollIntoView(document.getElementById(id).offsetTop)
-
-//        categoriesContainerId.scrollTop = event.changedTouches[0].pageY;
-
           scope.update();
+          document.getElementById(id).scrollIntoView();
+          setTimeout(function () {
+            document.getElementById(id).scrollIntoView();
+            //          categoriesContainerId.scrollIntoView(document.getElementById(id).offsetTop)
+          }, 50);
+
+
+//          categoriesContainerId.scrollTop = event.changedTouches[0].pageY;
         }
       }, 100)
     };
@@ -421,19 +423,19 @@
         scope.scrolling = false;
       }, 350);
 
-      var element = document.getElementById(scope.index);
-
-      if (element) {
-        if (categoriesContainerId.scrollTop - 40 > element.offsetTop) {
-          scope.hintShow = true;
-          scope.showCategoryIcon = scope.categoryNamesMap[scope.index].icon;
-          scope.showCategoryName = scope.categoryNamesMap[scope.index].name;
-          scope.update();
-        } else {
-          scope.hintShow = false;
-          scope.update();
-        }
-      }
+//      var element = document.getElementById(scope.index);
+//
+//      if (element) {
+//        if (categoriesContainerId.scrollTop - 40 > element.offsetTop) {
+//          scope.hintShow = true;
+//          scope.showCategoryIcon = scope.categoryNamesMap[scope.index].icon;
+//          scope.showCategoryName = scope.categoryNamesMap[scope.index].name;
+//          scope.update();
+//        } else {
+//          scope.hintShow = false;
+//          scope.update();
+//        }
+//      }
       scope.update();
     };
 
