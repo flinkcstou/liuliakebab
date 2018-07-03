@@ -1054,7 +1054,7 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
                     newIconBool('www/resources/icons/ViewPay/', 'ViewPay', filename, icon, j, function (bool, index, fileName) {
 
                       if (bool) {
-                        categoryList[index]['icon'] = cordova.file.dataDirectory + fileName;
+                        categoryList[index]['icon'] = (cordova.file.dataDirectory + fileName).replace('file:///', '/');
                       } else {
                         categoryList[index]['icon'] = 'resources/icons/ViewPay/' + fileName;
                       }
@@ -1252,13 +1252,13 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
               if (bool) {
                 counter++;
                 serviceList[index].image = cordova.file.dataDirectory + fileName;
-                servicesMap[serviceList[index].id + ''][0].image = cordova.file.dataDirectory + fileName;
+                servicesMap[serviceList[index].id + ''][0].image = (cordova.file.dataDirectory + fileName).replace('file:///', '/');
                 servicesMap[serviceList[index].id + ''][0].image_cached = true;
 
                 for (var k = 0; k < servicesMapByCategory[serviceList[index].category_id].length; k++) {
                   if (servicesMapByCategory[serviceList[index].category_id][k].id != ('mynumber' + localStorage.getItem('myNumberOperatorId')) &&
                     servicesMapByCategory[serviceList[index].category_id][k].id == serviceList[index].id) {
-                    servicesMapByCategory[serviceList[index].category_id][k].image = cordova.file.dataDirectory + fileName;
+                    servicesMapByCategory[serviceList[index].category_id][k].image = (cordova.file.dataDirectory + fileName).replace('file:///', '/');
                   }
                 }
 
