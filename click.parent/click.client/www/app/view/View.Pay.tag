@@ -45,10 +45,10 @@
                  ontouchstart="onTouchStartOfService(this.id)"
                  onclick="onTouchEndOfService(this.id, true)">
               <img id="{i.id+'_sgn'}" if="{i.image}"
-                   class="pay-search-services-icon" src="{i.image}" onload="clearLoaderOnIconLoad(this.id)"
+                   class="{pay-search-services-icon: !j.image_cached,pay-search-services-icon-noloader: j.image_cached}"
+                   src="{i.image}" onload="clearLoaderOnIconLoad(this.id)"
                    onloadeddata="clearLoaderOnIconLoad(this.id)" onerror="errorDownloadImage(this.id)">
               <div class="pay-category-name-field">{i.name}
-
               </div>
             </div>
           </li>
@@ -62,35 +62,35 @@
            id="categoriesContainerId"
            onscroll="onTouchMoveOfCategory()">
 
-        <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
-          <li each="{i in categoryList}" style="overflow: hidden;">
-            <div if="{!(modeOfApp.offlineMode && i.id == 11) && i.currentList && i.currentList.length !=0}"
-                 class="pay-service-block-containter" id="{i.id}"
-                 ontouchstart="onTouchStartOfCategory(this.id)"
-                 onclick="onTouchEndOfCategory(this.id)">
-              <img id="{i.id+'_icon'}" if="{i.icon}"
-                   class="pay-category-icon" src="{i.icon}" onload="clearLoaderOnIconLoad(this.id)"
-                   onloadeddata="clearLoaderOnIconLoad(this.id)" onerror="errorDownloadImage(this.id)">
-              <div class="pay-category-name-field">{i.name}
+        <div each="{i in categoryList}"
+             if="{!(modeOfApp.offlineMode && i.id == 11) && i.currentList && i.currentList.length !=0}"
+             class="pay-service-block-containter" id="{i.id}"
+             ontouchstart="onTouchStartOfCategory(this.id)"
+             onclick="onTouchEndOfCategory(this.id)">
+          <img id="{i.id+'_icon'}" if="{i.icon}"
+               class="{pay-category-icon: !i.icon_cached, pay-category-icon-noloader: i.icon_cached}" src="{i.icon}"
+               onload="clearLoaderOnIconLoad(this.id)"
+               onloadeddata="clearLoaderOnIconLoad(this.id)" onerror="errorDownloadImage(this.id)">
+          <div class="pay-category-name-field">{i.name}
+          </div>
+          <div class="pay-icon-tick" id="tick{i.id}"></div>
+          <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
+            <li class="pay-service-containter"
+                each="{j in i.currentList}">
+              <div class="pay-service-icon" id="{j.id}"
+                   role="button"
+                   aria-label="{j.name}"
+                   onclick="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
+                <img id="{j.id+'_image'}" if="{j.image}"
+                     class="{pay-service-image: !j.image_cached, pay-service-image-noloader: j.image_cached}"
+                     src="{j.image}" onload="clearLoaderOnIconLoad(this.id)"
+                     onloadeddata="clearLoaderOnIconLoad(this.id)" onerror="errorDownloadImage(this.id)">
+                <div class="pay-service-name-field">{j.name}</div>
               </div>
-              <div class="pay-icon-tick" id="tick{i.id}"></div>
-              <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
-                <li class="pay-service-containter"
-                    each="{j in i.currentList}">
-                  <div class="pay-service-icon" id="{j.id}"
-                       role="button"
-                       aria-label="{j.name}"
-                       onclick="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
-                    <img id="{j.id+'_image'}" if="{j.image}"
-                         class="pay-service-image" src="{j.image}" onload="clearLoaderOnIconLoad(this.id)"
-                         onloadeddata="clearLoaderOnIconLoad(this.id)" onerror="errorDownloadImage(this.id)">
-                    <div class="pay-service-name-field">{j.name}</div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </li>
-        </ul>
+            </li>
+          </ul>
+        </div>
+
 
       </div>
 
