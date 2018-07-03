@@ -747,10 +747,26 @@
             scope.prefixesArray.push(scope.servicesParamsMapSix[opts.chosenServiceId][i]);
         }
         if (scope.prefixesArray.length > 0) {
+
           scope.hasPrefixes = true;
+
+          for (var i = 0; i < scope.prefixesArray.length; i++) {
+            if (opts.firstFieldText && opts.firstFieldText.indexOf(scope.prefixesArray[i].title) >= 0) {
+              var pref = scope.prefixesArray[i].title;
+              scope.chosenPrefixTitle = scope.prefixesArray[i].title;
+              scope.chosenPrefixId = scope.prefixesArray[i].title;
+              scope.chosenPrefixName = scope.prefixesArray[i].name;
+              scope.defaultNumber = opts.firstFieldText.substring(opts.firstFieldText.indexOf(pref) + pref.length, opts.firstFieldText.length);
+              break;
+            }
+          }
+
+          if (scope.chosenPrefixTitle == null || scope.chosenPrefixTitle == undefined) {
           scope.chosenPrefixTitle = opts.chosenPrefixTitle ? opts.chosenPrefixTitle : scope.prefixesArray[0].title;
           scope.chosenPrefixId = opts.chosenPrefixId ? opts.chosenPrefixId : scope.prefixesArray[0].option_id;
           scope.chosenPrefixName = opts.chosenPrefixName ? opts.chosenPrefixName : scope.prefixesArray[0].name;
+        }
+          console.log(scope.chosenPrefixTitle);
         }
       }
 
