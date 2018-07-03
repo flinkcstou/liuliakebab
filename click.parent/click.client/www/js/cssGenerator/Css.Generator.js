@@ -2413,6 +2413,18 @@ var css = {
   "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
   "}",
 
+  serviceButtonsNoLoader: ".service-buttons-noloader " +
+  "{" +
+  "position: relative;" +
+  "width:" + 100 * widthK + "px;" +
+  "height:" + 100 * widthK + "px;" +
+  "border: 0px;" +
+  "float: left;" +
+  "margin-right:" + 20 * widthK + "px;" +
+  "margin-left:" + 15 * widthK + "px;" +
+  "margin-top:" + 20 * widthK + "px;" +
+  "}",
+
 
   serviceEachContainer: ".service-each-container" +
   "{" +
@@ -4142,6 +4154,17 @@ var css = {
   "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
   "}",
 
+  payServiceImageNoLoader: ".pay-service-image-noloader" +
+  "{" +
+  "position: relative;" +
+  "width:  " + 120 * widthK + "px; " +
+  "height: " + 120 * widthK + "px; " +
+  "margin-left: " + 15 * widthK + "px; " +
+  "margin-top: " + 15 * widthK + "px; " +
+  "margin-right: " + 15 * widthK + "px; " +
+  "margin-bottom: " + 15 * widthK + "px; " +
+  "}",
+
   payServiceNameField: ".pay-service-name-field" +
   "{" +
   "position: relative;" +
@@ -4172,6 +4195,17 @@ var css = {
   "margin-right:" + 15 * widthK + "px; " +
   "background-size: 80%;" +
   "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
+  "}",
+
+  payCategoryIconNoLoader: ".pay-category-icon-noloader" +
+  "{" +
+  "position: relative;" +
+  "width:" + 50 * widthK + "px; " +
+  "height:" + 50 * widthK + "px; " +
+  "float: left;" +
+  "left: 4%;" +
+  "top:" + 20 * widthK + "px; " +
+  "margin-right:" + 15 * widthK + "px; " +
   "}",
 
   payCategoryNameField: ".pay-category-name-field" +
@@ -4219,6 +4253,15 @@ var css = {
   // "top:" + 31 * widthK + "px; " +
   // "background-size: 50%;" +
   // "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
+  "}",
+
+  paySearchServicesIconNoLoader: ".pay-search-services-icon-noloader" +
+  "{" +
+  "position: relative;" +
+  "width:" + 95 * widthK + "px; " +
+  "height:" + 95 * widthK + "px; " +
+  "float: left;" +
+  "left: 3%;" +
   "}",
 
 

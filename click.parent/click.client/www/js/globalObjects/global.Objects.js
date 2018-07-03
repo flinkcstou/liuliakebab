@@ -1055,6 +1055,7 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
 
                       if (bool) {
                         categoryList[index]['icon'] = (cordova.file.dataDirectory + fileName).replace('file:///', '/');
+                        categoryList[index]['icon_cached'] = true;
                       } else {
                         categoryList[index]['icon'] = 'resources/icons/ViewPay/' + fileName;
                       }

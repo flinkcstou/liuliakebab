@@ -24,7 +24,9 @@
       <div class="service-container">
         <div class="service-each-container" each="{i in favPaymentsList}">
 
-          <img id="{i.id}" class="service-buttons" ontouchstart="ontouchStartOfPayment(this.id)"
+          <img id="{i.id}"
+               class="{service-buttons: !i.service.image_cached, service-buttons-noloader: i.service.image_cached}"
+               ontouchstart="ontouchStartOfPayment(this.id)"
                ontouchend="ontouchEndOfPayment(this.id)" ontouchmove="ontouchMoveOfService()"
                src="{i.service.image}" onloadeddata="clearLoaderOnIconLoad(this.id)"
                onerror="errorDownloadImage(this.id)">
@@ -85,11 +87,11 @@
       scope.popularServiceList = [];
       window.api.call({
         method: 'get.popular.services',
-        input : {
+        input: {
           session_key: sessionKey,
-          phone_num  : phoneNumber
+          phone_num: phoneNumber
         },
-        scope : this,
+        scope: this,
 
         onSuccess: function (result) {
           if (result[0][0].error == 0) {
@@ -154,15 +156,15 @@
           }
           else {
             window.common.alert.show("componentAlertId", {
-              parent       : scope,
+              parent: scope,
               clickpinerror: false,
-              errornote    : result[0][0].error_note
+              errornote: result[0][0].error_note
             });
             scope.update();
           }
 
         },
-        onFail   : function (api_status, api_status_message, data) {
+        onFail: function (api_status, api_status_message, data) {
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
@@ -234,10 +236,10 @@
 
       window.api.call({
         method: 'get.wishlist',
-        input : {
+        input: {
           session_key: sessionKey,
-          phone_num  : phoneNumber,
-          type       : 1
+          phone_num: phoneNumber,
+          type: 1
         },
 
         scope: this,
@@ -253,6 +255,7 @@
                 var fav = JSON.parse(result[1][j].body);
                 if (scope.servicesMap[fav.service.id]) {
                   fav.service.image = scope.servicesMap[fav.service.id][0].image;
+                  fav.service.image_cached = scope.servicesMap[fav.service.id][0].image_cached;
                   scope.favoritePaymentsList.push(fav);
                   console.log("image changed for ", fav)
                 }
@@ -260,7 +263,7 @@
               favoritePaymentsListForApi = [];
               for (var i in scope.favoritePaymentsList)
                 favoritePaymentsListForApi.push({
-                  "id"  : scope.favoritePaymentsList[i].id,
+                  "id": scope.favoritePaymentsList[i].id,
                   "type": 1,
                   "body": JSON.stringify(scope.favoritePaymentsList[i])
                 })
@@ -280,7 +283,7 @@
                 favoritePaymentsListForApi = [];
                 for (var i in favoritePaymentsList)
                   favoritePaymentsListForApi.push({
-                    "id"  : favoritePaymentsList[i].id,
+                    "id": favoritePaymentsList[i].id,
                     "type": 1,
                     "body": JSON.stringify(favoritePaymentsList[i])
                   })
@@ -290,9 +293,9 @@
 
               window.api.call({
                 method: 'add.favourite',
-                input : {
-                  session_key  : sessionKey,
-                  phone_num    : phoneNumber,
+                input: {
+                  session_key: sessionKey,
+                  phone_num: phoneNumber,
                   wishlist_data: favoritePaymentsListForApi
                 },
 
@@ -307,9 +310,9 @@
                   }
                   else {
                     window.common.alert.show("componentAlertId", {
-                      parent       : scope,
+                      parent: scope,
                       clickpinerror: false,
-                      errornote    : result[0][0].error_note
+                      errornote: result[0][0].error_note
                     });
                     scope.update();
                     console.log(result[0][0].error_note);
@@ -327,9 +330,9 @@
           }
           else {
             window.common.alert.show("componentAlertId", {
-              parent       : scope,
+              parent: scope,
               clickpinerror: false,
-              errornote    : result[0][0].error_note
+              errornote: result[0][0].error_note
             });
             scope.update();
             console.log(result[0][0].error_note);
@@ -361,7 +364,7 @@
         if (modeOfApp.demoVersion) {
           var question = window.languages.DemoModeConstraintText;
           window.common.alert.show("componentAlertId", {
-            parent   : scope,
+            parent: scope,
             errornote: question
           });
 
@@ -559,9 +562,9 @@
               if (ussdQuery === null) {
 
                 window.common.alert.show("componentAlertId", {
-                  parent       : scope,
+                  parent: scope,
                   clickpinerror: false,
-                  errornote    : "Сервис временно недоступен!"
+                  errornote: "Сервис временно недоступен!"
                 });
                 scope.update();
                 return
@@ -576,9 +579,9 @@
                   if (err == "empty") {
 
                     window.common.alert.show("componentAlertId", {
-                      parent       : scope,
+                      parent: scope,
                       clickpinerror: false,
-                      errornote    : "Неизвестный номер телефона"
+                      errornote: "Неизвестный номер телефона"
                     });
                     scope.update();
                   }
@@ -634,9 +637,9 @@
             } else {
 
               window.common.alert.show("componentAlertId", {
-                parent       : scope,
+                parent: scope,
                 clickpinerror: false,
-                errornote    : "Подождите, данные для избранных платежей еще не подгрузились"
+                errornote: "Подождите, данные для избранных платежей еще не подгрузились"
               });
               scope.update();
 
@@ -665,7 +668,7 @@
             scope.favoritePaymentsList[index].params.fracPartAmount = window.getFractionalPart(scope.internetPackagesArray[j].sum_cost.toString());
 
             scope.favoritePaymentsList[index].params.amountText = window.amountTransform(
-              window.inputVerification.spaceDeleter(scope.favoritePaymentsList[index].params.intPartAmount))
+                window.inputVerification.spaceDeleter(scope.favoritePaymentsList[index].params.intPartAmount))
               + scope.favoritePaymentsList[index].params.fracPartAmount;
 
             localStorage.setItem('favoritePaymentsList', JSON.stringify(scope.favoritePaymentsList));
@@ -695,12 +698,12 @@
     function internetPackagesSumUpdate(serviceId, index, callback) {
 
       window.api.call({
-        method     : 'get.service.parameters',
+        method: 'get.service.parameters',
         stopSpinner: false,
-        input      : {
+        input: {
           session_key: sessionKey,
-          phone_num  : phoneNumber,
-          service_id : serviceId
+          phone_num: phoneNumber,
+          service_id: serviceId
         },
 
         scope: this,
@@ -733,7 +736,7 @@
           var question = window.languages.DemoModeConstraintText;
 //        confirm(question)
           window.common.alert.show("componentConfirmId", {
-            parent       : scope,
+            parent: scope,
             "confirmnote": question,
             "confirmtype": "local"
           });
