@@ -91,8 +91,8 @@
             console.log("got imei: " + imei);
             scope.deviceimei = imei;
           },
-          function () {
-            console.log("error loading imei");
+          function (e) {
+            console.log("error loading imei="+e);
           }
         );
       }

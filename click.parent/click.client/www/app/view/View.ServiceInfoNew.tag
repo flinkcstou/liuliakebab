@@ -184,6 +184,7 @@
               scope.serviceData = result[1][0];
               if (result[1][0].information_type == 3) {
                 scope.optionsArray = result[1][0].options;
+                console.log("мы здесь в заложниках!!! спасайся!!!аааааааАААААА!!!!"+JSON.stringify(result[1][0].options));
                 scope.optionsHeader = result[1][0].options_header;
                 scope.checkIconShow = result[1][0].options.length > 1;
                 optionAttribute = result[1][0].options[0].option_payment_attribute;
@@ -313,6 +314,12 @@
         document.getElementById("check" + id).style.backgroundImage = "url(resources/icons/ViewService/radio_selected.png)";
         scope.index = id;
         opts.optionValue = id;
+        for(var dt in scope.serviceData)
+        {
+          if(dt.optionValue==id) {
+            opts.payment_data_attributes =dt.payment_data_attributes;
+          }
+        }
       }
     };
 

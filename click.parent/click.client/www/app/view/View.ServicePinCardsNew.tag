@@ -69,6 +69,7 @@
     var backStartY, backStartX, backEndY, backEndX;
 
     console.log("OPTS in ServicePinCards", opts)
+    console.log('спасите нас, мы здесь!!!');
 
     scope.onTouchStartOfBack = onTouchStartOfBack = function () {
       event.stopPropagation();
