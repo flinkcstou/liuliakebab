@@ -17066,6 +17066,19 @@ var css = {
   "background-image: url(resources/icons/ViewAutoPay/autopayment_empty.png);" +
   "}",
 
+  emptyListUpperFriend: ".empty-list-upper-icon-friend" +
+  "{" +
+  "position: absolute;" +
+  "height:100%;" +
+  "width:100%;" +
+  "top:17%;" +
+  "background-repeat: no-repeat;" +
+  "background-size: 50%;" +
+  "background-position: center;" +
+  "background-position-y: 50%;" +
+  "background-image: url(resources/icons/ViewAutoPay/autopayment_empty.png);" +
+  "}",
+
   emptyListLowerContainer: ".empty-list-lower-container " +
   "{" +
   "position: absolute;" +
