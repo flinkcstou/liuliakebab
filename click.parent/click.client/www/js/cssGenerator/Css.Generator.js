@@ -4234,8 +4234,9 @@ var css = {
   paySearchServicesIcon: ".pay-search-services-icon" +
   "{" +
   "position: relative;" +
-  "width:" + 95 * widthK + "px; " +
-  "height:" + 95 * widthK + "px; " +
+  "width:" + 85 * widthK + "px; " +
+  "height:" + 85 * widthK + "px; " +
+  "top:" + 7 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "float: left;" +
@@ -4258,8 +4259,9 @@ var css = {
   paySearchServicesIconNoLoader: ".pay-search-services-icon-noloader" +
   "{" +
   "position: relative;" +
-  "width:" + 95 * widthK + "px; " +
-  "height:" + 95 * widthK + "px; " +
+  "width:" + 85 * widthK + "px; " +
+  "height:" + 85 * widthK + "px; " +
+  "top:" + 7 * widthK + "px; " +
   "float: left;" +
   "left: 3%;" +
   "}",

@@ -45,7 +45,7 @@
                  ontouchstart="onTouchStartOfService(this.id)"
                  onclick="onTouchEndOfService(this.id, true)">
               <img id="{i.id+'_sgn'}" if="{i.image}"
-                   class="{pay-search-services-icon: !j.image_cached,pay-search-services-icon-noloader: j.image_cached}"
+                   class="{pay-search-services-icon: !i.image_cached,pay-search-services-icon-noloader: i.image_cached}"
                    src="{i.image}" onload="clearLoaderOnIconLoad(this.id)"
                    onloadeddata="clearLoaderOnIconLoad(this.id)" onerror="errorDownloadImage(this.id)">
               <div class="pay-category-name-field">{i.name}

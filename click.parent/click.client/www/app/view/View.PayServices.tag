@@ -45,11 +45,10 @@
                  onclick="onTouchEndOfService(this.id, true)">
               <div if="{false}" class="pay-search-services-icon" style="background-image: url({i.image})"></div>
               <img id="{i.id+'_image'}" if="{i.image}"
-                   class="pay-search-services-icon" src="{i.image}"
+                   class="{pay-search-services-icon: !i.image_cached,pay-search-services-icon-noloader: i.image_cached}"
+                   src="{i.image}"
                    onload="clearLoaderOnIconLoad(this.id)">
               <div class="pay-category-name-field">{i.name}
-              </div>
-              <div class="title-bottom-border">
               </div>
             </div>
           </li>
