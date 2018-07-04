@@ -22,7 +22,7 @@
       <div class="serviceinfo-option-containter" ontouchstart="optionOnTouchStart()"
            ontouchend="optionOnTouchEnd(this.id)"
            each="{i in optionsArray}"
-           id="{i.option_value}">
+           id="{i.id}">
         <ul class="serviceinfo-option-info-container" style="list-style:none">
           <li class="serviceinfo-option-detail" each="{j in i.option_object}" if="{j.title}">
             <div
@@ -35,7 +35,7 @@
             </div>
           </li>
         </ul>
-        <div id="check{i.option_value}" class="serviceinfo-option-check-icon" if="{checkIconShow}"></div>
+        <div id="check{i.id}" class="serviceinfo-option-check-icon" if="{checkIconShow}"></div>
       </div>
     </div>
 
@@ -136,6 +136,10 @@
 
       console.log("Displaying cached info")
       if (scope.serviceData.information_type == 3) {
+        for(var j=0;j<scope.serviceData.options.length;j++)
+        {
+          scope.serviceData.options[j].id=j;
+        }
         scope.optionsArray = scope.serviceData.options;
         scope.optionsHeader = scope.serviceData.options_header;
         scope.checkIconShow = scope.serviceData.options.length > 1;
@@ -183,8 +187,11 @@
                 localStorage.setItem("click_client_infoCached", JSON.stringify(result[1][0]));
               scope.serviceData = result[1][0];
               if (result[1][0].information_type == 3) {
+                for(var j=0;j<scope.serviceData.options.length;j++)
+                {
+                  scope.serviceData.options[j].id=j;
+                }
                 scope.optionsArray = result[1][0].options;
-                console.log("мы здесь в заложниках!!! спасайся!!!аааааааАААААА!!!!"+JSON.stringify(result[1][0].options));
                 scope.optionsHeader = result[1][0].options_header;
                 scope.checkIconShow = result[1][0].options.length > 1;
                 optionAttribute = result[1][0].options[0].option_payment_attribute;
@@ -312,14 +319,10 @@
         if (scope.index != -1 && scope.index != id)
           document.getElementById("check" + scope.index).style.backgroundImage = "url(resources/icons/ViewService/radio_unselected.png)";
         document.getElementById("check" + id).style.backgroundImage = "url(resources/icons/ViewService/radio_selected.png)";
-        scope.index = id;
-        opts.optionValue = id;
-        for(var dt in scope.serviceData)
-        {
-          if(dt.optionValue==id) {
-            opts.payment_data_attributes =dt.payment_data_attributes;
-          }
-        }
+        var option_id=scope.serviceData.options[parseInt(id)].option_value;
+        scope.index = option_id;
+        opts.optionValue = option_id;
+        opts.payment_data_attributes =scope.serviceData.options[parseInt(id)].payment_data_attributes;
       }
     };
 
