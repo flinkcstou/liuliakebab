@@ -144,7 +144,7 @@
         scope.optionsHeader = scope.serviceData.options_header;
         scope.checkIconShow = scope.serviceData.options.length > 1;
         optionAttribute = scope.serviceData.options[0].option_payment_attribute;
-        opts.paymentDataAttributes = scope.serviceData.options[0].payment_data_attributes;
+        opts.paymentDataAttributes = (scope.index!=-1)?result[1][0].options[parseInt(scope.index)].payment_data_attributes:result[1][0].options[0].payment_data_attributes;
         //find array in cached data
         for (var i in scope.serviceData.options[0].option_object) {
           if (scope.serviceData.options[0].option_object[i].constructor === Array) {
@@ -195,7 +195,8 @@
                 scope.optionsHeader = result[1][0].options_header;
                 scope.checkIconShow = result[1][0].options.length > 1;
                 optionAttribute = result[1][0].options[0].option_payment_attribute;
-                opts.paymentDataAttributes = result[1][0].options[0].payment_data_attributes;
+                opts.paymentDataAttributes = (scope.index!=-1)?result[1][0].options[parseInt(scope.index)].payment_data_attributes:result[1][0].options[0].payment_data_attributes;
+
                 //find array in result
                 for (var i in result[1][0].options[0].option_object) {
                   if (result[1][0].options[0].option_object[i].constructor === Array) {
@@ -320,9 +321,9 @@
           document.getElementById("check" + scope.index).style.backgroundImage = "url(resources/icons/ViewService/radio_unselected.png)";
         document.getElementById("check" + id).style.backgroundImage = "url(resources/icons/ViewService/radio_selected.png)";
         var option_id=scope.serviceData.options[parseInt(id)].option_value;
-        scope.index = option_id;
+        scope.index = id;
         opts.optionValue = option_id;
-        opts.payment_data_attributes =scope.serviceData.options[parseInt(id)].payment_data_attributes;
+        opts.paymentDataAttributes =scope.serviceData.options[parseInt(id)].payment_data_attributes;
       }
     };
 
