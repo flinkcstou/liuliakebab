@@ -4068,7 +4068,7 @@ var css = {
   "{" +
   "position: absolute;" +
   //"height:" + 1150 * widthK + "px; " +
-  "width: 100%; " +
+  "width: " + 720 * widthK + "px; " +
   "top:" + 86 * widthK + "px; " +
   "bottom:0; " +
   "background-color: white; " +
