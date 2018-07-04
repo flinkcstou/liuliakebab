@@ -1188,6 +1188,7 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
                           var fav = JSON.parse(result[1][j].body);
                           if (servicesMap[fav.service.id]) {
                             fav.service.image = servicesMap[fav.service.id][0].image;
+                            fav.service.image_cached = servicesMap[fav.service.id][0].image_cached;
                             favoritePaymentsList.push(fav);
                           }
                         }
