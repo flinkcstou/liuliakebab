@@ -688,9 +688,9 @@ var RU_LANGUAGES =
   "QrJowiOfflineConstraintText": "Оплата за данного поставщика доступна только в онлайн режиме",
   "QrOnlyStartQrText": "Запустите QR сканер и отсканируйте QR-код в предоставленном чеке",
   "QrOnlyQrText": "QR сканер",
-  "QrScanerText": "QR сканер"
+  "QrScanerText": "QR сканер",
 
-
+  "ViewSettingsFriendHelpEmptyMessage": "ДОБАВЬТЕ КОНТАКТНЫЙ НОМЕР ИЗ АДРЕСНОЙ КНИГИ ТЕЛЕФОНА"
 };
 
 window.languages = RU_LANGUAGES;
