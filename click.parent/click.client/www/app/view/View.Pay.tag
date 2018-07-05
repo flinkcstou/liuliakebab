@@ -74,9 +74,9 @@
           <div class="pay-category-name-field">{i.name}
           </div>
           <div class="pay-icon-tick" id="tick{i.id}"></div>
-          <ul class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
-            <li class="pay-service-containter"
-                each="{j in i.currentList}">
+          <div class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
+            <div class="pay-service-containter"
+                 each="{j in i.currentList}">
               <div class="pay-service-icon" id="{j.id}"
                    role="button"
                    aria-label="{j.name}"
@@ -87,8 +87,8 @@
                      onloadeddata="clearLoaderOnIconLoad(this.id)" onerror="errorDownloadImage(this.id)">
                 <div class="pay-service-name-field">{j.name}</div>
               </div>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
 
 
