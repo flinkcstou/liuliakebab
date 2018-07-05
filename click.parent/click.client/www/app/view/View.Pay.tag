@@ -114,7 +114,6 @@
     scope.serviceNamesMap = localStorage.getItem("click_client_payServiceNamesMap") ? (JSON.parse(localStorage.getItem("click_client_payServiceNamesMap"))) : (offlinePayServiceNamesMap);
     scope.servicesMapByCategory = localStorage.getItem("click_client_servicesMapByCategory") ? (JSON.parse(localStorage.getItem("click_client_servicesMapByCategory"))) : (offlineServicesMapByCategory);
     scope.servicesMap = localStorage.getItem("click_client_servicesMap") ? (JSON.parse(localStorage.getItem("click_client_servicesMap"))) : (offlineServicesMap);
-    scope.servicesParams = localStorage.getItem("click_client_servicesParams") ? (JSON.parse(localStorage.getItem("click_client_servicesParams"))) : (offlineServicesParams);
     scope.servicesParamsMapOne = localStorage.getItem("click_client_servicesParamsMapOne") ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
     scope.categoryNamesMap = localStorage.getItem("click_client_categoryNamesMap") ? (JSON.parse(localStorage.getItem("click_client_categoryNamesMap"))) : (offlineCategoryNamesMap);
     scope.searchServices = false;

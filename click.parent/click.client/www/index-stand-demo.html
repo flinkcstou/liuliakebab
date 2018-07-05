@@ -182,7 +182,6 @@
     scope.serviceNamesMap = JSON.parse(localStorage.getItem("click_client_payServiceNamesMap"));
     scope.servicesMapByCategory = JSON.parse(localStorage.getItem("click_client_servicesMapByCategory"));
     scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
-    scope.servicesParams = JSON.parse(localStorage.getItem("click_client_servicesParams"));
     scope.servicesParamsMapOne = JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"));
 
 
@@ -523,7 +522,6 @@
               else
                 scope.servicesParamsMapFive[result[5][i].service_id].push(result[5][i]);
             }
-          localStorage.setItem('click_client_servicesParams', JSON.stringify(result));
           localStorage.setItem('click_client_servicesParamsMapOne', JSON.stringify(scope.servicesParamsMapOne));
           localStorage.setItem('click_client_servicesParamsMapTwo', JSON.stringify(scope.servicesParamsMapTwo));
           localStorage.setItem('click_client_servicesParamsMapThree', JSON.stringify(scope.servicesParamsMapThree));

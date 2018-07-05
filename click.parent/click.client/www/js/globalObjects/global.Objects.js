@@ -1274,11 +1274,13 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
 
         }, onErrorLoadFs);
       }
+    };
+
+    if (!localStorage.getItem('click_client_servicesParamsMapOne')) {
+      servicesParamsInit();
     }
 
-
-    servicesParamsInit = function () {
-      var servicesParams = [];
+    function servicesParamsInit() {
       var servicesParamsMapOne = {};
       var servicesParamsMapTwo = {};
       var servicesParamsMapThree = {};
@@ -1355,7 +1357,6 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
                 else
                   servicesParamsMapSix[result[6][i].service_id].push(result[6][i]);
               }
-            localStorage.setItem('click_client_servicesParams', JSON.stringify(result));
             localStorage.setItem('click_client_servicesParamsMapOne', JSON.stringify(servicesParamsMapOne));
             localStorage.setItem('click_client_servicesParamsMapTwo', JSON.stringify(servicesParamsMapTwo));
             localStorage.setItem('click_client_servicesParamsMapThree', JSON.stringify(servicesParamsMapThree));
