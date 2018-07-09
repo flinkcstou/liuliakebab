@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-packageName="air.com.ssdsoftwaresolutions.clickuz" android-versionCode="50000034"
+<widget android-packageName="air.com.ssdsoftwaresolutions.clickuz" android-versionCode="50000035"
         id="air.com.ssdsoftwaresolutions.clickuz" ios-CFBundleIdentifier="com.ssdsoftwaresolutions.clickuz"
         version="5.3.4" xmlns="http://www.w3.org/ns/widgets">
   <name>CLICK Uzbekistan</name>
@@ -102,7 +102,7 @@
   </platform>
   <platform name="android">
     <allow-intent href="market:*"/>
-    <preference name="android-minSdkVersion" value="14"/>
+    <preference name="android-minSdkVersion" value="19"/>
     <preference name="android-targetSdkVersion" value="26"/>
     <preference name="Fullscreen" value="false"/>
     <preference name="AndroidPersistentFileLocation" value="Internal"/>
