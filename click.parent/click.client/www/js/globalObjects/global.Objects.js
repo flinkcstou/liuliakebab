@@ -2696,3 +2696,162 @@ function transProcess(abc, syllable, text) {
 }
 
 
+function makeFormScrollableOnOpenKeyboard(obj,element) {
+  var el = document.getElementById(obj);
+  el.style.overflowY = 'scroll';
+  el.style.webkitOverflowScrolling = 'touch';
+
+  var div = document.createElement("div");
+  div.style.width = "100%";
+  div.id = "emptyspace";
+  // div.style.background = "red";
+  // div.style.position="relative";
+  el.appendChild(div);
+
+  var inputs = el.getElementsByTagName('input');
+  for (var inp in inputs) {
+    inp.onfocus=scroll(el);
+  }
+
+  window.addEventListener('native.keyboardshow', function (e) {
+    try {
+      if (this.emptyspace) {
+        var h = (2 * e.keyboardHeight) + "px";
+        this.emptyspace.style.height = h;
+        scroll(el);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  });
+
+  window.addEventListener('native.keyboardhide', function (e) {
+    try {
+      if (this.emptyspace)
+        this.emptyspace.style.height = "0px";
+      } catch (error) {
+      console.error(error);
+    }
+  });
+}
+
+function scroll(el) {
+  if (window.device && window.device.platform === "iOS") {
+    scrollIOS(el, document.activeElement.parentNode.offsetTop, 300);
+  } else {
+    scrollAndroid(el, document.activeElement.parentNode.offsetTop, 300);
+  }
+}
+
+function scrollAndroid(element, to, duration) {
+  if (element.scrollTop === to) return;
+  var diff = to - element.scrollTop,
+    direction,
+    oldValue = null,
+    scrollStep = Math.PI / (duration / 10),
+    count = 0, currPos, start;
+
+  if (diff > 0) {
+    direction = 1
+  } else {
+    direction = -1
+  }
+
+  start = element.scrollTop;
+
+  window.scrollInterval = setInterval(function () {
+
+    console.log("direction, element, oldValue, element.scrollTop, to", direction, element, oldValue, element.scrollTop, to);
+
+    if ((direction === 1 && element.scrollTop < to) || (direction === -1 && element.scrollTop > to)) {
+
+      console.log("Interval working");
+
+      count = count + 1;
+      currPos = start + diff * (0.5 - 0.5 * Math.cos(count * scrollStep));
+
+      console.log("oldValue, currPos", oldValue, currPos);
+
+      if (oldValue && ((direction === 1 && oldValue >= currPos) || (direction === -1 && oldValue <= currPos))) {
+
+        console.log("OldValue Interval ended");
+
+        clearInterval(window.scrollInterval);
+        return;
+      }
+
+      element.scrollTop = currPos;
+
+    }
+    else {
+
+      console.log("Interval ended");
+
+      clearInterval(window.scrollInterval);
+    }
+
+    oldValue = element.scrollTop;
+  }, 1);
+}
+
+function scrollIOS(element, to, duration) {
+  if (element.scrollTop === to) return;
+  var diff = to - element.scrollTop,
+    direction,
+    oldValue = null,
+    scrollStep = Math.PI / (duration / 10),
+    count = 0, currPos, start;
+
+  if (diff > 0) {
+    direction = 1
+  } else {
+    direction = -1
+  }
+
+  start = element.scrollTop;
+
+  window.scrollInterval = setInterval(function () {
+
+    console.log("direction, element, oldValue, element.scrollTop, to", direction, element, oldValue, element.scrollTop, to);
+
+    if ((direction === 1 && element.scrollTop < to) || (direction === -1 && element.scrollTop > to)) {
+
+      console.log("Interval working");
+
+      count = count + 1;
+      currPos = start + diff * (0.5 - 0.5 * Math.cos(count * scrollStep));
+
+      try {
+        document.activeElement.focus();
+        document.activeElement.value += " ";
+        document.activeElement.value = document.activeElement.value.substring(0, document.activeElement.value.length - 1);
+      } catch (error) {
+
+        console.error(error);
+      }
+
+      console.log("oldValue, currPos", oldValue, currPos);
+
+      if (oldValue && ((direction === 1 && oldValue >= currPos) || (direction === -1 && oldValue <= currPos))) {
+
+        console.log("OldValue Interval ended");
+
+        clearInterval(window.scrollInterval);
+        return;
+      }
+
+      element.scrollTop = currPos;
+
+    }
+    else {
+
+      console.log("Interval ended");
+
+      clearInterval(window.scrollInterval);
+    }
+
+    oldValue = element.scrollTop;
+  }, 1);
+}
+
+

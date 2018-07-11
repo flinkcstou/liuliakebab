@@ -17,7 +17,7 @@
            style="background-image: url({serviceIcon})"></div>
     </div>
 
-    <div class="servicepage-body-container">
+    <div id="servicepage-body-container" class="servicepage-body-container">
 
       <div id="autopayField" class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDAUTOPAY'}">
         <p id="autoPayNameTitle" class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
@@ -434,7 +434,7 @@
     this.on('mount', function () {
 
       focusFieldAfterTourClosed();
-
+      makeFormScrollableOnOpenKeyboard('servicepage-body-container');
       if (opts && opts.number) {
         firstFieldInput.value = inputVerification.telVerificationWithSpace(inputVerification.telVerification(opts.number));
         scope.update();
