@@ -17799,8 +17799,8 @@ var css = {
   "top: " + 130 * heightK + "px; " +
   "background-color: #f2f2f1;" +
   // "overflow-x: hidden;" +
-  // "overflow-y: scroll;" +
-  // "-webkit-overflow-scrolling: touch; " +
+  "overflow-y: scroll;" +
+  "-webkit-overflow-scrolling: touch; " +
   "}",
 
   serviceInfoOptions: ".serviceinfo-options" +
