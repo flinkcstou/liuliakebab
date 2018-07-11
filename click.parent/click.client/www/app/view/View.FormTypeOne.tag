@@ -85,7 +85,7 @@
                placeholder="{placeHolderText}"
                onfocus="colorFieldGlobal('amountField','amountFieldTitle')"
                onblur="blurFieldGlobal('amountField','amountFieldTitle')"
-               onmouseup="eraseAmountDefault()" onkeyup="sumForPay()"/>
+               onmouseup="eraseAmountDefault()" oninput="sumForPay()"/>
         <div if="{!modeOfApp.offlineMode && service['amount_editable'] && calcOn}" class="servicepage-amount-icon"
              ontouchstart="onTouchStartOfAmountCalculator()" role="button"
              aria-label="{window.languages.ViewServicePageVoiceOverOpenCalculator}"
@@ -162,6 +162,7 @@
     var contactStopChanging = false;
     scope.showErrorOfLimit = false;
     var onPaste = false;
+    var amountFormatted = false;
     scope.selectedId = '';
     var options = {
       symbol: "",
@@ -762,10 +763,10 @@
           }
 
           if (scope.chosenPrefixTitle == null || scope.chosenPrefixTitle == undefined) {
-          scope.chosenPrefixTitle = opts.chosenPrefixTitle ? opts.chosenPrefixTitle : scope.prefixesArray[0].title;
-          scope.chosenPrefixId = opts.chosenPrefixId ? opts.chosenPrefixId : scope.prefixesArray[0].option_id;
-          scope.chosenPrefixName = opts.chosenPrefixName ? opts.chosenPrefixName : scope.prefixesArray[0].name;
-        }
+            scope.chosenPrefixTitle = opts.chosenPrefixTitle ? opts.chosenPrefixTitle : scope.prefixesArray[0].title;
+            scope.chosenPrefixId = opts.chosenPrefixId ? opts.chosenPrefixId : scope.prefixesArray[0].option_id;
+            scope.chosenPrefixName = opts.chosenPrefixName ? opts.chosenPrefixName : scope.prefixesArray[0].name;
+          }
           console.log(scope.chosenPrefixTitle);
         }
       }
@@ -985,7 +986,6 @@
       scope.update();
       checkFieldsToActivateNext('sum');
     };
-
 
     scope.onTouchStartOfEnter = onTouchStartOfEnter = function () {
       event.stopPropagation();

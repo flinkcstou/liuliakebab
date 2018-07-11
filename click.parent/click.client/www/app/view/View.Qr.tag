@@ -24,7 +24,7 @@
         <input maxlength="14" class="view-qr-contact-number-input-part" onfocus="sumFocus()" id="sumValueId"
                autofocus
                onmouseup="sumMouseUp()"
-               type="tel" onblur="sumOnBlur()" onkeyup="sumKeyUp()"/>
+               type="tel" onblur="sumOnBlur()" oninput="sumInput()"/>
       </div>
     </div>
 
@@ -192,7 +192,7 @@
 
     };
 
-    sumKeyUp = function () {
+    sumInput = function () {
 
       if (sumValueId.value.length == 1) {
         sumValueId.value = window.amountTransform(sumValueId.value.toString())
