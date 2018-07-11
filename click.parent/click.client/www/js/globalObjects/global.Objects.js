@@ -2696,7 +2696,7 @@ function transProcess(abc, syllable, text) {
 }
 
 
-function makeFormScrollableOnOpenKeyboard(obj,element) {
+function makeFormScrollableOnOpenKeyboard(obj) {
   var el = document.getElementById(obj);
   el.style.overflowY = 'scroll';
   el.style.webkitOverflowScrolling = 'touch';
@@ -2704,13 +2704,13 @@ function makeFormScrollableOnOpenKeyboard(obj,element) {
   var div = document.createElement("div");
   div.style.width = "100%";
   div.id = "emptyspace";
-  // div.style.background = "red";
+  div.style.background = "red";
   // div.style.position="relative";
   el.appendChild(div);
 
   var inputs = el.getElementsByTagName('input');
   for (var inp in inputs) {
-    inp.onfocus=scroll(el);
+    inp.onfocusin=scroll(el);
   }
 
   window.addEventListener('native.keyboardshow', function (e) {

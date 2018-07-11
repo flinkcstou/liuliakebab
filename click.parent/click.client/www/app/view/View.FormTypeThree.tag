@@ -125,17 +125,14 @@
 
         <p if="{showErrorOfLimit}" id="placeHolderSumId" class="servicepage-limit-title">{placeHolderText}</p>
       </div>
-
-
-      <button id="enterButtonId" style="bottom: {window.bottomButtonBottom}"
-              class="{servicepage-button-enter-enabled: enterButtonEnabled,servicepage-button-enter-disabled:!enterButtonEnabled}"
-              ontouchstart="onTouchStartOfEnter()"
-              ontouchend="onTouchEndOfEnter()">
-        {enterButton ? (modeOfApp.offlineMode ?window.languages.ViewServicePagePayLabel:
-        window.languages.ViewServicePageEnterLabel):window.languages.ViewServicePageSaveLabel}
-      </button>
-
     </div>
+    <button id="enterButtonId" style="bottom: {window.bottomButtonBottom}"
+            class="{servicepage-button-enter-enabled: enterButtonEnabled,servicepage-button-enter-disabled:!enterButtonEnabled}"
+            ontouchstart="onTouchStartOfEnter()"
+            ontouchend="onTouchEndOfEnter()">
+      {enterButton ? (modeOfApp.offlineMode ?window.languages.ViewServicePagePayLabel:
+      window.languages.ViewServicePageEnterLabel):window.languages.ViewServicePageSaveLabel}
+    </button>
 
     <div hidden="{!showComponent}" id="blockAmountCalculatorId" class="component-calc">
       <div id="rightButton" type="button" role="button" aria-label="{window.languages.Close}"
