@@ -2696,7 +2696,7 @@ function transProcess(abc, syllable, text) {
 }
 
 
-function makeFormScrollableOnOpenKeyboard(obj) {
+function makeFormScrollableOnOpenKeyboard(obj,offset) {
   var el = document.getElementById(obj);
   el.style.overflowY = 'scroll';
   el.style.webkitOverflowScrolling = 'touch';
@@ -2704,21 +2704,21 @@ function makeFormScrollableOnOpenKeyboard(obj) {
   var div = document.createElement("div");
   div.style.width = "100%";
   div.id = "emptyspace";
-  div.style.background = "red";
+  // div.style.background = "red";
   // div.style.position="relative";
   el.appendChild(div);
 
   var inputs = el.getElementsByTagName('input');
-  for (var inp in inputs) {
-    inp.onfocusin=scroll(el);
-  }
+  // for (var inp in inputs) {
+  //   inp.onfocusin=scroll(el);
+  // }
 
   window.addEventListener('native.keyboardshow', function (e) {
     try {
       if (this.emptyspace) {
         var h = (2 * e.keyboardHeight) + "px";
         this.emptyspace.style.height = h;
-        scroll(el);
+        scroll(el,findMinScrollToViewElement(el,document.activeElement.parentNode,e.keyboardHeight,offset));
       }
     } catch (error) {
       console.error(error);
@@ -2735,12 +2735,20 @@ function makeFormScrollableOnOpenKeyboard(obj) {
   });
 }
 
-function scroll(el) {
+function scroll(el,to) {
   if (window.device && window.device.platform === "iOS") {
-    scrollIOS(el, document.activeElement.parentNode.offsetTop, 300);
+    scrollIOS(el,to , 300);
   } else {
-    scrollAndroid(el, document.activeElement.parentNode.offsetTop, 300);
+    scrollAndroid(el,to, 300);
   }
+}
+
+function findMinScrollToViewElement(scrollParent,obj,keyboardHeight,offset){
+  var windowHeight = window.innerHeight-keyboardHeight;
+  var parentOffset=scrollParent.offsetTop;
+  var keyboardOffset=windowHeight-parentOffset;
+  var objectHeight = obj.height;
+  return (obj.offsetTop+obj.clientHeight+offset)-keyboardOffset;
 }
 
 function scrollAndroid(element, to, duration) {
@@ -2763,7 +2771,9 @@ function scrollAndroid(element, to, duration) {
 
     console.log("direction, element, oldValue, element.scrollTop, to", direction, element, oldValue, element.scrollTop, to);
 
-    if ((direction === 1 && element.scrollTop < to) || (direction === -1 && element.scrollTop > to)) {
+    if ((direction === 1 && element.scrollTop < to)
+      // || (direction === -1 && element.scrollTop > to)
+    ) {
 
       console.log("Interval working");
 
@@ -2814,7 +2824,9 @@ function scrollIOS(element, to, duration) {
 
     console.log("direction, element, oldValue, element.scrollTop, to", direction, element, oldValue, element.scrollTop, to);
 
-    if ((direction === 1 && element.scrollTop < to) || (direction === -1 && element.scrollTop > to)) {
+    if ((direction === 1 && element.scrollTop < to)
+      // || (direction === -1 && element.scrollTop > to)
+    ) {
 
       console.log("Interval working");
 

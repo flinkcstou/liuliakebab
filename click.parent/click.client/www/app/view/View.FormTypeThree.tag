@@ -431,7 +431,7 @@
     this.on('mount', function () {
 
       focusFieldAfterTourClosed();
-      makeFormScrollableOnOpenKeyboard('servicepage-body-container');
+      makeFormScrollableOnOpenKeyboard('servicepage-body-container',55);
       if (opts && opts.number) {
         firstFieldInput.value = inputVerification.telVerificationWithSpace(inputVerification.telVerification(opts.number));
         scope.update();
