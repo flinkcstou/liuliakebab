@@ -51,7 +51,7 @@
                placeholder="{placeHolderText}"
                onfocus="colorFieldGlobal('amountField','amountFieldTitle')"
                onblur="blurFieldGlobal('amountField','amountFieldTitle')"
-               onmouseup="eraseAmountDefault()" onkeyup="sumForPay()"/>
+               onmouseup="eraseAmountDefault()" oninput="sumForPay()"/>
         <div if="{!modeOfApp.offlineMode && service['amount_editable'] && calcOn}" class="servicepage-amount-icon"
              ontouchstart="onTouchStartOfAmountCalculator()" role="button"
              aria-label="{window.languages.ViewServicePageVoiceOverOpenCalculator}"
@@ -83,7 +83,7 @@
         <div class="component-calc-first-field">
           <p class="component-calc-first-field-text">{window.languages.ViewAmountCalculatorTextOne}</p>
           <input id="amountCalcInputId" class="component-calc-first-field-input-part" type="tel" autofocus="true"
-                 maxlength="19" onkeyup="convertAmount()"/>
+                 maxlength="19" oninput="convertAmount()"/>
         </div>
 
         <p class="component-calc-currency-text">{window.languages.ViewAmountCalculatorTextTwo} {currencyRate} сум</p>

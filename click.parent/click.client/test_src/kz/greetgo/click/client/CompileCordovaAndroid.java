@@ -1,7 +1,5 @@
 package kz.greetgo.click.client;
 
-import java.io.IOException;
-
 public class CompileCordovaAndroid extends AbstractCompileCordova {
   public static void main(String[] args) throws Exception {
     new CompileCordovaAndroid().execute();
@@ -15,6 +13,8 @@ public class CompileCordovaAndroid extends AbstractCompileCordova {
     clickClient.xmlFile("cordova/platforms/android/AndroidManifest.xml")
       .modify(xml -> xml.changeAttr("/manifest/application/activity[@name='MainActivity']", "android:windowSoftInputMode", "adjustPan"))
       .modify(xml -> xml.changeAttr("/manifest/application/activity[@name='MainActivity']", "android:resizeableActivity", "false"))
+      .modify(xml -> xml.changeAttr("/manifest/application", "android:allowBackup", "false"))
+      .modify(xml -> xml.changeAttr("/manifest/application", "android:fullBackupContent", "false"))
       .save();
 
     addPluginPickcontact();

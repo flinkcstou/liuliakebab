@@ -11,7 +11,7 @@
            onfocus="amountFocus()"
            onmouseup="amountMouseUp()"
            onblur="amountOnBlur()"
-           onkeyup="amountKeyUp()">
+           oninput="amountInput()">
     <p if="{showPlaceHolderError && maxLimit && minLimit}"
        id="placeHolderSumId"
        style="color: red;"
@@ -157,14 +157,6 @@
     amountMouseUp = function () {
       event.preventDefault();
       event.stopPropagation();
-//      if (betweenAmountId.value.match(scope.maskOne) !== null
-//        && betweenAmountId.value.match(scope.maskOne).length !== null) {
-//        betweenAmountId.selectionStart = betweenAmountId.value.match(scope.maskTwo).length;
-//        betweenAmountId.selectionEnd = betweenAmountId.value.match(scope.maskTwo).length;
-//      } else {
-//        betweenAmountId.selectionStart = 0;
-//        betweenAmountId.selectionEnd = 0;
-//      }
     };
 
     amountOnBlur = function () {
@@ -188,30 +180,7 @@
       cardInputId.readOnly = true;
     };
 
-    amountKeyUp = function () {
-//      if (betweenAmountId.value.length === 1) {
-//        betweenAmountId.value = window.amountTransform(betweenAmountId.value.toString());
-//      }
-
-//      if (event.keyCode === 8) {
-//        scope.sumForTransfer = scope.sumForTransfer.substring(0, scope.sumForTransfer.length - 1);
-//      }
-
-//      if (betweenAmountId.value.match(scope.maskTwo) !== null && betweenAmountId.value.match(scope.maskTwo).length !== null) {
-//
-//        betweenAmountId.value = betweenAmountId.value.substring(0, event.target.value.match(scope.maskTwo).length);
-//        betweenAmountId.selectionStart = betweenAmountId.value.match(scope.maskTwo).length;
-//        betweenAmountId.selectionEnd = betweenAmountId.value.match(scope.maskTwo).length;
-//
-//
-//        betweenAmountId.value = window.amountTransform(scope.sumForTransfer.toString());
-//        betweenAmountId.selectionStart = betweenAmountId.value.match(scope.maskTwo).length;
-//        betweenAmountId.selectionEnd = betweenAmountId.value.match(scope.maskTwo).length;
-//
-//      } else {
-//        betweenAmountId.selectionStart = 0;
-//        betweenAmountId.selectionEnd = 0;
-//      }
+    amountInput = function () {
 
       var amountInput = accounting.formatMoney(betweenAmountId.value, options);
 

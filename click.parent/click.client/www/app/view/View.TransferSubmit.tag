@@ -30,7 +30,7 @@
              onfocus="amountFocus()"
              onmouseup="amountMouseUp()"
              onblur="amountOnBlur()"
-             onkeyup="amountKeyUp()">
+             oninput="amountInput()">
       <p if="{showPlaceHolderError && maxLimit && minLimit}"
          id="placeHolderSumId"
          style="color: red;"
@@ -277,7 +277,7 @@
         }
       };
 
-      amountKeyUp = function () {
+      amountInput = function () {
         if (submitAmountId.value.length === 1) {
           submitAmountId.value = window.amountTransform(submitAmountId.value.toString());
         }

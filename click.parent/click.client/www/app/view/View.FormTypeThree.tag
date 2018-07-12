@@ -117,7 +117,7 @@
                placeholder="{placeHolderText}"
                onfocus="colorFieldGlobal('amountField','amountFieldTitle')"
                onblur="blurFieldGlobal('amountField','amountFieldTitle')"
-               onmouseup="eraseAmountDefault()" onkeyup="sumForPay()"/>
+               onmouseup="eraseAmountDefault()" oninput="sumForPay()"/>
         <div if="{!modeOfApp.offlineMode && service['amount_editable'] && calcOn}" class="servicepage-amount-icon"
              ontouchstart="onTouchStartOfAmountCalculator()" role="button"
              aria-label="{window.languages.ViewServicePageVoiceOverOpenCalculator}"

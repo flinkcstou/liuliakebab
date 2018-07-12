@@ -39,7 +39,7 @@
                placeholder="{placeHolderText}"
                onfocus="colorFieldGlobal('amountField','amountFieldTitle')"
                onblur="blurFieldGlobal('amountField','amountFieldTitle')"
-               onmouseup="eraseAmountDefault()" onkeyup="sumForPay()"/>
+               onmouseup="eraseAmountDefault()" oninput="sumForPay()"/>
 
         <p if="{showErrorOfLimit}" id="placeHolderSumId" class="servicepage-limit-title">{placeHolderText}</p>
       </div>
