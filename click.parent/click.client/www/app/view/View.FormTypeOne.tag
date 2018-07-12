@@ -85,7 +85,7 @@
                placeholder="{placeHolderText}"
                onfocus="colorFieldGlobal('amountField','amountFieldTitle')"
                onblur="blurFieldGlobal('amountField','amountFieldTitle')"
-               onmouseup="eraseAmountDefault()" oninput="sumForPay()"/>
+               onmouseup="eraseAmountDefault()" oninput="amountOnInput()" onkeyup="amountOnKeyUp()"/>
         <div if="{!modeOfApp.offlineMode && service['amount_editable'] && calcOn}" class="servicepage-amount-icon"
              ontouchstart="onTouchStartOfAmountCalculator()" role="button"
              aria-label="{window.languages.ViewServicePageVoiceOverOpenCalculator}"
@@ -942,6 +942,24 @@
       }
 
       checkFieldsToActivateNext('sum')
+
+    };
+
+    amountOnKeyUp = function () {
+
+      if (!amountFormatted) {
+        console.log("onKeyUp amountFormatted false call sumForPay");
+        sumForPay();
+      } else {
+        amountFormatted = false;
+        console.log("onKeyUp amountFormatted true");
+      }
+    };
+
+    amountOnInput = function () {
+      amountFormatted = true;
+      console.log("ONINPUT");
+      sumForPay();
 
     };
 
