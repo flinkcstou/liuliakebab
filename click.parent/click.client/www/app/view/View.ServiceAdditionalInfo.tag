@@ -507,8 +507,11 @@
 
       amountCalcInputId.value = amountInput;
 
-      amountCalcInputId.selectionStart = selectionStart;
-      amountCalcInputId.selectionEnd = selectionStart;
+      setTimeout(function() {
+          amountCalcInputId.selectionStart = selectionStart;
+          amountCalcInputId.selectionEnd = selectionStart;
+        }, 0
+      );
 
       scope.convertedAmount = Math.ceil(accounting.unformat(amountCalcInputId.value) * scope.currencyRate);
       converted = accounting.formatMoney(scope.convertedAmount.toString(), options_for_calc);
@@ -604,9 +607,11 @@
 
       amount.value = amountInput;
 
-      amount.selectionStart = selectionStart;
-      amount.selectionEnd = selectionStart;
-
+      setTimeout(function(){
+          amount.selectionStart = selectionStart;
+          amount.selectionEnd = selectionStart;
+        }, 0
+      );
       amountForPayTransaction = accounting.unformat(amount.value);
 
 //      if (amount.value.length == 1) {

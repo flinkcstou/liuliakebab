@@ -195,8 +195,11 @@
 
       betweenAmountId.value = amountInput;
 
-      betweenAmountId.selectionStart = selectionStart;
-      betweenAmountId.selectionEnd = selectionStart;
+      setTimeout(function() {
+          betweenAmountId.selectionStart = selectionStart;
+          betweenAmountId.selectionEnd = selectionStart;
+        }, 0
+      );
 
       scope.sumForTransfer = accounting.unformat(amountInput);
 

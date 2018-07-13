@@ -493,8 +493,11 @@
 
       amount.value = amountInput;
 
-      amount.selectionStart = selectionStart;
-      amount.selectionEnd = selectionStart;
+      setTimeout(function() {
+          amount.selectionStart = selectionStart;
+          amount.selectionEnd = selectionStart;
+        }, 0
+      );
 
       amountForPayTransaction = accounting.unformat(amount.value);
 

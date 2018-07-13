@@ -211,8 +211,11 @@
 
       sumValueId.value = amountInput;
 
-      sumValueId.selectionStart = selectionStart;
-      sumValueId.selectionEnd = selectionStart;
+      setTimeout(function() {
+          sumValueId.selectionStart = selectionStart;
+          sumValueId.selectionEnd = selectionStart;
+        }, 0
+      );
 
       sumForQrPay = accounting.unformat(amountInput);
 
