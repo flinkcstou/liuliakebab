@@ -41,7 +41,13 @@
             {invoice.description}</p>
           <p class="invoice-list-from-whom-label invoice-list-invoice-is-p2p" if="{invoice.is_p2p == 1 && toUser}">
             {invoice.description}</p>
-          <p class="invoice-list-from-whom-label invoice-list-invoice-is-not-p2p" if="{invoice.is_p2p == 1 && !toUser}">
+          <p class="invoice-list-from-whom-label invoice-list-invoice-is-not-p2p" if="{invoice.is_p2p == 0 && !toUser}">
+            {invoice.description}</p>
+          <p class="invoice-list-from-whom-label invoice-list-invoice-is-p2p"
+             if="{invoice.is_p2p == 1 && !toUser && invoice.p2p_secret_code == 0}">
+            {invoice.description}</p>
+          <p class="invoice-list-from-whom-label invoice-list-invoice-is-not-p2p"
+             if="{invoice.is_p2p == 1 && !toUser && invoice.p2p_secret_code != 0}">
             {invoice.description}</p>
           <p class="invoice-list-invoice-date">{invoice.date} {invoice.time}</p>
         </div>
@@ -406,7 +412,6 @@
     };
 
     goToInvoiceHistoryDetailTouchEnd = function (invoice, id) {
-
       event.preventDefault();
       event.stopPropagation();
 
@@ -465,7 +470,7 @@
             params = {
               is_p2p: invoice.is_p2p,
               invoice_id: invoice.invoice_id,
-              inParameter: invoice.cntrg_info_param2, //????
+              inParameter: invoice.account_id,
               amount: invoice.amount,
               commission: invoice.p2p_comission_amount,
               transferCode: invoice.p2p_secret_code,
@@ -475,8 +480,9 @@
               description: invoice.description
             };
 
-            if (invoice.cntrg_info_param2)
+            if (invoice.cntrg_info_param2 && invoice.p2p_secret_code != 0){
               params.inParameter = invoice.cntrg_info_param2;
+            }
 
             scope.showComponent = true;
             scope.showComponentTransfer = false;
@@ -540,7 +546,11 @@
               scope.update();
 
             }
+
           }
+
+          console.log("PARAMS FOR DETAILS: ", params)
+
         }, 100);
       }
     };
