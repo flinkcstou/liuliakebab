@@ -295,8 +295,12 @@
 
         submitAmountId.value = amountInput;
 
-        submitAmountId.selectionStart = selectionStart;
-        submitAmountId.selectionEnd = selectionStart;
+        setTimeout(function() {
+            submitAmountId.selectionStart = selectionStart;
+            submitAmountId.selectionEnd = selectionStart;
+          }, 0
+        );
+
 
         scope.sumForTransfer = accounting.unformat(amountInput);
 
