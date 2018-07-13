@@ -2735,6 +2735,18 @@ function makeFormScrollableOnOpenKeyboard(obj,offset) {
   });
 }
 
+function getOffsetTop( elem )
+{
+  var offsetTop = 0;
+  do {
+    if ( !isNaN( elem.offsetTop ) )
+    {
+      offsetTop += elem.offsetTop;
+    }
+  } while( elem = elem.offsetParent );
+  return offsetTop;
+}
+
 function scroll(el,to) {
   if (window.device && window.device.platform === "iOS") {
     scrollIOS(el,to , 300);
@@ -2745,7 +2757,7 @@ function scroll(el,to) {
 
 function findMinScrollToViewElement(scrollParent,obj,keyboardHeight,offset){
   var windowHeight = window.innerHeight-keyboardHeight;
-  var parentOffset=scrollParent.offsetTop;
+  var parentOffset=getOffsetTop(scrollParent);
   var keyboardOffset=windowHeight-parentOffset;
   var objectHeight = obj.height;
   return (obj.offsetTop+obj.clientHeight+offset)-keyboardOffset;
