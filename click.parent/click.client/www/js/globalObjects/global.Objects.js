@@ -2749,133 +2749,52 @@ function getOffsetTop( elem )
 
 function scroll(el,to) {
   if (window.device && window.device.platform === "iOS") {
-    scrollIOS(el,to , 300);
+    doScrolling(el,to , 300);
   } else {
-    scrollAndroid(el,to, 300);
+    doScrolling(el,to, 300);
   }
 }
 
 function findMinScrollToViewElement(scrollParent,obj,keyboardHeight,offset){
-  var windowHeight = window.innerHeight-keyboardHeight;
+  var windowHeight = document.documentElement.clientHeight-keyboardHeight;
   var parentOffset=getOffsetTop(scrollParent);
   var keyboardOffset=windowHeight-parentOffset;
   var objectHeight = obj.height;
   return (obj.offsetTop+obj.clientHeight+offset)-keyboardOffset;
 }
 
-function scrollAndroid(element, to, duration) {
-  if (element.scrollTop === to) return;
-  var diff = to - element.scrollTop,
-    direction,
-    oldValue = null,
-    scrollStep = Math.PI / (duration / 10),
-    count = 0, currPos, start;
+function doScrolling(element, to, duration) {
+  var startingY = element.scrollTop;
+  var diff = to - startingY;
+  // Easing function: easeInOutCubic
+  // From: https://gist.github.com/gre/1650294
+  var easing = function (t) { return t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1 };
+  var start;
 
-  if (diff > 0) {
-    direction = 1
-  } else {
-    direction = -1
-  }
+  if (!diff) return;
 
-  start = element.scrollTop;
+  // Bootstrap our animation - it will get called right before next frame shall be rendered.
+  var animation = window.requestAnimationFrame(function step(timestamp) {
+    if (!start) start = timestamp;
+    // Elapsed miliseconds since start of scrolling.
+    var time = timestamp - start;
+    // Get percent of completion in range [0, 1].
+    var percent = Math.min(time / duration, 1);
+    // Apply the easing.
+    // It can cause bad-looking slow frames in browser performance tool, so be careful.
+    percent = easing(percent);
 
-  window.scrollInterval = setInterval(function () {
+    element.scrollTo(0, startingY + diff * percent);
 
-    console.log("direction, element, oldValue, element.scrollTop, to", direction, element, oldValue, element.scrollTop, to);
-
-    if ((direction === 1 && element.scrollTop < to)
-      // || (direction === -1 && element.scrollTop > to)
-    ) {
-
-      console.log("Interval working");
-
-      count = count + 1;
-      currPos = start + diff * (0.5 - 0.5 * Math.cos(count * scrollStep));
-
-      console.log("oldValue, currPos", oldValue, currPos);
-
-      if (oldValue && ((direction === 1 && oldValue >= currPos) || (direction === -1 && oldValue <= currPos))) {
-
-        console.log("OldValue Interval ended");
-
-        clearInterval(window.scrollInterval);
-        return;
-      }
-
-      element.scrollTop = currPos;
-
+    // Proceed with animation as long as we wanted it to.
+    console.log("animation time="+timestamp);
+    if (time < duration) {
+      animation = window.requestAnimationFrame(step);
     }
-    else {
-
-      console.log("Interval ended");
-
-      clearInterval(window.scrollInterval);
+    else
+    {
+      cancelAnimationFrame(animation);
     }
+  });
 
-    oldValue = element.scrollTop;
-  }, 1);
 }
-
-function scrollIOS(element, to, duration) {
-  if (element.scrollTop === to) return;
-  var diff = to - element.scrollTop,
-    direction,
-    oldValue = null,
-    scrollStep = Math.PI / (duration / 10),
-    count = 0, currPos, start;
-
-  if (diff > 0) {
-    direction = 1
-  } else {
-    direction = -1
-  }
-
-  start = element.scrollTop;
-
-  window.scrollInterval = setInterval(function () {
-
-    console.log("direction, element, oldValue, element.scrollTop, to", direction, element, oldValue, element.scrollTop, to);
-
-    if ((direction === 1 && element.scrollTop < to)
-      // || (direction === -1 && element.scrollTop > to)
-    ) {
-
-      console.log("Interval working");
-
-      count = count + 1;
-      currPos = start + diff * (0.5 - 0.5 * Math.cos(count * scrollStep));
-
-      try {
-        document.activeElement.focus();
-        document.activeElement.value += " ";
-        document.activeElement.value = document.activeElement.value.substring(0, document.activeElement.value.length - 1);
-      } catch (error) {
-
-        console.error(error);
-      }
-
-      console.log("oldValue, currPos", oldValue, currPos);
-
-      if (oldValue && ((direction === 1 && oldValue >= currPos) || (direction === -1 && oldValue <= currPos))) {
-
-        console.log("OldValue Interval ended");
-
-        clearInterval(window.scrollInterval);
-        return;
-      }
-
-      element.scrollTop = currPos;
-
-    }
-    else {
-
-      console.log("Interval ended");
-
-      clearInterval(window.scrollInterval);
-    }
-
-    oldValue = element.scrollTop;
-  }, 1);
-}
-
-
