@@ -58,7 +58,7 @@
         </div>
       </div>
 
-      <div class="inplace-pay-category-inner-container" style="height: 93%;" if="{!searchServices}"
+      <div class="inplace-pay-category-inner-container" style="height: auto;" if="{!searchServices}"
            id="categoriesContainerId"
            onscroll="onTouchMoveOfCategory()">
 
