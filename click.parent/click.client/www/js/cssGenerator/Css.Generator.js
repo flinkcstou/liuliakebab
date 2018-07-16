@@ -4084,7 +4084,7 @@ var css = {
   // "padding-top: 1%;" +
   "border-bottom:" + 1 + "px solid #e8e8e8;" +
   "background-color: transparent;" +
-  "overflow: hidden;" +
+  "overflow: visible;" +
   "}",
 
   payServiceHintContainer: ".pay-service-hint-containter" +
