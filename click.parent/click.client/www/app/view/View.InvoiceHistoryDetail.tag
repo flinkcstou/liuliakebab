@@ -1,5 +1,4 @@
 <view-invoice-history-detail class="view-invoice-history riot-tags-main-container">
-
   <div class="invoice-history-detail-title-container">
     <div class="page-title">
       <p class="name-title">
@@ -80,6 +79,11 @@
   <script>
 
     var scope = this;
+//
+//    this.on('mount', function () {
+//
+//      console.log("OPTS INVOICE", opts)
+//    });
 
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 
