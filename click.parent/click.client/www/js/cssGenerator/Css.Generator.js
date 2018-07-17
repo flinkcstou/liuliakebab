@@ -18397,7 +18397,7 @@ var css = {
   "width: 100%; " +
   "top: 9%; " +
   "bottom:0; " +
-  "overflow-y: auto; " +
+  "overflow-y: scroll; " +
   "overflow-x: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
   "}",

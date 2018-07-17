@@ -41,8 +41,6 @@
             {invoice.description}</p>
           <p class="invoice-list-from-whom-label invoice-list-invoice-is-p2p" if="{invoice.is_p2p == 1 && toUser}">
             {invoice.description}</p>
-          <p class="invoice-list-from-whom-label invoice-list-invoice-is-not-p2p" if="{invoice.is_p2p == 0 && !toUser}">
-            {invoice.description}</p>
           <p class="invoice-list-from-whom-label invoice-list-invoice-is-p2p"
              if="{invoice.is_p2p == 1 && !toUser && invoice.p2p_secret_code == 0}">
             {invoice.description}</p>
