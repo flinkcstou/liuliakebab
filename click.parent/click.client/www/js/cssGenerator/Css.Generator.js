@@ -4118,7 +4118,7 @@ var css = {
   payServicesBlock: ".pay-services-block" +
   "{" +
   "position: relative;" +
-  "width: 100%;" +
+  "width: " + (720 - 35) * widthK + "px;" +
   "margin-bottom: 4%;" +
   "margin-top: 5%;" +
   "margin-left:" + 35 * widthK + "px;" +
@@ -4212,6 +4212,8 @@ var css = {
   payCategoryNameField: ".pay-category-name-field" +
   "{" +
   "position: relative;" +
+  "width: " + (720 - 31) * widthK + "px;" +
+  // "width: 90%; " +
   "background-size: contain;" +
   "top: " + 31 * widthK + "px; " +
   "left: 6%;" +
@@ -18397,7 +18399,7 @@ var css = {
   "width: 100%; " +
   "top: 9%; " +
   "bottom:0; " +
-  "overflow-y: scroll; " +
+  "overflow-y: auto; " +
   "overflow-x: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
   "}",
