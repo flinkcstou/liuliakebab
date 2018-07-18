@@ -7,22 +7,20 @@
     <div id="closeMenuButtonId" role="button" aria-label="{window.languages.Close}" class="side-menu-inside-button"
          ontouchstart="closeMenuStart()"
          ontouchend="closeMenu()"></div>
-    <div class="side-menu-user-info-container">
-      <div class="side-menu-user-icon" role="button" aria-label="{window.languages.ComponentMenuAriaLabelPersonalInfo}"
-           style="background-image: url({photo})" ontouchend="userIconTouchEnd()"></div>
-      <p class="side-menu-user-second-name">{firstName}</p>
-      <p class="side-menu-user-first-name">{lastName}</p>
-    </div>
+
     <div hidden="{device.platform == 'iOS'}" id="changeModeContainerId" class="side-menu-change-mode"
          ontouchstart="changeModeTouchStart()" ontouchend="changeModeTouchEnd()">
       <div id="changeModeIconId" class="side-menu-change-mode-icon"></div>
       <p class="side-menu-change-mode-text">{modeOfApplication}</p>
+      <p class="side-menu-change-mode-hint-text">{modeOfAplicationHint}</p>
+
       <label class="switch-menu">
         <input onchange="changeMode()"
                id="checkBoxChangeId" type="checkbox" checked="{checkModeOfApplication}">
         <div class="slider-menu round"></div>
       </label>
     </div>
+
     <div id="billngsButtonId" class="side-menu-billings-container" ontouchstart="goToBillingsTouchStart()"
          ontouchend="goToBillingsTouchEnd()">
       <div class="side-menu-containers-icon side-menu-containers-icon-billings"></div>
@@ -113,10 +111,12 @@
 
     if (modeOfApp.onlineMode) {
       scope.modeOfApplication = window.languages.ComponentMenuOnlineMode;
+      scope.modeOfAplicationHint = window.languages.ComponentMenuOnlineModeHint
       scope.checkModeOfApplication = true;
     }
     if (modeOfApp.offlineMode) {
       scope.modeOfApplication = window.languages.ComponentMenuOfflineMode;
+      scope.modeOfAplicationHint = window.languages.ComponentMenuOfflineModeHint
       scope.checkModeOfApplication = false;
     }
 
@@ -124,14 +124,16 @@
       try {
         if (modeOfApp.onlineMode) {
           scope.modeOfApplication = window.languages.ComponentMenuOnlineMode;
+          scope.modeOfAplicationHint = window.languages.ComponentMenuOnlineModeHint
           scope.checkModeOfApplication = true;
-          changeModeContainerId.style.backgroundColor = '#92bf3a';
+//          changeModeContainerId.style.backgroundColor = '#92bf3a';
           changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_online.png)';
         }
         if (modeOfApp.offlineMode) {
           scope.modeOfApplication = window.languages.ComponentMenuOfflineMode;
+          scope.modeOfAplicationHint = window.languages.ComponentMenuOfflineModeHint
           scope.checkModeOfApplication = false;
-          changeModeContainerId.style.backgroundColor = '#e56c47';
+//          changeModeContainerId.style.backgroundColor = '#e56c47';
           changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_ussd.png)';
         }
         scope.update();
@@ -346,7 +348,9 @@
       if (modeOfApp.onlineMode) {
         scope.parent.tags['component-bank-operations-new'].updateOperations();
         scope.modeOfApplication = window.languages.ComponentMenuOnlineMode;
-        changeModeContainerId.style.backgroundColor = '#92bf3a';
+        scope.modeOfAplicationHint = window.languages.ComponentMenuOnlineModeHint
+
+//        changeModeContainerId.style.backgroundColor = '#92bf3a';
         scope.checkModeOfApplication = true;
         changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_online.png)';
       }
@@ -357,8 +361,10 @@
 
         scope.modeOfApplication = window.languages.ComponentMenuOfflineMode;
         scope.checkModeOfApplication = false;
-        changeModeContainerId.style.backgroundColor = '#e56c47';
-        changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_ussd.png)';
+//        changeModeContainerId.style.backgroundColor = '#e56c47';
+        scope.modeOfAplicationHint = window.languages.ComponentMenuOfflineModeHint
+
+//        changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_ussd.png)';
       }
       scope.update()
     };

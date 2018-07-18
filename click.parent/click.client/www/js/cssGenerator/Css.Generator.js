@@ -2549,7 +2549,7 @@ var css = {
   "position: absolute;" +
   "height: 5%;" +
   "width: 23%;" +
-  "top: 1%;" +
+  "top: 4%;" +
   // "left: 4%;" +
   "background-image: url(resources/icons/toolbar/menus.png);" +
   "background-repeat: no-repeat;" +
@@ -2817,10 +2817,11 @@ var css = {
   sideMenuChangeMode: ".side-menu-change-mode " +
   "{" +
   "position: absolute;" +
-  "top: 22%;" +
+  "top: 10%;" +
   "height: 7%;" +
   "width: 100%;" +
-  "background-color: #92bf3a;" +
+  // "background-color: #92bf3a;" +
+  // "border: 1px solid #92bf3a;" +
   "color: white;" +
   "}",
 
@@ -2831,21 +2832,36 @@ var css = {
   "padding: 0;" +
   "top: 29%;" +
   "left: 20.2%;" +
+  "color: #565d6a;" +
   "font-size:" + 29 * widthK + "px;" +
   "word-spacing:" + 2 * widthK + "px;" +
   "}",
-
+  
+  sideMenuChangeModeHintText: ".side-menu-change-mode-hint-text " +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "padding: 0;" +
+  "top: 68%;" +
+  "left: 20.2%;" +
+  "color: #565d6a;" +
+  "opacity: 0.6;" +
+  "font-size:" + 16 * widthK + "px;" +
+  "word-spacing:" + 2 * widthK + "px;" +
+  "}",
+  
   switchMenu: ".switch-menu" +
   "{" +
   "position: absolute;" +
   "display: block;" +
-  "width:" + 37 * widthK + "px;" +
-  "top: 35%;" +
-  "right: 7%;" +
-  "height:" + 20 * widthK + "px;" +
+  "width:" + 46 * widthK + "px;" +
+  "top: 45%;" +
+  "right: 3%;" +
+  "height:" + 27 * widthK + "px;" +
   "border: 1px solid white;" +
   "z-index: 2;" +
   "border-radius:" + 50 * widthK + "px;" +
+  "border-color: #92bf3a" +
   "}",
 
   switchMenuInput: ".switch-menu input" +
@@ -2860,7 +2876,7 @@ var css = {
   "top: 0;" +
   "left: 0;" +
   "bottom: 0;" +
-  "background-color: #ccc;" +
+  "background-color: #92bf3a;" +
   "-webkit-transition: .4s;" +
   "transition: .4s;" +
   "}",
@@ -2869,11 +2885,11 @@ var css = {
   "{" +
   "position: absolute;" +
   "content: '';" +
-  "height:" + 12 * widthK + "px;" +
-  "width:" + 12 * widthK + "px;" +
+  "height:" + 20 * widthK + "px;" +
+  "width:" + 20 * widthK + "px;" +
   "left:" + 4 * widthK + "px;" +
-  "bottom:" + 13 * widthK + "px;" +
-  "background-color: white;" +
+  "bottom:" + 5 * widthK + "px;" +
+  "background-color: #92bf3a;" +
   "-webkit-transition: .4s;" +
   "transition: .4s;" +
   "}",
@@ -2910,10 +2926,10 @@ var css = {
   sideMenuChangeModeIcon: ".side-menu-change-mode-icon " +
   "{" +
   "position: absolute;" +
-  "width: 12%;" +
-  "height: 80%;" +
+  "width: 15%;" +
+  "height: 100%;" +
   "top: 7%;" +
-  "left: 6%;" +
+  "left: 3%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "background-image: url(resources/icons/menu/menu_online.png);" +
