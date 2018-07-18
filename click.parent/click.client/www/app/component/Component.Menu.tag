@@ -14,10 +14,10 @@
       <p class="side-menu-change-mode-text">{modeOfApplication}</p>
       <p class="side-menu-change-mode-hint-text">{modeOfAplicationHint}</p>
 
-      <label class="switch-menu">
+      <label id="modeSwitch" class="switch-menu">
         <input onchange="changeMode()"
                id="checkBoxChangeId" type="checkbox" checked="{checkModeOfApplication}">
-        <div class="slider-menu round"></div>
+        <div id="checkBoxRoundId" class="slider-menu online round"></div>
       </label>
     </div>
 
@@ -126,14 +126,19 @@
           scope.modeOfApplication = window.languages.ComponentMenuOnlineMode;
           scope.modeOfAplicationHint = window.languages.ComponentMenuOnlineModeHint
           scope.checkModeOfApplication = true;
-//          changeModeContainerId.style.backgroundColor = '#92bf3a';
+
+          modeSwitch.style.borderColor = '#92bf3a';
+          checkBoxRoundId.className = 'slider-menu online round';
+
           changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_online.png)';
         }
         if (modeOfApp.offlineMode) {
           scope.modeOfApplication = window.languages.ComponentMenuOfflineMode;
           scope.modeOfAplicationHint = window.languages.ComponentMenuOfflineModeHint
           scope.checkModeOfApplication = false;
-//          changeModeContainerId.style.backgroundColor = '#e56c47';
+          modeSwitch.style.borderColor = '#e56c47';
+          checkBoxRoundId.className = 'slider-menu offline round';
+
           changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_ussd.png)';
         }
         scope.update();
@@ -350,7 +355,9 @@
         scope.modeOfApplication = window.languages.ComponentMenuOnlineMode;
         scope.modeOfAplicationHint = window.languages.ComponentMenuOnlineModeHint
 
-//        changeModeContainerId.style.backgroundColor = '#92bf3a';
+        modeSwitch.style.borderColor = '#92bf3a';
+        checkBoxRoundId.className = 'slider-menu online round';
+
         scope.checkModeOfApplication = true;
         changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_online.png)';
       }
@@ -360,11 +367,13 @@
         scope.parent.tags['component-bank-operations-new'].updateOperations();
 
         scope.modeOfApplication = window.languages.ComponentMenuOfflineMode;
+        modeSwitch.style.borderColor = '#e56c47';
+        checkBoxRoundId.className = 'slider-menu offline round';
+
         scope.checkModeOfApplication = false;
-//        changeModeContainerId.style.backgroundColor = '#e56c47';
         scope.modeOfAplicationHint = window.languages.ComponentMenuOfflineModeHint
 
-//        changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_ussd.png)';
+        changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_ussd.png)';
       }
       scope.update()
     };

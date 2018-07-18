@@ -2889,9 +2889,18 @@ var css = {
   "width:" + 20 * widthK + "px;" +
   "left:" + 4 * widthK + "px;" +
   "bottom:" + 5 * widthK + "px;" +
-  "background-color: #92bf3a;" +
   "-webkit-transition: .4s;" +
   "transition: .4s;" +
+  "}",
+  
+  sliderMenuBeforeOnline: ".slider-menu.online:before" +
+  "{" +
+  "background-color: #92bf3a;" +
+  "}",
+  
+  sliderMenuBeforeOffline: ".slider-menu.offline:before" +
+  "{" +
+  "background-color: #e56c47;" +
   "}",
 
   inputCheckedSlider: "input:checked + .slider-menu" +
