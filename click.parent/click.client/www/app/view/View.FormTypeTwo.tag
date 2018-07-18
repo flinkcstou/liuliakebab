@@ -169,6 +169,7 @@
     scope.fieldArray = scope.servicesParamsMapOne[opts.chosenServiceId];
     scope.pincardsMap = {};
     scope.pincardIds = [];
+    scope.enterButtonEnabled = false;
     if (scope.servicesParamsMapThree[scope.service.id]) {
       for (var i = 0; i < scope.servicesParamsMapThree[scope.service.id].length; i++) {
         if (!scope.pincardsMap[scope.servicesParamsMapThree[scope.service.id][i].card_type_id]) {
@@ -213,6 +214,7 @@
           }
         }
 
+        scope.enterButtonEnabled = true;
         formTypeTwoBtnId.style.pointerEvents = 'auto';
         formTypeTwoBtnId.style.backgroundColor = '#00a8f1';
         scope.update(formTypeTwoBtnId);
@@ -222,8 +224,8 @@
     scope.onTouchStartOfEnter = onTouchStartOfEnter = function () {
       event.stopPropagation();
 
-      if (this.enterButtonId && scope.enterButtonEnabled) {
-        this.enterButtonId.style.webkitTransform = 'scale(0.8)';
+      if (this.formTypeTwoBtnId && scope.enterButtonEnabled) {
+        this.formTypeTwoBtnId.style.webkitTransform = 'scale(0.8)';
 //        this.enterButtonId.style.backgroundColor = '#76c1f4';
       }
 
