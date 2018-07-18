@@ -4212,7 +4212,7 @@ var css = {
   payCategoryNameField: ".pay-category-name-field" +
   "{" +
   "position: relative;" +
-  "width: " + (720 - 31) * widthK + "px;" +
+  "width: " + (720 - 45) * widthK + "px;" +
   // "width: 90%; " +
   "background-size: contain;" +
   "top: " + 31 * widthK + "px; " +
