@@ -14,13 +14,18 @@
       {window.languages.ComponentToolbarTitle}
     </div>
 
-    <div if="{!modeOfApp.offlineMode}" id="bellButtonId" class="bell-button bell-icon"
+    <div if="{!modeOfApp.offlineMode}" id="bellButtonId" class="bell-button toolbar-action-bell bell-icon"
          ontouchstart="bellButtonTouchStart()"
          ontouchend="bellButtonTouchEnd()" role="button"
          aria-label="{window.languages.ComponentToolbarAriaLabelOpenNews}">
       <div if="{window.News.newsCounter != 0 && !modeOfApp.offlineMode}" class="bell-button-news-counter">
         {window.News.newsCounter}
       </div>
+    </div>
+
+    <div if="{modeOfApp.offlineMode}" class="toolbar-ussd-container">
+      <p class="toolbar-ussd-text">USSD режим</p>
+      <img src="resources/icons/toolbar/ussd.png"  class="toolbar-ussd-icon">
     </div>
 
   </div>
@@ -69,6 +74,9 @@
         this.sideMenuId.style.webkitTransform = "translate3d(0, 0, 0)";
 
         this.sideMenuBackPageId.style.opacity = '1';
+
+        console.log('sss', scope);
+        scope.update();
       }
     };
 
@@ -135,5 +143,9 @@
 //        scope.unmount()
       }
     };
+
+    getToolbarScope = function() {
+      return scope;
+    }
   </script>
 </component-toolbar>

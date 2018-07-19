@@ -1836,7 +1836,40 @@ var css = {
   "right:" + 14 * widthK + "px;" +
   "top:" + -7 * widthK + "px;" +
   "}",
-
+  
+  toolbarUSSDContainer: ".toolbar-ussd-container" +
+  "{" +
+  "position: absolute;" +
+  "background: transparent;" +
+  "z-index: 2;" +
+  "width: "+ 240 * widthK + "px;" +
+  "height: " + 100 * widthK + "px;" +
+  "background-size: 50%;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "right:" + 14 * widthK + "px;" +
+  "top:" + -7 * widthK + "px;" +
+  "}",
+  
+  toolbarUSSDIcon: ".toolbar-ussd-icon" +
+  "{" +
+  "position: relative;" +
+  "width:" + 45 * widthK + "px;" +
+  "height:" + 45 * widthK + "px;" +
+  "top: 10%;" +
+  "}",
+  
+  toolbarUSSDText: ".toolbar-ussd-text" +
+  "{" +
+  "margin: 0;" +
+  "display: inline-block;" +
+  "color: #F24746;" +
+  "font-weight: bold;" +
+  "font-size:" + 25 * widthK + "px;" +
+  "line-height: " + 110 * widthK + "px;" +
+  "margin-right:" + 10 * widthK + "px;" +
+  "}",
+  
   //BANK OPERATION COMPONENT
 
   bankOperations: ".bank-operations " +

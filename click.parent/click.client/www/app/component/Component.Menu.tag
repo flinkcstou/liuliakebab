@@ -253,6 +253,7 @@
       mainPageId.style.opacity = '1';
       mainPageId.style.zIndex = '0';
       scope.update();
+      getToolbarScope().update();
     };
 
     sideMenuTouchStart = function () {
