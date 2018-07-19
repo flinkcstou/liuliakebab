@@ -2769,7 +2769,7 @@ var css = {
   sideMenuContainersIconReports: ".side-menu-containers-icon-reports" +
   "{" +
   "background-image: url(resources/icons/menu/menu_reports.png);" +
-  "background-size: 150%;" +
+  "background-size: 133%;" +
   "}",
   
   sideMenuContainersIconBillings: ".side-menu-containers-icon-billings" +
@@ -2828,14 +2828,14 @@ var css = {
   sideMenuContainersIconFavorite: ".side-menu-containers-icon-favorite" +
   "{" +
   "background-image: url(resources/icons/menu/menu_favorites.png);" +
-  "background-size: 100%;" +
+  "background-size: 133%;" +
   "}",
 
 
   sideMenuContainersName: ".side-menu-containers-name " +
   "{" +
   "position: absolute;" +
-  "top: 25.5%;" +
+  "top: 33%;" +
   "left: 16%;" +
   "font-size:" + 29 * widthK + "px;" +
   "color: #565d6a;" +
