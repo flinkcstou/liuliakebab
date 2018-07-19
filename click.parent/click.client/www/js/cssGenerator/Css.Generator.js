@@ -2655,8 +2655,9 @@ var css = {
   sideMenuActionContainer: ".side-menu-action-container " +
   "{" +
   "position: relative;" +
-  "top:" + 250 * heightK + "px;" +
-  // "top: 21%;" +
+  "top:" + 220 * heightK + "px;" +
+  "margin-top: 5%;" +
+  "margin-bottom: 5%;" +
   "height: auto;" +
   "width: 100%;" +
   "float: left;" +
@@ -2694,8 +2695,9 @@ var css = {
 
   sideMenuSettingsContainer: ".side-menu-settings-container " +
   "{" +
+  "clear: both;" +
   "position: relative;" +
-  "top:" + 540 * heightK + "px;" +
+  "top:" + 220 * heightK + "px;" +
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
@@ -2703,8 +2705,9 @@ var css = {
   
   sideMenuNewsContainer: ".side-menu-news-container " +
   "{" +
+  "clear: both;" +
   "position: relative;" +
-  "top:" + 540 * heightK + "px;" +
+  "top:" + 220 * heightK + "px;" +
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
@@ -2712,8 +2715,9 @@ var css = {
 
   sideMenuCallContainer: ".side-menu-call-container " +
   "{" +
+  "clear: both;" +
   "position: relative;" +
-  "top:" + 540 * heightK + "px;" +
+  "top:" + 220 * heightK + "px;" +
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
