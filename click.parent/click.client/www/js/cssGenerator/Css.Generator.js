@@ -2949,7 +2949,7 @@ var css = {
   "position: absolute;" +
   "margin: 0;" +
   "padding: 0;" +
-  "top: 68%;" +
+  "top: 60%;" +
   "left: 20.2%;" +
   "color: #565d6a;" +
   "opacity: 0.6;" +
@@ -2965,10 +2965,9 @@ var css = {
   "top: 45%;" +
   "right: 3%;" +
   "height:" + 27 * widthK + "px;" +
-  "border: 1px solid white;" +
+  "border: 2px solid white;" +
   "z-index: 2;" +
   "border-radius:" + 50 * widthK + "px;" +
-  "border-color: #92bf3a" +
   "}",
 
   switchMenuInput: ".switch-menu input" +
@@ -3007,7 +3006,7 @@ var css = {
   
   sliderMenuBeforeOffline: ".slider-menu.offline:before" +
   "{" +
-  "background-color: #e56c47;" +
+  "background-color: #F24746;" +
   "}",
 
   inputCheckedSlider: "input:checked + .slider-menu" +

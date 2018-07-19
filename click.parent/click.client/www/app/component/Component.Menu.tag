@@ -391,7 +391,7 @@
         scope.parent.tags['component-bank-operations-new'].updateOperations();
 
         scope.modeOfApplication = window.languages.ComponentMenuOfflineMode;
-        modeSwitch.style.borderColor = '#e56c47';
+        modeSwitch.style.borderColor = '#F24746';
         checkBoxRoundId.className = 'slider-menu offline round';
 
         scope.checkModeOfApplication = false;
