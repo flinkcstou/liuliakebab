@@ -2612,8 +2612,8 @@ var css = {
   sideMenuReportsContainer: ".side-menu-reports-container " +
   "{" +
   "position: relative;" +
-  "top:" + 220 * heightK + "px;" +
-  "height: 6%;" +
+  "top:" + 100 * heightK + "px;" +
+  "height: 7%;" +
   "width: 77%;" +
   "left: 8%;" +
   // "border-bottom: 1px solid #f2f2f2;" +
@@ -2622,9 +2622,9 @@ var css = {
   sideMenuBillingsContainer: ".side-menu-billings-container " +
   "{" +
   "position: relative;" +
-  "top:" + 220 * heightK + "px;" +
+  "top:" + 100 * heightK + "px;" +
   // "top: 19%;" +
-  "height: 6%;" +
+  "height: 7%;" +
   "width: 77%;" +
   "left: 8%;" +
   // "border-bottom: 1px solid #f2f2f2;" +
@@ -2633,9 +2633,9 @@ var css = {
   sideMenuFavoriteContainer: ".side-menu-favorite-container " +
   "{" +
   "position: relative;" +
-  "top:" + 220 * heightK + "px;" +
+  "top:" + 100 * heightK + "px;" +
   // "top: 19%;" +
-  "height: 6%;" +
+  "height: 7%;" +
   "width: 77%;" +
   "left: 8%;" +
   // "border-bottom: 1px solid #f2f2f2;" +
@@ -2644,9 +2644,9 @@ var css = {
   sideMenuAutoPayContainer: ".side-menu-auto-pay-container " +
   "{" +
   "position: relative;" +
-  "top:" + 220 * heightK + "px;" +
+  "top:" + 100 * heightK + "px;" +
   // "top: 19%;" +
-  "height: 6%;" +
+  "height: 7%;" +
   "width: 77%;" +
   "left: 8%;" +
   // "border-bottom: 1px solid #f2f2f2;" +
@@ -2655,7 +2655,7 @@ var css = {
   sideMenuActionContainer: ".side-menu-action-container " +
   "{" +
   "position: relative;" +
-  "top:" + 220 * heightK + "px;" +
+  "top:" + 100 * heightK + "px;" +
   "margin-top: 5%;" +
   "margin-bottom: 5%;" +
   "height: auto;" +
@@ -2697,8 +2697,8 @@ var css = {
   "{" +
   "clear: both;" +
   "position: relative;" +
-  "top:" + 220 * heightK + "px;" +
-  "height: 6%;" +
+  "top:" + 100 * heightK + "px;" +
+  "height: 7%;" +
   "width: 77%;" +
   "left: 8%;" +
   "}",
@@ -2707,8 +2707,8 @@ var css = {
   "{" +
   "clear: both;" +
   "position: relative;" +
-  "top:" + 220 * heightK + "px;" +
-  "height: 6%;" +
+  "top:" + 100 * heightK + "px;" +
+  "height: 7%;" +
   "width: 77%;" +
   "left: 8%;" +
   "}",
@@ -2717,8 +2717,8 @@ var css = {
   "{" +
   "clear: both;" +
   "position: relative;" +
-  "top:" + 220 * heightK + "px;" +
-  "height: 6%;" +
+  "top:" + 100 * heightK + "px;" +
+  "height: 7%;" +
   "width: 77%;" +
   "left: 8%;" +
   //"margin-top: 2%;" +
@@ -2894,9 +2894,9 @@ var css = {
 
   sideMenuChangeMode: ".side-menu-change-mode " +
   "{" +
-  "position: absolute;" +
+  "position: relative;" +
   "top: " + 100 * heightK + "px;" +
-  "height: 7%;" +
+  "height: 8%;" +
   "width: 100%;" +
   // "background-color: #92bf3a;" +
   // "border: 1px solid #92bf3a;" +
