@@ -2734,18 +2734,17 @@ var css = {
   "left: 8%;" +
   // "border-bottom: 1px solid #2dadf0;" +
   "}",
-
+  
   sideMenuContainersIcon: ".side-menu-containers-icon " +
   "{" +
   "position: absolute;" +
   "width: 7%;" +
   "height: 81%;" +
-  "top: 12%;" +
+  "top: 9%;" +
   "left: 0%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "}",
-  
   sideMenuActionIcon: ".side-menu-action-icon " +
   "{" +
   "width: 7%;" +
