@@ -1729,7 +1729,7 @@ var css = {
   // "top:" + 20 * widthK + "px;" +
   // "right:" + 26 * widthK + "px;" +
   // "left:" + 26 * widthK + "px;" +
-  "height:" + 90 * widthK + "px;" +
+  "height:" + 120 * widthK + "px;" +
   "width: 100%;" +
   "background: white;" +
   "border-bottom: 1px solid #e8e8e8;" +
@@ -1745,7 +1745,7 @@ var css = {
   "margin-right: auto;" +
   "width:" + 105 * widthK + "px;" +
   "height:" + 105 * widthK + "px;" +
-  "top:" + 2 * widthK + "px;" +
+  "top:" + 30 * widthK + "px;" +
   // "left:" + 272 * widthK + "px;" +
   // "bottom:" + 2 * widthK + "px;" +
   "border-radius:" + 100 * widthK + "px;" +
@@ -1767,7 +1767,7 @@ var css = {
   "margin-left: auto;" +
   "margin-right: auto;" +
   "width:" + 117 * widthK + "px;" +
-  "top:" + 3 * widthK + "px;" +
+  "top:" + 31 * widthK + "px;" +
   "color: #a9abaf;" +
   "font-size:" + 30 * widthK + "px;" +
   "}",
@@ -1791,7 +1791,7 @@ var css = {
   "width:" + 100 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "background-size: 35%;" +
-  "top:" + -8 * widthK + "px;" +
+  "top:" + 25 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "left:" + 10 * widthK + "px;" +
@@ -1844,11 +1844,8 @@ var css = {
   "z-index: 2;" +
   "width: "+ 240 * widthK + "px;" +
   "height: " + 100 * widthK + "px;" +
-  "background-size: 50%;" +
-  "background-repeat: no-repeat;" +
-  "background-position: center;" +
   "right:" + 14 * widthK + "px;" +
-  "top:" + -7 * widthK + "px;" +
+  "top:" + 20 * widthK + "px;" +
   "}",
   
   toolbarUSSDIcon: ".toolbar-ussd-icon" +
