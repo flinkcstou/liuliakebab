@@ -21,6 +21,12 @@
       </label>
     </div>
 
+    <div id="reportsButtonId" class="side-menu-reports-container" ontouchstart="goToReportsTouchStart()"
+         ontouchend="goToReportsTouchEnd()">
+      <div class="side-menu-containers-icon side-menu-containers-icon-reports"></div>
+      <div class="side-menu-containers-name side-menu-containers-name-reports">Отчеты</div>
+    </div>
+
     <div id="billngsButtonId" class="side-menu-billings-container" ontouchstart="goToBillingsTouchStart()"
          ontouchend="goToBillingsTouchEnd()">
       <div class="side-menu-containers-icon side-menu-containers-icon-billings"></div>
@@ -40,21 +46,29 @@
       <div class="side-menu-containers-name side-menu-containers-name-autopayment">Автоплатеж</div>
     </div>
 
-    <div id="qrScannerButtonId" class="side-menu-scanner-qr-container" ontouchstart="goToQrScannerStart()"
+    <div class="side-menu-action-container">
+      <div id="qrScannerButtonId" class="side-menu-scanner-qr-container" ontouchstart="goToQrScannerStart()"
          ontouchend="goToQrScannerEnd()">
-      <div class="side-menu-containers-icon side-menu-containers-icon-scanner-qr"></div>
-      <div class="side-menu-containers-name side-menu-containers-name-scanner-qr">Сканер QR-кода</div>
-      <div class="side-menu-containers-hint-scanner-qr">
-        Отсканируйте QR-код продавца для быстрой оплаты
-      </div>
-    </div>
 
-    <div id="clickPassButtonId" class="side-menu-click-pass-container" ontouchstart="goToClickPassStart()"
+        <img src="resources/icons/menu/menu_qr.png" alt="" class="side-menu-action-image">
+
+        <p class="side-menu-containers-name-scanner-qr">Оплата на местах</p>
+        <p class="side-menu-containers-hint-scanner-qr">
+          Отсканируйте QR-код и с легкостью оплатите
+        </p>
+      </div>
+
+      <div class="side-menu-action-container-separator"></div>
+
+      <div id="clickPassButtonId" class="side-menu-click-pass-container" ontouchstart="goToClickPassStart()"
          ontouchend="goToClickPassEnd()">
-      <div class="side-menu-containers-icon side-menu-containers-icon-click-pass"></div>
-      <div class="side-menu-containers-name side-menu-containers-name-click-pass">CLICK PASS</div>
-      <div class="side-menu-containers-hint-click-pass">
-        Оплата по-личному QR-коду вашего аккаунта CLICK
+
+        <img src="resources/icons/menu/menu_scanner.png" alt="" class="side-menu-action-image">
+
+        <p class="side-menu-containers-name-click-pass">CLICK PASS</p>
+        <p class="side-menu-containers-hint-click-pass">
+          Оплата товаров и услуг по QR-коду CLICK
+        </p>
       </div>
     </div>
 
