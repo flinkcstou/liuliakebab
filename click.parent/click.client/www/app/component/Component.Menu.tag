@@ -80,8 +80,8 @@
     </div>
 
     <div id="newsButtonId" if="{!modeOfApp.offlineMode}" class="side-menu-news-container"
-         ontouchstart="goToMenuStart()"
-         ontouchend="goToMenuEnd()">
+         ontouchstart="goToNewsTouchStart()"
+         ontouchend="goToNewsTouchEnd()">
       <div class="side-menu-containers-icon side-menu-containers-icon-news"></div>
       <div class="side-menu-containers-name side-menu-containers-name-news">Новости</div>
     </div>
@@ -111,6 +111,7 @@
     var autoPayTouchStartX, autoPayTouchStartY, autoPayTouchEndX, autoPayTouchEndY;
     var qrScannerTouchStartX, qrScannerTouchStartY, qrScannerTouchEndX, qrScannerTouchEndY;
     var settingsTouchStartX, settingsTouchStartY, settingsTouchEndX, settingsTouchEndY;
+    var newsTouchStartX, newsTouchStartY, newsTouchEndX, newsTouchEndY;
     var reportsTouchStartX, reportsTouchStartY, reportsTouchEndX, reportsTouchEndY;
     var billingsTouchStartX, billingsTouchStartY, billingsTouchEndX, billingsTouchEndY;
     var favoritesTouchStartX, favoritesTouchStartY, favoritesTouchEndX, favoritesTouchEndY;
@@ -664,6 +665,35 @@
           this.riotTags.innerHTML = '<view-info>';
           riot.mount('view-info');
 //        scope.unmount()
+      }
+    };
+
+    goToNewsTouchStart = function() {
+      reportsButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
+
+      newsTouchStartX = event.changedTouches[0].pageX;
+      newsTouchStartY = event.changedTouches[0].pageY;
+    };
+
+    goToNewsTouchEnd = function () {
+
+      billngsButtonId.style.backgroundColor = 'transparent';
+
+      newsTouchEndX = event.changedTouches[0].pageX;
+      newsTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(newsTouchStartX - newsTouchEndX) <= 20 && Math.abs(newsTouchStartY - newsTouchEndY) <= 20) {
+
+        closeMenu();
+
+        containerCard.style.filter = 'blur(5px)';
+        viewNewsId.style.display = 'block';
+
+        window.News.newsCounter = 0;
+        window.saveHistory('view-news', opts);
+
+        scope.parent.tags['view-news'].showNewsFunction(1);
+
       }
     };
 
