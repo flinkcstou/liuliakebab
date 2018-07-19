@@ -2612,47 +2612,51 @@ var css = {
   sideMenuReportsContainer: ".side-menu-reports-container " +
   "{" +
   "position: relative;" +
-  "top: 32.2%;" +
+  "top:" + 220 * heightK + "px;" +
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #f2f2f2;" +
+  // "border-bottom: 1px solid #f2f2f2;" +
   "}",
   
   sideMenuBillingsContainer: ".side-menu-billings-container " +
   "{" +
   "position: relative;" +
-  "top: 32.2%;" +
+  "top:" + 220 * heightK + "px;" +
+  // "top: 19%;" +
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #f2f2f2;" +
+  // "border-bottom: 1px solid #f2f2f2;" +
   "}",
 
   sideMenuFavoriteContainer: ".side-menu-favorite-container " +
   "{" +
   "position: relative;" +
-  "top: 32.7%;" +
+  "top:" + 220 * heightK + "px;" +
+  // "top: 19%;" +
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #f2f2f2;" +
+  // "border-bottom: 1px solid #f2f2f2;" +
   "}",
 
   sideMenuAutoPayContainer: ".side-menu-auto-pay-container " +
   "{" +
   "position: relative;" +
-  "top: 32.7%;" +
+  "top:" + 220 * heightK + "px;" +
+  // "top: 19%;" +
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #f2f2f2;" +
+  // "border-bottom: 1px solid #f2f2f2;" +
   "}",
   
   sideMenuActionContainer: ".side-menu-action-container " +
   "{" +
   "position: relative;" +
-  "top: 32.7%;" +
+  "top:" + 250 * heightK + "px;" +
+  // "top: 21%;" +
   "height: auto;" +
   "width: 100%;" +
   "float: left;" +
@@ -2691,23 +2695,30 @@ var css = {
   sideMenuSettingsContainer: ".side-menu-settings-container " +
   "{" +
   "position: relative;" +
-  "top: 36.4%;" +
+  "top:" + 540 * heightK + "px;" +
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #f2f2f2;" +
   "}",
-
+  
+  sideMenuNewsContainer: ".side-menu-news-container " +
+  "{" +
+  "position: relative;" +
+  "top:" + 540 * heightK + "px;" +
+  "height: 6%;" +
+  "width: 77%;" +
+  "left: 8%;" +
+  "}",
 
   sideMenuCallContainer: ".side-menu-call-container " +
   "{" +
   "position: relative;" +
-  "top: 60%;" +
+  "top:" + 540 * heightK + "px;" +
   "height: 6%;" +
   "width: 77%;" +
   "left: 8%;" +
   //"margin-top: 2%;" +
-  "border-bottom: 1px solid #f2f2f2;" +
+  // "border-bottom: 1px solid #f2f2f2;" +
   "}",
 
   sideMenuExitContainer: ".side-menu-exit-container " +
@@ -2742,6 +2753,12 @@ var css = {
   sideMenuContainersIconSettings: ".side-menu-containers-icon-settings" +
   "{" +
   "background-image: url(resources/icons/menu/menu_settings.png);" +
+  "background-size: 100%;" +
+  "}",
+  
+  sideMenuContainersIconNews: ".side-menu-containers-icon-news" +
+  "{" +
+  "background-image: url(resources/icons/menu/menu_news.png);" +
   "background-size: 100%;" +
   "}",
   
@@ -2874,7 +2891,7 @@ var css = {
   sideMenuChangeMode: ".side-menu-change-mode " +
   "{" +
   "position: absolute;" +
-  "top: 10%;" +
+  "top: " + 100 * heightK + "px;" +
   "height: 7%;" +
   "width: 100%;" +
   // "background-color: #92bf3a;" +

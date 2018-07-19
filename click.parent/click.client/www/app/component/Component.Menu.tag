@@ -79,6 +79,13 @@
       <div class="side-menu-containers-name side-menu-containers-name-settings">Настройки</div>
     </div>
 
+    <div id="newsButtonId" if="{!modeOfApp.offlineMode}" class="side-menu-news-container"
+         ontouchstart="goToMenuStart()"
+         ontouchend="goToMenuEnd()">
+      <div class="side-menu-containers-icon side-menu-containers-icon-news"></div>
+      <div class="side-menu-containers-name side-menu-containers-name-news">Новости</div>
+    </div>
+
     <div id="callButtonId" class="side-menu-call-container" ontouchend="callToClickTouchEnd()"
          ontouchstart="callToClickTouchStart()">
       <div class="side-menu-containers-icon side-menu-containers-icon-call"></div>
