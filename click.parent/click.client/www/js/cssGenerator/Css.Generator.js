@@ -2842,7 +2842,7 @@ var css = {
   "{" +
   "background-image: url(resources/icons/menu/menu_call.png);" +
   "background-size: 100%;" +
-  "top: 22%;" +
+  "top: 9%;" +
   "}",
 
   sideMenuContainersIconExit: ".side-menu-containers-icon-exit" +
@@ -2864,7 +2864,7 @@ var css = {
   sideMenuContainersName: ".side-menu-containers-name " +
   "{" +
   "position: absolute;" +
-  "top: 33%;" +
+  "top: 30%;" +
   "left: 16%;" +
   "font-size:" + 29 * widthK + "px;" +
   "color: #565d6a;" +
