@@ -111,6 +111,7 @@
     var autoPayTouchStartX, autoPayTouchStartY, autoPayTouchEndX, autoPayTouchEndY;
     var qrScannerTouchStartX, qrScannerTouchStartY, qrScannerTouchEndX, qrScannerTouchEndY;
     var settingsTouchStartX, settingsTouchStartY, settingsTouchEndX, settingsTouchEndY;
+    var reportsTouchStartX, reportsTouchStartY, reportsTouchEndX, reportsTouchEndY;
     var billingsTouchStartX, billingsTouchStartY, billingsTouchEndX, billingsTouchEndY;
     var favoritesTouchStartX, favoritesTouchStartY, favoritesTouchEndX, favoritesTouchEndY;
     var changeModeStart, changeModeEnd;
@@ -596,8 +597,6 @@
       clickPassTouchStartY = event.changedTouches[0].pageY;
     };
 
-    var settingsTouchStartX, settingsTouchStartY, settingsTouchEndX, settingsTouchEndY
-
     goToSettingsEnd = function () {
       event.preventDefault();
       event.stopPropagation();
@@ -633,6 +632,39 @@
 
       settingsTouchStartX = event.changedTouches[0].pageX;
       settingsTouchStartY = event.changedTouches[0].pageY;
+    };
+
+    goToReportsTouchStart = function() {
+      reportsButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
+
+      reportsTouchStartX = event.changedTouches[0].pageX;
+      reportsTouchStartY = event.changedTouches[0].pageY;
+    };
+
+    goToReportsTouchEnd = function () {
+
+      billngsButtonId.style.backgroundColor = 'transparent';
+
+      reportsTouchEndX = event.changedTouches[0].pageX;
+      reportsTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(reportsTouchEndX - reportsTouchStartX) < 20 && Math.abs(reportsTouchStartY - reportsTouchEndY) < 20) {
+        if (modeOfApp.demoVersion) {
+          var question = window.languages.DemoModeConstraintText;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: question
+          });
+
+          scope.update();
+
+          return
+        }
+        closeMenu();
+          this.riotTags.innerHTML = '<view-info>';
+          riot.mount('view-info');
+//        scope.unmount()
+      }
     };
 
     goToBillingsTouchStart = function () {

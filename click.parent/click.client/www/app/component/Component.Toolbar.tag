@@ -14,7 +14,7 @@
       {window.languages.ComponentToolbarTitle}
     </div>
 
-    <div if="{!modeOfApp.offlineMode}" id="bellButtonId" class="bell-button toolbar-action-bell bell-icon"
+    <div if="{!modeOfApp.offlineMode}" id="bellButtonId" class="bell-button bell-icon"
          ontouchstart="bellButtonTouchStart()"
          ontouchend="bellButtonTouchEnd()" role="button"
          aria-label="{window.languages.ComponentToolbarAriaLabelOpenNews}">
@@ -106,10 +106,10 @@
 
       if (Math.abs(bellButtonTouchStartX - bellButtonTouchEndX) <= 20 && Math.abs(bellButtonTouchStartY - bellButtonTouchEndY) <= 20) {
 
-        if (modeOfApp.offlineMode)return
+        if (modeOfApp.offlineMode)return;
 
         containerCard.style.filter = 'blur(5px)';
-        viewNewsId.style.display = 'block'
+        viewNewsId.style.display = 'block';
 
         window.News.newsCounter = 0;
 

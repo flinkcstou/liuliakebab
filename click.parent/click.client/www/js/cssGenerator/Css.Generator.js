@@ -1834,7 +1834,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "right:" + 14 * widthK + "px;" +
-  "top:" + -7 * widthK + "px;" +
+  "top:" + 20 * widthK + "px;" +
   "}",
   
   toolbarUSSDContainer: ".toolbar-ussd-container" +
