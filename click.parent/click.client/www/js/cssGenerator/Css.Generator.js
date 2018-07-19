@@ -3043,7 +3043,7 @@ var css = {
   "position: absolute;" +
   "width: 15%;" +
   "height: 100%;" +
-  "top: 7%;" +
+  "top: 0%;" +
   "left: 3%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
