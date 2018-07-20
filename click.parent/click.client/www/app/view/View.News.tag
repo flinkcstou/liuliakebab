@@ -10,7 +10,6 @@
     <div class="view-news-block-of-all" each="{i in newsArray}">
 
       <img id="newsImageId{i.news_id}"
-           hidden
            class="view-news-block-image"
            exist="{i.image_exist}">
 
@@ -235,9 +234,21 @@
               }
 
               scope.newsArray.push(responseNews[i])
-
               if (news_id && news_id == responseNews[i].news_id) openNews(newsToOpen);
             }
+
+            scope.update();
+
+            // We need to load img  immediately. If you have better solution, you are welcome
+            for (var i = 0; i < scope.newsArray.length; i++) {
+              const newsImgTag = document.getElementById('newsImageId' + scope.newsArray[i].news_id);
+              newsImgTag.setAttribute('src', scope.newsArray[i].news_image);
+              newsImgTag.onerror = function () {
+                console.log('View.News.tag.showNewsFunction.onSuccess()', response);
+                newsImgTag.setAttribute('hidden', true);
+              }
+            }
+
           }
           else {
             window.common.alert.show("componentAlertId", {
@@ -245,9 +256,10 @@
               errornote: errorNote,
               viewpage: 'view-main-page'
             });
+
+            scope.update();
           }
 
-          scope.update();
         },
 
         onFail: function (api_status, api_status_message, data) {
