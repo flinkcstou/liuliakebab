@@ -1,6 +1,6 @@
 <view-news id="viewNewsId" class="view-news riot-tags-main-container">
   <div class="view-news-page-title">
-    <p class="view-news-name-title">УВЕДОМЛЕНИЯ</p>
+    <p class="view-news-name-title">НОВОСТИ</p>
     <div id="closeButton" role="button" aria-label="{window.languages.Close}" ontouchend="closeNewsTouchEnd()"
          class="view-news-right-button"></div>
   </div>
