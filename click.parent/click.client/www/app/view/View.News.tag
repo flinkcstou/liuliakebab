@@ -197,10 +197,11 @@
     };
 
     scope.showNewsFunction = function (pageNumber, news_id) {
+      console.log("View.News.tag.showNewsFunction(): ", pageNumber, news_id);
+
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var signString = hex_md5(phoneNumber.substring(0, 5) + "CLICK" + phoneNumber.substring(phoneNumber.length - 7, phoneNumber.length));
       var timeOutTimerNews = 0;
-      var newsToOpen;
 
       window.startSpinner();
 
@@ -215,46 +216,43 @@
 
         scope: this,
 
-        onSuccess: function (result) {
-          console.log('Clearing timer onSuccess', timeOutTimerNews);
+        onSuccess: function (response) {
+          console.log('View.News.tag.showNewsFunction.onSuccess()', response);
           window.clearTimeout(timeOutTimerNews);
 
-          if (result[0][0].error === 0) {
-            for (var i in result[1]) {
-              result[1][i].opened = false;
-              if (result[1][i].news_image) {
-                result[1][i].image_exist = true;
-              }
-              else {
-                result[1][i].image_exist = false;
-              }
-              if (result[1][i].news_content.length > 120) {
-                if (result[1][i].news_content_short)
-                  result[1][i].content_short = result[1][i].news_content_short.substring(0, 120) + '...';
+          const error = response[0][0].error;
+          const errorNote = response[0][0].error_note;
+          const responseNews= response[1];
+
+          if (error === 0) {
+            for (var i = 0; i < responseNews.length; i++) {
+
+              responseNews[i].opened = false;
+              responseNews[i].image_exist = !!responseNews[i].news_image;
+
+              if (responseNews[i].news_content.length > 120 && responseNews[i].news_content_short) {
+                responseNews[i].content_short  = responseNews[i].news_content_short.substring(0, 120) + '...';
               }
 
-              if (news_id && news_id == result[1][i].news_id)
-                newsToOpen = result[1][i];
-              scope.newsArray.push(result[1][i])
+              scope.newsArray.push(responseNews[i])
+
+              if (news_id && news_id == responseNews[i].news_id) openNews(newsToOpen);
             }
-            scope.update();
-            if (newsToOpen)
-              openNews(newsToOpen);
           }
           else {
-            console.log("view news error 1");
             window.common.alert.show("componentAlertId", {
               parent: scope,
-              errornote: result[0][0].error_note,
+              errornote: errorNote,
               viewpage: 'view-main-page'
             });
-            scope.update();
-            console.log(result[0][0].error_note);
           }
+
+          scope.update();
         },
 
         onFail: function (api_status, api_status_message, data) {
-          console.log('Clearing timer onFail', timeOutTimerNews);
+          console.log('View.News.tag.showNewsFunction.onFail()', api_status, api_status_message, data);
+
           window.clearTimeout(timeOutTimerNews);
           window.common.alert.show("componentAlertId", {
             parent: scope,
@@ -266,24 +264,29 @@
           console.error(data);
         },
         onTimeOut: function () {
+          console.log('View.News.tag.showNewsFunction.onTimeOut()');
+
           timeOutTimerNews = setTimeout(function () {
             window.writeLog({
               reason: 'Timeout',
               method: 'get.news',
             });
+
             window.common.alert.show("componentAlertId", {
               parent: scope,
               errornote: window.languages.WaitingTimeExpiredText,
               viewpage: 'view-main-page'
             });
+
             scope.update();
             window.stopSpinner();
 
           }, 30000);
-          console.log('creating timeOut', timeOutTimerNews);
+
+          console.log('View.News.tag.showNewsFunction.onTimeOut() | creating timeOut', timeOutTimerNews);
         },
         onEmergencyStop: function () {
-          console.log('Clearing timer emergencyStop', timeOutTimerNews);
+          console.log('View.News.tag.showNewsFunction.onEmergencyStop()');
           window.clearTimeout(timeOutTimerNews);
         }
       }, 30000);
