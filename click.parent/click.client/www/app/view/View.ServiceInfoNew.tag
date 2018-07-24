@@ -58,7 +58,7 @@
 
   <script>
 
-    console.log('OPTS in ServiceInfo NEW', opts);
+    console.log('View.ServiceInfoNew.tag | opts', opts);
 
     window.saveHistory('view-service-info-new', opts);
 
@@ -166,6 +166,8 @@
 
     function getInformation() {
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+
+      console.log('View.ServiceInfoNew.tag.getInformation()', sessionKey, phoneNumber, opts.chosenServiceId, payment_data);
 
       window.api.call({
         method: 'get.additional.information',
