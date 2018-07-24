@@ -7,32 +7,45 @@
 
   <div class="view-news-container" id="newsMainContainerId" onscroll="newsScrollFunction()">
 
-    <div class="view-news-block-of-all" each="{i in newsArray}">
+    <div class="view-news-item" each="{i in newsArray}">
 
       <img id="newsImageId{i.news_id}"
-           class="view-news-block-image"
+           class="view-news-item-image"
            exist="{i.image_exist}">
 
-      <div class="{view-news-block:!i.url, view-news-block-with-link:i.url}" shorttext="{i.content_short}"
+      <div class="view-news-item-content" shorttext="{i.content_short}"
            opened="false" title="{i.news_content}"
            id="newsContainerId{i.news_id}"
            ontouchstart="newsTouchStart()"
            ontouchend="newsTouchEnd(this.id, 'newsTextId' + {i.news_id}, this.title, document.getElementById(this.id).getAttribute('shorttext'), 'newsImageId'+{i.news_id}, {i.news_id})">
+
         <p class="view-news-block-title">{i.news_title}</p>
-        <p id="newsTextId{i.news_id}" class="view-news-block-text">{i.content_short}</p>
-        <div hidden="{!i.url}" class="view-news-follow-link-container"
-             ontouchend="followLink(&quot;{i.url}&quot;)" id="{i.news_id}">
-          <div class="view-news-follow-link-text">{window.languages.ViewNewsFollowLink}</div>
-          <div class="view-news-follow-link-arrow"></div>
-        </div>
-        <p class="view-news-block-date">{i.datetime}</p>
-        <div if="{!i.opened}" class="view-news-block-readmore-container">{window.languages.ViewNewsDetails}
-          <div class="view-news-block-readmore-icon"></div>
-        </div>
-        <div if="{i.opened}" class="view-news-block-readmore-container">
-          <div class="view-news-block-opened-icon"></div>
-        </div>
       </div>
+
+      <div class="view-news-item-footer">
+
+        <div hidden="{!i.url}" class="view-news-item-link"
+             ontouchend="followLink(&quot;{i.url}&quot;)" id="{i.news_id}">
+            {window.languages.ViewNewsFollowLink}
+        </div>
+
+        <p class="view-news-item-date">{i.datetime}</p>
+
+        <div class="view-news-item-detail-container">
+
+        </div>
+
+
+        <div class="view-news-item-more-less-container">
+          <div if="{!i.opened}" class="view-news-item-more"></div>
+          <div if="{i.opened}" class="view-news-item-less"></div>
+        </div>
+
+      </div>
+
+    </div>
+
+
     </div>
     <div class="view-news-block-space"></div>
   </div>

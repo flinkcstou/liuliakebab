@@ -16553,37 +16553,37 @@ var css = {
   "-webkit-overflow-scrolling: touch;" +
   "}",
 
-  viewNewsBlock: ".view-news-block" +
-  "{" +
-  "position: relative;" +
-  "width: 100%;" +
-  "margin: 0 auto 3% auto;" +
-  "padding-bottom: 0;" +
-  "height:" + 360 * widthK + "px;" +
-  //"contain: content;" +
-  "background-image: url('resources/icons/ViewNews/news.png');" +
-  "background-repeat: no-repeat;" +
-  "background-position-y: bottom;" +
-  "background-size: 100%;" +
-  "background-color: white;" +
-  "border-bottom-right-radius:" + 70 * widthK + "px;" +
-  "}",
+  // viewNewsBlock: ".view-news-block" +
+  // "{" +
+  // "position: relative;" +
+  // "width: 100%;" +
+  // "margin: 0 auto 3% auto;" +
+  // "padding-bottom: 0;" +
+  // "height:" + 360 * widthK + "px;" +
+  // //"contain: content;" +
+  // "background-image: url('resources/icons/ViewNews/news.png');" +
+  // "background-repeat: no-repeat;" +
+  // "background-position-y: bottom;" +
+  // "background-size: 100%;" +
+  // "background-color: white;" +
+  // "border-bottom-right-radius:" + 70 * widthK + "px;" +
+  // "}",
 
-  viewNewsBlockWithLink: ".view-news-block-with-link" +
-  "{" +
-  "position: relative;" +
-  "width: 100%;" +
-  "margin: 0 auto 3% auto;" +
-  "padding-bottom: 0;" +
-  "height:" + 415 * widthK + "px;" +
-  //"contain: content;" +
-  "background-image: url('resources/icons/ViewNews/news.png');" +
-  "background-repeat: no-repeat;" +
-  "background-position-y: bottom;" +
-  "background-size: 100%;" +
-  "background-color: white;" +
-  "border-bottom-right-radius:" + 70 * widthK + "px;" +
-  "}",
+  // viewNewsBlockWithLink: ".view-news-block-with-link" +
+  // "{" +
+  // "position: relative;" +
+  // "width: 100%;" +
+  // "margin: 0 auto 3% auto;" +
+  // // "padding-bottom: " + 80 * widthK  + "px;" +
+  // "height: auto; " + // 415 * widthK + "px;" +
+  // //"contain: content;" +
+  // // "background-image: url('resources/icons/ViewNews/news.png');" +
+  // // "background-repeat: no-repeat;" +
+  // // "background-position-y: bottom;" +
+  // // "background-size: 100%;" +
+  // "background-color: white;" +
+  // // "border-bottom-right-radius:" + 70 * widthK + "px;" +
+  // "}",
 
   viewNewsPageTitle: ".view-news-page-title " +
   "{" +
@@ -16636,38 +16636,122 @@ var css = {
   "background-size: 22%;" +
   "top: 0;" +
   "}",
-
-  viewNewsBlockOfAll: ".view-news-block-of-all " +
+  
+  viewNewsItem: ".view-news-item" +
   "{" +
-  "position: relative;" +
   "width: 100%;" +
-  // "contain: content;" +
-  "margin-bottom: 7%;" +
+  "height: auto;" +
+  "box-sizing: border-box;" +
+  "border: 1px solid red;" +
+  "padding: 5%;" +
   "}",
-
-  viewNewsBlockText: ".view-news-block-text " +
+  
+  viewNewsItemImage: ".view-news-item-image" +
   "{" +
-  "position: relative;" +
+  "width: 100%;" +
+  "height: auto;" +
+  "}",
+  
+  viewNewsItemContent: ".view-news-item-content" +
+  "{" +
+  "width: 100%;" +
+  "height: auto;" +
+  "border: 1px solid green;" +
+  "}",
+  
+  viewNewsItemFooter: ".view-news-item-footer" +
+  "{" +
+  "width: 100%;" +
+  "height: " + 80 * widthK + "px;" +
+  "border: 1px solid cyan;" +
+  "}",
+  
+  viewNewsItemLink: ".view-news-item-link" +
+  "{" +
+  "width: 30%;" +
+  "height: " + 50 * widthK + "px;" +
+  "border: 1px solid darkcyan;" +
+  "background-color: #4DACFE;" +
+  "color: #FFFFFF;" +
+  "text-align: center;" +
+  "vertical-align: center;" +
+  "line-height: " + 50 * widthK + "px;" +
+  "margin: 0;" +
+  "border-radius:" + 3 * widthK + "px;" +
   "font-size:" + 24 * widthK + "px; " +
-  "width: 88%; " +
-  "margin:" + 50 * widthK + "px auto 0 auto;  " +
-  "color: #4f4f4f;" +
-  "text-overflow: ellipsis;" +
-  "overflow: hidden;" +
-  "text-align: justify;" +
-  "white-space: pre-line;" +
+  "display: inline-block;" +
   "}",
-
-  viewNewsBlockImage: ".view-news-block-image " +
+  
+  viewNewsItemDate: ".view-news-item-date" +
   "{" +
-  "position: relative;" +
-  "background-image: url('resources/icons/ViewNews/loading_blue2.gif');" +
-  "background-repeat: no-repeat;" +
-  "background-position-y: bottom;" +
-  "background-size: 100%;" +
-  "width: 100%;" +
-  "height:" + 330 * widthK + "px;" +
+  "display: inline-block;" +
+  // "color: #bababa;" +
+  "font-size:" + 24 * widthK + "px; " +
   "}",
+  
+  viewNewsItemDetailContainer: ".view-news-item-detail-container" +
+  "{" +
+  "display: inline-block;" +
+  "}",
+  
+  viewNewsItemMoreLessContainer: ".view-news-item-more-less-container" +
+  "{" +
+  "display: inline-block;" +
+  "float: right;" +
+  "position: relative;" +
+  "padding: " + 10 * widthK + "px; " +
+  "top: 30%;" +
+  "}",
+  
+  viewNewsItemMore: ".view-news-item-more" +
+  "{" +
+  "width:" + 32 * widthK + "px; " +
+  "height:" + 32 * widthK + "px; " +
+  "background-size: 50%;" +
+  "background-image: url(resources/icons/ViewInfo/open.png);" +
+  "background-repeat: no-repeat;" +
+  "background-position-y: center;" +
+  "}",
+  
+  viewNewsItemLess: ".view-news-item-less" +
+  "{" +
+  "" +
+  "}",
+  
+  // viewNewsBlockOfAll: ".view-news-block-of-all " +
+  // "{" +
+  // "position: relative;" +
+  // "width: 100%;" +
+  // // "contain: content;" +
+  // "margin-bottom: 7%;" +
+  // "padding: 2%;" +
+  // "box-sizing: border-box;" +
+  // // "background-image: url('resources/icons/ViewNews/news.png');" +
+  // "}",
+
+  // viewNewsBlockText: ".view-news-block-text " +
+  // "{" +
+  // "position: relative;" +
+  // "font-size:" + 24 * widthK + "px; " +
+  // "width: 88%; " +
+  // "margin:" + 50 * widthK + "px auto 0 auto;  " +
+  // "color: #4f4f4f;" +
+  // "text-overflow: ellipsis;" +
+  // "overflow: hidden;" +
+  // "text-align: justify;" +
+  // "white-space: pre-line;" +
+  // "}",
+  //
+  // viewNewsBlockImage: ".view-news-block-image " +
+  // "{" +
+  // "position: relative;" +
+  // "background-image: url('resources/icons/ViewNews/loading_blue2.gif');" +
+  // "background-repeat: no-repeat;" +
+  // "background-position-y: bottom;" +
+  // "background-size: 100%;" +
+  // "width: 100%;" +
+  // "height:" + 330 * widthK + "px;" +
+  // "}",
 
   // viewNewsBlockImageLoader: ".view-news-block-image-loader " +
   // "{" +
@@ -16681,99 +16765,114 @@ var css = {
   // "height:" + 330 * widthK + "px;" +
   // "}",
 
-  viewNewsBlockTitle: ".view-news-block-title " +
-  "{" +
-  "position: relative;" +
-  "font-size:" + 34 * widthK + "px; " +
-  "top:" + 40 * widthK + "px; " +
-  // "height:" + 130 * widthK + "px; " +
-  "width: 87%; " +
-  "margin: 0 auto 0 auto;  " +
-  "color: #00b8ff;" +
-  "text-overflow: ellipsis;" +
-  "overflow: hidden;" +
-  "}",
+  // viewNewsBlockTitle: ".view-news-block-title " +
+  // "{" +
+  // "position: relative;" +
+  // // "font-size:" + 34 * widthK + "px; " +
+  // // "top:" + 40 * widthK + "px; " +
+  // // "height:" + 130 * widthK + "px; " +
+  // // "width: 87%; " +
+  // // "margin: 0 auto 0 auto;  " +
+  // // "color: #00b8ff;" +
+  // "text-overflow: ellipsis;" +
+  // "overflow: hidden;" +
+  // "}",
 
-  viewNewsBlockDate: ".view-news-block-date " +
-  "{" +
-  "position: relative;" +
-  "font-size:" + 24 * widthK + "px; " +
-  "margin: 0;  " +
-  "width: 30%;  " +
-  "margin-top:" + 35 * widthK + "px; " +
-  "margin-bottom:" + 52 * widthK + "px; " +
-  "left: 6%;  " +
-  "float: left;  " +
-  "color: #bbbbbb;" +
-  "}",
+  // viewNewsBlockDate: ".view-news-block-date " +
+  // "{" +
+  // // "position: relative;" +
+  // "display: inline-block;" +
+  // "font-size:" + 24 * widthK + "px; " +
+  // "margin: 0;  " +
+  // "width: 30%;  " +
+  // // "margin-top:" + 35 * widthK + "px; " +
+  // // "margin-bottom:" + 52 * widthK + "px; " +
+  // // "left: 6%;  " +
+  // // "float: left;  " +
+  // "color: #bbbbbb;" +
+  // "}",
 
-  viewNewsBlockReadMoreContainer: ".view-news-block-readmore-container " +
-  "{" +
-  "position: relative;" +
-  "font-size:" + 24 * widthK + "px; " +
-  "margin: 0;  " +
-  "left: 30%;  " +
-  "margin-top:" + 35 * widthK + "px; " +
-  "margin-bottom:" + 35 * widthK + "px; " +
-  "width: 30%;  " +
-  "height: 17%;  " +
-  "float: left;  " +
-  "color: #bbbbbb;" +
-  "}",
+  // viewNewsBlockReadMoreContainer: ".view-news-block-readmore-container " +
+  // "{" +
+  // // "position: relative;" +
+  // "font-size:" + 24 * widthK + "px; " +
+  // "margin: 0;  " +
+  // "display: inline-block;" +
+  // // "left: 30%;  " +
+  // // "margin-top:" + 35 * widthK + "px; " +
+  // // "margin-bottom:" + 35 * widthK + "px; " +
+  // "display: inline-block;" +
+  // "width: 30%;  " +
+  // "height: 17%;  " +
+  // // "float: left;  " +
+  // "color: #bbbbbb;" +
+  // "}",
 
-  viewNewsBlockReadMoreIcon: ".view-news-block-readmore-icon " +
-  "{" +
-  "position: absolute;" +
-  "right: 3%;  " +
-  "top: 0;  " +
-  "width: 23%;  " +
-  "height:" + 32 * widthK + "px; " +
-  "background-image: url(resources/icons/ViewInfo/open.png);" +
-  "background-repeat: no-repeat;" +
-  "background-position-y: center;" +
-  "background-size: 27%;" +
-  "}",
+  // viewNewsBlockReadMoreIcon: ".view-news-block-readmore-icon " +
+  // "{" +
+  // // "position: absolute;" +
+  // // "right: 3%;  " +
+  // // "top: 0;  " +
+  // "width: 23%;  " +
+  // "height:" + 32 * widthK + "px; " +
+  // "background-image: url(resources/icons/ViewInfo/open.png);" +
+  // "background-repeat: no-repeat;" +
+  // "background-position-y: center;" +
+  // "background-size: 27%;" +
+  // "}",
 
-  viewNewsBlockOpenedIcon: ".view-news-block-opened-icon " +
-  "{" +
-  "position: absolute;" +
-  "right: 3%;  " +
-  "top: 0;  " +
-  "width: 23%;  " +
-  "height:" + 32 * widthK + "px; " +
-  "background-image: url(resources/icons/ViewPay/catclose.png);" +
-  "background-repeat: no-repeat;" +
-  "background-position-y: center;" +
-  "background-size: 40%;" +
-  "}",
+  // viewNewsBlockOpenedIcon: ".view-news-block-opened-icon " +
+  // "{" +
+  // "position: absolute;" +
+  // "right: 3%;  " +
+  // "top: 0;  " +
+  // "width: 23%;  " +
+  // "height:" + 32 * widthK + "px; " +
+  // "background-image: url(resources/icons/ViewPay/catclose.png);" +
+  // "background-repeat: no-repeat;" +
+  // "background-position-y: center;" +
+  // "background-size: 40%;" +
+  // "}",
+  
+  
+  // viewNewsBlockSpace: ".view-news-block-space " +
+  // "{" +
+  // "position: relative;" +
+  // "height: 10%;  " +
+  // "width: 100%;  " +
+  // "}",
+  //
+  // viewNewsBlockFooter: ".view-news-block-footer " +
+  // "{" +
+  // "position: absolute;" +
+  // "width: 100%;" +
+  // "height: " + 80 * widthK  + "px;" +
+  // "bottom: 0;  " +
+  // "}",
 
-  viewNewsBlockSpace: ".view-news-block-space " +
-  "{" +
-  "position: relative;" +
-  "height: 10%;  " +
-  "width: 100%;  " +
-  "}",
-
-  viewNewsFollowLinkContainer: ".view-news-follow-link-container" +
-  "{" +
-  "position: relative;" +
-  "margin-top: " + 25 * widthK + "px;" +
-  "left: 6%;" +
-  "background-color: #09b1ff;" +
-  "width: 44%;" +
-  "height: " + 60 * widthK + "px;" +
-  "text-decoration: none;" +
-  "font-size:" + 25 * widthK + "px;" +
-  "border-radius:" + 5 * widthK + "px;" +
-  "color: white;" +
-  "}",
+  // viewNewsFollowLinkContainer: ".view-news-follow-link-container" +
+  // "{" +
+  // "position: relative;" +
+  // "margin: 0;" +
+  // // "margin-top: " + 25 * widthK + "px;" +
+  // // "left: 6%;" +
+  // "display: inline-block;" +
+  // "background-color: #09b1ff;" +
+  // "width: 30%;" +
+  // "height: " + 50 * widthK + "px;" +
+  // "text-decoration: none;" +
+  // "text-align: center;" +
+  // "vertical-align: middle;" +
+  // "line-height:" + 50 * widthK + "px;" +
+  // "font-size:" + 25 * widthK + "px;" +
+  // "border-radius:" + 5 * widthK + "px;" +
+  // "color: white;" +
+  // "}",
 
   viewNewsFollowLinkText: ".view-news-follow-link-text" +
   "{" +
   "position: absolute;" +
-  "top: 27%;" +
-  "float: left;" +
-  "left: 22%;" +
+  "margin: 0 auto;" +
   "}",
 
   viewNewsFollowLinkArrow: ".view-news-follow-link-arrow" +
