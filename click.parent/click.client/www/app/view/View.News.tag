@@ -7,17 +7,17 @@
 
   <div class="view-news-container" id="newsMainContainerId" onscroll="newsScrollFunction()">
 
-    <div class="view-news-item" each="{i in newsArray}">
+    <div class="view-news-item" each="{i in newsArray}"
+         id="newsContainerId{i.news_id}"
+         ontouchstart="newsTouchStart()"
+         ontouchend="newsTouchEnd({i.news_id})">
 
       <img id="newsImageId{i.news_id}"
            class="view-news-item-image"
            exist="{i.image_exist}">
 
       <div class="view-news-item-content" shorttext="{i.content_short}"
-           opened="false" title="{i.news_content}"
-           id="newsContainerId{i.news_id}"
-           ontouchstart="newsTouchStart()"
-           ontouchend="newsTouchEnd(this.id, 'newsTextId' + {i.news_id}, this.title, document.getElementById(this.id).getAttribute('shorttext'), 'newsImageId'+{i.news_id}, {i.news_id})">
+           opened="false" title="{i.news_content}">
 
         <p class="view-news-item-title">{i.news_title}</p>
       </div>
@@ -132,43 +132,46 @@
       window.open(LinkToNews, '_system', 'location=no');
     };
 
-    newsTouchEnd = function (containerId, textId, longText, shortText, imageId, newsId) {
+    newsTouchEnd = function (containerId, longText) {
+      console.log('View.News.tag.newsTouchEnd():', containerId, longText, shortText, imageId, newsId);
       event.preventDefault();
       event.stopPropagation();
+
+      console.log(scope.newsArray);
 
       touchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(touchStartY - touchEndY) <= 20) {
-        if (JSON.parse(document.getElementById(containerId).getAttribute('opened')) === false) {
-          console.log("View.News.tag.newsTouchEnd() | news id:", newsId);
-
-          for (var i in scope.newsArray) {
-            if (scope.newsArray[i].news_id === newsId) {
-              scope.newsArray[i].opened = true;
-            }
-          }
-
-          document.getElementById(containerId).style.paddingBottom = 100 * widthK + 'px';
-          document.getElementById(containerId).setAttribute('opened', true);
-          document.getElementById(containerId).style.height = 'auto';
-          document.getElementById(textId).innerHTML = longText;
-        }
-        else {
-          for (var i in scope.newsArray) {
-            if (scope.newsArray[i].news_id === newsId) {
-              scope.newsArray[i].opened = false;
-            }
-          }
-
-          document.getElementById(containerId).style.paddingBottom = '0px';
-          document.getElementById(textId).innerHTML = shortText;
-          document.getElementById(containerId).setAttribute('opened', false)
-
-          if (document.getElementById(containerId).className === "view-news-block")
-            document.getElementById(containerId).style.height = 360 * widthK + 'px';
-          else
-            document.getElementById(containerId).style.height = 415 * widthK + 'px';
-        }
+//        if (JSON.parse(document.getElementById(containerId).getAttribute('opened')) === false) {
+//          console.log("View.News.tag.newsTouchEnd() | news id:", newsId);
+//
+//          for (var i in scope.newsArray) {
+//            if (scope.newsArray[i].news_id === newsId) {
+//              scope.newsArray[i].opened = true;
+//            }
+//          }
+//
+//          document.getElementById(containerId).style.paddingBottom = 100 * widthK + 'px';
+//          document.getElementById(containerId).setAttribute('opened', true);
+//          document.getElementById(containerId).style.height = 'auto';
+////          document.getElementById(textId).innerHTML = longText;
+//        }
+//        else {
+//          for (var i in scope.newsArray) {
+//            if (scope.newsArray[i].news_id === newsId) {
+//              scope.newsArray[i].opened = false;
+//            }
+//          }
+//
+//          document.getElementById(containerId).style.paddingBottom = '0px';
+////          document.getElementById(textId).innerHTML = shortText;
+//          document.getElementById(containerId).setAttribute('opened', false)
+//
+//          if (document.getElementById(containerId).className === "view-news-block")
+//            document.getElementById(containerId).style.height = 360 * widthK + 'px';
+//          else
+//            document.getElementById(containerId).style.height = 415 * widthK + 'px';
+//        }
         scope.update();
       }
     };
