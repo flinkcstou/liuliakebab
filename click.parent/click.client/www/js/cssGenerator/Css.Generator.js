@@ -16535,10 +16535,11 @@ var css = {
   "height: 100%;" +
   "display: none;" +
   "z-index: 9999;" +
-  "background-image: url('resources/icons/transparent.png');" +
+  "background-color: #F1F2F4;" +
+  // "background-image: url('resources/icons/transparent.png');" +
   //"background-repeat: no-repeat;" +
-  "background-position-y: center;" +
-  "background-size: 100%;" +
+  // "background-position-y: center;" +
+  // "background-size: 100%;" +
   "}",
 
   viewNewsContainer: ".view-news-container" +
@@ -16585,15 +16586,13 @@ var css = {
   // // "border-bottom-right-radius:" + 70 * widthK + "px;" +
   // "}",
 
-  viewNewsPageTitle: ".view-news-page-title " +
+  viewNewsPageTitle: ".view-news-page-header " +
   "{" +
   "position: absolute;" +
   "top: 0;" +
-  "border-bottom: 1px solid white;" +
-  "right:" + 28 * widthK + "px;" +
-  "left:" + 25 * widthK + "px;" +
+  "width: 100%;" +
+  "background-color: #FFFFFF;" +
   "height:" + 92 * widthK + "px;" +
-  //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
   "}",
 
   viewNewsNameTitle: ".view-news-name-title " +
@@ -16604,7 +16603,7 @@ var css = {
   "left: 6%; " +
   "top:" + 26 * widthK + "px; " +
   "margin: 0;  " +
-  "color: #4f4f4f;" +
+  // "color: #4f4f4f;" +
   "}",
 
   viewNewsBackButton: ".view-news-back-button " +
@@ -16642,8 +16641,11 @@ var css = {
   "width: 100%;" +
   "height: auto;" +
   "box-sizing: border-box;" +
-  "border: 1px solid red;" +
+  // "border: 1px solid red;" +
+  "background-color: #FFFFFF;" +
+  "margin-top:" + 15 * widthK + "px;" +
   "padding: 5%;" +
+  "box-shadow: 1px 1px 1px 1px #D8D9DB;" +
   "}",
   
   viewNewsItemImage: ".view-news-item-image" +
@@ -16656,7 +16658,14 @@ var css = {
   "{" +
   "width: 100%;" +
   "height: auto;" +
-  "border: 1px solid green;" +
+  // "border: 1px solid green;" +
+  "}",
+  
+  viewNewsItemTitle: ".view-news-item-title " +
+  "{" +
+  "color: #000000;" +
+  "font-weight: bold;" +
+  "font-size: " + 28 * widthK + "px;" +
   "}",
   
   viewNewsItemFooter: ".view-news-item-footer" +
@@ -16670,7 +16679,7 @@ var css = {
   "{" +
   "width: 30%;" +
   "height: " + 50 * widthK + "px;" +
-  "border: 1px solid darkcyan;" +
+  // "border: 1px solid darkcyan;" +
   "background-color: #4DACFE;" +
   "color: #FFFFFF;" +
   "text-align: center;" +

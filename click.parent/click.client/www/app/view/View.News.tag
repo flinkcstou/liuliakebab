@@ -1,5 +1,5 @@
 <view-news id="viewNewsId" class="view-news riot-tags-main-container">
-  <div class="view-news-page-title">
+  <div class="view-news-page-header">
     <p class="view-news-name-title">НОВОСТИ</p>
     <div id="closeButton" role="button" aria-label="{window.languages.Close}" ontouchend="closeNewsTouchEnd()"
          class="view-news-right-button"></div>
@@ -19,7 +19,7 @@
            ontouchstart="newsTouchStart()"
            ontouchend="newsTouchEnd(this.id, 'newsTextId' + {i.news_id}, this.title, document.getElementById(this.id).getAttribute('shorttext'), 'newsImageId'+{i.news_id}, {i.news_id})">
 
-        <p class="view-news-block-title">{i.news_title}</p>
+        <p class="view-news-item-title">{i.news_title}</p>
       </div>
 
       <div class="view-news-item-footer">
