@@ -70,7 +70,7 @@
 
   <script>
 
-    console.log('OPTS QR CONFIRM', opts)
+    console.log('View.QrPayConfirm.tag', opts);
     var scope = this;
     var pageToReturnIfError = 'view-main-page';
     var timeOutTimer = 0;

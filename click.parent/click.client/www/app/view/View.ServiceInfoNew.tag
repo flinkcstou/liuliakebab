@@ -71,6 +71,13 @@
     scope.titleName = scope.service.name;
     scope.serviceIcon = scope.service.image;
     scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
+
+    // needed in qr pay confirm. TODO: REFACTOR
+    opts.name  = scope.titleName;
+    opts.category_name = scope.categoryName;
+    opts.location = "0.0";
+    opts.id = opts.chosenServiceId;
+
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
     var payment_data, optionAttribute;
     var timeOutTimer = 0;
@@ -110,6 +117,12 @@
           "transaction_id": opts.transactionId
         }
       }
+      if (opts.qr_notary) {
+        payment_data = {
+          "value": opts.pAcc,
+          "transaction_id": opts.transactionId
+        };
+      }
       console.log("payment data ", payment_data);
     }
     else if (opts.formtype == 4) {
@@ -144,7 +157,7 @@
         scope.optionsHeader = scope.serviceData.options_header;
         scope.checkIconShow = scope.serviceData.options.length > 1;
         optionAttribute = scope.serviceData.options[0].option_payment_attribute;
-        opts.paymentDataAttributes = (scope.index!=-1)?result[1][0].options[parseInt(scope.index)].payment_data_attributes:result[1][0].options[0].payment_data_attributes;
+//        opts.paymentDataAttributes = (scope.index!=-1)?result[1][0].options[parseInt(scope.index)].payment_data_attributes:result[1][0].options[0].payment_data_attributes;
         //find array in cached data
         for (var i in scope.serviceData.options[0].option_object) {
           if (scope.serviceData.options[0].option_object[i].constructor === Array) {
@@ -198,19 +211,19 @@
                 scope.checkIconShow = result[1][0].options.length > 1;
                 optionAttribute = result[1][0].options[0].option_payment_attribute;
                 opts.paymentDataAttributes = (scope.index!=-1)?result[1][0].options[parseInt(scope.index)].payment_data_attributes:result[1][0].options[0].payment_data_attributes;
-
-                //find array in result
                 for (var i in result[1][0].options[0].option_object) {
                   if (result[1][0].options[0].option_object[i].constructor === Array) {
                     console.log(result[1][0].options[0].option_object[i]);
                     opts.code = result[1][0].options[0].option_object[i][0];
+                  } else if (result[1][0].options[0].option_object[i].code == 'AMOUNT' && opts.formtype == 6 && opts.qr_notary) {
+                    opts.qrSum = result[1][0].options[0].option_object[i].value;
                   } else if (result[1][0].options[0].option_object[i].code == 'AMOUNT' && opts.formtype == 6) {
                     console.log("formType 6 amount field = ", result[1][0].options[0].option_object[i].value);
                     opts.amountText = result[1][0].options[0].option_object[i].value;
-
                   }
-
                 }
+
+                //find array in result
                 opts.optionAttribute = optionAttribute;
                 opts.optionValue = scope.checkIconShow ? null : result[1][0].options[0].option_value;
                 scope.type = 3;
@@ -356,6 +369,10 @@
           console.log("opts to send ", opts)
           this.riotTags.innerHTML = "<view-service-additional-info>";
           riot.mount('view-service-additional-info', opts);
+          scope.unmount()
+        } else if(opts.qr_notary) { // notary qe scanned
+          this.riotTags.innerHTML = "<view-qr-pincards>";
+          riot.mount('view-qr-pincards', opts);
           scope.unmount()
         } else {
           this.riotTags.innerHTML = "<view-service-pincards-new>";

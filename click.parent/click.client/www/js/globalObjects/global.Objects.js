@@ -2103,14 +2103,17 @@ function qrCodeScanner(scope) {
           var serviceId = 10185; // The only service id of notary
     
           console.log("global.Objects.js.qrCodeScanner() | NOTARY SERVICE DETECTED:", pAcc, serviceId);
-    
-          riotTags.innerHTML = "<view-service-info-new>";
+  
+          localStorage.setItem('click_client_infoCacheEnabled', null)
+          riotTags.innerHTML = "<view-qr-get-info>";
           riot.mount('view-service-info-new', {
-            "pAcc": pAcc,
-            "serviceId": serviceId,
+           "formtype": 6,
+           "pAcc": pAcc,
+           "chosenServiceId": 10185,
+           "qr_notary" : true,
           });
-    
           return;
+
         }
       } catch (e) {
         console.log("global.Objects.js.qrCodeScanner(): JSON PARSE EXCEPTION");

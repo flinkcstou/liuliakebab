@@ -450,6 +450,20 @@
           qrCodeScanner(scope);
         }
         else {
+//
+//
+//          closeMenu();
+//          localStorage.setItem('click_client_infoCacheEnabled', null)
+//          riotTags.innerHTML = "<view-service-info-new>";
+//          riot.mount('view-service-info-new', {
+//            "formtype": 6,
+//            "pAcc": 62504932073062,
+//            "chosenServiceId": 10185,
+////            "information_type" : 3,
+//            "qr_notary" : true,
+//          });
+//          return;
+
           var phoneNumber = localStorage.getItem("click_client_phoneNumber");
           var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
           var sessionKey = info.session_key;
