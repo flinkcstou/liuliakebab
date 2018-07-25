@@ -2089,9 +2089,33 @@ function qrCodeScanner(scope) {
       console.log('QR RESULT', result)
 
       qrScaner.qrInited = false;
-      console.log("qrInited success false");
 
       var string = result.text;
+      
+      // Notary pay integration. Temporary solution
+      try {
+        const jsonQr = JSON.parse(string);
+        const isNotaryService = jsonQr['is_notary_service'];
+        console.log("global.Objects.js.qrCodeScanner() | isNotaryService:", isNotaryService);
+  
+        if(jsonQr && isNotaryService && isNotaryService == 1) {
+          var pAcc = jsonQr['p_acc'];
+          var serviceId = 10185; // The only service id of notary
+    
+          console.log("global.Objects.js.qrCodeScanner() | NOTARY SERVICE DETECTED:", pAcc, serviceId);
+    
+          riotTags.innerHTML = "<view-service-info-new>";
+          riot.mount('view-service-info-new', {
+            "pAcc": pAcc,
+            "serviceId": serviceId,
+          });
+    
+          return;
+        }
+      } catch (e) {
+        console.log("global.Objects.js.qrCodeScanner(): JSON PARSE EXCEPTION");
+      }
+  
       if (string.indexOf('click.uz') != -1) {
 
         string = string.split('?')[1]
