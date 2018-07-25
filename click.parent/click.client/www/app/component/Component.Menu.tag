@@ -459,7 +459,7 @@
 //            "formtype": 6,
 //            "pAcc": 62504932073062,
 //            "chosenServiceId": 10185,
-////            "information_type" : 3,
+//            "firstFieldText": 62504932073062,
 //            "qr_notary" : true,
 //          });
 //          return;
