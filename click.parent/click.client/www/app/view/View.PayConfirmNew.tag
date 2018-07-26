@@ -74,7 +74,7 @@
     <div class="payconfirm-bottom-container">
       <div class="payconfirm-action-autopay-container" if="{opts.mode!='ADDAUTOPAY'}">
         <div
-          class="{payconfirm-action-containter: cardOrFriendBool, payconfirm-action-containter-favorite-center:!cardOrFriendBool}">
+          class="{payconfirm-action-containter: cardOrFriendBool && !isQrNotary, payconfirm-action-containter-favorite-center: isQrNotary || !cardOrFriendBool}">
           <div class="payconfirm-action-icon-one" if="{!isInFavorites}"
                style="background-image: url('resources/icons/ViewService/addfavorite.png');"
                ontouchstart="onTouchStartOfFavorite()"
