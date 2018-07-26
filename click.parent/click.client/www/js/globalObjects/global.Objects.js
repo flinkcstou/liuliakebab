@@ -2104,11 +2104,11 @@ function qrCodeScanner(scope) {
     
           console.log("global.Objects.js.qrCodeScanner() | NOTARY SERVICE DETECTED:", pAcc, serviceId);
   
-          localStorage.setItem('click_client_infoCacheEnabled', null)
+          localStorage.setItem('click_client_infoCacheEnabled', null);
           riotTags.innerHTML = "<view-service-info-new>";
           riot.mount('view-service-info-new', {
             "formtype": 6,
-            "firstFieldText": 62504932073062,
+            "firstFieldText": pAcc,
             "chosenPrefixName": "",
             "chosenServiceId": 10185,
             "firstFieldId": 536870912,
