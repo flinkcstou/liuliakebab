@@ -457,10 +457,12 @@
 //          riotTags.innerHTML = "<view-service-info-new>";
 //          riot.mount('view-service-info-new', {
 //            "formtype": 6,
-//            "pAcc": 62504932073062,
-//            "chosenServiceId": 10185,
 //            "firstFieldText": 62504932073062,
-//            "qr_notary" : true,
+//            "chosenPrefixName": "",
+//            "chosenServiceId": 10185,
+//            "firstFieldId": 536870912,
+//            "is_qr_notary" : true,
+//            "firstFieldTitle": "Номер квитанции",
 //          });
 //          return;
 

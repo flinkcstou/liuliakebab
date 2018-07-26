@@ -2107,11 +2107,13 @@ function qrCodeScanner(scope) {
           localStorage.setItem('click_client_infoCacheEnabled', null)
           riotTags.innerHTML = "<view-service-info-new>";
           riot.mount('view-service-info-new', {
-           "formtype": 6,
-           "pAcc": pAcc,
-           "chosenServiceId": 10185,
-           "qr_notary" : true,
-            "firstFieldText": pAcc
+            "formtype": 6,
+            "firstFieldText": 62504932073062,
+            "chosenPrefixName": "",
+            "chosenServiceId": 10185,
+            "firstFieldId": 536870912,
+            "is_qr_notary" : true,
+            "firstFieldTitle": "Номер квитанции",
           });
           return;
 

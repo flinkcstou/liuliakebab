@@ -92,6 +92,7 @@
           </div>
         </div>
         <div id="addToAutoPayContainerId"
+             if="{!isQrNotary}"
              class="{payconfirm-action-containter: cardOrFriendBool, payconfirm-action-containter-autopay-none:!cardOrFriendBool}">
           <div class="payconfirm-action-icon-two"
                style="background-image: url('resources/icons/ViewService/addautopay.png');"
@@ -144,6 +145,8 @@
     var serviceId = localStorage.getItem('chosenServiceId');
     scope.service = scope.servicesMap[opts.chosenServiceId][0];
     scope.isInFavorites = opts.isInFavorites;
+
+    scope.isQrNotary = opts.is_qr_notary;
 
     window.saveHistory('view-pay-confirm-new', opts);
 
