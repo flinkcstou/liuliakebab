@@ -462,7 +462,7 @@
 //            "chosenServiceId": 10185,
 //            "firstFieldId": 536870912,
 //            "is_qr_notary" : true,
-//            "firstFieldTitle": "Номер квитанции",
+//            "firstFieldTitle": "Номер квитанции:",
 //          });
 //          return;
 
