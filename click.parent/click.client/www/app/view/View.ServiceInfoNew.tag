@@ -58,7 +58,7 @@
 
   <script>
 
-    console.log('OPTS in ServiceInfo NEW', opts);
+    console.log('View.ServiceInfoNew.tag | opts', opts);
 
     window.saveHistory('view-service-info-new', opts);
 
@@ -71,6 +71,13 @@
     scope.titleName = scope.service.name;
     scope.serviceIcon = scope.service.image;
     scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
+
+    // needed in qr pay confirm. TODO: REFACTOR
+    opts.name  = scope.titleName;
+    opts.category_name = scope.categoryName;
+    opts.location = "0.0";
+    opts.id = opts.chosenServiceId;
+
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
     var payment_data, optionAttribute;
     var timeOutTimer = 0;
@@ -144,6 +151,7 @@
         scope.optionsHeader = scope.serviceData.options_header;
         scope.checkIconShow = scope.serviceData.options.length > 1;
         optionAttribute = scope.serviceData.options[0].option_payment_attribute;
+        // TODO: result[1][0] is unidentified
         opts.paymentDataAttributes = (scope.index!=-1)?result[1][0].options[parseInt(scope.index)].payment_data_attributes:result[1][0].options[0].payment_data_attributes;
         //find array in cached data
         for (var i in scope.serviceData.options[0].option_object) {
@@ -166,6 +174,8 @@
 
     function getInformation() {
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
+
+      console.log('View.ServiceInfoNew.tag.getInformation()', sessionKey, phoneNumber, opts.chosenServiceId, payment_data);
 
       window.api.call({
         method: 'get.additional.information',
@@ -196,8 +206,6 @@
                 scope.checkIconShow = result[1][0].options.length > 1;
                 optionAttribute = result[1][0].options[0].option_payment_attribute;
                 opts.paymentDataAttributes = (scope.index!=-1)?result[1][0].options[parseInt(scope.index)].payment_data_attributes:result[1][0].options[0].payment_data_attributes;
-
-                //find array in result
                 for (var i in result[1][0].options[0].option_object) {
                   if (result[1][0].options[0].option_object[i].constructor === Array) {
                     console.log(result[1][0].options[0].option_object[i]);
@@ -205,10 +213,10 @@
                   } else if (result[1][0].options[0].option_object[i].code == 'AMOUNT' && opts.formtype == 6) {
                     console.log("formType 6 amount field = ", result[1][0].options[0].option_object[i].value);
                     opts.amountText = result[1][0].options[0].option_object[i].value;
-
                   }
-
                 }
+
+                //find array in result
                 opts.optionAttribute = optionAttribute;
                 opts.optionValue = scope.checkIconShow ? null : result[1][0].options[0].option_value;
                 scope.type = 3;

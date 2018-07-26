@@ -74,7 +74,7 @@
     <div class="payconfirm-bottom-container">
       <div class="payconfirm-action-autopay-container" if="{opts.mode!='ADDAUTOPAY'}">
         <div
-          class="{payconfirm-action-containter: cardOrFriendBool, payconfirm-action-containter-favorite-center:!cardOrFriendBool}">
+          class="{payconfirm-action-containter: cardOrFriendBool && !isQrNotary, payconfirm-action-containter-favorite-center: isQrNotary || !cardOrFriendBool}">
           <div class="payconfirm-action-icon-one" if="{!isInFavorites}"
                style="background-image: url('resources/icons/ViewService/addfavorite.png');"
                ontouchstart="onTouchStartOfFavorite()"
@@ -92,6 +92,7 @@
           </div>
         </div>
         <div id="addToAutoPayContainerId"
+             if="{!isQrNotary}"
              class="{payconfirm-action-containter: cardOrFriendBool, payconfirm-action-containter-autopay-none:!cardOrFriendBool}">
           <div class="payconfirm-action-icon-two"
                style="background-image: url('resources/icons/ViewService/addautopay.png');"
@@ -144,6 +145,8 @@
     var serviceId = localStorage.getItem('chosenServiceId');
     scope.service = scope.servicesMap[opts.chosenServiceId][0];
     scope.isInFavorites = opts.isInFavorites;
+
+    scope.isQrNotary = opts.is_qr_notary;
 
     window.saveHistory('view-pay-confirm-new', opts);
 

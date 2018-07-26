@@ -450,6 +450,22 @@
           qrCodeScanner(scope);
         }
         else {
+//
+//
+//          closeMenu();
+//          localStorage.setItem('click_client_infoCacheEnabled', null)
+//          riotTags.innerHTML = "<view-service-info-new>";
+//          riot.mount('view-service-info-new', {
+//            "formtype": 6,
+//            "firstFieldText": 62504932073062,
+//            "chosenPrefixName": "",
+//            "chosenServiceId": 10185,
+//            "firstFieldId": 536870912,
+//            "is_qr_notary" : true,
+//            "firstFieldTitle": "Номер квитанции:",
+//          });
+//          return;
+
           var phoneNumber = localStorage.getItem("click_client_phoneNumber");
           var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
           var sessionKey = info.session_key;
