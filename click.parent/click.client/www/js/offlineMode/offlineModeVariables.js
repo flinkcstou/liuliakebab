@@ -3590,7 +3590,7 @@ var offlinePopularServiceList = [{
     "service_parameters": "536870912",
     "status": 1,
     "priority": 13003,
-    "image": "https://m.click.uz/static/merchant/logo/logo_10185.png",
+    "image": "resources/icons/ViewPay/logo_10185.png",
     "form_type": 6,
     "cost": 1,
     "is_mobile": 0,

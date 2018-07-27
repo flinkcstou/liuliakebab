@@ -450,21 +450,47 @@
           qrCodeScanner(scope);
         }
         else {
-//
+
 //
 //          closeMenu();
-//          localStorage.setItem('click_client_infoCacheEnabled', null)
-//          riotTags.innerHTML = "<view-service-info-new>";
-//          riot.mount('view-service-info-new', {
-//            "formtype": 6,
-//            "firstFieldText": 62504932073062,
-//            "chosenPrefixName": "",
-//            "chosenServiceId": 10185,
-//            "firstFieldId": 536870912,
-//            "is_qr_notary" : true,
-//            "firstFieldTitle": "Номер квитанции:",
-//          });
+//          qrScaner.qrInited = false;
+//          if (modeOfApp.offlineMode) {
+//            console.log("*880*010185999002*" + 62504932073062 + "%23");
+//            phonedialer.dial(
+//              "*880*010185999002*" + 62504932073062 + "%23",
+//              function (err) {
+//                if (err == "empty") {
+//                  scope.clickPinError = false;
+//                  scope.errorNote = ("Неверный номер");
+//                  window.common.alert.show("componentAlertId", {
+//                    parent: scope,
+//                    clickpinerror: scope.clickPinError,
+//                    errornote: scope.errorNote
+//                  });
+//                  scope.update();
+//                }
+//                else console.log("Ошибка USSD:" + err);
+//              },
+//              function (success) {
+//
+//              }
+//            );
+//          } else {
+//            localStorage.setItem('click_client_infoCacheEnabled', null);
+//            riotTags.innerHTML = "<view-service-info-new>";
+//            riot.mount('view-service-info-new', {
+//              "formtype": 6,
+//              "firstFieldText": 62504932073062,
+//              "chosenPrefixName": "",
+//              "chosenServiceId": 10185,
+//              "firstFieldId": 536870912,
+//              "is_qr_notary" : true,
+//              "firstFieldTitle": "Номер квитанции:",
+//            });
+//          }
+//          console.log('FFFFFFFFFFFFFFFFFFFFAALse');
 //          return;
+//
 
           var phoneNumber = localStorage.getItem("click_client_phoneNumber");
           var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));

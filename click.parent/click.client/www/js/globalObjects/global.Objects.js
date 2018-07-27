@@ -2099,22 +2099,47 @@ function qrCodeScanner(scope) {
         console.log("global.Objects.js.qrCodeScanner() | isNotaryService:", isNotaryService);
   
         if(jsonQr && isNotaryService && isNotaryService == 1) {
+          qrScaner.qrInited = false;
+
           var pAcc = jsonQr['p_acc'];
           var serviceId = 10185; // The only service id of notary
     
           console.log("global.Objects.js.qrCodeScanner() | NOTARY SERVICE DETECTED:", pAcc, serviceId);
   
-          localStorage.setItem('click_client_infoCacheEnabled', null);
-          riotTags.innerHTML = "<view-service-info-new>";
-          riot.mount('view-service-info-new', {
-            "formtype": 6,
-            "firstFieldText": pAcc,
-            "chosenPrefixName": "",
-            "chosenServiceId": 10185,
-            "firstFieldId": 536870912,
-            "is_qr_notary" : true,
-            "firstFieldTitle": "Номер квитанции:",
-          });
+          if (modeOfApp.offlineMode) {
+            console.log("*880*010185999002*" + pAcc + "%23");
+            phonedialer.dial(
+              "*880*010185999002*" + pAcc + "%23",
+              function (err) {
+                if (err == "empty") {
+                  scope.clickPinError = false;
+                  scope.errorNote = ("Неверный номер");
+                  window.common.alert.show("componentAlertId", {
+                    parent: scope,
+                    clickpinerror: scope.clickPinError,
+                    errornote: scope.errorNote
+                  });
+                  scope.update();
+                }
+                else console.log("Ошибка USSD:" + err);
+              },
+              function (success) {
+      
+              }
+            );
+          } else {
+            localStorage.setItem('click_client_infoCacheEnabled', null);
+            riotTags.innerHTML = "<view-service-info-new>";
+            riot.mount('view-service-info-new', {
+              "formtype": 6,
+              "firstFieldText": pAcc,
+              "chosenPrefixName": "",
+              "chosenServiceId": 10185,
+              "firstFieldId": 536870912,
+              "is_qr_notary" : true,
+              "firstFieldTitle": "Номер квитанции:",
+            });
+          }
           return;
 
         }
