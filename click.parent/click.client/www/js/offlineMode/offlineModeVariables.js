@@ -15560,7 +15560,7 @@ var offlinePopularServiceList = [{
       "error_message": "Не указан номер квитанции",
       "min_len": "4",
       "max_len": "50",
-      "ussd_query": "*880*010185*{param}#",
+      "ussd_query": "*880*010185999002*{param}#",
       "is_default": 1
     }],
     "-2": [{
