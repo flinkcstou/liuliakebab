@@ -62,7 +62,7 @@ var offlinePopularServiceList = [{
     "lang_amount_currency": "сум",
     "is_visible": 1
   }, {"name": "Мой номер", "image": "resources/icons/ViewPay/myphone.png", "id": "mynumber2"}],
-
+  
   offlinePayCategoryList = [{
     "id": 1,
     "parent": 0,
@@ -185,7 +185,7 @@ var offlinePopularServiceList = [{
     "chart_icon": null,
     "chart_inner_icon": null
   }],
-
+  
   offlinePayServiceList = [{
     "id": 28,
     "name": "UZDIGITAL TV",
@@ -3580,8 +3580,48 @@ var offlinePopularServiceList = [{
     "amount_value": null,
     "amount_information_text": null,
     "show_calc": 0
-  }],
-
+  }, {
+    "id": 10185,
+    "name": "Notarius",
+    "category_id": 13,
+    "service_short_name": "Notarius",
+    "min_pay_limit": 100,
+    "max_pay_limit": 100000000,
+    "service_parameters": "536870912",
+    "status": 1,
+    "priority": 13003,
+    "image": "https://m.click.uz/static/merchant/logo/logo_10185.png",
+    "form_type": 6,
+    "cost": 1,
+    "is_mobile": 0,
+    "lang_amount_placeholder": "Введите сумму оплаты",
+    "lang_min_amount": "Минимальная сумма для оплаты 100.00 сум",
+    "lang_max_amount": "Максимальная сумма для оплаты 100000000.00 сум ",
+    "lang_amount_hint": null,
+    "lang_amount_title": "Сумма",
+    "lang_amount_currency": "сум",
+    "is_visible": 1,
+    "options_title": null,
+    "validation": null,
+    "autopay_available": 0,
+    "autopay_available_schedule": 0,
+    "autopay_available_amounts": null,
+    "autopay_available_steps": null,
+    "additional_information_type": 3,
+    "commission_percent": 0.6,
+    "nds": 0,
+    "low_ratio": 0,
+    "rate": 1,
+    "currency": null,
+    "disable_cache": false,
+    "amount_editable": true,
+    "amount_value": null,
+    "amount_information_text": null,
+    "show_calc": 0,
+    "web_view_url": null
+  },
+  ],
+  
   offlinePayServiceNamesMap = {
     "2": "UMS",
     "3": "Билайн",
@@ -3692,7 +3732,7 @@ var offlinePopularServiceList = [{
     "-2": "Переводы Click",
     "-1": "Переброс между счетами"
   },
-
+  
   offlineServicesMapByCategory = {
     "1": [{
       "name": "Мой номер",
@@ -7167,9 +7207,48 @@ var offlinePopularServiceList = [{
       "amount_value": null,
       "amount_information_text": null,
       "show_calc": 0
+    }, {
+      "id": 10185,
+      "name": "Notarius",
+      "category_id": 13,
+      "service_short_name": "Notarius",
+      "min_pay_limit": 100,
+      "max_pay_limit": 100000000,
+      "service_parameters": "536870912",
+      "status": 1,
+      "priority": 13003,
+      "image": "https://m.click.uz/static/merchant/logo/logo_10185.png",
+      "form_type": 6,
+      "cost": 1,
+      "is_mobile": 0,
+      "lang_amount_placeholder": "Введите сумму оплаты",
+      "lang_min_amount": "Минимальная сумма для оплаты 100.00 сум",
+      "lang_max_amount": "Максимальная сумма для оплаты 100000000.00 сум ",
+      "lang_amount_hint": null,
+      "lang_amount_title": "Сумма",
+      "lang_amount_currency": "сум",
+      "is_visible": 1,
+      "options_title": null,
+      "validation": null,
+      "autopay_available": 0,
+      "autopay_available_schedule": 0,
+      "autopay_available_amounts": null,
+      "autopay_available_steps": null,
+      "additional_information_type": 3,
+      "commission_percent": 0.6,
+      "nds": 0,
+      "low_ratio": 0,
+      "rate": 1,
+      "currency": null,
+      "disable_cache": false,
+      "amount_editable": true,
+      "amount_value": null,
+      "amount_information_text": null,
+      "show_calc": 0,
+      "web_view_url": null
     }]
   },
-
+  
   offlineServicesMap = {
     "mynumber": [
       {
@@ -10700,7 +10779,47 @@ var offlinePopularServiceList = [{
       "amount_information_text": null,
       "show_calc": 0
     }],
-
+    "10185": [{
+      "id": 10185,
+      "name": "Notarius",
+      "category_id": 13,
+      "service_short_name": "Notarius",
+      "min_pay_limit": 100,
+      "max_pay_limit": 100000000,
+      "service_parameters": "536870912",
+      "status": 1,
+      "priority": 13003,
+      "image": "https://m.click.uz/static/merchant/logo/logo_10185.png",
+      "form_type": 6,
+      "cost": 1,
+      "is_mobile": 0,
+      "lang_amount_placeholder": "Введите сумму оплаты",
+      "lang_min_amount": "Минимальная сумма для оплаты 100.00 сум",
+      "lang_max_amount": "Максимальная сумма для оплаты 100000000.00 сум ",
+      "lang_amount_hint": null,
+      "lang_amount_title": "Сумма",
+      "lang_amount_currency": "сум",
+      "is_visible": 1,
+      "options_title": null,
+      "validation": null,
+      "autopay_available": 0,
+      "autopay_available_schedule": 0,
+      "autopay_available_amounts": null,
+      "autopay_available_steps": null,
+      "additional_information_type": 3,
+      "commission_percent": 0.6,
+      "nds": 0,
+      "low_ratio": 0,
+      "rate": 1,
+      "currency": null,
+      "disable_cache": false,
+      "amount_editable": true,
+      "amount_value": null,
+      "amount_information_text": null,
+      "show_calc": 0,
+      "web_view_url": null
+    }],
+    
     "-2": [{
       "id": -2,
       "name": "Переводы Click",
@@ -10768,7 +10887,7 @@ var offlinePopularServiceList = [{
       "amount_information_text": null
     }]
   },
-
+  
   offlineServicesParams = [[{
     "method": "get.service.parameters.list",
     "success": 1,
@@ -14218,7 +14337,7 @@ var offlinePopularServiceList = [{
     "name": "XA",
     "title": "XA"
   }]],
-
+  
   offlineServicesParamsMapOne = {
     "2": [{
       "service_id": 2,
@@ -15432,6 +15551,18 @@ var offlinePopularServiceList = [{
       "max_len": "50",
       "ussd_query": "*880*010188999002*{option}*{param}#"
     }],
+    "10185": [{
+      "service_id": 10185,
+      "parameter_id": "536870912",
+      "input_type": 1,
+      "title": "Номер квитанции",
+      "placeholder": "Введите номер квитанции",
+      "error_message": "Не указан номер квитанции",
+      "min_len": "4",
+      "max_len": "50",
+      "ussd_query": "*880*010185*{param}#",
+      "is_default": 1
+    }],
     "-2": [{
       "service_id": -2,
       "parameter_id": "1",
@@ -15475,7 +15606,7 @@ var offlinePopularServiceList = [{
       "ussd_query": null
     }]
   },
-
+  
   offlineCategoryNamesMap = {
     "1": {
       "name": "Мобильные операторы",
@@ -15522,7 +15653,7 @@ var offlinePopularServiceList = [{
       "icon": "resources/icons/ViewPay/13.png"
     }
   },
-
+  
   offlineServicesParamsMapTwo = {
     "9": [{
       "service_id": 9,
@@ -17191,7 +17322,7 @@ var offlinePopularServiceList = [{
       "offline_code": "2"
     }, {"service_id": 2685, "id": 3, "name": "Буз тумани", "parent": 0, "code": 3, "offline_code": "3"}]
   },
-
+  
   offlineServicesParamsMapThree = {
     "44": [{
       "service_id": 44,
@@ -17522,7 +17653,7 @@ var offlinePopularServiceList = [{
       "duration": null
     }]
   },
-
+  
   offlineServicesParamsMapFour = {
     "4422": [{
       "service_id": 4422,
@@ -17534,7 +17665,7 @@ var offlinePopularServiceList = [{
       "name": "Ночные интернет-пакеты"
     }, {"service_id": 4422, "type": 4, "name": "Ночной DRIVE"}]
   },
-
+  
   offlineServicesParamsMapFive = {
     "4422": [{
       "service_id": 4422,
@@ -17709,9 +17840,9 @@ var offlinePopularServiceList = [{
       "priority": 3
     }]
   },
-
+  
   offlineCard = {
-
+    
     "1": {
       //"card_id": 4834489,
       //"name": "Карта UZCARD-Online",
@@ -17733,8 +17864,8 @@ var offlinePopularServiceList = [{
       //"salaryOriginal": "153409"
     }
   },
-
-
+  
+  
   offlineServicesParamsMapSix = {
     "7": [{
       "service_id": 7,
