@@ -39,11 +39,12 @@
       <div class="inplace-pay-category-inner-container" style="height: 91%;" if="{searchServices}"
            id="categoriesContainerId">
 
+
         <ul style="list-style:none; padding: 0; margin: 0; overflow: hidden;">
           <li each="{i in suggestions}" style="overflow: hidden;">
             <div class="pay-service-block-containter" id="{i.id}"
                  ontouchstart="onTouchStartOfService(this.id)"
-                 onclick="onTouchEndOfService(this.id, true)">
+                 ontouchend="onTouchEndOfService(this.id, true)">
               <img id="{i.id+'_sgn'}" if="{i.image}"
                    class="{pay-search-services-icon: !i.image_cached,pay-search-services-icon-noloader: i.image_cached}"
                    src="{i.image}" onload="clearLoaderOnIconLoad(this.id)"
@@ -66,7 +67,7 @@
              if="{!(modeOfApp.offlineMode && i.id == 11) && i.currentList && i.currentList.length !=0}"
              class="pay-service-block-containter" id="{i.id}"
              ontouchstart="onTouchStartOfCategory(this.id)"
-             onclick="onTouchEndOfCategory(this.id)">
+             ontouchend="onTouchEndOfCategory(this.id)">
           <img id="{i.id+'_icon'}" if="{i.icon}"
                class="{pay-category-icon: !i.icon_cached, pay-category-icon-noloader: i.icon_cached}" src="{i.icon}"
                onload="clearLoaderOnIconLoad(this.id)"
@@ -80,7 +81,7 @@
               <div class="pay-service-icon" id="{j.id}"
                    role="button"
                    aria-label="{j.name}"
-                   onclick="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
+                   ontouchend="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
                 <img id="{j.id+'_image'}" if="{j.image}"
                      class="{pay-service-image: !j.image_cached, pay-service-image-noloader: j.image_cached}"
                      src="{j.image}" onload="clearLoaderOnIconLoad(this.id)"
@@ -122,6 +123,9 @@
     var arrayOfConnectedSuggestion = scope.serviceList;
     scope.suggestions = sessionStorage.getItem('suggestions') ? JSON.parse(sessionStorage.getItem('suggestions')) : [];
 
+    // При клике на сервис, срабатывает ontouchend у родителького элемента. Этот булеан используется
+    // чтобы определить был ли кликнут сервис, или блок категории
+    scope.isServiceClicked = false;
 
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
     var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
@@ -201,8 +205,10 @@
 
     scope.index = -1;
     scope.show = false;
-    var onTouchStartY, onTouchStartX;
-    var onTouchEndY, onTouchEndX;
+    var onCategoryTouchStartY, onCategoryTouchStartX;
+    var onCategoryTouchEndY, onCategoryTouchEndX;
+    var onServiceTouchStartY, onServiceTouchStartX;
+    var onServiceTouchEndY, onServiceTouchEndX;
     //    var count = 1;
 
 
@@ -314,33 +320,23 @@
 
 
     scope.onTouchStartOfCategory = onTouchStartOfCategory = function (id) {
+      scope.isServiceClicked = false;
       event.stopPropagation();
 
       window.blurFields();
-      onTouchStartY = event.changedTouches[0].pageY;
-      onTouchStartX = event.changedTouches[0].pageX;
+      onCategoryTouchStartY = event.changedTouches[0].pageY;
+      onCategoryTouchStartX = event.changedTouches[0].pageX;
     };
 
     scope.onTouchEndOfCategory = onTouchEndOfCategory = function (id) {
+      if(scope.s) return;
 
-      if (scope.index != id)
-        document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
-
-
-      setTimeout(function () {
-        document.getElementById(id).style.backgroundColor = 'transparent'
-      }, 100)
-
-
-      onTouchEndY = event.pageY;
-      onTouchEndX = event.pageX;
-
+      onCategoryTouchEndY = event.changedTouches[0].pageY;
+      onCategoryTouchEndX = event.changedTouches[0].pageX;
 
       setTimeout(function () {
 
-
-        if ((Math.abs(onTouchStartY - onTouchEndY) <= 20 && Math.abs(onTouchStartX - onTouchEndX) <= 20) || scope.checkOfSearch) {
-
+        if ((Math.abs(onCategoryTouchStartY - onCategoryTouchEndY) <= 20 && Math.abs(onCategoryTouchStartX - onCategoryTouchEndX) <= 20) || scope.checkOfSearch) {
 
           if (scope.index == id) {
             scope.index = -1;
@@ -353,44 +349,34 @@
             scope.index = id;
           }
 
-//          scope.currentList = [];
-//
-//          for (var i in scope.servicesMapByCategory[id]) {
-//            if ((opts.mode != 'ADDAUTOPAY' && (modeOfApp.onlineMode || scope.servicesMapByCategory[id][i].id.toString().search('mynumber') != -1 || (modeOfApp.offlineMode && scope.servicesParamsMapOne[scope.servicesMapByCategory[id][i].id] && scope.servicesParamsMapOne[scope.servicesMapByCategory[id][i].id][0].ussd_query))) ||
-//              (opts.mode == 'ADDAUTOPAY' && (scope.servicesMapByCategory[id][i].autopay_available_schedule || scope.servicesMapByCategory[id][i].autopay_available || !scope.servicesMapByCategory[id][i].form_type))) {
-//              scope.currentList.push(scope.servicesMapByCategory[id][i]);
-//            }
-//          }
-
-//          scope.currentList = scope.servicesMapByCategory[id];
-//        count = 1;
-
-//          console.log("click currentList=", scope.categoryList[id].currentList);
-
-
-//          if (!scope.categoryList[id].currentList) {
-//            scope.show = false;
-//          } else {
           scope.show = true;
           document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catopen.png)";
-//          }
-
           if (scope.index == id && scope.show) {
+
+            document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
+
+            // Названи и список сервисов в одном и том же блоке. Из-за чего фоновый цвет менял у всего блока
+            // Пришлось вызывать scope.update() с таймаутом равным времени нахождения фонового темного цвета
+            setTimeout(function () {
+              document.getElementById(id).style.backgroundColor = 'transparent'
+            }, 50);
+
             document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catclose.png)";
             viewPay.categoryId = id;
             opts.categoryId = id;
-//            hintUpdate(scope.index);
           }
-          scope.update();
-          document.getElementById(id).scrollIntoView();
+
           setTimeout(function () {
+            scope.update();
             document.getElementById(id).scrollIntoView();
-            //          categoriesContainerId.scrollIntoView(document.getElementById(id).offsetTop)
           }, 50);
 
+          setTimeout(function () {
+            document.getElementById(id).scrollIntoView();
+          }, 50);
 
-//          categoriesContainerId.scrollTop = event.changedTouches[0].pageY;
         }
+
       }, 100)
     };
 
@@ -437,7 +423,6 @@
 
 
     scope.onTouchStartOfService = onTouchStartOfService = function (id) {
-
       window.blurFields();
       // For preventing click to service on stop scrolling categories
       if (scope.scrolling) {
@@ -450,9 +435,8 @@
 
       event.stopPropagation();
 
-
-      onTouchStartY = event.changedTouches[0].pageY;
-      onTouchStartX = event.changedTouches[0].pageX;
+      onServiceTouchStartY = event.changedTouches[0].pageY;
+      onServiceTouchStartX = event.changedTouches[0].pageX;
     };
 
 
@@ -461,6 +445,7 @@
     //opts = (!opts.mode || opts.mode == 'USUAL') ? {} : opts;
 
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {
+      scope.isServiceClicked = true;
 
       // For preventing click to service on stop scrolling categories
       if (scope.scrolling) {
@@ -469,10 +454,10 @@
         return;
       }
 
-      onTouchEndY = event.pageY;
-      onTouchEndX = event.pageX;
+      onServiceTouchEndY = event.changedTouches[0].pageY;
+      onServiceTouchEndX = event.changedTouches[0].pageX;
 
-      if ((Math.abs(onTouchStartY - onTouchEndY) <= 15 && Math.abs(onTouchStartX - onTouchEndX) <= 15) || scope.checkOfSearch) {
+      if ((Math.abs(onServiceTouchStartY - onServiceTouchEndY) <= 15 && Math.abs(onServiceTouchStartX - onServiceTouchEndX) <= 15) || scope.checkOfSearch) {
 
         event.preventDefault();
         event.stopPropagation();
