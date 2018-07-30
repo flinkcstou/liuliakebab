@@ -4858,7 +4858,7 @@ var css = {
   servicePagePincardsContainerTwo: ".servicepage-pincards-container-two" +
   "{" +
   "position: absolute;" +
-  "height: " + 760 * heightK + "px; " +
+  "height: " + 820 * heightK + "px; " +
   "width: " + 720 * widthK + "px; " +
   "top: 15%;" +
   "overflow-x: hidden;" +
@@ -4869,7 +4869,7 @@ var css = {
   servicePagePincardsContainer: ".servicepage-pincards-container" +
   "{" +
   "position: absolute;" +
-  "height: " + 920 * heightK + "px; " +
+  "height: " + 990 * heightK + "px; " +
   "width: " + 720 * widthK + "px; " +
   "overflow-x: hidden;" +
   "overflow-y: scroll;" +
