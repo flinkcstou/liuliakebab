@@ -56,7 +56,10 @@
 
 
   <code-confirm id="blockCodeConfirmId" class="transfer-detail-code-confirm" if="{showConfirmPanel}">
-
+    <div class="code-confirm-title-container">
+      <div class="code-confirm-cancel-icon" role="button" aria-label="{window.languages.Close}"
+           ontouchend="closeSecretCodePage()"></div>
+    </div>
     <div class="transfer-detail-code-confirm-code-container">
 
       <p class="transfer-detail-code-confirm-message-text">{languages.ViewTransferDetailConfirmEnterCodeLabel}</p>
@@ -95,6 +98,12 @@
     scope.showComponent = false;
 
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
+
+    closeSecretCodePage = function () {
+      scope.showConfirmPanel = false;
+      scope.update();
+
+    };
 
     goToBackStart = function () {
       event.preventDefault();
