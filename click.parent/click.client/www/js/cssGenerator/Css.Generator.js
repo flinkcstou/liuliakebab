@@ -16668,6 +16668,12 @@ var css = {
   "font-size: " + 28 * widthK + "px;" +
   "}",
   
+  viewNewsItemArticle: ".view-news-item-article" +
+  "{" +
+  "font-size: " + 26 * widthK + "px;" +
+  "color: #545454;" +
+  "}",
+  
   viewNewsItemFooter: ".view-news-item-footer" +
   "{" +
   "width: 100%;" +
@@ -16724,7 +16730,12 @@ var css = {
   
   viewNewsItemLess: ".view-news-item-less" +
   "{" +
-  "" +
+  "width:" + 32 * widthK + "px; " +
+  "height:" + 32 * widthK + "px; " +
+  "background-size: 50%;" +
+  "background-image: url(resources/icons/ViewPay/catclose.png);" +
+  "background-repeat: no-repeat;" +
+  "background-position-y: center;" +
   "}",
   
   // viewNewsBlockOfAll: ".view-news-block-of-all " +
