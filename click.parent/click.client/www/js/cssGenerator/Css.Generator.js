@@ -16548,7 +16548,7 @@ var css = {
   "width:" + 660 * widthK + "px;" +
   "margin: 0 auto 0 auto;" +
   "top:" + 100 * widthK + "px;" +
-  "height: 100%;" +
+  "height: " + (heightOfMobile - 110 * widthK) + "px;" +
   "overflow-x: hidden;" +
   "overflow-y: scroll;" +
   "-webkit-overflow-scrolling: touch;" +
@@ -16644,6 +16644,7 @@ var css = {
   // "border: 1px solid red;" +
   "background-color: #FFFFFF;" +
   "margin-top:" + 15 * widthK + "px;" +
+  "margin-bottom:" + 5 * widthK + "px;" +
   "padding: 5%;" +
   "box-shadow: 1px 1px 1px 1px #D8D9DB;" +
   "}",
