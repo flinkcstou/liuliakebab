@@ -320,6 +320,7 @@
 
 
     scope.onTouchStartOfCategory = onTouchStartOfCategory = function (id) {
+      console.log('View.Pay.tag.onTouchStartOfCategory()')
       scope.isServiceClicked = false;
       event.stopPropagation();
 
@@ -329,7 +330,8 @@
     };
 
     scope.onTouchEndOfCategory = onTouchEndOfCategory = function (id) {
-      if(scope.s) return;
+      if(scope.isServiceClicked) return;
+      console.log('View.Pay.tag.onTouchEndOfCategory()')
 
       onCategoryTouchEndY = event.changedTouches[0].pageY;
       onCategoryTouchEndX = event.changedTouches[0].pageX;
@@ -423,6 +425,7 @@
 
 
     scope.onTouchStartOfService = onTouchStartOfService = function (id) {
+      console.log('View.Pay.tag.onTouchStartOfService()')
       window.blurFields();
       // For preventing click to service on stop scrolling categories
       if (scope.scrolling) {
@@ -445,6 +448,7 @@
     //opts = (!opts.mode || opts.mode == 'USUAL') ? {} : opts;
 
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {
+      console.log('View.Pay.tag.onTouchEndOfService()')
       scope.isServiceClicked = true;
 
       // For preventing click to service on stop scrolling categories
