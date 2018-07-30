@@ -1954,7 +1954,7 @@ function hex2dec(s) {
 
 function clearLoaderOnIconLoad(id) {
 
-  console.log('image loaded')
+  console.log('global.Objects.js.clearLoaderOnIconLoad(): image loaded');
 
   if (document.getElementById(id)) {
     document.getElementById(id).style.backgroundImage = 'none';

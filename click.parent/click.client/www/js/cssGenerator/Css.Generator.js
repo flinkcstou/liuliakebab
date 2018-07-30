@@ -16651,7 +16651,11 @@ var css = {
   viewNewsItemImage: ".view-news-item-image" +
   "{" +
   "width: 100%;" +
-  "height: auto;" +
+  "height:" + 300 * widthK + "px;" +
+  "background-size: 20%;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
   "}",
   
   viewNewsItemContent: ".view-news-item-content" +

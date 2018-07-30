@@ -197,7 +197,7 @@
               const newsImgTag = document.getElementById('newsImageId' + scope.newsArray[i].news_id);
               newsImgTag.setAttribute('src', scope.newsArray[i].news_image);
               newsImgTag.onerror = function () {
-                console.log('View.News.tag.showNewsFunction.onSuccess()', response);
+                console.log('View.News.tag.showNewsFunction.newsImgTag.onerror()', response);
                 newsImgTag.setAttribute('hidden', true);
               }
             }
