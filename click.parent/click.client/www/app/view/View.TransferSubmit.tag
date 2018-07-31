@@ -60,7 +60,7 @@
       </component-transfer-card-carousel-top>
     </div>
 
-    <button if="{showBottomButton}"
+    <button hidden="{!showBottomButton}"
             id="bottomButtonSubmitId"
             class="transfer-new-submit-button-container"
             style="bottom: {window.bottomButtonBottom}"
@@ -295,7 +295,7 @@
 
         submitAmountId.value = amountInput;
 
-        setTimeout(function() {
+        setTimeout(function () {
             submitAmountId.selectionStart = selectionStart;
             submitAmountId.selectionEnd = selectionStart;
           }, 0
@@ -314,6 +314,7 @@
 
         scope.showPlaceHolderError = false;
         scope.showBottomButton = true;
+
 
         if (scope.sumForTransfer > scope.maxLimit) {
           scope.placeHolderText = 'Максимальная сумма ' + window.amountTransform(scope.maxLimit);
@@ -413,6 +414,7 @@
                 }
                 if (scope.sumForTransfer > 0) {
                   scope.showBottomButton = true;
+
                   scope.showPlaceHolderError = false;
                   scope.showCommission = false;
                   if (scope.sumForTransfer > scope.maxLimit) {
@@ -440,6 +442,7 @@
                 scope.minLimit = issuerMinLimit;
                 if (scope.sumForTransfer > 0) {
                   scope.showBottomButton = true;
+
                   scope.showPlaceHolderError = false;
                   scope.showCommission = false;
                   if (scope.sumForTransfer > scope.maxLimit) {

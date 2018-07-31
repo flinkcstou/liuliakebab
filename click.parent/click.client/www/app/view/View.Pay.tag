@@ -156,7 +156,7 @@
       event.stopPropagation();
 
       if (backButton)
-        backButton.style.webkitTransform = 'scale(0.7)'
+        backButton.style.webkitTransform = 'scale(0.7)';
 
       goBackButtonStartX = event.changedTouches[0].pageX;
       goBackButtonStartY = event.changedTouches[0].pageY;
@@ -168,13 +168,13 @@
       event.stopPropagation();
 
       if (backButton)
-        backButton.style.webkitTransform = 'scale(1)'
+        backButton.style.webkitTransform = 'scale(1)';
 
       goBackButtonEndX = event.changedTouches[0].pageX;
       goBackButtonEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
-        onBackKeyDown()
+        onBackKeyDown();
         scope.unmount()
       }
     };
