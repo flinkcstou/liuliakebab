@@ -4138,21 +4138,39 @@ var css = {
   "background-size: 80%;" +
   "}",
 
-  payServiceImage: ".pay-service-image" +
+  
+  payServiceImageContainer: ".pay-service-image-container " +
   "{" +
   "position: relative;" +
   "width:  " + 120 * widthK + "px; " +
   "height: " + 120 * widthK + "px; " +
-  "background-repeat: no-repeat;" +
-  "background-position: center;" +
-  //"border-radius: " + 100 * widthK + "px;" +
-  //"border: " + 1 + "px solid white;" +
   "margin-left: " + 15 * widthK + "px; " +
   "margin-top: " + 15 * widthK + "px; " +
   "margin-right: " + 15 * widthK + "px; " +
   "margin-bottom: " + 15 * widthK + "px; " +
+  "background-image: url('resources/icons/services/nologo.png');" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "border-radius: " + 100 * widthK + "px;" +
   "background-size: 80%;" +
-  "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
+  "}",
+  
+  payServiceImage: ".pay-service-image" +
+  "{" +
+  "width:  " + 120 * widthK + "px; " +
+  "height: " + 120 * widthK + "px; " +
+  // "width: 100%;" +
+  // "height: 100%;" +
+  "transition: 0.7s;" +
+  "-webkit-transition: 0.7s;" +
+  "opacity: 0;" +
+  "border: none;" +
+  // "background-repeat: no-repeat;" +
+  // "background-position: center;" +
+  //"border-radius: " + 100 * widthK + "px;" +
+  //"border: " + 1 + "px solid white;" +
+  // "background-size: 80%;" +
+  // "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
   "}",
 
   payServiceImageNoLoader: ".pay-service-image-noloader" +

@@ -78,15 +78,24 @@
           <div class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
             <div class="pay-service-containter"
                  each="{j in i.currentList}">
+
               <div class="pay-service-icon" id="{j.id}"
                    role="button"
                    aria-label="{j.name}"
                    ontouchend="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
-                <img id="{j.id+'_image'}" if="{j.image}"
-                     class="{pay-service-image: !j.image_cached, pay-service-image-noloader: j.image_cached}"
-                     src="{j.image}" onload="clearLoaderOnIconLoad(this.id)"
-                     onloadeddata="clearLoaderOnIconLoad(this.id)" onerror="errorDownloadImage(this.id)">
+
+
+                <div class="pay-service-image-container">
+                  <img id="{j.id+'_image'}" if="{j.image}"
+                       class="pay-service-image"
+                       src="{j.image}"
+                       onload="onServiceImageLoaded(this.id)"
+                       onloadeddata="onServiceImageLoaded(this.id)"
+                       onerror="onServiceImageLoadError(this.id)">
+                </div>
+
                 <div class="pay-service-name-field">{j.name}</div>
+
               </div>
             </div>
           </div>
@@ -333,6 +342,17 @@
       if(scope.isServiceClicked) return;
       console.log('View.Pay.tag.onTouchEndOfCategory()')
 
+      console.log(scope.categoryList);
+
+      if(scope.index != id)
+        document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
+
+      // Названи и список сервисов в одном и том же блоке. Из-за чего фоновый цвет менял у всего блока
+      // Пришлось вызывать scope.update() с таймаутом равным времени нахождения фонового темного цвета
+      setTimeout(function () {
+        document.getElementById(id).style.backgroundColor = 'transparent'
+      }, 300);
+
       onCategoryTouchEndY = event.changedTouches[0].pageY;
       onCategoryTouchEndX = event.changedTouches[0].pageX;
 
@@ -355,23 +375,15 @@
           document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catopen.png)";
           if (scope.index == id && scope.show) {
 
-            document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
 
-            // Названи и список сервисов в одном и том же блоке. Из-за чего фоновый цвет менял у всего блока
-            // Пришлось вызывать scope.update() с таймаутом равным времени нахождения фонового темного цвета
-            setTimeout(function () {
-              document.getElementById(id).style.backgroundColor = 'transparent'
-            }, 50);
 
             document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catclose.png)";
             viewPay.categoryId = id;
             opts.categoryId = id;
           }
 
-          setTimeout(function () {
-            scope.update();
-            document.getElementById(id).scrollIntoView();
-          }, 50);
+          scope.update();
+          document.getElementById(id).scrollIntoView();
 
           setTimeout(function () {
             document.getElementById(id).scrollIntoView();
@@ -379,7 +391,7 @@
 
         }
 
-      }, 100)
+      }, 300)
     };
 
     scope.hintShow = false;
@@ -544,6 +556,14 @@
       }
     };
 
+    onServiceImageLoaded = function(serviceImageId) {
+      console.log('AAAAAAAAAAAAAAAAAAAAAAAAAa', serviceImageId)
+      document.getElementById(serviceImageId).style.opacity = 1;
+    };
+
+    onServiceImageLoadError = function(serviceImageId) {
+      document.getElementById(serviceImageId).hidden = true;
+    };
 
     moveToService = function () {
       console.log(categoriesContainerId);
