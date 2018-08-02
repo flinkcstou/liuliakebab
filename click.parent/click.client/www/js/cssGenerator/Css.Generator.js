@@ -4082,9 +4082,8 @@ var css = {
   "min-height:" + 100 * widthK + "px; " +
   "width: 100%;" +
   // "padding-top: 1%;" +
-  "border-bottom:" + 1 + "px solid #e8e8e8;" +
   "background-color: transparent;" +
-  "overflow: visible;" +
+  "overflow: auto;" +
   "}",
 
   payServiceHintContainer: ".pay-service-hint-containter" +
@@ -4186,13 +4185,12 @@ var css = {
   payCategoryIcon: ".pay-category-icon" +
   "{" +
   "position: relative;" +
-  "width:" + 50 * widthK + "px; " +
-  "height:" + 50 * widthK + "px; " +
+  "width:" + 100 * widthK + "px; " +
+  "height:" + 100 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "float: left;" +
   "left: 4%;" +
-  "top:" + 20 * widthK + "px; " +
   "margin-right:" + 15 * widthK + "px; " +
   "background-size: 80%;" +
   "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
@@ -4201,11 +4199,10 @@ var css = {
   payCategoryIconNoLoader: ".pay-category-icon-noloader" +
   "{" +
   "position: relative;" +
-  "width:" + 50 * widthK + "px; " +
-  "height:" + 50 * widthK + "px; " +
+  "width:" + 100 * widthK + "px; " +
+  "height:" + 100 * widthK + "px; " +
   "float: left;" +
   "left: 4%;" +
-  "top:" + 20 * widthK + "px; " +
   "margin-right:" + 15 * widthK + "px; " +
   "}",
 
@@ -4215,11 +4212,21 @@ var css = {
   "width: " + (720 - 45) * widthK + "px;" +
   // "width: 90%; " +
   "background-size: contain;" +
-  "top: " + 31 * widthK + "px; " +
+  "top: " + 28.25 * widthK + "px; " +
   "left: 6%;" +
   "text-align: left;" +
-  "font-size:" + 29 * widthK + "px; " +
-  "color: gray;" +
+  "font-size:" + 34 * widthK + "px; " +
+  "color: rgba(48, 48, 48, 1);" +
+  "}",
+
+  payCategoryBottomBorder: ".pay-category-bottom-border" +
+  "{" +
+  "position: absolute;" +
+  "bottom: 0;" +
+  "left: 5%;" +
+  "height:" + 2 * widthK + "px;" +
+  "width: " + (720 - 80) * widthK + "px;" +
+  "background-color: #e8e8e8;" +
   "}",
 
   payServiceContainer: ".pay-service-containter" +
@@ -4336,7 +4343,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "width:" + 19 * widthK + "px;" +
   "height:" + 18 * widthK + "px;" +
-  "top:" + 9 * widthK + "px;" +
+  "top:" + 5 * widthK + "px;" +
   "}",
 
   payPageTitle: ".pay-page-title " +
@@ -18397,7 +18404,7 @@ var css = {
   "position: absolute;" +
   "height:90%; " +
   "width: 100%; " +
-  "top: 9%; " +
+  "top: 10%; " +
   "bottom:0; " +
   "overflow-y: auto; " +
   "overflow-x: hidden; " +
@@ -18481,7 +18488,7 @@ var css = {
   inPlacePaySearchContainer: ".inplace-pay-search-container" +
   "{" +
   "position: absolute;" +
-  "height:10%; " +
+  "height: 10%; " +
   "width: 100%; " +
   "background-color: white; " +
   "z-index: 99999;" +
@@ -18494,7 +18501,7 @@ var css = {
   "left: 10%;" +
   "width:" + 572 * widthK + "px; " +
   "height:" + 100 * widthK + "px; " +
-  "border-bottom:  " + 3 * widthK + "px solid #e8e8e8;" +
+  "border-bottom:  " + 2 * widthK + "px solid #e8e8e8;" +
   "color: white;" +
   // "top: 8%;" +
   "}",

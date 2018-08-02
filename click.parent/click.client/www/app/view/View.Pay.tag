@@ -50,6 +50,8 @@
                    onloadeddata="clearLoaderOnIconLoad(this.id)" onerror="errorDownloadImage(this.id)">
               <div class="pay-category-name-field">{i.name}
               </div>
+              <div class="pay-category-bottom-border">
+              </div>
             </div>
           </li>
         </ul>
@@ -66,7 +68,8 @@
              if="{!(modeOfApp.offlineMode && i.id == 11) && i.currentList && i.currentList.length !=0}"
              class="pay-service-block-containter" id="{i.id}"
              ontouchstart="onTouchStartOfCategory(this.id)"
-             onclick="onTouchEndOfCategory(this.id)">
+             onclick="onTouchEndOfCategory(this.id)"
+             style="border-bottom: none;">
           <img id="{i.id+'_icon'}" if="{i.icon}"
                class="{pay-category-icon: !i.icon_cached, pay-category-icon-noloader: i.icon_cached}" src="{i.icon}"
                onload="clearLoaderOnIconLoad(this.id)"
@@ -89,6 +92,7 @@
               </div>
             </div>
           </div>
+          <div class="pay-category-bottom-border"></div>
         </div>
 
 
@@ -208,14 +212,14 @@
 
     colorFieldInplaceSearch = function () {
       searchFieldActive = true;
-      document.getElementById('searchContainerId').style.borderBottom = "" + 3 * widthK + "px solid #01cfff";
+      document.getElementById('searchContainerId').style.borderBottom = "" + 2 * widthK + "px solid #01cfff";
       if (document.getElementById('searchIcon'))
         searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search_blue.png)';
     };
 
     blurFieldInplaceSearch = function () {
       searchFieldActive = false;
-      document.getElementById('searchContainerId').style.borderBottom = "" + 3 * widthK + "px solid #cbcbcb";
+      document.getElementById('searchContainerId').style.borderBottom = "" + 2 * widthK + "px solid #cbcbcb";
       if (document.getElementById('searchIcon'))
         searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search.png)';
     };
@@ -328,8 +332,8 @@
 
 
       setTimeout(function () {
-        document.getElementById(id).style.backgroundColor = 'transparent'
-      }, 100)
+        document.getElementById(id).style.backgroundColor = 'transparent';
+      }, 100);
 
 
       onTouchEndY = event.pageY;
@@ -503,7 +507,7 @@
           viewPay.categoryScrollTop = categoriesContainerId.scrollTop;
           opts.searchWord = searchInputId.value;
 
-          console.log('ID ID ID', id)
+          console.log('ID ID ID', id);
           if (opts.mode == 'ADDAUTOPAY') {
             scope.autoPayData = {};
             opts.chosenServiceId = id;
