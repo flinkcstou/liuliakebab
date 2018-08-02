@@ -4148,11 +4148,7 @@ var css = {
   "margin-top: " + 15 * widthK + "px; " +
   "margin-right: " + 15 * widthK + "px; " +
   "margin-bottom: " + 15 * widthK + "px; " +
-  "background-image: url('resources/icons/services/nologo.png');" +
-  "background-repeat: no-repeat;" +
-  "background-position: center;" +
-  "border-radius: " + 100 * widthK + "px;" +
-  "background-size: 80%;" +
+  // "background-image: url('resources/icons/services/nologo.png');" +
   "}",
   
   payServiceImage: ".pay-service-image" +
@@ -4172,16 +4168,32 @@ var css = {
   // "background-size: 80%;" +
   // "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
   "}",
-
-  payServiceImageNoLoader: ".pay-service-image-noloader" +
+  
+  payServiceImageCached: ".pay-service-image-cached" +
   "{" +
-  "position: relative;" +
-  "width:  " + 120 * widthK + "px; " +
-  "height: " + 120 * widthK + "px; " +
-  "margin-left: " + 15 * widthK + "px; " +
-  "margin-top: " + 15 * widthK + "px; " +
-  "margin-right: " + 15 * widthK + "px; " +
-  "margin-bottom: " + 15 * widthK + "px; " +
+  "transition: none;" +
+  "-webkit-transition: none;" +
+  "opacity: 1;" +
+  "}",
+
+  // payServiceImageNoLoader: ".pay-service-image-noloader" +
+  // "{" +
+  // "position: relative;" +
+  // "width:  " + 120 * widthK + "px; " +
+  // "height: " + 120 * widthK + "px; " +
+  // "margin-left: " + 15 * widthK + "px; " +
+  // "margin-top: " + 15 * widthK + "px; " +
+  // "margin-right: " + 15 * widthK + "px; " +
+  // "margin-bottom: " + 15 * widthK + "px; " +
+  // "}",
+  payServiceImageNoLogo: ".pay-service-image-nologo" +
+  "{" +
+  "background-image: url('resources/icons/services/nologo.png');" +
+  // "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "border: none;" +
+  "background-size: 80%;" +
   "}",
 
   payServiceNameField: ".pay-service-name-field" +

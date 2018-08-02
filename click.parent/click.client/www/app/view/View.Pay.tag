@@ -75,7 +75,7 @@
           <div class="pay-category-name-field">{i.name}
           </div>
           <div class="pay-icon-tick" id="tick{i.id}"></div>
-          <div class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
+          <div class="pay-services-block" if="{index == i.id}" style="list-style:none">
             <div class="pay-service-containter"
                  each="{j in i.currentList}">
 
@@ -85,13 +85,25 @@
                    ontouchend="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
 
 
-                <div class="pay-service-image-container">
-                  <img id="{j.id+'_image'}" if="{j.image}"
+                <div if="{j.image}"
+                     id="{j.id + '_image_container'}"
+                     class="{pay-service-image-container: true,
+                            pay-service-image-nologo: !j.image_cached}">
+
+                  <img id="{j.id+'_image'}" if="{j.image && !j.image_cached}"
                        class="pay-service-image"
                        src="{j.image}"
-                       onload="onServiceImageLoaded(this.id)"
-                       onloadeddata="onServiceImageLoaded(this.id)"
-                       onerror="onServiceImageLoadError(this.id)">
+                       onload="onServiceImageLoaded('{j.id}')"
+                       onloadeddata="onServiceImageLoaded('{j.id}')"
+                       onerror="onServiceImageLoadError('{j.id}')">
+
+                  <img hidden id="{j.id+'_image'}" if="{j.image && j.image_cached}"
+                       class="pay-service-image pay-service-image-cached"
+                       src="{j.image}"
+                       onload="onServiceCachedImageLoaded('{j.id}')"
+                       onloadeddata="onServiceCachedImageLoaded('{j.id}')"
+                       onerror="onServiceImageLoadError('{j.id}')">
+
                 </div>
 
                 <div class="pay-service-name-field">{j.name}</div>
@@ -340,7 +352,7 @@
 
     scope.onTouchEndOfCategory = onTouchEndOfCategory = function (id) {
       if(scope.isServiceClicked) return;
-      console.log('View.Pay.tag.onTouchEndOfCategory()')
+      console.log('View.Pay.tag.onTouchEndOfCategory():', id);
 
       console.log(scope.categoryList);
 
@@ -351,7 +363,7 @@
       // Пришлось вызывать scope.update() с таймаутом равным времени нахождения фонового темного цвета
       setTimeout(function () {
         document.getElementById(id).style.backgroundColor = 'transparent'
-      }, 300);
+      }, 100);
 
       onCategoryTouchEndY = event.changedTouches[0].pageY;
       onCategoryTouchEndX = event.changedTouches[0].pageX;
@@ -362,36 +374,32 @@
 
           if (scope.index == id) {
             scope.index = -1;
+            scope.update();
+            document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catopen.png)";
           } else {
             if (scope.index != -1) {
               document.getElementById("tick" + scope.index).style.backgroundImage = "url(resources/icons/ViewPay/catopen.png)";
-              scope.show = false;
               scope.update();
             }
-            scope.index = id;
-          }
-
-          scope.show = true;
-          document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catopen.png)";
-          if (scope.index == id && scope.show) {
-
-
 
             document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catclose.png)";
+
+            scope.index = id;
+
             viewPay.categoryId = id;
             opts.categoryId = id;
-          }
 
-          scope.update();
-          document.getElementById(id).scrollIntoView();
-
-          setTimeout(function () {
+            scope.update();
             document.getElementById(id).scrollIntoView();
-          }, 50);
 
+            setTimeout(function () {
+              document.getElementById(id).scrollIntoView();
+              console.log(scope.index)
+            }, 50);
+          }
         }
 
-      }, 300)
+      }, 100)
     };
 
     scope.hintShow = false;
@@ -556,13 +564,21 @@
       }
     };
 
-    onServiceImageLoaded = function(serviceImageId) {
-      console.log('AAAAAAAAAAAAAAAAAAAAAAAAAa', serviceImageId)
-      document.getElementById(serviceImageId).style.opacity = 1;
+    onServiceImageLoaded = function(serviceId) {
+      console.log('View.Pay.tag.onServiceImageLoaded()', serviceId)
+      document.getElementById(serviceId + '_image').style.opacity = 1;
+      document.getElementById(serviceId + '_image_container').style.backgroundImage = "none";
     };
 
-    onServiceImageLoadError = function(serviceImageId) {
-      document.getElementById(serviceImageId).hidden = true;
+    onServiceCachedImageLoaded = function(serviceId) {
+      console.log('View.Pay.tag.onServiceImageLoadError()', serviceId);
+      document.getElementById(serviceId + '_image').hidden = false;
+      };
+
+    onServiceImageLoadError = function(serviceId) {
+      console.log('View.Pay.tag.onServiceImageLoadError()', serviceId);
+      document.getElementById(serviceId + '_image').hidden = true;
+      document.getElementById(serviceId + '_image_container').classList.add("pay-service-image-nologo");
     };
 
     moveToService = function () {

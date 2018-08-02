@@ -1148,6 +1148,7 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
                       myNumberObject.name = 'Мой номер';
                       myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
                       myNumberObject.id = 'mynumber' + result[1][i].id;
+                      myNumberObject.image_cached = true;
                       servicesMapByCategory[result[1][i].category_id][0] = myNumberObject;
                       servicesMapByCategory[result[1][i].category_id].push(firstService);
                     }
