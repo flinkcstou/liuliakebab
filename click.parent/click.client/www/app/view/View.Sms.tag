@@ -11,7 +11,7 @@
     <div class="sms-unchangable-container">
       <div class="sms-phone-field">
         <p class="sms-text-field-one">{window.languages.ViewSmsFieldOne}</p>
-        <input class="sms-phone-input" value="{confirmSms}" ontouchend="onTouchendSmsNumber()" disabled/>
+        <input class="sms-phone-input" value="{confirmSms}" ontouchend="onTouchEndSmsNumber()" disabled/>
         <div id="inputCaretSms" class="sms-caret"></div>
         <div class="sms-timer">{time}
           <div class="sms-resend-icon" role="button"
@@ -36,9 +36,9 @@
   <div class="sms-keyboard-field keyboard-field" style="bottom:{150*widthK}px">
     <component-keyboard></component-keyboard>
   </div>
-  <button if="{continueButtonEnabled}"
-          class="{servicepage-button-enter-enabled: continueButtonActive,servicepage-button-enter-disabled:!continueButtonActive}"
-          id="registrationNextButtonId" class="bottom-button-container"
+  <button if="{showContinueButton}"
+          class="bottom-button-container; {servicepage-button-enter-enabled: continueButtonActive,servicepage-button-enter-disabled:!continueButtonActive}"
+          id="registrationNextButtonId"
           style="bottom: {window.bottomButtonBottom}"
           ontouchend="onTouchEndOfSmsContinue()"
           ontouchstart="onTouchStartOfSmsContinue()">
@@ -46,9 +46,9 @@
   </button>
   <component-tour view="registration"></component-tour>
   <script>
-
     var scope = this;
-    continueButtonActive = true;
+
+    scope.continueButtonActive = true;
     scope.messageTitle = window.languages.ViewSmsCodeActivationText;
     scope.messageTitleTwo = '';
     scope.phoneNumber = localStorage.getItem('click_client_phoneNumber');
@@ -56,9 +56,10 @@
     window.saveHistory('view-sms', opts);
     scope.confirmSms = '';
     scope.showResendButton = false;
+    scope.showContinueButton = false;
 
-    this.on('mount', function () {
-      if (device.platform !== 'BrowserStand')
+    scope.on('mount', function () {
+      if (device.platform != 'BrowserStand')
         StatusBar.backgroundColorByHexString("#ffffff");
     });
 
@@ -73,25 +74,24 @@
       keyboardTouchStartX = event.changedTouches[0].pageX;
       keyboardTouchStartY = event.changedTouches[0].pageY;
 
-      if (scope.confirmSms.length < 5 && myValue != 'x') {
+      if (scope.confirmSms.length < 5 && myValue != 'x')
+        setConfirmSms(scope.confirmSms.slice(0, inputFocusIndexSms) + myValue + scope.confirmSms.slice(inputFocusIndexSms));
 
-        scope.confirmSms = scope.confirmSms.slice(0, inputFocusIndexSms) + myValue + scope.confirmSms.slice(inputFocusIndexSms);
-        ++inputFocusIndexSms;
-        inputCaretSms.style.left = ctx.measureText(scope.confirmSms.substring(0, inputFocusIndexSms)).width + inputLocalStartXSms - 3 * widthK + 'px';
+      if (myValue == 'x' && inputFocusIndexSms != 0) {
+        setConfirmSms(scope.confirmSms.slice(0, inputFocusIndexSms - 1) + scope.confirmSms.slice(inputFocusIndexSms));
       }
 
-      if (myValue == 'x') {
+      scope.showContinueButton = scope.confirmSms.length == 5;
 
-        if (inputFocusIndexSms != 0) {
-          scope.confirmSms = scope.confirmSms.slice(0, inputFocusIndexSms - 1) + scope.confirmSms.slice(inputFocusIndexSms);
-          --inputFocusIndexSms;
-          inputCaretSms.style.left = ctx.measureText(scope.confirmSms.substring(0, inputFocusIndexSms)).width + inputLocalStartXSms - 3 * widthK + 'px';
-        }
-      }
-
-      scope.continueButtonEnabled = scope.confirmSms.length === 5;
       scope.update();
     };
+
+    function setConfirmSms(sms) {
+      scope.confirmSms = sms;
+      inputFocusIndexSms = sms.length;
+      inputCaretSms.style.left = ctx.measureText(sms.substring(0, inputFocusIndexSms)).width + inputLocalStartXSms - 3 * widthK + 'px';
+    }
+
 
     var getContinueButtonTouchStartX, getContinueButtonTouchStartY,
       getContinueButtonTouchEndX, getContinueButtonTouchEndY;
@@ -117,7 +117,7 @@
 
       if (Math.abs(getContinueButtonTouchStartX - getContinueButtonTouchEndX) <= 20 && Math.abs(getContinueButtonTouchStartY - getContinueButtonTouchEndY) <= 20) {
         var sms = scope.confirmSms;
-        continueButtonActive = false;
+        scope.continueButtonActive = false;
         viewSms.getSms(sms);
       }
     };
@@ -125,26 +125,32 @@
 
     function startSMSReceive() {
       SMSReceive.startWatch(function () {
-        console.log('smsreceive: watching started');
+        console.log('SMSReceive: watching started');
         document.addEventListener('onSMSArrive', function (e) {
           console.log('onSMSArrive()');
           var IncomingSMS = e.data;
-          console.log('sms.address:' + IncomingSMS.address);
-          console.log('sms.body:' + IncomingSMS.body);
-          console.log(JSON.stringify(IncomingSMS));
-          stopSMSReceive();
+          //if (IncomingSMS.address == "Click") {
+          scope.confirmSms = parseSms(IncomingSMS.body);
+          scope.continueButtonEnabled = true;
+          scope.update();
+          // }
         });
 
       }, function () {
-        console.warn('smsreceive: failed to start watching');
+        console.warn('SMSReceive: failed to start watching');
       });
+    }
+
+    function parseSms(sms) {
+      var re = /\d{5}/i;
+      return sms.match(re);
     }
 
     function stopSMSReceive() {
       SMSReceive.stopWatch(function () {
-        console.log('smsreceive: watching stopped');
+        console.log('SMSReceive: watching stopped');
       }, function () {
-        console.warn('smsreceive: failed to stop watching');
+        console.warn('SMSReceive: failed to stop watching');
       });
     }
 
@@ -171,7 +177,7 @@
     ctx.font = 64 * widthK + "px SFUIDisplay-Light";
 
 
-    onTouchendSmsNumber = function () {
+    onTouchEndSmsNumber = function () {
       event.preventDefault();
       event.stopPropagation();
 
@@ -231,27 +237,25 @@
       event.preventDefault();
       event.stopPropagation();
 
-      smsButtonHelpId.style.webkitTransform = 'scale(0.8)';
+      scope.smsButtonHelpId.style.webkitTransform = 'scale(0.8)';
 
       helpTouchStartXSms = event.changedTouches[0].pageX;
       helpTouchStartYSms = event.changedTouches[0].pageY;
-
     };
 
     helpTouchEndSms = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      smsButtonHelpId.style.webkitTransform = 'scale(1)';
+      scope.smsButtonHelpId.style.webkitTransform = 'scale(1)';
 
       helpTouchEndXSms = event.changedTouches[0].pageX;
       helpTouchEndYSms = event.changedTouches[0].pageY;
 
 
       if (Math.abs(helpTouchStartXSms - helpTouchEndXSms) <= 20 && Math.abs(helpTouchStartYSms - helpTouchEndYSms) <= 20) {
-
         componentTourId.style.display = "block";
-        if (device.platform !== 'BrowserStand')
+        if (device.platform != 'BrowserStand')
           StatusBar.backgroundColorByHexString("#ffffff");
       }
     };
@@ -313,11 +317,8 @@
             timestamp: timestamp,
             sign_string: signString
           },
-
           scope: this,
-
           onSuccess: function (result) {
-
           },
           onFail: function (api_status, api_status_message, data) {
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
@@ -333,10 +334,9 @@
       console.log('tic tac', minutes, seconds);
       scope.update();
     };
+
     var time = setInterval(timer, 1000);
 
-
-    var token;
     viewSms.getSms = function (sms) {
       scope.confirmSms = sms;
       scope.update(scope.confirmSms);
@@ -345,6 +345,7 @@
 
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var deviceId = localStorage.getItem('click_client_deviceID');
+
       scope.tourData = {
         mainpage: true,
         transfer: true,
@@ -353,13 +354,14 @@
         calculator: true,
         friendhelp: true
       };
+
       localStorage.setItem("tour_data", JSON.stringify(scope.tourData));
       registrationConfirm(sms, phoneNumber, deviceId);
-      continueButtonActive = true;
+      scope.continueButtonActive = true;
     };
 
     function deviceRemember() {
-      if (JSON.parse(localStorage.getItem('device_remember')) === true)
+      if (JSON.parse(localStorage.getItem('device_remember')) == true)
         return 1;
       return 0;
     }
