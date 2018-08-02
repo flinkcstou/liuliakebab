@@ -92,7 +92,7 @@
             scope.deviceimei = imei;
           },
           function (e) {
-            console.log("error loading imei="+e);
+            console.log("error loading imei=" + e);
           }
         );
       }
@@ -105,8 +105,8 @@
       event.preventDefault();
       event.stopPropagation();
 
-      rememberTouchStartX = event.changedTouches[0].pageX
-      rememberTouchStartY = event.changedTouches[0].pageY
+      rememberTouchStartX = event.changedTouches[0].pageX;
+      rememberTouchStartY = event.changedTouches[0].pageY;
 
     };
 
@@ -114,8 +114,8 @@
       event.preventDefault();
       event.stopPropagation();
 
-      rememberTouchEndX = event.changedTouches[0].pageX
-      rememberTouchEndY = event.changedTouches[0].pageY
+      rememberTouchEndX = event.changedTouches[0].pageX;
+      rememberTouchEndY = event.changedTouches[0].pageY;
 
 
       if (Math.abs(rememberTouchStartX - rememberTouchEndX) <= 20 && Math.abs(rememberTouchStartY - rememberTouchEndY) <= 20) {
@@ -154,10 +154,10 @@
 
     componentKeyboard.returnStartValue = function (myValue, id) {
 
-      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
+      document.getElementById(id).style.webkitTransform = 'scale(0.8)';
 
-      keyboardTouchStartX = event.changedTouches[0].pageX
-      keyboardTouchStartY = event.changedTouches[0].pageY
+      keyboardTouchStartX = event.changedTouches[0].pageX;
+      keyboardTouchStartY = event.changedTouches[0].pageY;
 
       if (window.inputVerification.spaceDeleter(scope.maskPhoneNumber).length < 9 && myValue != 'x') {
 
@@ -269,21 +269,21 @@
       event.preventDefault();
       event.stopPropagation();
 
-      registrationOfflineButtonId.style.webkitTransform = 'scale(0.8)'
+      registrationOfflineButtonId.style.webkitTransform = 'scale(0.8)';
 
-      offlineTouchStartX = event.changedTouches[0].pageX
-      offlineTouchStartY = event.changedTouches[0].pageY
+      offlineTouchStartX = event.changedTouches[0].pageX;
+      offlineTouchStartY = event.changedTouches[0].pageY;
 
-    }
+    };
 
     registrationOfflineTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      registrationOfflineButtonId.style.webkitTransform = 'scale(1)'
+      registrationOfflineButtonId.style.webkitTransform = 'scale(1)';
 
-      offlineTouchEndX = event.changedTouches[0].pageX
-      offlineTouchEndY = event.changedTouches[0].pageY
+      offlineTouchEndX = event.changedTouches[0].pageX;
+      offlineTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(offlineTouchStartX - offlineTouchEndX) <= 20 && Math.abs(offlineTouchStartY - offlineTouchEndY) <= 20) {
 
@@ -294,7 +294,7 @@
         riot.mount('view-main-page');
         scope.unmount()
       }
-    }
+    };
 
     var demoContinueTouchStartX, demoContinueTouchStartY, demoContinueTouchEndX, demoContinueTouchEndY;
 
@@ -302,23 +302,23 @@
       event.preventDefault();
       event.stopPropagation();
 
-      demoContinueTouchStartX = event.changedTouches[0].pageX
-      demoContinueTouchStartY = event.changedTouches[0].pageY
-    }
+      demoContinueTouchStartX = event.changedTouches[0].pageX;
+      demoContinueTouchStartY = event.changedTouches[0].pageY;
+    };
 
     demoContinueTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      demoContinueTouchEndX = event.changedTouches[0].pageX
-      demoContinueTouchEndY = event.changedTouches[0].pageY
+      demoContinueTouchEndX = event.changedTouches[0].pageX;
+      demoContinueTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(demoContinueTouchStartX - demoContinueTouchEndX) <= 20 && Math.abs(demoContinueTouchStartY - demoContinueTouchEndY) <= 20) {
         if (!localStorage.getItem('device_platform'))
-          localStorage.setItem('device_platform', device.platform)
-        window.location = "index-stand-demo.html"
+          localStorage.setItem('device_platform', device.platform);
+        window.location = "index-stand-demo.html";
       }
-    }
+    };
 
     var demoOpenTouchStartX, demoOpenTouchStartY, demoOpenTouchEndX, demoOpenTouchEndY;
 
@@ -326,24 +326,24 @@
       event.preventDefault();
       event.stopPropagation();
 
-      demoContainer.style.webkitTransform = 'scale(0.8)'
+      demoContainer.style.webkitTransform = 'scale(0.8)';
 
-      demoOpenTouchStartX = event.changedTouches[0].pageX
-      demoOpenTouchStartY = event.changedTouches[0].pageY
+      demoOpenTouchStartX = event.changedTouches[0].pageX;
+      demoOpenTouchStartY = event.changedTouches[0].pageY;
 
-    }
+    };
 
     goToDemoTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      demoContainer.style.webkitTransform = 'scale(1)'
+      demoContainer.style.webkitTransform = 'scale(1)';
 
-      demoOpenTouchEndX = event.changedTouches[0].pageX
-      demoOpenTouchEndY = event.changedTouches[0].pageY
+      demoOpenTouchEndX = event.changedTouches[0].pageX;
+      demoOpenTouchEndY = event.changedTouches[0].pageY;
 
-      console.log(demoOpenTouchStartX, demoOpenTouchStartY)
-      console.log(demoOpenTouchEndX, demoOpenTouchEndY)
+      console.log(demoOpenTouchStartX, demoOpenTouchStartY);
+      console.log(demoOpenTouchEndX, demoOpenTouchEndY);
 
       if (Math.abs(demoOpenTouchStartX - demoOpenTouchEndX) <= 20 && Math.abs(demoOpenTouchStartY - demoOpenTouchEndY) <= 20) {
 
@@ -351,28 +351,28 @@
         demoContinueContainer.style.display = 'block'
       }
 
-    }
+    };
 
-    var getPhoneNumberTouchStartX, getPhoneNumberTouchStartY, getPhoneNumberTouchEndX, getPhoneNumberTouchEndY
+    var getPhoneNumberTouchStartX, getPhoneNumberTouchStartY, getPhoneNumberTouchEndX, getPhoneNumberTouchEndY;
 
     getPhoneNumberTouchStart = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      registrationNextButtonId.style.webkitTransform = 'scale(0.8)'
+      registrationNextButtonId.style.webkitTransform = 'scale(0.8)';
 
-      getPhoneNumberTouchStartX = event.changedTouches[0].pageX
-      getPhoneNumberTouchStartY = event.changedTouches[0].pageY
+      getPhoneNumberTouchStartX = event.changedTouches[0].pageX;
+      getPhoneNumberTouchStartY = event.changedTouches[0].pageY;
     };
 
     getPhoneNumberTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      registrationNextButtonId.style.webkitTransform = 'scale(1)'
+      registrationNextButtonId.style.webkitTransform = 'scale(1)';
 
-      getPhoneNumberTouchEndX = event.changedTouches[0].pageX
-      getPhoneNumberTouchEndY = event.changedTouches[0].pageY
+      getPhoneNumberTouchEndX = event.changedTouches[0].pageX;
+      getPhoneNumberTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(getPhoneNumberTouchStartX - getPhoneNumberTouchEndX) <= 20 && Math.abs(getPhoneNumberTouchStartY - getPhoneNumberTouchEndY) <= 20) {
         var correctPhoneNumber = true;

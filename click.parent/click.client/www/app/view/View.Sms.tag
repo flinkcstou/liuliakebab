@@ -23,7 +23,7 @@
       <div class="sms-text-field">
         <p style="margin-bottom: {4 * widthK}px;
          margin-top: {15 * widthK}px;">{messageTitle}<br>{messageTitleTwo}</p>
-        <p id="deliveredPhoneNumber" style="margin: 0; margin-bottom: {15 * widthK}px;">{phoneNumber.substring(0, 3)}
+        <p id="deliveredPhoneNumber" style="margin: 0; margin-bottom:{15*widthK}px;">{phoneNumber.substring(0, 3)}
           {phoneNumber.substring(3, phoneNumber.length)}</p>
         <div class="hor-line-border">
         </div>
@@ -33,17 +33,22 @@
       </div>
     </div>
   </div>
-
-
-  <div class="sms-keyboard-field keyboard-field" style="bottom: {150*widthK}px">
+  <div class="sms-keyboard-field keyboard-field" style="bottom:{150*widthK}px">
     <component-keyboard></component-keyboard>
   </div>
-
+  <button if="{continueButtonEnabled}"
+          class="{servicepage-button-enter-enabled: continueButtonActive,servicepage-button-enter-disabled:!continueButtonActive}"
+          id="registrationNextButtonId" class="bottom-button-container"
+          style="bottom: {window.bottomButtonBottom}"
+          ontouchend="onTouchEndOfSmsContinue()"
+          ontouchstart="onTouchStartOfSmsContinue()">
+    {window.languages.ViewSmsContinue}
+  </button>
   <component-tour view="registration"></component-tour>
-
   <script>
 
     var scope = this;
+    continueButtonActive = true;
     scope.messageTitle = window.languages.ViewSmsCodeActivationText;
     scope.messageTitleTwo = '';
     scope.phoneNumber = localStorage.getItem('click_client_phoneNumber');
@@ -53,11 +58,11 @@
     scope.showResendButton = false;
 
     this.on('mount', function () {
-
       if (device.platform !== 'BrowserStand')
         StatusBar.backgroundColorByHexString("#ffffff");
     });
 
+    startSMSReceive();
 
     var keyboardTouchStartX, keyboardTouchStartY, keyboardTouchEndX, keyboardTouchEndY;
 
@@ -84,14 +89,64 @@
         }
       }
 
-
+      scope.continueButtonEnabled = scope.confirmSms.length === 5;
       scope.update();
-      if (scope.confirmSms.length == 5) {
+    };
+
+    var getContinueButtonTouchStartX, getContinueButtonTouchStartY,
+      getContinueButtonTouchEndX, getContinueButtonTouchEndY;
+
+    onTouchStartOfSmsContinue = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      registrationNextButtonId.style.webkitTransform = 'scale(0.8)';
+
+      getContinueButtonTouchStartX = event.changedTouches[0].pageX;
+      getContinueButtonTouchStartY = event.changedTouches[0].pageY;
+    };
+
+    onTouchEndOfSmsContinue = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      registrationNextButtonId.style.webkitTransform = 'scale(1)';
+
+      getContinueButtonTouchEndX = event.changedTouches[0].pageX;
+      getContinueButtonTouchEndY = event.changedTouches[0].pageY;
+
+      if (Math.abs(getContinueButtonTouchStartX - getContinueButtonTouchEndX) <= 20 && Math.abs(getContinueButtonTouchStartY - getContinueButtonTouchEndY) <= 20) {
         var sms = scope.confirmSms;
+        continueButtonActive = false;
         viewSms.getSms(sms);
-        return;
       }
     };
+
+
+    function startSMSReceive() {
+      SMSReceive.startWatch(function () {
+        console.log('smsreceive: watching started');
+        document.addEventListener('onSMSArrive', function (e) {
+          console.log('onSMSArrive()');
+          var IncomingSMS = e.data;
+          console.log('sms.address:' + IncomingSMS.address);
+          console.log('sms.body:' + IncomingSMS.body);
+          console.log(JSON.stringify(IncomingSMS));
+          stopSMSReceive();
+        });
+
+      }, function () {
+        console.warn('smsreceive: failed to start watching');
+      });
+    }
+
+    function stopSMSReceive() {
+      SMSReceive.stopWatch(function () {
+        console.log('smsreceive: watching stopped');
+      }, function () {
+        console.warn('smsreceive: failed to stop watching');
+      });
+    }
 
     componentKeyboard.returnValue = function (myValue, id) {
 
@@ -171,7 +226,6 @@
 
     var intervalIDSms = window.setInterval(updateTransition, 800);
 
-
     var helpTouchStartXSms, helpTouchStartYSms, helpTouchEndXSms, helpTouchEndYSms;
     helpTouchStartSms = function () {
       event.preventDefault();
@@ -199,8 +253,6 @@
         componentTourId.style.display = "block";
         if (device.platform !== 'BrowserStand')
           StatusBar.backgroundColorByHexString("#ffffff");
-
-
       }
     };
 
@@ -280,7 +332,7 @@
       }
       console.log('tic tac', minutes, seconds);
       scope.update();
-    }
+    };
     var time = setInterval(timer, 1000);
 
 
@@ -303,6 +355,7 @@
       };
       localStorage.setItem("tour_data", JSON.stringify(scope.tourData));
       registrationConfirm(sms, phoneNumber, deviceId);
+      continueButtonActive = true;
     };
 
     function deviceRemember() {
@@ -334,11 +387,12 @@
             window.common.alert.show("componentAlertId", {
               parent: scope,
               clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote,
+              errornote: scope.errorNote
             });
             scope.update();
           }
         }, 10000);
+
       window.api.call({
         method: 'device.register.confirm',
         input: {
@@ -360,6 +414,7 @@
                 history.arrayOfHistory.pop();
                 this.riotTags.innerHTML = "<view-authorization>";
                 riot.mount('view-authorization');
+                stopSMSReceive();
                 scope.unmount()
               }
               else {
@@ -367,6 +422,7 @@
                 history.arrayOfHistory.pop();
                 riotTags.innerHTML = "<view-pin-code>";
                 riot.mount('view-pin-code', ['view-sms']);
+                stopSMSReceive();
                 scope.unmount()
               }
             }
@@ -398,8 +454,8 @@
       event.preventDefault();
       event.stopPropagation();
 
-      resendTouchStartX = event.changedTouches[0].pageX
-      resendTouchStartY = event.changedTouches[0].pageY
+      resendTouchStartX = event.changedTouches[0].pageX;
+      resendTouchStartY = event.changedTouches[0].pageY;
     };
 
     touchEndResend = function () {
@@ -446,13 +502,13 @@
           console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
           console.error(data);
         }
-      })
+      });
 
       minutes = 0;
       seconds = 60;
 
       time = setInterval(timer, 1000);
-    }
+    };
 
 
   </script>

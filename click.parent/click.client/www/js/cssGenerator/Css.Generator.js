@@ -18,9 +18,13 @@ var topOfIos;
 //   topOfIos = 20;
 // }
 // else {
+
+
 heightK = window.innerHeight / 1232;
 heightOfMobile = window.innerHeight;
 topOfIos = 0;
+
+
 // }
 
 var css = {
@@ -18855,7 +18859,7 @@ var css = {
   "margin: 0;" +
   "}"
 
-}
+};
 
 
 var style = document.createElement('style');
@@ -18868,6 +18872,6 @@ for (key in css) {
 
 style.appendChild(document.createTextNode(allCss));
 document.getElementsByTagName("head")[0].appendChild(style);
-riotTags.setAttribute('class', 'riot-tags-main-container')
+riotTags.setAttribute('class', 'riot-tags-main-container');
 firstMount.firstStep();
 

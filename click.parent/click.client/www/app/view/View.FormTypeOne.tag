@@ -165,23 +165,23 @@
     var amountFormatted = false;
     scope.selectedId = '';
     var options = {
-      symbol   : "",
-      decimal  : ".",
-      thousand : " ",
+      symbol: "",
+      decimal: ".",
+      thousand: " ",
       precision: 0,
-      format   : {
-        pos : "%v",
+      format: {
+        pos: "%v",
         zero: ""
       }
     };
 
     var options_for_calc = {
-      symbol   : "",
-      decimal  : ".",
-      thousand : " ",
+      symbol: "",
+      decimal: ".",
+      thousand: " ",
       precision: 0,
-      format   : {
-        pos : "%v",
+      format: {
+        pos: "%v",
         zero: "0"
       }
     };
@@ -499,7 +499,7 @@
           scope.confirmType = 'local';
 
           window.common.alert.show("componentConfirmId", {
-            parent       : scope,
+            parent: scope,
             "confirmnote": scope.confirmNote,
             "confirmtype": scope.confirmType
           });
@@ -523,10 +523,10 @@
 
         window.api.call({
           method: 'rate.convert',
-          input : {
+          input: {
             session_key: sessionKey,
-            phone_num  : phoneNumber,
-            amount     : 1
+            phone_num: phoneNumber,
+            amount: 1
           },
 
           scope: this,
@@ -542,7 +542,7 @@
               scope.errorNote = result[0][0].error_note;
 
               window.common.alert.show("componentAlertId", {
-                parent   : scope,
+                parent: scope,
                 errornote: scope.errorNote
               });
 
@@ -552,7 +552,7 @@
 
           onFail: function (api_status, api_status_message, data) {
             window.common.alert.show("componentAlertId", {
-              parent   : scope,
+              parent: scope,
               errornote: api_status_message
             });
           }
@@ -634,7 +634,7 @@
 
       amountCalcInputId.value = amountInput;
 
-      setTimeout(function() {
+      setTimeout(function () {
           amountCalcInputId.selectionStart = selectionStart;
           amountCalcInputId.selectionEnd = selectionStart;
         }, 0
@@ -1097,9 +1097,9 @@
               scope.errorNote = ("Сервис временно недоступен!");
 
               window.common.alert.show("componentAlertId", {
-                parent       : scope,
+                parent: scope,
                 clickpinerror: scope.clickPinError,
-                errornote    : scope.errorNote,
+                errornote: scope.errorNote,
               });
 
               scope.update();
@@ -1119,9 +1119,9 @@
                   scope.errorNote = ("Unknown phone number");
 
                   window.common.alert.show("componentAlertId", {
-                    parent       : scope,
+                    parent: scope,
                     clickpinerror: scope.clickPinError,
-                    errornote    : scope.errorNote,
+                    errornote: scope.errorNote,
                   });
 
                   scope.update();
@@ -1179,9 +1179,9 @@
             scope.errorNote = "Введите название автоплатежа";
 
             window.common.alert.show("componentAlertId", {
-              parent       : scope,
+              parent: scope,
               clickpinerror: scope.clickPinError,
-              errornote    : scope.errorNote,
+              errornote: scope.errorNote,
             });
 
             scope.update();
