@@ -80,16 +80,14 @@
       if (myValue == 'x' && inputFocusIndexSms != 0) {
         setConfirmSms(scope.confirmSms.slice(0, inputFocusIndexSms - 1) + scope.confirmSms.slice(inputFocusIndexSms));
       }
-
-      scope.showContinueButton = scope.confirmSms.length == 5;
-
-      scope.update();
     };
 
     function setConfirmSms(sms) {
       scope.confirmSms = sms;
       inputFocusIndexSms = sms.length;
       inputCaretSms.style.left = ctx.measureText(sms.substring(0, inputFocusIndexSms)).width + inputLocalStartXSms - 3 * widthK + 'px';
+      scope.showContinueButton = scope.confirmSms.length == 5;
+      scope.update();
     }
 
 
@@ -122,20 +120,16 @@
       }
     };
 
-
     function startSMSReceive() {
       SMSReceive.startWatch(function () {
         console.log('SMSReceive: watching started');
         document.addEventListener('onSMSArrive', function (e) {
           console.log('onSMSArrive()');
           var IncomingSMS = e.data;
-          //if (IncomingSMS.address == "Click") {
-          scope.confirmSms = parseSms(IncomingSMS.body);
-          scope.continueButtonEnabled = true;
-          scope.update();
-          // }
+          if (isClickCodeSms(IncomingSMS.body)) {
+            setConfirmSms(parseSms(IncomingSMS.body));
+          }
         });
-
       }, function () {
         console.warn('SMSReceive: failed to start watching');
       });
@@ -143,7 +137,12 @@
 
     function parseSms(sms) {
       var re = /\d{5}/i;
-      return sms.match(re);
+      return sms.match(re).toString();
+    }
+
+    function isClickCodeSms(sms) {
+      var re = /^Kod podtverjdeniya: \d{5}\nVnimanie: Ne peredavayte etot kod nikomu!$/;
+      return re.test(sms);
     }
 
     function stopSMSReceive() {
@@ -281,6 +280,7 @@
       goBackTouchEndYSms = event.changedTouches[0].pageY;
 
       if (Math.abs(goBackTouchStartXSms - goBackTouchEndXSms) <= 20 && Math.abs(goBackTouchStartYSms - goBackTouchEndYSms) <= 20) {
+        stopSMSReceive();
         onBackKeyDown();
         console.log('CLEARING INTERVAL FOR CALL.IVR', time);
         clearInterval(time);
@@ -292,12 +292,12 @@
     var seconds = 60;
 
     timer = function () {
-
       seconds--;
       if (seconds < 10)
         scope.time = minutes + ':0' + seconds;
       else
         scope.time = minutes + ':' + seconds;
+
       if (minutes == 0 && seconds == 0) {
         scope.showResendButton = true;
         scope.messageTitle = window.languages.ViewSmsMessageTitle;
@@ -327,10 +327,12 @@
         });
         clearInterval(time);
       }
+
       if (seconds == 0) {
         seconds = 59;
         minutes--;
       }
+
       console.log('tic tac', minutes, seconds);
       scope.update();
     };
@@ -412,20 +414,22 @@
               clearInterval(time);
               localStorage.setItem('confirm_needed', false);
               if (result[0][0].client_exists == 1) {
-                localStorage.setItem('click_client_registered', true);
-                history.arrayOfHistory.pop();
-                this.riotTags.innerHTML = "<view-authorization>";
-                riot.mount('view-authorization');
-                stopSMSReceive();
-                scope.unmount()
+//                localStorage.setItem('click_client_registered', true);
+//                history.arrayOfHistory.pop();
+//                this.riotTags.innerHTML = "<view-authorization>";
+//                riot.mount('view-authorization');
+//                stopSMSReceive();
+//                scope.unmount()
+                mountTo("view-authorization");
               }
               else {
-                localStorage.setItem('click_client_registered', false);
-                history.arrayOfHistory.pop();
-                riotTags.innerHTML = "<view-pin-code>";
-                riot.mount('view-pin-code', ['view-sms']);
-                stopSMSReceive();
-                scope.unmount()
+//                localStorage.setItem('click_client_registered', false);
+//                history.arrayOfHistory.pop();
+//                riotTags.innerHTML = "<view-pin-code>";
+//                riot.mount('view-pin-code', ['view-sms']);
+//                stopSMSReceive();
+//                scope.unmount();
+                mountTo("view-pin-code");
               }
             }
             else {
@@ -447,7 +451,15 @@
           console.error(data);
         }
       }, 10000);
+    }
 
+    function mountTo(view) {
+      localStorage.setItem('click_client_registered', true);
+      history.arrayOfHistory.pop();
+      this.riotTags.innerHTML = "<" + view + ">";
+      riot.mount(view);
+      stopSMSReceive();
+      scope.unmount()
     }
 
     var resendTouchStartX, resendTouchStartY, resendTouchEndX, resendTouchEndY;
