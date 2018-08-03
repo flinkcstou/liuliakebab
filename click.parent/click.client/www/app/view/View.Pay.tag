@@ -426,6 +426,7 @@
     onTouchMoveOfCategory = function () {
       scope.isClickStarted = false;
       event.stopPropagation();
+      scope.scrolling = true;
 
       // For preventing click to service on stop scrolling categories
 //      scope.scrolling = true;
@@ -454,18 +455,19 @@
       console.log('View.Pay.tag.onTouchStartOfService()')
       window.blurFields();
       // For preventing click to service on stop scrolling categories
-      if (scope.scrolling) {
-        event.stopPropagation();
-        event.preventDefault();
-        onTouchStartY = 0;
-        onTouchStartX = 0;
-        return;
-      }
+//      if (scope.scrolling) {
+//        event.stopPropagation();
+//        event.preventDefault();
+//        onTouchStartY = 0;
+//        onTouchStartX = 0;
+//        return;
+//      }
 
       event.stopPropagation();
 
       onServiceTouchStartY = event.changedTouches[0].pageY;
       onServiceTouchStartX = event.changedTouches[0].pageX;
+      scope.scrolling = false;
     };
 
 
@@ -474,15 +476,15 @@
     //opts = (!opts.mode || opts.mode == 'USUAL') ? {} : opts;
 
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {
-      console.log('View.Pay.tag.onTouchEndOfService()')
-      scope.isServiceClicked = true;
-
       // For preventing click to service on stop scrolling categories
       if (scope.scrolling) {
         event.stopPropagation();
         event.preventDefault();
         return;
       }
+      console.log('View.Pay.tag.onTouchEndOfService()')
+
+      scope.isServiceClicked = true;
 
       onServiceTouchEndY = event.changedTouches[0].pageY;
       onServiceTouchEndX = event.changedTouches[0].pageX;
