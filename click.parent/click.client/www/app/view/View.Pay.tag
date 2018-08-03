@@ -123,6 +123,7 @@
     var scope = this;
     scope.checkOfSearch = false;
     scope.scrolling = false;
+    scope.isClickStarted = false;
     scope.titleName = opts.mode == 'ADDAUTOPAY' ? window.languages.ViewAutoPayTitleName : window.languages.ViewPayTitleName;
 
     window.saveHistory('view-pay', opts);
@@ -213,11 +214,12 @@
         scope.show = true;
       }
       if (opts.categoryId || viewPay.searchServices) {
-        categoriesContainerId.scrollTop = viewPay.categoryScrollTop;
-        viewPay.categoryScrollTop = null;
-      }
+        setTimeout(function () {
+          categoriesContainerId.scrollTop = viewPay.categoryScrollTop;
+          viewPay.categoryScrollTop = null;
+        }, 50)
 
-      console.log("viewPay.categoryScrollTop = ", viewPay.categoryScrollTop);
+      }
 
       setTimeout(function () {
         scope.update();
@@ -315,7 +317,6 @@
 
       searchStartX = event.changedTouches[0].pageX;
       searchStartY = event.changedTouches[0].pageY;
-
     };
 
     onTouchEndOfSearchRemove = function () {
@@ -341,17 +342,19 @@
 
 
     scope.onTouchStartOfCategory = onTouchStartOfCategory = function (id) {
-      console.log('View.Pay.tag.onTouchStartOfCategory()')
+      console.log('View.Pay.tag.onTouchStartOfCategory()', id)
       scope.isServiceClicked = false;
       event.stopPropagation();
 
       window.blurFields();
       onCategoryTouchStartY = event.changedTouches[0].pageY;
       onCategoryTouchStartX = event.changedTouches[0].pageX;
+      scope.isClickStarted = true;
     };
 
     scope.onTouchEndOfCategory = onTouchEndOfCategory = function (id) {
-      if(scope.isServiceClicked) return;
+      console.log(JSON.stringify(scope.isClickStarted));
+      if(scope.isServiceClicked || !scope.isClickStarted) return;
       console.log('View.Pay.tag.onTouchEndOfCategory():', id);
 
       console.log(scope.categoryList);
@@ -421,14 +424,14 @@
 
 
     onTouchMoveOfCategory = function () {
-
+      scope.isClickStarted = false;
       event.stopPropagation();
 
       // For preventing click to service on stop scrolling categories
-      scope.scrolling = true;
-      setTimeout(function () {
-        scope.scrolling = false;
-      }, 350);
+//      scope.scrolling = true;
+//      setTimeout(function () {
+//        scope.scrolling = false;
+//      }, 350);
 
 //      var element = document.getElementById(scope.index);
 //
@@ -443,7 +446,7 @@
 //          scope.update();
 //        }
 //      }
-      scope.update();
+//      scope.update();
     };
 
 
@@ -513,6 +516,7 @@
           newOpts = null;
 
           viewPay.categoryScrollTop = categoriesContainerId.scrollTop;
+          console.log('SSSSSSSSUKKKKKAAAAA', viewPay.categoryScrollTop)
           opts.searchWord = searchInputId.value;
 
           console.log('ID ID ID', id)
@@ -568,18 +572,18 @@
     };
 
     onServiceImageLoaded = function(serviceId) {
-      console.log('View.Pay.tag.onServiceImageLoaded()', serviceId)
+//      console.log('View.Pay.tag.onServiceImageLoaded()', serviceId)
       document.getElementById(serviceId + '_image').style.opacity = 1;
       document.getElementById(serviceId + '_image_container').style.backgroundImage = "none";
     };
 
     onServiceCachedImageLoaded = function(serviceId) {
-      console.log('View.Pay.tag.onServiceImageLoadError()', serviceId);
+//      console.log('View.Pay.tag.onServiceImageLoadError()', serviceId);
       document.getElementById(serviceId + '_image').hidden = false;
     };
 
     onServiceImageLoadError = function(serviceId) {
-      console.log('View.Pay.tag.onServiceImageLoadError()', serviceId);
+//      console.log('View.Pay.tag.onServiceImageLoadError()', serviceId);
       document.getElementById(serviceId + '_image').hidden = true;
       document.getElementById(serviceId + '_image_container').classList.add("pay-service-image-nologo");
     };
