@@ -75,18 +75,39 @@
           <div class="pay-category-name-field">{i.name}
           </div>
           <div class="pay-icon-tick" id="tick{i.id}"></div>
-          <div class="pay-services-block" if="{index == i.id && show}" style="list-style:none">
+          <div class="pay-services-block" if="{index == i.id}" style="list-style:none">
             <div class="pay-service-containter"
                  each="{j in i.currentList}">
+
               <div class="pay-service-icon" id="{j.id}"
                    role="button"
                    aria-label="{j.name}"
                    ontouchend="onTouchEndOfService(this.id)" ontouchstart="onTouchStartOfService(this.id)">
-                <img id="{j.id+'_image'}" if="{j.image}"
-                     class="{pay-service-image: !j.image_cached, pay-service-image-noloader: j.image_cached}"
-                     src="{j.image}" onload="clearLoaderOnIconLoad(this.id)"
-                     onloadeddata="clearLoaderOnIconLoad(this.id)" onerror="errorDownloadImage(this.id)">
+
+
+                <div if="{j.image}"
+                     id="{j.id + '_image_container'}"
+                     class="{pay-service-image-container: true,
+                            pay-service-image-nologo: !j.image_cached}">
+
+                  <img id="{j.id+'_image'}" if="{j.image && !j.image_cached}"
+                       class="pay-service-image"
+                       src="{j.image}"
+                       onload="onServiceImageLoaded('{j.id}')"
+                       onloadeddata="onServiceImageLoaded('{j.id}')"
+                       onerror="onServiceImageLoadError('{j.id}')">
+
+                  <img hidden id="{j.id+'_image'}" if="{j.image && j.image_cached}"
+                       class="pay-service-image pay-service-image-cached"
+                       src="{j.image}"
+                       onload="onServiceCachedImageLoaded('{j.id}')"
+                       onloadeddata="onServiceCachedImageLoaded('{j.id}')"
+                       onerror="onServiceImageLoadError('{j.id}')">
+
+                </div>
+
                 <div class="pay-service-name-field">{j.name}</div>
+
               </div>
             </div>
           </div>
@@ -102,6 +123,7 @@
     var scope = this;
     scope.checkOfSearch = false;
     scope.scrolling = false;
+    scope.isClickStarted = false;
     scope.titleName = opts.mode == 'ADDAUTOPAY' ? window.languages.ViewAutoPayTitleName : window.languages.ViewPayTitleName;
 
     window.saveHistory('view-pay', opts);
@@ -192,11 +214,12 @@
         scope.show = true;
       }
       if (opts.categoryId || viewPay.searchServices) {
-        categoriesContainerId.scrollTop = viewPay.categoryScrollTop;
-        viewPay.categoryScrollTop = null;
-      }
+        setTimeout(function () {
+          categoriesContainerId.scrollTop = viewPay.categoryScrollTop;
+          viewPay.categoryScrollTop = null;
+        }, 50)
 
-      console.log("viewPay.categoryScrollTop = ", viewPay.categoryScrollTop);
+      }
 
       setTimeout(function () {
         scope.update();
@@ -294,7 +317,6 @@
 
       searchStartX = event.changedTouches[0].pageX;
       searchStartY = event.changedTouches[0].pageY;
-
     };
 
     onTouchEndOfSearchRemove = function () {
@@ -320,63 +342,67 @@
 
 
     scope.onTouchStartOfCategory = onTouchStartOfCategory = function (id) {
-      console.log('View.Pay.tag.onTouchStartOfCategory()')
+      console.log('View.Pay.tag.onTouchStartOfCategory()', id)
       scope.isServiceClicked = false;
       event.stopPropagation();
 
       window.blurFields();
       onCategoryTouchStartY = event.changedTouches[0].pageY;
       onCategoryTouchStartX = event.changedTouches[0].pageX;
+      scope.isClickStarted = true;
     };
 
     scope.onTouchEndOfCategory = onTouchEndOfCategory = function (id) {
-      if(scope.isServiceClicked) return;
-      console.log('View.Pay.tag.onTouchEndOfCategory()')
+      console.log(JSON.stringify(scope.isClickStarted));
+      if(scope.isServiceClicked || !scope.isClickStarted) return;
+      console.log('View.Pay.tag.onTouchEndOfCategory():', id);
+
+      console.log(scope.categoryList);
 
       onCategoryTouchEndY = event.changedTouches[0].pageY;
       onCategoryTouchEndX = event.changedTouches[0].pageX;
 
+      const isTap = (Math.abs(onCategoryTouchStartY - onCategoryTouchEndY) <= 20
+        && Math.abs(onCategoryTouchStartX - onCategoryTouchEndX) <= 20);
+
+      if(scope.index != id && isTap)
+        document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
+
+      if(isTap) {
+        setTimeout(function () {
+          document.getElementById(id).style.backgroundColor = 'transparent'
+        }, 100);
+      }
+
       setTimeout(function () {
 
-        if ((Math.abs(onCategoryTouchStartY - onCategoryTouchEndY) <= 20 && Math.abs(onCategoryTouchStartX - onCategoryTouchEndX) <= 20) || scope.checkOfSearch) {
+        if (isTap || scope.checkOfSearch) {
 
           if (scope.index == id) {
             scope.index = -1;
+            scope.update();
+            document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catopen.png)";
           } else {
             if (scope.index != -1) {
               document.getElementById("tick" + scope.index).style.backgroundImage = "url(resources/icons/ViewPay/catopen.png)";
-              scope.show = false;
               scope.update();
             }
-            scope.index = id;
-          }
-
-          scope.show = true;
-          document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catopen.png)";
-          if (scope.index == id && scope.show) {
-
-            document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
-
-            // Названи и список сервисов в одном и том же блоке. Из-за чего фоновый цвет менял у всего блока
-            // Пришлось вызывать scope.update() с таймаутом равным времени нахождения фонового темного цвета
-            setTimeout(function () {
-              document.getElementById(id).style.backgroundColor = 'transparent'
-            }, 50);
 
             document.getElementById("tick" + id).style.backgroundImage = "url(resources/icons/ViewPay/catclose.png)";
+
+            scope.index = id;
+
             viewPay.categoryId = id;
             opts.categoryId = id;
-          }
 
-          setTimeout(function () {
             scope.update();
             document.getElementById(id).scrollIntoView();
-          }, 50);
 
-          setTimeout(function () {
-            document.getElementById(id).scrollIntoView();
-          }, 50);
-
+            setTimeout(function () {
+              document.getElementById(id).scrollIntoView();
+              console.log(scope.index)
+            }, 50);
+          }
         }
 
       }, 100)
@@ -398,14 +424,15 @@
 
 
     onTouchMoveOfCategory = function () {
-
+      scope.isClickStarted = false;
       event.stopPropagation();
+      scope.scrolling = true;
 
       // For preventing click to service on stop scrolling categories
-      scope.scrolling = true;
-      setTimeout(function () {
-        scope.scrolling = false;
-      }, 350);
+//      scope.scrolling = true;
+//      setTimeout(function () {
+//        scope.scrolling = false;
+//      }, 350);
 
 //      var element = document.getElementById(scope.index);
 //
@@ -420,7 +447,7 @@
 //          scope.update();
 //        }
 //      }
-      scope.update();
+//      scope.update();
     };
 
 
@@ -428,18 +455,19 @@
       console.log('View.Pay.tag.onTouchStartOfService()')
       window.blurFields();
       // For preventing click to service on stop scrolling categories
-      if (scope.scrolling) {
-        event.stopPropagation();
-        event.preventDefault();
-        onTouchStartY = 0;
-        onTouchStartX = 0;
-        return;
-      }
+//      if (scope.scrolling) {
+//        event.stopPropagation();
+//        event.preventDefault();
+//        onTouchStartY = 0;
+//        onTouchStartX = 0;
+//        return;
+//      }
 
       event.stopPropagation();
 
       onServiceTouchStartY = event.changedTouches[0].pageY;
       onServiceTouchStartX = event.changedTouches[0].pageX;
+      scope.scrolling = false;
     };
 
 
@@ -448,15 +476,15 @@
     //opts = (!opts.mode || opts.mode == 'USUAL') ? {} : opts;
 
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {
-      console.log('View.Pay.tag.onTouchEndOfService()')
-      scope.isServiceClicked = true;
-
       // For preventing click to service on stop scrolling categories
       if (scope.scrolling) {
         event.stopPropagation();
         event.preventDefault();
         return;
       }
+      console.log('View.Pay.tag.onTouchEndOfService()')
+
+      scope.isServiceClicked = true;
 
       onServiceTouchEndY = event.changedTouches[0].pageY;
       onServiceTouchEndX = event.changedTouches[0].pageX;
@@ -490,6 +518,7 @@
           newOpts = null;
 
           viewPay.categoryScrollTop = categoriesContainerId.scrollTop;
+          console.log('SSSSSSSSUKKKKKAAAAA', viewPay.categoryScrollTop)
           opts.searchWord = searchInputId.value;
 
           console.log('ID ID ID', id)
@@ -544,6 +573,22 @@
       }
     };
 
+    onServiceImageLoaded = function(serviceId) {
+//      console.log('View.Pay.tag.onServiceImageLoaded()', serviceId)
+      document.getElementById(serviceId + '_image').style.opacity = 1;
+      document.getElementById(serviceId + '_image_container').style.backgroundImage = "none";
+    };
+
+    onServiceCachedImageLoaded = function(serviceId) {
+//      console.log('View.Pay.tag.onServiceImageLoadError()', serviceId);
+      document.getElementById(serviceId + '_image').hidden = false;
+    };
+
+    onServiceImageLoadError = function(serviceId) {
+//      console.log('View.Pay.tag.onServiceImageLoadError()', serviceId);
+      document.getElementById(serviceId + '_image').hidden = true;
+      document.getElementById(serviceId + '_image_container').classList.add("pay-service-image-nologo");
+    };
 
     moveToService = function () {
       console.log(categoriesContainerId);
