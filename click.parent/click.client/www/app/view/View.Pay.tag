@@ -356,21 +356,24 @@
 
       console.log(scope.categoryList);
 
-      if(scope.index != id)
-        document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
-
-      // Названи и список сервисов в одном и том же блоке. Из-за чего фоновый цвет менял у всего блока
-      // Пришлось вызывать scope.update() с таймаутом равным времени нахождения фонового темного цвета
-      setTimeout(function () {
-        document.getElementById(id).style.backgroundColor = 'transparent'
-      }, 100);
-
       onCategoryTouchEndY = event.changedTouches[0].pageY;
       onCategoryTouchEndX = event.changedTouches[0].pageX;
 
+      const isTap = (Math.abs(onCategoryTouchStartY - onCategoryTouchEndY) <= 20
+        && Math.abs(onCategoryTouchStartX - onCategoryTouchEndX) <= 20);
+
+      if(scope.index != id && isTap)
+        document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
+
+      if(isTap) {
+        setTimeout(function () {
+          document.getElementById(id).style.backgroundColor = 'transparent'
+        }, 100);
+      }
+
       setTimeout(function () {
 
-        if ((Math.abs(onCategoryTouchStartY - onCategoryTouchEndY) <= 20 && Math.abs(onCategoryTouchStartX - onCategoryTouchEndX) <= 20) || scope.checkOfSearch) {
+        if (isTap || scope.checkOfSearch) {
 
           if (scope.index == id) {
             scope.index = -1;
@@ -573,7 +576,7 @@
     onServiceCachedImageLoaded = function(serviceId) {
       console.log('View.Pay.tag.onServiceImageLoadError()', serviceId);
       document.getElementById(serviceId + '_image').hidden = false;
-      };
+    };
 
     onServiceImageLoadError = function(serviceId) {
       console.log('View.Pay.tag.onServiceImageLoadError()', serviceId);
