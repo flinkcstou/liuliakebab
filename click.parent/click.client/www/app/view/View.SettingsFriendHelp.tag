@@ -80,10 +80,10 @@
             continue
           }
           if (contacts[i].name && contacts[i].name.familyName)
-            personObj.lastname = contacts[i].name.familyName
+            personObj.lastname = contacts[i].name.familyName;
 
           if (contacts[i].name && contacts[i].name.givenName)
-            personObj.firstname = contacts[i].name.givenName
+            personObj.firstname = contacts[i].name.givenName;
 
           scope.arrayOfPhoneNumbers.push(personObj)
         }
@@ -107,7 +107,7 @@
 
 
       if (!localStorage.getItem('click_client_friendsOuter_count')) {
-        console.log("requesting friend list")
+        console.log("requesting friend list");
 
         if (device.platform != 'BrowserStand') {
           var options = new ContactFindOptions();
@@ -143,7 +143,7 @@
         event.preventDefault();
         event.stopPropagation();
 
-        backButton.style.webkitTransform = 'scale(1)'
+        backButton.style.webkitTransform = 'scale(1)';
 
         goBackButtonEndX = event.changedTouches[0].pageX;
         goBackButtonEndY = event.changedTouches[0].pageY;
@@ -167,17 +167,17 @@
         event.preventDefault();
         event.stopPropagation();
 
-        rightButton.style.webkitTransform = 'scale(0.7)'
+        rightButton.style.webkitTransform = 'scale(0.7)';
 
         addButtonStartX = event.changedTouches[0].pageX;
         addButtonStartY = event.changedTouches[0].pageY;
-      }
+      };
 
       goToAddFriendViewEnd = function () {
         event.preventDefault();
         event.stopPropagation();
 
-        rightButton.style.webkitTransform = 'scale(1)'
+        rightButton.style.webkitTransform = 'scale(1)';
 
         addButtonEndX = event.changedTouches[0].pageX;
         addButtonEndY = event.changedTouches[0].pageY;
@@ -188,7 +188,7 @@
 
           scope.unmount()
         }
-      }
+      };
 
 
       var chooseButtonStartX, chooseButtonEndX, chooseButtonStartY, chooseButtonEndY;
@@ -196,18 +196,18 @@
       chooseFriendForHelpStart = function (id) {
         event.stopPropagation();
 
-        console.log("ID", id)
+        console.log("ID", id);
 
-        document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)'
+        document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
 
         chooseButtonStartX = event.changedTouches[0].pageX;
         chooseButtonStartY = event.changedTouches[0].pageY;
-      }
+      };
 
       chooseFriendForHelpEnd = function (number, id) {
         event.stopPropagation();
 
-        document.getElementById(id).style.backgroundColor = 'transparent'
+        document.getElementById(id).style.backgroundColor = 'transparent';
 
         chooseButtonEndX = event.changedTouches[0].pageX;
         chooseButtonEndY = event.changedTouches[0].pageY;
@@ -246,8 +246,8 @@
         delButtonStartX = event.changedTouches[0].pageX;
         delButtonStartY = event.changedTouches[0].pageY;
 
-        document.getElementById(id).style.webkitTransform = 'scale(0.7)'
-      }
+        document.getElementById(id).style.webkitTransform = 'scale(0.7)';
+      };
 
       deleteFriendTouchEnd = function (id, idWithoutPrefix, delId) {
         console.log('sdfsdf');
@@ -256,7 +256,7 @@
         delButtonEndX = event.changedTouches[0].pageX;
         delButtonEndY = event.changedTouches[0].pageY;
 
-        document.getElementById(delId).style.webkitTransform = 'scale(1)'
+        document.getElementById(delId).style.webkitTransform = 'scale(1)';
 
 
         if (Math.abs(delButtonStartX - delButtonEndX) <= 20 && Math.abs(delButtonStartY - delButtonEndY) <= 20) {
@@ -276,15 +276,15 @@
             if (bool) {
               var idOfBlock = 'id' + idWithoutPrefix;
               idOfBlock = idOfBlock.substring(2, idOfBlock.length);
-              console.log('idWithoutPrefix', idWithoutPrefix)
+              console.log('idWithoutPrefix', idWithoutPrefix);
 
               var arrayOfFriends = JSON.parse(localStorage.getItem('click_client_friends'));
               arrayOfFriends.filter(function (wordOfFunction, indexOfFind) {
                 console.log("ASD TSET", indexOfFind);
                 var index = wordOfFunction.number.indexOf(idWithoutPrefix);
-                console.log(index)
+                console.log(index);
                 if (index != -1) {
-                  console.log('index', indexOfFind)
+                  console.log('index', indexOfFind);
                   arrayOfFriends.splice(indexOfFind, 1);
                   console.log(arrayOfFriends);
                   localStorage.setItem('click_client_friends', JSON.stringify(arrayOfFriends));
@@ -292,7 +292,6 @@
                   scope.arrayOfFriends=arrayOfFriends;
                   scope.showFriendList=scope.arrayOfFriends.length>0;
                   scope.update();
-                  return;
                 }
               })
             }

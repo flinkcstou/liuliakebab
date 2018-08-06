@@ -36,7 +36,7 @@
         commentHelpTextId.focus();
       }
 
-    })
+    });
 
 
     scope.comment = 'Опишите вашу проблему';
@@ -47,7 +47,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      closeButtonId.style.webkitTransform = 'scale(0.8)'
+      closeButtonId.style.webkitTransform = 'scale(0.8)';
 
       closeButtonStartX = event.changedTouches[0].pageX;
       closeButtonStartY = event.changedTouches[0].pageY;
@@ -58,7 +58,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      closeButtonId.style.webkitTransform = 'scale(1)'
+      closeButtonId.style.webkitTransform = 'scale(1)';
 
       closeButtonEndX = event.changedTouches[0].pageX;
       closeButtonEndY = event.changedTouches[0].pageY;
@@ -75,17 +75,17 @@
       event.preventDefault();
       event.stopPropagation();
 
-      sendButtonId.style.webkitTransform = 'scale(0.8)'
+      sendButtonId.style.webkitTransform = 'scale(0.8)';
 
       sendButtonStartX = event.changedTouches[0].pageX;
       sendButtonStartY = event.changedTouches[0].pageY;
-    }
+    };
 
     sendMessageTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      sendButtonId.style.webkitTransform = 'scale(1)'
+      sendButtonId.style.webkitTransform = 'scale(1)';
 
       sendButtonEndX = event.changedTouches[0].pageX;
       sendButtonEndY = event.changedTouches[0].pageY;
@@ -108,7 +108,7 @@
             session_key: sessionKey,
             client_name: name,
             type: type,
-            description: description,
+            description: description
 
           },
 

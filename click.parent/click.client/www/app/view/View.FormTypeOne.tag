@@ -78,6 +78,12 @@
         <p if="{commissionPercent}" class="servicepage-amount-tax-text-field">
           {window.languages.ViewServicePageAmountTaxText} {tax}
           {window.languages.Currency}</p>
+        <p if="{isInternationalPay}" class="servicepage-amount-tax-text-field" style="bottom:-90%;">
+          <b>
+            {window.languages.ViewServiceToEnrollment}
+          </b>
+          <b style="color: lightgreen;">{toEnrollment} USD</b>
+        </p>
         <input class="servicepage-amount-input" type="tel" value="{defaultAmount}" maxlength="10"
                id="amount"
                readonly="{!service['amount_editable']}"
@@ -163,6 +169,10 @@
     scope.showErrorOfLimit = false;
     var onPaste = false;
     var amountFormatted = false;
+
+    scope.tax = 0;
+    scope.toEnrollment = 0;
+
     scope.selectedId = '';
     var options = {
       symbol: "",
@@ -193,6 +203,11 @@
     if (opts.id) {
       opts.chosenServiceId = opts.id;
     }
+
+    if (opts.categoryId == '16') {
+      scope.isInternationalPay = true;
+    }
+
     if (opts.amountText) {
       opts.amountText = !opts.amountText ? 0 : window.amountTransform(opts.amountText.toString());
       scope.tax = opts.tax ? opts.tax : 0;
@@ -697,6 +712,9 @@
       scope.titleName = scope.service.name;
       scope.serviceIcon = scope.service.image;
       scope.commissionPercent = scope.service.commission_percent;
+      scope.low_ratio = scope.service.low_ratio;
+      scope.nds = scope.service.nds;
+      console.log("!!!!!!!!!!!!!!!!!!!", scope.service);
     }
 
     //Editing amount input for non editable situations
@@ -863,7 +881,6 @@
       for (var i = 0; i < scope.fieldArray.length; i++) {
 
 //        console.log("Yahoo2", id, scope.fieldArray, scope.fieldArray[i], scope.fieldArray[i].parameter_id);
-
         if (scope.fieldArray[i].parameter_id == id) {
           scope.chosenFieldName = scope.fieldArray[i].title;
           scope.chosenFieldPlaceholder = scope.fieldArray[i].placeholder;
@@ -1005,8 +1022,11 @@
       opts.amountWithoutSpace = amountForPayTransaction;
 
       if (amountForPayTransaction >= 1000) {
-        scope.tax = amountForPayTransaction * scope.commissionPercent / 100;
+        scope.tax = amountForPayTransaction / 100 * scope.commissionPercent;
         opts.tax = scope.tax;
+        var nds = (amountForPayTransaction + scope.commissionPercent) / 100 * scope.nds ? scope.nds : 0;
+        scope.tax = scope.tax + nds;
+        scope.toEnrollment = (amountForPayTransaction / scope.service.rate) / 100 * (100 - scope.low_ratio);
       }
       scope.update();
       checkFieldsToActivateNext('sum');

@@ -46,6 +46,7 @@
   </button>
   <component-tour view="registration"></component-tour>
   <script>
+
     var scope = this;
 
     scope.continueButtonActive = true;
@@ -121,18 +122,19 @@
     };
 
     function startSMSReceive() {
-      SMSReceive.startWatch(function () {
-        console.log('SMSReceive: watching started');
-        document.addEventListener('onSMSArrive', function (e) {
-          console.log('onSMSArrive()');
-          var IncomingSMS = e.data;
-          if (isClickCodeSms(IncomingSMS.body)) {
-            setConfirmSms(parseSms(IncomingSMS.body));
-          }
+      if (device.platform != 'BrowserStand')
+        SMSReceive.startWatch(function () {
+          console.log('SMSReceive: watching started');
+          document.addEventListener('onSMSArrive', function (e) {
+            console.log('onSMSArrive()');
+            var IncomingSMS = e.data;
+            if (isClickCodeSms(IncomingSMS.body)) {
+              setConfirmSms(parseSms(IncomingSMS.body));
+            }
+          });
+        }, function () {
+          console.warn('SMSReceive: failed to start watching');
         });
-      }, function () {
-        console.warn('SMSReceive: failed to start watching');
-      });
     }
 
     function parseSms(sms) {
@@ -146,11 +148,12 @@
     }
 
     function stopSMSReceive() {
-      SMSReceive.stopWatch(function () {
-        console.log('SMSReceive: watching stopped');
-      }, function () {
-        console.warn('SMSReceive: failed to stop watching');
-      });
+      if (device.platform != 'BrowserStand')
+        SMSReceive.stopWatch(function () {
+          console.log('SMSReceive: watching stopped');
+        }, function () {
+          console.warn('SMSReceive: failed to stop watching');
+        });
     }
 
     componentKeyboard.returnValue = function (myValue, id) {
@@ -375,7 +378,6 @@
       countOfCall++;
       checkServiceAnswer = false;
       window.startSpinner();
-
       if (countOfCall <= 3 && !checkServiceAnswer)
         setTimeout(function () {
           if (!checkServiceAnswer && modeOfApp.onlineMode) {

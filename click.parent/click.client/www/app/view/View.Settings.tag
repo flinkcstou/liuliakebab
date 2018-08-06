@@ -93,17 +93,17 @@
       event.preventDefault();
       event.stopPropagation();
 
-      backButton.style.webkitTransform = 'scale(0.7)'
+      backButton.style.webkitTransform = 'scale(0.7)';
 
       goBackButtonStartX = event.changedTouches[0].pageX;
       goBackButtonStartY = event.changedTouches[0].pageY;
-    }
+    };
 
     settingsGoToBackEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      backButton.style.webkitTransform = 'scale(1)'
+      backButton.style.webkitTransform = 'scale(1)';
 
       goBackButtonEndX = event.changedTouches[0].pageX;
       goBackButtonEndY = event.changedTouches[0].pageY;
@@ -123,12 +123,12 @@
 
 //      mainSettingsButtonId.style.webkitTransform = 'scale(0.9)'
 
-      mainSettingsButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
+      mainSettingsButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)';
 
       mainSettingsButtonStartX = event.changedTouches[0].pageX;
       mainSettingsButtonStartY = event.changedTouches[0].pageY;
 
-    }
+    };
 
     goToMainSettingsTouchEnd = function () {
       event.preventDefault();
@@ -136,7 +136,7 @@
 
 //      mainSettingsButtonId.style.webkitTransform = 'scale(1)'
 
-      mainSettingsButtonId.style.backgroundColor = 'transparent'
+      mainSettingsButtonId.style.backgroundColor = 'transparent';
 
       mainSettingsButtonEndX = event.changedTouches[0].pageX;
       mainSettingsButtonEndY = event.changedTouches[0].pageY;
@@ -147,7 +147,7 @@
 
         scope.unmount()
       }
-    }
+    };
 
     var securitySettingsButtonStartX, securitySettingsButtonEndX, securitySettingsButtonStartY,
       securitySettingsButtonEndY;
@@ -156,18 +156,18 @@
       event.preventDefault();
       event.stopPropagation();
 
-      securitySettingsButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
+      securitySettingsButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)';
 
       securitySettingsButtonStartX = event.changedTouches[0].pageX;
       securitySettingsButtonStartY = event.changedTouches[0].pageY;
 
-    }
+    };
 
     goToSecuritySettingsTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      securitySettingsButtonId.style.backgroundColor = 'transparent'
+      securitySettingsButtonId.style.backgroundColor = 'transparent';
 
       securitySettingsButtonEndX = event.changedTouches[0].pageX;
       securitySettingsButtonEndY = event.changedTouches[0].pageY;
@@ -178,7 +178,7 @@
 
         scope.unmount()
       }
-    }
+    };
 
     var friendHelpSettingsButtonStartX, friendHelpSettingsButtonEndX, friendHelpSettingsButtonStartY,
       friendHelpSettingsButtonEndY;
@@ -187,19 +187,19 @@
       event.preventDefault();
       event.stopPropagation();
 
-      friendHelpSettingsButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
+      friendHelpSettingsButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)';
 
       friendHelpSettingsButtonStartX = event.changedTouches[0].pageX;
       friendHelpSettingsButtonStartY = event.changedTouches[0].pageY;
 
 
-    }
+    };
 
     goToFriendHelpSettingsTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      friendHelpSettingsButtonId.style.backgroundColor = 'transparent'
+      friendHelpSettingsButtonId.style.backgroundColor = 'transparent';
 
       friendHelpSettingsButtonEndX = event.changedTouches[0].pageX;
       friendHelpSettingsButtonEndY = event.changedTouches[0].pageY;
@@ -210,7 +210,7 @@
 
         scope.unmount()
       }
-    }
+    };
 
 
     var goToAboutSettingsButtonStartX, goToAboutSettingsButtonEndX, goToAboutSettingsButtonStartY,
@@ -220,17 +220,17 @@
       event.preventDefault();
       event.stopPropagation();
 
-      goToAboutSettingsButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
+      goToAboutSettingsButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)';
 
       goToAboutSettingsButtonStartX = event.changedTouches[0].pageX;
       goToAboutSettingsButtonStartY = event.changedTouches[0].pageY;
-    }
+    };
 
     goToAboutSettingsTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      goToAboutSettingsButtonId.style.backgroundColor = 'transparent'
+      goToAboutSettingsButtonId.style.backgroundColor = 'transparent';
 
       goToAboutSettingsButtonEndX = event.changedTouches[0].pageX;
       goToAboutSettingsButtonEndY = event.changedTouches[0].pageY;
@@ -241,7 +241,7 @@
 
         scope.unmount()
       }
-    }
+    };
 
     var inviteSettingsButtonStartX, inviteSettingsButtonEndX, inviteSettingsButtonStartY, inviteSettingsButtonEndY;
 
@@ -249,18 +249,18 @@
       event.preventDefault();
       event.stopPropagation();
 
-      inviteSettingsButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
+      inviteSettingsButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)';
 
       inviteSettingsButtonStartX = event.changedTouches[0].pageX;
       inviteSettingsButtonStartY = event.changedTouches[0].pageY;
 
-    }
+    };
 
     goToInviteFriendSettingsTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      inviteSettingsButtonId.style.backgroundColor = 'transparent'
+      inviteSettingsButtonId.style.backgroundColor = 'transparent';
 
       inviteSettingsButtonEndX = event.changedTouches[0].pageX;
       inviteSettingsButtonEndY = event.changedTouches[0].pageY;
@@ -268,12 +268,12 @@
       if (Math.abs(inviteSettingsButtonStartX - inviteSettingsButtonEndX) <= 20 && Math.abs(inviteSettingsButtonStartY - inviteSettingsButtonEndY) <= 20) {
         window.pickContactFromNativeChecker = true;
         var text = "Привет! Подключайтесь к CLICK с новыми возможностями! Управляйте своими картами, Проверяйте общий баланс карт, Переводите средства с карты на карту, Оплачивайте любые услуги и погашайте кредиты!" + "Набирайте '*880#', скачивайте новое приложение CLICK Uzbekistan http://click.uz/a или пользуйтесь персональным кабинетом http://my.click.uz"
-          + "(Для подключения необходимо включить услугу смс-информирования)."
-        var title = "CLICK"
+          + "(Для подключения необходимо включить услугу смс-информирования).";
+        var title = "CLICK";
 
         window.plugins.socialsharing.share(text, title, null, null)
       }
-    }
+    };
 
 
     var goToSupportSettingsButtonStartX, goToSupportSettingsButtonEndX, goToSupportSettingsButtonStartY,
@@ -283,18 +283,18 @@
       event.preventDefault();
       event.stopPropagation();
 
-      goToSupportSettingsButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
+      goToSupportSettingsButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)';
 
       goToSupportSettingsButtonStartX = event.changedTouches[0].pageX;
       goToSupportSettingsButtonStartY = event.changedTouches[0].pageY;
 
-    }
+    };
 
     goToSupportSettingsTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      goToSupportSettingsButtonId.style.backgroundColor = 'transparent'
+      goToSupportSettingsButtonId.style.backgroundColor = 'transparent';
 
       goToSupportSettingsButtonEndX = event.changedTouches[0].pageX;
       goToSupportSettingsButtonEndY = event.changedTouches[0].pageY;
@@ -306,7 +306,7 @@
 
       }
 
-    }
+    };
 
     var callSettingsButtonStartX, callSettingsButtonEndX, callSettingsButtonStartY, callSettingsButtonEndY;
 
@@ -319,13 +319,13 @@
 
       callSettingsButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
 
-    }
+    };
 
     goToCallCenterSettingsTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      callSettingsButtonId.style.backgroundColor = 'transparent'
+      callSettingsButtonId.style.backgroundColor = 'transparent';
 
       callSettingsButtonEndX = event.changedTouches[0].pageX;
       callSettingsButtonEndY = event.changedTouches[0].pageY;
@@ -333,7 +333,7 @@
       if (Math.abs(callSettingsButtonStartX - callSettingsButtonEndX) <= 20 && Math.abs(callSettingsButtonStartY - callSettingsButtonEndY) <= 20) {
         window.open('tel:+998712310880')
       }
-    }
+    };
 
     var resetLocalStorageTouchStartX, resetLocalStorageTouchStartY, resetLocalStorageTouchEndX,
       resetLocalStorageTouchEndY;
@@ -342,24 +342,24 @@
       event.preventDefault();
       event.stopPropagation();
 
-      clearButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
+      clearButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)';
 
-      resetLocalStorageTouchStartX = event.changedTouches[0].pageX
-      resetLocalStorageTouchStartY = event.changedTouches[0].pageY
-    }
+      resetLocalStorageTouchStartX = event.changedTouches[0].pageX;
+      resetLocalStorageTouchStartY = event.changedTouches[0].pageY;
+    };
 
     localStorageClearTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      resetLocalStorageTouchEndX = event.changedTouches[0].pageX
-      resetLocalStorageTouchEndY = event.changedTouches[0].pageY
+      resetLocalStorageTouchEndX = event.changedTouches[0].pageX;
+      resetLocalStorageTouchEndY = event.changedTouches[0].pageY;
 
-      clearButtonId.style.backgroundColor = 'transparent'
+      clearButtonId.style.backgroundColor = 'transparent';
 
       if (Math.abs(resetLocalStorageTouchStartX - resetLocalStorageTouchEndX) <= 20 && Math.abs(resetLocalStorageTouchStartY - resetLocalStorageTouchEndY) <= 20) {
 
-        var question = 'Подтвердите удаление данных'
+        var question = 'Подтвердите удаление данных';
 //        confirm(question)
         scope.confirmNote = question;
         scope.confirmType = 'local';
@@ -367,7 +367,7 @@
         window.common.alert.show("componentConfirmId", {
           "confirmnote": scope.confirmNote,
           "confirmtype": scope.confirmType,
-          parent: scope,
+          parent: scope
         });
 
         scope.update();
@@ -380,8 +380,7 @@
             }
             riotTags.innerHTML = "<view-registration-device>";
             riot.mount('view-registration-device');
-            scope.unmount()
-            return
+            scope.unmount();
           }
         };
 //      if (scope.result) {

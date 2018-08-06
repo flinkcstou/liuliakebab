@@ -432,7 +432,7 @@
 
             scope.result = function (bool) {
               if (bool) {
-                modeOfApp.onlineMode = false
+                modeOfApp.onlineMode = false;
                 modeOfApp.offlineMode = true;
 
                 riotTags.innerHTML = "<view-main-page>";
@@ -444,7 +444,7 @@
             window.common.alert.show("componentConfirmId", {
               "confirmnote": confirmNote,
               "confirmtype": confirmType,
-              parent: scope,
+              parent: scope
             });
           };
 
@@ -457,24 +457,24 @@
 
     var helpTouchStartX, helpTouchStartY, helpTouchEndX, helpTouchEndY;
     helpTouchStart = function () {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
 
       registrationHelpButtonId.style.webkitTransform = 'scale(0.8)'
 
       helpTouchStartX = event.changedTouches[0].pageX
       helpTouchStartY = event.changedTouches[0].pageY
 
-    }
+    };
 
     helpTouchEnd = function () {
-      event.preventDefault()
-      event.stopPropagation()
+      event.preventDefault();
+      event.stopPropagation();
 
       registrationHelpButtonId.style.webkitTransform = 'scale(1)'
 
-      helpTouchEndX = event.changedTouches[0].pageX
-      helpTouchEndY = event.changedTouches[0].pageY
+      helpTouchEndX = event.changedTouches[0].pageX;
+      helpTouchEndY = event.changedTouches[0].pageY;
 
 
       if (Math.abs(helpTouchStartX - helpTouchEndX) <= 20 && Math.abs(helpTouchStartY - helpTouchEndY) <= 20) {
