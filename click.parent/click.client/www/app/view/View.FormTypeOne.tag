@@ -76,13 +76,14 @@
            id="amountField">
         <p id="amountFieldTitle" class="servicepage-text-field">{amountFieldTitle}</p>
         <p if="{commissionPercent}" class="servicepage-amount-tax-text-field">
-          {window.languages.ViewServicePageAmountTaxText} {tax}
+          {nds ? window.languages.ViewServicePageAmountTaxTextWithNds : window.languages.ViewServicePageAmountTaxText}
+          {tax}
           {window.languages.Currency}</p>
-        <p if="{isInternationalPay}" class="servicepage-amount-tax-text-field" style="bottom:-90%;">
+        <p if="{nds && isInternationalPay}" class="servicepage-amount-tax-text-field" style="bottom:-90%;">
           <b>
             {window.languages.ViewServiceToEnrollment}
           </b>
-          <b style="color: lightgreen;">{toEnrollment} USD</b>
+          <b style="color: rgb(142,184,81);">{toEnrollment} USD</b>
         </p>
         <input class="servicepage-amount-input" type="tel" value="{defaultAmount}" maxlength="10"
                id="amount"
@@ -143,11 +144,8 @@
             <p class="component-calc-button-label">{window.languages.ViewAmountCalculatorAcceptText}</p>
           </div>
         </div>
-
       </div>
-
     </div>
-
   </div>
 
   <component-dropdown></component-dropdown>
@@ -172,7 +170,7 @@
 
     scope.tax = 0;
     scope.toEnrollment = 0;
-
+    scope.taxText = window.languages.ViewServicePageAmountTaxText;
     scope.selectedId = '';
     var options = {
       symbol: "",
@@ -295,6 +293,8 @@
           scope.update();
           placeHolderSumId.style.color = 'red';
         }
+        scope.tax = 0;
+        scope.toEnrollment = 0;
         scope.enterButtonEnabled = false;
         scope.update();
         return;
@@ -714,7 +714,6 @@
       scope.commissionPercent = scope.service.commission_percent;
       scope.low_ratio = scope.service.low_ratio;
       scope.nds = scope.service.nds;
-      console.log("!!!!!!!!!!!!!!!!!!!", scope.service);
     }
 
     //Editing amount input for non editable situations
@@ -1025,8 +1024,11 @@
         scope.tax = amountForPayTransaction / 100 * scope.commissionPercent;
         opts.tax = scope.tax;
         var nds = (amountForPayTransaction + scope.commissionPercent) / 100 * scope.nds ? scope.nds : 0;
-        scope.tax = scope.tax + nds;
-        scope.toEnrollment = (amountForPayTransaction / scope.service.rate) / 100 * (100 - scope.low_ratio);
+        scope.tax = (scope.tax + nds).toFixed(2);
+        scope.toEnrollment = ((amountForPayTransaction / scope.service.rate) / 100 * (100 - scope.low_ratio)).toFixed(2);
+      } else {
+        scope.tax = 0;
+        scope.toEnrollment = 0;
       }
       scope.update();
       checkFieldsToActivateNext('sum');

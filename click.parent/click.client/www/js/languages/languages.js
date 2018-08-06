@@ -114,7 +114,8 @@ var RU_LANGUAGES =
     "ViewServicePagePayLabel": "ОПЛАТИТЬ",
     "ViewServicePageVoiceOverOpenCalculator": "Открыть калькулятор",
     "ViewServicePageAmountTextLabel": "Сумма оплаты:",
-    "ViewServicePageAmountTaxText": "Комиссия: ",
+    "ViewServicePageAmountTaxText": "Плюс комиссия - ",
+    "ViewServicePageAmountTaxTextWithNds": "Плюс комиссия (в т.ч. НДС) - ",
     "ViewServiceToEnrollment": "Будет зачислено:",
 
 //{(secondLevelArray && secondLevelArray[0])?(secondLevelArray[0].name):("")}
