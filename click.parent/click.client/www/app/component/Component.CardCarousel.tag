@@ -114,7 +114,7 @@
         event.preventDefault();
         event.stopPropagation();
 
-        console.log("add card page open")
+        console.log("add card page open");
 
         riotTags.innerHTML = "<view-add-card>";
         riot.mount('view-add-card');
@@ -122,7 +122,7 @@
         scope.unmount()
 
       }
-    }
+    };
 
     var touchStartInvoiceOne;
     var touchEndInvoiceOne;
@@ -172,8 +172,12 @@
             friend_name: invoice.friend_name,
             commission_percent: invoice.commission_percent,
             service_id: invoice.service_id,
-            description: invoice.description
-          };
+            description: invoice.description,
+            nds: invoice.nds,
+            rate: invoice.rate,
+            low_ratio: invoice.low_ratio
+          }
+          ;
 
           history.arrayOfHistory.push({view: "view-payment-detail"});
           sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
@@ -358,8 +362,11 @@
                   } else {
                     result[1][i].currency = window.languages.Currency;
                   }
-                  arrayOfInvoice.push(result[1][i]);
-
+                  var invoice = result[1][i];
+                  invoice.nds = scope.servicesMap[result[1][i].service_id][0].nds;
+                  invoice.rate = scope.servicesMap[result[1][i].service_id][0].rate;
+                  invoice.low_ratio = scope.servicesMap[result[1][i].service_id][0].low_ratio;
+                  arrayOfInvoice.push(invoice);
                 }
 
                 localStorage.setItem('click_client_invoice_list', JSON.stringify(arrayOfInvoice));

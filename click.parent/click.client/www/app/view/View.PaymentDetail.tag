@@ -23,14 +23,23 @@
   <div class="transfer-to-card-container">
 
     <div class="payment-detail-payment-container">
-      <p class="payment-detail-title">{window.languages.ViewPaymentDetailTitleSum}</p>
-      <p if="{opts.commission_percent}" class="payment-detail-commission">
-        {window.languages.ViewTransferTwoTax} {commission_amount}
-        {window.languages.Currency}</p>
-      <p class="payment-detail-sum">{opts.amount} {currency}</p>
+      <div class="payment-detail-payment-include-container">
+        <p class="payment-detail-title">{window.languages.ViewPaymentDetailTitleSum}</p>
+        <p class="payment-detail-sum">{opts.amount} {currency}</p>
+        <p if="{opts.commission_percent}" class="payment-detail-commission">
+          {window.languages.ViewTransferTwoTax} {commission_amount}
+          {window.languages.Currency}</p>
+        <p if="{opts.nds}" class="payment-detail-commission">
+          <b>
+            {window.languages.ViewServiceToEnrollment}
+          </b>
+          <b style="color: rgb(142,184,81);">{toEnrollment} USD</b>
+        </p>
+      </div>
     </div>
     <div class="payment-detail-payment-container-pay-from">
       <p class="payment-detail-title-pay-from">{window.languages.ViewPaymentDetailTitlePayFrom}</p>
+
     </div>
 
     <component-pincards paymentdetail="{true}" clean="{true}" useFor="payment"></component-pincards>
@@ -61,9 +70,20 @@
       touchEndAcceptX,
       touchEndAcceptY;
 
-    scope.commission_amount = scope.opts.amount * scope.opts.commission_percent / 100;
     scope.errorCode = 0;
     scope.currency = window.languages.Currency;
+
+    calculateTaxAndCommission();
+
+    function calculateTaxAndCommission() {
+      var amount = parseInt(opts.amount.replace(/\s/g, ''));
+      scope.commission_amount = amount / 100 * scope.opts.commission_percent;
+      var nds = (amount + scope.commission_amount) * (scope.opts.nds ? scope.opts.nds : 0) / 100;
+      scope.commission_amount = (scope.commission_amount + nds).toFixed(2);
+      scope.toEnrollment = ((amount / scope.opts.rate) / 100 * (100 - scope.opts.low_ratio)).toFixed(2);
+      if (scope.commission_amount % 1 === 0) scope.commission_amount = parseInt(scope.commission_amount);
+      if (scope.toEnrollment % 1 === 0) scope.toEnrollment = parseInt(scope.toEnrollment);
+    }
 
     //Get currency for this service
     if (localStorage.getItem("click_client_servicesMap")
@@ -234,7 +254,7 @@
             timeOutTimer = setTimeout(function () {
               window.writeLog({
                 reason: 'Timeout',
-                method: 'invoice.action',
+                method: 'invoice.action'
               });
               window.common.alert.show("componentAlertId", {
                 parent: scope,

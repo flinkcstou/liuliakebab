@@ -75,16 +75,6 @@
       <div class="{servicepage-amount-field: !dropDownOn, servicepage-amount-field-two: dropDownOn}"
            id="amountField">
         <p id="amountFieldTitle" class="servicepage-text-field">{amountFieldTitle}</p>
-        <p if="{commissionPercent}" class="servicepage-amount-tax-text-field">
-          {nds ? window.languages.ViewServicePageAmountTaxTextWithNds : window.languages.ViewServicePageAmountTaxText}
-          {tax}
-          {window.languages.Currency}</p>
-        <p if="{nds && isInternationalPay}" class="servicepage-amount-tax-text-field" style="bottom:-90%;">
-          <b>
-            {window.languages.ViewServiceToEnrollment}
-          </b>
-          <b style="color: rgb(142,184,81);">{toEnrollment} USD</b>
-        </p>
         <input class="servicepage-amount-input" type="tel" value="{defaultAmount}" maxlength="10"
                id="amount"
                readonly="{!service['amount_editable']}"
@@ -109,6 +99,19 @@
         {enterButton ? (modeOfApp.offlineMode ?window.languages.ViewServicePagePayLabel:
         window.languages.ViewServicePageEnterLabel):window.languages.ViewServicePageSaveLabel}
       </button>
+
+      <div style="position: relative; left: 10%; top: 2%;">
+        <p if="{commissionPercent}" class="servicepage-amount-tax-text-field">
+          {nds ? window.languages.ViewServicePageAmountTaxTextWithNds : window.languages.ViewServicePageAmountTaxText}
+          {tax}
+          {window.languages.Currency}</p>
+        <p if="{nds && isInternationalPay}" class="servicepage-amount-tax-text-field" style="bottom:-90%;">
+          <b>
+            {window.languages.ViewServiceToEnrollment}
+          </b>
+          <b style="color: rgb(142,184,81);">{toEnrollment} USD</b>
+        </p>
+      </div>
 
     </div>
 
@@ -209,6 +212,7 @@
     if (opts.amountText) {
       opts.amountText = !opts.amountText ? 0 : window.amountTransform(opts.amountText.toString());
       scope.tax = opts.tax ? opts.tax : 0;
+      scope.toEnrollment = opts.toEnrollment ? opts.toEnrollment : 0;
       scope.update();
     }
 
@@ -1022,10 +1026,15 @@
 
       if (amountForPayTransaction >= 1000) {
         scope.tax = amountForPayTransaction / 100 * scope.commissionPercent;
+        if (scope.nds) {
+          var nds = (amountForPayTransaction + scope.tax) * (scope.nds ? scope.nds : 0) / 100;
+          scope.tax = (scope.tax + nds).toFixed(2);
+          scope.toEnrollment = ((amountForPayTransaction / scope.service.rate) / 100 * (100 - scope.low_ratio)).toFixed(2);
+        }
+        if (scope.tax % 1 === 0) scope.tax = parseInt(scope.tax);
+        if (scope.toEnrollment % 1 === 0) scope.toEnrollment = parseInt(scope.toEnrollment);
         opts.tax = scope.tax;
-        var nds = (amountForPayTransaction + scope.commissionPercent) / 100 * scope.nds ? scope.nds : 0;
-        scope.tax = (scope.tax + nds).toFixed(2);
-        scope.toEnrollment = ((amountForPayTransaction / scope.service.rate) / 100 * (100 - scope.low_ratio)).toFixed(2);
+        opts.toEnrollment = scope.toEnrollment;
       } else {
         scope.tax = 0;
         scope.toEnrollment = 0;

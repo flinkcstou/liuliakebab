@@ -4584,18 +4584,18 @@ var css = {
   "{" +
   "position: relative;" +
   "left: 10%;" +
-  "width: 79.5%;" +
+  "width: 80%;" +
   "height: 10%;" +
   "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
   "color: white;" +
-  "top: 8%;" +
+  "margin-top: 8%;" +
   "}",
 
   servicePagePhoneField: ".servicepage-phone-field" +
   "{" +
   "position: relative;" +
   "left: 10%;" +
-  "width: 79.5%;" +
+  "width: 80%;" +
   "height: 9%;" +
   "border-bottom:" + 3 * widthK + "px solid lightgray;" +
   "color: white;" +
@@ -4623,7 +4623,7 @@ var css = {
   "height: 10%;" +
   "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
   "color: white;" +
-  "top: 11%" +
+  "margin-top: 8%" +
   "}",
 
   servicePageAmountFieldTwo: ".servicepage-amount-field-two" +
@@ -4638,11 +4638,10 @@ var css = {
 
   servicePageAmountTaxTextField: ".servicepage-amount-tax-text-field" +
   "{" +
-  "position: absolute;" +
   "margin: 0;" +
+  "margin-top: 2%;" +
   "color: gray;" +
   "font-size:" + 24 * widthK + "px;" +
-  "bottom: -55%;" +
   "}",
 
 
@@ -4893,8 +4892,8 @@ var css = {
   "width: 85%;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
-  "padding-top: 4%;" +
-  "padding-bottom: 4%;" +
+  "margin-top: 8%;" +
+  "padding-bottom: 2%;" +
   "border-bottom: 1px solid gray;" +
   "}",
 
@@ -4955,7 +4954,7 @@ var css = {
   "left: 10%;" +
   "color: white;" +
   "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
-  "top: 5%;" +
+  "margin-top: 8%;" +
   "}",
 
   servicePageSecondDropdownFieldPakety: ".servicepage-second-dropdown-field-pakety" +
@@ -5735,7 +5734,7 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 100%;" +
-  "height: 24.5%;" +
+  "height: 31.5%;" +
   // "border-bottom:  " + 1 + "px solid lightgray;" +
   "color: white;" +
   //"top: 23%;" +
@@ -5763,12 +5762,9 @@ var css = {
 
   payconfirmAmountTaxField: ".payconfirm-amount-tax-field" +
   "{" +
-  "position: relative;" +
   "margin: 0;" +
   "color: darkgray;" +
   "font-size: " + 24 * widthK + "px; " +
-  "left: 8%;" +
-  "top: 8%;" +
   "}",
 
   payconfirmAmountCountField: ".payconfirm-amount-count-field" +
@@ -5838,14 +5834,13 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 25%;" +
-  "height: 67%;" +
-  "left: 70%;" +
-  "top: 15%;" +
+  "height: 100%;" +
+  "right: 0%;" +
+  "top: 0%;" +
   "background-color: transparent;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "background-size: contain;" +
-  "float: left;" +
   "}",
 
   payconfirmChosenFriendPhoto: ".payconfirm-chosen-friend-photo" +
@@ -11678,10 +11673,15 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 90%;" +
-  "height:" + 148 * widthK + "px;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
   "border-bottom: 1px solid #e8e8e8;" +
+  "overflow: auto;" +
+  "}",
+
+  paymentDetailPaymentIncludeContainer: ".payment-detail-payment-include-container" +
+  "{" +
+  "margin: 3%;" +
   "}",
 
   paymentDetailPaymentContainerPayFrom: ".payment-detail-payment-container-pay-from" +
@@ -11695,13 +11695,9 @@ var css = {
 
   paymentDetailTitle: ".payment-detail-title " +
   "{" +
-  "position: absolute;" +
-  "top: 19%;" +
-  "left: 2.8%;" +
   "font-size:" + 29 * widthK + "px;" +
   "color: #a9abaf;" +
   "margin: 0;" +
-  "text-align: center;" +
   "}",
 
   paymentDetailTitlePayFrom: ".payment-detail-title-pay-from " +
@@ -11717,23 +11713,16 @@ var css = {
 
   paymentDetailCommission: ".payment-detail-commission" +
   "{" +
-  "position: absolute;" +
   "margin: 0;" +
   "color: #c1c1c1;" +
   "font-size:" + 24 * widthK + "px;" +
-  "bottom: -37%;" +
-  "left: 3%;" +
   "}",
 
   paymentDetailSum: ".payment-detail-sum " +
   "{" +
-  "position: absolute;" +
-  "top: 49%;" +
-  "left: 2.5%;" +
   "font-size:" + 40 * widthK + "px;" +
   "color: #a9abaf;" +
   "margin: 0;" +
-  "text-align: center;" +
   "}",
 
   paymentDetailNumber: ".payment-detail-number " +
