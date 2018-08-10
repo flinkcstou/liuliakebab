@@ -41,7 +41,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      menuButtonId.style.webkitTransform = 'scale(0.7)'
+      menuButtonId.style.webkitTransform = 'scale(0.7)';
 
       openMenuTouchStartX = event.changedTouches[0].pageX;
       openMenuTouchStartY = event.changedTouches[0].pageY;
@@ -51,7 +51,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      menuButtonId.style.webkitTransform = 'scale(1)'
+      menuButtonId.style.webkitTransform = 'scale(1)';
 
       openMenuTouchEndX = event.changedTouches[0].pageX;
       openMenuTouchEndY = event.changedTouches[0].pageY;
@@ -81,31 +81,31 @@
       event.preventDefault();
       event.stopPropagation();
 
-      bellButtonId.style.webkitTransform = 'scale(0.7)'
+      bellButtonId.style.webkitTransform = 'scale(0.7)';
 
       bellButtonTouchStartX = event.changedTouches[0].pageX;
       bellButtonTouchStartY = event.changedTouches[0].pageY;
-    }
+    };
 
     bellButtonTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      bellButtonId.style.webkitTransform = 'scale(1)'
+      bellButtonId.style.webkitTransform = 'scale(1)';
 
       bellButtonTouchEndX = event.changedTouches[0].pageX;
       bellButtonTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(bellButtonTouchStartX - bellButtonTouchEndX) <= 20 && Math.abs(bellButtonTouchStartY - bellButtonTouchEndY) <= 20) {
 
-        if (modeOfApp.offlineMode)return
+        if (modeOfApp.offlineMode) return;
 
         containerCard.style.filter = 'blur(5px)';
-        viewNewsId.style.display = 'block'
+        viewNewsId.style.display = 'block';
 
         window.News.newsCounter = 0;
 
-        console.log('TOOLBAR SCOPE', scope.parent.tags['view-news'].showNewsFunction(1))
+        console.log('TOOLBAR SCOPE', scope.parent.tags['view-news'].showNewsFunction(1));
 
         window.saveHistory('view-news', opts);
 
@@ -125,14 +125,13 @@
       goToViewInfoTouchEndX = event.changedTouches[0].pageX;
       goToViewInfoTouchEndY = event.changedTouches[0].pageY;
 
-      circleMenuId.style.webkitTransform = 'scale(1)'
+      circleMenuId.style.webkitTransform = 'scale(1)';
 
       if (Math.abs(goToViewInfoTouchEndX - goToViewInfoTouchStartX) < 20 &&
         Math.abs(goToViewInfoTouchEndY - goToViewInfoTouchStartY) < 20) {
 
         this.riotTags.innerHTML = '<view-info>';
         riot.mount('view-info');
-//        scope.unmount()
       }
     };
   </script>

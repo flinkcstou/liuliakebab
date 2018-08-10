@@ -370,7 +370,6 @@
             riotTags.innerHTML = "<view-registration-device>";
             riot.mount('view-registration-device');
             scope.unmount();
-            return
           }
         };
       }

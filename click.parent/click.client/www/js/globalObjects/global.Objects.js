@@ -1782,6 +1782,23 @@ window.getPosition = function (el) {
   };
 };
 
+window.logOut = function () {
+  if (localStorage.getItem('click_client_token') && localStorage.getItem('click_client_registered')) {
+    this.riotTags.innerHTML = "<view-authorization>";
+    riot.mount('view-authorization');
+  } else {
+    this.riotTags.innerHTML = "<view-registration-device>";
+    riot.mount('view-registration-device');
+  }
+};
+
+window.removeDeviceInfoFromLocalStorage = function () {
+  localStorage.removeItem('click_client_token');
+  localStorage.removeItem('click_client_registered');
+  localStorage.removeItem('click_client_phoneNumber');
+  localStorage.removeItem('click_client_deviceID');
+};
+
 window.sendToLog = function (data) {
   params = {
     method: 'report.issue',
@@ -1804,8 +1821,8 @@ window.sendToLog = function (data) {
       console.log('cannot save logs to server');
       console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
       console.error(data);
-    },
-  }
+    }
+  };
   window.api.send(params);
 };
 
@@ -1942,7 +1959,7 @@ var errorHandler = function (fileName, e) {
   }
 
   console.log('Error (' + fileName + '): ' + msg);
-}
+};
 
 function dec2hex(s) {
   return (s < 15.5 ? '0' : '') + Math.round(s).toString(16);
@@ -1954,7 +1971,7 @@ function hex2dec(s) {
 
 function clearLoaderOnIconLoad(id) {
 
-  console.log('image loaded')
+  console.log('image loaded');
 
   if (document.getElementById(id)) {
     document.getElementById(id).style.backgroundImage = 'none';

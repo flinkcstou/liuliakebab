@@ -102,7 +102,7 @@
 
       <div style="position: relative; left: 10%; top: 2%;">
         <p if="{commissionPercent}" class="servicepage-amount-tax-text-field">
-          {nds ? window.languages.ViewServicePageAmountTaxTextWithNds : window.languages.ViewServicePageAmountTaxText}
+          {nds ? window.languages.PlusCommissionAndNds : window.languages.PlusCommission}
           {tax}
           {window.languages.Currency}</p>
         <p if="{nds && isInternationalPay}" class="servicepage-amount-tax-text-field" style="bottom:-90%;">
@@ -173,7 +173,7 @@
 
     scope.tax = 0;
     scope.toEnrollment = 0;
-    scope.taxText = window.languages.ViewServicePageAmountTaxText;
+    scope.taxText = window.languages.PlusCommission;
     scope.selectedId = '';
     var options = {
       symbol: "",
@@ -1030,6 +1030,7 @@
           var nds = (amountForPayTransaction + scope.tax) * (scope.nds ? scope.nds : 0) / 100;
           scope.tax = (scope.tax + nds).toFixed(2);
           scope.toEnrollment = ((amountForPayTransaction / scope.service.rate) / 100 * (100 - scope.low_ratio)).toFixed(2);
+          opts.nds = scope.nds;
         }
         if (scope.tax % 1 === 0) scope.tax = parseInt(scope.tax);
         if (scope.toEnrollment % 1 === 0) scope.toEnrollment = parseInt(scope.toEnrollment);

@@ -2381,10 +2381,9 @@ var css = {
   "{" +
   "position: absolute;" +
   "width:" + 20 * widthK + "px;" +
-  //"height:" + 338 * heightK + "px;" +
   "height: 100%;" +
   "top:" + -6 * heightK + "px;" +
-  "right:" + 0 * heightK + "px;" +
+  "right:0;" +
   "background-image: url(resources/icons/ViewInfo/open.png);" +
   "background-size: 50%;" +
   "background-repeat: no-repeat;" +
@@ -2444,13 +2443,11 @@ var css = {
   "{" +
   "background-image: url(resources/icons/services/beelineS.png);" +
   "background-size: 60%;" +
-  //"left:" + 152 * widthK + "px;" +
   "}",
 
   ucellButton: ".ucell-button " +
   "{" +
-  //"left:" + 15 * widthK + "px;" +
-  "top:" + 0 * widthK + "px;" +
+  "top:0;" +
   "background-image: url(resources/icons/services/ucellS.png);" +
   "background-size: 80%;" +
   "}",
@@ -2944,7 +2941,7 @@ var css = {
   "position: absolute;" +
   "top: 0px;" +
   "width: 100%;" +
-  "height:" + 87 * widthK + "px;" +
+  "height:" + 90 * widthK + "px;" +
   "background: white;" +
   "z-index: 5;" +
   "}",
@@ -2986,6 +2983,17 @@ var css = {
   "background-position-x: center;" +
   "background-size: 50%;" +
   "left: 1.5%;" +
+  "}",
+
+  borderBottom: ".border-bottom" +
+  "{" +
+  "position: absolute;" +
+  "height:1px;" +
+  "background-color: #e8e8e8;" +
+  "left: 5%;" +
+  "right: 5%;" +
+  "bottom:0;" +
+  "z-index:9999" +
   "}",
 
   titleBottomBorder: ".title-bottom-border " +
@@ -3635,11 +3643,8 @@ var css = {
 
   viewInfoTitleContainer: ".view-info-title-container " +
   "{" +
-  "position: absolute;" +
-  "right:" + 30 * widthK + "px;" +
-  "left:" + 30 * widthK + "px;" +
-  "height:" + 89 * widthK + "px;" +
-  "border-bottom:" + 1 + "px solid #e8e8e8;" +
+  "position: relative;" +
+  "height:" + 90 * widthK + "px;" +
   "z-index: 1000002;" +
   "}",
 
@@ -3647,9 +3652,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "bottom: 0;" +
-  "top:" + 89 * widthK + "px;" +
+  "top:" + 90 * widthK + "px;" +
   "width: 100%;" +
-  "border-bottom:" + 1 + "px solid #e8e8e8;" +
   "overflow-y: scroll;" +
   "-webkit-overflow-scrolling: touch;" +
   "overflow-x: hidden;" +
@@ -3657,7 +3661,7 @@ var css = {
 
   viewInfoBackButton: ".view-info-back-button " +
   "{position: absolute;" +
-  "left:" + 10 * widthK + "px;" +
+  "left:" + 35 * widthK + "px;" +
   "width:" + 100 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "top:" + 5 * widthK + "px;" +
@@ -3668,17 +3672,14 @@ var css = {
   "background-size: 48%;" +
   "background-position: center;" +
   "background-color: #ffffff;" +
-  "z-index: 2;" +
+  "z-index: 10000;" +
   "}",
 
-  viewInfoBalanceContainer: ".view-info-balance-container " +
+  viewInfoHeadInfoContainer: ".view-info-head-info-container " +
   "{" +
-  "position: absolute;" +
-  "right:" + 30 * widthK + "px;" +
-  "left:" + 30 * widthK + "px;" +
-  "height:" + 190 * widthK + "px;" +
-  // "top:" + 89 * widthK + "px;" +
-  // "border-bottom:" + 1 + "px solid #f4f4f4;" +
+  "position:relative;" +
+  "height:" + 160 * widthK + "px;" +
+  "padding:" + 10 * widthK + "px " + 15 * widthK + "px;" +
   "}",
 
   viewInfoCardBalanceCurrencyContainer: ".view-info-card-balance-currency-container " +
@@ -3690,21 +3691,6 @@ var css = {
   "display: inline-block;" +
   "margin: 0;" +
   "overflow: hidden;" +
-  "}",
-
-  viewInfoCardBalance: ".view-info-card-balance " +
-  "{" +
-  "position: relative;" +
-  "left:" + 25 * widthK + "px;" +
-  "color: #585658;" +
-  "font-size:" + 67 * widthK + "px;" +
-  "margin: 0;" +
-  "margin-top:" + -2 * widthK + "px;" +
-  "float: left;" +
-  "color: #91cc00;" +
-  "padding: 0;" +
-  "display: inline-block;" +
-  "width: 78%;" +
   "}",
 
   viewInfoCardBalanceScaleContainer: ".view-info-card-balance-scale-container " +
@@ -3719,17 +3705,13 @@ var css = {
   viewInfoCardBalanceSum: ".view-info-card-balance-sum " +
   "{" +
   "position: relative;" +
-  // "left:" + 25 * widthK + "px;" +
-  "color: #585658;" +
-  "font-size:" + 67 * widthK + "px;" +
+  "font-size:" + 60 * widthK + "px;" +
   "margin: 0;" +
   "margin-top:" + -2 * widthK + "px;" +
   "float: left;" +
   "color: #91cc00;" +
   "padding: 0;" +
-  // "max-width: 75%;" +
-  // "overflow: hidden;" +
-  // "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
   "white-space: nowrap;" +
   "}",
 
@@ -3759,17 +3741,6 @@ var css = {
   "height:" + 125 * widthK + "px;" +
   "top:" + 190 * widthK + "px;" +
   "border-bottom:" + 1 + "px solid #f4f4f4;" +
-  "}",
-
-  viewInfoReportsContainer: ".view-info-reports-container " +
-  "{" +
-  "position: absolute;" +
-  "left: 0;" +
-  "width: 100%;" +
-  "height:" + 125 * widthK + "px;" +
-  "top:" + 190 * widthK + "px;" +
-  "background-color: #ffffff;" +
-  "z-index: 100;" +
   "}",
 
   viewInfoBagIcon: ".view-info-bag-icon " +
@@ -3825,32 +3796,6 @@ var css = {
   "background-size: 67%;" +
   "}",
 
-  viewInfoOpenIcon: ".view-info-open-icon " +
-  "{" +
-  "position: absolute;" +
-  "width: 20%;" +
-  "height: 80%;" +
-  "right: -1%;" +
-  "top: 12%;" +
-  "background-image: url(resources/icons/ViewInfo/open.png);" +
-  "background-repeat: no-repeat;" +
-  "background-position: center;" +
-  "background-size: 9%;" +
-  "}",
-
-  viewInfoReportIcon: ".view-info-reports-icon " +
-  "{" +
-  "position: absolute;" +
-  "width: 20%;" +
-  "height: 70%;" +
-  "left: 3%;" +
-  "top: 15%;" +
-  "background-image: url(resources/icons/ViewInfo/myreports.png);" +
-  "background-repeat: no-repeat;" +
-  "background-position: center;" +
-  "background-size: 67%;" +
-  "}",
-
   viewInfoMyFinanceTitle: ".view-info-my-finance-title " +
   "{" +
   "position: absolute;" +
@@ -3874,157 +3819,79 @@ var css = {
   "color: #8b8b8b;" +
   "}",
 
-  viewInfoReportTitleBorderTop: ".view-info-reports-title-border-top " +
+  InfoContainer: ".info-container " +
   "{" +
-  "position: absolute;" +
-  "width: 90%;" +
-  "left: 5%;" +
-  "bottom: 0%;" +
-  "border-bottom:" + 1 + "px solid #e8e8e8;" +
-  "}",
-
-  viewInfoReportTitleBorderBottom: ".view-info-reports-title-border-bottom " +
-  "{" +
-  "position: absolute;" +
-  "width: 90%;" +
-  "left: 5%;" +
-  "top: 0%;" +
-  "border-top:" + 1 + "px solid #e8e8e8;" +
-  "}",
-
-  viewInfoOperationsContainer: ".view-info-operations-container " +
-  "{" +
-  "position: absolute;" +
-  "width: 100%;" +
-  //"height:" + 710 * widthK + "px;" +
-  "top:" + 378 * widthK + "px;" +
-  "bottom:" + 0 * widthK + "px;" +
-  //"top:" + 600 * widthK + "px;" +
-  // "overflow-y: scroll;" +
-  // "-webkit-overflow-scrolling: touch;" +
-  // "overflow-x: hidden;" +
-  "font-size:" + 23 * widthK + "px;" +
-  "}",
-
-  viewInfoOperationContainer: ".view-info-operation-container " +
-  "{" +
-  "position: relative;" +
-  "width: 100%;" +
-  "height:" + 200 * widthK + "px;" +
+  "height:" + 180 * widthK + "px;" +
   "z-index: 999999;" +
+  "padding:" + 10 * widthK + "px " + 15 * widthK + "px;" +
+  "position: relative;" +
   "}",
 
-  viewInfoOperationsIcon: ".view-info-operations-icon " +
+  viewInfoOperationsIcon: ".view-info-left-item " +
   "{" +
-  "top:" + 50 * widthK + "px;" +
-  "background-size: 80%;" +
-  "left: 5%;" +
-  "position: absolute;" +
-  "width:" + 125 * widthK + "px;" +
-  "height:" + 125 * widthK + "px;" +
-  "background-repeat: no-repeat;" +
-  "background-position: center;" +
-  //"border-radius:" + 100 * widthK + "px;" +
-  //"border:solid 1px #b7b7b7;" +
+  "width:20%;" +
+  "height:100%;" +
+  "float: left;" +
   "}",
 
-  viewInfoStateImage: ".view-info-state-image " +
+  centeringBackgroundImage: ".centering-background-image" +
   "{" +
-  "position: absolute;" +
-  "width:" + 60 * widthK + "px;" +
-  "right:" + 5 * widthK + "px;" +
-  "height:" + 60 * widthK + "px;" +
-  //"height: 100%;" +
-  "top: 50%;" +
   "background-repeat: no-repeat;" +
-  "background-size: 60%;" +
   "background-position: center;" +
-  "margin: 0;" +
+  "}",
+
+  viewInfoStateImage: ".view-info-right-item" +
+  "{" +
+  "width:10%;" +
+  "height: 100%;" +
+  "float: left;" +
   "}",
 
   viewInfoOperationTitle: ".view-info-operations-title " +
   "{" +
-  "position: absolute;" +
   "width: 100%;" +
-  "height:" + 68 * widthK + "px;" +
-  //"top:" + 535 * widthK + "px;" +
-  "top:" + 310 * widthK + "px;" +
-  "z-index:99;" +
-  "background-color: white;" +
-  "box-shadow:" + 0 * widthK + "px " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + "rgb(37, 36, 36);" +
-  "-webkit-box-shadow:" + 0 * widthK + "px " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + "rgb(37, 36, 36);" +
+  "height:" + 70 * widthK + "px;" +
+  "box-shadow: 0 " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + "rgb(37, 36, 36);" +
+  "-webkit-box-shadow: 0 " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + "rgb(37, 36, 36);" +
   "}",
 
-  viewInfoOperationsLabel: ".view-info-operations-label " +
+  viewOperationInfoContainer: ".info-center-container" +
   "{" +
-  "font-size:" + 24 * widthK + "px;" +
-  "position: absolute;" +
-  "top: 10%;" +
-  "left: 7%;" +
-  "color: #8b8b8b;" +
-  "}",
-
-  viewOperationInfoContainer: ".view-info-operation-info-container " +
-  "{" +
-  "position: absolute;" +
   "height: 100%;" +
-  "width: 440%;" +
-  "left: 103%;" +
+  "width: 70%;" +
   "color: #8b8b8b;" +
+  "float: left;" +
   "}",
 
-  viewInfoOperationInfoName: ".view-info-operation-info-name " +
+  horizontalCentering: ".horizontal-centering" +
   "{" +
-  "position: absolute;" +
-  "height: 25%;" +
-  "top: -8%;" +
-  "left: 8%;" +
-  "margin: 0;" +
-  "text-overflow: ellipsis;" +
-  "white-space: nowrap;" +
-  "overflow: hidden;" +
-  "width: 65%;" +
-  "}",
-
-  viewInfoOperationInfoBalance: ".view-info-operation-info-balance " +
-  "{" +
-  "position: absolute;" +
-  "top: 9%;" +
-  "left: 8%;" +
-  "margin: 0;" +
-  "font-size:" + 45 * widthK + "px;" +
-  "color: #595759;" +
-  "}",
-
-  viewInfoOperationInfoNumber: ".view-info-operation-info-number " +
-  "{" +
-  "position: absolute;" +
-  "height: 25%;" +
+  "position: relative;" +
   "top: 50%;" +
-  "left: 8%;" +
+  "transform: translateY(-50%);" +
+  "-webkit-transform: translateY(-50%);" +
+  "-ms-transform: translateY(-50%);" +
+  "overflow: auto;" +
+  "}",
+
+  textMargin: ".text-margin" +
+  "{" +
   "margin: 0;" +
+  "}",
+
+  titleText: ".title-text" +
+  "{" +
+  "color: darkgray;" +
+  "font-size:" + 24 * widthK + "px;" +
   "text-overflow: ellipsis;" +
   "white-space: nowrap;" +
-  "overflow: hidden;" +
-  "width: 80%;" +
   "}",
 
-  viewInfoOperationInfoDate: ".view-info-operation-info-date " +
+  mainText: ".main-text" +
   "{" +
-  "position: absolute;" +
-  "height: 25%;" +
-  "top: 81%;" +
-  "left: 9%;" +
-  "margin: 0;" +
-  "}",
-
-  viewInfoBalanceLabel: ".view-info-balance-label" +
-  "{" +
-  "position: absolute;" +
-  "left: 23%;" +
-  "top: 13%;" +
-  "font-size:" + 23 * widthK + "px;" +
-  "color: #c2c2c2;" +
+  "color:gray;" +
+  "font-size:" + 40 * widthK + "px;" +
+  "text-overflow: ellipsis;" +
+  "white-space: nowrap;" +
   "}",
 
   payNameTitle: ".pay-name-title " +
@@ -4353,7 +4220,7 @@ var css = {
   payPageTitle: ".pay-page-title " +
   "{" +
   "position: absolute;" +
-  "top:" + 0 * widthK + "px;" +
+  "top:0;" +
   "width: 100%;" +
   "height:" + 130 * heightK + "px;" +
   "background: white;" +
@@ -5759,24 +5626,6 @@ var css = {
   "font-size: " + 40 * widthK + "px; " +
   "color: gray;" +
   "}",
-
-  payconfirmAmountTaxField: ".payconfirm-amount-tax-field" +
-  "{" +
-  "margin: 0;" +
-  "color: darkgray;" +
-  "font-size: " + 24 * widthK + "px; " +
-  "}",
-
-  payconfirmAmountCountField: ".payconfirm-amount-count-field" +
-  "{" +
-  "position: relative;" +
-  "margin: 0;" +
-  "color: darkgray;" +
-  "font-size: " + 24 * widthK + "px; " +
-  "left: 8%;" +
-  "top: 8%;" +
-  "}",
-
   payconfirmCardField: ".payconfirm-card-field" +
   "{" +
   "position: relative;" +
@@ -9401,7 +9250,7 @@ var css = {
   registrationClientCardField: ".registration-client-card-field " +
   "{" +
   "position: relative;" +
-  "top:" + 0 * heightK + "px;" +
+  "top:0;" +
   "width:" + 600 * heightK + "px;" +
   "height:" + 320 * heightK + "px;" +
   "border:" + 4 * heightK + "px solid #2f2b3d;" +
@@ -12417,7 +12266,6 @@ var css = {
   viewReportsBodyContainer: ".view-reports-body-container" +
   "{" +
   "position: absolute;" +
-  //"height:" + 1150 * widthK + "px; " +
   "width:100%; " +
   "top:" + 160 * widthK + "px; " +
   "bottom:0; " +
@@ -12851,7 +12699,7 @@ var css = {
   "{" +
   "position: relative;" +
   "height:" + 45 * widthK + "px; " +
-  "width: 98%;" +
+  "width: 100%;" +
   // "left: 4%;" +
   // "margin-top: 1%;" +
   //"border-bottom:" + 1 * widthK + "px solid gainsboro;" +
@@ -12868,19 +12716,6 @@ var css = {
   "font-size:" + 24 * widthK + "px; " +
   "color: gray;" +
   "}",
-
-  viewReportsPaymentBlockContainer: ".view-reports-payment-block-containter" +
-  "{" +
-  "position: relative;" +
-  "height:" + 150 * widthK + "px; " +
-  "width: 91%;" +
-  "left: 4%;" +
-  "z-index: 1;" +
-  //"margin-top: 1%;" +
-  "border-top:" + 1 * widthK + "px solid #f1f1f1;" +
-  "background-color: transparent;" +
-  "}",
-
 
   viewReportsPaymentIcon: ".view-reports-payment-icon " +
   "{" +
@@ -12905,42 +12740,6 @@ var css = {
   "color: #8b8b8b;" +
   "}",
 
-  viewReportsPaymentInfoName: ".view-reports-payment-info-name " +
-  "{" +
-  "position: absolute;" +
-  "height: 25%;" +
-  "top: 15%;" +
-  "left: 8%;" +
-  "margin: 0;" +
-  "font-size:" + 22 * widthK + "px; " +
-  "width: 75%;" +
-  "white-space: nowrap;" +
-  "text-overflow: ellipsis;" +
-  "overflow: hidden;" +
-  "}",
-
-  viewReportsPaymentInfoBalance: ".view-reports-payment-info-balance " +
-  "{" +
-  "position: relative;" +
-  "top: 30%;" +
-  "left: 8%;" +
-  "margin: 0;" +
-  "font-size:" + 45 * widthK + "px;" +
-  "color: #595759;" +
-  "float: left;" +
-  "}",
-
-  viewReportsPaymentInfoCurrencyField: ".view-reports-payment-info-currency-field" +
-  "{" +
-  "position: relative;" +
-  "top: 42%;" +
-  "left: 9%;" +
-  "margin: 0;" +
-  "font-size:" + 26 * widthK + "px;" +
-  "color: #595759;" +
-  "float: left;" +
-  "}",
-
   viewReportsPaymentInfoNumber: ".view-reports-payment-info-number " +
   "{" +
   "position: absolute;" +
@@ -12953,32 +12752,6 @@ var css = {
   "white-space: nowrap;" +
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
-  "}",
-
-  viewReportsPaymentInfoTime: ".view-reports-payment-info-time " +
-  "{" +
-  "position: absolute;" +
-  "right: 0;" +
-  "width: 10%;" +
-  //"height: 100%;" +
-  "top: 15%;" +
-  "font-size: " + 22 * widthK + "px; " +
-  "margin: 0;" +
-  "color: #8b8b8b;" +
-  "}",
-
-  viewReportsPaymentInfoStateImage: ".view-reports-payment-info-state-image " +
-  "{" +
-  "position: absolute;" +
-  "width:" + 60 * widthK + "px;" +
-  "right:" + 5 * widthK + "px;" +
-  "height:" + 60 * widthK + "px;" +
-  //"height: 100%;" +
-  "top: 50%;" +
-  "background-repeat: no-repeat;" +
-  "background-size: 60%;" +
-  "background-position: center;" +
-  "margin: 0;" +
   "}",
 
   //graph

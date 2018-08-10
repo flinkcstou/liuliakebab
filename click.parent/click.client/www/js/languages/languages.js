@@ -114,9 +114,15 @@ var RU_LANGUAGES =
     "ViewServicePagePayLabel": "ОПЛАТИТЬ",
     "ViewServicePageVoiceOverOpenCalculator": "Открыть калькулятор",
     "ViewServicePageAmountTextLabel": "Сумма оплаты:",
-    "ViewServicePageAmountTaxText": "Плюс комиссия - ",
-    "ViewServicePageAmountTaxTextWithNds": "Плюс комиссия (в т.ч. НДС) - ",
+    "PlusCommission": "Плюс комиссия - ",
+    "Commission": "Комиссия - ",
+    "CommissionAndNds": "Комиссия (в т.ч. НДС) - ",
+    "Nds": "НДС - ",
+    "PlusCommissionAndNds": "Плюс комиссия (в т.ч. НДС) - ",
     "ViewServiceToEnrollment": "Будет зачислено:",
+    "ViewTrustedDevicesDeleteOtherDevice": "Вы действительно хотите удалить устройство из списка доверенных?",
+    "ViewTrustedDevicesDeleteSelfDevice": "Вы действительно хотите удалить своё устройство из списка доверенных? (Потребуется повторная авторизация)",
+
 
 //{(secondLevelArray && secondLevelArray[0])?(secondLevelArray[0].name):("")}
 //{service.options_title}

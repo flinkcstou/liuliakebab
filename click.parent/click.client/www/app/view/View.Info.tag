@@ -2,86 +2,142 @@
   <div class="view-info-title-container">
     <div id="backButtonId" role="button" aria-label="{window.languages.Back}" class="view-info-back-button"
          ontouchstart="onTouchStartBack()"
-         ontouchend="onTouchEndBack()"></div>
+         ontouchend="onTouchEndBack()">
+    </div>
+    <div class="border-bottom">
+    </div>
   </div>
 
   <div class="view-info-body-container" id="lastOperationsContainerId" onscroll="lastOperationsContainerScroll()">
+    <div class="view-info-head-info-container">
+      <div class="centering-background-image view-info-left-item"
+           style="background-image: url(resources/icons/ViewInfo/mybalance.png);background-size: 60%;">
+      </div>
 
-    <div class="view-info-balance-container">
-      <p class="view-info-balance-label">{window.languages.ViewInfoBalanceTitle}</p>
-      <div class="view-info-card-balance-currency-container">
-        <div if="{!modeOfApp.offlineMode}" class="view-info-card-balance" id="fullCardBalanceContainer">
-          <canvas id="fullScaleCanvas" style="display: none;"></canvas>
-          <canvas id="fractionalScaleCanvas" style="display: none;"></canvas>
-          <canvas id="currencyScaleCanvas" style="display: none;"></canvas>
-          <div class="view-info-card-balance-scale-container" id="fullCardBalanceScaleContainer">
-            <p class="view-info-card-balance-sum">{(fullBalanceCopy) ? (fullBalanceCopy) : (error_message)}<span
-              class="view-info-card-balance-sum-fractional">{(fractionalPart) ? (fractionalPart) : ''}</span> <span
-              if="{!modeOfApp.offlineMode && fullBalanceCopy}" class="view-info-card-currency">{window.languages.ViewReportServiceCommissionCurrency}</span>
+      <div class="info-center-container">
+        <div class="horizontal-centering">
+          <p class="title-text text-margin">
+            {window.languages.ViewInfoBalanceTitle}
+          </p>
+
+          <div if="{!modeOfApp.offlineMode}" id="fullCardBalanceContainer" style="overflow: auto;">
+            <canvas id="fullScaleCanvas" style="display: none;">
+            </canvas>
+            <canvas id="fractionalScaleCanvas" style="display: none;">
+            </canvas>
+            <canvas id="currencyScaleCanvas" style="display: none;">
+            </canvas>
+            <div class="view-info-card-balance-scale-container" id="fullCardBalanceScaleContainer">
+              <p class="view-info-card-balance-sum">
+                {(fullBalanceCopy !== null) ? (fullBalanceCopy) : (error_message)}
+                <span class="view-info-card-balance-sum-fractional">
+                  {(fractionalPart) ? (fractionalPart) : ''}
+                </span>
+
+                <span if="{!modeOfApp.offlineMode && fullBalanceCopy !== null}" class="view-info-card-currency">
+                  {window.languages.ViewReportServiceCommissionCurrency}
+                </span>
+              </p>
+            </div>
+          </div>
+          <a if="{modeOfApp.offlineMode}" class="offline-card-balance"
+             ontouchstart="offlineBalanceInfoTrue()">Получить баланс</a>
+        </div>
+      </div>
+      <div id="reloadBalanceButtonId" role="button" class="centering-background-image view-info-right-item"
+           ontouchstart="reloadBalanceTouchStart()" ontouchend="reloadBalanceTouchEnd()"
+           aria-label="Обновить баланс"
+           style="background-image: url(resources/icons/ViewInfo/reload.png); background-size:70%;transition: 0.5s;">
+      </div>
+      <div class="border-bottom">
+      </div>
+    </div>
+
+    <div id="reportButtonId" role="button" class="view-info-head-info-container" ontouchend="goToReportsTouchEnd()"
+         ontouchstart="goToReportsTouchStart()" aria-label="{window.languages.ViewInfoReportsTitle}">
+      <div class="centering-background-image view-info-left-item"
+           style="background-image: url(resources/icons/ViewInfo/myreports.png);background-size: 60%;">
+      </div>
+
+      <div class="info-center-container">
+        <p class="horizontal-centering main-text text-margin">
+          {window.languages.ViewInfoReportsTitle}
+        </p>
+      </div>
+      <div class="centering-background-image view-info-right-item"
+           style="background-image: url(resources/icons/ViewInfo/open.png); background-size: 20%;"></div>
+      <div class="border-bottom">
+      </div>
+    </div>
+
+    <div class="view-info-operations-title">
+      <p class="horizontal-centering title-text text-margin" style="position: relative;margin-left: 5%;">
+        {window.languages.ViewInfoLastOperations}
+      </p>
+    </div>
+
+    <div>
+      <div class="info-container" each="{i in lastOperationContainer}" id="{i.payment_id}"
+           ontouchstart="onTouchStartOfOperation(this.id)" role="button" aria-label="{i.service_name}"
+           onclick="onTouchEndOfOperation(this.id)">
+        <div class="centering-background-image view-info-left-item"
+             style="background-image: url({i.image}); background-size: 80%;">
+        </div>
+
+        <div class="info-center-container">
+          <div class="horizontal-centering">
+            <p class="title-text text-margin">
+              {i.service_name}
+            </p>
+            <p class="main-text text-margin">
+              - {i.amount} {window.languages.Currency}
+            </p>
+            <p if="{i.comission_amount > 0 && i.nds === null}"
+               class="text-margin title-text">
+              {window.languages.Commission}{i.comission_amount} {window.languages.Currency}
+            </p>
+            <p if="{i.comission_amount > 0 && i.nds > 0}"
+               class="text-margin title-text">
+              {window.languages.CommissionAndNds}{i.comission_amount} {window.languages.Currency}
+            </p>
+            <p if="{i.comission_amount === 0 && i.nds > 0}"
+               class="text-margin title-text">
+              {window.languages.Nds}{i.comission_amount} {window.languages.Currency}
+            </p>
+            <p class="title-text text-margin">
+              {i.cntrg_info_param2}
+            </p>
+            <p class="title-text text-margin">
+              {i.created}
             </p>
           </div>
         </div>
 
-        <a if="{modeOfApp.offlineMode}" class="offline-card-balance"
-           ontouchstart="offlineBalanceInfoTrue()">Получить баланс</a>
-      </div>
-      <div class="view-info-bag-icon"></div>
-      <div if="{attention && !modeOfflineMode.check}" class="view-info-attention-icon"></div>
-      <div id="reloadBalanceButtonId" role="button" aria-label="{window.languages.ViewInfoAriaLabelReloadAmount}"
-           if="{!modeOfflineMode.check}" class="view-info-reload-icon"
-           ontouchstart="reloadBalanceTouchStart()" ontouchend="reloadBalanceTouchEnd()"></div>
-    </div>
+        <div class="centering-background-image view-info-right-item"
+             style="background-image: url({i.state_image}); background-size: 60%;">
+        </div>
 
-    <div id="reportButtonId" role="button" aria-label="{window.languages.ViewInfoReportsTitle}"
-         class="view-info-reports-container" ontouchend="goToReportsTouchEnd()"
-         ontouchstart="goToReportsTouchStart()">
-      <div class="view-info-reports-title-border-top"></div>
-      <div class="view-info-reports-icon"></div>
-      <div class="view-info-open-icon"></div>
-      <p class="view-info-reports-title">{window.languages.ViewInfoReportsTitle}</p>
-      <div class="view-info-reports-title-border-bottom"></div>
-    </div>
-
-    <div class="view-info-operations-title">
-      <p class="view-info-operations-label">{window.languages.ViewInfoLastOperations}</p>
-    </div>
-
-    <div class="view-info-operations-container">
-      <div class="view-info-operation-container" each="{i in lastOperationContainer}" id="{i.payment_id}"
-           ontouchstart="onTouchStartOfOperation(this.id)" role="button" aria-label="{i.service_name}"
-           onclick="onTouchEndOfOperation(this.id)">
-
-        <div class="view-info-operations-icon" style="background-image: url({i.image})">
-
-          <div class="view-info-operation-info-container">
-            <p class="view-info-operation-info-name">{i.service_name}</p>
-            <p class="view-info-operation-info-balance"> - {i.amount}</p>
-            <p class="view-info-operation-info-balance">{}</p>
-            <p class="view-info-operation-info-number">{i.cntrg_info_param2}</p>
-            <p class="view-info-operation-info-date">{i.created}</p>
-
-            <div class="view-info-state-image" style="background-image: url({i.state_image})"></div>
-          </div>
-
+        <div class="border-bottom">
         </div>
       </div>
-
     </div>
-
   </div>
 
   <script>
+
     var scope = this;
     var defaultAccount;
     var goBackTouchStartX, goBackTouchStartY, goBackTouchEndX, goBackTouchEndY;
     var balanceTouchStartX, balanceTouchStartY, balanceTouchEndX, balanceTouchEndY;
     var operationInfoTouchStartY, operationInfoTouchEndY;
     var goToReportsTouchStartX, goToReportsTouchStartY, goToReportsTouchEndX, goToReportsTouchEndY;
+
     scope.attention = false;
     scope.fullBalance = 0;
     scope.fullBalanceCopy = null;
     scope.fractionalPart = null;
     scope.error_message = null;
+
     var cards = JSON.parse(localStorage.getItem('click_client_cards'));
     var getAccountsCards = JSON.parse(localStorage.getItem('click_client_accountInfo'));
     var objectAccount = {};
@@ -101,9 +157,7 @@
     var contextCurrency;
     var timeOutTimerPayment = 0;
 
-
     window.saveHistory('view-info', opts);
-
 
     for (var j in getAccountsCards) {
       objectAccount.account_id = getAccountsCards[j].id;
@@ -273,7 +327,6 @@
           function (success) {
           }
         );
-        return
       }
     };
 
@@ -360,12 +413,12 @@
                 }
 
                 scope.lastOperationContainer.push(result[1][i]);
+                console.log('scope.lastOperationContainer', scope.lastOperationContainer);
+
                 j++;
               }
 
-              console.log('scope.lastOperationContainer', scope.lastOperationContainer);
               scope.update()
-//            console.log('scope.lastOperationContainer', scope.lastOperationContainer);
             }
             else {
               window.common.alert.show("componentAlertId", {

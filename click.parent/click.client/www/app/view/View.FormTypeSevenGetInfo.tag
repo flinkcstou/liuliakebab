@@ -30,7 +30,7 @@
       <div class="servicepage-amount-field-two" id="amountField">
         <p id="amountFieldTitle" class="servicepage-text-field">{amountFieldTitle}</p>
         <p if="{commissionPercent}" class="servicepage-amount-tax-text-field">
-          {window.languages.ViewServicePageAmountTaxText} {tax}
+          {window.languages.PlusCommission} {tax}
           {window.languages.Currency}</p>
         <input class="servicepage-amount-input" type="tel" value="{defaultAmount}" maxlength="10"
                id="amount"

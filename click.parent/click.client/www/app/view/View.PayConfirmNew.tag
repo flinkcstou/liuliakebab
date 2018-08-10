@@ -20,24 +20,25 @@
     <div>
       <div class="payment-detail-payment-container" if="{formType!=2}">
         <div class="payment-detail-payment-include-container">
-          <p style="margin:0; color:darkgray; font-size: {24*widthK}px;">
+          <p class="title-text text-margin">
             {firstFieldTitle}</p>
-          <p style="margin:0; color:gray; font-size: {40*widthK}px;">
+          <p class="main-text text-margin">
             {firstFieldText}</p>
         </div>
       </div>
     </div>
     <div class="payment-detail-payment-container">
       <div class="payment-detail-payment-include-container">
-        <p style="margin:0; color:darkgray; font-size: {24*widthK}px;">
+        <p class="title-text text-margin">
           {window.languages.ViewPayConfirmAmountOfPay}</p>
-        <p style="margin:0; color:gray; font-size: {40*widthK}px;">{amountTextCopy} {currency}</p>
-        <p if="{opts.tax}" class="payconfirm-amount-tax-field">{window.languages.ViewServicePageAmountTaxText}
+        <p class="main-text text-margin">{amountTextCopy} {currency}</p>
+        <p if="{opts.tax}" class="title-text text-margin">{opts.nds ?
+          window.languages.PlusCommissionAndNds : PlusCommission}
           {opts.tax}
           {window.languages.Currency}</p>
-        <p if="{opts.cost > 1}" class="payconfirm-amount-count-field">{opts.lang_amount_title}:
+        <p if="{opts.cost > 1}" class="title-text text-margin">{opts.lang_amount_title}:
           {window.amountTransform(opts.amountWithoutSpace)}</p>
-        <p if="{opts.toEnrollment}" class="payconfirm-amount-tax-field">
+        <p if="{opts.toEnrollment}" class="title-text text-margin">
           <b>{window.languages.ViewServiceToEnrollment}</b>
           <b style="color: rgb(142,184,81);">{opts.toEnrollment} USD</b>
         </p>
@@ -45,20 +46,20 @@
     </div>
     <div class="payment-detail-payment-container">
       <div class="payment-detail-payment-include-container">
-        <p style="margin:0; color:darkgray; font-size: {24*widthK}px;">{(opts.mode=='ADDAUTOPAY')?
+        <p class="title-text text-margin">{(opts.mode=='ADDAUTOPAY')?
           (window.languages.ViewAutoPayConditionFieldText):(window.languages.ViewPayConfirmCategory)}</p>
-        <p style="margin:0; color:gray; font-size: {40*widthK}px;">
+        <p class="main-text text-margin">
           {(opts.mode=='ADDAUTOPAY')?
           (autoPayConditionText):(categoryName)}</p>
       </div>
     </div>
     <div class="payment-detail-payment-container" if="{cardOrFriendBool}">
       <div class="payment-detail-payment-include-container">
-        <p style="margin:0; color:darkgray; font-size: {24*widthK}px;">
+        <p class="title-text text-margin">
           {window.languages.ViewPayConfirmPayFromCard}</p>
-        <p style="margin:0; color:gray; font-size: {40*widthK}px;">{cardName}</p>
-        <p style="margin:0; color:darkgray; font-size: {24*widthK}px;">{numberPartOne} **** {numberPartTwo}</p>
-        <p style="margin:0; color:darkgray; font-size: {24*widthK}px;">
+        <p class="main-text text-margin">{cardName}</p>
+        <p class="title-text text-margin">{numberPartOne} **** {numberPartTwo}</p>
+        <p class="title-text text-margin">
           {window.languages.ViewPayConfirmAvailable}:{salary} {currency}</p>
         <div class="payconfirm-card-logo-container"
              style="background-image: url({url})">
@@ -67,9 +68,9 @@
     </div>
     <div class="payment-detail-payment-container" if="{!cardOrFriendBool}">
       <div class="payment-detail-payment-include-container">
-        <p style="margin:0; color:darkgray; font-size: {24*widthK}px;">{window.languages.ViewPayConfirmFriendHelp}</p>
-        <p style="margin:0; color:gray; font-size: {40*widthK}px;">{friendName}</p>
-        <p style="margin:0; color:darkgray; font-size: {24*widthK}px;">+{friendNumber.substring(0, 3) + ' ' +
+        <p class="title-text text-margin">{window.languages.ViewPayConfirmFriendHelp}</p>
+        <p class="main-text text-margin">{friendName}</p>
+        <p class="title-text text-margin">+{friendNumber.substring(0, 3) + ' ' +
           inputVerification.telVerificationWithSpace(friendNumber.substring(3, friendNumber.length))}</p>
         <div class="payconfirm-chosen-friend-photo" style="background-image: url({friendPhoto})">
           {friendFirstLetterOfName}

@@ -290,6 +290,7 @@
         modeOfApp.onlineMode = false;
         modeOfApp.offlineMode = true;
 
+        window.clearInterval(intervalID);
         this.riotTags.innerHTML = "<view-main-page>";
         riot.mount('view-main-page');
         scope.unmount()
@@ -435,6 +436,7 @@
                 modeOfApp.onlineMode = false;
                 modeOfApp.offlineMode = true;
 
+                window.clearInterval(intervalID);
                 riotTags.innerHTML = "<view-main-page>";
                 riot.mount('view-main-page');
                 scope.unmount();
@@ -539,6 +541,7 @@
                 localStorage.setItem('click_client_token', token);
                 if (result[1][0].confirm_needed) {
                   localStorage.setItem('confirm_needed', true);
+                  window.clearInterval(intervalID);
                   this.riotTags.innerHTML = "<view-sms>";
                   riot.mount('view-sms');
                   scope.unmount()
@@ -547,6 +550,7 @@
                   window.pushNotificationInitialize();
                   localStorage.setItem('confirm_needed', false);
                   localStorage.setItem('click_client_registered', true);
+                  window.clearInterval(intervalID);
                   this.riotTags.innerHTML = "<view-authorization>";
                   riot.mount('view-authorization');
                   scope.unmount()

@@ -47,20 +47,39 @@
         <div class="view-reports-payment-date-containter" id="{'id'+i}">
           <div class="view-reports-payment-date-field">{i}</div>
         </div>
-        <div class="view-reports-payment-block-containter" each="{j in paymentsMap[i]}" id="{j.payment_id}"
+        <div class="info-container" each="{j in paymentsMap[i]}" id="{j.payment_id}"
              ontouchstart="paymentTouchStart(this.id)" onclick="paymentTouchEnd(this.id)" role="button"
              aria-label="{j.service_name}">
-          <div class="view-reports-payment-icon"
-               style="background-image: url({j.image})"></div>
-          <div class="view-reports-payment-info-container">
-            <p class="view-reports-payment-info-name">{j.service_name}</p>
-            <div class="view-reports-payment-info-balance">{window.amountTransform(j.amount.toString())}
-            </div>
-            <div class="view-reports-payment-info-currency-field">сум</div>
-            <p class="view-reports-payment-info-number">{j.cntrg_info_param2}</p>
+          <div class="centering-background-image view-info-left-item"
+               style="background-image: url({j.image}); background-size: 80%;">
           </div>
-          <p class="view-reports-payment-info-time">{j.paymentTime}</p>
-          <div class="view-reports-payment-info-state-image" style="background-image: url({j.state_image})"></div>
+
+          <div class="info-center-container">
+            <div class="horizontal-centering">
+              <p class="title-text text-margin">{j.service_name}</p>
+              <div class="main-text text-margin">
+                {window.amountTransform(j.amount.toString())}
+                <small class="main-text text-margin" style="font-size: {22*widthK}px;">
+                  {window.languages.Currency}
+                </small>
+              </div>
+              <p>
+
+              </p>
+              <p class="title-text text-margin">{j.cntrg_info_param2}</p>
+            </div>
+          </div>
+
+          <div class="centering-background-image view-info-right-item">
+            <div class="horizontal-centering">
+              <p class="title-text text-margin">{j.paymentTime}</p>
+              <div class="centering-background-image"
+                   style="background-image: url({j.state_image}); background-size: 60%; width: {60*widthK}px; height: {60*widthK}px;">
+              </div>
+            </div>
+          </div>
+
+          <div class="border-bottom"></div>
         </div>
       </div>
     </div>

@@ -363,9 +363,11 @@
                     result[1][i].currency = window.languages.Currency;
                   }
                   var invoice = result[1][i];
+                  //FIXME: ПОЧЕМУ КИДЕТ НУЛЛ
                   invoice.nds = scope.servicesMap[result[1][i].service_id][0].nds;
                   invoice.rate = scope.servicesMap[result[1][i].service_id][0].rate;
                   invoice.low_ratio = scope.servicesMap[result[1][i].service_id][0].low_ratio;
+                  invoice.currency = scope.servicesMap[result[1][i].service_id][0].currency;
                   arrayOfInvoice.push(invoice);
                 }
 
