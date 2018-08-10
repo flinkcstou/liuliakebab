@@ -101,22 +101,24 @@
       </button>
 
       <div style="position: relative; left: 10%; top: 2%;">
-        <p if="{commissionPercent > 0 && nds === null}"
+        <p if="{service.commission_percent>0 && (service.nds==null || service.nds==0)}"
            class="servicepage-amount-tax-text-field">
           {window.languages.PlusCommission}
-          {toEnrollment === 0 ? 0 : window.calculateCommission(amountForPayTransaction, commissionPercent)}
+          {toEnrollment == 0 ? 0 : window.calculateCommission(amountForPayTransaction, service.commission_percent)}
           {window.languages.Currency}
         </p>
-        <p if="{commissionPercent > 0 && nds > 0}"
-           class="servicepage-amount-tax-text-field">
-          {window.languages.PlusCommissionAndNds}
-          {toEnrollment === 0 ? 0 : window.calculateCommissionAndNds(amountForPayTransaction, commissionPercent, nds)}
-          {window.languages.Currency}
-        </p>
-        <p if="{commissionPercent === 0 && nds > 0}"
+        <p if="{(service.commission_percent==null || service.commission_percent==0) && service.nds>0}"
            class="servicepage-amount-tax-text-field">
           {window.languages.PlusNds}
-          {toEnrollment === 0 ? 0 : window.calculateCommission(amountForPayTransaction, nds)}
+          {toEnrollment == 0 ? 0 : window.calculateCommission(amountForPayTransaction, service.nds)}
+          {window.languages.Currency}
+        </p>
+        <p if="{service.commission_percent>0 && service.nds>0}"
+           class="servicepage-amount-tax-text-field">
+          {window.languages.PlusCommissionAndNds}
+          {toEnrollment == 0 ? 0 : window.calculateCommissionAndNds(amountForPayTransaction,
+          service.commission_percent,
+          service.nds)}
           {window.languages.Currency}
         </p>
         <p if="{service.categoryId == 16 || (service.currency != null && service.rate != null)}"
@@ -732,6 +734,7 @@
 
     if (scope.servicesMap[opts.chosenServiceId]) {
       scope.service = scope.servicesMap[opts.chosenServiceId][0];
+      console.log("AAAAAAAAAAAAAAAAAAAAAaaa", scope.service);
       scope.titleName = scope.service.name;
       scope.serviceIcon = scope.service.image;
       scope.commissionPercent = scope.service.commission_percent;
@@ -740,6 +743,7 @@
       scope.nds = scope.service.nds;
       scope.currency = scope.service.currency;
       opts.currency = scope.service.currency;
+      scope.update();
     }
 
     //Editing amount input for non editable situations

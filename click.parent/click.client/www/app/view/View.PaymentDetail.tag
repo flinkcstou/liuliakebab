@@ -27,22 +27,22 @@
         <p class="payment-detail-title">{window.languages.ViewPaymentDetailTitleSum}</p>
         <p class="payment-detail-sum">{opts.amount} {currency}</p>
 
-        <p if="{opts.commission_percent > 0 && opts.nds === null}"
+        <p if="{opts.commission_percent > 0 && (opts.nds == null || opts.nds == 0)}"
            class="text-margin title-text">
           {window.languages.PlusCommission}
           {window.calculateCommission(window.toInt(opts.amount), opts.commission_percent)}
+          {window.languages.Currency}
+        </p>
+        <p if="{(opts.commission_percent == null || opts.commission_percent == 0) && opts.nds > 0}"
+           class="text-margin title-text">
+          {window.languages.PlusNds}
+          {window.calculateNds(window.toInt(opts.amount), opts.nds)}
           {window.languages.Currency}
         </p>
         <p if="{opts.commission_percent > 0 && opts.nds > 0}"
            class="text-margin title-text">
           {window.languages.PlusCommissionAndNds}
           {window.calculateCommissionAndNds(window.toInt(opts.amount), opts.commission_percent, opts.nds)}
-          {window.languages.Currency}
-        </p>
-        <p if="{opts.commission_percent === 0 && opts.nds > 0}"
-           class="text-margin title-text">
-          {window.languages.PlusNds}
-          {window.calculateNds(window.toInt(opts.amount), opts.nds)}
           {window.languages.Currency}
         </p>
 

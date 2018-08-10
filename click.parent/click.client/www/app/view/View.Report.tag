@@ -65,21 +65,22 @@
                   {window.languages.Currency}
                 </small>
               </p>
-              <p if="{j.comission_amount > 0 && j.nds === null}"
+              <p if="{j.comission_amount > 0 && (j.nds == null || j.nds == 0)}"
                  class="text-margin title-text">
                 {window.languages.Commission}{j.comission_amount}
                 {window.languages.Currency}
               </p>
-              <p if="{j.comission_amount > 0 && j.nds > 0}"
-                 class="text-margin title-text">
-                {window.languages.CommissionAndNds}
-                {window.calculateNds(window.toInt(j.amount) + j.comission_amount, j.nds)}
-                {window.languages.Currency}
-              </p>
-              <p if="{j.comission_amount === 0 && j.nds > 0}"
+              <p if="{(j.comission_amount == 0 || j.comission_amount == null) && j.nds > 0}"
                  class="text-margin title-text">
                 {window.languages.Nds}{window.calculateNds(window.toInt(j.amount), j.nds)} {window.languages.Currency}
               </p>
+              <p if="{j.comission_amount > 0 && j.nds > 0}"
+                 class="text-margin title-text">
+                {window.languages.CommissionAndNds}
+                {j.comission_amount}
+                {window.languages.Currency}
+              </p>
+
               <p class="title-text text-margin">{j.cntrg_info_param2}</p>
             </div>
           </div>

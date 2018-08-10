@@ -3374,7 +3374,7 @@ var css = {
   "background-size: contain;" +
   "font-size:" + 24 * widthK + "px;" +
   "color: #8a8a8a;" +
-  "z-index: 1000000;" +
+  "z-index: 100000000;" +
   // "box-shadow: 0px 17px 63px -23px rgb(37, 36, 36);" +
   "box-shadow: 0px " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + " rgb(37, 36, 36);" +
   "}",
@@ -3436,6 +3436,7 @@ var css = {
   "{" +
   "background-size: 60%;" +
   "height:" + 60 * widthK + "px;" +
+  "margin-top: 1" +
   "}",
 
   myCardsLastOperationInfoDateName: ".my-cards-last-operation-info-date-name " +
@@ -15781,27 +15782,6 @@ var css = {
   "background-color: transparent;" +
   //"border-bottom:  " + 1 + "px solid lightgray;" +
   "}",
-
-  reportServicePhoneField: ".report-service-phone-field" +
-  "{" +
-  "position: relative;" +
-  "width: 90%;" +
-  "margin: 0 5%;" +
-  "height: " + 110 * widthK + "px; " +
-  "border-bottom: 1px solid lightgray;" +
-  "color: white;" +
-  "}",
-
-  reportServiceTextField: ".report-service-text-field" +
-  "{" +
-  "position: absolute;" +
-  "margin: 0;" +
-  "color: darkgray;" +
-  "font-size: " + 23 * widthK + "px; " +
-  "left: 3%;" +
-  "top: 9%; " +
-  "}",
-
   reportServicePhoneInput: ".report-service-phone-input" +
   "{" +
   "position: absolute;" +
@@ -15816,10 +15796,7 @@ var css = {
 
   reportServiceInfoInput: ".report-service-info-input" +
   "{" +
-  "position: absolute;" +
   "margin: 0;" +
-  "left: 3%;" +
-  "top: " + 49 * widthK + "px; " +
   "font-size: " + 29 * widthK + "px; " +
   "color: gray;" +
   "text-overflow: ellipsis;" +
@@ -15845,49 +15822,12 @@ var css = {
   "white-space: nowrap;" +
   "}",
 
-  reportServiceInfoInputAmount: ".report-service-info-input-amount" +
+  reportInfoContainer: ".report-info-container" +
   "{" +
-  "position: absolute;" +
-  "margin: 0;" +
-  "left: 3%;" +
-  "top: " + 49 * widthK + "px; " +
-  "font-size: " + 29 * widthK + "px; " +
-  "text-overflow: ellipsis;" +
-  "width: " + 625 * widthK + "px;" +
-  "max-height: " + 80 * widthK + "px;" +
-  "overflow: hidden;" +
-  "color: #ff6d65;" +
-  "}",
-
-  reportServiceInfoInputAmountWithTax: ".report-service-info-input-amount-with-tax" +
-  "{" +
-  "top: 35%;" +
-  "}",
-
-  reportServiceTaxField: ".report-service-tax-field" +
-  "{" +
-  "position: absolute;" +
-  "margin: 0;" +
-  "color: darkgray;" +
-  "font-size: " + 24 * widthK + "px; " +
-  "left: 4%;" +
-  "top: 63%;" +
-  "}",
-
-  reportServiceField: ".report-service-field" +
-  "{" +
+  "height: " + 100 * widthK + "px;" +
+  "z-index: 999999;" +
+  "margin: " + 5 * widthK + "px " + 40 * widthK + "px;" +
   "position: relative;" +
-  "width: 90%;" +
-  "margin: 0 5%;" +
-  "height: " + 94 * widthK + "px; " +
-  "border-bottom:  " + 1 + "px solid lightgray;" +
-  "color: white;" +
-  //"top: 23%;" +
-  "}",
-
-  reportServiceAmountField: ".report-service-amount-field" +
-  "{" +
-  "height: 28%;" +
   "}",
 
   reportServiceLastField: ".report-service-last-field" +

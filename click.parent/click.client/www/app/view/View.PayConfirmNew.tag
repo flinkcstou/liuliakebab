@@ -32,10 +32,16 @@
         <p class="title-text text-margin">
           {window.languages.ViewPayConfirmAmountOfPay}</p>
         <p class="main-text text-margin">{amountTextCopy} {currency}</p>
-        <p if="{opts.commissionPercent > 0 && opts.nds == null}"
+        <p if="{opts.commissionPercent > 0 && (opts.nds==null || opts.nds==0)}"
            class="servicepage-amount-tax-text-field">
           {window.languages.PlusCommission}
           {window.calculateCommission(opts.amountWithoutSpace, opts.commissionPercent)}
+          {window.languages.Currency}
+        </p>
+        <p if="{(opts.commissionPercent == 0 || opts.commissionPercent == null)&& opts.nds > 0}"
+           class="servicepage-amount-tax-text-field">
+          {window.languages.PlusNds}
+          {window.calculateCommission(opts.amountWithoutSpace, opts.nds)}
           {window.languages.Currency}
         </p>
         <p if="{opts.commissionPercent > 0 && opts.nds > 0}"
@@ -44,12 +50,7 @@
           {window.calculateCommissionAndNds(opts.amountWithoutSpace, opts.commissionPercent, opts.nds)}
           {window.languages.Currency}
         </p>
-        <p if="{opts.commissionPercent == 0 && opts.nds > 0}"
-           class="servicepage-amount-tax-text-field">
-          {window.languages.PlusNds}
-          {window.calculateCommission(opts.amountWithoutSpace, opts.nds)}
-          {window.languages.Currency}
-        </p>
+
 
         <p if="{opts.cost > 1}" class="title-text text-margin">{opts.lang_amount_title}:
           {window.amountTransform(opts.amountWithoutSpace)}</p>

@@ -79,24 +79,25 @@
               <p class="main-text text-margin">
                 - {i.amount} {window.languages.Currency}
               </p>
-              <p if="{i.comission_amount > 0 && i.nds === null}"
+              <p if="{i.comission_amount > 0 && (i.nds==null || i.nds==0)}"
                  class="text-margin title-text">
                 {window.languages.Commission}
                 {i.comission_amount}
                 {window.languages.Currency}
               </p>
-              <p if="{i.comission_amount > 0 && i.nds > 0}"
-                 class="text-margin title-text">
-                {window.languages.CommissionAndNds}
-                {window.calculateCommissionAndNds(i.amount + i.comission_amount, i.nds)}
-                {window.languages.Currency}
-              </p>
-              <p if="{i.comission_amount === 0 && i.nds > 0}"
+              <p if="{(i.comission_amount == 0 || i.comission_amount == null) && i.nds > 0}"
                  class="text-margin title-text">
                 {window.languages.Nds}
                 {window.calculateNds(i.amount, i.nds)}
                 {window.languages.Currency}
               </p>
+              <p if="{i.comission_amount>0 && i.nds > 0}"
+                 class="text-margin title-text">
+                {window.languages.CommissionAndNds}
+                {i.comission_amount}
+                {window.languages.Currency}
+              </p>
+
               <p class="title-text text-margin">
                 {i.lang_amount_currency}
               </p>
@@ -443,10 +444,10 @@
                     var dateStr = date.getUTCDate() + ' ' + window.languages.ViewReportMonthsArrayTwo[date.getUTCMonth()] + ' ' + date.getUTCFullYear();
 
                     if (date.getUTCDate() == new Date().getUTCDate() && date.getUTCMonth() == new Date().getUTCMonth() && date.getUTCFullYear() == new Date().getUTCFullYear())
-                      dateStr = 'сегодня'
+                      dateStr = 'Сегодня';
 
                     if (date.getUTCDate() == new Date().getUTCDate() - 1 && date.getUTCMonth() == new Date().getUTCMonth() && date.getUTCFullYear() == new Date().getUTCFullYear())
-                      dateStr = 'вчера'
+                      dateStr = 'Вчера';
 
                     if (result[1][i].state == -1) {
                       result[1][i].state_image = "resources/icons/ViewReport/report_status_error.png"
@@ -461,6 +462,7 @@
                     }
 
                     result[1][i].show_date = dateStr;
+
 
                     if (!scope.lastOperationsMap[dateStr]) {
                       scope.lastOperationsMap[dateStr] = [];

@@ -45,7 +45,7 @@
       </div>
       <div class="hor-line-border">
       </div>
-      <div id="resetLocalButtonId" class="authorization-button-registration"
+      <div id="resetLocalButtonId" class="authorization-button-registration sdf"
            ontouchstart="resetLocalStorageTouchStart()"
            ontouchend="resetLocalStorageTouchEnd()">
         {window.languages.ViewAuthorizationResetLocalStorageLabel}
