@@ -44,7 +44,7 @@
          class="view-reports-body-container" id="reportBodyContainerId" if="{firstReportView}"
          onscroll="reportsBodyContainerScroll()">
       <div class="view-reports-payments-container" each="{i in paymentDates}">
-        <div class="view-reports-payment-date-containter" id="{'id'+i}">
+        <div class="date-container" id="{'id'+i}">
           <div class="view-reports-payment-date-field">{i}</div>
         </div>
         <div class="info-container" each="{j in paymentsMap[i]}" id="{j.payment_id}"
@@ -56,25 +56,39 @@
 
           <div class="info-center-container">
             <div class="horizontal-centering">
-              <p class="title-text text-margin">{j.service_name}</p>
-              <div class="main-text text-margin">
-                {window.amountTransform(j.amount.toString())}
+              <p class="title-text text-margin">
+                {j.service_name}
+              </p>
+              <p class="main-text text-margin">
+                - {window.amountTransform(j.amount.toString())}
                 <small class="main-text text-margin" style="font-size: {22*widthK}px;">
                   {window.languages.Currency}
                 </small>
-              </div>
-              <p>
-
+              </p>
+              <p if="{j.comission_amount > 0 && j.nds === null}"
+                 class="text-margin title-text">
+                {window.languages.Commission}{j.comission_amount}
+                {window.languages.Currency}
+              </p>
+              <p if="{j.comission_amount > 0 && j.nds > 0}"
+                 class="text-margin title-text">
+                {window.languages.CommissionAndNds}
+                {window.calculateNds(window.toInt(j.amount) + j.comission_amount, j.nds)}
+                {window.languages.Currency}
+              </p>
+              <p if="{j.comission_amount === 0 && j.nds > 0}"
+                 class="text-margin title-text">
+                {window.languages.Nds}{window.calculateNds(window.toInt(j.amount), j.nds)} {window.languages.Currency}
               </p>
               <p class="title-text text-margin">{j.cntrg_info_param2}</p>
             </div>
           </div>
 
-          <div class="centering-background-image view-info-right-item">
+          <div class="centering-background-image view-info-right-item vertical-centering-content">
             <div class="horizontal-centering">
-              <p class="title-text text-margin">{j.paymentTime}</p>
-              <div class="centering-background-image"
-                   style="background-image: url({j.state_image}); background-size: 60%; width: {60*widthK}px; height: {60*widthK}px;">
+              <p if={j.paymentTime} class="title-text text-margin" style="margin-bottom: 20%">{j.paymentTime}</p>
+              <div class="centering-background-image state-image-container"
+                   style="background-image: url({j.state_image});">
               </div>
             </div>
           </div>
@@ -110,8 +124,12 @@
         <div class="view-reports-graph-block-containter" each="{j in graphList}">
           <div class="view-reports-graph-block-icon"
                style="background-image: url({j.image})"></div>
-          <div class="view-reports-graph-block-name-field">{j.category_name}</div>
-          <div class="view-reports-graph-block-amount-field" style="color: {j.color_hex}">{j.amount}</div>
+          <div class="view-reports-graph-block-name-field">
+            {j.category_name}
+          </div>
+          <div class="view-reports-graph-block-amount-field" style=" color: {j.color_hex}">
+            {j.amount}
+          </div>
           <div class="view-reports-graph-block-currency-field" style="color: {j.color_hex}">сум</div>
           <div hidden class="view-reports-graph-block-next-icon"></div>
         </div>
@@ -599,6 +617,8 @@
 
               if (!scope.paymentsMap[dateStr]) {
                 scope.paymentsMap[dateStr] = [];
+                console.log("!!!!!!!!!!!!!1", dateStr);
+                console.log("!!!!!!!!!!!!!1", result[1][i]);
                 scope.paymentDates.push(dateStr);
                 scope.paymentsMap[dateStr].push(result[1][i]);
               }

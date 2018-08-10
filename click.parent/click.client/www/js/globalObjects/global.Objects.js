@@ -339,6 +339,72 @@ window.deleteLeadingZeros = function (amount) {
   return amount;
 };
 
+window.calculateCommissionAndNds = function (amount, commissionPercent, nds) {
+  if (amount == null || nds == null || commissionPercent == null) return 0;
+  var commission = calculatePercent(amount, commissionPercent);
+  var amountWithCommission = commission + amount;
+  var ret = financial(calculatePercent(amountWithCommission, nds) + commission);
+  if (isInt(ret)) {
+    return parseInt(ret);
+  } else {
+    return ret;
+  }
+};
+
+window.isInt = function (number) {
+  if (number == null) return false;
+  return number % 1 === 0;
+};
+
+window.toInt = function (textNumber) {
+
+  var ret = textNumber.toString().replace(/\s/g, '');
+  ret = ret.toString().replace(/ /g, '');
+
+  return parseInt(ret);
+};
+
+window.calculateCommission = function (amount, commissionPercent) {
+  if (amount == null || commissionPercent == null) return 0;
+  amount = window.toInt(amount);
+  var ret = financial(calculatePercent(amount, commissionPercent));
+  if (isInt(ret)) {
+    return parseInt(ret);
+  } else {
+    return ret;
+  }
+};
+
+window.calculateEnrollment = function (amount, rate, low_ratio) {
+  if (rate <= 1 && low_ratio <= 0) return 0;
+  var ret = (amount / rate) / 100 * (100 - low_ratio);
+  ret = financial(ret);
+  if (isInt(ret)) {
+    return parseInt(ret);
+  } else {
+    return ret;
+  }
+};
+
+window.calculateNds = function (amount, nds) {
+  if (amount == null || nds == null) return 0;
+  amount = window.toInt(amount);
+  var ret = financial(calculatePercent(amount, nds));
+  if (isInt(ret)) {
+    return parseInt(ret);
+  } else {
+    return ret;
+  }
+};
+
+function financial(x) {
+  return Number.parseFloat(x).toFixed(2);
+}
+
+function calculatePercent(amount, percent) {
+  return amount / 100 * percent;
+}
+
 window.amountTransform = function (amount) {
   if (amount) {
     amount = amount.toString()
@@ -367,7 +433,7 @@ window.amountTransform = function (amount) {
     }
   }
   return newAmount.split("").reverse().join("");
-}
+};
 
 window.getFractionalPart = function (amount) {
   var fractionalPartResult = '';

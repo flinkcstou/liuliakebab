@@ -35,10 +35,25 @@
             class="report-service-info-input-amount {report-service-info-input-amount-with-tax: opts.comission_amount && opts.comission_amount!=0}">
             -
             {(opts.amount) ? (amountTransform(opts.amount.toString())) : ("")} сум</p>
-          <p if="{opts.comission_amount && opts.comission_amount!=0}" class="report-service-tax-field">
-            {window.languages.ViewTransferFourTax}
+          <p if="{opts.comission_amount > 0 && opts.nds == null}"
+             class="report-service-tax-field">
+            {window.languages.Commission}
             {opts.comission_amount}
-            {window.languages.ViewReportServiceCommissionCurrency}</p>
+            {window.languages.Currency}
+          </p>
+          <p if="{opts.comission_amount > 0 && opts.nds > 0}"
+             class="report-service-tax-field">
+            {window.languages.CommissionAndNds}
+            {window.calculateNds(window.toInt(opts.amount) + opts.comission_amount, opts.nds)}
+            {window.languages.Currency}
+          </p>
+          <p if="{opts.comission_amount == 0 && opts.nds > 0}"
+             class="report-service-tax-field">
+            {window.languages.Nds}
+            {window.calculateNds(window.toInt(opts.amount), opts.nds)}
+            {window.languages.Currency}
+          </p>
+
         </div>
         <div class="report-service-field">
           <p class="report-service-text-field">{window.languages.ViewReportServicePayWithCard}</p>

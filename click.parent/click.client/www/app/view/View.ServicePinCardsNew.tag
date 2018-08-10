@@ -182,7 +182,7 @@
           window.common.alert.show("componentAlertId", {
             parent: scope,
             clickpinerror: scope.clickPinError,
-            errornote: scope.errorNote,
+            errornote: scope.errorNote
           });
           riot.update();
           return;

@@ -94,15 +94,20 @@
             </p>
             <p if="{i.comission_amount > 0 && i.nds === null}"
                class="text-margin title-text">
-              {window.languages.Commission}{i.comission_amount} {window.languages.Currency}
+              {window.languages.Commission}{i.comission_amount}
+              {window.languages.Currency}
             </p>
             <p if="{i.comission_amount > 0 && i.nds > 0}"
                class="text-margin title-text">
-              {window.languages.CommissionAndNds}{i.comission_amount} {window.languages.Currency}
+              {window.languages.CommissionAndNds}
+              {window.calculateNds(i.comission_amount+window.toInt(i.amount), i.nds)}
+              {window.languages.Currency}
             </p>
             <p if="{i.comission_amount === 0 && i.nds > 0}"
                class="text-margin title-text">
-              {window.languages.Nds}{i.comission_amount} {window.languages.Currency}
+              {window.languages.Nds}
+              {window.calculateNds(window.toInt(i.amount), i.nds)}
+              {window.languages.Currency}
             </p>
             <p class="title-text text-margin">
               {i.cntrg_info_param2}
@@ -113,8 +118,8 @@
           </div>
         </div>
 
-        <div class="centering-background-image view-info-right-item"
-             style="background-image: url({i.state_image}); background-size: 60%;">
+        <div class="centering-background-image view-info-right-item state-image-container"
+             style="background-image: url({i.state_image});">
         </div>
 
         <div class="border-bottom">

@@ -101,15 +101,31 @@
       </button>
 
       <div style="position: relative; left: 10%; top: 2%;">
-        <p if="{commissionPercent}" class="servicepage-amount-tax-text-field">
-          {nds ? window.languages.PlusCommissionAndNds : window.languages.PlusCommission}
-          {tax}
-          {window.languages.Currency}</p>
-        <p if="{nds && isInternationalPay}" class="servicepage-amount-tax-text-field" style="bottom:-90%;">
+        <p if="{commissionPercent > 0 && nds === null}"
+           class="servicepage-amount-tax-text-field">
+          {window.languages.PlusCommission}
+          {toEnrollment === 0 ? 0 : window.calculateCommission(amountForPayTransaction, commissionPercent)}
+          {window.languages.Currency}
+        </p>
+        <p if="{commissionPercent > 0 && nds > 0}"
+           class="servicepage-amount-tax-text-field">
+          {window.languages.PlusCommissionAndNds}
+          {toEnrollment === 0 ? 0 : window.calculateCommissionAndNds(amountForPayTransaction, commissionPercent, nds)}
+          {window.languages.Currency}
+        </p>
+        <p if="{commissionPercent === 0 && nds > 0}"
+           class="servicepage-amount-tax-text-field">
+          {window.languages.PlusNds}
+          {toEnrollment === 0 ? 0 : window.calculateCommission(amountForPayTransaction, nds)}
+          {window.languages.Currency}
+        </p>
+        <p if="{service.categoryId == 16 || (service.currency != null && service.rate != null)}"
+           class="servicepage-amount-tax-text-field" style="bottom:-90%;">
           <b>
             {window.languages.ViewServiceToEnrollment}
           </b>
-          <b style="color: rgb(142,184,81);">{toEnrollment} USD</b>
+          <b style="color: rgb(142,184,81);">{toEnrollment} {service.currency == "000" ? "UZS" :
+            "USD"}</b>
         </p>
       </div>
 
@@ -154,6 +170,7 @@
   <component-dropdown></component-dropdown>
 
   <script>
+
 
     window.checkShowingComponent = null;
     var scope = this;
@@ -210,8 +227,10 @@
     }
 
     if (opts.amountText) {
+      scope.amountForPayTransaction = opts.amountWithoutSpace;
       opts.amountText = !opts.amountText ? 0 : window.amountTransform(opts.amountText.toString());
-      scope.tax = opts.tax ? opts.tax : 0;
+      scope.commissionPercent = opts.commissionPercent ? opts.commissionPercent : 0;
+      scope.nds = opts.nds ? opts.nds : 0;
       scope.toEnrollment = opts.toEnrollment ? opts.toEnrollment : 0;
       scope.update();
     }
@@ -297,7 +316,6 @@
           scope.update();
           placeHolderSumId.style.color = 'red';
         }
-        scope.tax = 0;
         scope.toEnrollment = 0;
         scope.enterButtonEnabled = false;
         scope.update();
@@ -711,13 +729,17 @@
       }
     };
 
+
     if (scope.servicesMap[opts.chosenServiceId]) {
       scope.service = scope.servicesMap[opts.chosenServiceId][0];
       scope.titleName = scope.service.name;
       scope.serviceIcon = scope.service.image;
       scope.commissionPercent = scope.service.commission_percent;
       scope.low_ratio = scope.service.low_ratio;
+      scope.rate = scope.service.rate;
       scope.nds = scope.service.nds;
+      scope.currency = scope.service.currency;
+      opts.currency = scope.service.currency;
     }
 
     //Editing amount input for non editable situations
@@ -751,8 +773,7 @@
       scope.chosenFieldParamId = opts.firstFieldId ? opts.firstFieldId : scope.fieldArray[0].parameter_id;
       opts.first_field_value = opts.firstFieldText ? opts.firstFieldText : null;
       scope.amountFieldTitle = scope.service.lang_amount_title;
-      console.log("PARAMETER ID ", scope.fieldArray[0].parameter_id, scope.fieldArray[0])
-      console.log("Service ", scope.service)
+      console.log("PARAMETER ID ", scope.fieldArray[0].parameter_id, scope.fieldArray[0]);
       scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1" || scope.fieldArray[0].parameter_id == "65536" || scope.fieldArray[0].parameter_id == "128";
       scope.calcOn = scope.service.cost == 1;
 
@@ -1025,19 +1046,12 @@
       opts.amountWithoutSpace = amountForPayTransaction;
 
       if (amountForPayTransaction >= 1000) {
-        scope.tax = amountForPayTransaction / 100 * scope.commissionPercent;
-        if (scope.nds) {
-          var nds = (amountForPayTransaction + scope.tax) * (scope.nds ? scope.nds : 0) / 100;
-          scope.tax = (scope.tax + nds).toFixed(2);
-          scope.toEnrollment = ((amountForPayTransaction / scope.service.rate) / 100 * (100 - scope.low_ratio)).toFixed(2);
-          opts.nds = scope.nds;
-        }
-        if (scope.tax % 1 === 0) scope.tax = parseInt(scope.tax);
-        if (scope.toEnrollment % 1 === 0) scope.toEnrollment = parseInt(scope.toEnrollment);
-        opts.tax = scope.tax;
+        opts.commissionPercent = scope.commissionPercent;
+        opts.nds = scope.nds;
+        scope.toEnrollment = window.calculateEnrollment(amountForPayTransaction, scope.service.rate, scope.service.low_ratio);
         opts.toEnrollment = scope.toEnrollment;
+        scope.amountForPayTransaction = amountForPayTransaction;
       } else {
-        scope.tax = 0;
         scope.toEnrollment = 0;
       }
       scope.update();
@@ -1049,7 +1063,6 @@
 
       if (this.enterButtonId && scope.enterButtonEnabled) {
         this.enterButtonId.style.webkitTransform = 'scale(0.8)';
-//        this.enterButtonId.style.backgroundColor = '#76c1f4';
       }
 
       enterStartY = event.changedTouches[0].pageY;

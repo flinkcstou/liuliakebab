@@ -118,6 +118,7 @@ var RU_LANGUAGES =
     "Commission": "Комиссия - ",
     "CommissionAndNds": "Комиссия (в т.ч. НДС) - ",
     "Nds": "НДС - ",
+    "PlusNds": "Плюс НДС - ",
     "PlusCommissionAndNds": "Плюс комиссия (в т.ч. НДС) - ",
     "ViewServiceToEnrollment": "Будет зачислено:",
     "ViewTrustedDevicesDeleteOtherDevice": "Вы действительно хотите удалить устройство из списка доверенных?",

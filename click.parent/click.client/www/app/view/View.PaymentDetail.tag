@@ -26,14 +26,32 @@
       <div class="payment-detail-payment-include-container">
         <p class="payment-detail-title">{window.languages.ViewPaymentDetailTitleSum}</p>
         <p class="payment-detail-sum">{opts.amount} {currency}</p>
-        <p if="{opts.commission_percent}" class="payment-detail-commission">
-          {window.languages.ViewTransferTwoTax} {commission_amount}
-          {window.languages.Currency}</p>
-        <p if="{opts.nds}" class="payment-detail-commission">
+
+        <p if="{opts.commission_percent > 0 && opts.nds === null}"
+           class="text-margin title-text">
+          {window.languages.PlusCommission}
+          {window.calculateCommission(window.toInt(opts.amount), opts.commission_percent)}
+          {window.languages.Currency}
+        </p>
+        <p if="{opts.commission_percent > 0 && opts.nds > 0}"
+           class="text-margin title-text">
+          {window.languages.PlusCommissionAndNds}
+          {window.calculateCommissionAndNds(window.toInt(opts.amount), opts.commission_percent, opts.nds)}
+          {window.languages.Currency}
+        </p>
+        <p if="{opts.commission_percent === 0 && opts.nds > 0}"
+           class="text-margin title-text">
+          {window.languages.PlusNds}
+          {window.calculateNds(window.toInt(opts.amount), opts.nds)}
+          {window.languages.Currency}
+        </p>
+
+        <p if="{opts.category_id == 16}" class="payment-detail-commission">
           <b>
             {window.languages.ViewServiceToEnrollment}
           </b>
-          <b style="color: rgb(142,184,81);">{toEnrollment} USD</b>
+          <b style="color: rgb(142,184,81);">{window.calculateEnrollment(window.toInt(opts.amount), opts.rate,
+            opts.low_ratio)} {opts.currency=="000"?"UZS":"USD"}</b>
         </p>
       </div>
     </div>
@@ -70,20 +88,10 @@
       touchEndAcceptX,
       touchEndAcceptY;
 
+    console.error("<!!!!!!!!!!!!!11>", opts);
+
     scope.errorCode = 0;
     scope.currency = window.languages.Currency;
-
-    calculateTaxAndCommission();
-
-    function calculateTaxAndCommission() {
-      var amount = parseInt(opts.amount.replace(/\s/g, ''));
-      scope.commission_amount = amount / 100 * scope.opts.commission_percent;
-      var nds = (amount + scope.commission_amount) * (scope.opts.nds ? scope.opts.nds : 0) / 100;
-      scope.commission_amount = (scope.commission_amount + nds).toFixed(2);
-      scope.toEnrollment = ((amount / scope.opts.rate) / 100 * (100 - scope.opts.low_ratio)).toFixed(2);
-      if (scope.commission_amount % 1 === 0) scope.commission_amount = parseInt(scope.commission_amount);
-      if (scope.toEnrollment % 1 === 0) scope.toEnrollment = parseInt(scope.toEnrollment);
-    }
 
     //Get currency for this service
     if (localStorage.getItem("click_client_servicesMap")

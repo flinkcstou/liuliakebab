@@ -315,7 +315,7 @@
           viewPay.categoryScrollTop = categoriesContainerId.scrollTop;
           opts.searchWord = searchInputId.value;
 
-          console.log('ID ID ID', id)
+          console.log('ID ID ID', id);
           if (opts.mode == 'ADDAUTOPAY') {
             scope.autoPayData = {};
             opts.chosenServiceId = id;

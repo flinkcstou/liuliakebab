@@ -32,15 +32,30 @@
         <p class="title-text text-margin">
           {window.languages.ViewPayConfirmAmountOfPay}</p>
         <p class="main-text text-margin">{amountTextCopy} {currency}</p>
-        <p if="{opts.tax}" class="title-text text-margin">{opts.nds ?
-          window.languages.PlusCommissionAndNds : PlusCommission}
-          {opts.tax}
-          {window.languages.Currency}</p>
+        <p if="{opts.commissionPercent > 0 && opts.nds == null}"
+           class="servicepage-amount-tax-text-field">
+          {window.languages.PlusCommission}
+          {window.calculateCommission(opts.amountWithoutSpace, opts.commissionPercent)}
+          {window.languages.Currency}
+        </p>
+        <p if="{opts.commissionPercent > 0 && opts.nds > 0}"
+           class="servicepage-amount-tax-text-field">
+          {window.languages.PlusCommissionAndNds}
+          {window.calculateCommissionAndNds(opts.amountWithoutSpace, opts.commissionPercent, opts.nds)}
+          {window.languages.Currency}
+        </p>
+        <p if="{opts.commissionPercent == 0 && opts.nds > 0}"
+           class="servicepage-amount-tax-text-field">
+          {window.languages.PlusNds}
+          {window.calculateCommission(opts.amountWithoutSpace, opts.nds)}
+          {window.languages.Currency}
+        </p>
+
         <p if="{opts.cost > 1}" class="title-text text-margin">{opts.lang_amount_title}:
           {window.amountTransform(opts.amountWithoutSpace)}</p>
         <p if="{opts.toEnrollment}" class="title-text text-margin">
           <b>{window.languages.ViewServiceToEnrollment}</b>
-          <b style="color: rgb(142,184,81);">{opts.toEnrollment} USD</b>
+          <b style="color: rgb(142,184,81);">{opts.toEnrollment} {opts.currency=="000"?"UZS":"USD"}</b>
         </p>
       </div>
     </div>
@@ -125,7 +140,7 @@
 
   <script>
 
-    console.log("OPTS PAYCONFIRM NEW", opts)
+    console.log("OPTS PAYCONFIRM NEW", opts);
 
     var scope = this;
     var favoriteStartY, favoriteStartX, favoriteEndY, favoriteEndX;

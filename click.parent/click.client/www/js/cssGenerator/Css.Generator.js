@@ -3374,7 +3374,7 @@ var css = {
   "background-size: contain;" +
   "font-size:" + 24 * widthK + "px;" +
   "color: #8a8a8a;" +
-  "z-index: 99999;" +
+  "z-index: 1000000;" +
   // "box-shadow: 0px 17px 63px -23px rgb(37, 36, 36);" +
   "box-shadow: 0px " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + " rgb(37, 36, 36);" +
   "}",
@@ -3407,15 +3407,15 @@ var css = {
   "width: 100%;" +
   "}",
 
-  myCardsLastOperationInfo: ".my-cards-last-operations-info " +
+  solidBorderButton: ".solid-border-bottom" +
   "{" +
-  "position: relative;" +
-  // "top:" + 80 * widthK + "px;" +
-  "width: 100%;" +
-  "background-color: white;" +
-  "height:" + 150 * widthK + "px;" +
-  "border-bottom:" + 1 + "px solid #dedfe0;" +
-  "overflow: hidden;" +
+  "position: absolute;" +
+  "height: 1px;" +
+  "background-color:#e8e8e8;" +
+  "bottom:0;" +
+  "z-index:9999;" +
+  "left:0;" +
+  "right:0;" +
   "}",
 
   myCardsLastOperationInfoStateImage: ".my-cards-last-operations-info-state-image " +
@@ -3432,25 +3432,10 @@ var css = {
   "margin: 0;" +
   "}",
 
-  myCardsLastOperationDate: ".my-cards-last-operations-date " +
+  stateImageContainer: ".state-image-container" +
   "{" +
-  "position: relative;" +
-  "background-color: #f6f6f6;" +
-  "width: 100%;" +
-  "overflow: hidden;" +
-  "height:" + 45 * widthK + "px;" +
-  "}",
-
-  myCardsLastOperationInfoTime: ".my-cards-last-operation-info-time " +
-  "{" +
-  "position: absolute;" +
-  "right: 0;" +
-  "width: 10%;" +
-  //"height: 100%;" +
-  "top: 15%;" +
-  "font-size: " + 22 * widthK + "px; " +
-  "margin: 0;" +
-  "color: #8b8b8b;" +
+  "background-size: 60%;" +
+  "height:" + 60 * widthK + "px;" +
   "}",
 
   myCardsLastOperationInfoDateName: ".my-cards-last-operation-info-date-name " +
@@ -3463,30 +3448,6 @@ var css = {
   "text-align: left;" +
   "font-size:" + 24 * widthK + "px; " +
   "color: gray;" +
-  "}",
-
-  myCardsOperationServiceIcon: ".my-cards-operation-service-icon " +
-  "{" +
-  //"top:" + 50 * widthK + "px;" +
-  "background-size: 80%;" +
-  "position: absolute;" +
-  "width:" + 125 * widthK + "px;" +
-  "height:" + 125 * widthK + "px;" +
-  "background-repeat: no-repeat;" +
-  "background-position: center;" +
-  //"border-radius:" + 100 * widthK + "px;" +
-  //"border:solid 1px #f1f1f1;" +
-  "top: 6%;" +
-  "left: 2%;" +
-  "}",
-
-  myCardsOperationInfoContainer: ".my-cards-operation-info-container " +
-  "{" +
-  "position: absolute;" +
-  "height:" + 150 * widthK + "px;" +
-  "width: 65%;" +
-  "top: 0;" +
-  "left: 23%;" +
   "}",
 
   myCardsOperationAmounts: ".my-cards-operation-amount " +
@@ -3517,19 +3478,6 @@ var css = {
   "color: #919191;" +
   "bottom:" + 20 * widthK + "px;" +
   "font-size:" + 25 * widthK + "px;" +
-  "text-overflow: ellipsis;" +
-  "white-space: nowrap;" +
-  "overflow: hidden;" +
-  "width: 100%;" +
-  "}",
-
-  myCardsFirmName: "    .my-cards-firm-name" +
-  "{" +
-  "position: relative;" +
-  // "left:" + 150 * widthK + "px;" +
-  "top:" + 15 * widthK + "px;" +
-  "font-size:" + 25 * widthK + "px;" +
-  "color: #919191;" +
   "text-overflow: ellipsis;" +
   "white-space: nowrap;" +
   "overflow: hidden;" +
@@ -3821,7 +3769,7 @@ var css = {
 
   InfoContainer: ".info-container " +
   "{" +
-  "height:" + 180 * widthK + "px;" +
+  "height:" + 160 * widthK + "px;" +
   "z-index: 999999;" +
   "padding:" + 10 * widthK + "px " + 15 * widthK + "px;" +
   "position: relative;" +
@@ -3871,6 +3819,11 @@ var css = {
   "-webkit-transform: translateY(-50%);" +
   "-ms-transform: translateY(-50%);" +
   "overflow: auto;" +
+  "}",
+
+  verticalCenteringContent: ".vertical-centering-content" +
+  "{" +
+  "text-align: center;" +
   "}",
 
   textMargin: ".text-margin" +
@@ -12695,15 +12648,12 @@ var css = {
   "width: 100%;" +
   "}",
 
-  viewReportsPaymentDateContainer: ".view-reports-payment-date-containter" +
+  dateContainer: ".date-container" +
   "{" +
-  "position: relative;" +
   "height:" + 45 * widthK + "px; " +
   "width: 100%;" +
-  // "left: 4%;" +
-  // "margin-top: 1%;" +
-  //"border-bottom:" + 1 * widthK + "px solid gainsboro;" +
   "background-color: #f6f6f6;" +
+  "overflow: hidden;" +
   "}",
 
   viewReportsPaymentDateField: ".view-reports-payment-date-field" +

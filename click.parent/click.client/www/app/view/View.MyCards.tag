@@ -63,23 +63,60 @@
 
     <div id="lastOperationContainerId" class="my-cards-last-operations-container">
       <div class="my-cards-last-operations-inner-container" each="{j in lastOperationsDates}">
-        <div class="my-cards-last-operations-date">
+        <div class="date-container">
           <p class="my-cards-last-operation-info-date-name">{j}</p>
         </div>
-        <div class="my-cards-last-operations-info" each="{i in lastOperationsMap[j]}" id="{i.payment_id}"
+        <div class="info-container" each="{i in lastOperationsMap[j]}" id="{i.payment_id}"
              ontouchstart="onTouchStartOfOperation(this.id)" onclick="onTouchEndOfOperation(this.id)" role="button"
              aria-label="{i.service_name}">
-          <div class="my-cards-operation-service-icon"
-               style="background-image: url({i.image})"></div>
-          <div class="my-cards-operation-info-container">
-            <div class="my-cards-firm-name">{i.service_name}</div>
-            <div class="my-cards-operation-amount">- {i.amount}</div>
-            <div class="my-cards-operation-currency">{i.lang_amount_currency}</div>
-            <div class="my-cards-operation-date">{i.cntrg_info_param2}</div>
-            <div class="view-info-state-image" style="background-image: url({i.state_image})"></div>
+          <div class="centering-background-image view-info-left-item"
+               style="background-image: url({i.image}); background-size: 80%;"></div>
+          <div class="info-center-container">
+            <div class="horizontal-centering">
+              <p class="title-text text-margin">
+                {i.service_name}
+              </p>
+              <p class="main-text text-margin">
+                - {i.amount} {window.languages.Currency}
+              </p>
+              <p if="{i.comission_amount > 0 && i.nds === null}"
+                 class="text-margin title-text">
+                {window.languages.Commission}
+                {i.comission_amount}
+                {window.languages.Currency}
+              </p>
+              <p if="{i.comission_amount > 0 && i.nds > 0}"
+                 class="text-margin title-text">
+                {window.languages.CommissionAndNds}
+                {window.calculateCommissionAndNds(i.amount + i.comission_amount, i.nds)}
+                {window.languages.Currency}
+              </p>
+              <p if="{i.comission_amount === 0 && i.nds > 0}"
+                 class="text-margin title-text">
+                {window.languages.Nds}
+                {window.calculateNds(i.amount, i.nds)}
+                {window.languages.Currency}
+              </p>
+              <p class="title-text text-margin">
+                {i.lang_amount_currency}
+              </p>
+              <p class="title-text text-margin">
+                {i.cntrg_info_param2}
+              </p>
+            </div>
           </div>
-          <p class="my-cards-last-operation-info-time">{i.paymentTime}</p>
-
+          <div class="view-info-right-item vertical-centering-content">
+            <div class="horizontal-centering">
+              <p class="title-text text-margin" style="margin-bottom: 20%">
+                {i.paymentTime}
+              </p>
+              <div class="centering-background-image state-image-container"
+                   style="background-image: url({i.state_image});">
+              </div>
+            </div>
+          </div>
+          <div class="solid-border-bottom">
+          </div>
         </div>
       </div>
     </div>
