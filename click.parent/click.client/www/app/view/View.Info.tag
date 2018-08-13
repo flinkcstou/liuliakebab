@@ -55,7 +55,7 @@
 
     <div id="reportButtonId" role="button" class="view-info-head-info-container" ontouchend="goToReportsTouchEnd()"
          ontouchstart="goToReportsTouchStart()" aria-label="{window.languages.ViewInfoReportsTitle}"
-         style="height: {130 * heightK}px">
+         style="height: {92 * heightK}px">
       <div class="centering-background-image view-info-left-item"
            style="background-image: url(resources/icons/ViewInfo/myreports.png);background-size: 60%;">
       </div>

@@ -398,7 +398,7 @@
     scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
     scope.formType = scope.service.form_type;
     scope.amountFieldTitle = scope.service.lang_amount_title;
-    scope.calcOn = scope.service.cost == 1;
+    scope.calcOn = scope.service.show_calc == 1;
 
     if (opts.amountText) {
       scope.defaultAmount = window.amountTransform(opts.amountText);
@@ -493,7 +493,7 @@
 
       amount.value = amountInput;
 
-      setTimeout(function() {
+      setTimeout(function () {
           amount.selectionStart = selectionStart;
           amount.selectionEnd = selectionStart;
         }, 0

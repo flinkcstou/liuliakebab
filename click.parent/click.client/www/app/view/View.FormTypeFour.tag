@@ -648,7 +648,7 @@
 
       amountCalcInputId.value = amountInput;
 
-      setTimeout(function() {
+      setTimeout(function () {
           amountCalcInputId.selectionStart = selectionStart;
           amountCalcInputId.selectionEnd = selectionStart;
         }, 0
@@ -858,7 +858,7 @@
       console.log("PARAMETER ID ", scope.fieldArray[0].parameter_id, scope.fieldArray[0])
       console.log("Service ", scope.service)
       scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1" || scope.fieldArray[0].parameter_id == "65536" || scope.fieldArray[0].parameter_id == "128";
-      scope.calcOn = scope.service.cost == 1;
+      scope.calcOn = scope.service.show_calc == 1;
 
       if (scope.phoneFieldBool) {
         scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telVerificationWithSpace(inputVerification.telVerification(opts.firstFieldText));
@@ -1182,7 +1182,7 @@
 
       amount.value = amountInput;
 
-      setTimeout(function() {
+      setTimeout(function () {
           amount.selectionStart = selectionStart;
           amount.selectionEnd = selectionStart;
         }, 0

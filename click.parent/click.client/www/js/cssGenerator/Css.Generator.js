@@ -4824,14 +4824,6 @@ var css = {
   "transform: rotate(90deg);" +
   "}",
 
-  //FormTypeSeven
-
-  formTypeSevenSecondField: ".formtype-seven-second-field" +
-  "{" +
-  "top: 14%;" +
-  "border-bottom:  " + 3 * widthK + "px solid lightgrey;" +
-  "}",
-
   formTypeSevenInfoContainer: ".formtype-seven-info-container" +
   "{" +
   "position: absolute;" +

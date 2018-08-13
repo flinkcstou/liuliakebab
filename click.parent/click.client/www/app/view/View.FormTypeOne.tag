@@ -740,6 +740,8 @@
 
     if (scope.servicesMap[opts.chosenServiceId]) {
       scope.service = scope.servicesMap[opts.chosenServiceId][0];
+      console.log("SERVICE", scope.service);
+
       scope.titleName = scope.service.name;
       scope.serviceIcon = scope.service.image;
       scope.commissionPercent = scope.service.commission_percent;
@@ -748,7 +750,6 @@
       scope.nds = scope.service.nds;
       scope.currency = scope.service.currency;
       opts.currency = scope.service.currency;
-
 
       if (parseInt(opts.amountWithoutSpace) >= 1000) {
         opts.commissionPercent = scope.commissionPercent;
@@ -795,7 +796,7 @@
       scope.amountFieldTitle = scope.service.lang_amount_title;
       console.log("PARAMETER ID ", scope.fieldArray[0].parameter_id, scope.fieldArray[0]);
       scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1" || scope.fieldArray[0].parameter_id == "65536" || scope.fieldArray[0].parameter_id == "128";
-      scope.calcOn = scope.service.cost == 1;
+      scope.calcOn = scope.service.show_calc == 1;
 
       if (scope.phoneFieldBool) {
         scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telVerificationWithSpace(inputVerification.telVerification(opts.firstFieldText));

@@ -35,19 +35,19 @@
         <p if="{opts.commissionPercent > 0 && (opts.nds==null || opts.nds==0)}"
            class="servicepage-amount-tax-text-field">
           {window.languages.PlusCommission}
-          {window.calculateCommission(opts.amountWithoutSpace, opts.commissionPercent)}
+          {window.calculateCommission(parseInt(opts.amountWithoutSpace), opts.commissionPercent)}
           {window.languages.Currency}
         </p>
         <p if="{(opts.commissionPercent == 0 || opts.commissionPercent == null)&& opts.nds > 0}"
            class="servicepage-amount-tax-text-field">
           {window.languages.PlusNds}
-          {window.calculateCommission(opts.amountWithoutSpace, opts.nds)}
+          {window.calculateCommission(parseInt(opts.amountWithoutSpace), opts.nds)}
           {window.languages.Currency}
         </p>
         <p if="{opts.commissionPercent > 0 && opts.nds > 0}"
            class="servicepage-amount-tax-text-field">
           {window.languages.PlusCommissionAndNds}
-          {window.calculateCommissionAndNds(opts.amountWithoutSpace, opts.commissionPercent, opts.nds)}
+          {window.calculateCommissionAndNds(parseInt(opts.amountWithoutSpace), opts.commissionPercent, opts.nds)}
           {window.languages.Currency}
         </p>
 

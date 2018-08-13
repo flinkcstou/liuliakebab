@@ -368,7 +368,9 @@
                     result[1][i].currency = window.languages.Currency;
                   }
                   var invoice = result[1][i];
-                  if (scope.servicesMap != null) {
+                  if (scope.servicesMap != null &&
+                    scope.servicesMap[result[1][i].service_id] != null &&
+                    scope.servicesMap[result[1][i].service_id].length > 0) {
                     invoice.nds = scope.servicesMap[result[1][i].service_id][0].nds;
                     invoice.rate = scope.servicesMap[result[1][i].service_id][0].rate;
                     invoice.low_ratio = scope.servicesMap[result[1][i].service_id][0].low_ratio;
