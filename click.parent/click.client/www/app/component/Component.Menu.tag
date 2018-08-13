@@ -300,15 +300,7 @@
       }
 
       if (checkBoxChangeId.checked) {
-        modeOfApp.onlineMode = true;
-        modeOfApp.offlineMode = false;
-        if (localStorage.getItem('click_client_token') && localStorage.getItem('click_client_registered')) {
-          this.riotTags.innerHTML = "<view-authorization>";
-          riot.mount('view-authorization');
-        } else {
-          this.riotTags.innerHTML = "<view-registration-device>";
-          riot.mount('view-registration-device');
-        }
+        goOnline();
         return
       }
       else {
@@ -360,6 +352,9 @@
       reportsTouchEndY = event.changedTouches[0].pageY;
 
       if (isTouch(reportsTouchEndX, reportsTouchStartX, reportsTouchStartY, reportsTouchEndY)) {
+
+        closeMenu();
+
         if (modeOfApp.demoVersion) {
           var question = window.languages.DemoModeConstraintText;
           window.common.alert.show("componentAlertId", {
@@ -371,7 +366,27 @@
 
           return
         }
-        closeMenu();
+
+        if (modeOfApp.offlineMode) {
+          phonedialer.dial(
+            "*880*00*3" + "%23",
+            function (err) {
+              if (err == "empty") {
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: false,
+                  errornote: "Unknown phone number"
+                });
+                scope.update();
+              }
+              else console.log("Dialer Error:" + err);
+            },
+            function (success) {
+            }
+          );
+          return
+        }
         this.riotTags.innerHTML = '<view-info>';
         riot.mount('view-info');
 //        scope.unmount()

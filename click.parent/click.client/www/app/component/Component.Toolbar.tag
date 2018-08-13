@@ -15,15 +15,17 @@
     </div>
 
     <div if="{!modeOfApp.offlineMode}" id="bellButtonId" class="bell-button bell-icon"
-         ontouchstart="bellButtonTouchStart()"
-         ontouchend="bellButtonTouchEnd()" role="button"
+         ontouchstart="actionTouchStart(this.id)"
+         ontouchend="actionTouchEnd(this.id)" role="button"
          aria-label="{window.languages.ComponentToolbarAriaLabelOpenNews}">
       <div if="{window.News.newsCounter != 0 && !modeOfApp.offlineMode}" class="bell-button-news-counter">
         {window.News.newsCounter}
       </div>
     </div>
 
-    <div if="{modeOfApp.offlineMode}" class="toolbar-ussd-container">
+    <div if="{modeOfApp.offlineMode}" id="ussd" class="toolbar-ussd-container"
+         ontouchstart="actionTouchStart(this.id)"
+         ontouchend="actionTouchEnd(this.id)">
       <p class="toolbar-ussd-text">USSD режим</p>
       <img src="resources/icons/toolbar/ussd.png"  class="toolbar-ussd-icon">
     </div>
@@ -80,33 +82,36 @@
       }
     };
 
-    var bellButtonTouchStartX,
-      bellButtonTouchStartY,
-      bellButtonTouchEndX,
-      bellButtonTouchEndY;
+    var actionTouchStartX,
+      actionTouchStartY,
+      actionTouchEndX,
+      actionTouchEndY;
 
-    bellButtonTouchStart = function () {
+    actionTouchStart = function (actionId) {
       event.preventDefault();
       event.stopPropagation();
 
-      bellButtonId.style.webkitTransform = 'scale(0.7)'
+      document.getElementById(actionId).style.webkitTransform = 'scale(0.7)'
 
-      bellButtonTouchStartX = event.changedTouches[0].pageX;
-      bellButtonTouchStartY = event.changedTouches[0].pageY;
+      actionTouchStartX = event.changedTouches[0].pageX;
+      actionTouchStartY = event.changedTouches[0].pageY;
     }
 
-    bellButtonTouchEnd = function () {
+    actionTouchEnd = function (actionId) {
       event.preventDefault();
       event.stopPropagation();
 
-      bellButtonId.style.webkitTransform = 'scale(1)'
+      document.getElementById(actionId).style.webkitTransform = 'scale(1)'
 
-      bellButtonTouchEndX = event.changedTouches[0].pageX;
-      bellButtonTouchEndY = event.changedTouches[0].pageY;
+      actionTouchEndX = event.changedTouches[0].pageX;
+      actionTouchEndY = event.changedTouches[0].pageY;
 
-      if (Math.abs(bellButtonTouchStartX - bellButtonTouchEndX) <= 20 && Math.abs(bellButtonTouchStartY - bellButtonTouchEndY) <= 20) {
+      if (Math.abs(actionTouchStartX - actionTouchEndX) <= 20 && Math.abs(actionTouchStartY - actionTouchEndY) <= 20) {
 
-        if (modeOfApp.offlineMode)return;
+        if (modeOfApp.offlineMode) {
+          goOnline();
+          return;
+        }
 
         containerCard.style.filter = 'blur(5px)';
         viewNewsId.style.display = 'block';
@@ -137,6 +142,28 @@
 
       if (Math.abs(goToViewInfoTouchEndX - goToViewInfoTouchStartX) < 20 &&
         Math.abs(goToViewInfoTouchEndY - goToViewInfoTouchStartY) < 20) {
+
+        if (modeOfApp.offlineMode) {
+          phonedialer.dial(
+            "*880*00*3" + "%23",
+            function (err) {
+              if (err == "empty") {
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: false,
+                  errornote: "Unknown phone number"
+                });
+                scope.update();
+              }
+              else console.log("Dialer Error:" + err);
+            },
+            function (success) {
+            }
+          );
+          return
+        }
+
 
         this.riotTags.innerHTML = '<view-info>';
         riot.mount('view-info');
