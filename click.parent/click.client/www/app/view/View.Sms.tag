@@ -236,8 +236,7 @@
 
     var helpTouchStartXSms, helpTouchStartYSms, helpTouchEndXSms, helpTouchEndYSms;
     helpTouchStartSms = function () {
-      event.preventDefault();
-      event.stopPropagation();
+      stopEventPropagation();
 
       scope.smsButtonHelpId.style.webkitTransform = 'scale(0.8)';
 
@@ -246,8 +245,7 @@
     };
 
     helpTouchEndSms = function () {
-      event.preventDefault();
-      event.stopPropagation();
+      stopEventPropagation();
 
       scope.smsButtonHelpId.style.webkitTransform = 'scale(1)';
 
@@ -274,8 +272,7 @@
     };
 
     goToBackRegistrationEnd = function () {
-      event.preventDefault();
-      event.stopPropagation();
+      stopEventPropagation();
 
       changeNumberButtonId.style.webkitTransform = 'scale(1)';
 
@@ -343,10 +340,10 @@
     var time = setInterval(timer, 1000);
 
     viewSms.getSms = function (sms) {
+      stopEventPropagation();
+
       scope.confirmSms = sms;
       scope.update(scope.confirmSms);
-      event.preventDefault();
-      event.stopPropagation();
 
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var deviceId = localStorage.getItem('click_client_deviceID');
@@ -416,21 +413,9 @@
               clearInterval(time);
               localStorage.setItem('confirm_needed', false);
               if (result[0][0].client_exists == 1) {
-//                localStorage.setItem('click_client_registered', true);
-//                history.arrayOfHistory.pop();
-//                this.riotTags.innerHTML = "<view-authorization>";
-//                riot.mount('view-authorization');
-//                stopSMSReceive();
-//                scope.unmount()
                 mountTo("view-authorization");
               }
               else {
-//                localStorage.setItem('click_client_registered', false);
-//                history.arrayOfHistory.pop();
-//                riotTags.innerHTML = "<view-pin-code>";
-//                riot.mount('view-pin-code', ['view-sms']);
-//                stopSMSReceive();
-//                scope.unmount();
                 mountTo("view-pin-code");
               }
             }
@@ -467,17 +452,14 @@
     var resendTouchStartX, resendTouchStartY, resendTouchEndX, resendTouchEndY;
 
     touchStartResend = function () {
-      event.preventDefault();
-      event.stopPropagation();
+      stopEventPropagation();
 
       resendTouchStartX = event.changedTouches[0].pageX;
       resendTouchStartY = event.changedTouches[0].pageY;
     };
 
     touchEndResend = function () {
-
-      event.preventDefault();
-      event.stopPropagation();
+      stopEventPropagation();
 
       resendTouchEndX = event.changedTouches[0].pageX;
       resendTouchEndY = event.changedTouches[0].pageY;
@@ -497,11 +479,17 @@
       }
     };
 
-    resendSms = function () {
+    function stopEventPropagation() {
       event.preventDefault();
       event.stopPropagation();
+    }
+
+    resendSms = function () {
+      stopEventPropagation();
+
       var phoneNumber = localStorage.getItem('click_client_phoneNumber');
       var deviceId = localStorage.getItem('click_client_deviceID');
+
       window.api.call({
         method: 'sms.resend',
         input: {

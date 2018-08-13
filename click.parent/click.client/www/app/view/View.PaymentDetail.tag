@@ -88,8 +88,6 @@
       touchEndAcceptX,
       touchEndAcceptY;
 
-    console.error("<!!!!!!!!!!!!!11>", opts);
-
     scope.errorCode = 0;
     scope.currency = window.languages.Currency;
 

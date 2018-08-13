@@ -365,11 +365,13 @@
                     result[1][i].currency = window.languages.Currency;
                   }
                   var invoice = result[1][i];
-                  invoice.nds = scope.servicesMap[result[1][i].service_id][0].nds;
-                  invoice.rate = scope.servicesMap[result[1][i].service_id][0].rate;
-                  invoice.low_ratio = scope.servicesMap[result[1][i].service_id][0].low_ratio;
-                  invoice.category_id = scope.servicesMap[result[1][i].service_id][0].category_id;
-                  invoice.currency = scope.servicesMap[result[1][i].service_id][0].currency;
+                  if (scope.servicesMap != null) {
+                    invoice.nds = scope.servicesMap[result[1][i].service_id][0].nds;
+                    invoice.rate = scope.servicesMap[result[1][i].service_id][0].rate;
+                    invoice.low_ratio = scope.servicesMap[result[1][i].service_id][0].low_ratio;
+                    invoice.category_id = scope.servicesMap[result[1][i].service_id][0].category_id;
+                    invoice.currency = scope.servicesMap[result[1][i].service_id][0].currency;
+                  }
                   arrayOfInvoice.push(invoice);
                 }
 

@@ -68,7 +68,8 @@
         <div class="report-info-container" style="height:{90*heightK}px">
           <div class="horizontal-centering">
             <p class="title-text text-margin">{window.languages.ViewReportServicePayWithCard}</p>
-            <p class="main-text text-margin">{(cards[opts.account_id])? (cards[opts.account_id].name+ " " +
+            <p class="main-text text-margin" style="font-size: {30 * widthK}px">{(cards[opts.account_id])?
+              (cards[opts.account_id].name+ " " +
               cards[opts.account_id].numberPartOne + " **** **** " +
               cards[opts.account_id].numberPartTwo):"UNKNOWN"}</p>
           </div>

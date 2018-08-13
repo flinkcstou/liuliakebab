@@ -618,8 +618,6 @@
 
               if (!scope.paymentsMap[dateStr]) {
                 scope.paymentsMap[dateStr] = [];
-                console.log("!!!!!!!!!!!!!1", dateStr);
-                console.log("!!!!!!!!!!!!!1", result[1][i]);
                 scope.paymentDates.push(dateStr);
                 scope.paymentsMap[dateStr].push(result[1][i]);
               }

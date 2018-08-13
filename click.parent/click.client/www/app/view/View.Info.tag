@@ -9,9 +9,9 @@
   </div>
 
   <div class="view-info-body-container" id="lastOperationsContainerId" onscroll="lastOperationsContainerScroll()">
-    <div class="view-info-head-info-container">
+    <div class="view-info-head-info-container" style="height: {130 * heightK}px">
       <div class="centering-background-image view-info-left-item"
-           style="background-image: url(resources/icons/ViewInfo/mybalance.png);background-size: 60%;">
+           style="background-image: url(resources/icons/ViewInfo/mybalance.png);background-size: 50%;">
       </div>
 
       <div class="info-center-container">
@@ -54,7 +54,8 @@
     </div>
 
     <div id="reportButtonId" role="button" class="view-info-head-info-container" ontouchend="goToReportsTouchEnd()"
-         ontouchstart="goToReportsTouchStart()" aria-label="{window.languages.ViewInfoReportsTitle}">
+         ontouchstart="goToReportsTouchStart()" aria-label="{window.languages.ViewInfoReportsTitle}"
+         style="height: {130 * heightK}px">
       <div class="centering-background-image view-info-left-item"
            style="background-image: url(resources/icons/ViewInfo/myreports.png);background-size: 60%;">
       </div>
