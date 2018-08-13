@@ -96,7 +96,8 @@
          ontouchend="exitFromAppTouchEnd()"
          ontouchstart="exitFromAppTouchStart()">
       <div class="side-menu-containers-icon side-menu-containers-icon-exit"></div>
-      <div class="side-menu-containers-name side-menu-containers-name-call">Выход</div>
+      <div class="side-menu-containers-name side-menu-containers-name-call"
+           style="color:rgb(229, 108, 71)">Выход</div>
     </div>
   </div>
 
