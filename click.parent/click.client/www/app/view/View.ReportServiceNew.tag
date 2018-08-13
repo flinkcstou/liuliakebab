@@ -412,11 +412,15 @@
 
           localStorage.setItem('chosenServiceId', scope.opts.service_id);
           opts.chosenServiceId = scope.opts.service_id;
-          console.log('CHOOSEN SERVICE OPTS', scope.opts.service_id)
+          console.log('CHOOSEN SERVICE OPTS', scope.opts.service_id);
           console.log("scope.service=", servicesMap[scope.opts.service_id][0]);
 
-          opts.amountText = inputVerification.spaceDeleter(scope.opts.amount.toString());
-          opts.amountWithoutSpace = inputVerification.spaceDeleter(scope.opts.amount.toString());
+
+          var amount = parseInt(inputVerification.spaceDeleter(scope.opts.amount.toString()))
+            - scope.opts.comission_amount;
+
+          opts.amountText = inputVerification.spaceDeleter(amount.toString());
+          opts.amountWithoutSpace = inputVerification.spaceDeleter(amount.toString());
 
           //
           opts.formtype = servicesMap[scope.opts.service_id][0].form_type;
@@ -469,7 +473,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      backButton.style.webkitTransform = 'scale(0.7)'
+      backButton.style.webkitTransform = 'scale(0.7)';
 
       goBackButtonStartX = event.changedTouches[0].pageX;
       goBackButtonStartY = event.changedTouches[0].pageY;

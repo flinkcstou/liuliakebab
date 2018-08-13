@@ -47,7 +47,7 @@
       <div id="reloadBalanceButtonId" role="button" class="centering-background-image view-info-right-item"
            ontouchstart="reloadBalanceTouchStart()" ontouchend="reloadBalanceTouchEnd()"
            aria-label="Обновить баланс"
-           style="background-image: url(resources/icons/ViewInfo/reload.png); background-size:70%;transition: 0.5s;">
+           style="background-image: url(resources/icons/ViewInfo/reload.png); background-size:70%;transition: 0.5s; height: 65%;">
       </div>
       <div class="border-bottom">
       </div>
@@ -61,7 +61,7 @@
       </div>
 
       <div class="info-center-container">
-        <p class="horizontal-centering main-text text-margin">
+        <p class="horizontal-centering title-text text-margin" style="font-size:{30*widthK}px">
           {window.languages.ViewInfoReportsTitle}
         </p>
       </div>

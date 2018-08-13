@@ -104,29 +104,35 @@
         <p if="{service.commission_percent>0 && (service.nds==null || service.nds==0)}"
            class="servicepage-amount-tax-text-field">
           {window.languages.PlusCommission}
-          {toEnrollment == 0 ? 0 : window.calculateCommission(amountForPayTransaction, service.commission_percent)}
+          {(toEnrollment == 0 && service.category_id == 16) ? 0 : window.calculateCommission(amountForPayTransaction,
+          service.commission_percent)}
           {window.languages.Currency}
         </p>
         <p if="{(service.commission_percent==null || service.commission_percent==0) && service.nds>0}"
            class="servicepage-amount-tax-text-field">
           {window.languages.PlusNds}
-          {toEnrollment == 0 ? 0 : window.calculateCommission(amountForPayTransaction, service.nds)}
+          {(toEnrollment == 0 && service.category_id == 16) ? 0 : window.calculateCommission(amountForPayTransaction,
+          service.nds)}
           {window.languages.Currency}
         </p>
         <p if="{service.commission_percent>0 && service.nds>0}"
            class="servicepage-amount-tax-text-field">
           {window.languages.PlusCommissionAndNds}
-          {toEnrollment == 0 ? 0 : window.calculateCommissionAndNds(amountForPayTransaction,
+          {(toEnrollment == 0 && service.category_id == 16) ? 0 :
+          window.calculateCommissionAndNds(amountForPayTransaction,
           service.commission_percent,
           service.nds)}
           {window.languages.Currency}
         </p>
-        <p if="{service.categoryId == 16 || (service.currency != null && service.rate != null)}"
+        <p if="{service.categoryId == 16 ||
+        (service.currency != null && service.rate != null && service.low_ratio != null
+         && service.rate != 0 && service.low_ratio != 0)}"
            class="servicepage-amount-tax-text-field" style="bottom:-90%;">
           <b>
             {window.languages.ViewServiceToEnrollment}
           </b>
-          <b style="color: rgb(142,184,81);">{toEnrollment} {service.currency == "000" ? "UZS" :
+          <b style="color: rgb(142,184,81);">{toEnrollment} {(service.currency == "000" || service.currency == null) ?
+            "UZS" :
             "USD"}</b>
         </p>
       </div>
@@ -734,7 +740,6 @@
 
     if (scope.servicesMap[opts.chosenServiceId]) {
       scope.service = scope.servicesMap[opts.chosenServiceId][0];
-      console.log("AAAAAAAAAAAAAAAAAAAAAaaa", scope.service);
       scope.titleName = scope.service.name;
       scope.serviceIcon = scope.service.image;
       scope.commissionPercent = scope.service.commission_percent;
@@ -743,6 +748,17 @@
       scope.nds = scope.service.nds;
       scope.currency = scope.service.currency;
       opts.currency = scope.service.currency;
+
+
+      if (parseInt(opts.amountWithoutSpace) >= 1000) {
+        opts.commissionPercent = scope.commissionPercent;
+        opts.nds = scope.nds;
+        scope.toEnrollment = window.calculateEnrollment(parseInt(opts.amountWithoutSpace), scope.service.rate, scope.service.low_ratio);
+        opts.toEnrollment = scope.toEnrollment;
+        scope.amountForPayTransaction = parseInt(opts.amountWithoutSpace);
+      } else {
+        scope.toEnrollment = 0;
+      }
       scope.update();
     }
 
@@ -1056,6 +1072,7 @@
         opts.toEnrollment = scope.toEnrollment;
         scope.amountForPayTransaction = amountForPayTransaction;
       } else {
+
         scope.toEnrollment = 0;
       }
       scope.update();

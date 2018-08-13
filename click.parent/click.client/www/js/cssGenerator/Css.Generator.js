@@ -2990,8 +2990,8 @@ var css = {
   "position: absolute;" +
   "height:1px;" +
   "background-color: #e8e8e8;" +
-  "left: 5%;" +
-  "right: 5%;" +
+  "left:" + 15 * widthK + "px;" +
+  "right:" + 15 * widthK + "px;" +
   "bottom:0;" +
   "z-index:9999" +
   "}",
@@ -4290,7 +4290,7 @@ var css = {
   "left: 10%;" +
   "color: white;" +
   "border-bottom:" + 3 * widthK + "px solid lightgray;" +
-  "top: 5%;" +
+  "margin-top: 5%;" +
   "}",
 
   servicePagePrefixDropdown: ".servicepage-prefix-dropdown" +
@@ -4454,7 +4454,7 @@ var css = {
   "height: 10%;" +
   "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
   "color: white;" +
-  "top: 11%;" +
+  "margin-top: 5%;" +
   "}",
 
   servicePageAmountTaxTextField: ".servicepage-amount-tax-text-field" +
@@ -4786,7 +4786,7 @@ var css = {
   "left: 10%;" +
   "color: white;" +
   "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
-  "top: 12%;" +
+  "margin-top: 8%;" +
   "}",
 
   servicePageSecondDropdownFieldText: ".servicepage-second-dropdown-field-text" +
@@ -4803,7 +4803,7 @@ var css = {
   "left: 10%;" +
   "color: white;" +
   "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
-  "top: 6%;" +
+  "margin-top: 8%;" +
   "}",
 
   servicePageDropdownIcon: ".servicepage-dropdown-icon" +
@@ -18512,7 +18512,6 @@ var css = {
   "}"
 
 };
-
 
 var style = document.createElement('style');
 style.type = 'text/css';

@@ -13,7 +13,8 @@
             <p class="invoice-card-date">{invoice.time} {invoice.date}</p>
             <div class="invoice-card-transfer-sum-holder">
               <p class="invoice-card-sum">{invoice.amount}</p>
-              <mark class="invoice-card-sum-marked">{invoice.currency=="000"?"UZS":"USD"}</mark>
+              <mark class="invoice-card-sum-marked">{window.languages.Currency}
+              </mark>
             </div>
           </div>
           <div id="payment-container" class="invoice-card-info-holder" if="{!invoice.is_p2p}">
@@ -21,7 +22,8 @@
             <p class="invoice-card-date">{invoice.time} {invoice.date}</p>
             <div class="invoice-card-payment-sum-holder">
               <p class="invoice-card-sum">{invoice.amount}</p>
-              <mark class="invoice-card-sum-marked">{invoice.currency=="000"?"Сум":"USD"}</mark>
+              <mark class="invoice-card-sum-marked">{window.languages.Currency}
+              </mark>
             </div>
           </div>
           <div class="invoice-card-transfer" if="{invoice.is_p2p}"></div>
@@ -131,6 +133,7 @@
       touchStartInvoiceOne = event.changedTouches[0].pageX;
       console.log('touchStartInvoiceOne', touchStartInvoiceOne)
     };
+
 
     invoiceBlockTouchEnd = function (invoice) {
 

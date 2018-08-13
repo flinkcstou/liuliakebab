@@ -366,6 +366,7 @@ window.toInt = function (textNumber) {
 
 window.calculateCommission = function (amount, commissionPercent) {
   if (amount == null || commissionPercent == null) return 0;
+
   amount = window.toInt(amount);
   var ret = financial(calculatePercent(amount, commissionPercent));
   if (isInt(ret)) {
