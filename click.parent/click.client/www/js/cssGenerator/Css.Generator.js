@@ -3962,7 +3962,7 @@ var css = {
   "background-size: 80%;" +
   "}",
 
-  
+
   payServiceImageContainer: ".pay-service-image-container " +
   "{" +
   "position: relative;" +
@@ -3974,7 +3974,7 @@ var css = {
   "margin-bottom: " + 15 * widthK + "px; " +
   // "background-image: url('resources/icons/services/nologo.png');" +
   "}",
-  
+
   payServiceImage: ".pay-service-image" +
   "{" +
   "width:  " + 120 * widthK + "px; " +
@@ -3992,7 +3992,7 @@ var css = {
   // "background-size: 80%;" +
   // "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
   "}",
-  
+
   payServiceImageCached: ".pay-service-image-cached" +
   "{" +
   "transition: none;" +
@@ -4495,6 +4495,12 @@ var css = {
   "font-size:" + 24 * widthK + "px;" +
   "}",
 
+  PublicOffer: ".public-offer" +
+  "{" +
+  "bottom:-90%;" +
+  "font-size:" + 20.8 * widthK + "px;" +
+  "margin-top:4%;" +
+  "}",
 
   servicePageAmountIcon: ".servicepage-amount-icon" +
   "{" +

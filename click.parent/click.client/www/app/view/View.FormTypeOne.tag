@@ -124,7 +124,7 @@
           service.nds)}
           {window.languages.Currency}
         </p>
-        <p if="{service.categoryId == 16 ||
+        <p if="{service.category_id == 16 ||
         (service.currency != null && service.rate != null && service.low_ratio != null
          && service.rate != 0 && service.low_ratio != 0)}"
            class="servicepage-amount-tax-text-field" style="bottom:-90%;">
@@ -134,6 +134,12 @@
           <b style="color: rgb(142,184,81);">{toEnrollment} {(service.currency == "000" || service.currency == null) ?
             "UZS" :
             "USD"}</b>
+        </p>
+        <p if="{service.category_id == 16}" class="title-text text-margin public-offer">
+          {window.languages.PublicOfferConfirm}
+          <a href="https://m.click.uz/static/bank/native_pay_offer/np_public_offer.pdf ">
+            {window.languages.PublicOffer}
+          </a>
         </p>
       </div>
 

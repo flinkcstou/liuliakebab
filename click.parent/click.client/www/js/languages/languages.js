@@ -12,6 +12,9 @@ var RU_LANGUAGES =
     "Add": "Добавить",
     "Save": "Сохранить",
 
+
+    "PublicOfferConfirm": "Оплачивая вы соглашаетесь с условиями",
+    "PublicOffer": "публичной оферты",
     "ServiceUnavailableText": "Сервис временно не доступен",
 
     "ChooseFromContacts": "Выбрать контакт из телефонной книги",
