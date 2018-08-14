@@ -30,7 +30,7 @@
       <div class="servicepage-amount-field-two" id="amountField">
         <p id="amountFieldTitle" class="servicepage-text-field">{amountFieldTitle}</p>
         <p if="{commissionPercent}" class="servicepage-amount-tax-text-field">
-          {window.languages.ViewServicePageAmountTaxText} {tax}
+          {window.languages.PlusCommission} {tax}
           {window.languages.Currency}</p>
         <input class="servicepage-amount-input" type="tel" value="{defaultAmount}" maxlength="10"
                id="amount"
@@ -398,7 +398,7 @@
     scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
     scope.formType = scope.service.form_type;
     scope.amountFieldTitle = scope.service.lang_amount_title;
-    scope.calcOn = scope.service.cost == 1;
+    scope.calcOn = scope.service.show_calc == 1;
 
     if (opts.amountText) {
       scope.defaultAmount = window.amountTransform(opts.amountText);
@@ -493,7 +493,7 @@
 
       amount.value = amountInput;
 
-      setTimeout(function() {
+      setTimeout(function () {
           amount.selectionStart = selectionStart;
           amount.selectionEnd = selectionStart;
         }, 0

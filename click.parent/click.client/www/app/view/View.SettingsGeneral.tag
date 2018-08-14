@@ -85,7 +85,7 @@
 
       scope.update();
 
-    })
+    });
 
     var delButtonStartX, delButtonEndX, delButtonStartY, delButtonEndY;
 
@@ -93,17 +93,17 @@
       event.preventDefault();
       event.stopPropagation();
 
-      delButtonId.style.webkitTransform = 'scale(0.8)'
+      delButtonId.style.webkitTransform = 'scale(0.8)';
 
       delButtonStartX = event.changedTouches[0].pageX;
       delButtonStartY = event.changedTouches[0].pageY;
-    }
+    };
 
     photoDeleteTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      delButtonId.style.webkitTransform = 'scale(1)'
+      delButtonId.style.webkitTransform = 'scale(1)';
 
       delButtonEndX = event.changedTouches[0].pageX;
       delButtonEndY = event.changedTouches[0].pageY;
@@ -122,7 +122,7 @@
         window.common.alert.show("componentConfirmId", {
           "confirmnote": scope.confirmNote,
           "confirmtype": scope.confirmType,
-          parent: scope,
+          parent: scope
         });
 
         scope.update();
@@ -138,11 +138,11 @@
             method: 'settings.photo.remove',
             input: {
               session_key: sessionKey,
-              phone_num: phoneNumber,
+              phone_num: phoneNumber
             },
             scope: this,
             onSuccess: function (result) {
-              console.log(result)
+              console.log(result);
               if (result[0][0].error == 0) {
 
               }
@@ -167,7 +167,7 @@
           });
 
       }
-    }
+    };
 
     saveEditedNameTouchEnd = function () {
       event.preventDefault();
@@ -176,7 +176,7 @@
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
       var sessionKey = loginInfo.session_key;
-      console.log('settingsUserNameId.value', settingsUserNameId.value)
+      console.log('settingsUserNameId.value', settingsUserNameId.value);
 
       window.api.call({
         method: 'settings.change.profile.data',
@@ -184,17 +184,17 @@
           session_key: sessionKey,
           phone_num: phoneNumber,
           name: settingsUserNameId.value,
-          gender: scope.gender,
+          gender: scope.gender
         },
         //TODO: DO CARDS
         scope: this,
         onSuccess: function (result) {
           if (result[0][0].error == 0) {
             console.log(result[1])
-            loginInfo.firstname = result[1][0].firstname
-            loginInfo.lastname = result[1][0].lastname
-            loginInfo.gender = result[1][0].gender
-            localStorage.setItem("click_client_loginInfo", JSON.stringify(loginInfo))
+            loginInfo.firstname = result[1][0].firstname;
+            loginInfo.lastname = result[1][0].lastname;
+            loginInfo.gender = result[1][0].gender;
+            localStorage.setItem("click_client_loginInfo", JSON.stringify(loginInfo));
 
             window.common.alert.show("componentSuccessId", {
               parent: scope,
@@ -211,7 +211,7 @@
             window.common.alert.show("componentAlertId", {
               parent: scope,
               clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote,
+              errornote: scope.errorNote
             });
 
             scope.update();
@@ -223,7 +223,7 @@
           console.error(data);
         }
       });
-    }
+    };
 
     scope.base64Data = '';
 
@@ -233,25 +233,25 @@
       event.preventDefault();
       event.stopPropagation();
 
-      imageSelectButtinId.style.webkitTransform = 'scale(0.8)'
+      imageSelectButtinId.style.webkitTransform = 'scale(0.8)';
 
       imageButtonStartX = event.changedTouches[0].pageX;
       imageButtonStartY = event.changedTouches[0].pageY;
-    }
+    };
 
     imageSelectedChangeEnd = function () {
       event.preventDefault();
       event.stopPropagation();
       scope.base64Data = '';
 
-      imageSelectButtinId.style.webkitTransform = 'scale(1)'
+      imageSelectButtinId.style.webkitTransform = 'scale(1)';
 
       imageButtonEndX = event.changedTouches[0].pageX;
       imageButtonEndY = event.changedTouches[0].pageY;
 
 
       if (Math.abs(imageButtonStartX - imageButtonEndX) <= 20 && Math.abs(imageButtonStartY - imageButtonEndY) <= 20) {
-        console.log("QWE")
+        console.log("QWE");
 
         var options = {
           quality: 50,
@@ -280,8 +280,8 @@
           scope.base64Cut = scope.base64Data.substring(index + 1, scope.base64Data.length)
 
 
-          console.log('scope.base64Data', scope.base64Data)
-          console.log('scope.base64Cut', scope.base64Cut)
+          console.log('scope.base64Data', scope.base64Data);
+          console.log('scope.base64Cut', scope.base64Cut);
 
           var phoneNumber = localStorage.getItem("click_client_phoneNumber");
           var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
@@ -292,17 +292,17 @@
               input: {
                 session_key: sessionKey,
                 phone_num: phoneNumber,
-                data: scope.base64Cut,
+                data: scope.base64Cut
               },
               scope: this,
               onSuccess: function (result) {
-                console.log("RESULT PHOTO", result)
+                console.log("RESULT PHOTO", result);
                 if (result[0][0].error == 0) {
                   if (result[1][0]) {
                     imageUserAvatarId.src = "data:image/jpeg;base64," + imageData;
                     loginInfo.profile_image_url = result[1][0].profile_image_url;
-                    localStorage.setItem("click_client_loginInfo", JSON.stringify(loginInfo))
-                    localStorage.setItem('click_client_avatar', scope.base64Data)
+                    localStorage.setItem("click_client_loginInfo", JSON.stringify(loginInfo));
+                    localStorage.setItem('click_client_avatar', scope.base64Data);
                   }
                 }
                 else {
@@ -312,7 +312,7 @@
                   window.common.alert.show("componentAlertId", {
                     parent: scope,
                     clickpinerror: scope.clickPinError,
-                    errornote: scope.errorNote,
+                    errornote: scope.errorNote
                   });
 
                   scope.update();
@@ -440,7 +440,7 @@
 //        }
 //      }
       }
-    }
+    };
 
     //    maleTouchEnd = function () {
     //      event.preventDefault();
@@ -477,14 +477,13 @@
         checkOfEdit = true;
         settingsUserNameId.readOnly = false;
         settingsUserNameId.focus();
-        return;
       }
       else {
         editUserInfoIconId.style.backgroundImage = 'url(resources/icons/ViewSettingsGeneral/general_edit.png)';
         checkOfEdit = false;
         settingsUserNameId.readOnly = true;
       }
-    }
+    };
 
     window.saveHistory('view-general-settings', opts);
 
@@ -494,7 +493,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      backButton.style.webkitTransform = 'scale(0.7)'
+      backButton.style.webkitTransform = 'scale(0.7)';
 
       goBackButtonStartX = event.changedTouches[0].pageX;
       goBackButtonStartY = event.changedTouches[0].pageY;
@@ -505,14 +504,14 @@
       event.preventDefault();
       event.stopPropagation();
 
-      backButton.style.webkitTransform = 'scale(1)'
+      backButton.style.webkitTransform = 'scale(1)';
 
       goBackButtonEndX = event.changedTouches[0].pageX;
       goBackButtonEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
-        onBackKeyDown()
-        scope.unmount()
+        onBackKeyDown();
+        scope.unmount();
       }
     };
 

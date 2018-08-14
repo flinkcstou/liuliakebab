@@ -2,8 +2,8 @@
 
   <div class="page-title">
     <p class="name-title">{languages.ViewTrustedDevicesTitle}</p>
-    <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchstart="goToBackStart()"
-         ontouchend="goToBackEnd()" class="back-button"></div>
+    <div id="backButton" role="button" aria-label="{window.languages.Back}" ontouchstart="backButtonTouchStart()"
+         ontouchend="backButtonTouchEnd()" class="back-button"></div>
     <div class="title-bottom-border">
     </div>
   </div>
@@ -11,7 +11,7 @@
   <div class="trusted-devices-content-container">
     <div each="{device in devices}" class="trusted-devices-device-info-container">
       <div
-          class="trusted-devices-device-info-icon-container {trusted-devices-android-device-icon: device.device_type == 1,
+        class="trusted-devices-device-info-icon-container {trusted-devices-android-device-icon: device.device_type == 1,
                                                               trusted-devices-ios-device-icon: device.device_type == 2,
                                                               trusted-devices-web-device-icon: device.device_type == 3}"></div>
       <div class="trusted-devices-info-container">
@@ -37,37 +37,50 @@
 
     var goBackButtonStartX, goBackButtonEndX, goBackButtonStartY, goBackButtonEndY;
 
-    goToBackStart = function () {
+    function stopEventPropagation() {
       event.preventDefault();
       event.stopPropagation();
+    }
 
-      backButton.style.webkitTransform = 'scale(0.7)'
+    function setOnTouchStartAnimation(element) {
+      if (element !== null)
+        element.style.webkitTransform = 'scale(0.8)';
+    }
+
+    function setOnTouchEndAnimation(element) {
+      if (element !== null)
+        element.style.webkitTransform = 'scale(1)';
+    }
+
+    function checkElementIsTouched(touchStartX, touchStartY, touchEndX, touchEndY) {
+      return Math.abs(touchStartX - touchEndX) <= 20 && Math.abs(touchStartY - touchEndY) <= 20;
+    }
+
+    backButtonTouchStart = function () {
+      stopEventPropagation();
+
+      setOnTouchStartAnimation(backButton);
 
       goBackButtonStartX = event.changedTouches[0].pageX;
       goBackButtonStartY = event.changedTouches[0].pageY;
-
     };
 
-    goToBackEnd = function () {
-      event.preventDefault();
-      event.stopPropagation();
+    backButtonTouchEnd = function () {
+      stopEventPropagation();
 
-      backButton.style.webkitTransform = 'scale(1)'
+      setOnTouchEndAnimation(backButton);
 
       goBackButtonEndX = event.changedTouches[0].pageX;
       goBackButtonEndY = event.changedTouches[0].pageY;
 
-      if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
-        onBackKeyDown()
-        scope.unmount()
+      if (checkElementIsTouched(goBackButtonStartX, goBackButtonStartY, goBackButtonEndX, goBackButtonEndY)) {
+        onBackKeyDown();
+        scope.unmount();
       }
     };
 
     getTrustedDevicesList = function () {
-
-
-      console.log("GET TRUSTED DEVICES STARTED");
-
+      console.log("Get trusted devices started !");
 
       var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
@@ -82,23 +95,21 @@
         scope: this,
         onSuccess: function (result) {
 
-          console.log("GET TRUSTED DEVICES RESPONSE", result);
+          console.log("Get trusted device response - ", result);
 
-          if (result[0][0].error == 0) {
+          if (result[0][0].error === 0) {
             if (result[1]) {
-              if (result[1].length == 0) {
-                scope.devices = []
-
+              if (result[1].length === 0) {
+                scope.devices = [];
                 scope.update()
               }
               if (result[1][0]) {
-                console.log('TRUSTED DEVICES', result[1]);
+                console.log("Trusted device - ", result[1]);
 
                 scope.devices = result[1];
                 scope.update();
               }
               else {
-
               }
             }
           }
@@ -118,8 +129,9 @@
     };
 
     deleteDeviceOnTouchStart = function (device_id) {
+      stopEventPropagation();
 
-      document.getElementById(device_id).style.webkitTransform = 'scale(0.7)'
+      setOnTouchStartAnimation(document.getElementById(device_id));
 
       deleteTouchStartX = event.changedTouches[0].pageX;
       deleteTouchStartY = event.changedTouches[0].pageY;
@@ -127,30 +139,27 @@
     };
 
     deleteDeviceOnTouchEnd = function (device_id) {
+      stopEventPropagation();
 
-      document.getElementById(device_id).style.webkitTransform = 'scale(1)'
+      setOnTouchEndAnimation(document.getElementById(device_id));
 
-      console.log("DELETE DEVICE FROM TRUSTED STARTED");
+      console.log("Delete device from trusted begin ...");
 
       deleteTouchEndX = event.changedTouches[0].pageX;
       deleteTouchEndY = event.changedTouches[0].pageY;
 
-      if (Math.abs(deleteTouchEndX - deleteTouchStartX) < 20 &&
-        Math.abs(deleteTouchEndY - deleteTouchStartY) < 20) {
+      if (checkElementIsTouched(deleteTouchStartX, deleteTouchStartY, deleteTouchEndX, deleteTouchEndY)) {
 
-        scope.confirmNote = "Вы действительно хотите удалить устройство?";
-        scope.confirmType = 'local';
-
-        window.common.alert.show("componentConfirmId", {
-          "confirmnote": scope.confirmNote,
-          "confirmtype": scope.confirmType,
-          parent: scope,
-        });
+        if (isMyDevice(device_id)) {
+          showConfirmAlert(window.languages.ViewTrustedDevicesDeleteSelfDevice, "local");
+        } else {
+          showConfirmAlert(window.languages.ViewTrustedDevicesDeleteOtherDevice, "local");
+        }
 
         scope.update();
 
         scope.result = function (bool) {
-          console.log(bool)
+          console.log(bool);
           if (bool) {
             var phoneNumber = localStorage.getItem("click_client_phoneNumber");
             var loginInfo = JSON.parse(localStorage.getItem("click_client_loginInfo"));
@@ -165,18 +174,13 @@
               },
               scope: this,
               onSuccess: function (result) {
+                console.log("Delete device from trusted response - ", result);
 
-                console.log("DELETE DEVICE FROM TRUSTED RESPONSE", result);
-
-                if (result[0][0].error == 0) {
-
-                  getTrustedDevicesList();
+                if (result[0][0].error === 0) {
+                  onSuccessRemoveDevice(device_id);
                 }
                 else {
-                  scope.clickPinError = false;
-                  scope.errorNote = result[0][0].error_note;
-                  scope.showError = true;
-                  scope.update();
+                  onErrorRemoveDevice();
                 }
               },
 
@@ -189,6 +193,40 @@
         };
       }
     };
+
+    function onErrorRemoveDevice() {
+      scope.clickPinError = false;
+      scope.errorNote = result[0][0].error_note;
+      scope.showError = true;
+      scope.update();
+    }
+
+    function onSuccessRemoveDevice(deviceId) {
+      if (isMyDevice(deviceId)) {
+        logOut();
+      } else {
+        getTrustedDevicesList();
+      }
+    }
+
+    function isMyDevice(deviceId) {
+      return localStorage.getItem("click_client_deviceID") === deviceId;
+    }
+
+    function showConfirmAlert(confirmNote, confirmType) {
+      window.common.alert.show("componentConfirmId", {
+        "confirmnote": confirmNote,
+        "confirmtype": confirmType,
+        parent: scope
+      });
+    }
+
+    function logOut() {
+      localStorage.clear();
+      riotTags.innerHTML = "<view-registration-device>";
+      riot.mount('view-registration-device');
+      scope.unmount();
+    }
 
     getTrustedDevicesList();
 

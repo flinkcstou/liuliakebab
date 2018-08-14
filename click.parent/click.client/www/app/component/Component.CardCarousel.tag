@@ -13,7 +13,8 @@
             <p class="invoice-card-date">{invoice.time} {invoice.date}</p>
             <div class="invoice-card-transfer-sum-holder">
               <p class="invoice-card-sum">{invoice.amount}</p>
-              <mark class="invoice-card-sum-marked">{invoice.currency}</mark>
+              <mark class="invoice-card-sum-marked">{window.languages.Currency}
+              </mark>
             </div>
           </div>
           <div id="payment-container" class="invoice-card-info-holder" if="{!invoice.is_p2p}">
@@ -21,7 +22,8 @@
             <p class="invoice-card-date">{invoice.time} {invoice.date}</p>
             <div class="invoice-card-payment-sum-holder">
               <p class="invoice-card-sum">{invoice.amount}</p>
-              <mark class="invoice-card-sum-marked">{invoice.currency}</mark>
+              <mark class="invoice-card-sum-marked">{window.languages.Currency}
+              </mark>
             </div>
           </div>
           <div class="invoice-card-transfer" if="{invoice.is_p2p}"></div>
@@ -114,7 +116,7 @@
         event.preventDefault();
         event.stopPropagation();
 
-        console.log("add card page open")
+        console.log("add card page open");
 
         riotTags.innerHTML = "<view-add-card>";
         riot.mount('view-add-card');
@@ -122,7 +124,7 @@
         scope.unmount()
 
       }
-    }
+    };
 
     var touchStartInvoiceOne;
     var touchEndInvoiceOne;
@@ -131,6 +133,7 @@
       touchStartInvoiceOne = event.changedTouches[0].pageX;
       console.log('touchStartInvoiceOne', touchStartInvoiceOne)
     };
+
 
     invoiceBlockTouchEnd = function (invoice) {
 
@@ -172,8 +175,14 @@
             friend_name: invoice.friend_name,
             commission_percent: invoice.commission_percent,
             service_id: invoice.service_id,
-            description: invoice.description
-          };
+            description: invoice.description,
+            nds: invoice.nds,
+            rate: invoice.rate,
+            low_ratio: invoice.low_ratio,
+            category_id: invoice.category_id,
+            currency: invoice.currency
+          }
+          ;
 
           history.arrayOfHistory.push({view: "view-payment-detail"});
           sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
@@ -358,8 +367,17 @@
                   } else {
                     result[1][i].currency = window.languages.Currency;
                   }
-                  arrayOfInvoice.push(result[1][i]);
-
+                  var invoice = result[1][i];
+                  if (scope.servicesMap != null &&
+                    scope.servicesMap[result[1][i].service_id] != null &&
+                    scope.servicesMap[result[1][i].service_id].length > 0) {
+                    invoice.nds = scope.servicesMap[result[1][i].service_id][0].nds;
+                    invoice.rate = scope.servicesMap[result[1][i].service_id][0].rate;
+                    invoice.low_ratio = scope.servicesMap[result[1][i].service_id][0].low_ratio;
+                    invoice.category_id = scope.servicesMap[result[1][i].service_id][0].category_id;
+                    invoice.currency = scope.servicesMap[result[1][i].service_id][0].currency;
+                  }
+                  arrayOfInvoice.push(invoice);
                 }
 
                 localStorage.setItem('click_client_invoice_list', JSON.stringify(arrayOfInvoice));

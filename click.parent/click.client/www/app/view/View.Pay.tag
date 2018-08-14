@@ -51,6 +51,8 @@
                    onloadeddata="clearLoaderOnIconLoad(this.id)" onerror="errorDownloadImage(this.id)">
               <div class="pay-category-name-field">{i.name}
               </div>
+              <div class="pay-category-bottom-border">
+              </div>
             </div>
           </li>
         </ul>
@@ -67,7 +69,9 @@
              if="{!(modeOfApp.offlineMode && i.id == 11) && i.currentList && i.currentList.length !=0}"
              class="pay-service-block-containter" id="{i.id}"
              ontouchstart="onTouchStartOfCategory(this.id)"
-             ontouchend="onTouchEndOfCategory(this.id)">
+             ontouchend="onTouchEndOfCategory(this.id)"
+             style="border-bottom: none;">
+
           <img id="{i.id+'_icon'}" if="{i.icon}"
                class="{pay-category-icon: !i.icon_cached, pay-category-icon-noloader: i.icon_cached}" src="{i.icon}"
                onload="clearLoaderOnIconLoad(this.id)"
@@ -111,6 +115,7 @@
               </div>
             </div>
           </div>
+          <div class="pay-category-bottom-border"></div>
         </div>
 
 
@@ -182,7 +187,7 @@
       event.stopPropagation();
 
       if (backButton)
-        backButton.style.webkitTransform = 'scale(0.7)'
+        backButton.style.webkitTransform = 'scale(0.7)';
 
       goBackButtonStartX = event.changedTouches[0].pageX;
       goBackButtonStartY = event.changedTouches[0].pageY;
@@ -194,13 +199,13 @@
       event.stopPropagation();
 
       if (backButton)
-        backButton.style.webkitTransform = 'scale(1)'
+        backButton.style.webkitTransform = 'scale(1)';
 
       goBackButtonEndX = event.changedTouches[0].pageX;
       goBackButtonEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
-        onBackKeyDown()
+        onBackKeyDown();
         scope.unmount()
       }
     };
@@ -237,14 +242,14 @@
 
     colorFieldInplaceSearch = function () {
       searchFieldActive = true;
-      document.getElementById('searchContainerId').style.borderBottom = "" + 3 * widthK + "px solid #01cfff";
+      document.getElementById('searchContainerId').style.borderBottom = "" + 2 * widthK + "px solid #01cfff";
       if (document.getElementById('searchIcon'))
         searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search_blue.png)';
     };
 
     blurFieldInplaceSearch = function () {
       searchFieldActive = false;
-      document.getElementById('searchContainerId').style.borderBottom = "" + 3 * widthK + "px solid #cbcbcb";
+      document.getElementById('searchContainerId').style.borderBottom = "" + 2 * widthK + "px solid #cbcbcb";
       if (document.getElementById('searchIcon'))
         searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search.png)';
     };
@@ -354,7 +359,7 @@
 
     scope.onTouchEndOfCategory = onTouchEndOfCategory = function (id) {
       console.log(JSON.stringify(scope.isClickStarted));
-      if(scope.isServiceClicked || !scope.isClickStarted) return;
+      if (scope.isServiceClicked || !scope.isClickStarted) return;
       console.log('View.Pay.tag.onTouchEndOfCategory():', id);
 
       console.log(scope.categoryList);
@@ -363,12 +368,12 @@
       onCategoryTouchEndX = event.changedTouches[0].pageX;
 
       const isTap = (Math.abs(onCategoryTouchStartY - onCategoryTouchEndY) <= 20
-        && Math.abs(onCategoryTouchStartX - onCategoryTouchEndX) <= 20);
+      && Math.abs(onCategoryTouchStartX - onCategoryTouchEndX) <= 20);
 
-      if(scope.index != id && isTap)
+      if (scope.index != id && isTap)
         document.getElementById(id).style.backgroundColor = 'rgba(231,231,231,0.5)';
 
-      if(isTap) {
+      if (isTap) {
         setTimeout(function () {
           document.getElementById(id).style.backgroundColor = 'transparent'
         }, 100);
@@ -452,7 +457,7 @@
 
 
     scope.onTouchStartOfService = onTouchStartOfService = function (id) {
-      console.log('View.Pay.tag.onTouchStartOfService()')
+      console.log('View.Pay.tag.onTouchStartOfService()');
       window.blurFields();
       // For preventing click to service on stop scrolling categories
 //      if (scope.scrolling) {
@@ -482,7 +487,7 @@
         event.preventDefault();
         return;
       }
-      console.log('View.Pay.tag.onTouchEndOfService()')
+      console.log('View.Pay.tag.onTouchEndOfService()');
 
       scope.isServiceClicked = true;
 
@@ -521,7 +526,7 @@
           console.log('SSSSSSSSUKKKKKAAAAA', viewPay.categoryScrollTop)
           opts.searchWord = searchInputId.value;
 
-          console.log('ID ID ID', id)
+          console.log('ID ', id);
           if (opts.mode == 'ADDAUTOPAY') {
             scope.autoPayData = {};
             opts.chosenServiceId = id;
@@ -573,18 +578,18 @@
       }
     };
 
-    onServiceImageLoaded = function(serviceId) {
+    onServiceImageLoaded = function (serviceId) {
 //      console.log('View.Pay.tag.onServiceImageLoaded()', serviceId)
       document.getElementById(serviceId + '_image').style.opacity = 1;
       document.getElementById(serviceId + '_image_container').style.backgroundImage = "none";
     };
 
-    onServiceCachedImageLoaded = function(serviceId) {
+    onServiceCachedImageLoaded = function (serviceId) {
 //      console.log('View.Pay.tag.onServiceImageLoadError()', serviceId);
       document.getElementById(serviceId + '_image').hidden = false;
     };
 
-    onServiceImageLoadError = function(serviceId) {
+    onServiceImageLoadError = function (serviceId) {
 //      console.log('View.Pay.tag.onServiceImageLoadError()', serviceId);
       document.getElementById(serviceId + '_image').hidden = true;
       document.getElementById(serviceId + '_image_container').classList.add("pay-service-image-nologo");

@@ -132,16 +132,16 @@
       event.preventDefault();
       event.stopPropagation();
 
-      backButton.style.webkitTransform = 'scale(0.7)'
+      backButton.style.webkitTransform = 'scale(0.7)';
 
       goBackButtonStartX = event.changedTouches[0].pageX;
       goBackButtonStartY = event.changedTouches[0].pageY;
-    }
+    };
 
     securityGoToBackEnd = function () {
       event.preventDefault();
       event.stopPropagation();
-      backButton.style.webkitTransform = 'scale(1)'
+      backButton.style.webkitTransform = 'scale(1)';
 
       goBackButtonEndX = event.changedTouches[0].pageX;
       goBackButtonEndY = event.changedTouches[0].pageY;
@@ -175,8 +175,8 @@
         scope: this,
 
         onSuccess: function (result) {
-          console.log(result)
-          console.log(result[0][0])
+          console.log(result);
+          console.log(result[0][0]);
           if (result[0][0].error == 0) {
             scope.clickPinError = false;
             scope.errorNote = ("Изменена видимость номера");
@@ -196,7 +196,7 @@
             window.common.alert.show("componentAlertId", {
               parent: scope,
               clickpinerror: scope.clickPinError,
-              errornote: scope.errorNote,
+              errornote: scope.errorNote
             });
 
             scope.update();
@@ -214,7 +214,7 @@
 
     changeClickPinStart = function () {
 
-      changePinButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
+      changePinButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)';
 
       changePinButtonStartX = event.changedTouches[0].pageX;
       changePinButtonStartY = event.changedTouches[0].pageY;
@@ -222,7 +222,7 @@
 
     changeClickPinEnd = function () {
 
-      changePinButtonId.style.backgroundColor = 'transparent'
+      changePinButtonId.style.backgroundColor = 'transparent';
 
       changePinButtonEndX = event.changedTouches[0].pageX;
       changePinButtonEndY = event.changedTouches[0].pageY;

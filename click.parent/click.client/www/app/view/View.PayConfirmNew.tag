@@ -17,59 +17,81 @@
   </div>
 
   <div class="payconfirm-body-container">
-    <div class="payconfirm-data-container">
-      <div class="payconfirm-phone-field" if="{formType!=2}">
-        <p class="payconfirm-text-field">{firstFieldTitle}</p>
-        <p class="payconfirm-phone-input">{firstFieldText}</p>
-        <div class="title-bottom-border">
+    <div>
+      <div class="payment-detail-payment-container" if="{formType!=2}">
+        <div class="payment-detail-payment-include-container">
+          <p class="title-text text-margin">
+            {firstFieldTitle}</p>
+          <p class="main-text text-margin">
+            {firstFieldText}</p>
         </div>
       </div>
-      <div class="payconfirm-amount-field">
-        <p class="payconfirm-amount-text-field">{window.languages.ViewPayConfirmAmountOfPay}</p>
-        <p class="payconfirm-amount-value">{amountTextCopy} {currency}</p>
-        <p if="{opts.tax}" class="payconfirm-amount-tax-field">{window.languages.ViewServicePageAmountTaxText}
-          {opts.tax}
-          {window.languages.Currency}</p>
+    </div>
+    <div class="payment-detail-payment-container">
+      <div class="payment-detail-payment-include-container">
+        <p class="title-text text-margin">
+          {window.languages.ViewPayConfirmAmountOfPay}</p>
+        <p class="main-text text-margin">{amountTextCopy} {currency}</p>
+        <p if="{opts.commissionPercent > 0 && (opts.nds==null || opts.nds==0)}"
+           class="servicepage-amount-tax-text-field">
+          {window.languages.PlusCommission}
+          {window.calculateCommission(parseInt(opts.amountWithoutSpace), opts.commissionPercent)}
+          {window.languages.Currency}
+        </p>
+        <p if="{(opts.commissionPercent == 0 || opts.commissionPercent == null)&& opts.nds > 0}"
+           class="servicepage-amount-tax-text-field">
+          {window.languages.PlusNds}
+          {window.calculateCommission(parseInt(opts.amountWithoutSpace), opts.nds)}
+          {window.languages.Currency}
+        </p>
+        <p if="{opts.commissionPercent > 0 && opts.nds > 0}"
+           class="servicepage-amount-tax-text-field">
+          {window.languages.PlusCommissionAndNds}
+          {window.calculateCommissionAndNds(parseInt(opts.amountWithoutSpace), opts.commissionPercent, opts.nds)}
+          {window.languages.Currency}
+        </p>
 
-        <p if="{opts.cost > 1}" class="payconfirm-amount-count-field">{opts.lang_amount_title}:
+
+        <p if="{opts.cost > 1}" class="title-text text-margin">{opts.lang_amount_title}:
           {window.amountTransform(opts.amountWithoutSpace)}</p>
-        <div class="title-bottom-border">
-        </div>
+        <p if="{opts.toEnrollment}" class="title-text text-margin">
+          <b>{window.languages.ViewServiceToEnrollment}</b>
+          <b style="color: rgb(142,184,81);">{opts.toEnrollment} {opts.currency=="000"?"UZS":"USD"}</b>
+        </p>
       </div>
-      <div class="payconfirm-field">
-        <p class="payconfirm-text-field">{(opts.mode=='ADDAUTOPAY')?
+    </div>
+    <div class="payment-detail-payment-container">
+      <div class="payment-detail-payment-include-container">
+        <p class="title-text text-margin">{(opts.mode=='ADDAUTOPAY')?
           (window.languages.ViewAutoPayConditionFieldText):(window.languages.ViewPayConfirmCategory)}</p>
-        <p class="{payconfirm-category-input:opts.mode!='ADDAUTOPAY',payconfirm-phone-input:opts.mode=='ADDAUTOPAY'}">
-          {(opts.mode=='ADDAUTOPAY')?
+        <p class="main-text text-margin">
+          {(opts.mode=='ADDAUTOPAY')?F
           (autoPayConditionText):(categoryName)}</p>
-        <div class="title-bottom-border">
-        </div>
       </div>
-      <div class="payconfirm-card-field" if="{cardOrFriendBool}">
-        <div class="payconfirm-card-info-container">
-          <p class="payconfirm-text-one">{window.languages.ViewPayConfirmPayFromCard}</p>
-          <p class="payconfirm-text-two">{cardName}</p>
-          <p class="payconfirm-detail-text">{numberPartOne} **** {numberPartTwo}</p>
-          <p class="payconfirm-detail-text">{window.languages.ViewPayConfirmAvailable}:{salary} {currency}</p>
-        </div>
+    </div>
+    <div class="payment-detail-payment-container" if="{cardOrFriendBool}">
+      <div class="payment-detail-payment-include-container">
+        <p class="title-text text-margin">
+          {window.languages.ViewPayConfirmPayFromCard}</p>
+        <p class="main-text text-margin">{cardName}</p>
+        <p class="title-text text-margin">{numberPartOne} **** {numberPartTwo}</p>
+        <p class="title-text text-margin">
+          {window.languages.ViewPayConfirmAvailable}:{salary} {currency}</p>
         <div class="payconfirm-card-logo-container"
              style="background-image: url({url})">
         </div>
-        <div class="title-bottom-border">
-        </div>
       </div>
-      <div class="payconfirm-card-field" if="{!cardOrFriendBool}">
-        <div class="payconfirm-card-info-container">
-          <p class="payconfirm-text-one">{window.languages.ViewPayConfirmFriendHelp}</p>
-          <p class="payconfirm-text-two">{friendName}</p>
-          <p class="payconfirm-detail-text">+{friendNumber.substring(0, 3) + ' ' +
-            inputVerification.telVerificationWithSpace(friendNumber.substring(3, friendNumber.length))}</p>
-        </div>
+    </div>
+    <div class="payment-detail-payment-container" if="{!cardOrFriendBool}">
+      <div class="payment-detail-payment-include-container">
+        <p class="title-text text-margin">{window.languages.ViewPayConfirmFriendHelp}</p>
+        <p class="main-text text-margin">{friendName}</p>
+        <p class="title-text text-margin">+{friendNumber.substring(0, 3) + ' ' +
+          inputVerification.telVerificationWithSpace(friendNumber.substring(3, friendNumber.length))}</p>
         <div class="payconfirm-chosen-friend-photo" style="background-image: url({friendPhoto})">
           {friendFirstLetterOfName}
         </div>
       </div>
-
     </div>
     <div class="payconfirm-bottom-container">
       <div class="payconfirm-action-autopay-container" if="{opts.mode!='ADDAUTOPAY'}">
@@ -100,25 +122,59 @@
           <div class="payconfirm-action-text" ontouchstart="onTouchStartOfAutoPay()" ontouchend="addToAutoPay()">
             {window.languages.ViewPayConfirmAddToAutoPay}
           </div>
+
         </div>
       </div>
-      <button id="autoPayButtonId"
-              class="payconfirm-button-enter"
-              ontouchend="onTouchEndOfEnterPay()" ontouchstart="onTouchStartOfEnterPay()" if="{!autoPayDelete}">
-        {(opts.mode=='ADDAUTOPAY')? window.languages.ViewAutoPayCreateButtonText : window.languages.ViewPayConfirmPay}
-      </button>
-      <button id="deleteAutoPayButtonId" class="payconfirm-button-delete" ontouchend="deleteAutoPay()"
-              ontouchstart="onTouchStartOfAutoPay()"
-              if="{autoPayDelete && opts.mode=='ADDAUTOPAY'}">
-        {window.languages.ViewAutoPayDeleteButtonText}
-      </button>
-
     </div>
+    <button id="autoPayButtonId"
+            class="payconfirm-button-enter"
+            ontouchend="onTouchEndOfEnterPay()" ontouchstart="onTouchStartOfEnterPay()" if="{!autoPayDelete}">
+      {(opts.mode=='ADDAUTOPAY')? window.languages.ViewAutoPayCreateButtonText : window.languages.ViewPayConfirmPay}
+    </button>
+    <button id="deleteAutoPayButtonId" class="payconfirm-button-delete" ontouchend="deleteAutoPay()"
+            ontouchstart="onTouchStartOfAutoPay()"
+            if="{autoPayDelete && opts.mode=='ADDAUTOPAY'}">
+      {window.languages.ViewAutoPayDeleteButtonText}
+    </button>
+
+  </div>
   </div>
 
   <script>
 
-    console.log("OPTS PAYCONFIRM NEW", opts)
+    //    97 125
+    //
+    //    </div>
+    //    <div class="payconfirm-bottom-container">
+    //      <div class="payconfirm-action-autopay-container" if="{opts.mode!='ADDAUTOPAY'}">
+    //      <div
+    //      class="{payconfirm-action-containter: cardOrFriendBool, payconfirm-action-containter-favorite-center:!cardOrFriendBool}">
+    //      <div class="payconfirm-action-icon-one" if="{!isInFavorites}"
+    //      style="background-image: url('resources/icons/ViewService/addfavorite.png');"
+    //    ontouchstart="onTouchStartOfFavorite()"
+    //    ontouchend="addToFavoritesinPayConfirm()"></div>
+    //      <div class="payconfirm-action-text" ontouchstart="onTouchStartOfFavorite()"
+    //    ontouchend="addToFavoritesinPayConfirm()" if="{!isInFavorites}">
+    //      {window.languages.ViewPayConfirmAddToFavorites}
+    //    </div>
+    //    <div class="payconfirm-action-icon-one" if="{isInFavorites}"
+    //      style="background-image: url('resources/icons/ViewService/addedfavorite.png');"
+    //    ontouchstart="onTouchStartOfFavorite()" ontouchend="removeFromFavorites()"></div>
+    //      <div class="payconfirm-action-text" ontouchstart="onTouchStartOfFavorite()" ontouchend="removeFromFavorites()"
+    //    if="{isInFavorites}">
+    //      {window.languages.ViewPayConfirmRemoveFromFavorites}
+    //    </div>
+    //    </div>
+    //    <div id="addToAutoPayContainerId"
+    //    class="{payconfirm-action-containter: cardOrFriendBool, payconfirm-action-containter-autopay-none:!cardOrFriendBool}">
+    //      <div class="payconfirm-action-icon-two"
+    //    style="background-image: url('resources/icons/ViewService/addautopay.png');"
+    //    ontouchstart="onTouchStartOfAutoPay()" ontouchend="addToAutoPay()"></div>
+    //      <div class="payconfirm-action-text" ontouchstart="onTouchStartOfAutoPay()" ontouchend="addToAutoPay()">
+    //      {window.languages.ViewPayConfirmAddToAutoPay}
+    //    >>>>>>> adilbek
+
+    console.log("OPTS PAYCONFIRM NEW", opts);
 
     var scope = this;
     var favoriteStartY, favoriteStartX, favoriteEndY, favoriteEndX;

@@ -47,6 +47,7 @@ var RU_LANGUAGES =
     "ViewSmsMessageTitleTwo": "чтобы сообщить код активации на номер:",
     "ViewSmsResendText": "Смс переотправлено на номер: ",
     "ViewSmsButtonEnterLabel": "Указать другой номер",
+    "ViewSmsContinue": "ПРОДОЛЖИТЬ",
 
     "ViewAuthorizationFirstEnterAriaLabelShowPass": "Показать введённый пароль",
     "ViewAuthorizationClickPinLabel": "Введите CLICK-PIN",
@@ -113,7 +114,16 @@ var RU_LANGUAGES =
     "ViewServicePagePayLabel": "ОПЛАТИТЬ",
     "ViewServicePageVoiceOverOpenCalculator": "Открыть калькулятор",
     "ViewServicePageAmountTextLabel": "Сумма оплаты:",
-    "ViewServicePageAmountTaxText": "Комиссия: ",
+    "PlusCommission": "Плюс комиссия - ",
+    "Commission": "Комиссия - ",
+    "CommissionAndNds": "Комиссия (в т.ч. НДС) - ",
+    "Nds": "НДС - ",
+    "PlusNds": "Плюс НДС - ",
+    "PlusCommissionAndNds": "Плюс комиссия (в т.ч. НДС) - ",
+    "ViewServiceToEnrollment": "Будет зачислено:",
+    "ViewTrustedDevicesDeleteOtherDevice": "Вы действительно хотите удалить устройство из списка доверенных?",
+    "ViewTrustedDevicesDeleteSelfDevice": "Вы действительно хотите удалить своё устройство из списка доверенных? (Потребуется повторная авторизация)",
+
 
 //{(secondLevelArray && secondLevelArray[0])?(secondLevelArray[0].name):("")}
 //{service.options_title}

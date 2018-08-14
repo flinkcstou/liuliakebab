@@ -24,33 +24,65 @@
 
     <div class="report-service-body-container">
       <div class="report-service-body-info-container">
-        <div class="report-service-phone-field">
-          <p class="report-service-text-field">{(opts.parameter_name) ? (opts.parameter_name) : ("")}</p>
-          <p class="report-service-phone-input">{(opts.cntrg_info_param2) ? (opts.cntrg_info_param2) : ("")}</p>
+        <div class="report-info-container" style="height:{85*heightK}px">
+          <div class="horizontal-centering">
+            <p class="title-text text-margin">
+              {(opts.parameter_name) ? (opts.parameter_name) : ("")}
+            </p>
+            <p class="main-text text-margin">
+              {(opts.cntrg_info_param2) ? (opts.cntrg_info_param2) : ("")}
+            </p>
+          </div>
+          <div class="solid-border-bottom"></div>
         </div>
         <div
-          class="report-service-field {report-service-amount-field:opts.comission_amount && opts.comission_amount!=0 }">
-          <p class="report-service-text-field">{window.languages.ViewReportServiceAmountOfPay}</p>
-          <p
-            class="report-service-info-input-amount {report-service-info-input-amount-with-tax: opts.comission_amount && opts.comission_amount!=0}">
-            -
-            {(opts.amount) ? (amountTransform(opts.amount.toString())) : ("")} сум</p>
-          <p if="{opts.comission_amount && opts.comission_amount!=0}" class="report-service-tax-field">
-            {window.languages.ViewTransferFourTax}
-            {opts.comission_amount}
-            {window.languages.ViewReportServiceCommissionCurrency}</p>
+          class="report-info-container" style="height:{110*heightK}px">
+          <div class="horizontal-centering">
+            <p class="title-text text-margin">{window.languages.ViewReportServiceAmountOfPay}</p>
+            <p
+              class="main-text text-margin"
+              style="color: #ff6d65">
+              -
+              {(opts.amount) ? (amountTransform(opts.amount.toString())) : ("")} сум</p>
+            <p if="{opts.comission_amount > 0 && (opts.nds == null || opts.nds == 0)}"
+               class="title-text text-margin">
+              {window.languages.Commission}
+              {opts.comission_amount}
+              {window.languages.Currency}
+            </p>
+            <p if="{(opts.comission_amount == 0 || opts.comission_amount == null) && opts.nds > 0}"
+               class="title-text text-margin">
+              {window.languages.Nds}
+              {window.calculateNds(window.toInt(opts.amount), opts.nds)}
+              {window.languages.Currency}
+            </p>
+            <p if="{opts.comission_amount > 0 && opts.nds > 0}"
+               class="title-text text-margin">
+              {window.languages.CommissionAndNds}
+              {opts.comission_amount}
+              {window.languages.Currency}
+            </p>
+          </div>
+          <div class="solid-border-bottom"></div>
         </div>
-        <div class="report-service-field">
-          <p class="report-service-text-field">{window.languages.ViewReportServicePayWithCard}</p>
-          <p class="report-service-info-input-card-name">{(cards[opts.account_id])? (cards[opts.account_id].name+ " " +
-            cards[opts.account_id].numberPartOne + " **** **** " + cards[opts.account_id].numberPartTwo):"UNKNOWN"}</p>
+        <div class="report-info-container" style="height:{90*heightK}px">
+          <div class="horizontal-centering">
+            <p class="title-text text-margin">{window.languages.ViewReportServicePayWithCard}</p>
+            <p class="main-text text-margin" style="font-size: {30 * widthK}px">{(cards[opts.account_id])?
+              (cards[opts.account_id].name+ " " +
+              cards[opts.account_id].numberPartOne + " **** **** " +
+              cards[opts.account_id].numberPartTwo):"UNKNOWN"}</p>
+          </div>
+          <div class="solid-border-bottom"></div>
         </div>
-        <div class="report-service-field report-service-last-field">
-          <p class="report-service-text-field">{window.languages.ViewReportServiceStatus}</p>
-          <p class="report-service-info-input {report-service-status-wait: opts.state == 1,
+        <div class="report-info-container">
+          <div class="horizontal-centering">
+            <p class="title-text text-margin">{window.languages.ViewReportServiceStatus}</p>
+            <p class="report-service-info-input {report-service-status-wait: opts.state == 1,
                                                report-service-status-error: opts.state == -1,
                                                report-service-status-success: opts.state == 0}">
-            {((opts.status_note) ? ((opts.status_note == -1) ? (opts.error) : (opts.status_note)) : (""))}</p>
+              {((opts.status_note) ? ((opts.status_note == -1) ? (opts.error) : (opts.status_note)) : (""))}</p>
+          </div>
         </div>
       </div>
 
@@ -380,11 +412,15 @@
 
           localStorage.setItem('chosenServiceId', scope.opts.service_id);
           opts.chosenServiceId = scope.opts.service_id;
-          console.log('CHOOSEN SERVICE OPTS', scope.opts.service_id)
+          console.log('CHOOSEN SERVICE OPTS', scope.opts.service_id);
           console.log("scope.service=", servicesMap[scope.opts.service_id][0]);
 
-          opts.amountText = inputVerification.spaceDeleter(scope.opts.amount.toString());
-          opts.amountWithoutSpace = inputVerification.spaceDeleter(scope.opts.amount.toString());
+
+          var amount = parseInt(inputVerification.spaceDeleter(scope.opts.amount.toString()))
+            - scope.opts.comission_amount;
+
+          opts.amountText = inputVerification.spaceDeleter(amount.toString());
+          opts.amountWithoutSpace = inputVerification.spaceDeleter(amount.toString());
 
           //
           opts.formtype = servicesMap[scope.opts.service_id][0].form_type;
@@ -437,7 +473,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      backButton.style.webkitTransform = 'scale(0.7)'
+      backButton.style.webkitTransform = 'scale(0.7)';
 
       goBackButtonStartX = event.changedTouches[0].pageX;
       goBackButtonStartY = event.changedTouches[0].pageY;

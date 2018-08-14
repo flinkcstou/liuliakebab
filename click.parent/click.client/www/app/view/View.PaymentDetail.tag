@@ -23,14 +23,41 @@
   <div class="transfer-to-card-container">
 
     <div class="payment-detail-payment-container">
-      <p class="payment-detail-title">{window.languages.ViewPaymentDetailTitleSum}</p>
-      <p if="{opts.commission_percent}" class="payment-detail-commission">
-        {window.languages.ViewTransferTwoTax} {commission_amount}
-        {window.languages.Currency}</p>
-      <p class="payment-detail-sum">{opts.amount} {currency}</p>
+      <div class="payment-detail-payment-include-container">
+        <p class="payment-detail-title">{window.languages.ViewPaymentDetailTitleSum}</p>
+        <p class="payment-detail-sum">{opts.amount} {currency}</p>
+
+        <p if="{opts.commission_percent > 0 && (opts.nds == null || opts.nds == 0)}"
+           class="text-margin title-text">
+          {window.languages.PlusCommission}
+          {window.calculateCommission(window.toInt(opts.amount), opts.commission_percent)}
+          {window.languages.Currency}
+        </p>
+        <p if="{(opts.commission_percent == null || opts.commission_percent == 0) && opts.nds > 0}"
+           class="text-margin title-text">
+          {window.languages.PlusNds}
+          {window.calculateNds(window.toInt(opts.amount), opts.nds)}
+          {window.languages.Currency}
+        </p>
+        <p if="{opts.commission_percent > 0 && opts.nds > 0}"
+           class="text-margin title-text">
+          {window.languages.PlusCommissionAndNds}
+          {window.calculateCommissionAndNds(window.toInt(opts.amount), opts.commission_percent, opts.nds)}
+          {window.languages.Currency}
+        </p>
+
+        <p if="{opts.category_id == 16}" class="payment-detail-commission">
+          <b>
+            {window.languages.ViewServiceToEnrollment}
+          </b>
+          <b style="color: rgb(142,184,81);">{window.calculateEnrollment(window.toInt(opts.amount), opts.rate,
+            opts.low_ratio)} {opts.currency=="000"?"UZS":"USD"}</b>
+        </p>
+      </div>
     </div>
     <div class="payment-detail-payment-container-pay-from">
       <p class="payment-detail-title-pay-from">{window.languages.ViewPaymentDetailTitlePayFrom}</p>
+
     </div>
 
     <component-pincards paymentdetail="{true}" clean="{true}" useFor="payment"></component-pincards>
@@ -61,7 +88,6 @@
       touchEndAcceptX,
       touchEndAcceptY;
 
-    scope.commission_amount = scope.opts.amount * scope.opts.commission_percent / 100;
     scope.errorCode = 0;
     scope.currency = window.languages.Currency;
 
@@ -234,7 +260,7 @@
             timeOutTimer = setTimeout(function () {
               window.writeLog({
                 reason: 'Timeout',
-                method: 'invoice.action',
+                method: 'invoice.action'
               });
               window.common.alert.show("componentAlertId", {
                 parent: scope,

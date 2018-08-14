@@ -50,7 +50,7 @@
                onkeyup="telPayVerificationKeyUp()" onkeydown="telPayVerificationKeyDown(this)"/>
       </div>
 
-      <div id="secondFieldId" class="servicepage-first-field formtype-seven-second-field">
+      <div id="secondFieldId" class="servicepage-first-field">
         <p id="secondFieldTitle" class="servicepage-text-field">{secondFieldTitle}</p>
 
         <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="secondFieldInput"

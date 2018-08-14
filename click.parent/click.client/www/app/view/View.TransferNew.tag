@@ -282,7 +282,7 @@
         card.style.width = '50%';
         contact.style.width = '50%';
       }
-      if (between.style.display === 'none'){
+      if (between.style.display === 'none') {
         scope.transferTypeCount--;
       }
       transferType.addEventListener("webkitTransitionEnd", transitionEnd, true);

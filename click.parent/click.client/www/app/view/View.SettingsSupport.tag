@@ -93,7 +93,7 @@
 
       goToButtonStartX = event.changedTouches[0].pageX;
       goToButtonStartY = event.changedTouches[0].pageY;
-    }
+    };
 
     goToSettingsStepTwoEnd = function (titleOfHelp, keyOfHelp, id) {
       event.preventDefault();

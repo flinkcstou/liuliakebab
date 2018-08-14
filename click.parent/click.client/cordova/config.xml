@@ -33,6 +33,7 @@
   <plugin name="cordova-plugin-geolocation"/>
   <plugin name="cordova-plugin-websocket"/>
   <plugin name="cordova-plugin-imei"/>
+  <plugin name="cordova-plugin-sms-receive"/>
   <access origin="*"/>
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>

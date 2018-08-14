@@ -339,6 +339,73 @@ window.deleteLeadingZeros = function (amount) {
   return amount;
 };
 
+window.calculateCommissionAndNds = function (amount, commissionPercent, nds) {
+  if (amount == null || nds == null || commissionPercent == null) return 0;
+  var commission = calculatePercent(amount, commissionPercent);
+  var amountWithCommission = commission + amount;
+  var ret = financial(calculatePercent(amountWithCommission, nds) + commission);
+  if (isInt(ret)) {
+    return parseInt(ret);
+  } else {
+    return ret;
+  }
+};
+
+window.isInt = function (number) {
+  if (number == null) return false;
+  return number % 1 === 0;
+};
+
+window.toInt = function (textNumber) {
+
+  var ret = textNumber.toString().replace(/\s/g, '');
+  ret = ret.toString().replace(/ /g, '');
+
+  return parseInt(ret);
+};
+
+window.calculateCommission = function (amount, commissionPercent) {
+  if (amount == null || commissionPercent == null) return 0;
+
+  amount = window.toInt(amount);
+  var ret = financial(calculatePercent(amount, commissionPercent));
+  if (isInt(ret)) {
+    return parseInt(ret);
+  } else {
+    return ret;
+  }
+};
+
+window.calculateEnrollment = function (amount, rate, low_ratio) {
+  if (rate <= 1 && low_ratio <= 0) return 0;
+  var ret = (amount / rate) / 100 * (100 - low_ratio);
+  ret = financial(ret);
+  if (isInt(ret)) {
+    return parseInt(ret);
+  } else {
+    return ret;
+  }
+};
+
+window.calculateNds = function (amount, nds) {
+  if (amount == null || nds == null) return 0;
+  amount = window.toInt(amount);
+  var ret = financial(calculatePercent(amount, nds));
+  if (isInt(ret)) {
+    return parseInt(ret);
+  } else {
+    return ret;
+  }
+};
+
+function financial(x) {
+  return Number.parseFloat(x).toFixed(2);
+}
+
+function calculatePercent(amount, percent) {
+  return amount / 100 * percent;
+}
+
 window.amountTransform = function (amount) {
   if (amount) {
     amount = amount.toString()
@@ -367,7 +434,7 @@ window.amountTransform = function (amount) {
     }
   }
   return newAmount.split("").reverse().join("");
-}
+};
 
 window.getFractionalPart = function (amount) {
   var fractionalPartResult = '';
@@ -1783,6 +1850,23 @@ window.getPosition = function (el) {
   };
 };
 
+window.logOut = function () {
+  if (localStorage.getItem('click_client_token') && localStorage.getItem('click_client_registered')) {
+    this.riotTags.innerHTML = "<view-authorization>";
+    riot.mount('view-authorization');
+  } else {
+    this.riotTags.innerHTML = "<view-registration-device>";
+    riot.mount('view-registration-device');
+  }
+};
+
+window.removeDeviceInfoFromLocalStorage = function () {
+  localStorage.removeItem('click_client_token');
+  localStorage.removeItem('click_client_registered');
+  localStorage.removeItem('click_client_phoneNumber');
+  localStorage.removeItem('click_client_deviceID');
+};
+
 window.sendToLog = function (data) {
   params = {
     method: 'report.issue',
@@ -1805,8 +1889,8 @@ window.sendToLog = function (data) {
       console.log('cannot save logs to server');
       console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
       console.error(data);
-    },
-  }
+    }
+  };
   window.api.send(params);
 };
 
@@ -1943,7 +2027,7 @@ var errorHandler = function (fileName, e) {
   }
 
   console.log('Error (' + fileName + '): ' + msg);
-}
+};
 
 function dec2hex(s) {
   return (s < 15.5 ? '0' : '') + Math.round(s).toString(16);
@@ -1955,7 +2039,7 @@ function hex2dec(s) {
 
 function clearLoaderOnIconLoad(id) {
 
-  console.log('image loaded')
+  console.log('image loaded');
 
   if (document.getElementById(id)) {
     document.getElementById(id).style.backgroundImage = 'none';

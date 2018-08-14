@@ -44,23 +44,57 @@
          class="view-reports-body-container" id="reportBodyContainerId" if="{firstReportView}"
          onscroll="reportsBodyContainerScroll()">
       <div class="view-reports-payments-container" each="{i in paymentDates}">
-        <div class="view-reports-payment-date-containter" id="{'id'+i}">
+        <div class="date-container" id="{'id'+i}">
           <div class="view-reports-payment-date-field">{i}</div>
         </div>
-        <div class="view-reports-payment-block-containter" each="{j in paymentsMap[i]}" id="{j.payment_id}"
+        <div class="info-container" each="{j in paymentsMap[i]}" id="{j.payment_id}"
              ontouchstart="paymentTouchStart(this.id)" onclick="paymentTouchEnd(this.id)" role="button"
              aria-label="{j.service_name}">
-          <div class="view-reports-payment-icon"
-               style="background-image: url({j.image})"></div>
-          <div class="view-reports-payment-info-container">
-            <p class="view-reports-payment-info-name">{j.service_name}</p>
-            <div class="view-reports-payment-info-balance">{window.amountTransform(j.amount.toString())}
-            </div>
-            <div class="view-reports-payment-info-currency-field">сум</div>
-            <p class="view-reports-payment-info-number">{j.cntrg_info_param2}</p>
+          <div class="centering-background-image view-info-left-item"
+               style="background-image: url({j.image}); background-size: 80%;">
           </div>
-          <p class="view-reports-payment-info-time">{j.paymentTime}</p>
-          <div class="view-reports-payment-info-state-image" style="background-image: url({j.state_image})"></div>
+
+          <div class="info-center-container">
+            <div class="horizontal-centering">
+              <p class="title-text text-margin">
+                {j.service_name}
+              </p>
+              <p class="main-text text-margin">
+                - {window.amountTransform(j.amount.toString())}
+                <small class="main-text text-margin" style="font-size: {22*widthK}px;">
+                  {window.languages.Currency}
+                </small>
+              </p>
+              <p if="{j.comission_amount > 0 && (j.nds == null || j.nds == 0)}"
+                 class="text-margin title-text">
+                {window.languages.Commission}{j.comission_amount}
+                {window.languages.Currency}
+              </p>
+              <p if="{(j.comission_amount == 0 || j.comission_amount == null) && j.nds > 0}"
+                 class="text-margin title-text">
+                {window.languages.Nds}{window.calculateNds(window.toInt(j.amount), j.nds)} {window.languages.Currency}
+              </p>
+              <p if="{j.comission_amount > 0 && j.nds > 0}"
+                 class="text-margin title-text">
+                {window.languages.CommissionAndNds}
+                {j.comission_amount}
+                {window.languages.Currency}
+              </p>
+
+              <p class="title-text text-margin">{j.cntrg_info_param2}</p>
+            </div>
+          </div>
+
+          <div class="centering-background-image view-info-right-item vertical-centering-content">
+            <div class="horizontal-centering">
+              <p if={j.paymentTime} class="title-text text-margin" style="margin-bottom: 20%">{j.paymentTime}</p>
+              <div class="centering-background-image state-image-container"
+                   style="background-image: url({j.state_image});">
+              </div>
+            </div>
+          </div>
+
+          <div class="border-bottom"></div>
         </div>
       </div>
     </div>
@@ -91,8 +125,12 @@
         <div class="view-reports-graph-block-containter" each="{j in graphList}">
           <div class="view-reports-graph-block-icon"
                style="background-image: url({j.image})"></div>
-          <div class="view-reports-graph-block-name-field">{j.category_name}</div>
-          <div class="view-reports-graph-block-amount-field" style="color: {j.color_hex}">{j.amount}</div>
+          <div class="view-reports-graph-block-name-field">
+            {j.category_name}
+          </div>
+          <div class="view-reports-graph-block-amount-field" style=" color: {j.color_hex}">
+            {j.amount}
+          </div>
           <div class="view-reports-graph-block-currency-field" style="color: {j.color_hex}">сум</div>
           <div hidden class="view-reports-graph-block-next-icon"></div>
         </div>

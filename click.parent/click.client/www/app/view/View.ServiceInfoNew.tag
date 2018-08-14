@@ -73,7 +73,7 @@
     scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
 
     // needed in qr pay confirm. TODO: REFACTOR
-    opts.name  = scope.titleName;
+    opts.name = scope.titleName;
     opts.category_name = scope.categoryName;
     opts.location = "0.0";
     opts.id = opts.chosenServiceId;
@@ -143,16 +143,15 @@
 
       console.log("Displaying cached info")
       if (scope.serviceData.information_type == 3) {
-        for(var j=0;j<scope.serviceData.options.length;j++)
-        {
-          scope.serviceData.options[j].id=j;
+        for (var j = 0; j < scope.serviceData.options.length; j++) {
+          scope.serviceData.options[j].id = j;
         }
         scope.optionsArray = scope.serviceData.options;
         scope.optionsHeader = scope.serviceData.options_header;
         scope.checkIconShow = scope.serviceData.options.length > 1;
         optionAttribute = scope.serviceData.options[0].option_payment_attribute;
         // TODO: result[1][0] is unidentified
-        opts.paymentDataAttributes = (scope.index!=-1)?result[1][0].options[parseInt(scope.index)].payment_data_attributes:result[1][0].options[0].payment_data_attributes;
+        opts.paymentDataAttributes = (scope.index != -1) ? result[1][0].options[parseInt(scope.index)].payment_data_attributes : result[1][0].options[0].payment_data_attributes;
         //find array in cached data
         for (var i in scope.serviceData.options[0].option_object) {
           if (scope.serviceData.options[0].option_object[i].constructor === Array) {
@@ -197,15 +196,16 @@
                 localStorage.setItem("click_client_infoCached", JSON.stringify(result[1][0]));
               scope.serviceData = result[1][0];
               if (result[1][0].information_type == 3) {
-                for(var j=0;j<scope.serviceData.options.length;j++)
-                {
-                  scope.serviceData.options[j].id=j;
+                for (var j = 0; j < scope.serviceData.options.length; j++) {
+                  scope.serviceData.options[j].id = j;
                 }
                 scope.optionsArray = result[1][0].options;
                 scope.optionsHeader = result[1][0].options_header;
                 scope.checkIconShow = result[1][0].options.length > 1;
                 optionAttribute = result[1][0].options[0].option_payment_attribute;
-                opts.paymentDataAttributes = (scope.index!=-1)?result[1][0].options[parseInt(scope.index)].payment_data_attributes:result[1][0].options[0].payment_data_attributes;
+                opts.paymentDataAttributes = (scope.index != -1) ? result[1][0].options[parseInt(scope.index)].payment_data_attributes : result[1][0].options[0].payment_data_attributes;
+
+                //find array in result
                 for (var i in result[1][0].options[0].option_object) {
                   if (result[1][0].options[0].option_object[i].constructor === Array) {
                     console.log(result[1][0].options[0].option_object[i]);
@@ -328,10 +328,10 @@
         if (scope.index != -1 && scope.index != id)
           document.getElementById("check" + scope.index).style.backgroundImage = "url(resources/icons/ViewService/radio_unselected.png)";
         document.getElementById("check" + id).style.backgroundImage = "url(resources/icons/ViewService/radio_selected.png)";
-        var option_id=scope.serviceData.options[parseInt(id)].option_value;
+        var option_id = scope.serviceData.options[parseInt(id)].option_value;
         scope.index = id;
         opts.optionValue = option_id;
-        opts.paymentDataAttributes =scope.serviceData.options[parseInt(id)].payment_data_attributes;
+        opts.paymentDataAttributes = scope.serviceData.options[parseInt(id)].payment_data_attributes;
       }
     };
 

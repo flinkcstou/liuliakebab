@@ -157,13 +157,13 @@
       console.log("contactNameId.value.length", contactNameId.value.length)
 
       if (contactPhoneNumberId.value.length == scope.numberLength && !contactNameId.value.length < 1) {
-        console.log("qqq")
+        console.log("qqq");
         nextButtonId.style.display = 'block';
         firstSuggestionBlockId.style.display = 'none';
         secondSuggestionBlockId.style.display = 'none';
       }
       else {
-        console.log("ddd")
+        console.log("ddd");
         nextButtonId.style.display = 'none'
       }
     };
@@ -418,8 +418,6 @@
             secondSuggestionBlockId.style.display = 'block';
           }
           countOfFound++;
-          if (countOfFound == 2)
-            return;
         }
         else if (!check) {
           firstSuggestionBlockId.style.display = 'none';
@@ -441,8 +439,8 @@
       event.preventDefault();
       event.stopPropagation();
 
-      firstSuggestionChooseTouchEndX = event.changedTouches[0].pageX
-      firstSuggestionChooseTouchEndY = event.changedTouches[0].pageY
+      firstSuggestionChooseTouchEndX = event.changedTouches[0].pageX;
+      firstSuggestionChooseTouchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(firstSuggestionChooseTouchStartX - firstSuggestionChooseTouchEndX) <= 20 && Math.abs(firstSuggestionChooseTouchStartY - firstSuggestionChooseTouchEndY) <= 20) {
         var phone = inputVerification.telVerification(scope.suggestionOne.phoneNumber);
