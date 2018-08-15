@@ -15,7 +15,7 @@
 
     <div class="autopay-method-body-container">
 
-      <div class="servicepage-first-field autopay-event-name-field">
+      <div class="servicepage-first-field">
         <p class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
 
         <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="autoPayNameInput"

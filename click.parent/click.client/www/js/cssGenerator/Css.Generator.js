@@ -4315,12 +4315,11 @@ var css = {
   servicePageFieldsDropdown: ".servicepage-fields-dropdown" +
   "{" +
   "position: relative;" +
-  "width: 79.5%;" +
+  "width: 80%;" +
   "height: 9%;" +
   "left: 10%;" +
   "color: white;" +
   "border-bottom:" + 3 * widthK + "px solid lightgray;" +
-  "margin-top: 5%;" +
   "}",
 
   servicePagePrefixDropdown: ".servicepage-prefix-dropdown" +
@@ -4439,7 +4438,7 @@ var css = {
   "height: 10%;" +
   "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
   "color: white;" +
-  "margin-top: 8%;" +
+  "margin-top: 4%;" +
   "}",
 
   servicePagePhoneField: ".servicepage-phone-field" +
@@ -4474,17 +4473,17 @@ var css = {
   "height: 10%;" +
   "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
   "color: white;" +
-  "margin-top: 8%" +
+  "margin-top: 4%" +
   "}",
 
   servicePageAmountFieldTwo: ".servicepage-amount-field-two" +
   "{position: relative;" +
   "left: 10%;" +
-  "width: 79.5%;" +
+  "width: 80%;" +
   "height: 10%;" +
   "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
   "color: white;" +
-  "margin-top: 5%;" +
+  "margin-top: 4%;" +
   "}",
 
   servicePageAmountTaxTextField: ".servicepage-amount-tax-text-field" +
@@ -4746,10 +4745,10 @@ var css = {
   servicePagePincardsBlockContainer: ".servicepage-pincards-block-container" +
   "{" +
   "position: relative;" +
-  "width: 85%;" +
+  "width: 80%;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
-  "margin-top: 8%;" +
+  "margin-top: 4%;" +
   "padding-bottom: 2%;" +
   "border-bottom: 1px solid gray;" +
   "}",
@@ -4806,23 +4805,22 @@ var css = {
   servicePageSecondDropdownField: ".servicepage-second-dropdown-field" +
   "{" +
   "position: relative;" +
-  "width: 79.5%;" +
+  "width: 80%;" +
   "height: 8%;" +
   "left: 10%;" +
   "color: white;" +
   "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
-  "margin-top: 8%;" +
   "}",
 
   servicePageSecondDropdownFieldPakety: ".servicepage-second-dropdown-field-pakety" +
   "{" +
   "position: relative;" +
-  "width: 79.5%;" +
+  "width: 80%;" +
   "height: 8%;" +
   "left: 10%;" +
   "color: white;" +
   "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
-  "margin-top: 8%;" +
+  "margin-top: 4%;" +
   "}",
 
   servicePageSecondDropdownFieldText: ".servicepage-second-dropdown-field-text" +
@@ -4839,7 +4837,7 @@ var css = {
   "left: 10%;" +
   "color: white;" +
   "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
-  "margin-top: 8%;" +
+  "margin-top: 4%;" +
   "}",
 
   servicePageDropdownIcon: ".servicepage-dropdown-icon" +
@@ -16964,12 +16962,6 @@ var css = {
   "top: 11%;" +
   "}",
 
-  autopayEventNameField: ".autopay-event-name-field" +
-  "{" +
-  // "height:" + 90 * widthK + "px;" +
-  "top: 4%;" +
-  "}",
-
   autopayEventStepField: ".autopay-event-step-field" +
   "{" +
   "position: relative;" +
@@ -17293,7 +17285,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: " + 600 * widthK + "px;" +
-  "height:" + 530 * widthK + "px;" +
+  "height:" + 540 * widthK + "px;" +
   "top:" + 309 * widthK + "px;" +
   "left: 8%;" +
   //"background-color: #01B8FE;" +
@@ -17477,7 +17469,8 @@ var css = {
 
   autoPayNameInputPart: ".autopay-name-input-part" +
   "{" +
-  "width: 96%;" +
+  "width: 100%;" +
+  "left: 0;" +
   "margin-left: 0;" +
   "top: 25%;" +
   "}",

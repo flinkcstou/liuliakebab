@@ -65,7 +65,7 @@
         <p class="title-text text-margin">{(opts.mode=='ADDAUTOPAY')?
           (window.languages.ViewAutoPayConditionFieldText):(window.languages.ViewPayConfirmCategory)}</p>
         <p class="main-text text-margin">
-          {(opts.mode=='ADDAUTOPAY')?F
+          {(opts.mode=='ADDAUTOPAY')?
           (autoPayConditionText):(categoryName)}</p>
       </div>
     </div>

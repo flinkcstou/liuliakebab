@@ -18,8 +18,9 @@
     </div>
 
     <div class="servicepage-body-container">
-
-      <div id="autopayField" class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDAUTOPAY'}">
+      <div style="width:  100%; height: 2%;">
+      </div>
+      <div id="autopayField" class="servicepage-first-field" if="{opts.mode=='ADDAUTOPAY'}">
         <p id="autoPayNameTitle" class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
 
         <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="autoPayNameInput"
@@ -28,7 +29,7 @@
                onblur="blurFieldGlobal('autopayField','autoPayNameTitle')"/>
       </div>
 
-      <div id="favoriteField" class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDFAVORITE'}">
+      <div id="favoriteField" class="servicepage-first-field" if="{opts.mode=='ADDFAVORITE'}">
         <p id="favoriteNameTitle" class="servicepage-text-field">{window.languages.ViewServicePageFavoriteNameField}</p>
 
         <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="favoriteNameInput"
@@ -45,7 +46,8 @@
       </div>
 
       <div class="servicepage-second-dropdown-field" if="{hasFirstLevel && service.category_id!=11}"
-           ontouchend="openDropDownTwo()" role="button" aria-label="{chosenFieldNameTwo}">
+           ontouchend="openDropDownTwo()" role="button" aria-label="{chosenFieldNameTwo}"
+           style="margin-top: {(service.options_title)?4:0}%">
         <p class="servicepage-text-field servicepage-second-dropdown-field-text">
           {(service.options_title)?(service.options_title):("")}</p>
         <p class="servicepage-dropdown-text-field">{chosenFieldNameTwo}</p>

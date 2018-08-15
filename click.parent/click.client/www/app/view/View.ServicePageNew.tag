@@ -19,14 +19,14 @@
 
     <div class="servicepage-body-container" if="{formType!=2}">
 
-      <div id="autopayField" class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDAUTOPAY'}">
+      <div id="autopayField" class="servicepage-first-field" if="{opts.mode=='ADDAUTOPAY'}">
         <p id="autoPayNameTitle" class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
 
         <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="autoPayNameInput"
                autofocus="true" onkeyup="paymentNameVerificationKeyUp()" onfocus="colorField('autopay')"/>
       </div>
 
-      <div id="favoriteField" class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDFAVORITE'}">
+      <div id="favoriteField" class="servicepage-first-field" if="{opts.mode=='ADDFAVORITE'}">
         <p id="favoriteNameTitle" class="servicepage-text-field">{window.languages.ViewServicePageFavoriteNameField}</p>
 
         <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="favoriteNameInput"
@@ -137,14 +137,14 @@
 
     <div class="servicepage-formtype-two-container" if="{formType==2}">
 
-      <div id="autopayField" class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDAUTOPAY'}">
+      <div id="autopayField" class="servicepage-first-field" if="{opts.mode=='ADDAUTOPAY'}">
         <p id="autoPayNameTitle" class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
 
         <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="autoPayNameInput"
                autofocus="true" onkeyup="paymentNameVerificationKeyUp()" onfocus="colorFieldFormTypeTwo('autopay')"/>
       </div>
 
-      <div id="favoriteField" class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDFAVORITE'}">
+      <div id="favoriteField" class="servicepage-first-field" if="{opts.mode=='ADDFAVORITE'}">
         <p id="favoriteNameTitle" class="servicepage-text-field">{window.languages.ViewServicePageFavoriteNameField}</p>
 
         <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="favoriteNameInput"

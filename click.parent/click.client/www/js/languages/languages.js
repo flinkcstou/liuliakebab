@@ -13,7 +13,7 @@ var RU_LANGUAGES =
     "Save": "Сохранить",
 
 
-    "PublicOfferConfirm": "Оплачивая вы соглашаетесь с условиями",
+    "PublicOfferConfirm": "Оплачивая Вы соглашаетесь с условиями",
     "PublicOffer": "публичной оферты",
     "ServiceUnavailableText": "Сервис временно не доступен",
 

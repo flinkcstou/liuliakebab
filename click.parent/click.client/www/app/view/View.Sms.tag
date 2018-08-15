@@ -143,7 +143,7 @@
     }
 
     function isClickCodeSms(sms) {
-      var re = /^Kod podtverjdeniya: \d{5}\nVnimanie: Ne peredavayte etot kod nikomu!$/;
+      var re = /^Kod podtverjdeniya: \d{5}\n/;
       return re.test(sms);
     }
 

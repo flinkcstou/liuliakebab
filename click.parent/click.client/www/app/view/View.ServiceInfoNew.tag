@@ -85,6 +85,7 @@
     var optionOnTouchStartY, optionOnTouchStartX, optionOnTouchEndY, optionOnTouchEndX;
     scope.type = 0;
     scope.index = -1;
+
     if (!opts.transactionId) {
       opts.transactionId = parseInt(Date.now() / 1000);
       console.log('TRANSACTION_ID FROM OPTS', JSON.stringify(opts))

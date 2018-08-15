@@ -18,7 +18,8 @@
     </div>
 
     <div class="servicepage-body-container">
-
+      <div style="width:  100%; height: 2%;">
+      </div>
       <div class="servicepage-fields-dropdown" ontouchend="openFirstFieldDropDown()"
            id="firstFieldChoiceId">
         <p class="servicepage-text-field servicepage-second-dropdown-field-text">
