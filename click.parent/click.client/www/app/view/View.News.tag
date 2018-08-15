@@ -25,18 +25,22 @@
 
       <div class="view-news-item-footer">
 
-        <div hidden="{!i.url}" class="view-news-item-link"
-             ontouchend="followLink(&quot;{i.url}&quot;)" id="{i.news_id}">
+        <div>
+          <div hidden="{!i.url}" class="view-news-item-link"
+               ontouchend="followLink(&quot;{i.url}&quot;)" id="{i.news_id}">
             {window.languages.ViewNewsFollowLink}
+          </div>
+
+          <p class="view-news-item-date">
+            {i.datetime}
+          </p>
+
+          <div class="view-news-item-detail-container"
+               style="display: left;">
+          </div>
+
+
         </div>
-
-        <p class="view-news-item-date">{i.datetime}</p>
-
-        <div class="view-news-item-detail-container">
-
-        </div>
-
-
         <div class="view-news-item-more-less-container">
           <div if="{!i.isOpened}" class="view-news-item-more"></div>
           <div if="{i.isOpened}" class="view-news-item-less"></div>
@@ -47,8 +51,8 @@
     </div>
 
 
-    </div>
-    <div class="view-news-block-space"></div>
+  </div>
+  <div class="view-news-block-space"></div>
   </div>
 
   <script>
@@ -142,7 +146,7 @@
       touchEndY = event.changedTouches[0].pageY;
 
       const clickedNews = scope.newsArray[newsIndex];
-      if(!clickedNews) return; // existence check
+      if (!clickedNews) return; // existence check
 
       const article = document.getElementById(articleId);
       const content = clickedNews.isOpened ? '' : scope.newsArray[newsIndex].news_content;
@@ -182,7 +186,7 @@
 
           const error = response[0][0].error;
           const errorNote = response[0][0].error_note;
-          const responseNews= response[1];
+          const responseNews = response[1];
 
           if (error === 0) {
             for (var i = 0; i < responseNews.length; i++) {
