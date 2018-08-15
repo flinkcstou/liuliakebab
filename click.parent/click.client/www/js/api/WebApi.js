@@ -131,7 +131,7 @@ window.api.initSocket = function () {
               localStorage.setItem('session_broken', true);
               localStorage.setItem("click_client_authorized", false);
               console.log("after spinner stop");
-              if (device.platform == 'iOS'){
+              if (device.platform == 'iOS') {
                 window.common.alert.show("componentAlertId", {
                   parent: scope,
                   session_broken: true,

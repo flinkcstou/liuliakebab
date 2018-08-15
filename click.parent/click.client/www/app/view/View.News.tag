@@ -10,7 +10,7 @@
     <div class="view-news-item" each="{i in newsArray}"
          id="newsContainerId{i.news_id}"
          ontouchstart="newsTouchStart()"
-         ontouchend="newsTouchEnd({newsArray.indexOf(i)}, 'newsContainerId{i.news_id}', 'newsArticleId{i.news_id}')">
+         ontouchend="newsTouchEnd({i.news_id})">
 
       <img id="newsImageId{i.news_id}"
            class="view-news-item-image"
@@ -20,30 +20,33 @@
            opened="false" title="{i.news_content}">
 
         <p class="view-news-item-title">{i.news_title}</p>
-        <p id="newsArticleId{i.news_id}" class="view-news-item-article"></p>
+        <p id="newsArticleId{i.news_id}" class="view-news-item-article">
+          {i.news_content}</p>
       </div>
 
       <div class="view-news-item-footer">
 
         <div>
-          <div hidden="{!i.url}" class="view-news-item-link"
+          <div hidden="{!i.url}" class="view-news-item-link view-news-footer-item-container"
                ontouchend="followLink(&quot;{i.url}&quot;)" id="{i.news_id}">
-            {window.languages.ViewNewsFollowLink}
+            <p style="margin: auto" class="horizontal-centering">
+              {window.languages.ViewNewsFollowLink}
+            </p>
           </div>
 
-          <p class="view-news-item-date">
-            {i.datetime}
-          </p>
+          <div class="view-news-footer-item-container">
+            <p class="view-news-item-date horizontal-centering">
+              {i.datetime}
+            </p>
+          </div>
 
-          <div class="view-news-item-detail-container"
-               style="display: left;">
+          <div class="view-news-footer-item-container">
           </div>
 
 
         </div>
-        <div class="view-news-item-more-less-container">
-          <div if="{!i.isOpened}" class="view-news-item-more"></div>
-          <div if="{i.isOpened}" class="view-news-item-less"></div>
+        <div style="float: right;">
+          <div id="newsArrowIcon{i.news_id}" class="view-news-item-more"></div>
         </div>
 
       </div>
@@ -60,12 +63,21 @@
     scope.newsArray = [];
     scope.newsOpened = false;
     var touchStartY, touchEndY;
-    var openImage = false;
     var pageNumber = 2;
+
+    console.error(scope.newsArray);
 
     scope.on('mount', function () {
       console.log("MOUNT NEWS");
     });
+
+    scope.getNewsById = function (newsId) {
+      for (var i in scope.newsArray) {
+        if (scope.newsArray[i].news_id === newsId) {
+          return scope.newsArray[i];
+        }
+      }
+    };
 
     openNews = function (news) {
       console.log("View.News.tag.openNews():", news);
@@ -90,36 +102,48 @@
     };
 
     closeNewsTouchEnd = function () {
-      event.preventDefault();
-      event.stopPropagation();
+      stopEventPropagation();
 
       if (sessionStorage.getItem("push_news")) {
         sessionStorage.setItem("push_news", false)
       }
 
+      if (isUserAuthorized()) {
+        console.log('View.News.tag.closeNewsTouchEnd()');
+        mountTo('view-authorization');
+        return
+      }
+
+      checkAndReloadMainPageParams();
+      unmount();
+    };
+
+    function unmount() {
+      onBackKeyDown();
+      scope.unmount();
+    }
+
+    function isUserAuthorized() {
       const authorized = JSON.parse(localStorage.getItem('click_client_authorized'));
       const settingsBlock = JSON.parse(localStorage.getItem('settings_block'));
       const onResume = JSON.parse(localStorage.getItem('onResume'));
       const sessionBroken = JSON.parse(localStorage.getItem('session_broken'));
 
-      console.log('View.News.tag.closeNewsTouchEnd():', authorized, settingsBlock, onResume, sessionBroken);
+      return (!authorized && !modeOfApp.demoVersion) || sessionBroken || (settingsBlock === true && onResume)
+    }
 
-      if ((!authorized && !modeOfApp.demoVersion) || sessionBroken || (settingsBlock === true && onResume)) {
-        riotTags.innerHTML = "<view-authorization>";
-        riot.mount('view-authorization');
-        return
-      }
+    function mountTo(viewName) {
+      riotTags.innerHTML = "<" + viewName + ">";
+      riot.mount(viewName);
+    }
 
+    function checkAndReloadMainPageParams() {
       history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
-
       if (history.arrayOfHistory[history.arrayOfHistory.length - 2].view === "view-main-page") {
         history.arrayOfHistory[history.arrayOfHistory.length - 2].params = {};
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
       }
-
-      onBackKeyDown();
-      scope.unmount()
-    };
+    }
 
     newsScrollFunction = function () {
       if ((newsMainContainerId.scrollHeight - newsMainContainerId.scrollTop) == newsMainContainerId.offsetHeight) {
@@ -129,6 +153,7 @@
     };
 
     newsTouchStart = function () {
+      stopEventPropagation();
       touchStartY = event.changedTouches[0].pageY;
     };
 
@@ -137,28 +162,50 @@
       window.open(LinkToNews, '_system', 'location=no');
     };
 
-    newsTouchEnd = function (newsIndex, containerId, articleId) {
-      console.log('View.News.tag.newsTouchEnd():', newsIndex, containerId, articleId);
+    newsTouchEnd = function (newsId) {
+      console.log('View.News.tag.newsTouchEnd()');
 
-      event.preventDefault();
-      event.stopPropagation();
+      stopEventPropagation();
 
       touchEndY = event.changedTouches[0].pageY;
 
-      const clickedNews = scope.newsArray[newsIndex];
-      if (!clickedNews) return; // existence check
-
-      const article = document.getElementById(articleId);
-      const content = clickedNews.isOpened ? '' : scope.newsArray[newsIndex].news_content;
-
       if (Math.abs(touchStartY - touchEndY) <= 20) {
-
-        article.innerHTML = content;
-        clickedNews.isOpened = !clickedNews.isOpened;
-
-        scope.update();
+        onClickNews(newsId);
       }
     };
+
+    function onClickNews(newsId) {
+      const clickedNews = scope.newsArray[newsId];
+      if (!clickedNews) return;
+
+      const article = getArticle(newsId);
+      const arrow = getArrow(newsId);
+
+      scope.getNewsById(newsId).isOpened = !scope.getNewsById(newsId).isOpened;
+
+      if (scope.getNewsById(newsId).isOpened) {
+        article.style.maxHeight = article.scrollHeight + "px";
+        arrow.style.transform = "rotate(180deg)";
+      } else {
+        article.style.maxHeight = '0';
+        arrow.style.transform = "rotate(0)";
+      }
+
+      scope.update();
+    }
+
+    function getArticle(newsId) {
+      return document.getElementById("newsArticleId" + newsId)
+    }
+
+    function getArrow(newsId) {
+      return document.getElementById("newsArrowIcon" + newsId)
+    }
+
+    function stopEventPropagation() {
+      event.preventDefault();
+      event.stopPropagation();
+    }
 
     scope.showNewsFunction = function (pageNumber) {
       console.log("View.News.tag.showNewsFunction(): ", pageNumber);
@@ -175,10 +222,9 @@
           phone_num: phoneNumber,
           sign_string: signString,
           page_number: pageNumber
-
         },
 
-        scope: this,
+        scope: scope,
 
         onSuccess: function (response) {
           console.log('View.News.tag.showNewsFunction.onSuccess()', response);
@@ -216,7 +262,6 @@
 
             scope.update();
           }
-
         },
 
         onFail: function (api_status, api_status_message, data) {
@@ -237,7 +282,7 @@
           timeOutTimerNews = setTimeout(function () {
             window.writeLog({
               reason: 'Timeout',
-              method: 'get.news',
+              method: 'get.news'
             });
 
             window.common.alert.show("componentAlertId", {
@@ -258,7 +303,7 @@
           window.clearTimeout(timeOutTimerNews);
         }
       }, 30000);
-    }
+    };
 
   </script>
 </view-news>
