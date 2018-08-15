@@ -331,7 +331,7 @@ var RU_LANGUAGES =
   "ComponentPinResetRegistrationButtonLabel": "РЕГИСТРАЦИЯ",
 
   "ComponentMenuAriaLabelPersonalInfo": "Персональные данные",
-  "ComponentMenuOnlineMode": "Активен он-лайн режим",
+  "ComponentMenuOnlineMode": "Активен онлайн режим",
   "ComponentMenuOnlineModeHint": "Ваш телефон подключен к интернету",
   "ComponentMenuOfflineMode": "Активен USSD режим",
   "ComponentMenuOfflineModeHint": "Ваш телефон отключен от интернета",
@@ -372,9 +372,9 @@ var RU_LANGUAGES =
   "ViewAboutSettingsRateUsTitle": "Оцените нас в Google Play",
 
   "ViewSettingsAboutProgramTitleName": "О ПРОГРАММЕ",
-  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 5.10.1",
+  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 5.3.7",
   "ViewSettingsAboutProgramVersionTitleNamePartOneClick": "CLICK Uzbekistan",
-  "ViewSettingsAboutProgramVersionTitleNamePartTwo": "3 августа, 2018",
+  "ViewSettingsAboutProgramVersionTitleNamePartTwo": "15 августа, 2018",
   "ViewSettingsAboutProgramUserAgreementTitleName": "Пользовательское соглашение",
   "ViewSettingsAboutProgramRankTitleName": "Оцените нас в Google Play",
 
