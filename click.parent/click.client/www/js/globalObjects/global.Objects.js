@@ -2835,4 +2835,16 @@ function transProcess(abc, syllable, text) {
   return new RegExp(newStr, "i");
 }
 
+function goOnline() {
+  modeOfApp.onlineMode = true;
+  modeOfApp.offlineMode = false;
+  if (localStorage.getItem('click_client_token') && localStorage.getItem('click_client_registered')) {
+    this.riotTags.innerHTML = "<view-authorization>";
+    riot.mount('view-authorization');
+  } else {
+    this.riotTags.innerHTML = "<view-registration-device>";
+    riot.mount('view-registration-device');
+  }
+}
+
 

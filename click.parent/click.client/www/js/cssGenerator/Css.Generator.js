@@ -1733,7 +1733,7 @@ var css = {
   // "top:" + 20 * widthK + "px;" +
   // "right:" + 26 * widthK + "px;" +
   // "left:" + 26 * widthK + "px;" +
-  "height:" + 90 * widthK + "px;" +
+  "height:" + 120 * widthK + "px;" +
   "width: 100%;" +
   "background: white;" +
   "border-bottom: 1px solid #e8e8e8;" +
@@ -1749,7 +1749,7 @@ var css = {
   "margin-right: auto;" +
   "width:" + 105 * widthK + "px;" +
   "height:" + 105 * widthK + "px;" +
-  "top:" + 2 * widthK + "px;" +
+  "top:" + 30 * widthK + "px;" +
   // "left:" + 272 * widthK + "px;" +
   // "bottom:" + 2 * widthK + "px;" +
   "border-radius:" + 100 * widthK + "px;" +
@@ -1771,7 +1771,7 @@ var css = {
   "margin-left: auto;" +
   "margin-right: auto;" +
   "width:" + 117 * widthK + "px;" +
-  "top:" + 3 * widthK + "px;" +
+  "top:" + 31 * widthK + "px;" +
   "color: #a9abaf;" +
   "font-size:" + 30 * widthK + "px;" +
   "}",
@@ -1795,7 +1795,7 @@ var css = {
   "width:" + 100 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "background-size: 35%;" +
-  "top:" + -8 * widthK + "px;" +
+  "top:" + 25 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "left:" + 10 * widthK + "px;" +
@@ -1838,9 +1838,39 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "right:" + 14 * widthK + "px;" +
-  "top:" + -7 * widthK + "px;" +
+  "top:" + 20 * widthK + "px;" +
   "}",
-
+  
+  toolbarUSSDContainer: ".toolbar-ussd-container" +
+  "{" +
+  "position: absolute;" +
+  "background: transparent;" +
+  "z-index: 2;" +
+  "width: "+ 240 * widthK + "px;" +
+  "height: " + 100 * widthK + "px;" +
+  "right:" + 14 * widthK + "px;" +
+  "top:" + 20 * widthK + "px;" +
+  "}",
+  
+  toolbarUSSDIcon: ".toolbar-ussd-icon" +
+  "{" +
+  "position: relative;" +
+  "width:" + 45 * widthK + "px;" +
+  "height:" + 45 * widthK + "px;" +
+  "top: 10%;" +
+  "}",
+  
+  toolbarUSSDText: ".toolbar-ussd-text" +
+  "{" +
+  "margin: 0;" +
+  "display: inline-block;" +
+  "color: #F24746;" +
+  "font-weight: bold;" +
+  "font-size:" + 25 * widthK + "px;" +
+  "line-height: " + 110 * widthK + "px;" +
+  "margin-right:" + 10 * widthK + "px;" +
+  "}",
+  
   //BANK OPERATION COMPONENT
 
   bankOperations: ".bank-operations " +
@@ -2550,7 +2580,7 @@ var css = {
   "position: absolute;" +
   "height: 5%;" +
   "width: 23%;" +
-  "top: 1%;" +
+  "top: 4%;" +
   // "left: 4%;" +
   "background-image: url(resources/icons/toolbar/menus.png);" +
   "background-repeat: no-repeat;" +
@@ -2609,78 +2639,121 @@ var css = {
   "text-align: right;" +
   "white-space: nowrap;" +
   "}",
-
+  
+  sideMenuReportsContainer: ".side-menu-reports-container " +
+  "{" +
+  "position: relative;" +
+  "top:" + 100 * heightK + "px;" +
+  "height: 7%;" +
+  "width: 77%;" +
+  "left: 8%;" +
+  // "border-bottom: 1px solid #f2f2f2;" +
+  "}",
+  
   sideMenuBillingsContainer: ".side-menu-billings-container " +
   "{" +
   "position: relative;" +
-  "top: 32.2%;" +
-  "height: 6%;" +
+  "top:" + 100 * heightK + "px;" +
+  // "top: 19%;" +
+  "height: 7%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #f2f2f2;" +
-  // "border-bottom: 1px solid #43aee5;" +
+  // "border-bottom: 1px solid #f2f2f2;" +
   "}",
 
   sideMenuFavoriteContainer: ".side-menu-favorite-container " +
   "{" +
   "position: relative;" +
-  "top: 32.7%;" +
-  "height: 6%;" +
+  "top:" + 100 * heightK + "px;" +
+  // "top: 19%;" +
+  "height: 7%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #f2f2f2;" +
+  // "border-bottom: 1px solid #f2f2f2;" +
   "}",
 
   sideMenuAutoPayContainer: ".side-menu-auto-pay-container " +
   "{" +
   "position: relative;" +
-  "top: 32.7%;" +
-  "height: 6%;" +
+  "top:" + 100 * heightK + "px;" +
+  // "top: 19%;" +
+  "height: 7%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #f2f2f2;" +
+  // "border-bottom: 1px solid #f2f2f2;" +
   "}",
-
+  
+  sideMenuActionContainer: ".side-menu-action-container " +
+  "{" +
+  "position: relative;" +
+  "top:" + 100 * heightK + "px;" +
+  "margin-top: 5%;" +
+  "margin-bottom: 5%;" +
+  "height: auto;" +
+  "width: 100%;" +
+  "float: left;" +
+  "background-color: #F6F6F6;" +
+  "text-align: center;" +
+  "padding-bottom: " + 20 * widthK + "px;" +
+  "}",
+  
   sideMenuScannerQrContainer: ".side-menu-scanner-qr-container " +
   "{" +
   "position: relative;" +
-  "top: 32.7%;" +
-  "height: 12.5%;" +
-  "width: 77%;" +
-  "left: 8%;" +
-  // "border-bottom: 1px solid #2dadf0;" +
+  "width: 46%;" +
+  "padding: 2%;" +
+  "float: left;" +
+  "text-align: center;" +
   "}",
-
+  
+  sideMenuActionContainerSeparator: ".side-menu-action-container-separator " +
+  "{" +
+  "position: absolute;" +
+  "left: 50%;" +
+  "top: 10%;" +
+  "bottom: 10%;" +
+  "border-left: 2px solid #F0F0F0;" +
+  "}",
+  
   sideMenuClickPassContainer: ".side-menu-click-pass-container " +
   "{" +
   "position: relative;" +
-  "top: 32.7%;" +
-  "height: 12.5%;" +
-  "width: 77%;" +
-  "left: 8%;" +
-  // "border-bottom: 1px solid #2dadf0;" +
+  "padding: 2%;" +
+  "width: 46%;" +
+  "float: left;" +
+  "text-align: center;" +
   "}",
 
   sideMenuSettingsContainer: ".side-menu-settings-container " +
   "{" +
+  "clear: both;" +
   "position: relative;" +
-  "top: 36.4%;" +
-  "height: 6%;" +
+  "top:" + 100 * heightK + "px;" +
+  "height: 7%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #f2f2f2;" +
   "}",
-
+  
+  sideMenuNewsContainer: ".side-menu-news-container " +
+  "{" +
+  "clear: both;" +
+  "position: relative;" +
+  "top:" + 100 * heightK + "px;" +
+  "height: 7%;" +
+  "width: 77%;" +
+  "left: 8%;" +
+  "}",
 
   sideMenuCallContainer: ".side-menu-call-container " +
   "{" +
+  "clear: both;" +
   "position: relative;" +
-  "top: 36.4%;" +
-  "height: 6%;" +
+  "top:" + 100 * heightK + "px;" +
+  "height: 7%;" +
   "width: 77%;" +
   "left: 8%;" +
   //"margin-top: 2%;" +
-  "border-bottom: 1px solid #f2f2f2;" +
+  // "border-bottom: 1px solid #f2f2f2;" +
   "}",
 
   sideMenuExitContainer: ".side-menu-exit-container " +
@@ -2692,24 +2765,43 @@ var css = {
   "left: 8%;" +
   // "border-bottom: 1px solid #2dadf0;" +
   "}",
-
+  
   sideMenuContainersIcon: ".side-menu-containers-icon " +
   "{" +
   "position: absolute;" +
   "width: 7%;" +
   "height: 81%;" +
-  "top: 12%;" +
+  "top: 9%;" +
   "left: 0%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "}",
-
+  sideMenuActionIcon: ".side-menu-action-icon " +
+  "{" +
+  "width: 7%;" +
+  "height: 81%;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "}",
+  
   sideMenuContainersIconSettings: ".side-menu-containers-icon-settings" +
   "{" +
   "background-image: url(resources/icons/menu/menu_settings.png);" +
   "background-size: 100%;" +
   "}",
-
+  
+  sideMenuContainersIconNews: ".side-menu-containers-icon-news" +
+  "{" +
+  "background-image: url(resources/icons/menu/menu_news.png);" +
+  "background-size: 100%;" +
+  "}",
+  
+  sideMenuContainersIconReports: ".side-menu-containers-icon-reports" +
+  "{" +
+  "background-image: url(resources/icons/menu/menu_reports.png);" +
+  "background-size: 133%;" +
+  "}",
+  
   sideMenuContainersIconBillings: ".side-menu-containers-icon-billings" +
   "{" +
   "background-image: url(resources/icons/menu/menu_bills.png);" +
@@ -2721,17 +2813,28 @@ var css = {
   "background-image: url(resources/icons/menu/menu_autopayment.png);" +
   "background-size: 100%;" +
   "}",
-
+  
+  sideMenuActionImage: ".side-menu-action-image " +
+  "{" +
+  "display: block;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "margin-top: " + 30 * widthK + "px;" +
+  "margin-bottom: " + 30 * widthK + "px;" +
+  "width: " + 100 * widthK + "px;" +
+  "height: " + 100 * widthK + "px;" +
+  "}",
+  
   sideMenuContainersIconScannerQr: ".side-menu-containers-icon-scanner-qr" +
   "{" +
-  "background-image: url(resources/icons/menu/qr_blue.png);" +
+  "background-image: url(resources/icons/menu/menu_qr.png);" +
   "background-size: 100%;" +
   "width: 18%;" +
   "}",
 
   sideMenuContainersIconClickPass: ".side-menu-containers-icon-click-pass" +
   "{" +
-  "background-image: url(resources/icons/menu/scanner_blue.png);" +
+  "background-image: url(resources/icons/menu/menu_scanner.png);" +
   "background-size: 100%;" +
   "width: 18%;" +
   "}",
@@ -2740,12 +2843,12 @@ var css = {
   "{" +
   "background-image: url(resources/icons/menu/menu_call.png);" +
   "background-size: 100%;" +
-  "top: 22%;" +
+  "top: 9%;" +
   "}",
 
   sideMenuContainersIconExit: ".side-menu-containers-icon-exit" +
   "{" +
-  "background-image: url(resources/icons/back/back.png);" +
+  "background-image: url(resources/icons/back/back_red.png);" +
   "background-size: 100%;" +
   "top: 39%;" +
   "height: 36%;" +
@@ -2755,55 +2858,59 @@ var css = {
   sideMenuContainersIconFavorite: ".side-menu-containers-icon-favorite" +
   "{" +
   "background-image: url(resources/icons/menu/menu_favorites.png);" +
-  "background-size: 100%;" +
+  "background-size: 133%;" +
   "}",
 
 
   sideMenuContainersName: ".side-menu-containers-name " +
   "{" +
   "position: absolute;" +
-  "top: 25.5%;" +
+  "top: 30%;" +
   "left: 16%;" +
   "font-size:" + 29 * widthK + "px;" +
   "color: #565d6a;" +
   "}",
-
+  
   sideMenuContainersNameAutopayment: ".side-menu-containers-name-autopayment " +
   "{" +
   "}",
-
+  
   sideMenuContainersNameScannerQr: ".side-menu-containers-name-scanner-qr " +
   "{" +
-  "left: 28%;" +
-  "top: 23%;" +
+  // "left: 28%;" +
+  // "top: 23%;" +
+  "margin-top: 0;" +
+  "margin-bottom: " + 10 * widthK + "px;" +
   "font-weight: bold;" +
+  "color: #707381;" +
+  "font-size:" + 25 * widthK + "px;" +
   "}",
 
   sideMenuContainersHintScannerQr: ".side-menu-containers-hint-scanner-qr " +
   "{" +
-  "position: absolute;" +
-  "left: 28%;" +
-  "top: 50%;" +
-  "width: 80%;" +
-  "font-size:" + 24 * widthK + "px;" +
-  "color: #aaabae;" +
+  "margin: 0;" +
+  "width: 100%;" +
+  "font-size:" + 20 * widthK + "px;" +
+  "color: #A9ABB3;" +
   "}",
 
   sideMenuContainersNameClickPass: ".side-menu-containers-name-click-pass " +
   "{" +
-  "left: 28%;" +
-  "top: 23%;" +
+  // "left: 28%;" +
+  // "top: 23%;" +
+  "margin: 0;" +
+  "margin-bottom: " + 10 * widthK + "px;" +
+  "font-size:" + 25 * widthK + "px;" +
+  "color: #707381;" +
   "font-weight: bold;" +
   "}",
 
   sideMenuContainersHintClickPass: ".side-menu-containers-hint-click-pass " +
   "{" +
-  "position: absolute;" +
-  "left: 28%;" +
-  "top: 50%;" +
-  "width: 80%;" +
-  "font-size:" + 24 * widthK + "px;" +
-  "color: #aaabae;" +
+  "margin: 0;" +
+  "width: 100%;" +
+  "font-size:" + 20 * widthK + "px;" +
+  "color: #A9ABB3;" +
   "}",
 
   sideMenuContainersNameSettings: ".side-menu-containers-name-settings " +
@@ -2817,11 +2924,12 @@ var css = {
 
   sideMenuChangeMode: ".side-menu-change-mode " +
   "{" +
-  "position: absolute;" +
-  "top: 22%;" +
-  "height: 7%;" +
+  "position: relative;" +
+  "top: " + 100 * heightK + "px;" +
+  "height: 8%;" +
   "width: 100%;" +
-  "background-color: #92bf3a;" +
+  // "background-color: #92bf3a;" +
+  // "border: 1px solid #92bf3a;" +
   "color: white;" +
   "}",
 
@@ -2832,19 +2940,33 @@ var css = {
   "padding: 0;" +
   "top: 29%;" +
   "left: 20.2%;" +
+  "color: #565d6a;" +
   "font-size:" + 29 * widthK + "px;" +
   "word-spacing:" + 2 * widthK + "px;" +
   "}",
-
+  
+  sideMenuChangeModeHintText: ".side-menu-change-mode-hint-text " +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "padding: 0;" +
+  "top: 60%;" +
+  "left: 20.2%;" +
+  "color: #565d6a;" +
+  "opacity: 0.6;" +
+  "font-size:" + 16 * widthK + "px;" +
+  "word-spacing:" + 2 * widthK + "px;" +
+  "}",
+  
   switchMenu: ".switch-menu" +
   "{" +
   "position: absolute;" +
   "display: block;" +
-  "width:" + 37 * widthK + "px;" +
-  "top: 35%;" +
-  "right: 7%;" +
-  "height:" + 20 * widthK + "px;" +
-  "border: 1px solid white;" +
+  "width:" + 46 * widthK + "px;" +
+  "top: 45%;" +
+  "right: 3%;" +
+  "height:" + 27 * widthK + "px;" +
+  "border: 2px solid white;" +
   "z-index: 2;" +
   "border-radius:" + 50 * widthK + "px;" +
   "}",
@@ -2861,7 +2983,7 @@ var css = {
   "top: 0;" +
   "left: 0;" +
   "bottom: 0;" +
-  "background-color: #ccc;" +
+  "background-color: #92bf3a;" +
   "-webkit-transition: .4s;" +
   "transition: .4s;" +
   "}",
@@ -2870,13 +2992,22 @@ var css = {
   "{" +
   "position: absolute;" +
   "content: '';" +
-  "height:" + 12 * widthK + "px;" +
-  "width:" + 12 * widthK + "px;" +
+  "height:" + 20 * widthK + "px;" +
+  "width:" + 20 * widthK + "px;" +
   "left:" + 4 * widthK + "px;" +
-  "bottom:" + 13 * widthK + "px;" +
-  "background-color: white;" +
+  "bottom:" + 5 * widthK + "px;" +
   "-webkit-transition: .4s;" +
   "transition: .4s;" +
+  "}",
+  
+  sliderMenuBeforeOnline: ".slider-menu.online:before" +
+  "{" +
+  "background-color: #92bf3a;" +
+  "}",
+  
+  sliderMenuBeforeOffline: ".slider-menu.offline:before" +
+  "{" +
+  "background-color: #F24746;" +
   "}",
 
   inputCheckedSlider: "input:checked + .slider-menu" +
@@ -2911,10 +3042,10 @@ var css = {
   sideMenuChangeModeIcon: ".side-menu-change-mode-icon " +
   "{" +
   "position: absolute;" +
-  "width: 12%;" +
-  "height: 80%;" +
-  "top: 7%;" +
-  "left: 6%;" +
+  "width: 15%;" +
+  "height: 100%;" +
+  "top: 0%;" +
+  "left: 3%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "background-image: url(resources/icons/menu/menu_online.png);" +

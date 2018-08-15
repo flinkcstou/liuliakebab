@@ -331,8 +331,10 @@ var RU_LANGUAGES =
   "ComponentPinResetRegistrationButtonLabel": "РЕГИСТРАЦИЯ",
 
   "ComponentMenuAriaLabelPersonalInfo": "Персональные данные",
-  "ComponentMenuOnlineMode": "Активен онлайн режим",
+  "ComponentMenuOnlineMode": "Активен он-лайн режим",
+  "ComponentMenuOnlineModeHint": "Ваш телефон подключен к интернету",
   "ComponentMenuOfflineMode": "Активен USSD режим",
+  "ComponentMenuOfflineModeHint": "Ваш телефон отключен от интернета",
   "ComponentMenuBillings": "Активен USSD режим",
 
   "ViewSettingsTitleName": "Настройки",
