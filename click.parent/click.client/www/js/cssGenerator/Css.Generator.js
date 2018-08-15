@@ -1840,18 +1840,18 @@ var css = {
   "right:" + 14 * widthK + "px;" +
   "top:" + 20 * widthK + "px;" +
   "}",
-  
+
   toolbarUSSDContainer: ".toolbar-ussd-container" +
   "{" +
   "position: absolute;" +
   "background: transparent;" +
   "z-index: 2;" +
-  "width: "+ 240 * widthK + "px;" +
+  "width: " + 240 * widthK + "px;" +
   "height: " + 100 * widthK + "px;" +
   "right:" + 14 * widthK + "px;" +
   "top:" + 20 * widthK + "px;" +
   "}",
-  
+
   toolbarUSSDIcon: ".toolbar-ussd-icon" +
   "{" +
   "position: relative;" +
@@ -1859,7 +1859,7 @@ var css = {
   "height:" + 45 * widthK + "px;" +
   "top: 10%;" +
   "}",
-  
+
   toolbarUSSDText: ".toolbar-ussd-text" +
   "{" +
   "margin: 0;" +
@@ -1870,7 +1870,7 @@ var css = {
   "line-height: " + 110 * widthK + "px;" +
   "margin-right:" + 10 * widthK + "px;" +
   "}",
-  
+
   //BANK OPERATION COMPONENT
 
   bankOperations: ".bank-operations " +
@@ -2639,7 +2639,7 @@ var css = {
   "text-align: right;" +
   "white-space: nowrap;" +
   "}",
-  
+
   sideMenuReportsContainer: ".side-menu-reports-container " +
   "{" +
   "position: relative;" +
@@ -2649,7 +2649,7 @@ var css = {
   "left: 8%;" +
   // "border-bottom: 1px solid #f2f2f2;" +
   "}",
-  
+
   sideMenuBillingsContainer: ".side-menu-billings-container " +
   "{" +
   "position: relative;" +
@@ -2682,7 +2682,7 @@ var css = {
   "left: 8%;" +
   // "border-bottom: 1px solid #f2f2f2;" +
   "}",
-  
+
   sideMenuActionContainer: ".side-menu-action-container " +
   "{" +
   "position: relative;" +
@@ -2696,7 +2696,7 @@ var css = {
   "text-align: center;" +
   "padding-bottom: " + 20 * widthK + "px;" +
   "}",
-  
+
   sideMenuScannerQrContainer: ".side-menu-scanner-qr-container " +
   "{" +
   "position: relative;" +
@@ -2705,7 +2705,7 @@ var css = {
   "float: left;" +
   "text-align: center;" +
   "}",
-  
+
   sideMenuActionContainerSeparator: ".side-menu-action-container-separator " +
   "{" +
   "position: absolute;" +
@@ -2714,7 +2714,7 @@ var css = {
   "bottom: 10%;" +
   "border-left: 2px solid #F0F0F0;" +
   "}",
-  
+
   sideMenuClickPassContainer: ".side-menu-click-pass-container " +
   "{" +
   "position: relative;" +
@@ -2733,7 +2733,7 @@ var css = {
   "width: 77%;" +
   "left: 8%;" +
   "}",
-  
+
   sideMenuNewsContainer: ".side-menu-news-container " +
   "{" +
   "clear: both;" +
@@ -2765,7 +2765,7 @@ var css = {
   "left: 8%;" +
   // "border-bottom: 1px solid #2dadf0;" +
   "}",
-  
+
   sideMenuContainersIcon: ".side-menu-containers-icon " +
   "{" +
   "position: absolute;" +
@@ -2783,37 +2783,37 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "}",
-  
+
   sideMenuContainersIconSettings: ".side-menu-containers-icon-settings" +
   "{" +
   "background-image: url(resources/icons/menu/menu_settings.png);" +
   "background-size: 100%;" +
   "}",
-  
+
   sideMenuContainersIconNews: ".side-menu-containers-icon-news" +
   "{" +
   "background-image: url(resources/icons/menu/menu_news.png);" +
   "background-size: 100%;" +
   "}",
-  
+
   sideMenuContainersIconReports: ".side-menu-containers-icon-reports" +
   "{" +
   "background-image: url(resources/icons/menu/menu_reports.png);" +
-  "background-size: 133%;" +
+  "background-size: 100%;" +
   "}",
-  
+
   sideMenuContainersIconBillings: ".side-menu-containers-icon-billings" +
   "{" +
   "background-image: url(resources/icons/menu/menu_bills.png);" +
-  "background-size: 100%;" +
+  "background-size: 90%;" +
   "}",
 
   sideMenuContainersIconAutopayment: ".side-menu-containers-icon-autopayment" +
   "{" +
   "background-image: url(resources/icons/menu/menu_autopayment.png);" +
-  "background-size: 100%;" +
+  "background-size: 90%;" +
   "}",
-  
+
   sideMenuActionImage: ".side-menu-action-image " +
   "{" +
   "display: block;" +
@@ -2824,7 +2824,7 @@ var css = {
   "width: " + 100 * widthK + "px;" +
   "height: " + 100 * widthK + "px;" +
   "}",
-  
+
   sideMenuContainersIconScannerQr: ".side-menu-containers-icon-scanner-qr" +
   "{" +
   "background-image: url(resources/icons/menu/menu_qr.png);" +
@@ -2858,7 +2858,7 @@ var css = {
   sideMenuContainersIconFavorite: ".side-menu-containers-icon-favorite" +
   "{" +
   "background-image: url(resources/icons/menu/menu_favorites.png);" +
-  "background-size: 133%;" +
+  "background-size: 100%;" +
   "}",
 
 
@@ -2870,11 +2870,11 @@ var css = {
   "font-size:" + 29 * widthK + "px;" +
   "color: #565d6a;" +
   "}",
-  
+
   sideMenuContainersNameAutopayment: ".side-menu-containers-name-autopayment " +
   "{" +
   "}",
-  
+
   sideMenuContainersNameScannerQr: ".side-menu-containers-name-scanner-qr " +
   "{" +
   // "left: 28%;" +
@@ -2944,7 +2944,7 @@ var css = {
   "font-size:" + 29 * widthK + "px;" +
   "word-spacing:" + 2 * widthK + "px;" +
   "}",
-  
+
   sideMenuChangeModeHintText: ".side-menu-change-mode-hint-text " +
   "{" +
   "position: absolute;" +
@@ -2957,7 +2957,7 @@ var css = {
   "font-size:" + 16 * widthK + "px;" +
   "word-spacing:" + 2 * widthK + "px;" +
   "}",
-  
+
   switchMenu: ".switch-menu" +
   "{" +
   "position: absolute;" +
@@ -2999,12 +2999,12 @@ var css = {
   "-webkit-transition: .4s;" +
   "transition: .4s;" +
   "}",
-  
+
   sliderMenuBeforeOnline: ".slider-menu.online:before" +
   "{" +
   "background-color: #92bf3a;" +
   "}",
-  
+
   sliderMenuBeforeOffline: ".slider-menu.offline:before" +
   "{" +
   "background-color: #F24746;" +
@@ -4600,7 +4600,7 @@ var css = {
   servicePageAmountField: ".servicepage-amount-field" +
   "{position: relative;" +
   "left: 10%;" +
-  "width: 79.5%;" +
+  "width: 80%;" +
   "height: 10%;" +
   "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
   "color: white;" +
@@ -4803,6 +4803,7 @@ var css = {
   "left: 0;" +
   "color: #ffffff;" +
   "pointer-events: none;" +
+  "z-index:9999" +
   "}",
 
   servicePageButtonEnterLabel: ".servicepage-button-enter-label" +
