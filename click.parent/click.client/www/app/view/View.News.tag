@@ -175,7 +175,6 @@
     };
 
     newsTouchStart = function () {
-      stopEventPropagation();
       touchStartY = event.changedTouches[0].pageY;
     };
 
@@ -225,7 +224,7 @@
     }
 
     function stopEventPropagation() {
-      //event.preventDefault();
+      event.preventDefault();
       event.stopPropagation();
     }
 
