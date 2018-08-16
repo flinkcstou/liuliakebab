@@ -16544,9 +16544,9 @@ var css = {
 
   viewNewsContainer: ".view-news-container" +
   "{" +
-  "width:" + 660 * widthK + "px;" +
+  "width:100%;" +
   "margin: 0 auto 0 auto;" +
-  "height: " + (heightOfMobile - 160 * widthK) + "px;" +
+  "height: " + (heightOfMobile - 160 * heightK) + "px;" +
   "overflow-y: scroll;" +
   "-webkit-overflow-scrolling: touch;" +
   "}",
@@ -16628,11 +16628,12 @@ var css = {
 
   viewNewsItem: ".view-news-item" +
   "{" +
-  "width: 100%;" +
+  "width: 90%;" +
   "height: auto;" +
   "box-sizing: border-box;" +
   // "border: 1px solid red;" +
   "background-color: #FFFFFF;" +
+  "margin:5%;" +
   "margin-top:" + 25 * widthK + "px;" +
   "padding: 5%;" +
   "box-shadow: 3px 5px 4px 0px rgb(216, 216, 216);" +
@@ -16642,7 +16643,7 @@ var css = {
   "{" +
   "margin-bottom:5%;" +
   "width: 100%;" +
-  "height:" + 300 * heightK + "px;" +
+  "height:" + 300 * widthK + "px;" +
   "background-size: 20%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
@@ -16682,7 +16683,7 @@ var css = {
   viewNewsFooterItemContainer: ".view-news-footer-item-container" +
   "{" +
   "width: " + 160 * widthK + "px;" +
-  "height: " + 40 * widthK + "px;" +
+  "height: " + 40 * heightK + "px;" +
   "float:left;" +
   "display: inline-block;" +
   "}",
@@ -16736,8 +16737,8 @@ var css = {
 
   viewNewsItemIconView: ".view-news-item-icon-view" +
   "{" +
-  "width:" + 40 * widthK + "px; " +
-  "height:" + 40 * heightK + "px; " +
+  "width:100%; " +
+  "height:100%; " +
   "background-image: url(resources/icons/ViewNews/view.png);" +
   "}",
 

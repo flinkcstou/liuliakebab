@@ -66,6 +66,7 @@
   <div class="view-news-block-space">
   </div>
   <script>
+
     var scope = this;
     scope.newsArray = [];
     scope.newsOpened = false;
