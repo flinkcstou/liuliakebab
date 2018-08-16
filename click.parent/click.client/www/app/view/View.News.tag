@@ -41,12 +41,34 @@
           </div>
 
           <div class="view-news-footer-item-container">
+            <div class="view-news-item-info-container">
+              <div class="view-news-item-info-container ">
+                <div class="view-news-icon-container view-news-item-icon-like">
+
+                </div>
+              </div>
+              <div class="view-news-item-info-container horizontal-centering">
+                <p>
+
+                </p>
+              </div>
+            </div>
+            <div class="view-news-item-info-container">
+              <div class="view-news-item-info-container ">
+                <div class="view-news-icon-container view-news-item-icon-view">
+
+                </div>
+              </div>
+              <div class="view-news-item-info-container horizontal-centering">
+                <p>
+
+                </p>
+              </div>
+            </div>
           </div>
-
-
         </div>
         <div style="float: right;">
-          <div id="newsArrowIcon{i.news_id}" class="view-news-item-more"></div>
+          <div id="newsArrowIcon{i.news_id}" class="view-news-item-icon-more view-news-icon-container"></div>
         </div>
 
       </div>
@@ -203,7 +225,7 @@
     }
 
     function stopEventPropagation() {
-      event.preventDefault();
+      //event.preventDefault();
       event.stopPropagation();
     }
 
@@ -247,7 +269,7 @@
               const newsImgTag = document.getElementById('newsImageId' + scope.newsArray[i].news_id);
               newsImgTag.setAttribute('src', scope.newsArray[i].news_image);
               newsImgTag.onerror = function () {
-                console.log('View.News.tag.showNewsFunction.newsImgTag.onerror()', response);
+                console.error('View.News.tag.showNewsFunction.newsImgTag.onerror()', response);
                 newsImgTag.setAttribute('hidden', true);
               }
             }
