@@ -2,7 +2,7 @@
   <div class="view-news-page-header">
     <p class="view-news-name-title">НОВОСТИ</p>
     <div id="closeButton" role="button" aria-label="{window.languages.Close}" ontouchend="closeNewsTouchEnd()"
-         class="view-news-right-button"></div>
+         class="view-news-close-button view-news-icon-container"></div>
   </div>
   <div class="view-news-container" id="newsMainContainerId" onscroll="newsScrollFunction()">
     <div class="view-news-item" each="{i in newsArray}"
@@ -22,40 +22,38 @@
         </p>
       </div>
       <div class="view-news-item-footer">
-        <div>
-          <div hidden="{!i.url}" class="view-news-item-link view-news-footer-item-container"
-               ontouchend="followLink(&quot;{i.url}&quot;)" id="{i.news_id}">
-            <p style="margin: auto" class="horizontal-centering">
-              {window.languages.ViewNewsFollowLink}
-            </p>
-          </div>
-          <div class="view-news-footer-item-container">
-            <p class="view-news-item-date horizontal-centering">
-              {i.datetime}
-            </p>
-          </div>
-          <div class="view-news-footer-item-container">
-            <div class="view-news-item-info-container">
-              <div class="view-news-item-info-container ">
-                <div class="view-news-icon-container view-news-item-icon-like">
-                </div>
-              </div>
-              <div class="view-news-item-info-container">
-                <p class="horizontal-centering view-news-item-icon-title">
-                  200
-                </p>
+        <div hidden="{!i.url}" class="view-news-item-link view-news-footer-item-container"
+             ontouchend="followLink(&quot;{i.url}&quot;)" id="{i.news_id}">
+          <p style="margin: auto" class="horizontal-centering">
+            {window.languages.ViewNewsFollowLink}
+          </p>
+        </div>
+        <div class="view-news-footer-item-container">
+          <p class="view-news-item-date horizontal-centering">
+            {i.datetime}
+          </p>
+        </div>
+        <div class="view-news-footer-item-container">
+          <div class="view-news-item-info-container">
+            <div class="view-news-item-info-container ">
+              <div class="view-news-icon-container view-news-item-icon-like">
               </div>
             </div>
             <div class="view-news-item-info-container">
-              <div class="view-news-item-info-container ">
-                <div class="view-news-icon-container view-news-item-icon-view">
-                </div>
+              <p class="horizontal-centering view-news-item-icon-title">
+                200
+              </p>
+            </div>
+          </div>
+          <div class="view-news-item-info-container">
+            <div class="view-news-item-info-container ">
+              <div class="view-news-icon-container view-news-item-icon-view">
               </div>
-              <div class="view-news-item-info-container horizontal-centering">
-                <p class="horizontal-centering view-news-item-icon-title">
-                  1.4k
-                </p>
-              </div>
+            </div>
+            <div class="view-news-item-info-container horizontal-centering">
+              <p class="horizontal-centering view-news-item-icon-title">
+                1.4k
+              </p>
             </div>
           </div>
         </div>

@@ -16544,12 +16544,9 @@ var css = {
 
   viewNewsContainer: ".view-news-container" +
   "{" +
-  "position: relative;" +
   "width:" + 660 * widthK + "px;" +
   "margin: 0 auto 0 auto;" +
-  "top:" + 100 * widthK + "px;" +
-  "height: " + (heightOfMobile - 110 * widthK) + "px;" +
-  "overflow-x: hidden;" +
+  "height: " + (heightOfMobile - 160 * widthK) + "px;" +
   "overflow-y: scroll;" +
   "-webkit-overflow-scrolling: touch;" +
   "}",
@@ -16588,22 +16585,20 @@ var css = {
 
   viewNewsPageTitle: ".view-news-page-header " +
   "{" +
-  "position: absolute;" +
-  "top: 0;" +
   "width: 100%;" +
+  "position: relative;" +
   "background-color: #FFFFFF;" +
-  "height:" + 100 * widthK + "px;" +
+  "height:" + 140 * widthK + "px;" +
   "}",
 
   viewNewsNameTitle: ".view-news-name-title " +
   "{" +
   "position: absolute;" +
-  "background-size: contain;" +
+  "left:5%;" +
+  "bottom: " + 40 * widthK + "px; " +
   "font-size:" + 35 * widthK + "px; " +
-  "left: 6%; " +
-  "top:" + 26 * widthK + "px; " +
   "margin: 0;  " +
-  // "color: #4f4f4f;" +
+  "color: #4f4f4f;" +
   "}",
 
   viewNewsBackButton: ".view-news-back-button " +
@@ -16621,32 +16616,25 @@ var css = {
   "display: block;" +
   "}",
 
-  viewNewsRightButton: ".view-news-right-button " +
+  viewNewsCloseButton: ".view-news-close-button " +
   "{" +
   "position: absolute;" +
-  "width:" + 144 * widthK + "px;" +
-  "height:" + 92 * widthK + "px;" +
-  "right:" + -36 * widthK + "px;" +
+  "width:" + 40 * widthK + "px;" +
+  "height:" + 40 * widthK + "px;" +
   "background-image: url('resources/icons/ViewTransfer/banks_close.png');" +
-  "background-repeat: no-repeat;" +
-  "-webkit-background-size: 22%;" +
-  "background-position-y: center;" +
-  "background-position-x:" + 54 * widthK + "px;" +
-  "background-size: 22%;" +
-  "top: 0;" +
+  "bottom:" + 40 * widthK + "px;" +
+  "right:5%;" +
   "}",
 
   viewNewsItem: ".view-news-item" +
   "{" +
-  "width: 95%;" +
+  "width: 100%;" +
   "height: auto;" +
   "box-sizing: border-box;" +
   // "border: 1px solid red;" +
   "background-color: #FFFFFF;" +
   "margin-top:" + 25 * widthK + "px;" +
   "padding: 5%;" +
-  "margin-left: auto;" +
-  "margin-right: auto;" +
   "box-shadow: 3px 5px 4px 0px rgb(216, 216, 216);" +
   "}",
 
