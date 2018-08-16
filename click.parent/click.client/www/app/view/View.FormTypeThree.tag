@@ -17,12 +17,9 @@
            style="background-image: url({serviceIcon})"></div>
     </div>
 
-    <div class="servicepage-body-container">
+    <div id="servicepage-body-container" class="servicepage-body-container">
       <div style="width:  100%; height: 2%;">
       </div>
-      <div id="autopayField" class="servicepage-first-field" if="{opts.mode=='ADDAUTOPAY'}">
-    <div id="servicepage-body-container" class="servicepage-body-container">
-
       <div id="autopayField" class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDAUTOPAY'}">
         <p id="autoPayNameTitle" class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
 
@@ -131,15 +128,16 @@
       </div>
 
 
-      <button id="enterButtonId" style="bottom: {window.bottomButtonBottom}"
-              class="{servicepage-button-enter-enabled: enterButtonEnabled,servicepage-button-enter-disabled:!enterButtonEnabled}"
-              ontouchstart="onTouchStartOfEnter()"
-              ontouchend="onTouchEndOfEnter()">
-        {enterButton ? (modeOfApp.offlineMode ?window.languages.ViewServicePagePayLabel:
-        window.languages.ViewServicePageEnterLabel):window.languages.ViewServicePageSaveLabel}
-      </button>
 
     </div>
+
+    <button id="enterButtonId" style="bottom: {window.bottomButtonBottom}"
+            class="{servicepage-button-enter-enabled: enterButtonEnabled,servicepage-button-enter-disabled:!enterButtonEnabled}"
+            ontouchstart="onTouchStartOfEnter()"
+            ontouchend="onTouchEndOfEnter()">
+      {enterButton ? (modeOfApp.offlineMode ?window.languages.ViewServicePagePayLabel:
+      window.languages.ViewServicePageEnterLabel):window.languages.ViewServicePageSaveLabel}
+    </button>
 
     <div hidden="{!showComponent}" id="blockAmountCalculatorId" class="component-calc">
       <div id="rightButton" type="button" role="button" aria-label="{window.languages.Close}"
@@ -438,7 +436,7 @@
     this.on('mount', function () {
 
       focusFieldAfterTourClosed();
-
+      makeFormScrollableOnOpenKeyboard('servicepage-body-container',55);
       if (opts && opts.number) {
         firstFieldInput.value = inputVerification.telVerificationWithSpace(inputVerification.telVerification(opts.number));
         scope.update();
