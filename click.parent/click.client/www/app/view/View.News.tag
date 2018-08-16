@@ -40,20 +40,20 @@
                 <div class="view-news-icon-container view-news-item-icon-like">
                 </div>
               </div>
-              <div class="view-news-item-info-container horizontal-centering">
-                <p>
+              <div class="view-news-item-info-container">
+                <p class="horizontal-centering view-news-item-icon-title">
+                  200
                 </p>
               </div>
             </div>
             <div class="view-news-item-info-container">
               <div class="view-news-item-info-container ">
                 <div class="view-news-icon-container view-news-item-icon-view">
-
                 </div>
               </div>
               <div class="view-news-item-info-container horizontal-centering">
-                <p>
-
+                <p class="horizontal-centering view-news-item-icon-title">
+                  1.4k
                 </p>
               </div>
             </div>
@@ -191,10 +191,12 @@
       scope.getNewsById(newsId).isOpened = !scope.getNewsById(newsId).isOpened;
 
       if (scope.getNewsById(newsId).isOpened) {
-        article.style.maxHeight = article.scrollHeight + "px";
+        article.style.marginBottom = "5%";
+        article.style.height = "auto";
         arrow.style.transform = "rotate(180deg)";
       } else {
-        article.style.maxHeight = '0';
+        article.style.marginBottom = "0";
+        article.style.height = "0";
         arrow.style.transform = "rotate(0)";
       }
 

@@ -16665,7 +16665,6 @@ var css = {
   "{" +
   "width: 100%;" +
   "height: auto;" +
-  "margin-bottom:5%;" +
   "}",
 
   viewNewsItemTitle: ".view-news-item-title " +
@@ -16673,16 +16672,16 @@ var css = {
   "color: #000000;" +
   "margin:0;" +
   "font-weight: bold;" +
-  "font-size: " + 24 * widthK + "px;" +
+  "font-size: " + 22 * widthK + "px;" +
   "}",
 
   viewNewsItemArticle: ".view-news-item-article" +
   "{" +
-  "font-size: " + 22 * widthK + "px;" +
+  "font-size: " + 20 * widthK + "px;" +
   "color: rgb(100,100,100);" +
   "margin:0;" +
   "margin-top:5%;" +
-  "max-height: 0;" +
+  "height: 0;" +
   "overflow: hidden;" +
   "}",
 
@@ -16721,16 +16720,23 @@ var css = {
   "text-align: center;" +
   "margin: 0;" +
   "border-radius:" + 3 * widthK + "px;" +
-  "font-size:" + 22 * widthK + "px; " +
+  "font-size:" + 20 * widthK + "px; " +
   "}",
 
   viewNewsItemDate: ".view-news-item-date" +
   "{" +
   // "color: #bababa;" +
-  "font-size:" + 22 * widthK + "px; " +
+  "font-size:" + 20 * widthK + "px; " +
   "text-align: center;" +
   "color: rgb(170,170,170);" +
   "margin: 0;" +
+  "}",
+
+  viewNewsItemIconTitle: ".view-news-item-icon-title" +
+  "{" +
+  "color: #07b1fe;" +
+  "margin: 0;" +
+  "font-size:" + 20 * widthK + "px; " +
   "}",
 
   viewNewsItemIconLike: ".view-news-item-icon-like" +
