@@ -17623,6 +17623,8 @@ var css = {
 
   serviceInfoOptions: ".serviceinfo-options" +
   "{" +
+  "overflow-y: scroll;" +
+  "-webkit-overflow-scrolling: touch;" +
   "width: 100%;" +
   "height: " + 1015 * heightK + "px; " +
   "overflow: auto;" +

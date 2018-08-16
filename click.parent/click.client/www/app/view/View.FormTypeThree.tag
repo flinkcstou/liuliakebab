@@ -21,6 +21,9 @@
       <div style="width:  100%; height: 2%;">
       </div>
       <div id="autopayField" class="servicepage-first-field" if="{opts.mode=='ADDAUTOPAY'}">
+    <div id="servicepage-body-container" class="servicepage-body-container">
+
+      <div id="autopayField" class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDAUTOPAY'}">
         <p id="autoPayNameTitle" class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
 
         <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="autoPayNameInput"
@@ -29,7 +32,7 @@
                onblur="blurFieldGlobal('autopayField','autoPayNameTitle')"/>
       </div>
 
-      <div id="favoriteField" class="servicepage-first-field" if="{opts.mode=='ADDFAVORITE'}">
+      <div id="favoriteField" class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDFAVORITE'}">
         <p id="favoriteNameTitle" class="servicepage-text-field">{window.languages.ViewServicePageFavoriteNameField}</p>
 
         <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="favoriteNameInput"
@@ -46,7 +49,6 @@
       </div>
 
       <div class="servicepage-second-dropdown-field" if="{hasFirstLevel && service.category_id!=11}"
-           style="margin-top: 4%"
            ontouchend="openDropDownTwo()" role="button" aria-label="{chosenFieldNameTwo}">
         <p class="servicepage-text-field servicepage-second-dropdown-field-text">
           {(service.options_title)?(service.options_title):("")}</p>
@@ -110,7 +112,7 @@
            id="amountField">
         <p id="amountFieldTitle" class="servicepage-text-field">{amountFieldTitle}</p>
         <p if="{commissionPercent}" class="servicepage-amount-tax-text-field">
-          {window.languages.PlusCommission} {tax}
+          {window.languages.ViewServicePageAmountTaxText} {tax}
           {window.languages.Currency}</p>
         <input class="servicepage-amount-input" type="tel" value="{defaultAmount}" maxlength="10"
                id="amount"
@@ -660,7 +662,7 @@
 
       amountCalcInputId.value = amountInput;
 
-      setTimeout(function () {
+      setTimeout(function() {
           amountCalcInputId.selectionStart = selectionStart;
           amountCalcInputId.selectionEnd = selectionStart;
         }, 0
@@ -762,9 +764,9 @@
       opts.first_field_value = opts.firstFieldText ? opts.firstFieldText : null;
       scope.amountFieldTitle = scope.service.lang_amount_title;
       console.log("PARAMETER ID ", scope.fieldArray[0].parameter_id, scope.fieldArray[0])
-      console.log("Service ", scope.service);
+      console.log("Service ", scope.service)
       scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1" || scope.fieldArray[0].parameter_id == "65536" || scope.fieldArray[0].parameter_id == "128";
-      scope.calcOn = scope.service.show_calc == 1;
+      scope.calcOn = scope.service.cost == 1;
 
       if (scope.phoneFieldBool) {
         scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telVerificationWithSpace(inputVerification.telVerification(opts.firstFieldText));
@@ -1085,7 +1087,7 @@
 
       amount.value = amountInput;
 
-      setTimeout(function () {
+      setTimeout(function() {
           amount.selectionStart = selectionStart;
           amount.selectionEnd = selectionStart;
         }, 0

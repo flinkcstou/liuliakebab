@@ -2849,3 +2849,105 @@ function goOnline() {
 }
 
 
+function makeFormScrollableOnOpenKeyboard(obj,offset) {
+  var el = document.getElementById(obj);
+  el.style.overflowY = 'scroll';
+  el.style.webkitOverflowScrolling = 'touch';
+
+  var div = document.createElement("div");
+  div.style.width = "100%";
+  div.id = "emptyspace";
+  // div.style.background = "red";
+  // div.style.position="relative";
+  el.appendChild(div);
+
+  var inputs = el.getElementsByTagName('input');
+  // for (var inp in inputs) {
+  //   inp.onfocusin=scroll(el);
+  // }
+
+  window.addEventListener('native.keyboardshow', function (e) {
+    try {
+      if (this.emptyspace) {
+        var h = (2 * e.keyboardHeight) + "px";
+        this.emptyspace.style.height = h;
+        scroll(el,findMinScrollToViewElement(el,document.activeElement.parentNode,e.keyboardHeight,offset));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  });
+
+  window.addEventListener('native.keyboardhide', function (e) {
+    try {
+      if (this.emptyspace)
+        this.emptyspace.style.height = "0px";
+      } catch (error) {
+      console.error(error);
+    }
+  });
+}
+
+function getOffsetTop( elem )
+{
+  var offsetTop = 0;
+  do {
+    if ( !isNaN( elem.offsetTop ) )
+    {
+      offsetTop += elem.offsetTop;
+    }
+  } while( elem = elem.offsetParent );
+  return offsetTop;
+}
+
+function scroll(el,to) {
+  if (window.device && window.device.platform === "iOS") {
+    doScrolling(el,to , 300);
+  } else {
+    doScrolling(el,to, 300);
+  }
+}
+
+function findMinScrollToViewElement(scrollParent,obj,keyboardHeight,offset){
+  var windowHeight = document.documentElement.clientHeight-keyboardHeight;
+  var parentOffset=getOffsetTop(scrollParent);
+  var keyboardOffset=windowHeight-parentOffset;
+  var objectHeight = obj.height;
+  return (obj.offsetTop+obj.clientHeight+offset)-keyboardOffset;
+}
+
+function doScrolling(element, to, duration) {
+  var startingY = element.scrollTop;
+  var diff = to - startingY;
+  // Easing function: easeInOutCubic
+  // From: https://gist.github.com/gre/1650294
+  var easing = function (t) { return t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1 };
+  var start;
+
+  if (!diff) return;
+
+  // Bootstrap our animation - it will get called right before next frame shall be rendered.
+  var animation = window.requestAnimationFrame(function step(timestamp) {
+    if (!start) start = timestamp;
+    // Elapsed miliseconds since start of scrolling.
+    var time = timestamp - start;
+    // Get percent of completion in range [0, 1].
+    var percent = Math.min(time / duration, 1);
+    // Apply the easing.
+    // It can cause bad-looking slow frames in browser performance tool, so be careful.
+    percent = easing(percent);
+
+    element.scrollTo(0, startingY + diff * percent);
+
+    // Proceed with animation as long as we wanted it to.
+    console.log("animation time="+timestamp);
+    if (time < duration) {
+      animation = window.requestAnimationFrame(step);
+    }
+    else
+    {
+      cancelAnimationFrame(animation);
+    }
+  });
+
+}
