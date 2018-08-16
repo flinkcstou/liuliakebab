@@ -4786,6 +4786,7 @@ var css = {
   "left: 0;" +
   "color: #ffffff;" +
   "pointer-events: auto;" +
+  "z-index:1000000;" +
   "}",
 
   servicePageButtonEnterDisabled: ".servicepage-button-enter-disabled" +
