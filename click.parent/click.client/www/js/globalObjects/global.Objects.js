@@ -1200,6 +1200,7 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
                       myNumberObject.name = 'Мой номер';
                       myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
                       myNumberObject.id = 'mynumber' + result[1][i].id;
+                      myNumberObject.image_cached = true;
                       servicesMapByCategory[result[1][i].category_id].push(myNumberObject);
 
                     } else if (result[1][i].category_id === 1) {
@@ -2176,21 +2177,21 @@ function qrCodeScanner(scope) {
       qrScaner.qrInited = false;
 
       var string = result.text;
-      
+
       // Notary pay integration. Temporary solution
       try {
         const jsonQr = JSON.parse(string);
         const isNotaryService = jsonQr['is_notary_service'];
         console.log("global.Objects.js.qrCodeScanner() | isNotaryService:", isNotaryService);
-  
-        if(jsonQr && isNotaryService && isNotaryService == 1) {
+
+        if (jsonQr && isNotaryService && isNotaryService == 1) {
           qrScaner.qrInited = false;
 
           var pAcc = jsonQr['p_acc'];
           var serviceId = 10185; // The only service id of notary
-    
+
           console.log("global.Objects.js.qrCodeScanner() | NOTARY SERVICE DETECTED:", pAcc, serviceId);
-  
+
           if (modeOfApp.offlineMode) {
             console.log("*880*010185999002*" + pAcc + "%23");
             phonedialer.dial(
@@ -2209,7 +2210,7 @@ function qrCodeScanner(scope) {
                 else console.log("Ошибка USSD:" + err);
               },
               function (success) {
-      
+
               }
             );
           } else {
@@ -2221,7 +2222,7 @@ function qrCodeScanner(scope) {
               "chosenPrefixName": "",
               "chosenServiceId": 10185,
               "firstFieldId": 536870912,
-              "is_qr_notary" : true,
+              "is_qr_notary": true,
               "firstFieldTitle": "Номер квитанции:",
             });
           }
@@ -2231,7 +2232,7 @@ function qrCodeScanner(scope) {
       } catch (e) {
         console.log("global.Objects.js.qrCodeScanner(): JSON PARSE EXCEPTION");
       }
-  
+
       if (string.indexOf('click.uz') != -1) {
 
         string = string.split('?')[1]
