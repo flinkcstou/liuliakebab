@@ -16683,7 +16683,6 @@ var css = {
   "margin:0;" +
   "margin-top:5%;" +
   "max-height: 0;" +
-  "transition: max-height 0.5s;" +
   "overflow: hidden;" +
   "}",
 
@@ -16753,7 +16752,6 @@ var css = {
   "width:" + 40 * widthK + "px; " +
   "height:" + 40 * heightK + "px; " +
   "background-image: url(resources/icons/ViewNews/down-arrow.png);" +
-  "transition: transform 0.5s;" +
   "}",
 
   viewNewsIconContainer: ".view-news-icon-container" +

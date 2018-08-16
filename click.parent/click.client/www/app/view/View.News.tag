@@ -4,28 +4,24 @@
     <div id="closeButton" role="button" aria-label="{window.languages.Close}" ontouchend="closeNewsTouchEnd()"
          class="view-news-right-button"></div>
   </div>
-
   <div class="view-news-container" id="newsMainContainerId" onscroll="newsScrollFunction()">
-
     <div class="view-news-item" each="{i in newsArray}"
          id="newsContainerId{i.news_id}"
          ontouchstart="newsTouchStart()"
          ontouchend="newsTouchEnd({i.news_id})">
-
       <img id="newsImageId{i.news_id}"
            class="view-news-item-image"
            exist="{i.image_exist}">
-
       <div class="view-news-item-content" shorttext="{i.content_short}"
            opened="false" title="{i.news_content}">
-
-        <p class="view-news-item-title">{i.news_title}</p>
+        <p class="view-news-item-title">
+          {i.news_title}
+        </p>
         <p id="newsArticleId{i.news_id}" class="view-news-item-article">
-          {i.news_content}</p>
+          {i.news_content}
+        </p>
       </div>
-
       <div class="view-news-item-footer">
-
         <div>
           <div hidden="{!i.url}" class="view-news-item-link view-news-footer-item-container"
                ontouchend="followLink(&quot;{i.url}&quot;)" id="{i.news_id}">
@@ -33,23 +29,19 @@
               {window.languages.ViewNewsFollowLink}
             </p>
           </div>
-
           <div class="view-news-footer-item-container">
             <p class="view-news-item-date horizontal-centering">
               {i.datetime}
             </p>
           </div>
-
           <div class="view-news-footer-item-container">
             <div class="view-news-item-info-container">
               <div class="view-news-item-info-container ">
                 <div class="view-news-icon-container view-news-item-icon-like">
-
                 </div>
               </div>
               <div class="view-news-item-info-container horizontal-centering">
                 <p>
-
                 </p>
               </div>
             </div>
@@ -70,16 +62,11 @@
         <div style="float: right;">
           <div id="newsArrowIcon{i.news_id}" class="view-news-item-icon-more view-news-icon-container"></div>
         </div>
-
       </div>
-
     </div>
-
-
   </div>
-  <div class="view-news-block-space"></div>
+  <div class="view-news-block-space">
   </div>
-
   <script>
     var scope = this;
     scope.newsArray = [];
@@ -191,13 +178,12 @@
       touchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(touchStartY - touchEndY) <= 20) {
+        console.log('View.News.tag.newsTouchEnd - Success !');
         onClickNews(newsId);
       }
     };
 
     function onClickNews(newsId) {
-      const clickedNews = scope.newsArray[newsId];
-      if (!clickedNews) return;
 
       const article = getArticle(newsId);
       const arrow = getArrow(newsId);
