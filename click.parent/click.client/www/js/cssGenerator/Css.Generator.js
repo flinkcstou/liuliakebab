@@ -4038,8 +4038,9 @@ var css = {
   "min-height:" + 100 * widthK + "px; " +
   "width: 100%;" +
   // "padding-top: 1%;" +
+  "border-bottom:" + 1 + "px solid #e8e8e8;" +
   "background-color: transparent;" +
-  "overflow: auto;" +
+  "overflow: visible;" +
   "}",
 
   payServiceHintContainer: ".pay-service-hint-containter" +
@@ -4108,20 +4109,19 @@ var css = {
 
   payServiceImage: ".pay-service-image" +
   "{" +
+  "position: relative;" +
   "width:  " + 120 * widthK + "px; " +
   "height: " + 120 * widthK + "px; " +
-  // "width: 100%;" +
-  // "height: 100%;" +
-  "transition: 0.7s;" +
-  "-webkit-transition: 0.7s;" +
-  "opacity: 0;" +
-  "border: none;" +
-  // "background-repeat: no-repeat;" +
-  // "background-position: center;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
   //"border-radius: " + 100 * widthK + "px;" +
   //"border: " + 1 + "px solid white;" +
-  // "background-size: 80%;" +
-  // "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
+  "margin-left: " + 15 * widthK + "px; " +
+  "margin-top: " + 15 * widthK + "px; " +
+  "margin-right: " + 15 * widthK + "px; " +
+  "margin-bottom: " + 15 * widthK + "px; " +
+  "background-size: 80%;" +
+  "background-image: url(resources/icons/services/nologo.png);" +
   "}",
 
   payServiceImageCached: ".pay-service-image-cached" +
@@ -4131,16 +4131,16 @@ var css = {
   "opacity: 1;" +
   "}",
 
-  // payServiceImageNoLoader: ".pay-service-image-noloader" +
-  // "{" +
-  // "position: relative;" +
-  // "width:  " + 120 * widthK + "px; " +
-  // "height: " + 120 * widthK + "px; " +
-  // "margin-left: " + 15 * widthK + "px; " +
-  // "margin-top: " + 15 * widthK + "px; " +
-  // "margin-right: " + 15 * widthK + "px; " +
-  // "margin-bottom: " + 15 * widthK + "px; " +
-  // "}",
+  payServiceImageNoLoader: ".pay-service-image-noloader" +
+  "{" +
+  "position: relative;" +
+  "width:  " + 120 * widthK + "px; " +
+  "height: " + 120 * widthK + "px; " +
+  "margin-left: " + 15 * widthK + "px; " +
+  "margin-top: " + 15 * widthK + "px; " +
+  "margin-right: " + 15 * widthK + "px; " +
+  "margin-bottom: " + 15 * widthK + "px; " +
+  "}",
   payServiceImageNoLogo: ".pay-service-image-nologo" +
   "{" +
   "background-image: url('resources/icons/services/nologo.png');" +
@@ -4171,26 +4171,29 @@ var css = {
   payCategoryIcon: ".pay-category-icon" +
   "{" +
   "position: relative;" +
-  "width:" + 100 * widthK + "px; " +
-  "height:" + 100 * widthK + "px; " +
+  "width:" + 50 * widthK + "px; " +
+  "height:" + 50 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "float: left;" +
   "left: 4%;" +
+  "top:" + 20 * widthK + "px; " +
   "margin-right:" + 15 * widthK + "px; " +
   "background-size: 80%;" +
-  "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
+  "background-image: url(resources/icons/services/nologo.png);" +
   "}",
 
   payCategoryIconNoLoader: ".pay-category-icon-noloader" +
   "{" +
   "position: relative;" +
-  "width:" + 100 * widthK + "px; " +
-  "height:" + 100 * widthK + "px; " +
+  "width:" + 50 * widthK + "px; " +
+  "height:" + 50 * widthK + "px; " +
   "float: left;" +
   "left: 4%;" +
+  "top:" + 20 * widthK + "px; " +
   "margin-right:" + 15 * widthK + "px; " +
   "}",
+
 
   payCategoryNameField: ".pay-category-name-field" +
   "{" +
@@ -4198,11 +4201,11 @@ var css = {
   "width: " + (720 - 45) * widthK + "px;" +
   // "width: 90%; " +
   "background-size: contain;" +
-  "top: " + 28.25 * widthK + "px; " +
+  "top: " + 31 * widthK + "px; " +
   "left: 6%;" +
   "text-align: left;" +
-  "font-size:" + 34 * widthK + "px; " +
-  "color: rgba(48, 48, 48, 1);" +
+  "font-size:" + 29 * widthK + "px; " +
+  "color: gray;" +
   "}",
 
   payCategoryBottomBorder: ".pay-category-bottom-border" +
@@ -4329,7 +4332,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "width:" + 19 * widthK + "px;" +
   "height:" + 18 * widthK + "px;" +
-  "top:" + 5 * widthK + "px;" +
+  "top:" + 9 * widthK + "px;" +
   "}",
 
   payPageTitle: ".pay-page-title " +
@@ -18216,7 +18219,7 @@ var css = {
   "position: absolute;" +
   "height:90%; " +
   "width: 100%; " +
-  "top: 10%; " +
+  "top: 9%; " +
   "bottom:0; " +
   "overflow-y: auto; " +
   "overflow-x: hidden; " +
@@ -18261,14 +18264,16 @@ var css = {
   inPlacePayCategoryIcon: ".inplace-pay-category-icon" +
   "{" +
   "position: relative;" +
-  "width:" + 77 * widthK + "px; " +
-  "height:" + 77 * widthK + "px; " +
+  "width:" + 50 * widthK + "px; " +
+  "height:" + 50 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
-  "background-position-x: left;" +
   "float: left;" +
-  // "left: 2%;" +
-  "background-size: 100%;" +
+  "left: 4%;" +
+  "top:" + 20 * widthK + "px; " +
+  "margin-right:" + 15 * widthK + "px; " +
+  "background-size: 80%;" +
+  "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
   "}",
 
   inPlacePayCategoryNameField: ".inplace-pay-category-name-field" +

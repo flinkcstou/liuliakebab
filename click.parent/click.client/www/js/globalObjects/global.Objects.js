@@ -2054,6 +2054,13 @@ function errorDownloadImage(id) {
   }
 }
 
+function errorDownloadPayImage(id) {
+  if (document.getElementById(id)) {
+    document.getElementById(id).style.backgroundImage = 'none';
+    document.getElementById(id).src = 'resources/icons/services/nologo.png';
+  }
+}
+
 
 function base32tohex(base32) {
   var base32chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
