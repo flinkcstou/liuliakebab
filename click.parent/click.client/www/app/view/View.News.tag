@@ -33,15 +33,19 @@
             {i.datetime}
           </p>
         </div>
-        <div class="view-news-footer-item-container">
+        <div class="view-news-footer-item-container"
+             ontouchstart="onLikeTouchStart()"
+             ontouchend="onLikeTouchEnd({i.news_id})"
+        >
           <div class="view-news-item-info-container">
             <div class="view-news-item-info-container ">
-              <div class="view-news-icon-container view-news-item-icon-like">
+              <div id="like_{i.news_id}"
+                class="{view-news-icon-container:true, view-news-item-icon-like: true, view-news-item-icon-liked: false}">
               </div>
             </div>
             <div class="view-news-item-info-container">
               <p class="horizontal-centering view-news-item-icon-title">
-                200
+                {i.likes_count}
               </p>
             </div>
           </div>
@@ -52,7 +56,7 @@
             </div>
             <div class="view-news-item-info-container horizontal-centering">
               <p class="horizontal-centering view-news-item-icon-title">
-                1.4k
+                {i.views_count}
               </p>
             </div>
           </div>
@@ -71,7 +75,14 @@
     scope.newsArray = [];
     scope.newsOpened = false;
     var touchStartY, touchEndY;
+    var likeTouchStartX, likeTouchStartY, likeTouchEndX, likeTouchEndY;
+    var isLikeClick = false;
     var pageNumber = 2;
+
+    const phoneNumber = localStorage.getItem('click_client_phoneNumber');
+    const loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
+    const sessionKey = loginInfo.session_key;
+
 
     console.error(scope.newsArray);
 
@@ -161,7 +172,9 @@
     };
 
     newsTouchStart = function () {
+      if(isLikeClick) return;
       touchStartY = event.changedTouches[0].pageY;
+      console.log('View.News.tag.onNewsTouchStart()');
     };
 
     followLink = function (LinkToNews) {
@@ -199,7 +212,35 @@
         arrow.style.transform = "rotate(0)";
       }
 
+      increaseNewsViewCount(newsId);
+
       scope.update();
+    }
+
+    function increaseNewsViewCount(newsId) {
+      // TODO: check if news already opened
+      if(true) {
+        return;
+      }
+
+      window.api.call({
+        method: 'news.view.count',
+        input: {
+          phone_num: phoneNumber,
+          session_key: sessionKey,
+          news_id: newsId
+        },
+        scope: scope,
+        onSuccess: function (response) {
+          console.log('View.News.tag.onLikeTouchEnd.news.like.onSuccess()', response);
+        },
+        onFail: function (api_status, api_status_message, data) {
+        },
+        onTimeOut: function () {
+        },
+        onEmergencyStop: function () {
+        }
+      }, 30000);
     }
 
     function getArticle(newsId) {
@@ -218,7 +259,6 @@
     scope.showNewsFunction = function (pageNumber) {
       console.log("View.News.tag.showNewsFunction(): ", pageNumber);
 
-      var phoneNumber = localStorage.getItem("click_client_phoneNumber");
       var signString = hex_md5(phoneNumber.substring(0, 5) + "CLICK" + phoneNumber.substring(phoneNumber.length - 7, phoneNumber.length));
       var timeOutTimerNews = 0;
 
@@ -312,6 +352,78 @@
         }
       }, 30000);
     };
+
+    onLikeTouchStart = function() {
+      console.log('View.News.tag.onLikeTouchStart()');
+      isLikeClick = true;
+      likeTouchStartX = event.changedTouches[0].pageY;
+      likeTouchStartY = event.changedTouches[0].pageY;
+    };
+
+    onLikeTouchEnd = function(newsId) {
+      console.log('View.News.tag.onLikeTouchEnd()', newsId);
+      likeTouchEndX = event.changedTouches[0].pageY;
+      likeTouchEndY = event.changedTouches[0].pageY;
+
+      const isTap = (Math.abs(likeTouchStartX - likeTouchEndX) <= 20 && Math.abs(likeTouchStartY - likeTouchEndY) <= 20);
+      if(!isTap) return;
+
+      // TODO: check if liked or not
+      if(false) {
+       likeNews(newsId);
+      } else {
+        unlikeNews(newsId);
+      }
+      isLikeClick = false;
+    };
+
+    function likeNews(newsId) {
+      const likeIcon = document.getElementById('like_' + newsId);
+      likeIcon.classList.remove('view-news-item-icon-liked');
+
+      window.api.call({
+        method: 'news.like',
+        input: {
+          phone_num: phoneNumber,
+          session_key: sessionKey,
+          news_id: newsId
+        },
+        scope: scope,
+        onSuccess: function (response) {
+          console.log('View.News.tag.onLikeTouchEnd.news.like.onSuccess()', response);
+        },
+        onFail: function (api_status, api_status_message, data) {
+        },
+        onTimeOut: function () {
+        },
+        onEmergencyStop: function () {
+        }
+      }, 30000);
+    }
+
+    function unlikeNews(newsId) {
+      const likeIcon = document.getElementById('like_' + newsId);
+      likeIcon.classList.add('view-news-item-icon-liked');
+
+      window.api.call({
+        method: 'news.unlike',
+        input: {
+          phone_num: phoneNumber,
+          session_key: sessionKey,
+          news_id: newsId
+        },
+        scope: scope,
+        onSuccess: function (response) {
+          console.log('View.News.tag.onLikeTouchEnd.news.unlike.onSuccess()', response);
+        },
+        onFail: function (api_status, api_status_message, data) {
+        },
+        onTimeOut: function () {
+        },
+        onEmergencyStop: function () {
+        }
+      }, 30000);
+    }
 
   </script>
 </view-news>

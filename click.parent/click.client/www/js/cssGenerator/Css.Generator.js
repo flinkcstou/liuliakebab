@@ -16732,6 +16732,11 @@ var css = {
   "{" +
   "width:100%; " +
   "height:100%; " +
+  "background-image: url(resources/icons/ViewNews/like-not-fill.png);" +
+  "}",
+  
+  viewNewsItemIconLiked: ".view-news-item-icon-liked" +
+  "{" +
   "background-image: url(resources/icons/ViewNews/like-fill.png);" +
   "}",
 
