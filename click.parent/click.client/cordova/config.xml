@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-packageName="air.com.ssdsoftwaresolutions.clickuz" android-versionCode="5000037"
+<widget android-packageName="air.com.ssdsoftwaresolutions.clickuz" android-versionCode="50000037"
         id="air.com.ssdsoftwaresolutions.clickuz" ios-CFBundleIdentifier="com.ssdsoftwaresolutions.clickuz"
         version="5.3.7" xmlns="http://www.w3.org/ns/widgets">
   <name>CLICK Uzbekistan</name>
