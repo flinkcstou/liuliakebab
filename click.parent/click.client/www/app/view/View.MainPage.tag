@@ -63,18 +63,18 @@
             StatusBar.backgroundColorByHexString("#ffffff");
         }
 
-//        if (opts) {
-//          if (opts.view === "news" || (sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true)) {
-//            console.log("mainPage news");
+        if (opts) {
+          if (opts.view === "news" || (sessionStorage.getItem("push_news") && JSON.parse(sessionStorage.getItem("push_news")) === true)) {
+            console.log("mainPage news");
             viewNewsId.style.display = 'block';
             scope.tags['view-news'].showNewsFunction(1, opts.news_id);
 
             window.saveHistory('view-news', opts);
-//            console.log("MOUNT MAIN news to history");
-//          }
-//        } else {
-//          localStorage.setItem("click_client_authorized", true);
-//        }
+            console.log("MOUNT MAIN news to history");
+          }
+        } else {
+          localStorage.setItem("click_client_authorized", true);
+        }
       });
 
 

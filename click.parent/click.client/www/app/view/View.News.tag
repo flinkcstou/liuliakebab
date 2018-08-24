@@ -9,9 +9,13 @@
          id="newsContainerId{i.news_id}"
          ontouchstart="newsTouchStart()"
          ontouchend="newsTouchEnd({i.news_id})">
-      <img id="newsImageId{i.news_id}"
-           class="view-news-item-image"
-           exist="{i.image_exist}">
+      <div
+        id="newsImageHolderId{i.news_id}"
+        class="view-news-item-image">
+        <img id="newsImageId{i.news_id}"
+             class="view-news-item-image"
+              style="opacity: 0;">
+      </div>
       <div class="view-news-item-content" shorttext="{i.content_short}"
            opened="false" title="{i.news_content}">
         <p class="view-news-item-title">
@@ -23,7 +27,7 @@
       </div>
       <div class="view-news-item-footer">
         <div hidden="{!i.url}" class="view-news-item-link view-news-footer-item-container"
-             ontouchend="followLink(&quot;{i.url}&quot;)" id="{i.news_id}">
+             ontouchend="followLink(&quot;{i.url}&quot;, {i.news_id})" id="{i.news_id}">
           <p style="margin: auto" class="horizontal-centering">
             {window.languages.ViewNewsFollowLink}
           </p>
@@ -40,12 +44,12 @@
           <div class="view-news-item-info-container">
             <div class="view-news-item-info-container ">
               <div id="like_{i.news_id}"
-                class="{view-news-icon-container:true, view-news-item-icon-like: true, view-news-item-icon-liked: false}">
+                class="{view-news-icon-container:true, view-news-item-icon-like: true, view-news-item-icon-liked: i.like_status}">
               </div>
             </div>
             <div class="view-news-item-info-container">
               <p class="horizontal-centering view-news-item-icon-title">
-                {i.likes_count}
+                {convertCount(i.likes_count)}
               </p>
             </div>
           </div>
@@ -56,7 +60,7 @@
             </div>
             <div class="view-news-item-info-container horizontal-centering">
               <p class="horizontal-centering view-news-item-icon-title">
-                {i.views_count}
+                {convertCount(i.views_count)}
               </p>
             </div>
           </div>
@@ -177,10 +181,27 @@
       console.log('View.News.tag.onNewsTouchStart()');
     };
 
-    followLink = function (LinkToNews) {
+    followLink = function (LinkToNews, newsId) {
       console.log("Link to news", LinkToNews);
+      increaseNewsViewCount(newsId);
       window.open(LinkToNews, '_system', 'location=no');
     };
+
+    convertCount = function(count) {
+      var result = count;
+      if(count < 1000) {
+        result = round(count, 0);
+      } else if(count >= 1000 && count < 1000000) {
+        result = round(count / 1000, 0) + 'K';
+      } else if(count >= 1000000) {
+        result = round(count / 1000000, 0) + 'M';
+      }
+      return result;
+    };
+
+    function round(value, decimals) {
+      return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+    }
 
     newsTouchEnd = function (newsId) {
       console.log('View.News.tag.newsTouchEnd()');
@@ -206,22 +227,21 @@
         article.style.marginBottom = "5%";
         article.style.height = "auto";
         arrow.style.transform = "rotate(180deg)";
+        increaseNewsViewCount(newsId);
       } else {
         article.style.marginBottom = "0";
         article.style.height = "0";
         arrow.style.transform = "rotate(0)";
       }
 
-      increaseNewsViewCount(newsId);
-
       scope.update();
     }
 
     function increaseNewsViewCount(newsId) {
-      // TODO: check if news already opened
-      if(true) {
-        return;
-      }
+      if(!newsId) return;
+
+      var tapedNews = getNewsById(newsId);
+      tapedNews.views_count++;
 
       window.api.call({
         method: 'news.view.count',
@@ -232,7 +252,16 @@
         },
         scope: scope,
         onSuccess: function (response) {
-          console.log('View.News.tag.onLikeTouchEnd.news.like.onSuccess()', response);
+          console.log('View.News.tag.newsTouchEnd.increaseNewsViewCount.onSuccess()', response);
+          const error = response[0][0].error;
+          const viewsCount = response[1][0].views_count;
+
+          console.log(error, viewsCount);
+          if(error == 0 && tapedNews) {
+            tapedNews.views_count = viewsCount;
+            scope.update();
+          }
+
         },
         onFail: function (api_status, api_status_message, data) {
         },
@@ -292,11 +321,16 @@
 
             // We need to load img  immediately. If you have better solution, you are welcome
             for (var i = 0; i < scope.newsArray.length; i++) {
+              const newsImgHolderTag = document.getElementById('newsImageHolderId' + scope.newsArray[i].news_id);
               const newsImgTag = document.getElementById('newsImageId' + scope.newsArray[i].news_id);
               newsImgTag.setAttribute('src', scope.newsArray[i].news_image);
+              newsImgTag.onload = function() {
+                newsImgTag.style.opacity = 1;
+              };
               newsImgTag.onerror = function () {
                 console.error('View.News.tag.showNewsFunction.newsImgTag.onerror()', response);
                 newsImgTag.setAttribute('hidden', true);
+                newsImgHolderTag.setAttribute('hidden', true);
               }
             }
 
@@ -368,25 +402,29 @@
       const isTap = (Math.abs(likeTouchStartX - likeTouchEndX) <= 20 && Math.abs(likeTouchStartY - likeTouchEndY) <= 20);
       if(!isTap) return;
 
-      // TODO: check if liked or not
-      if(false) {
-       likeNews(newsId);
+      var tapedNews = getNewsById(newsId);
+      if(!tapedNews) return;
+
+      if(!tapedNews.like_status) {
+       likeNews(tapedNews);
       } else {
-        unlikeNews(newsId);
+        unlikeNews(tapedNews);
       }
       isLikeClick = false;
     };
 
-    function likeNews(newsId) {
-      const likeIcon = document.getElementById('like_' + newsId);
+    function likeNews(news) {
+      const likeIcon = document.getElementById('like_' + news.news_id);
       likeIcon.classList.remove('view-news-item-icon-liked');
+      news.like_status = 1;
+      news.likes_count++;
 
       window.api.call({
         method: 'news.like',
         input: {
           phone_num: phoneNumber,
           session_key: sessionKey,
-          news_id: newsId
+          news_id: news.news_id
         },
         scope: scope,
         onSuccess: function (response) {
@@ -399,18 +437,22 @@
         onEmergencyStop: function () {
         }
       }, 30000);
+
+      scope.update();
     }
 
-    function unlikeNews(newsId) {
-      const likeIcon = document.getElementById('like_' + newsId);
+    function unlikeNews(news) {
+      const likeIcon = document.getElementById('like_' + news.news_id);
       likeIcon.classList.add('view-news-item-icon-liked');
+      news.like_status = 0;
+      news.likes_count--;
 
       window.api.call({
         method: 'news.unlike',
         input: {
           phone_num: phoneNumber,
           session_key: sessionKey,
-          news_id: newsId
+          news_id: news.news_id
         },
         scope: scope,
         onSuccess: function (response) {
@@ -423,6 +465,17 @@
         onEmergencyStop: function () {
         }
       }, 30000);
+
+      scope.update();
+    }
+
+    function getNewsById(newsId) {
+      for(var i in scope.newsArray) {
+        if(scope.newsArray[i].news_id == newsId) {
+          return scope.newsArray[i];
+        }
+      }
+      return null;
     }
 
   </script>

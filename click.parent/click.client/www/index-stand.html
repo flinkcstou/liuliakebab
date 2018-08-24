@@ -154,10 +154,8 @@
       firstMount.firstStep = function () {
         if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true && JSON.parse(localStorage.getItem('click_client_registered')) === true) {
 
-//          scope.riotTags.innerHTML = "<view-authorization>";
-//          riot.mount('view-authorization')
-          this.riotTags.innerHTML = "<view-main-page>";
-          riot.mount('view-main-page');
+          scope.riotTags.innerHTML = "<view-authorization>";
+          riot.mount('view-authorization')
         }
         else {
           scope.riotTags.innerHTML = "<view-registration-device>";
@@ -181,10 +179,8 @@
       if (localStorage.getItem('click_client_token') && JSON.parse(localStorage.getItem('confirm_needed')) !== true && JSON.parse(localStorage.getItem('click_client_registered')) === true) {
         //if (localStorage.getItem('demo_version') == true) alert("demo is true");
         //else alert("demo is false");
-//        scope.riotTags.innerHTML = "<view-authorization>";
-//        riot.mount('view-authorization')
-        scope.riotTags.innerHTML = "<view-main-page>";
-        riot.mount('view-main-page');
+        scope.riotTags.innerHTML = "<view-authorization>";
+        riot.mount('view-authorization')
       }
       else {
         //alert("demo is false");
