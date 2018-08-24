@@ -41,7 +41,7 @@
     <div class="service-addinfo-amount-field" id="amountField">
       <p id="amountFieldTitle" class="servicepage-text-field">Сумма</p>
       <p if="{commissionPercent}" class="servicepage-amount-tax-text-field">
-        {window.languages.ViewServicePageAmountTaxText} {tax}
+        {window.languages.PlusCommission} {tax}
         {window.languages.Currency}</p>
       <input class="service-addinfo-amount-input" type="tel" value="{defaultAmount}" maxlength="10"
              id="amount"
@@ -507,7 +507,7 @@
 
       amountCalcInputId.value = amountInput;
 
-      setTimeout(function() {
+      setTimeout(function () {
           amountCalcInputId.selectionStart = selectionStart;
           amountCalcInputId.selectionEnd = selectionStart;
         }, 0
@@ -607,7 +607,7 @@
 
       amount.value = amountInput;
 
-      setTimeout(function(){
+      setTimeout(function () {
           amount.selectionStart = selectionStart;
           amount.selectionEnd = selectionStart;
         }, 0

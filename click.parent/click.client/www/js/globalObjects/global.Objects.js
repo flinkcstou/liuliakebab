@@ -339,6 +339,73 @@ window.deleteLeadingZeros = function (amount) {
   return amount;
 };
 
+window.calculateCommissionAndNds = function (amount, commissionPercent, nds) {
+  if (amount == null || nds == null || commissionPercent == null) return 0;
+  var commission = calculatePercent(amount, commissionPercent);
+  var amountWithCommission = commission + amount;
+  var ret = financial(calculatePercent(amountWithCommission, nds) + commission);
+  if (isInt(ret)) {
+    return parseInt(ret);
+  } else {
+    return ret;
+  }
+};
+
+window.isInt = function (number) {
+  if (number == null) return false;
+  return number % 1 === 0;
+};
+
+window.toInt = function (textNumber) {
+
+  var ret = textNumber.toString().replace(/\s/g, '');
+  ret = ret.toString().replace(/ /g, '');
+
+  return parseInt(ret);
+};
+
+window.calculateCommission = function (amount, commissionPercent) {
+  if (amount == null || commissionPercent == null) return 0;
+
+  amount = window.toInt(amount);
+  var ret = financial(calculatePercent(amount, commissionPercent));
+  if (isInt(ret)) {
+    return parseInt(ret);
+  } else {
+    return ret;
+  }
+};
+
+window.calculateEnrollment = function (amount, rate, low_ratio) {
+  if (rate <= 1 && low_ratio <= 0) return 0;
+  var ret = (amount / rate) / 100 * (100 - low_ratio);
+  ret = financial(ret);
+  if (isInt(ret)) {
+    return parseInt(ret);
+  } else {
+    return ret;
+  }
+};
+
+window.calculateNds = function (amount, nds) {
+  if (amount == null || nds == null) return 0;
+  amount = window.toInt(amount);
+  var ret = financial(calculatePercent(amount, nds));
+  if (isInt(ret)) {
+    return parseInt(ret);
+  } else {
+    return ret;
+  }
+};
+
+function financial(x) {
+  return Number.parseFloat(x).toFixed(2);
+}
+
+function calculatePercent(amount, percent) {
+  return amount / 100 * percent;
+}
+
 window.amountTransform = function (amount) {
   if (amount) {
     amount = amount.toString()
@@ -367,7 +434,7 @@ window.amountTransform = function (amount) {
     }
   }
   return newAmount.split("").reverse().join("");
-}
+};
 
 window.getFractionalPart = function (amount) {
   var fractionalPartResult = '';
@@ -1133,6 +1200,7 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
                       myNumberObject.name = 'Мой номер';
                       myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
                       myNumberObject.id = 'mynumber' + result[1][i].id;
+                      myNumberObject.image_cached = true;
                       servicesMapByCategory[result[1][i].category_id].push(myNumberObject);
 
                     } else if (result[1][i].category_id === 1) {
@@ -1148,6 +1216,7 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
                       myNumberObject.name = 'Мой номер';
                       myNumberObject.image = 'resources/icons/ViewPay/myphone.png';
                       myNumberObject.id = 'mynumber' + result[1][i].id;
+                      myNumberObject.image_cached = true;
                       servicesMapByCategory[result[1][i].category_id][0] = myNumberObject;
                       servicesMapByCategory[result[1][i].category_id].push(firstService);
                     }
@@ -1782,6 +1851,23 @@ window.getPosition = function (el) {
   };
 };
 
+window.logOut = function () {
+  if (localStorage.getItem('click_client_token') && localStorage.getItem('click_client_registered')) {
+    this.riotTags.innerHTML = "<view-authorization>";
+    riot.mount('view-authorization');
+  } else {
+    this.riotTags.innerHTML = "<view-registration-device>";
+    riot.mount('view-registration-device');
+  }
+};
+
+window.removeDeviceInfoFromLocalStorage = function () {
+  localStorage.removeItem('click_client_token');
+  localStorage.removeItem('click_client_registered');
+  localStorage.removeItem('click_client_phoneNumber');
+  localStorage.removeItem('click_client_deviceID');
+};
+
 window.sendToLog = function (data) {
   params = {
     method: 'report.issue',
@@ -1804,8 +1890,8 @@ window.sendToLog = function (data) {
       console.log('cannot save logs to server');
       console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
       console.error(data);
-    },
-  }
+    }
+  };
   window.api.send(params);
 };
 
@@ -1942,7 +2028,7 @@ var errorHandler = function (fileName, e) {
   }
 
   console.log('Error (' + fileName + '): ' + msg);
-}
+};
 
 function dec2hex(s) {
   return (s < 15.5 ? '0' : '') + Math.round(s).toString(16);
@@ -1965,6 +2051,13 @@ function errorDownloadImage(id) {
   if (document.getElementById(id)) {
     document.getElementById(id).style.backgroundImage = 'none';
     document.getElementById(id).src = 'resources/icons/ViewInPlacePay/loader.gif';
+  }
+}
+
+function errorDownloadPayImage(id) {
+  if (document.getElementById(id)) {
+    document.getElementById(id).style.backgroundImage = 'none';
+    document.getElementById(id).src = 'resources/icons/services/nologo.png';
   }
 }
 
@@ -2089,9 +2182,64 @@ function qrCodeScanner(scope) {
       console.log('QR RESULT', result)
 
       qrScaner.qrInited = false;
-      console.log("qrInited success false");
 
       var string = result.text;
+
+      // Notary pay integration. Temporary solution
+      try {
+        const jsonQr = JSON.parse(string);
+        const isNotaryService = jsonQr['is_notary_service'];
+        console.log("global.Objects.js.qrCodeScanner() | isNotaryService:", isNotaryService);
+
+        if (jsonQr && isNotaryService && isNotaryService == 1) {
+          qrScaner.qrInited = false;
+
+          var pAcc = jsonQr['p_acc'];
+          var serviceId = 10185; // The only service id of notary
+
+          console.log("global.Objects.js.qrCodeScanner() | NOTARY SERVICE DETECTED:", pAcc, serviceId);
+
+          if (modeOfApp.offlineMode) {
+            console.log("*880*010185999002*" + pAcc + "%23");
+            phonedialer.dial(
+              "*880*010185999002*" + pAcc + "%23",
+              function (err) {
+                if (err == "empty") {
+                  scope.clickPinError = false;
+                  scope.errorNote = ("Неверный номер");
+                  window.common.alert.show("componentAlertId", {
+                    parent: scope,
+                    clickpinerror: scope.clickPinError,
+                    errornote: scope.errorNote
+                  });
+                  scope.update();
+                }
+                else console.log("Ошибка USSD:" + err);
+              },
+              function (success) {
+
+              }
+            );
+          } else {
+            localStorage.setItem('click_client_infoCacheEnabled', null);
+            riotTags.innerHTML = "<view-service-info-new>";
+            riot.mount('view-service-info-new', {
+              "formtype": 6,
+              "firstFieldText": pAcc,
+              "chosenPrefixName": "",
+              "chosenServiceId": 10185,
+              "firstFieldId": 536870912,
+              "is_qr_notary": true,
+              "firstFieldTitle": "Номер квитанции:",
+            });
+          }
+          return;
+
+        }
+      } catch (e) {
+        console.log("global.Objects.js.qrCodeScanner(): JSON PARSE EXCEPTION");
+      }
+
       if (string.indexOf('click.uz') != -1) {
 
         string = string.split('?')[1]
@@ -2695,4 +2843,118 @@ function transProcess(abc, syllable, text) {
   return new RegExp(newStr, "i");
 }
 
+function goOnline() {
+  modeOfApp.onlineMode = true;
+  modeOfApp.offlineMode = false;
+  if (localStorage.getItem('click_client_token') && localStorage.getItem('click_client_registered')) {
+    this.riotTags.innerHTML = "<view-authorization>";
+    riot.mount('view-authorization');
+  } else {
+    this.riotTags.innerHTML = "<view-registration-device>";
+    riot.mount('view-registration-device');
+  }
+}
 
+
+function makeFormScrollableOnOpenKeyboard(obj,offset) {
+  var el = document.getElementById(obj);
+  el.style.overflowY = 'scroll';
+  el.style.webkitOverflowScrolling = 'touch';
+
+  var div = document.createElement("div");
+  div.style.width = "100%";
+  div.id = "emptyspace";
+  // div.style.background = "red";
+  // div.style.position="relative";
+  el.appendChild(div);
+
+  var inputs = el.getElementsByTagName('input');
+  // for (var inp in inputs) {
+  //   inp.onfocusin=scroll(el);
+  // }
+
+  window.addEventListener('native.keyboardshow', function (e) {
+    try {
+      if (this.emptyspace) {
+        var h = (2 * e.keyboardHeight) + "px";
+        this.emptyspace.style.height = h;
+        scroll(el,findMinScrollToViewElement(el,document.activeElement.parentNode,e.keyboardHeight,offset));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  });
+
+  window.addEventListener('native.keyboardhide', function (e) {
+    try {
+      if (this.emptyspace)
+        this.emptyspace.style.height = "0px";
+      } catch (error) {
+      console.error(error);
+    }
+  });
+}
+
+function getOffsetTop( elem )
+{
+  var offsetTop = 0;
+  do {
+    if ( !isNaN( elem.offsetTop ) )
+    {
+      offsetTop += elem.offsetTop;
+    }
+  } while( elem = elem.offsetParent );
+  return offsetTop;
+}
+
+function scroll(el,to) {
+  if (window.device && window.device.platform === "iOS") {
+    doScrolling(el,to , 300);
+  } else {
+    doScrolling(el,to, 300);
+  }
+}
+
+function findMinScrollToViewElement(scrollParent,obj,keyboardHeight,offset){
+  var windowHeight = document.documentElement.clientHeight-keyboardHeight;
+  var parentOffset=getOffsetTop(scrollParent);
+  var keyboardOffset=windowHeight-parentOffset;
+  var objectHeight = obj.height;
+  return (obj.offsetTop+obj.clientHeight+offset)-keyboardOffset;
+}
+
+function doScrolling(element, to, duration) {
+  var startingY = element.scrollTop;
+  var diff = to - startingY;
+  // Easing function: easeInOutCubic
+  // From: https://gist.github.com/gre/1650294
+  var easing = function (t) { return t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1 };
+  var start;
+
+  if (!diff) return;
+
+  // Bootstrap our animation - it will get called right before next frame shall be rendered.
+  var animation = window.requestAnimationFrame(function step(timestamp) {
+    if (!start) start = timestamp;
+    // Elapsed miliseconds since start of scrolling.
+    var time = timestamp - start;
+    // Get percent of completion in range [0, 1].
+    var percent = Math.min(time / duration, 1);
+    // Apply the easing.
+    // It can cause bad-looking slow frames in browser performance tool, so be careful.
+    percent = easing(percent);
+
+    element.scrollTo(0, startingY + diff * percent);
+
+    // Proceed with animation as long as we wanted it to.
+    console.log("animation time="+timestamp);
+    if (time < duration) {
+      animation = window.requestAnimationFrame(step);
+    }
+    else
+    {
+      cancelAnimationFrame(animation);
+    }
+  });
+
+}

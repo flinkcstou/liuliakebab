@@ -47,7 +47,7 @@
               <img id="{i.id+'_sgn'}" if="{i.image}"
                    class="{pay-search-services-icon: !i.image_cached,pay-search-services-icon-noloader: i.image_cached}"
                    src="{i.image}" onload="clearLoaderOnIconLoad(this.id)"
-                   onloadeddata="clearLoaderOnIconLoad(this.id)" onerror="errorDownloadImage(this.id)">
+                   onloadeddata="clearLoaderOnIconLoad(this.id)" onerror="errorDownloadPayImage(this.id)">
               <div class="pay-category-name-field">{i.name}
               </div>
             </div>
@@ -70,7 +70,7 @@
           <img id="{i.id+'_icon'}" if="{i.icon}"
                class="{pay-category-icon: !i.icon_cached, pay-category-icon-noloader: i.icon_cached}" src="{i.icon}"
                onload="clearLoaderOnIconLoad(this.id)"
-               onloadeddata="clearLoaderOnIconLoad(this.id)" onerror="errorDownloadImage(this.id)">
+               onloadeddata="clearLoaderOnIconLoad(this.id)" onerror="errorDownloadPayImage(this.id)">
           <div class="pay-category-name-field">{i.name}
           </div>
           <div class="pay-icon-tick" id="tick{i.id}"></div>
@@ -84,7 +84,7 @@
                 <img id="{j.id+'_image'}" if="{j.image}"
                      class="{pay-service-image: !j.image_cached, pay-service-image-noloader: j.image_cached}"
                      src="{j.image}" onload="clearLoaderOnIconLoad(this.id)"
-                     onloadeddata="clearLoaderOnIconLoad(this.id)" onerror="errorDownloadImage(this.id)">
+                     onloadeddata="clearLoaderOnIconLoad(this.id)" onerror="errorDownloadPayImage(this.id)">
                 <div class="pay-service-name-field">{j.name}</div>
               </div>
             </div>
@@ -188,8 +188,10 @@
         scope.show = true;
       }
       if (opts.categoryId || viewPay.searchServices) {
-        categoriesContainerId.scrollTop = viewPay.categoryScrollTop;
-        viewPay.categoryScrollTop = null;
+        setTimeout(function () {
+          categoriesContainerId.scrollTop = viewPay.categoryScrollTop;
+          viewPay.categoryScrollTop = null;
+        }, 50)
       }
 
       console.log("viewPay.categoryScrollTop = ", viewPay.categoryScrollTop);

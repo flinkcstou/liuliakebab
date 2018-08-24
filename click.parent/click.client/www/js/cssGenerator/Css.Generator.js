@@ -18,9 +18,13 @@ var topOfIos;
 //   topOfIos = 20;
 // }
 // else {
+
+
 heightK = window.innerHeight / 1232;
 heightOfMobile = window.innerHeight;
 topOfIos = 0;
+
+
 // }
 
 var css = {
@@ -1729,7 +1733,7 @@ var css = {
   // "top:" + 20 * widthK + "px;" +
   // "right:" + 26 * widthK + "px;" +
   // "left:" + 26 * widthK + "px;" +
-  "height:" + 90 * widthK + "px;" +
+  "height:" + 120 * widthK + "px;" +
   "width: 100%;" +
   "background: white;" +
   "border-bottom: 1px solid #e8e8e8;" +
@@ -1745,7 +1749,7 @@ var css = {
   "margin-right: auto;" +
   "width:" + 105 * widthK + "px;" +
   "height:" + 105 * widthK + "px;" +
-  "top:" + 2 * widthK + "px;" +
+  "top:" + 30 * widthK + "px;" +
   // "left:" + 272 * widthK + "px;" +
   // "bottom:" + 2 * widthK + "px;" +
   "border-radius:" + 100 * widthK + "px;" +
@@ -1767,7 +1771,7 @@ var css = {
   "margin-left: auto;" +
   "margin-right: auto;" +
   "width:" + 117 * widthK + "px;" +
-  "top:" + 3 * widthK + "px;" +
+  "top:" + 31 * widthK + "px;" +
   "color: #a9abaf;" +
   "font-size:" + 30 * widthK + "px;" +
   "}",
@@ -1791,7 +1795,7 @@ var css = {
   "width:" + 100 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "background-size: 35%;" +
-  "top:" + -8 * widthK + "px;" +
+  "top:" + 25 * widthK + "px;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "left:" + 10 * widthK + "px;" +
@@ -1834,7 +1838,37 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "right:" + 14 * widthK + "px;" +
-  "top:" + -7 * widthK + "px;" +
+  "top:" + 20 * widthK + "px;" +
+  "}",
+
+  toolbarUSSDContainer: ".toolbar-ussd-container" +
+  "{" +
+  "position: absolute;" +
+  "background: transparent;" +
+  "z-index: 2;" +
+  "width: " + 240 * widthK + "px;" +
+  "height: " + 100 * widthK + "px;" +
+  "right:" + 14 * widthK + "px;" +
+  "top:" + 20 * widthK + "px;" +
+  "}",
+
+  toolbarUSSDIcon: ".toolbar-ussd-icon" +
+  "{" +
+  "position: relative;" +
+  "width:" + 45 * widthK + "px;" +
+  "height:" + 45 * widthK + "px;" +
+  "top: 10%;" +
+  "}",
+
+  toolbarUSSDText: ".toolbar-ussd-text" +
+  "{" +
+  "margin: 0;" +
+  "display: inline-block;" +
+  "color: #F24746;" +
+  "font-weight: bold;" +
+  "font-size:" + 25 * widthK + "px;" +
+  "line-height: " + 110 * widthK + "px;" +
+  "margin-right:" + 10 * widthK + "px;" +
   "}",
 
   //BANK OPERATION COMPONENT
@@ -2377,10 +2411,9 @@ var css = {
   "{" +
   "position: absolute;" +
   "width:" + 20 * widthK + "px;" +
-  //"height:" + 338 * heightK + "px;" +
   "height: 100%;" +
   "top:" + -6 * heightK + "px;" +
-  "right:" + 0 * heightK + "px;" +
+  "right:0;" +
   "background-image: url(resources/icons/ViewInfo/open.png);" +
   "background-size: 50%;" +
   "background-repeat: no-repeat;" +
@@ -2440,13 +2473,11 @@ var css = {
   "{" +
   "background-image: url(resources/icons/services/beelineS.png);" +
   "background-size: 60%;" +
-  //"left:" + 152 * widthK + "px;" +
   "}",
 
   ucellButton: ".ucell-button " +
   "{" +
-  //"left:" + 15 * widthK + "px;" +
-  "top:" + 0 * widthK + "px;" +
+  "top:0;" +
   "background-image: url(resources/icons/services/ucellS.png);" +
   "background-size: 80%;" +
   "}",
@@ -2549,7 +2580,7 @@ var css = {
   "position: absolute;" +
   "height: 5%;" +
   "width: 23%;" +
-  "top: 1%;" +
+  "top: 4%;" +
   // "left: 4%;" +
   "background-image: url(resources/icons/toolbar/menus.png);" +
   "background-repeat: no-repeat;" +
@@ -2609,77 +2640,120 @@ var css = {
   "white-space: nowrap;" +
   "}",
 
+  sideMenuReportsContainer: ".side-menu-reports-container " +
+  "{" +
+  "position: relative;" +
+  "top:" + 100 * heightK + "px;" +
+  "height: 7%;" +
+  "width: 77%;" +
+  "left: 8%;" +
+  // "border-bottom: 1px solid #f2f2f2;" +
+  "}",
+
   sideMenuBillingsContainer: ".side-menu-billings-container " +
   "{" +
   "position: relative;" +
-  "top: 32.2%;" +
-  "height: 6%;" +
+  "top:" + 100 * heightK + "px;" +
+  // "top: 19%;" +
+  "height: 7%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #f2f2f2;" +
-  // "border-bottom: 1px solid #43aee5;" +
+  // "border-bottom: 1px solid #f2f2f2;" +
   "}",
 
   sideMenuFavoriteContainer: ".side-menu-favorite-container " +
   "{" +
   "position: relative;" +
-  "top: 32.7%;" +
-  "height: 6%;" +
+  "top:" + 100 * heightK + "px;" +
+  // "top: 19%;" +
+  "height: 7%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #f2f2f2;" +
+  // "border-bottom: 1px solid #f2f2f2;" +
   "}",
 
   sideMenuAutoPayContainer: ".side-menu-auto-pay-container " +
   "{" +
   "position: relative;" +
-  "top: 32.7%;" +
-  "height: 6%;" +
+  "top:" + 100 * heightK + "px;" +
+  // "top: 19%;" +
+  "height: 7%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #f2f2f2;" +
+  // "border-bottom: 1px solid #f2f2f2;" +
+  "}",
+
+  sideMenuActionContainer: ".side-menu-action-container " +
+  "{" +
+  "position: relative;" +
+  "top:" + 100 * heightK + "px;" +
+  "margin-top: 5%;" +
+  "margin-bottom: 5%;" +
+  "height: auto;" +
+  "width: 100%;" +
+  "float: left;" +
+  "background-color: #F6F6F6;" +
+  "text-align: center;" +
+  "padding-bottom: " + 20 * widthK + "px;" +
   "}",
 
   sideMenuScannerQrContainer: ".side-menu-scanner-qr-container " +
   "{" +
   "position: relative;" +
-  "top: 32.7%;" +
-  "height: 12.5%;" +
-  "width: 77%;" +
-  "left: 8%;" +
-  // "border-bottom: 1px solid #2dadf0;" +
+  "width: 46%;" +
+  "padding: 2%;" +
+  "float: left;" +
+  "text-align: center;" +
+  "}",
+
+  sideMenuActionContainerSeparator: ".side-menu-action-container-separator " +
+  "{" +
+  "position: absolute;" +
+  "left: 50%;" +
+  "top: 10%;" +
+  "bottom: 10%;" +
+  "border-left: 2px solid #F0F0F0;" +
   "}",
 
   sideMenuClickPassContainer: ".side-menu-click-pass-container " +
   "{" +
   "position: relative;" +
-  "top: 32.7%;" +
-  "height: 12.5%;" +
-  "width: 77%;" +
-  "left: 8%;" +
-  // "border-bottom: 1px solid #2dadf0;" +
+  "padding: 2%;" +
+  "width: 46%;" +
+  "float: left;" +
+  "text-align: center;" +
   "}",
 
   sideMenuSettingsContainer: ".side-menu-settings-container " +
   "{" +
+  "clear: both;" +
   "position: relative;" +
-  "top: 36.4%;" +
-  "height: 6%;" +
+  "top:" + 100 * heightK + "px;" +
+  "height: 7%;" +
   "width: 77%;" +
   "left: 8%;" +
-  "border-bottom: 1px solid #f2f2f2;" +
   "}",
 
+  sideMenuNewsContainer: ".side-menu-news-container " +
+  "{" +
+  "clear: both;" +
+  "position: relative;" +
+  "top:" + 100 * heightK + "px;" +
+  "height: 7%;" +
+  "width: 77%;" +
+  "left: 8%;" +
+  "}",
 
   sideMenuCallContainer: ".side-menu-call-container " +
   "{" +
+  "clear: both;" +
   "position: relative;" +
-  "top: 36.4%;" +
-  "height: 6%;" +
+  "top:" + 100 * heightK + "px;" +
+  "height: 7%;" +
   "width: 77%;" +
   "left: 8%;" +
   //"margin-top: 2%;" +
-  "border-bottom: 1px solid #f2f2f2;" +
+  // "border-bottom: 1px solid #f2f2f2;" +
   "}",
 
   sideMenuExitContainer: ".side-menu-exit-container " +
@@ -2697,8 +2771,15 @@ var css = {
   "position: absolute;" +
   "width: 7%;" +
   "height: 81%;" +
-  "top: 12%;" +
+  "top: 9%;" +
   "left: 0%;" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "}",
+  sideMenuActionIcon: ".side-menu-action-icon " +
+  "{" +
+  "width: 7%;" +
+  "height: 81%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "}",
@@ -2709,28 +2790,51 @@ var css = {
   "background-size: 100%;" +
   "}",
 
+  sideMenuContainersIconNews: ".side-menu-containers-icon-news" +
+  "{" +
+  "background-image: url(resources/icons/menu/menu_news.png);" +
+  "background-size: 100%;" +
+  "}",
+
+  sideMenuContainersIconReports: ".side-menu-containers-icon-reports" +
+  "{" +
+  "background-image: url(resources/icons/menu/menu_reports.png);" +
+  "background-size: 100%;" +
+  "}",
+
   sideMenuContainersIconBillings: ".side-menu-containers-icon-billings" +
   "{" +
   "background-image: url(resources/icons/menu/menu_bills.png);" +
-  "background-size: 100%;" +
+  "background-size: 90%;" +
   "}",
 
   sideMenuContainersIconAutopayment: ".side-menu-containers-icon-autopayment" +
   "{" +
   "background-image: url(resources/icons/menu/menu_autopayment.png);" +
-  "background-size: 100%;" +
+  "background-size: 90%;" +
+  "}",
+
+  sideMenuActionImage: ".side-menu-action-image " +
+  "{" +
+  "display: block;" +
+  "margin-left: auto;" +
+  "margin-right: auto;" +
+  "margin-top: " + 30 * widthK + "px;" +
+  "margin-bottom: " + 30 * widthK + "px;" +
+  "width: " + 100 * widthK + "px;" +
+  "height: " + 100 * widthK + "px;" +
   "}",
 
   sideMenuContainersIconScannerQr: ".side-menu-containers-icon-scanner-qr" +
   "{" +
-  "background-image: url(resources/icons/menu/qr_blue.png);" +
+  "background-image: url(resources/icons/menu/menu_qr.png);" +
   "background-size: 100%;" +
   "width: 18%;" +
   "}",
 
   sideMenuContainersIconClickPass: ".side-menu-containers-icon-click-pass" +
   "{" +
-  "background-image: url(resources/icons/menu/scanner_blue.png);" +
+  "background-image: url(resources/icons/menu/menu_scanner.png);" +
   "background-size: 100%;" +
   "width: 18%;" +
   "}",
@@ -2739,12 +2843,12 @@ var css = {
   "{" +
   "background-image: url(resources/icons/menu/menu_call.png);" +
   "background-size: 100%;" +
-  "top: 22%;" +
+  "top: 9%;" +
   "}",
 
   sideMenuContainersIconExit: ".side-menu-containers-icon-exit" +
   "{" +
-  "background-image: url(resources/icons/back/back.png);" +
+  "background-image: url(resources/icons/back/back_red.png);" +
   "background-size: 100%;" +
   "top: 39%;" +
   "height: 36%;" +
@@ -2761,7 +2865,7 @@ var css = {
   sideMenuContainersName: ".side-menu-containers-name " +
   "{" +
   "position: absolute;" +
-  "top: 25.5%;" +
+  "top: 30%;" +
   "left: 16%;" +
   "font-size:" + 29 * widthK + "px;" +
   "color: #565d6a;" +
@@ -2773,36 +2877,40 @@ var css = {
 
   sideMenuContainersNameScannerQr: ".side-menu-containers-name-scanner-qr " +
   "{" +
-  "left: 28%;" +
-  "top: 23%;" +
+  // "left: 28%;" +
+  // "top: 23%;" +
+  "margin-top: 0;" +
+  "margin-bottom: " + 10 * widthK + "px;" +
   "font-weight: bold;" +
+  "color: #707381;" +
+  "font-size:" + 25 * widthK + "px;" +
   "}",
 
   sideMenuContainersHintScannerQr: ".side-menu-containers-hint-scanner-qr " +
   "{" +
-  "position: absolute;" +
-  "left: 28%;" +
-  "top: 50%;" +
-  "width: 80%;" +
-  "font-size:" + 24 * widthK + "px;" +
-  "color: #aaabae;" +
+  "margin: 0;" +
+  "width: 100%;" +
+  "font-size:" + 20 * widthK + "px;" +
+  "color: #A9ABB3;" +
   "}",
 
   sideMenuContainersNameClickPass: ".side-menu-containers-name-click-pass " +
   "{" +
-  "left: 28%;" +
-  "top: 23%;" +
+  // "left: 28%;" +
+  // "top: 23%;" +
+  "margin: 0;" +
+  "margin-bottom: " + 10 * widthK + "px;" +
+  "font-size:" + 25 * widthK + "px;" +
+  "color: #707381;" +
   "font-weight: bold;" +
   "}",
 
   sideMenuContainersHintClickPass: ".side-menu-containers-hint-click-pass " +
   "{" +
-  "position: absolute;" +
-  "left: 28%;" +
-  "top: 50%;" +
-  "width: 80%;" +
-  "font-size:" + 24 * widthK + "px;" +
-  "color: #aaabae;" +
+  "margin: 0;" +
+  "width: 100%;" +
+  "font-size:" + 20 * widthK + "px;" +
+  "color: #A9ABB3;" +
   "}",
 
   sideMenuContainersNameSettings: ".side-menu-containers-name-settings " +
@@ -2816,11 +2924,12 @@ var css = {
 
   sideMenuChangeMode: ".side-menu-change-mode " +
   "{" +
-  "position: absolute;" +
-  "top: 22%;" +
-  "height: 7%;" +
+  "position: relative;" +
+  "top: " + 100 * heightK + "px;" +
+  "height: 8%;" +
   "width: 100%;" +
-  "background-color: #92bf3a;" +
+  // "background-color: #92bf3a;" +
+  // "border: 1px solid #92bf3a;" +
   "color: white;" +
   "}",
 
@@ -2831,7 +2940,21 @@ var css = {
   "padding: 0;" +
   "top: 29%;" +
   "left: 20.2%;" +
+  "color: #565d6a;" +
   "font-size:" + 29 * widthK + "px;" +
+  "word-spacing:" + 2 * widthK + "px;" +
+  "}",
+
+  sideMenuChangeModeHintText: ".side-menu-change-mode-hint-text " +
+  "{" +
+  "position: absolute;" +
+  "margin: 0;" +
+  "padding: 0;" +
+  "top: 60%;" +
+  "left: 20.2%;" +
+  "color: #565d6a;" +
+  "opacity: 0.6;" +
+  "font-size:" + 16 * widthK + "px;" +
   "word-spacing:" + 2 * widthK + "px;" +
   "}",
 
@@ -2839,11 +2962,11 @@ var css = {
   "{" +
   "position: absolute;" +
   "display: block;" +
-  "width:" + 37 * widthK + "px;" +
-  "top: 35%;" +
-  "right: 7%;" +
-  "height:" + 20 * widthK + "px;" +
-  "border: 1px solid white;" +
+  "width:" + 46 * widthK + "px;" +
+  "top: 45%;" +
+  "right: 3%;" +
+  "height:" + 27 * widthK + "px;" +
+  "border: 2px solid white;" +
   "z-index: 2;" +
   "border-radius:" + 50 * widthK + "px;" +
   "}",
@@ -2860,7 +2983,7 @@ var css = {
   "top: 0;" +
   "left: 0;" +
   "bottom: 0;" +
-  "background-color: #ccc;" +
+  "background-color: #92bf3a;" +
   "-webkit-transition: .4s;" +
   "transition: .4s;" +
   "}",
@@ -2869,13 +2992,22 @@ var css = {
   "{" +
   "position: absolute;" +
   "content: '';" +
-  "height:" + 12 * widthK + "px;" +
-  "width:" + 12 * widthK + "px;" +
+  "height:" + 20 * widthK + "px;" +
+  "width:" + 20 * widthK + "px;" +
   "left:" + 4 * widthK + "px;" +
-  "bottom:" + 13 * widthK + "px;" +
-  "background-color: white;" +
+  "bottom:" + 5 * widthK + "px;" +
   "-webkit-transition: .4s;" +
   "transition: .4s;" +
+  "}",
+
+  sliderMenuBeforeOnline: ".slider-menu.online:before" +
+  "{" +
+  "background-color: #92bf3a;" +
+  "}",
+
+  sliderMenuBeforeOffline: ".slider-menu.offline:before" +
+  "{" +
+  "background-color: #F24746;" +
   "}",
 
   inputCheckedSlider: "input:checked + .slider-menu" +
@@ -2910,10 +3042,10 @@ var css = {
   sideMenuChangeModeIcon: ".side-menu-change-mode-icon " +
   "{" +
   "position: absolute;" +
-  "width: 12%;" +
-  "height: 80%;" +
-  "top: 7%;" +
-  "left: 6%;" +
+  "width: 15%;" +
+  "height: 100%;" +
+  "top: 0%;" +
+  "left: 3%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "background-image: url(resources/icons/menu/menu_online.png);" +
@@ -2940,7 +3072,7 @@ var css = {
   "position: absolute;" +
   "top: 0px;" +
   "width: 100%;" +
-  "height:" + 87 * widthK + "px;" +
+  "height:" + 90 * widthK + "px;" +
   "background: white;" +
   "z-index: 5;" +
   "}",
@@ -2982,6 +3114,17 @@ var css = {
   "background-position-x: center;" +
   "background-size: 50%;" +
   "left: 1.5%;" +
+  "}",
+
+  borderBottom: ".border-bottom" +
+  "{" +
+  "position: absolute;" +
+  "height:1px;" +
+  "background-color: #e8e8e8;" +
+  "left:" + 15 * widthK + "px;" +
+  "right:" + 15 * widthK + "px;" +
+  "bottom:0;" +
+  "z-index:9999" +
   "}",
 
   titleBottomBorder: ".title-bottom-border " +
@@ -3362,7 +3505,7 @@ var css = {
   "background-size: contain;" +
   "font-size:" + 24 * widthK + "px;" +
   "color: #8a8a8a;" +
-  "z-index: 99999;" +
+  "z-index: 100000000;" +
   // "box-shadow: 0px 17px 63px -23px rgb(37, 36, 36);" +
   "box-shadow: 0px " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + " rgb(37, 36, 36);" +
   "}",
@@ -3395,15 +3538,15 @@ var css = {
   "width: 100%;" +
   "}",
 
-  myCardsLastOperationInfo: ".my-cards-last-operations-info " +
+  solidBorderButton: ".solid-border-bottom" +
   "{" +
-  "position: relative;" +
-  // "top:" + 80 * widthK + "px;" +
-  "width: 100%;" +
-  "background-color: white;" +
-  "height:" + 150 * widthK + "px;" +
-  "border-bottom:" + 1 + "px solid #dedfe0;" +
-  "overflow: hidden;" +
+  "position: absolute;" +
+  "height: 1px;" +
+  "background-color:#e8e8e8;" +
+  "bottom:0;" +
+  "z-index:9999;" +
+  "left:0;" +
+  "right:0;" +
   "}",
 
   myCardsLastOperationInfoStateImage: ".my-cards-last-operations-info-state-image " +
@@ -3420,25 +3563,11 @@ var css = {
   "margin: 0;" +
   "}",
 
-  myCardsLastOperationDate: ".my-cards-last-operations-date " +
+  stateImageContainer: ".state-image-container" +
   "{" +
-  "position: relative;" +
-  "background-color: #f6f6f6;" +
-  "width: 100%;" +
-  "overflow: hidden;" +
-  "height:" + 45 * widthK + "px;" +
-  "}",
-
-  myCardsLastOperationInfoTime: ".my-cards-last-operation-info-time " +
-  "{" +
-  "position: absolute;" +
-  "right: 0;" +
-  "width: 10%;" +
-  //"height: 100%;" +
-  "top: 15%;" +
-  "font-size: " + 22 * widthK + "px; " +
-  "margin: 0;" +
-  "color: #8b8b8b;" +
+  "background-size: 60%;" +
+  "height:" + 60 * widthK + "px;" +
+  "margin-top: 1" +
   "}",
 
   myCardsLastOperationInfoDateName: ".my-cards-last-operation-info-date-name " +
@@ -3451,30 +3580,6 @@ var css = {
   "text-align: left;" +
   "font-size:" + 24 * widthK + "px; " +
   "color: gray;" +
-  "}",
-
-  myCardsOperationServiceIcon: ".my-cards-operation-service-icon " +
-  "{" +
-  //"top:" + 50 * widthK + "px;" +
-  "background-size: 80%;" +
-  "position: absolute;" +
-  "width:" + 125 * widthK + "px;" +
-  "height:" + 125 * widthK + "px;" +
-  "background-repeat: no-repeat;" +
-  "background-position: center;" +
-  //"border-radius:" + 100 * widthK + "px;" +
-  //"border:solid 1px #f1f1f1;" +
-  "top: 6%;" +
-  "left: 2%;" +
-  "}",
-
-  myCardsOperationInfoContainer: ".my-cards-operation-info-container " +
-  "{" +
-  "position: absolute;" +
-  "height:" + 150 * widthK + "px;" +
-  "width: 65%;" +
-  "top: 0;" +
-  "left: 23%;" +
   "}",
 
   myCardsOperationAmounts: ".my-cards-operation-amount " +
@@ -3505,19 +3610,6 @@ var css = {
   "color: #919191;" +
   "bottom:" + 20 * widthK + "px;" +
   "font-size:" + 25 * widthK + "px;" +
-  "text-overflow: ellipsis;" +
-  "white-space: nowrap;" +
-  "overflow: hidden;" +
-  "width: 100%;" +
-  "}",
-
-  myCardsFirmName: "    .my-cards-firm-name" +
-  "{" +
-  "position: relative;" +
-  // "left:" + 150 * widthK + "px;" +
-  "top:" + 15 * widthK + "px;" +
-  "font-size:" + 25 * widthK + "px;" +
-  "color: #919191;" +
   "text-overflow: ellipsis;" +
   "white-space: nowrap;" +
   "overflow: hidden;" +
@@ -3631,11 +3723,8 @@ var css = {
 
   viewInfoTitleContainer: ".view-info-title-container " +
   "{" +
-  "position: absolute;" +
-  "right:" + 30 * widthK + "px;" +
-  "left:" + 30 * widthK + "px;" +
-  "height:" + 89 * widthK + "px;" +
-  "border-bottom:" + 1 + "px solid #e8e8e8;" +
+  "position: relative;" +
+  "height:" + 90 * widthK + "px;" +
   "z-index: 1000002;" +
   "}",
 
@@ -3643,9 +3732,8 @@ var css = {
   "{" +
   "position: absolute;" +
   "bottom: 0;" +
-  "top:" + 89 * widthK + "px;" +
+  "top:" + 90 * widthK + "px;" +
   "width: 100%;" +
-  "border-bottom:" + 1 + "px solid #e8e8e8;" +
   "overflow-y: scroll;" +
   "-webkit-overflow-scrolling: touch;" +
   "overflow-x: hidden;" +
@@ -3653,7 +3741,7 @@ var css = {
 
   viewInfoBackButton: ".view-info-back-button " +
   "{position: absolute;" +
-  "left:" + 10 * widthK + "px;" +
+  "left:" + 35 * widthK + "px;" +
   "width:" + 100 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "top:" + 5 * widthK + "px;" +
@@ -3664,17 +3752,14 @@ var css = {
   "background-size: 48%;" +
   "background-position: center;" +
   "background-color: #ffffff;" +
-  "z-index: 2;" +
+  "z-index: 10000;" +
   "}",
 
-  viewInfoBalanceContainer: ".view-info-balance-container " +
+  viewInfoHeadInfoContainer: ".view-info-head-info-container " +
   "{" +
-  "position: absolute;" +
-  "right:" + 30 * widthK + "px;" +
-  "left:" + 30 * widthK + "px;" +
-  "height:" + 190 * widthK + "px;" +
-  // "top:" + 89 * widthK + "px;" +
-  // "border-bottom:" + 1 + "px solid #f4f4f4;" +
+  "position:relative;" +
+  "height:" + 160 * widthK + "px;" +
+  "padding:" + 10 * widthK + "px " + 15 * widthK + "px;" +
   "}",
 
   viewInfoCardBalanceCurrencyContainer: ".view-info-card-balance-currency-container " +
@@ -3686,21 +3771,6 @@ var css = {
   "display: inline-block;" +
   "margin: 0;" +
   "overflow: hidden;" +
-  "}",
-
-  viewInfoCardBalance: ".view-info-card-balance " +
-  "{" +
-  "position: relative;" +
-  "left:" + 25 * widthK + "px;" +
-  "color: #585658;" +
-  "font-size:" + 67 * widthK + "px;" +
-  "margin: 0;" +
-  "margin-top:" + -2 * widthK + "px;" +
-  "float: left;" +
-  "color: #91cc00;" +
-  "padding: 0;" +
-  "display: inline-block;" +
-  "width: 78%;" +
   "}",
 
   viewInfoCardBalanceScaleContainer: ".view-info-card-balance-scale-container " +
@@ -3715,17 +3785,13 @@ var css = {
   viewInfoCardBalanceSum: ".view-info-card-balance-sum " +
   "{" +
   "position: relative;" +
-  // "left:" + 25 * widthK + "px;" +
-  "color: #585658;" +
-  "font-size:" + 67 * widthK + "px;" +
+  "font-size:" + 60 * widthK + "px;" +
   "margin: 0;" +
   "margin-top:" + -2 * widthK + "px;" +
   "float: left;" +
   "color: #91cc00;" +
   "padding: 0;" +
-  // "max-width: 75%;" +
-  // "overflow: hidden;" +
-  // "text-overflow: ellipsis;" +
+  "overflow: hidden;" +
   "white-space: nowrap;" +
   "}",
 
@@ -3755,17 +3821,6 @@ var css = {
   "height:" + 125 * widthK + "px;" +
   "top:" + 190 * widthK + "px;" +
   "border-bottom:" + 1 + "px solid #f4f4f4;" +
-  "}",
-
-  viewInfoReportsContainer: ".view-info-reports-container " +
-  "{" +
-  "position: absolute;" +
-  "left: 0;" +
-  "width: 100%;" +
-  "height:" + 125 * widthK + "px;" +
-  "top:" + 190 * widthK + "px;" +
-  "background-color: #ffffff;" +
-  "z-index: 100;" +
   "}",
 
   viewInfoBagIcon: ".view-info-bag-icon " +
@@ -3821,32 +3876,6 @@ var css = {
   "background-size: 67%;" +
   "}",
 
-  viewInfoOpenIcon: ".view-info-open-icon " +
-  "{" +
-  "position: absolute;" +
-  "width: 20%;" +
-  "height: 80%;" +
-  "right: -1%;" +
-  "top: 12%;" +
-  "background-image: url(resources/icons/ViewInfo/open.png);" +
-  "background-repeat: no-repeat;" +
-  "background-position: center;" +
-  "background-size: 9%;" +
-  "}",
-
-  viewInfoReportIcon: ".view-info-reports-icon " +
-  "{" +
-  "position: absolute;" +
-  "width: 20%;" +
-  "height: 70%;" +
-  "left: 3%;" +
-  "top: 15%;" +
-  "background-image: url(resources/icons/ViewInfo/myreports.png);" +
-  "background-repeat: no-repeat;" +
-  "background-position: center;" +
-  "background-size: 67%;" +
-  "}",
-
   viewInfoMyFinanceTitle: ".view-info-my-finance-title " +
   "{" +
   "position: absolute;" +
@@ -3870,157 +3899,84 @@ var css = {
   "color: #8b8b8b;" +
   "}",
 
-  viewInfoReportTitleBorderTop: ".view-info-reports-title-border-top " +
+  InfoContainer: ".info-container " +
   "{" +
-  "position: absolute;" +
-  "width: 90%;" +
-  "left: 5%;" +
-  "bottom: 0%;" +
-  "border-bottom:" + 1 + "px solid #e8e8e8;" +
-  "}",
-
-  viewInfoReportTitleBorderBottom: ".view-info-reports-title-border-bottom " +
-  "{" +
-  "position: absolute;" +
-  "width: 90%;" +
-  "left: 5%;" +
-  "top: 0%;" +
-  "border-top:" + 1 + "px solid #e8e8e8;" +
-  "}",
-
-  viewInfoOperationsContainer: ".view-info-operations-container " +
-  "{" +
-  "position: absolute;" +
-  "width: 100%;" +
-  //"height:" + 710 * widthK + "px;" +
-  "top:" + 378 * widthK + "px;" +
-  "bottom:" + 0 * widthK + "px;" +
-  //"top:" + 600 * widthK + "px;" +
-  // "overflow-y: scroll;" +
-  // "-webkit-overflow-scrolling: touch;" +
-  // "overflow-x: hidden;" +
-  "font-size:" + 23 * widthK + "px;" +
-  "}",
-
-  viewInfoOperationContainer: ".view-info-operation-container " +
-  "{" +
-  "position: relative;" +
-  "width: 100%;" +
-  "height:" + 200 * widthK + "px;" +
+  "height:" + 160 * widthK + "px;" +
   "z-index: 999999;" +
+  "padding:" + 10 * widthK + "px " + 15 * widthK + "px;" +
+  "position: relative;" +
   "}",
 
-  viewInfoOperationsIcon: ".view-info-operations-icon " +
+  viewInfoOperationsIcon: ".view-info-left-item " +
   "{" +
-  "top:" + 50 * widthK + "px;" +
-  "background-size: 80%;" +
-  "left: 5%;" +
-  "position: absolute;" +
-  "width:" + 125 * widthK + "px;" +
-  "height:" + 125 * widthK + "px;" +
-  "background-repeat: no-repeat;" +
-  "background-position: center;" +
-  //"border-radius:" + 100 * widthK + "px;" +
-  //"border:solid 1px #b7b7b7;" +
+  "width:20%;" +
+  "height:100%;" +
+  "float: left;" +
   "}",
 
-  viewInfoStateImage: ".view-info-state-image " +
+  centeringBackgroundImage: ".centering-background-image" +
   "{" +
-  "position: absolute;" +
-  "width:" + 60 * widthK + "px;" +
-  "right:" + 5 * widthK + "px;" +
-  "height:" + 60 * widthK + "px;" +
-  //"height: 100%;" +
-  "top: 50%;" +
   "background-repeat: no-repeat;" +
-  "background-size: 60%;" +
   "background-position: center;" +
-  "margin: 0;" +
+  "}",
+
+  viewInfoStateImage: ".view-info-right-item" +
+  "{" +
+  "width:10%;" +
+  "height: 100%;" +
+  "float: left;" +
   "}",
 
   viewInfoOperationTitle: ".view-info-operations-title " +
   "{" +
-  "position: absolute;" +
   "width: 100%;" +
-  "height:" + 68 * widthK + "px;" +
-  //"top:" + 535 * widthK + "px;" +
-  "top:" + 310 * widthK + "px;" +
-  "z-index:99;" +
-  "background-color: white;" +
-  "box-shadow:" + 0 * widthK + "px " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + "rgb(37, 36, 36);" +
-  "-webkit-box-shadow:" + 0 * widthK + "px " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + "rgb(37, 36, 36);" +
+  "height:" + 70 * widthK + "px;" +
+  "box-shadow: 0 " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + "rgb(37, 36, 36);" +
+  "-webkit-box-shadow: 0 " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + "rgb(37, 36, 36);" +
   "}",
 
-  viewInfoOperationsLabel: ".view-info-operations-label " +
+  viewOperationInfoContainer: ".info-center-container" +
   "{" +
-  "font-size:" + 24 * widthK + "px;" +
-  "position: absolute;" +
-  "top: 10%;" +
-  "left: 7%;" +
-  "color: #8b8b8b;" +
-  "}",
-
-  viewOperationInfoContainer: ".view-info-operation-info-container " +
-  "{" +
-  "position: absolute;" +
   "height: 100%;" +
-  "width: 440%;" +
-  "left: 103%;" +
+  "width: 70%;" +
   "color: #8b8b8b;" +
+  "float: left;" +
   "}",
 
-  viewInfoOperationInfoName: ".view-info-operation-info-name " +
+  horizontalCentering: ".horizontal-centering" +
   "{" +
-  "position: absolute;" +
-  "height: 25%;" +
-  "top: -8%;" +
-  "left: 8%;" +
-  "margin: 0;" +
-  "text-overflow: ellipsis;" +
-  "white-space: nowrap;" +
-  "overflow: hidden;" +
-  "width: 65%;" +
-  "}",
-
-  viewInfoOperationInfoBalance: ".view-info-operation-info-balance " +
-  "{" +
-  "position: absolute;" +
-  "top: 9%;" +
-  "left: 8%;" +
-  "margin: 0;" +
-  "font-size:" + 45 * widthK + "px;" +
-  "color: #595759;" +
-  "}",
-
-  viewInfoOperationInfoNumber: ".view-info-operation-info-number " +
-  "{" +
-  "position: absolute;" +
-  "height: 25%;" +
+  "position: relative;" +
   "top: 50%;" +
-  "left: 8%;" +
+  "transform: translateY(-50%);" +
+  "-webkit-transform: translateY(-50%);" +
+  "-ms-transform: translateY(-50%);" +
+  "overflow: auto;" +
+  "}",
+
+  verticalCenteringContent: ".vertical-centering-content" +
+  "{" +
+  "text-align: center;" +
+  "}",
+
+  textMargin: ".text-margin" +
+  "{" +
   "margin: 0;" +
+  "}",
+
+  titleText: ".title-text" +
+  "{" +
+  "color: darkgray;" +
+  "font-size:" + 24 * widthK + "px;" +
   "text-overflow: ellipsis;" +
   "white-space: nowrap;" +
-  "overflow: hidden;" +
-  "width: 80%;" +
   "}",
 
-  viewInfoOperationInfoDate: ".view-info-operation-info-date " +
+  mainText: ".main-text" +
   "{" +
-  "position: absolute;" +
-  "height: 25%;" +
-  "top: 81%;" +
-  "left: 9%;" +
-  "margin: 0;" +
-  "}",
-
-  viewInfoBalanceLabel: ".view-info-balance-label" +
-  "{" +
-  "position: absolute;" +
-  "left: 23%;" +
-  "top: 13%;" +
-  "font-size:" + 23 * widthK + "px;" +
-  "color: #c2c2c2;" +
+  "color:gray;" +
+  "font-size:" + 40 * widthK + "px;" +
+  "text-overflow: ellipsis;" +
+  "white-space: nowrap;" +
   "}",
 
   payNameTitle: ".pay-name-title " +
@@ -4138,6 +4094,19 @@ var css = {
   "background-size: 80%;" +
   "}",
 
+
+  payServiceImageContainer: ".pay-service-image-container " +
+  "{" +
+  "position: relative;" +
+  "width:  " + 120 * widthK + "px; " +
+  "height: " + 120 * widthK + "px; " +
+  "margin-left: " + 15 * widthK + "px; " +
+  "margin-top: " + 15 * widthK + "px; " +
+  "margin-right: " + 15 * widthK + "px; " +
+  "margin-bottom: " + 15 * widthK + "px; " +
+  // "background-image: url('resources/icons/services/nologo.png');" +
+  "}",
+
   payServiceImage: ".pay-service-image" +
   "{" +
   "position: relative;" +
@@ -4152,7 +4121,14 @@ var css = {
   "margin-right: " + 15 * widthK + "px; " +
   "margin-bottom: " + 15 * widthK + "px; " +
   "background-size: 80%;" +
-  "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
+  "background-image: url(resources/icons/services/nologo.png);" +
+  "}",
+
+  payServiceImageCached: ".pay-service-image-cached" +
+  "{" +
+  "transition: none;" +
+  "-webkit-transition: none;" +
+  "opacity: 1;" +
   "}",
 
   payServiceImageNoLoader: ".pay-service-image-noloader" +
@@ -4164,6 +4140,15 @@ var css = {
   "margin-top: " + 15 * widthK + "px; " +
   "margin-right: " + 15 * widthK + "px; " +
   "margin-bottom: " + 15 * widthK + "px; " +
+  "}",
+  payServiceImageNoLogo: ".pay-service-image-nologo" +
+  "{" +
+  "background-image: url('resources/icons/services/nologo.png');" +
+  // "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
+  "background-repeat: no-repeat;" +
+  "background-position: center;" +
+  "border: none;" +
+  "background-size: 80%;" +
   "}",
 
   payServiceNameField: ".pay-service-name-field" +
@@ -4195,7 +4180,7 @@ var css = {
   "top:" + 20 * widthK + "px; " +
   "margin-right:" + 15 * widthK + "px; " +
   "background-size: 80%;" +
-  "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
+  "background-image: url(resources/icons/services/nologo.png);" +
   "}",
 
   payCategoryIconNoLoader: ".pay-category-icon-noloader" +
@@ -4209,6 +4194,7 @@ var css = {
   "margin-right:" + 15 * widthK + "px; " +
   "}",
 
+
   payCategoryNameField: ".pay-category-name-field" +
   "{" +
   "position: relative;" +
@@ -4220,6 +4206,16 @@ var css = {
   "text-align: left;" +
   "font-size:" + 29 * widthK + "px; " +
   "color: gray;" +
+  "}",
+
+  payCategoryBottomBorder: ".pay-category-bottom-border" +
+  "{" +
+  "position: absolute;" +
+  "bottom: 0;" +
+  "left: 5%;" +
+  "height:" + 2 * widthK + "px;" +
+  "width: " + (720 - 80) * widthK + "px;" +
+  "background-color: #e8e8e8;" +
   "}",
 
   payServiceContainer: ".pay-service-containter" +
@@ -4342,7 +4338,7 @@ var css = {
   payPageTitle: ".pay-page-title " +
   "{" +
   "position: absolute;" +
-  "top:" + 0 * widthK + "px;" +
+  "top:0;" +
   "width: 100%;" +
   "height:" + 130 * heightK + "px;" +
   "background: white;" +
@@ -4453,12 +4449,11 @@ var css = {
   servicePageFieldsDropdown: ".servicepage-fields-dropdown" +
   "{" +
   "position: relative;" +
-  "width: 79.5%;" +
+  "width: 80%;" +
   "height: 9%;" +
   "left: 10%;" +
   "color: white;" +
   "border-bottom:" + 3 * widthK + "px solid lightgray;" +
-  "top: 5%;" +
   "}",
 
   servicePagePrefixDropdown: ".servicepage-prefix-dropdown" +
@@ -4573,18 +4568,18 @@ var css = {
   "{" +
   "position: relative;" +
   "left: 10%;" +
-  "width: 79.5%;" +
+  "width: 80%;" +
   "height: 10%;" +
   "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
   "color: white;" +
-  "top: 8%;" +
+  "margin-top: 4%;" +
   "}",
 
   servicePagePhoneField: ".servicepage-phone-field" +
   "{" +
   "position: relative;" +
   "left: 10%;" +
-  "width: 79.5%;" +
+  "width: 80%;" +
   "height: 9%;" +
   "border-bottom:" + 3 * widthK + "px solid lightgray;" +
   "color: white;" +
@@ -4608,32 +4603,37 @@ var css = {
   servicePageAmountField: ".servicepage-amount-field" +
   "{position: relative;" +
   "left: 10%;" +
-  "width: 79.5%;" +
+  "width: 80%;" +
   "height: 10%;" +
   "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
   "color: white;" +
-  "top: 11%" +
+  "margin-top: 4%" +
   "}",
 
   servicePageAmountFieldTwo: ".servicepage-amount-field-two" +
   "{position: relative;" +
   "left: 10%;" +
-  "width: 79.5%;" +
+  "width: 80%;" +
   "height: 10%;" +
   "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
   "color: white;" +
-  "top: 11%;" +
+  "margin-top: 4%;" +
   "}",
 
   servicePageAmountTaxTextField: ".servicepage-amount-tax-text-field" +
   "{" +
-  "position: absolute;" +
   "margin: 0;" +
+  "margin-top: 2%;" +
   "color: gray;" +
   "font-size:" + 24 * widthK + "px;" +
-  "bottom: -55%;" +
   "}",
 
+  PublicOffer: ".public-offer" +
+  "{" +
+  "bottom:-90%;" +
+  "font-size:" + 20.8 * widthK + "px;" +
+  "margin-top:4%;" +
+  "}",
 
   servicePageAmountIcon: ".servicepage-amount-icon" +
   "{" +
@@ -4789,6 +4789,7 @@ var css = {
   "left: 0;" +
   "color: #ffffff;" +
   "pointer-events: auto;" +
+  "z-index:1000000;" +
   "}",
 
   servicePageButtonEnterDisabled: ".servicepage-button-enter-disabled" +
@@ -4806,6 +4807,7 @@ var css = {
   "left: 0;" +
   "color: #ffffff;" +
   "pointer-events: none;" +
+  "z-index:9999" +
   "}",
 
   servicePageButtonEnterLabel: ".servicepage-button-enter-label" +
@@ -4858,7 +4860,7 @@ var css = {
   servicePagePincardsContainerTwo: ".servicepage-pincards-container-two" +
   "{" +
   "position: absolute;" +
-  "height: " + 760 * heightK + "px; " +
+  "height: " + 820 * heightK + "px; " +
   "width: " + 720 * widthK + "px; " +
   "top: 15%;" +
   "overflow-x: hidden;" +
@@ -4869,7 +4871,7 @@ var css = {
   servicePagePincardsContainer: ".servicepage-pincards-container" +
   "{" +
   "position: absolute;" +
-  "height: " + 920 * heightK + "px; " +
+  "height: " + 990 * heightK + "px; " +
   "width: " + 720 * widthK + "px; " +
   "overflow-x: hidden;" +
   "overflow-y: scroll;" +
@@ -4879,11 +4881,11 @@ var css = {
   servicePagePincardsBlockContainer: ".servicepage-pincards-block-container" +
   "{" +
   "position: relative;" +
-  "width: 85%;" +
+  "width: 80%;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
-  "padding-top: 4%;" +
-  "padding-bottom: 4%;" +
+  "margin-top: 4%;" +
+  "padding-bottom: 2%;" +
   "border-bottom: 1px solid gray;" +
   "}",
 
@@ -4939,23 +4941,22 @@ var css = {
   servicePageSecondDropdownField: ".servicepage-second-dropdown-field" +
   "{" +
   "position: relative;" +
-  "width: 79.5%;" +
+  "width: 80%;" +
   "height: 8%;" +
   "left: 10%;" +
   "color: white;" +
   "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
-  "top: 5%;" +
   "}",
 
   servicePageSecondDropdownFieldPakety: ".servicepage-second-dropdown-field-pakety" +
   "{" +
   "position: relative;" +
-  "width: 79.5%;" +
+  "width: 80%;" +
   "height: 8%;" +
   "left: 10%;" +
   "color: white;" +
   "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
-  "top: 12%;" +
+  "margin-top: 4%;" +
   "}",
 
   servicePageSecondDropdownFieldText: ".servicepage-second-dropdown-field-text" +
@@ -4972,7 +4973,7 @@ var css = {
   "left: 10%;" +
   "color: white;" +
   "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
-  "top: 6%;" +
+  "margin-top: 4%;" +
   "}",
 
   servicePageDropdownIcon: ".servicepage-dropdown-icon" +
@@ -4991,14 +4992,6 @@ var css = {
   "-ms-transform: rotate(90deg);" +
   "-o-transform: rotate(90deg);" +
   "transform: rotate(90deg);" +
-  "}",
-
-  //FormTypeSeven
-
-  formTypeSevenSecondField: ".formtype-seven-second-field" +
-  "{" +
-  "top: 14%;" +
-  "border-bottom:  " + 3 * widthK + "px solid lightgrey;" +
   "}",
 
   formTypeSevenInfoContainer: ".formtype-seven-info-container" +
@@ -5724,7 +5717,7 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 100%;" +
-  "height: 24.5%;" +
+  "height: 31.5%;" +
   // "border-bottom:  " + 1 + "px solid lightgray;" +
   "color: white;" +
   //"top: 23%;" +
@@ -5749,27 +5742,6 @@ var css = {
   "font-size: " + 40 * widthK + "px; " +
   "color: gray;" +
   "}",
-
-  payconfirmAmountTaxField: ".payconfirm-amount-tax-field" +
-  "{" +
-  "position: relative;" +
-  "margin: 0;" +
-  "color: darkgray;" +
-  "font-size: " + 24 * widthK + "px; " +
-  "left: 8%;" +
-  "top: 8%;" +
-  "}",
-
-  payconfirmAmountCountField: ".payconfirm-amount-count-field" +
-  "{" +
-  "position: relative;" +
-  "margin: 0;" +
-  "color: darkgray;" +
-  "font-size: " + 24 * widthK + "px; " +
-  "left: 8%;" +
-  "top: 8%;" +
-  "}",
-
   payconfirmCardField: ".payconfirm-card-field" +
   "{" +
   "position: relative;" +
@@ -5827,14 +5799,13 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: 25%;" +
-  "height: 67%;" +
-  "left: 70%;" +
-  "top: 15%;" +
+  "height: 100%;" +
+  "right: 0%;" +
+  "top: 0%;" +
   "background-color: transparent;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "background-size: contain;" +
-  "float: left;" +
   "}",
 
   payconfirmChosenFriendPhoto: ".payconfirm-chosen-friend-photo" +
@@ -9395,7 +9366,7 @@ var css = {
   registrationClientCardField: ".registration-client-card-field " +
   "{" +
   "position: relative;" +
-  "top:" + 0 * heightK + "px;" +
+  "top:0;" +
   "width:" + 600 * heightK + "px;" +
   "height:" + 320 * heightK + "px;" +
   "border:" + 4 * heightK + "px solid #2f2b3d;" +
@@ -11667,10 +11638,15 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 90%;" +
-  "height:" + 148 * widthK + "px;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
   "border-bottom: 1px solid #e8e8e8;" +
+  "overflow: auto;" +
+  "}",
+
+  paymentDetailPaymentIncludeContainer: ".payment-detail-payment-include-container" +
+  "{" +
+  "margin: 3%;" +
   "}",
 
   paymentDetailPaymentContainerPayFrom: ".payment-detail-payment-container-pay-from" +
@@ -11684,13 +11660,9 @@ var css = {
 
   paymentDetailTitle: ".payment-detail-title " +
   "{" +
-  "position: absolute;" +
-  "top: 19%;" +
-  "left: 2.8%;" +
   "font-size:" + 29 * widthK + "px;" +
   "color: #a9abaf;" +
   "margin: 0;" +
-  "text-align: center;" +
   "}",
 
   paymentDetailTitlePayFrom: ".payment-detail-title-pay-from " +
@@ -11706,23 +11678,16 @@ var css = {
 
   paymentDetailCommission: ".payment-detail-commission" +
   "{" +
-  "position: absolute;" +
   "margin: 0;" +
   "color: #c1c1c1;" +
   "font-size:" + 24 * widthK + "px;" +
-  "bottom: -37%;" +
-  "left: 3%;" +
   "}",
 
   paymentDetailSum: ".payment-detail-sum " +
   "{" +
-  "position: absolute;" +
-  "top: 49%;" +
-  "left: 2.5%;" +
   "font-size:" + 40 * widthK + "px;" +
   "color: #a9abaf;" +
   "margin: 0;" +
-  "text-align: center;" +
   "}",
 
   paymentDetailNumber: ".payment-detail-number " +
@@ -12417,7 +12382,6 @@ var css = {
   viewReportsBodyContainer: ".view-reports-body-container" +
   "{" +
   "position: absolute;" +
-  //"height:" + 1150 * widthK + "px; " +
   "width:100%; " +
   "top:" + 160 * widthK + "px; " +
   "bottom:0; " +
@@ -12847,15 +12811,12 @@ var css = {
   "width: 100%;" +
   "}",
 
-  viewReportsPaymentDateContainer: ".view-reports-payment-date-containter" +
+  dateContainer: ".date-container" +
   "{" +
-  "position: relative;" +
   "height:" + 45 * widthK + "px; " +
-  "width: 98%;" +
-  // "left: 4%;" +
-  // "margin-top: 1%;" +
-  //"border-bottom:" + 1 * widthK + "px solid gainsboro;" +
+  "width: 100%;" +
   "background-color: #f6f6f6;" +
+  "overflow: hidden;" +
   "}",
 
   viewReportsPaymentDateField: ".view-reports-payment-date-field" +
@@ -12868,19 +12829,6 @@ var css = {
   "font-size:" + 24 * widthK + "px; " +
   "color: gray;" +
   "}",
-
-  viewReportsPaymentBlockContainer: ".view-reports-payment-block-containter" +
-  "{" +
-  "position: relative;" +
-  "height:" + 150 * widthK + "px; " +
-  "width: 91%;" +
-  "left: 4%;" +
-  "z-index: 1;" +
-  //"margin-top: 1%;" +
-  "border-top:" + 1 * widthK + "px solid #f1f1f1;" +
-  "background-color: transparent;" +
-  "}",
-
 
   viewReportsPaymentIcon: ".view-reports-payment-icon " +
   "{" +
@@ -12905,42 +12853,6 @@ var css = {
   "color: #8b8b8b;" +
   "}",
 
-  viewReportsPaymentInfoName: ".view-reports-payment-info-name " +
-  "{" +
-  "position: absolute;" +
-  "height: 25%;" +
-  "top: 15%;" +
-  "left: 8%;" +
-  "margin: 0;" +
-  "font-size:" + 22 * widthK + "px; " +
-  "width: 75%;" +
-  "white-space: nowrap;" +
-  "text-overflow: ellipsis;" +
-  "overflow: hidden;" +
-  "}",
-
-  viewReportsPaymentInfoBalance: ".view-reports-payment-info-balance " +
-  "{" +
-  "position: relative;" +
-  "top: 30%;" +
-  "left: 8%;" +
-  "margin: 0;" +
-  "font-size:" + 45 * widthK + "px;" +
-  "color: #595759;" +
-  "float: left;" +
-  "}",
-
-  viewReportsPaymentInfoCurrencyField: ".view-reports-payment-info-currency-field" +
-  "{" +
-  "position: relative;" +
-  "top: 42%;" +
-  "left: 9%;" +
-  "margin: 0;" +
-  "font-size:" + 26 * widthK + "px;" +
-  "color: #595759;" +
-  "float: left;" +
-  "}",
-
   viewReportsPaymentInfoNumber: ".view-reports-payment-info-number " +
   "{" +
   "position: absolute;" +
@@ -12953,32 +12865,6 @@ var css = {
   "white-space: nowrap;" +
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
-  "}",
-
-  viewReportsPaymentInfoTime: ".view-reports-payment-info-time " +
-  "{" +
-  "position: absolute;" +
-  "right: 0;" +
-  "width: 10%;" +
-  //"height: 100%;" +
-  "top: 15%;" +
-  "font-size: " + 22 * widthK + "px; " +
-  "margin: 0;" +
-  "color: #8b8b8b;" +
-  "}",
-
-  viewReportsPaymentInfoStateImage: ".view-reports-payment-info-state-image " +
-  "{" +
-  "position: absolute;" +
-  "width:" + 60 * widthK + "px;" +
-  "right:" + 5 * widthK + "px;" +
-  "height:" + 60 * widthK + "px;" +
-  //"height: 100%;" +
-  "top: 50%;" +
-  "background-repeat: no-repeat;" +
-  "background-size: 60%;" +
-  "background-position: center;" +
-  "margin: 0;" +
   "}",
 
   //graph
@@ -16058,27 +15944,6 @@ var css = {
   "background-color: transparent;" +
   //"border-bottom:  " + 1 + "px solid lightgray;" +
   "}",
-
-  reportServicePhoneField: ".report-service-phone-field" +
-  "{" +
-  "position: relative;" +
-  "width: 90%;" +
-  "margin: 0 5%;" +
-  "height: " + 110 * widthK + "px; " +
-  "border-bottom: 1px solid lightgray;" +
-  "color: white;" +
-  "}",
-
-  reportServiceTextField: ".report-service-text-field" +
-  "{" +
-  "position: absolute;" +
-  "margin: 0;" +
-  "color: darkgray;" +
-  "font-size: " + 23 * widthK + "px; " +
-  "left: 3%;" +
-  "top: 9%; " +
-  "}",
-
   reportServicePhoneInput: ".report-service-phone-input" +
   "{" +
   "position: absolute;" +
@@ -16093,10 +15958,7 @@ var css = {
 
   reportServiceInfoInput: ".report-service-info-input" +
   "{" +
-  "position: absolute;" +
   "margin: 0;" +
-  "left: 3%;" +
-  "top: " + 49 * widthK + "px; " +
   "font-size: " + 29 * widthK + "px; " +
   "color: gray;" +
   "text-overflow: ellipsis;" +
@@ -16122,49 +15984,12 @@ var css = {
   "white-space: nowrap;" +
   "}",
 
-  reportServiceInfoInputAmount: ".report-service-info-input-amount" +
+  reportInfoContainer: ".report-info-container" +
   "{" +
-  "position: absolute;" +
-  "margin: 0;" +
-  "left: 3%;" +
-  "top: " + 49 * widthK + "px; " +
-  "font-size: " + 29 * widthK + "px; " +
-  "text-overflow: ellipsis;" +
-  "width: " + 625 * widthK + "px;" +
-  "max-height: " + 80 * widthK + "px;" +
-  "overflow: hidden;" +
-  "color: #ff6d65;" +
-  "}",
-
-  reportServiceInfoInputAmountWithTax: ".report-service-info-input-amount-with-tax" +
-  "{" +
-  "top: 35%;" +
-  "}",
-
-  reportServiceTaxField: ".report-service-tax-field" +
-  "{" +
-  "position: absolute;" +
-  "margin: 0;" +
-  "color: darkgray;" +
-  "font-size: " + 24 * widthK + "px; " +
-  "left: 4%;" +
-  "top: 63%;" +
-  "}",
-
-  reportServiceField: ".report-service-field" +
-  "{" +
+  "height: " + 100 * widthK + "px;" +
+  "z-index: 999999;" +
+  "margin: " + 5 * widthK + "px " + 40 * widthK + "px;" +
   "position: relative;" +
-  "width: 90%;" +
-  "margin: 0 5%;" +
-  "height: " + 94 * widthK + "px; " +
-  "border-bottom:  " + 1 + "px solid lightgray;" +
-  "color: white;" +
-  //"top: 23%;" +
-  "}",
-
-  reportServiceAmountField: ".report-service-amount-field" +
-  "{" +
-  "height: 28%;" +
   "}",
 
   reportServiceLastField: ".report-service-last-field" +
@@ -17415,12 +17240,6 @@ var css = {
   "top: 11%;" +
   "}",
 
-  autopayEventNameField: ".autopay-event-name-field" +
-  "{" +
-  // "height:" + 90 * widthK + "px;" +
-  "top: 4%;" +
-  "}",
-
   autopayEventStepField: ".autopay-event-step-field" +
   "{" +
   "position: relative;" +
@@ -17744,7 +17563,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "width: " + 600 * widthK + "px;" +
-  "height:" + 530 * widthK + "px;" +
+  "height:" + 540 * widthK + "px;" +
   "top:" + 309 * widthK + "px;" +
   "left: 8%;" +
   //"background-color: #01B8FE;" +
@@ -17928,7 +17747,8 @@ var css = {
 
   autoPayNameInputPart: ".autopay-name-input-part" +
   "{" +
-  "width: 96%;" +
+  "width: 100%;" +
+  "left: 0;" +
   "margin-left: 0;" +
   "top: 25%;" +
   "}",
@@ -17949,6 +17769,8 @@ var css = {
 
   serviceInfoOptions: ".serviceinfo-options" +
   "{" +
+  "overflow-y: scroll;" +
+  "-webkit-overflow-scrolling: touch;" +
   "width: 100%;" +
   "height: " + 1015 * heightK + "px; " +
   "overflow: auto;" +
@@ -18584,14 +18406,16 @@ var css = {
   inPlacePayCategoryIcon: ".inplace-pay-category-icon" +
   "{" +
   "position: relative;" +
-  "width:" + 77 * widthK + "px; " +
-  "height:" + 77 * widthK + "px; " +
+  "width:" + 50 * widthK + "px; " +
+  "height:" + 50 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
-  "background-position-x: left;" +
   "float: left;" +
-  // "left: 2%;" +
-  "background-size: 100%;" +
+  "left: 4%;" +
+  "top:" + 20 * widthK + "px; " +
+  "margin-right:" + 15 * widthK + "px; " +
+  "background-size: 80%;" +
+  "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
   "}",
 
   inPlacePayCategoryNameField: ".inplace-pay-category-name-field" +
@@ -18623,7 +18447,7 @@ var css = {
   inPlacePaySearchContainer: ".inplace-pay-search-container" +
   "{" +
   "position: absolute;" +
-  "height:10%; " +
+  "height: 10%; " +
   "width: 100%; " +
   "background-color: white; " +
   "z-index: 99999;" +
@@ -18636,7 +18460,7 @@ var css = {
   "left: 10%;" +
   "width:" + 572 * widthK + "px; " +
   "height:" + 100 * widthK + "px; " +
-  "border-bottom:  " + 3 * widthK + "px solid #e8e8e8;" +
+  "border-bottom:  " + 2 * widthK + "px solid #e8e8e8;" +
   "color: white;" +
   // "top: 8%;" +
   "}",
@@ -18990,8 +18814,7 @@ var css = {
   "margin: 0;" +
   "}"
 
-}
-
+};
 
 var style = document.createElement('style');
 style.type = 'text/css';
@@ -19003,6 +18826,6 @@ for (key in css) {
 
 style.appendChild(document.createTextNode(allCss));
 document.getElementsByTagName("head")[0].appendChild(style);
-riotTags.setAttribute('class', 'riot-tags-main-container')
+riotTags.setAttribute('class', 'riot-tags-main-container');
 firstMount.firstStep();
 

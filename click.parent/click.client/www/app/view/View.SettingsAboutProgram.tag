@@ -48,7 +48,7 @@
       event.preventDefault();
       event.stopPropagation();
 
-      backButton.style.webkitTransform = 'scale(0.7)'
+      backButton.style.webkitTransform = 'scale(0.7)';
 
       goBackButtonStartX = event.changedTouches[0].pageX;
       goBackButtonStartY = event.changedTouches[0].pageY;
@@ -59,14 +59,14 @@
       event.preventDefault();
       event.stopPropagation();
 
-      backButton.style.webkitTransform = 'scale(1)'
+      backButton.style.webkitTransform = 'scale(1)';
 
       goBackButtonEndX = event.changedTouches[0].pageX;
       goBackButtonEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(goBackButtonStartX - goBackButtonEndX) <= 20 && Math.abs(goBackButtonStartY - goBackButtonEndY) <= 20) {
-        onBackKeyDown()
-        scope.unmount()
+        onBackKeyDown();
+        scope.unmount();
       }
     };
 
@@ -76,17 +76,17 @@
       event.preventDefault();
       event.stopPropagation();
 
-      agreementButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
+      agreementButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)';
 
       agreementButtonStartX = event.changedTouches[0].pageX;
       agreementButtonStartY = event.changedTouches[0].pageY;
-    }
+    };
 
     userAgreementTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      agreementButtonId.style.backgroundColor = 'transparent'
+      agreementButtonId.style.backgroundColor = 'transparent';
 
       agreementButtonEndX = event.changedTouches[0].pageX;
       agreementButtonEndY = event.changedTouches[0].pageY;
@@ -98,7 +98,7 @@
 
         scope.unmount()
       }
-    }
+    };
 
     var rankButtonStartX, rankButtonEndX, rankButtonStartY, rankButtonEndY;
 
@@ -106,17 +106,17 @@
       event.preventDefault();
       event.stopPropagation();
 
-      rankButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)'
+      rankButtonId.style.backgroundColor = 'rgba(231,231,231,0.5)';
 
       rankButtonStartX = event.changedTouches[0].pageX;
       rankButtonStartY = event.changedTouches[0].pageY;
-    }
+    };
 
     rankAppTouchEnd = function () {
       event.preventDefault();
       event.stopPropagation();
 
-      rankButtonId.style.backgroundColor = 'transparent'
+      rankButtonId.style.backgroundColor = 'transparent';
 
       rankButtonEndX = event.changedTouches[0].pageX;
       rankButtonEndY = event.changedTouches[0].pageY;

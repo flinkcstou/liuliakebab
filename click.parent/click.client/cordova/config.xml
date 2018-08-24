@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-packageName="air.com.ssdsoftwaresolutions.clickuz" android-versionCode="50000035"
+<widget android-packageName="air.com.ssdsoftwaresolutions.clickuz" android-versionCode="50000037"
         id="air.com.ssdsoftwaresolutions.clickuz" ios-CFBundleIdentifier="com.ssdsoftwaresolutions.clickuz"
-        version="5.3.5" xmlns="http://www.w3.org/ns/widgets">
+        version="5.3.7" xmlns="http://www.w3.org/ns/widgets">
   <name>CLICK Uzbekistan</name>
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="Orientation" value="sensorPortrait"/>
@@ -33,6 +33,7 @@
   <plugin name="cordova-plugin-geolocation"/>
   <plugin name="cordova-plugin-websocket"/>
   <plugin name="cordova-plugin-imei"/>
+  <plugin name="cordova-plugin-sms-receive"/>
   <access origin="*"/>
   <allow-intent href="http://*/*"/>
   <allow-intent href="https://*/*"/>
@@ -103,7 +104,7 @@
   <platform name="android">
     <allow-intent href="market:*"/>
     <preference name="android-minSdkVersion" value="19"/>
-    <preference name="android-targetSdkVersion" value="25"/>
+    <preference name="android-targetSdkVersion" value="27"/>
     <preference name="Fullscreen" value="false"/>
     <preference name="AndroidPersistentFileLocation" value="Internal"/>
     <preference name="AndroidPersistentFileLocation" value="Compatibility"/>

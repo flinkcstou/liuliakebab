@@ -56,7 +56,7 @@
       top:{11 * heightK}px">
     </component-transfer-card-carousel-bottom>
   </div>
-  <button if="{showBottomButton}"
+  <button hidden="{!showBottomButton}"
           id="bottomButtonBetweenId"
           style="bottom: {window.bottomButtonBottom}"
           class="transfer-new-submit-button-container"

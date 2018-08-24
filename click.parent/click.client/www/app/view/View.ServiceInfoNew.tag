@@ -58,7 +58,7 @@
 
   <script>
 
-    console.log('OPTS in ServiceInfo NEW', opts);
+    console.log('View.ServiceInfoNew.tag | opts', opts);
 
     window.saveHistory('view-service-info-new', opts);
 
@@ -71,6 +71,13 @@
     scope.titleName = scope.service.name;
     scope.serviceIcon = scope.service.image;
     scope.categoryName = scope.categoryNamesMap[scope.service.category_id].name;
+
+    // needed in qr pay confirm. TODO: REFACTOR
+    opts.name = scope.titleName;
+    opts.category_name = scope.categoryName;
+    opts.location = "0.0";
+    opts.id = opts.chosenServiceId;
+
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
     var payment_data, optionAttribute;
     var timeOutTimer = 0;
@@ -78,6 +85,7 @@
     var optionOnTouchStartY, optionOnTouchStartX, optionOnTouchEndY, optionOnTouchEndX;
     scope.type = 0;
     scope.index = -1;
+
     if (!opts.transactionId) {
       opts.transactionId = parseInt(Date.now() / 1000);
       console.log('TRANSACTION_ID FROM OPTS', JSON.stringify(opts))
@@ -136,15 +144,15 @@
 
       console.log("Displaying cached info")
       if (scope.serviceData.information_type == 3) {
-        for(var j=0;j<scope.serviceData.options.length;j++)
-        {
-          scope.serviceData.options[j].id=j;
+        for (var j = 0; j < scope.serviceData.options.length; j++) {
+          scope.serviceData.options[j].id = j;
         }
         scope.optionsArray = scope.serviceData.options;
         scope.optionsHeader = scope.serviceData.options_header;
         scope.checkIconShow = scope.serviceData.options.length > 1;
         optionAttribute = scope.serviceData.options[0].option_payment_attribute;
-        opts.paymentDataAttributes = (scope.index!=-1)?result[1][0].options[parseInt(scope.index)].payment_data_attributes:result[1][0].options[0].payment_data_attributes;
+        // TODO: result[1][0] is unidentified
+        opts.paymentDataAttributes = (scope.index != -1) ? result[1][0].options[parseInt(scope.index)].payment_data_attributes : result[1][0].options[0].payment_data_attributes;
         //find array in cached data
         for (var i in scope.serviceData.options[0].option_object) {
           if (scope.serviceData.options[0].option_object[i].constructor === Array) {
@@ -167,6 +175,8 @@
     function getInformation() {
       var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
 
+      console.log('View.ServiceInfoNew.tag.getInformation()', sessionKey, phoneNumber, opts.chosenServiceId, payment_data);
+
       window.api.call({
         method: 'get.additional.information',
         input: {
@@ -187,15 +197,14 @@
                 localStorage.setItem("click_client_infoCached", JSON.stringify(result[1][0]));
               scope.serviceData = result[1][0];
               if (result[1][0].information_type == 3) {
-                for(var j=0;j<scope.serviceData.options.length;j++)
-                {
-                  scope.serviceData.options[j].id=j;
+                for (var j = 0; j < scope.serviceData.options.length; j++) {
+                  scope.serviceData.options[j].id = j;
                 }
                 scope.optionsArray = result[1][0].options;
                 scope.optionsHeader = result[1][0].options_header;
                 scope.checkIconShow = result[1][0].options.length > 1;
                 optionAttribute = result[1][0].options[0].option_payment_attribute;
-                opts.paymentDataAttributes = (scope.index!=-1)?result[1][0].options[parseInt(scope.index)].payment_data_attributes:result[1][0].options[0].payment_data_attributes;
+                opts.paymentDataAttributes = (scope.index != -1) ? result[1][0].options[parseInt(scope.index)].payment_data_attributes : result[1][0].options[0].payment_data_attributes;
 
                 //find array in result
                 for (var i in result[1][0].options[0].option_object) {
@@ -205,10 +214,10 @@
                   } else if (result[1][0].options[0].option_object[i].code == 'AMOUNT' && opts.formtype == 6) {
                     console.log("formType 6 amount field = ", result[1][0].options[0].option_object[i].value);
                     opts.amountText = result[1][0].options[0].option_object[i].value;
-
                   }
-
                 }
+
+                //find array in result
                 opts.optionAttribute = optionAttribute;
                 opts.optionValue = scope.checkIconShow ? null : result[1][0].options[0].option_value;
                 scope.type = 3;
@@ -320,10 +329,10 @@
         if (scope.index != -1 && scope.index != id)
           document.getElementById("check" + scope.index).style.backgroundImage = "url(resources/icons/ViewService/radio_unselected.png)";
         document.getElementById("check" + id).style.backgroundImage = "url(resources/icons/ViewService/radio_selected.png)";
-        var option_id=scope.serviceData.options[parseInt(id)].option_value;
+        var option_id = scope.serviceData.options[parseInt(id)].option_value;
         scope.index = id;
         opts.optionValue = option_id;
-        opts.paymentDataAttributes =scope.serviceData.options[parseInt(id)].payment_data_attributes;
+        opts.paymentDataAttributes = scope.serviceData.options[parseInt(id)].payment_data_attributes;
       }
     };
 

@@ -50,6 +50,8 @@
                    onload="clearLoaderOnIconLoad(this.id)">
               <div class="pay-category-name-field">{i.name}
               </div>
+              <div class="pay-category-bottom-border">
+              </div>
             </div>
           </li>
         </ul>
@@ -103,7 +105,7 @@
       event.stopPropagation();
 
       if (backButton)
-        backButton.style.webkitTransform = 'scale(0.7)'
+        backButton.style.webkitTransform = 'scale(0.7)';
 
       goBackButtonStartX = event.changedTouches[0].pageX;
       goBackButtonStartY = event.changedTouches[0].pageY;
@@ -115,7 +117,7 @@
       event.stopPropagation();
 
       if (backButton)
-        backButton.style.webkitTransform = 'scale(1)'
+        backButton.style.webkitTransform = 'scale(1)';
 
       goBackButtonEndX = event.changedTouches[0].pageX;
       goBackButtonEndY = event.changedTouches[0].pageY;
@@ -150,14 +152,14 @@
 
     colorFieldInplaceSearch = function () {
       searchFieldActive = true;
-      document.getElementById('searchContainerId').style.borderBottom = "" + 3 * widthK + "px solid #01cfff";
+      document.getElementById('searchContainerId').style.borderBottom = "" + 2 * widthK + "px solid #01cfff";
       if (document.getElementById('searchIcon'))
         searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search_blue.png)';
     };
 
     blurFieldInplaceSearch = function () {
       searchFieldActive = false;
-      document.getElementById('searchContainerId').style.borderBottom = "" + 3 * widthK + "px solid #cbcbcb";
+      document.getElementById('searchContainerId').style.borderBottom = "" + 2 * widthK + "px solid #cbcbcb";
       if (document.getElementById('searchIcon'))
         searchIcon.style.backgroundImage = 'url(resources/icons/ViewInPlacePay/indoor_search.png)';
     };
@@ -204,7 +206,7 @@
 
     keyDownFieldInplaceSearch = function () {
       scope.update();
-    }
+    };
 
     onInputSearchField = function () {
       if (document.getElementById('searchInputId').value.length == 0) {
@@ -313,7 +315,7 @@
           viewPay.categoryScrollTop = categoriesContainerId.scrollTop;
           opts.searchWord = searchInputId.value;
 
-          console.log('ID ID ID', id)
+          console.log('ID ID ID', id);
           if (opts.mode == 'ADDAUTOPAY') {
             scope.autoPayData = {};
             opts.chosenServiceId = id;

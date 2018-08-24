@@ -45,7 +45,7 @@
       </div>
       <div class="hor-line-border">
       </div>
-      <div id="resetLocalButtonId" class="authorization-button-registration"
+      <div id="resetLocalButtonId" class="authorization-button-registration sdf"
            ontouchstart="resetLocalStorageTouchStart()"
            ontouchend="resetLocalStorageTouchEnd()">
         {window.languages.ViewAuthorizationResetLocalStorageLabel}
@@ -370,7 +370,6 @@
             riotTags.innerHTML = "<view-registration-device>";
             riot.mount('view-registration-device');
             scope.unmount();
-            return
           }
         };
       }

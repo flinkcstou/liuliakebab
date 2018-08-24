@@ -12,6 +12,9 @@ var RU_LANGUAGES =
     "Add": "Добавить",
     "Save": "Сохранить",
 
+
+    "PublicOfferConfirm": "Оплачивая Вы соглашаетесь с условиями",
+    "PublicOffer": "публичной оферты",
     "ServiceUnavailableText": "Сервис временно не доступен",
 
     "ChooseFromContacts": "Выбрать контакт из телефонной книги",
@@ -47,6 +50,7 @@ var RU_LANGUAGES =
     "ViewSmsMessageTitleTwo": "чтобы сообщить код активации на номер:",
     "ViewSmsResendText": "Смс переотправлено на номер: ",
     "ViewSmsButtonEnterLabel": "Указать другой номер",
+    "ViewSmsContinue": "ПРОДОЛЖИТЬ",
 
     "ViewAuthorizationFirstEnterAriaLabelShowPass": "Показать введённый пароль",
     "ViewAuthorizationClickPinLabel": "Введите CLICK-PIN",
@@ -113,7 +117,16 @@ var RU_LANGUAGES =
     "ViewServicePagePayLabel": "ОПЛАТИТЬ",
     "ViewServicePageVoiceOverOpenCalculator": "Открыть калькулятор",
     "ViewServicePageAmountTextLabel": "Сумма оплаты:",
-    "ViewServicePageAmountTaxText": "Комиссия: ",
+    "PlusCommission": "Плюс комиссия - ",
+    "Commission": "Комиссия - ",
+    "CommissionAndNds": "Комиссия (в т.ч. НДС) - ",
+    "Nds": "НДС - ",
+    "PlusNds": "Плюс НДС - ",
+    "PlusCommissionAndNds": "Плюс комиссия (в т.ч. НДС) - ",
+    "ViewServiceToEnrollment": "Будет зачислено:",
+    "ViewTrustedDevicesDeleteOtherDevice": "Вы действительно хотите удалить устройство из списка доверенных?",
+    "ViewTrustedDevicesDeleteSelfDevice": "Вы действительно хотите удалить своё устройство из списка доверенных? (Потребуется повторная авторизация)",
+
 
 //{(secondLevelArray && secondLevelArray[0])?(secondLevelArray[0].name):("")}
 //{service.options_title}
@@ -319,7 +332,9 @@ var RU_LANGUAGES =
 
   "ComponentMenuAriaLabelPersonalInfo": "Персональные данные",
   "ComponentMenuOnlineMode": "Активен онлайн режим",
+  "ComponentMenuOnlineModeHint": "Ваш телефон подключен к интернету",
   "ComponentMenuOfflineMode": "Активен USSD режим",
+  "ComponentMenuOfflineModeHint": "Ваш телефон отключен от интернета",
   "ComponentMenuBillings": "Активен USSD режим",
 
   "ViewSettingsTitleName": "Настройки",
@@ -357,9 +372,9 @@ var RU_LANGUAGES =
   "ViewAboutSettingsRateUsTitle": "Оцените нас в Google Play",
 
   "ViewSettingsAboutProgramTitleName": "О ПРОГРАММЕ",
-  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 5.3.5",
+  "ViewSettingsAboutProgramVersionTitleNamePartOne": "Версия 5.3.7",
   "ViewSettingsAboutProgramVersionTitleNamePartOneClick": "CLICK Uzbekistan",
-  "ViewSettingsAboutProgramVersionTitleNamePartTwo": "13 июля, 2018",
+  "ViewSettingsAboutProgramVersionTitleNamePartTwo": "15 августа, 2018",
   "ViewSettingsAboutProgramUserAgreementTitleName": "Пользовательское соглашение",
   "ViewSettingsAboutProgramRankTitleName": "Оцените нас в Google Play",
 

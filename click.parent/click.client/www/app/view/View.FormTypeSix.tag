@@ -18,8 +18,9 @@
     </div>
 
     <div class="servicepage-body-container">
-
-      <div id="autopayField" class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDAUTOPAY'}">
+      <div style="width:  100%; height: 2%;">
+      </div>
+      <div id="autopayField" class="servicepage-first-field" if="{opts.mode=='ADDAUTOPAY'}">
         <p id="autoPayNameTitle" class="servicepage-text-field">{window.languages.ViewAutoPayNameFieldText}</p>
 
         <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="autoPayNameInput"
@@ -28,8 +29,9 @@
                onblur="blurFieldGlobal('autopayField','autoPayNameTitle')"/>
       </div>
 
-      <div id="favoriteField" class="servicepage-first-field autopay-event-name-field" if="{opts.mode=='ADDFAVORITE'}">
-        <p id="favoriteNameTitle" class="servicepage-text-field">{window.languages.ViewServicePageFavoriteNameField}</p>
+      <div id="favoriteField" class="servicepage-first-field" if="{opts.mode=='ADDFAVORITE'}">
+        <p id="favoriteNameTitle" class="servicepage-text-field">
+          {window.languages.ViewServicePageFavoriteNameField}</p>
 
         <input class="servicepage-number-input-part autopay-name-input-part" type="text" id="favoriteNameInput"
                placeholder="{window.languages.ViewServicePageFavoriteNamePlaceholder}" autofocus="true"
@@ -416,7 +418,7 @@
       console.log("PARAMETER ID ", scope.fieldArray[0].parameter_id, scope.fieldArray[0])
       console.log("Service ", scope.service)
       scope.phoneFieldBool = scope.fieldArray[0].parameter_id == "1" || scope.fieldArray[0].parameter_id == "65536" || scope.fieldArray[0].parameter_id == "128";
-      scope.calcOn = scope.service.cost == 1;
+      scope.calcOn = scope.service.show_calc == 1;
 
       if (scope.phoneFieldBool) {
         scope.defaultNumber = !opts.firstFieldText ? null : inputVerification.telVerificationWithSpace(inputVerification.telVerification(opts.firstFieldText));

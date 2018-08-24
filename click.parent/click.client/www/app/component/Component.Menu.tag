@@ -7,22 +7,26 @@
     <div id="closeMenuButtonId" role="button" aria-label="{window.languages.Close}" class="side-menu-inside-button"
          ontouchstart="closeMenuStart()"
          ontouchend="closeMenu()"></div>
-    <div class="side-menu-user-info-container">
-      <div class="side-menu-user-icon" role="button" aria-label="{window.languages.ComponentMenuAriaLabelPersonalInfo}"
-           style="background-image: url({photo})" ontouchend="userIconTouchEnd()"></div>
-      <p class="side-menu-user-second-name">{firstName}</p>
-      <p class="side-menu-user-first-name">{lastName}</p>
-    </div>
+
     <div hidden="{device.platform == 'iOS'}" id="changeModeContainerId" class="side-menu-change-mode"
          ontouchstart="changeModeTouchStart()" ontouchend="changeModeTouchEnd()">
       <div id="changeModeIconId" class="side-menu-change-mode-icon"></div>
       <p class="side-menu-change-mode-text">{modeOfApplication}</p>
-      <label class="switch-menu">
+      <p class="side-menu-change-mode-hint-text">{modeOfAplicationHint}</p>
+
+      <label id="modeSwitch" class="switch-menu">
         <input onchange="changeMode()"
                id="checkBoxChangeId" type="checkbox" checked="{checkModeOfApplication}">
-        <div class="slider-menu round"></div>
+        <div id="checkBoxRoundId" class="slider-menu online round"></div>
       </label>
     </div>
+
+    <div id="reportsButtonId" class="side-menu-reports-container" ontouchstart="goToReportsTouchStart()"
+         ontouchend="goToReportsTouchEnd()">
+      <div class="side-menu-containers-icon side-menu-containers-icon-reports"></div>
+      <div class="side-menu-containers-name side-menu-containers-name-reports">Отчеты</div>
+    </div>
+
     <div id="billngsButtonId" class="side-menu-billings-container" ontouchstart="goToBillingsTouchStart()"
          ontouchend="goToBillingsTouchEnd()">
       <div class="side-menu-containers-icon side-menu-containers-icon-billings"></div>
@@ -42,21 +46,29 @@
       <div class="side-menu-containers-name side-menu-containers-name-autopayment">Автоплатеж</div>
     </div>
 
-    <div id="qrScannerButtonId" class="side-menu-scanner-qr-container" ontouchstart="goToQrScannerStart()"
-         ontouchend="goToQrScannerEnd()">
-      <div class="side-menu-containers-icon side-menu-containers-icon-scanner-qr"></div>
-      <div class="side-menu-containers-name side-menu-containers-name-scanner-qr">Сканер QR-кода</div>
-      <div class="side-menu-containers-hint-scanner-qr">
-        Отсканируйте QR-код продавца для быстрой оплаты
-      </div>
-    </div>
+    <div class="side-menu-action-container">
+      <div id="qrScannerButtonId" class="side-menu-scanner-qr-container" ontouchstart="goToQrScannerStart()"
+           ontouchend="goToQrScannerEnd()">
 
-    <div id="clickPassButtonId" class="side-menu-click-pass-container" ontouchstart="goToClickPassStart()"
-         ontouchend="goToClickPassEnd()">
-      <div class="side-menu-containers-icon side-menu-containers-icon-click-pass"></div>
-      <div class="side-menu-containers-name side-menu-containers-name-click-pass">CLICK PASS</div>
-      <div class="side-menu-containers-hint-click-pass">
-        Оплата по-личному QR-коду вашего аккаунта CLICK
+        <img src="resources/icons/menu/menu_qr.png" alt="" class="side-menu-action-image">
+
+        <p class="side-menu-containers-name-scanner-qr">Оплата на местах</p>
+        <p class="side-menu-containers-hint-scanner-qr">
+          Отсканируйте QR-код и с легкостью оплатите
+        </p>
+      </div>
+
+      <div class="side-menu-action-container-separator"></div>
+
+      <div id="clickPassButtonId" class="side-menu-click-pass-container" ontouchstart="goToClickPassStart()"
+           ontouchend="goToClickPassEnd()">
+
+        <img src="resources/icons/menu/menu_scanner.png" alt="" class="side-menu-action-image">
+
+        <p class="side-menu-containers-name-click-pass">CLICK PASS</p>
+        <p class="side-menu-containers-hint-click-pass">
+          Оплата товаров и услуг по QR-коду CLICK
+        </p>
       </div>
     </div>
 
@@ -65,6 +77,13 @@
          ontouchend="goToSettingsEnd()">
       <div class="side-menu-containers-icon side-menu-containers-icon-settings"></div>
       <div class="side-menu-containers-name side-menu-containers-name-settings">Настройки</div>
+    </div>
+
+    <div id="newsButtonId" if="{!modeOfApp.offlineMode}" class="side-menu-news-container"
+         ontouchstart="goToNewsTouchStart()"
+         ontouchend="goToNewsTouchEnd()">
+      <div class="side-menu-containers-icon side-menu-containers-icon-news"></div>
+      <div class="side-menu-containers-name side-menu-containers-name-news">Новости</div>
     </div>
 
     <div id="callButtonId" class="side-menu-call-container" ontouchend="callToClickTouchEnd()"
@@ -77,28 +96,32 @@
          ontouchend="exitFromAppTouchEnd()"
          ontouchstart="exitFromAppTouchStart()">
       <div class="side-menu-containers-icon side-menu-containers-icon-exit"></div>
-      <div class="side-menu-containers-name side-menu-containers-name-call">Выход</div>
+      <div class="side-menu-containers-name side-menu-containers-name-call"
+           style="color:rgb(229, 108, 71)">Выход
+      </div>
     </div>
   </div>
 
 
   <script>
     var scope = this;
-    var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
-    var closeIFrameStartX, closeIFrameEndX, closeIFrameStartY, closeIFrameEndY;
-    var exitModeTouchStartX, exitModeTouchStartY, exitModeTouchEndX, exitModeTouchEndY;
-    var touchStartX, touchEndX, touchMoveX, touchEndMove, timeStartX, timeEndXs;
-    var callTouchStartX, callTouchStartY, callTouchEndX, callTouchEndY;
-    var autoPayTouchStartX, autoPayTouchStartY, autoPayTouchEndX, autoPayTouchEndY;
-    var qrScannerTouchStartX, qrScannerTouchStartY, qrScannerTouchEndX, qrScannerTouchEndY;
-    var settingsTouchStartX, settingsTouchStartY, settingsTouchEndX, settingsTouchEndY;
-    var billingsTouchStartX, billingsTouchStartY, billingsTouchEndX, billingsTouchEndY;
-    var favoritesTouchStartX, favoritesTouchStartY, favoritesTouchEndX, favoritesTouchEndY;
-    var changeModeStart, changeModeEnd;
-    var width = window.innerWidth;
-    var timeOutTimerThree = 0;
-    scope.showIFrame = false;
     qrScaner.qrInited = false;
+    var width = window.innerWidth;
+    var loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
+
+    var changeModeStart, changeModeEnd;
+    var touchStartX, touchEndX, touchMoveX, touchEndMove, timeStartX, timeEndXs;
+
+    var callTouchStartX, callTouchStartY, callTouchEndX, callTouchEndY;
+    var newsTouchStartX, newsTouchStartY, newsTouchEndX, newsTouchEndY;
+    var reportsTouchStartX, reportsTouchStartY, reportsTouchEndX, reportsTouchEndY;
+    var autoPayTouchStartX, autoPayTouchStartY, autoPayTouchEndX, autoPayTouchEndY;
+    var exitModeTouchStartX, exitModeTouchStartY, exitModeTouchEndX, exitModeTouchEndY;
+    var billingsTouchStartX, billingsTouchStartY, billingsTouchEndX, billingsTouchEndY;
+    var settingsTouchStartX, settingsTouchStartY, settingsTouchEndX, settingsTouchEndY;
+    var favoritesTouchStartX, favoritesTouchStartY, favoritesTouchEndX, favoritesTouchEndY;
+    var qrScannerTouchStartX, qrScannerTouchStartY, qrScannerTouchEndX, qrScannerTouchEndY;
+    var clickPassTouchStartX, clickPassTouchStartY, clickPassTouchEndX, clickPassTouchEndY;
 
     if (loginInfo) {
       scope.firstName = loginInfo.firstname;
@@ -106,17 +129,15 @@
       scope.photo = loginInfo.profile_image_url;
     }
 
-    if (modeOfApp.offlineMode) {
-      scope.photo = "resources/icons/icon/icon.png"
-    }
-
-
     if (modeOfApp.onlineMode) {
       scope.modeOfApplication = window.languages.ComponentMenuOnlineMode;
+      scope.modeOfAplicationHint = window.languages.ComponentMenuOnlineModeHint;
       scope.checkModeOfApplication = true;
     }
     if (modeOfApp.offlineMode) {
+      scope.photo = "resources/icons/icon/icon.png"
       scope.modeOfApplication = window.languages.ComponentMenuOfflineMode;
+      scope.modeOfAplicationHint = window.languages.ComponentMenuOfflineModeHint;
       scope.checkModeOfApplication = false;
     }
 
@@ -124,14 +145,21 @@
       try {
         if (modeOfApp.onlineMode) {
           scope.modeOfApplication = window.languages.ComponentMenuOnlineMode;
+          scope.modeOfAplicationHint = window.languages.ComponentMenuOnlineModeHint;
           scope.checkModeOfApplication = true;
-          changeModeContainerId.style.backgroundColor = '#92bf3a';
+
+          modeSwitch.style.borderColor = '#92bf3a';
+          checkBoxRoundId.className = 'slider-menu online round';
+
           changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_online.png)';
         }
         if (modeOfApp.offlineMode) {
           scope.modeOfApplication = window.languages.ComponentMenuOfflineMode;
+          scope.modeOfAplicationHint = window.languages.ComponentMenuOfflineModeHint
           scope.checkModeOfApplication = false;
-          changeModeContainerId.style.backgroundColor = '#e56c47';
+          modeSwitch.style.borderColor = '#e56c47';
+          checkBoxRoundId.className = 'slider-menu offline round';
+
           changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_ussd.png)';
         }
         scope.update();
@@ -140,99 +168,33 @@
       }
     });
 
-    hideIFrameStart = function (id) {
-      closeIFrameStartX = event.changedTouches[0].pageX;
-      closeIFrameStartY = event.changedTouches[0].pageY;
-
-      document.getElementById(id).style.webkitTransform = 'scale(0.8)'
-    };
-
-    hideIFrameEnd = function (id) {
-      closeIFrameEndX = event.changedTouches[0].pageX;
-      closeIFrameEndY = event.changedTouches[0].pageY;
-
-      document.getElementById(id).style.webkitTransform = 'scale(1)';
-
-      if (Math.abs(closeIFrameStartX - closeIFrameEndX) <= 20 && Math.abs(closeIFrameStartY - closeIFrameEndY) <= 20) {
-
-        window.checkShowingComponent = null;
-        riot.update()
-      }
-
-    };
-
-    userIconTouchEnd = function () {
-      if (modeOfApp.offlineMode) return;
-      closeMenu();
-      event.preventDefault();
-      event.stopPropagation();
-      if (modeOfApp.demoVersion) {
-        var question = window.languages.DemoModeConstraintText;
-
-        window.common.alert.show("componentAlertId", {
-          parent: scope,
-          errornote: question
-        });
-
-        scope.update();
-
-        return
-      }
-      riotTags.innerHTML = "<view-general-settings>";
-      riot.mount("view-general-settings");
-    };
-
-    exitFromAppTouchStart = function () {
-
-      exitButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
-
-      exitModeTouchStartX = event.changedTouches[0].pageX;
-      exitModeTouchStartY = event.changedTouches[0].pageY;
-    };
-
-    exitFromAppTouchEnd = function () {
-
-      exitButtonId.style.backgroundColor = 'transparent';
-
-      exitModeTouchEndX = event.changedTouches[0].pageX;
-      exitModeTouchEndY = event.changedTouches[0].pageY;
-
-      if (Math.abs(exitModeTouchStartX - exitModeTouchEndX) <= 20 && Math.abs(exitModeTouchStartY - exitModeTouchEndY) <= 20) {
-        navigator.app.exitApp();
-      }
-
-    };
-
-    closeMenuStart = function () {
-      closeMenuButtonId.style.webkitTransform = 'scale(0.8)'
-    };
-
-    closeMenu = function () {
-
-      closeMenuButtonId.style.webkitTransform = 'scale(1)';
-
-      if (event) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-      componentMenu.checkOpen = false;
-
-      sideMenuId.style.webkitTransition = '0.3s';
-      sideMenuBackPageId.style.opacity = '0';
-      sideMenuBackPageId.style.webkitTransition = '0';
-      sideMenuId.style.webkitTransform = "translate3d(-100%, 0, 0)";
-      sideMenuId.style.Transform = "translate3d(-100%, 0, 0)";
-      mainPageId.style.opacity = '1';
-      mainPageId.style.zIndex = '0';
-      scope.update();
-    };
-
     sideMenuTouchStart = function () {
       sideMenuId.style.webkitTransition = '0s';
       mainPageId.style.webkitTransition = '0s';
       sideMenuBackPageId.style.webkitTransition = '0s';
       touchStartX = event.changedTouches[0].pageX;
       timeStartX = event.timeStamp.toFixed(0);
+
+    };
+
+    sideMenuTouchMove = function () {
+      event.preventDefault();
+      event.stopPropagation();
+      touchMoveX = event.changedTouches[0].pageX;
+      if (touchStartX < touchMoveX) return;
+      var deltaForMainPage = Math.abs((touchStartX - touchMoveX).toFixed(0) / width * 2);
+      var deltaForSideMenuBack = 1 - deltaForMainPage;
+      if (deltaForSideMenuBack < 0.1)
+        deltaForSideMenuBack = 0.1;
+
+      sideMenuBackPageId.style.opacity = deltaForSideMenuBack;
+      mainPageId.style.opacity = deltaForMainPage;
+
+      if (touchMoveX - touchStartX <= 0) {
+        sideMenuId.style.webkitTransform = 'translate3d(' + (touchMoveX - touchStartX) + 'px,0,0)';
+        touchEndMove = touchMoveX - touchStartX;
+        componentMenu.checkOpen = true;
+      }
 
     };
 
@@ -258,25 +220,37 @@
       }
     };
 
-    sideMenuTouchMove = function () {
-      event.preventDefault();
-      event.stopPropagation();
-      touchMoveX = event.changedTouches[0].pageX;
-      if (touchStartX < touchMoveX) return;
-      var deltaForMainPage = Math.abs((touchStartX - touchMoveX).toFixed(0) / width * 2);
-      var deltaForSideMenuBack = 1 - deltaForMainPage;
-      if (deltaForSideMenuBack < 0.1)
-        deltaForSideMenuBack = 0.1;
+    closeMenuStart = function () {
+      closeMenuButtonId.style.webkitTransform = 'scale(0.8)'
+    };
 
-      sideMenuBackPageId.style.opacity = deltaForSideMenuBack;
-      mainPageId.style.opacity = deltaForMainPage;
+    closeMenu = function () {
 
-      if (touchMoveX - touchStartX <= 0) {
-        sideMenuId.style.webkitTransform = 'translate3d(' + (touchMoveX - touchStartX) + 'px,0,0)';
-        touchEndMove = touchMoveX - touchStartX;
-        componentMenu.checkOpen = true;
+      closeMenuButtonId.style.webkitTransform = 'scale(1)';
+
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
       }
+      componentMenu.checkOpen = false;
 
+      sideMenuId.style.webkitTransition = '0.3s';
+      sideMenuBackPageId.style.opacity = '0';
+      sideMenuBackPageId.style.webkitTransition = '0';
+      sideMenuId.style.webkitTransform = "translate3d(-100%, 0, 0)";
+      sideMenuId.style.Transform = "translate3d(-100%, 0, 0)";
+      mainPageId.style.opacity = '1';
+      mainPageId.style.zIndex = '0';
+      scope.update();
+      getToolbarScope().update();
+    };
+
+    exitFromAppTouchStart = function () {
+
+      exitButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
+
+      exitModeTouchStartX = event.changedTouches[0].pageX;
+      exitModeTouchStartY = event.changedTouches[0].pageY;
     };
 
     changeModeTouchStart = function () {
@@ -316,37 +290,34 @@
         }
         changeMode()
       }
-      else sideMenuTouchEnd()
+      else sideMenuTouchEnd();
 
     };
 
     changeMode = function () {
-      console.log('MENU PARENT', scope.parent);
+
       if (event) {
         event.preventDefault();
         event.stopPropagation();
       }
-      console.log(checkBoxChangeId.checked);
+
       if (checkBoxChangeId.checked) {
-        modeOfApp.onlineMode = true
-        modeOfApp.offlineMode = false;
-        if (localStorage.getItem('click_client_token') && localStorage.getItem('click_client_registered')) {
-          this.riotTags.innerHTML = "<view-authorization>";
-          riot.mount('view-authorization');
-        } else {
-          this.riotTags.innerHTML = "<view-registration-device>";
-          riot.mount('view-registration-device');
-        }
+        goOnline();
         return
       }
       else {
         modeOfApp.onlineMode = false;
         modeOfApp.offlineMode = true;
       }
+
       if (modeOfApp.onlineMode) {
         scope.parent.tags['component-bank-operations-new'].updateOperations();
         scope.modeOfApplication = window.languages.ComponentMenuOnlineMode;
-        changeModeContainerId.style.backgroundColor = '#92bf3a';
+        scope.modeOfAplicationHint = window.languages.ComponentMenuOnlineModeHint
+
+        modeSwitch.style.borderColor = '#92bf3a';
+        checkBoxRoundId.className = 'slider-menu online round';
+
         scope.checkModeOfApplication = true;
         changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_online.png)';
       }
@@ -356,35 +327,179 @@
         scope.parent.tags['component-bank-operations-new'].updateOperations();
 
         scope.modeOfApplication = window.languages.ComponentMenuOfflineMode;
+        modeSwitch.style.borderColor = '#F24746';
+        checkBoxRoundId.className = 'slider-menu offline round';
+
         scope.checkModeOfApplication = false;
-        changeModeContainerId.style.backgroundColor = '#e56c47';
+        scope.modeOfAplicationHint = window.languages.ComponentMenuOfflineModeHint
+
         changeModeIconId.style.backgroundImage = 'url(resources/icons/menu/menu_ussd.png)';
       }
+
       scope.update()
     };
 
-    callToClickTouchEnd = function () {
+    goToReportsTouchStart = function () {
+      reportsButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
 
-      callButtonId.style.backgroundColor = 'transparent';
+      reportsTouchStartX = event.changedTouches[0].pageX;
+      reportsTouchStartY = event.changedTouches[0].pageY;
+    };
 
-      callTouchEndX = event.changedTouches[0].pageX;
-      callTouchEndY = event.changedTouches[0].pageY;
+    goToReportsTouchEnd = function () {
 
-      if (Math.abs(callTouchStartX - callTouchEndX) < 20 && Math.abs(callTouchStartY - callTouchEndY) < 20) {
+      billngsButtonId.style.backgroundColor = 'transparent';
+
+      reportsTouchEndX = event.changedTouches[0].pageX;
+      reportsTouchEndY = event.changedTouches[0].pageY;
+
+      if (isTouch(reportsTouchEndX, reportsTouchStartX, reportsTouchStartY, reportsTouchEndY)) {
+
         closeMenu();
-        componentMenu.checkOpen = false;
-        window.open('tel:+998712310880')
+
+        if (modeOfApp.demoVersion) {
+          var question = window.languages.DemoModeConstraintText;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: question
+          });
+
+          scope.update();
+
+          return
+        }
+
+        if (modeOfApp.offlineMode) {
+          phonedialer.dial(
+            "*880*00*3" + "%23",
+            function (err) {
+              if (err == "empty") {
+
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: false,
+                  errornote: "Unknown phone number"
+                });
+                scope.update();
+              }
+              else console.log("Dialer Error:" + err);
+            },
+            function (success) {
+            }
+          );
+          return
+        }
+        this.riotTags.innerHTML = '<view-info>';
+        riot.mount('view-info');
+//        scope.unmount()
+      }
+    };
+
+    goToBillingsTouchStart = function () {
+
+      billngsButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
+
+      billingsTouchStartX = event.changedTouches[0].pageX;
+      billingsTouchStartY = event.changedTouches[0].pageY;
+    };
+
+    goToBillingsTouchEnd = function () {
+
+      billngsButtonId.style.backgroundColor = 'transparent';
+
+      billingsTouchEndX = event.changedTouches[0].pageX;
+      billingsTouchEndY = event.changedTouches[0].pageY;
+
+      if (isTouch(billingsTouchEndX, billingsTouchStartX, billingsTouchStartY, billingsTouchEndY)) {
+        if (modeOfApp.demoVersion) {
+          var question = window.languages.DemoModeConstraintText;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: question
+          });
+
+          scope.update();
+
+          return
+        }
+        closeMenu();
+        if (modeOfApp.offlineMode) {
+          phonedialer.dial(
+            "*880*00*98767" + "%23",
+            function (err) {
+              if (err == "empty") {
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: false,
+                  errornote: "Неверный номер"
+                });
+                scope.update();
+              }
+              else console.log("Dialer Error:" + err);
+            },
+            function (success) {
+            }
+          );
+          return
+        }
+
+        var params = {
+
+          toUser: true
+        };
+
+        history.arrayOfHistory.push({view: "view-invoice-list", params: params});
+        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+        riotTags.innerHTML = "<view-invoice-list>";
+        riot.mount("view-invoice-list", params);
+        return
+      }
+    };
+
+    goToFavoritesStart = function () {
+
+      favouriteButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
+
+      favoritesTouchStartX = event.changedTouches[0].pageX;
+      favoritesTouchStartY = event.changedTouches[0].pageY;
+    };
+
+    goToFavoritesEnd = function () {
+      event.preventDefault();
+      event.stopPropagation();
+
+      favouriteButtonId.style.backgroundColor = 'transparent';
+
+      favoritesTouchEndX = event.changedTouches[0].pageX;
+      favoritesTouchEndY = event.changedTouches[0].pageY;
+
+      if (isTouch(favoritesTouchStartX, favoritesTouchEndX, favoritesTouchStartY, favoritesTouchEndY)) {
+        if (modeOfApp.demoVersion) {
+          var question = window.languages.DemoModeConstraintText;
+          window.common.alert.show("componentAlertId", {
+            parent: scope,
+            errornote: question
+          });
+
+          scope.update();
+
+          return
+        }
+        closeMenu();
+        riotTags.innerHTML = "<view-favorites-new>";
+        riot.mount("view-favorites-new");
+        return
       }
       else sideMenuTouchEnd()
 
     };
 
-    callToClickTouchStart = function () {
+    goToAutoPayStart = function () {
 
-      callButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
+      autoPayButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
 
-      callTouchStartX = event.changedTouches[0].pageX;
-      callTouchStartY = event.changedTouches[0].pageY;
+      autoPayTouchStartX = event.changedTouches[0].pageX;
+      autoPayTouchStartY = event.changedTouches[0].pageY;
     };
 
     goToAutoPayEnd = function () {
@@ -394,7 +509,7 @@
       autoPayTouchEndX = event.changedTouches[0].pageX;
       autoPayTouchEndY = event.changedTouches[0].pageY;
 
-      if (Math.abs(autoPayTouchStartX - autoPayTouchEndX) <= 20 && Math.abs(autoPayTouchStartY - autoPayTouchEndY) <= 20) {
+      if (isTouch(autoPayTouchStartX, autoPayTouchEndX, autoPayTouchStartY, autoPayTouchEndY)) {
         if (modeOfApp.demoVersion) {
           var question = window.languages.DemoModeConstraintText;
           window.common.alert.show("componentAlertId", {
@@ -413,12 +528,14 @@
       else sideMenuTouchEnd()
     };
 
-    goToAutoPayStart = function () {
+    goToQrScannerStart = function () {
 
-      autoPayButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
+      console.log('qrButtonId', qrButtonId);
 
-      autoPayTouchStartX = event.changedTouches[0].pageX;
-      autoPayTouchStartY = event.changedTouches[0].pageY;
+      qrScannerButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
+
+      qrScannerTouchStartX = event.changedTouches[0].pageX;
+      qrScannerTouchStartY = event.changedTouches[0].pageY;
     };
 
     goToQrScannerEnd = function () {
@@ -428,7 +545,7 @@
       qrScannerTouchEndX = event.changedTouches[0].pageX;
       qrScannerTouchEndY = event.changedTouches[0].pageY;
 
-      if (Math.abs(qrScannerTouchStartX - qrScannerTouchEndX) < 20 && Math.abs(qrScannerTouchStartY - qrScannerTouchEndY) < 20 && !qrScaner.qrInited) {
+      if (isTouch(qrScannerTouchStartX, qrScannerTouchEndX, qrScannerTouchStartY, qrScannerTouchEndY) && !qrScaner.qrInited) {
 
         if (modeOfApp.demoVersion) {
           var question = window.languages.DemoModeConstraintText;
@@ -450,6 +567,48 @@
           qrCodeScanner(scope);
         }
         else {
+
+//
+//          closeMenu();
+//          qrScaner.qrInited = false;
+//          if (modeOfApp.offlineMode) {
+//            console.log("*880*010185999002*" + 62504932073062 + "%23");
+//            phonedialer.dial(
+//              "*880*010185999002*" + 62504932073062 + "%23",
+//              function (err) {
+//                if (err == "empty") {
+//                  scope.clickPinError = false;
+//                  scope.errorNote = ("Неверный номер");
+//                  window.common.alert.show("componentAlertId", {
+//                    parent: scope,
+//                    clickpinerror: scope.clickPinError,
+//                    errornote: scope.errorNote
+//                  });
+//                  scope.update();
+//                }
+//                else console.log("Ошибка USSD:" + err);
+//              },
+//              function (success) {
+//
+//              }
+//            );
+//          } else {
+//            localStorage.setItem('click_client_infoCacheEnabled', null);
+//            riotTags.innerHTML = "<view-service-info-new>";
+//            riot.mount('view-service-info-new', {
+//              "formtype": 6,
+//              "firstFieldText": 62504932073062,
+//              "chosenPrefixName": "",
+//              "chosenServiceId": 10185,
+//              "firstFieldId": 536870912,
+//              "is_qr_notary" : true,
+//              "firstFieldTitle": "Номер квитанции:",
+//            });
+//          }
+//          console.log('FFFFFFFFFFFFFFFFFFFFAALse');
+//          return;
+//
+
           var phoneNumber = localStorage.getItem("click_client_phoneNumber");
           var info = JSON.parse(localStorage.getItem("click_client_loginInfo"));
           var sessionKey = info.session_key;
@@ -499,17 +658,13 @@
 
     };
 
-    goToQrScannerStart = function () {
+    goToClickPassStart = function () {
 
-      console.log('qrButtonId', qrButtonId);
+      clickPassButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
 
-      qrScannerButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
-
-      qrScannerTouchStartX = event.changedTouches[0].pageX;
-      qrScannerTouchStartY = event.changedTouches[0].pageY;
+      clickPassTouchStartX = event.changedTouches[0].pageX;
+      clickPassTouchStartY = event.changedTouches[0].pageY;
     };
-
-    var clickPassTouchStartX, clickPassTouchStartY, clickPassTouchEndX, clickPassTouchEndY;
 
     goToClickPassEnd = function () {
       clickPassButtonId.style.backgroundColor = 'transparent';
@@ -517,7 +672,7 @@
       clickPassTouchEndX = event.changedTouches[0].pageX;
       clickPassTouchEndY = event.changedTouches[0].pageY;
 
-      if (Math.abs(clickPassTouchStartX - clickPassTouchEndX) < 20 && Math.abs(clickPassTouchStartY - clickPassTouchEndY) < 20) {
+      if (isTouch(clickPassTouchStartX, clickPassTouchEndX, clickPassTouchStartY, clickPassTouchEndY)) {
         if (modeOfApp.demoVersion) {
           var question = 'Внимание! Для совершения данного действия необходимо авторизоваться!';
           window.common.alert.show("componentAlertId", {
@@ -551,15 +706,12 @@
       }
     };
 
-    goToClickPassStart = function () {
+    goToSettingsStart = function () {
+      settingsButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
 
-      clickPassButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
-
-      clickPassTouchStartX = event.changedTouches[0].pageX;
-      clickPassTouchStartY = event.changedTouches[0].pageY;
+      settingsTouchStartX = event.changedTouches[0].pageX;
+      settingsTouchStartY = event.changedTouches[0].pageY;
     };
-
-    var settingsTouchStartX, settingsTouchStartY, settingsTouchEndX, settingsTouchEndY
 
     goToSettingsEnd = function () {
       event.preventDefault();
@@ -570,7 +722,7 @@
       settingsTouchEndX = event.changedTouches[0].pageX;
       settingsTouchEndY = event.changedTouches[0].pageY;
 
-      if (Math.abs(settingsTouchStartX - settingsTouchEndX) < 20 && Math.abs(settingsTouchStartY - settingsTouchEndY) < 20) {
+      if (isTouch(settingsTouchStartX, settingsTouchEndX, settingsTouchStartY, settingsTouchEndY)) {
         if (modeOfApp.demoVersion) {
           var question = window.languages.DemoModeConstraintText;
 
@@ -591,112 +743,75 @@
       else sideMenuTouchEnd()
     };
 
-    goToSettingsStart = function () {
-      settingsButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
+    goToNewsTouchStart = function () {
+      reportsButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
 
-      settingsTouchStartX = event.changedTouches[0].pageX;
-      settingsTouchStartY = event.changedTouches[0].pageY;
+      newsTouchStartX = event.changedTouches[0].pageX;
+      newsTouchStartY = event.changedTouches[0].pageY;
     };
 
-    goToBillingsTouchStart = function () {
-
-      billngsButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
-
-      billingsTouchStartX = event.changedTouches[0].pageX;
-      billingsTouchStartY = event.changedTouches[0].pageY;
-    };
-
-    goToBillingsTouchEnd = function () {
+    goToNewsTouchEnd = function () {
 
       billngsButtonId.style.backgroundColor = 'transparent';
 
-      billingsTouchEndX = event.changedTouches[0].pageX;
-      billingsTouchEndY = event.changedTouches[0].pageY;
+      newsTouchEndX = event.changedTouches[0].pageX;
+      newsTouchEndY = event.changedTouches[0].pageY;
 
-      if (Math.abs(billingsTouchEndX - billingsTouchStartX) < 20 && Math.abs(billingsTouchStartY - billingsTouchEndY) < 20) {
-        if (modeOfApp.demoVersion) {
-          var question = window.languages.DemoModeConstraintText;
-          window.common.alert.show("componentAlertId", {
-            parent: scope,
-            errornote: question
-          });
+      if (isTouch(newsTouchStartX, newsTouchEndX, newsTouchStartY, newsTouchEndY)) {
 
-          scope.update();
-
-          return
-        }
         closeMenu();
-        if (modeOfApp.offlineMode) {
-          phonedialer.dial(
-            "*880*00*98767" + "%23",
-            function (err) {
-              if (err == "empty") {
-                window.common.alert.show("componentAlertId", {
-                  parent: scope,
-                  clickpinerror: false,
-                  errornote: "Неверный номер"
-                });
-                scope.update();
-              }
-              else console.log("Dialer Error:" + err);
-            },
-            function (success) {
-            }
-          );
-          return
-        }
 
-        var params = {
+        containerCard.style.filter = 'blur(5px)';
+        viewNewsId.style.display = 'block';
 
-          toUser: true
-        };
+        window.News.newsCounter = 0;
+        window.saveHistory('view-news', opts);
 
-        history.arrayOfHistory.push({view: "view-invoice-list", params: params});
-        sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
-        riotTags.innerHTML = "<view-invoice-list>";
-        riot.mount("view-invoice-list", params);
-        return
+        scope.parent.tags['view-news'].showNewsFunction(1);
+
       }
     };
 
-    goToFavoritesEnd = function () {
-      event.preventDefault();
-      event.stopPropagation();
+    callToClickTouchStart = function () {
 
-      favouriteButtonId.style.backgroundColor = 'transparent';
+      callButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
 
-      favoritesTouchEndX = event.changedTouches[0].pageX;
-      favoritesTouchEndY = event.changedTouches[0].pageY;
+      callTouchStartX = event.changedTouches[0].pageX;
+      callTouchStartY = event.changedTouches[0].pageY;
+    };
 
-      if (Math.abs(favoritesTouchStartX - favoritesTouchEndX) < 20 && Math.abs(favoritesTouchStartY - favoritesTouchEndY) < 20) {
-        if (modeOfApp.demoVersion) {
-          var question = window.languages.DemoModeConstraintText;
-          window.common.alert.show("componentAlertId", {
-            parent: scope,
-            errornote: question
-          });
+    callToClickTouchEnd = function () {
 
-          scope.update();
+      callButtonId.style.backgroundColor = 'transparent';
 
-          return
-        }
+      callTouchEndX = event.changedTouches[0].pageX;
+      callTouchEndY = event.changedTouches[0].pageY;
+
+      if (isTouch(callTouchStartX, callTouchEndX, callTouchStartY, callTouchEndY)) {
         closeMenu();
-        riotTags.innerHTML = "<view-favorites-new>";
-        riot.mount("view-favorites-new");
-        return
+        componentMenu.checkOpen = false;
+        window.open('tel:+998712310880')
       }
       else sideMenuTouchEnd()
 
     };
 
-    goToFavoritesStart = function () {
+    exitFromAppTouchEnd = function () {
 
-      favouriteButtonId.style.backgroundColor = 'rgba(231,231,231,0.15)';
+      exitButtonId.style.backgroundColor = 'transparent';
 
-      favoritesTouchStartX = event.changedTouches[0].pageX;
-      favoritesTouchStartY = event.changedTouches[0].pageY;
+      exitModeTouchEndX = event.changedTouches[0].pageX;
+      exitModeTouchEndY = event.changedTouches[0].pageY;
+
+      if (isTouch(exitModeTouchStartX, exitModeTouchEndX, exitModeTouchStartY, exitModeTouchEndY)) {
+        navigator.app.exitApp();
+      }
+
+    };
+
+    isTouch = function (startX, endX, startY, endY) {
+      return (Math.abs(startX - endX) <= 20 && Math.abs(startY - endY) <= 20);
     }
-
 
   </script>
 </component-menu>

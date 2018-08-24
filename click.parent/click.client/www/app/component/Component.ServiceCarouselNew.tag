@@ -345,6 +345,19 @@
         }
       });
     }
+    else if(modeOfApp.onlineMode && !(sessionStorage.getItem("push_news")
+      && JSON.parse(sessionStorage.getItem("push_news")) === true) && scope.favoritePaymentsList) {
+
+      console.log('Component.ServiceCarouselNew.tag: updating checking for cache values', scope.favoritePaymentsList);
+
+      for (var j in scope.favoritePaymentsList) {
+        var fav = scope.favoritePaymentsList[j];
+        if (scope.servicesMap[fav.service.id]) {
+          scope.favoritePaymentsList[j].service.image = scope.servicesMap[fav.service.id][0].image;
+          scope.favoritePaymentsList[j].service.image_cached = scope.servicesMap[fav.service.id][0].image_cached;
+        }
+      }
+    }
 
 
     openFavouriteStart = function () {
