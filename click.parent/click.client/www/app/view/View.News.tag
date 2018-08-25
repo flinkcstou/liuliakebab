@@ -197,6 +197,8 @@
 
       followTouchEndX = event.changedTouches[0].pageY;
       followTouchEndY = event.changedTouches[0].pageY;
+      isFollowClick = false;
+
       const isTap = (Math.abs(followTouchStartX - followTouchEndX) <= 20 && Math.abs(followTouchStartY - followTouchEndY) <= 20);
       if(!isTap) return;
 
@@ -206,9 +208,7 @@
         document.getElementById(newsId).style.webkitTransform = 'scale(1)';
         increaseNewsViewCount(newsId);
         window.open(LinkToNews, '_system', 'location=no');
-        isFollowClick = true;
       }, 100);
-
     };
 
     convertCount = function(count) {
@@ -428,6 +428,8 @@
       likeTouchEndX = event.changedTouches[0].pageY;
       likeTouchEndY = event.changedTouches[0].pageY;
 
+      isLikeClick = false;
+
       const isTap = (Math.abs(likeTouchStartX - likeTouchEndX) <= 20 && Math.abs(likeTouchStartY - likeTouchEndY) <= 20);
       if(!isTap) return;
 
@@ -439,7 +441,6 @@
       } else {
         unlikeNews(tapedNews);
       }
-      isLikeClick = false;
     };
 
     function likeNews(news) {
