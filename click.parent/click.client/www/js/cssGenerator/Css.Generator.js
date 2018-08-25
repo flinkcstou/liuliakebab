@@ -18429,7 +18429,7 @@ var css = {
   "left: 4%;" +
   "top:" + 20 * widthK + "px; " +
   "margin-right:" + 15 * widthK + "px; " +
-  "background-size: 80%;" +
+  "background-size: 100%;" +
   "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
   "}",
 
