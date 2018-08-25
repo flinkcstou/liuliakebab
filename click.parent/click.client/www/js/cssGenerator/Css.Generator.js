@@ -16512,11 +16512,26 @@ var css = {
   "float:left;" +
   "display: inline-block;" +
   "}",
+  
+  viewNewsFooterDateItem: ".view-news-footer-date-item" +
+  "{" +
+  "width: " + 130 * widthK + "px;" +
+  "}",
+  
+  viewNewsFooterInfoItem: ".view-news-footer-info-item" +
+  "{" +
+  "width: " + 230 * widthK + "px;" +
+  "}",
+  
+  textLeft: ".text-left" +
+  "{" +
+  "text-align: left !important;" +
+  "}",
 
   viewNewsItemInfo: ".view-news-item-info-container" +
   "{" +
   "float:left;" +
-  "width:50%;" +
+  "width:45%;" +
   "height: " + 40 * widthK + "px;" +
   "}",
 
@@ -16581,7 +16596,7 @@ var css = {
 
   viewNewsIconContainer: ".view-news-icon-container" +
   "{" +
-  "background-size: 80%;" +
+  "background-size: 70%;" +
   "background-position: center;" +
   "background-repeat: no-repeat;" +
   "}",

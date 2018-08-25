@@ -26,18 +26,19 @@
         </p>
       </div>
       <div class="view-news-item-footer">
-        <div hidden="{!i.url}" class="view-news-item-link view-news-footer-item-container"
-             ontouchend="followLink(&quot;{i.url}&quot;, {i.news_id})" id="{i.news_id}">
+        <div hide="{!i.url || i.url == ''}" ii="{!i.url || i.url == ''}" class="view-news-item-link view-news-footer-item-container"
+             ontouchstart="followLinkTouchStart({this.id})"
+             ontouchend="followLinkTouchEnd(&quot;{i.url}&quot;, {i.news_id})" id="{i.news_id}">
           <p style="margin: auto" class="horizontal-centering">
             {window.languages.ViewNewsFollowLink}
           </p>
         </div>
-        <div class="view-news-footer-item-container">
-          <p class="view-news-item-date horizontal-centering">
+        <div class="view-news-footer-item-container view-news-footer-date-item">
+          <p class="{view-news-item-date:true, horizontal-centering: true, text-left: (!i.url || i.url == '')}">
             {i.datetime}
           </p>
         </div>
-        <div class="view-news-footer-item-container"
+        <div class="view-news-footer-item-container view-news-footer-info-item"
              ontouchstart="onLikeTouchStart()"
              ontouchend="onLikeTouchEnd({i.news_id})"
         >
@@ -80,7 +81,9 @@
     scope.newsOpened = false;
     var touchStartY, touchEndY;
     var likeTouchStartX, likeTouchStartY, likeTouchEndX, likeTouchEndY;
+    var followTouchStartX, followTouchStartY, followTouchEndX, followTouchEndY;
     var isLikeClick = false;
+    var isFollowClick = false;
     var pageNumber = 2;
 
     const phoneNumber = localStorage.getItem('click_client_phoneNumber');
@@ -176,32 +179,55 @@
     };
 
     newsTouchStart = function () {
-      if(isLikeClick) return;
+      if(isLikeClick || isFollowClick) return;
       touchStartY = event.changedTouches[0].pageY;
       console.log('View.News.tag.onNewsTouchStart()');
     };
 
-    followLink = function (LinkToNews, newsId) {
+    followLinkTouchStart = function() {
+      console.log('View.News.tag.followLinkTouchStart()')
+      isFollowClick = true;
+      followTouchStartX = event.changedTouches[0].pageY;
+      followTouchStartY = event.changedTouches[0].pageY;
+    };
+
+    followLinkTouchEnd = function (LinkToNews, newsId) {
+      console.log('View.News.tag.followLinkTouchEnd()')
       console.log("Link to news", LinkToNews);
-      increaseNewsViewCount(newsId);
-      window.open(LinkToNews, '_system', 'location=no');
+
+      followTouchEndX = event.changedTouches[0].pageY;
+      followTouchEndY = event.changedTouches[0].pageY;
+      const isTap = (Math.abs(followTouchStartX - followTouchEndX) <= 20 && Math.abs(followTouchStartY - followTouchEndY) <= 20);
+      if(!isTap) return;
+
+      document.getElementById(newsId).style.webkitTransform = 'scale(0.8)';
+
+      setTimeout(function () {
+        document.getElementById(newsId).style.webkitTransform = 'scale(1)';
+        increaseNewsViewCount(newsId);
+        window.open(LinkToNews, '_system', 'location=no');
+        isFollowClick = true;
+      }, 100);
+
     };
 
     convertCount = function(count) {
       var result = count;
+      const k = (count / 1000).toString() + ((count / 1000) > 1 ? '.0' : '');
+      const m = (count / 1000000).toString() + ((count / 1000000) > 1 ? '.0' : '');
+      const b = (count / 1000000000).toString() + ((count / 1000000000) > 1 ? '.0' : '');
+
       if(count < 1000) {
-        result = round(count, 0);
+        result = count;
       } else if(count >= 1000 && count < 1000000) {
-        result = round(count / 1000, 0) + 'K';
-      } else if(count >= 1000000) {
-        result = round(count / 1000000, 0) + 'M';
+        result = k.substring(0, k.indexOf('.') + 2) + 'K';
+      } else if(count >= 1000000 && count < 1000000000) {
+        result = m.substring(0, m.indexOf('.') + 2) + 'M';
+      } else if(count >= 1000000000) {
+        result = b.substring(0, b.indexOf('.') + 2) + 'B';
       }
       return result;
     };
-
-    function round(value, decimals) {
-      return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
-    }
 
     newsTouchEnd = function (newsId) {
       console.log('View.News.tag.newsTouchEnd()');
@@ -314,6 +340,9 @@
           if (error === 0) {
             for (var i = 0; i < responseNews.length; i++) {
               responseNews[i].isOpened = false;
+//              for test purposes
+//              responseNews[i].likes_count = Math.random() * 1000000;
+//              responseNews[i].views_count = Math.random() * 100000;
               scope.newsArray.push(responseNews[i]);
             }
 
