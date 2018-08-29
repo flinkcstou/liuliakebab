@@ -29,12 +29,12 @@
         <div hide="{!i.url || i.url == ''}" ii="{!i.url || i.url == ''}" class="view-news-item-link view-news-footer-item-container"
              ontouchstart="followLinkTouchStart({this.id})"
              ontouchend="followLinkTouchEnd(&quot;{i.url}&quot;, {i.news_id})" id="{i.news_id}">
-          <p style="margin: auto" class="horizontal-centering">
+          <p style="margin: auto" class="horizontal-centering" style="overflow: visible;">
             {window.languages.ViewNewsFollowLink}
           </p>
         </div>
         <div class="view-news-footer-item-container view-news-footer-date-item">
-          <p class="{view-news-item-date:true, horizontal-centering: true, text-left: (!i.url || i.url == '')}">
+          <p class="{view-news-item-date:true, horizontal-centering: true, text-left: (!i.url || i.url == '')}" style="overflow: visible;">
             {i.datetime}
           </p>
         </div>
@@ -49,7 +49,7 @@
               </div>
             </div>
             <div class="view-news-item-info-container">
-              <p class="horizontal-centering view-news-item-icon-title">
+              <p class="horizontal-centering view-news-item-icon-title" style="overflow: visible;">
                 {convertCount(i.likes_count)}
               </p>
             </div>
@@ -59,8 +59,8 @@
               <div class="view-news-icon-container view-news-item-icon-view">
               </div>
             </div>
-            <div class="view-news-item-info-container horizontal-centering">
-              <p class="horizontal-centering view-news-item-icon-title">
+            <div class="view-news-item-info-container horizontal-centering" style="overflow: visible;">
+              <p class="horizontal-centering view-news-item-icon-title" style="overflow: visible;">
                 {convertCount(i.views_count)}
               </p>
             </div>

@@ -16545,12 +16545,6 @@ var css = {
   "height: " + 40 * widthK + "px;" +
   "}",
 
-  horizontalCentering: ".horizontal-centering" +
-  "{" +
-  "position: relative;" +
-  "top:50%;" +
-  "transform: translateY(-50%);" +
-  "}",
 
   viewNewsItemLink: ".view-news-item-link" +
   "{" +
