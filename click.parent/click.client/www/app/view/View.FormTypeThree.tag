@@ -660,7 +660,7 @@
 
       amountCalcInputId.value = amountInput;
 
-      setTimeout(function() {
+      setTimeout(function () {
           amountCalcInputId.selectionStart = selectionStart;
           amountCalcInputId.selectionEnd = selectionStart;
         }, 0
@@ -1085,7 +1085,7 @@
 
       amount.value = amountInput;
 
-      setTimeout(function() {
+      setTimeout(function () {
           amount.selectionStart = selectionStart;
           amount.selectionEnd = selectionStart;
         }, 0

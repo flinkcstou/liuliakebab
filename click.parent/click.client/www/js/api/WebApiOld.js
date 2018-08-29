@@ -145,7 +145,7 @@ window.api.initSocket = function () {
               showAlertComponent("Ooooops! Что-то пошло не так. При возникновении этой ошибки ещё раз, свяжитесь со службой поддержки по номеру +998 71 2310880.")
             }
             else
-            showConfirmComponent(error, 'session');
+              showConfirmComponent(error, 'session');
 
             return
           }
@@ -195,6 +195,7 @@ window.api.call = function (params) {
   console.log('METHOD', method);
   var input = params.input;
 
+  console.error("AAAAAAAAAAAAAAAa", params);
   var onSuccess = params.onSuccess;
   var onFail = params.onFail;
   var scope = params.scope || window;

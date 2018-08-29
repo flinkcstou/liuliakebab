@@ -1,91 +1,126 @@
 <view-news id="viewNewsId" class="view-news riot-tags-main-container">
-  <div class="view-news-page-title">
-    <p class="view-news-name-title">УВЕДОМЛЕНИЯ</p>
+  <div class="view-news-page-header">
+    <p class="view-news-name-title">НОВОСТИ</p>
     <div id="closeButton" role="button" aria-label="{window.languages.Close}" ontouchend="closeNewsTouchEnd()"
-         class="view-news-right-button"></div>
+         class="view-news-close-button view-news-icon-container"></div>
   </div>
-
   <div class="view-news-container" id="newsMainContainerId" onscroll="newsScrollFunction()">
-
-    <div class="view-news-block-of-all" each="{i in newsArray}">
-
-      <img id="newsImageId{i.news_id}"
-           hidden
-           class="view-news-block-image"
-           exist="{i.image_exist}">
-
-      <div class="{view-news-block:!i.url, view-news-block-with-link:i.url}" shorttext="{i.content_short}"
-           opened="false" title="{i.news_content}"
-           id="newsContainerId{i.news_id}"
-           ontouchstart="newsTouchStart()"
-           ontouchend="newsTouchEnd(this.id, 'newsTextId' + {i.news_id}, this.title, document.getElementById(this.id).getAttribute('shorttext'), 'newsImageId'+{i.news_id}, {i.news_id})">
-        <p class="view-news-block-title">{i.news_title}</p>
-        <p id="newsTextId{i.news_id}" class="view-news-block-text">{i.content_short}</p>
-        <div hidden="{!i.url}" class="view-news-follow-link-container"
-             ontouchend="followLink(&quot;{i.url}&quot;)" id="{i.news_id}">
-          <div class="view-news-follow-link-text">{window.languages.ViewNewsFollowLink}</div>
-          <div class="view-news-follow-link-arrow"></div>
+    <div class="view-news-item" each="{i in newsArray}"
+         id="newsContainerId{i.news_id}"
+         ontouchstart="newsTouchStart()"
+         ontouchend="newsTouchEnd({i.news_id})">
+      <div
+        id="newsImageHolderId{i.news_id}"
+        class="view-news-item-image">
+        <img id="newsImageId{i.news_id}"
+             class="view-news-item-image"
+              style="opacity: 0;">
+      </div>
+      <div class="view-news-item-content" shorttext="{i.content_short}"
+           opened="false" title="{i.news_content}">
+        <p class="view-news-item-title">
+          {i.news_title}
+        </p>
+        <p id="newsArticleId{i.news_id}" class="view-news-item-article">
+          {i.news_content}
+        </p>
+      </div>
+      <div class="view-news-item-footer">
+        <div hide="{!i.url || i.url == ''}" ii="{!i.url || i.url == ''}" class="view-news-item-link view-news-footer-item-container"
+             ontouchstart="followLinkTouchStart({this.id})"
+             ontouchend="followLinkTouchEnd(&quot;{i.url}&quot;, {i.news_id})" id="{i.news_id}">
+          <p style="margin: auto" class="horizontal-centering">
+            {window.languages.ViewNewsFollowLink}
+          </p>
         </div>
-        <p class="view-news-block-date">{i.datetime}</p>
-        <div if="{!i.opened}" class="view-news-block-readmore-container">{window.languages.ViewNewsDetails}
-          <div class="view-news-block-readmore-icon"></div>
+        <div class="view-news-footer-item-container view-news-footer-date-item">
+          <p class="{view-news-item-date:true, horizontal-centering: true, text-left: (!i.url || i.url == '')}">
+            {i.datetime}
+          </p>
         </div>
-        <div if="{i.opened}" class="view-news-block-readmore-container">
-          <div class="view-news-block-opened-icon"></div>
+        <div class="view-news-footer-item-container view-news-footer-info-item"
+             ontouchstart="onLikeTouchStart()"
+             ontouchend="onLikeTouchEnd({i.news_id})"
+        >
+          <div class="view-news-item-info-container">
+            <div class="view-news-item-info-container ">
+              <div id="like_{i.news_id}"
+                class="{view-news-icon-container:true, view-news-item-icon-like: true, view-news-item-icon-liked: i.like_status}">
+              </div>
+            </div>
+            <div class="view-news-item-info-container">
+              <p class="horizontal-centering view-news-item-icon-title">
+                {convertCount(i.likes_count)}
+              </p>
+            </div>
+          </div>
+          <div class="view-news-item-info-container">
+            <div class="view-news-item-info-container ">
+              <div class="view-news-icon-container view-news-item-icon-view">
+              </div>
+            </div>
+            <div class="view-news-item-info-container horizontal-centering">
+              <p class="horizontal-centering view-news-item-icon-title">
+                {convertCount(i.views_count)}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div style="float: right;">
+          <div id="newsArrowIcon{i.news_id}" class="view-news-item-icon-more view-news-icon-container"></div>
         </div>
       </div>
     </div>
-    <div class="view-news-block-space"></div>
   </div>
-
+  <div class="view-news-block-space">
+  </div>
   <script>
+
     var scope = this;
     scope.newsArray = [];
     scope.newsOpened = false;
     var touchStartY, touchEndY;
-    var openImage = false;
+    var likeTouchStartX, likeTouchStartY, likeTouchEndX, likeTouchEndY;
+    var followTouchStartX, followTouchStartY, followTouchEndX, followTouchEndY;
+    var isLikeClick = false;
+    var isFollowClick = false;
     var pageNumber = 2;
+
+    const phoneNumber = localStorage.getItem('click_client_phoneNumber');
+    const loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
+    const sessionKey = loginInfo.session_key;
+
+
+    console.error(scope.newsArray);
 
     scope.on('mount', function () {
       console.log("MOUNT NEWS");
     });
 
+    scope.getNewsById = function (newsId) {
+      for (var i in scope.newsArray) {
+        if (scope.newsArray[i].news_id === newsId) {
+          return scope.newsArray[i];
+        }
+      }
+    };
+
     openNews = function (news) {
-      console.log("news to open", news);
+      console.log("View.News.tag.openNews():", news);
+
       var containerId = "newsContainerId" + news.news_id;
       var textId = "newsTextId" + news.news_id;
       var longText = news.news_content;
-      var shortText = news.content_short;
-      var imageId = "newsImageId" + news.news_id;
       var newsId = news.news_id;
 
-
-      console.log("This post is not opened and its id is", newsId);
-      console.log("All posts", scope.newsArray);
       for (var i in scope.newsArray) {
         if (scope.newsArray[i].news_id === newsId) {
           scope.newsArray[i].opened = true;
         }
       }
-      console.log(document.getElementById(imageId));
-      if (document.getElementById(imageId)) {
-        console.log('first if');
-        openImage = JSON.parse(document.getElementById(imageId).getAttribute('exist')) === true;
-      }
+
       document.getElementById(containerId).style.paddingBottom = 100 * widthK + 'px';
       document.getElementById(containerId).setAttribute('opened', true);
-      if (openImage) {
-        console.log('second if');
-        document.getElementById(imageId).style.display = 'block';
-        document.getElementById(imageId).setAttribute('src', news.news_image);
-        document.getElementById(imageId).onload = function () {
-          console.log("IMG was loaded");
-        };
-        document.getElementById(imageId).onerror = function () {
-          console.log("image load error");
-          document.getElementById(imageId).setAttribute('src', 'resources/icons/ViewNews/news.png');
-        }
-      }
       document.getElementById(containerId).style.height = 'auto';
       document.getElementById(textId).innerHTML = longText;
 
@@ -93,38 +128,48 @@
     };
 
     closeNewsTouchEnd = function () {
-      event.preventDefault();
-      event.stopPropagation();
-
-      console.log('SCOPE NEW', scope);
+      stopEventPropagation();
 
       if (sessionStorage.getItem("push_news")) {
         sessionStorage.setItem("push_news", false)
       }
 
-      console.log("1 authorized=", JSON.parse(localStorage.getItem('click_client_authorized')));
-      console.log("2 settings block=", JSON.parse(localStorage.getItem('settings_block')));
-      console.log("3 onResume=", JSON.parse(localStorage.getItem('onResume')));
-      console.log("4 session_broken=", JSON.parse(localStorage.getItem('session_broken')));//
-
-
-      if ((!JSON.parse(localStorage.getItem('click_client_authorized')) && !modeOfApp.demoVersion) || JSON.parse(localStorage.getItem('session_broken')) || (JSON.parse(localStorage.getItem('settings_block')) === true && JSON.parse(localStorage.getItem('onResume')))) {
-
-        console.log("AUTH MOUNT FROM NEWS");
-
-        riotTags.innerHTML = "<view-authorization>";
-        riot.mount('view-authorization');
+      if (isUserAuthorized()) {
+        console.log('View.News.tag.closeNewsTouchEnd()');
+        mountTo('view-authorization');
         return
       }
-      console.log("history=", history.arrayOfHistory);
+
+      checkAndReloadMainPageParams();
+      unmount();
+    };
+
+    function unmount() {
+      onBackKeyDown();
+      scope.unmount();
+    }
+
+    function isUserAuthorized() {
+      const authorized = JSON.parse(localStorage.getItem('click_client_authorized'));
+      const settingsBlock = JSON.parse(localStorage.getItem('settings_block'));
+      const onResume = JSON.parse(localStorage.getItem('onResume'));
+      const sessionBroken = JSON.parse(localStorage.getItem('session_broken'));
+
+      return (!authorized && !modeOfApp.demoVersion) || sessionBroken || (settingsBlock === true && onResume)
+    }
+
+    function mountTo(viewName) {
+      riotTags.innerHTML = "<" + viewName + ">";
+      riot.mount(viewName);
+    }
+
+    function checkAndReloadMainPageParams() {
       history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
       if (history.arrayOfHistory[history.arrayOfHistory.length - 2].view === "view-main-page") {
         history.arrayOfHistory[history.arrayOfHistory.length - 2].params = {};
         sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
       }
-      onBackKeyDown();
-      scope.unmount()
-    };
+    }
 
     newsScrollFunction = function () {
       if ((newsMainContainerId.scrollHeight - newsMainContainerId.scrollTop) == newsMainContainerId.offsetHeight) {
@@ -134,73 +179,143 @@
     };
 
     newsTouchStart = function () {
+      if(isLikeClick || isFollowClick) return;
       touchStartY = event.changedTouches[0].pageY;
+      console.log('View.News.tag.onNewsTouchStart()');
     };
 
-    followLink = function (LinkToNews) {
+    followLinkTouchStart = function() {
+      console.log('View.News.tag.followLinkTouchStart()')
+      isFollowClick = true;
+      followTouchStartX = event.changedTouches[0].pageY;
+      followTouchStartY = event.changedTouches[0].pageY;
+    };
+
+    followLinkTouchEnd = function (LinkToNews, newsId) {
+      console.log('View.News.tag.followLinkTouchEnd()')
       console.log("Link to news", LinkToNews);
-      window.open(LinkToNews, '_system', 'location=no');
+
+      followTouchEndX = event.changedTouches[0].pageY;
+      followTouchEndY = event.changedTouches[0].pageY;
+      isFollowClick = false;
+
+      const isTap = (Math.abs(followTouchStartX - followTouchEndX) <= 20 && Math.abs(followTouchStartY - followTouchEndY) <= 20);
+      if(!isTap) return;
+
+      document.getElementById(newsId).style.webkitTransform = 'scale(0.8)';
+
+      setTimeout(function () {
+        document.getElementById(newsId).style.webkitTransform = 'scale(1)';
+        increaseNewsViewCount(newsId);
+        window.open(LinkToNews, '_system', 'location=no');
+      }, 100);
     };
 
-    newsTouchEnd = function (containerId, textId, longText, shortText, imageId, newsId) {
-      event.preventDefault();
-      event.stopPropagation();
+    convertCount = function(count) {
+      var result = count;
+      const k = (count / 1000).toString() + ((count / 1000) > 1 ? '.0' : '');
+      const m = (count / 1000000).toString() + ((count / 1000000) > 1 ? '.0' : '');
+      const b = (count / 1000000000).toString() + ((count / 1000000000) > 1 ? '.0' : '');
+
+      if(count < 1000) {
+        result = count;
+      } else if(count >= 1000 && count < 1000000) {
+        result = k.substring(0, k.indexOf('.') + 2) + 'K';
+      } else if(count >= 1000000 && count < 1000000000) {
+        result = m.substring(0, m.indexOf('.') + 2) + 'M';
+      } else if(count >= 1000000000) {
+        result = b.substring(0, b.indexOf('.') + 2) + 'B';
+      }
+      return result;
+    };
+
+    newsTouchEnd = function (newsId) {
+      console.log('View.News.tag.newsTouchEnd()');
+
+      stopEventPropagation();
 
       touchEndY = event.changedTouches[0].pageY;
 
       if (Math.abs(touchStartY - touchEndY) <= 20) {
-        if (JSON.parse(document.getElementById(containerId).getAttribute('opened')) === false) {
-          console.log("This post is not opened and its id is", newsId);
-          console.log("All posts", scope.newsArray);
-          var newsImage;
-          for (var i in scope.newsArray) {
-            if (scope.newsArray[i].news_id === newsId) {
-              scope.newsArray[i].opened = true;
-              newsImage = scope.newsArray[i].news_image;
-            }
-          }
-          openImage = JSON.parse(document.getElementById(imageId).getAttribute('exist')) === true;
-          document.getElementById(containerId).style.paddingBottom = 100 * widthK + 'px';
-          document.getElementById(containerId).setAttribute('opened', true);
-          if (openImage)
-            document.getElementById(imageId).style.display = 'block';
-          document.getElementById(containerId).style.height = 'auto';
-          document.getElementById(textId).innerHTML = longText;
-          var img = document.getElementById(imageId);
-          img.setAttribute('src', newsImage);
-          img.onload = function () {
-            console.log("IMG was loaded");
-          };
-          img.onerror = function () {
-            console.log("image load error");
-            img.setAttribute('src', 'resources/icons/ViewNews/news.png');
-          }
-        }
-        else {
-          for (var i in scope.newsArray) {
-            if (scope.newsArray[i].news_id === newsId) {
-              scope.newsArray[i].opened = false;
-            }
-          }
-          document.getElementById(containerId).style.paddingBottom = '0px';
-          if (document.getElementById(containerId).className === "view-news-block")
-            document.getElementById(containerId).style.height = 360 * widthK + 'px';
-          else
-            document.getElementById(containerId).style.height = 415 * widthK + 'px';
-          document.getElementById(imageId).style.display = 'false';
-          document.getElementById(imageId).style.display = 'none';
-          document.getElementById(textId).innerHTML = shortText;
-          document.getElementById(containerId).setAttribute('opened', false)
-        }
-        scope.update();
+        console.log('View.News.tag.newsTouchEnd - Success !');
+        onClickNews(newsId);
       }
     };
 
-    scope.showNewsFunction = function (pageNumber, news_id) {
-      var phoneNumber = localStorage.getItem("click_client_phoneNumber");
+    function onClickNews(newsId) {
+
+      const article = getArticle(newsId);
+      const arrow = getArrow(newsId);
+
+      scope.getNewsById(newsId).isOpened = !scope.getNewsById(newsId).isOpened;
+
+      if (scope.getNewsById(newsId).isOpened) {
+        article.style.marginBottom = "5%";
+        article.style.height = "auto";
+        arrow.style.transform = "rotate(180deg)";
+        increaseNewsViewCount(newsId);
+      } else {
+        article.style.marginBottom = "0";
+        article.style.height = "0";
+        arrow.style.transform = "rotate(0)";
+      }
+
+      scope.update();
+    }
+
+    function increaseNewsViewCount(newsId) {
+      if(!newsId) return;
+
+      var tapedNews = getNewsById(newsId);
+      tapedNews.views_count++;
+
+      window.api.call({
+        method: 'news.view.count',
+        input: {
+          phone_num: phoneNumber,
+          session_key: sessionKey,
+          news_id: newsId
+        },
+        scope: scope,
+        onSuccess: function (response) {
+          console.log('View.News.tag.newsTouchEnd.increaseNewsViewCount.onSuccess()', response);
+          const error = response[0][0].error;
+          const viewsCount = response[1][0].views_count;
+
+          console.log(error, viewsCount);
+          if(error == 0 && tapedNews) {
+            tapedNews.views_count = viewsCount;
+            scope.update();
+          }
+
+        },
+        onFail: function (api_status, api_status_message, data) {
+        },
+        onTimeOut: function () {
+        },
+        onEmergencyStop: function () {
+        }
+      }, 30000);
+    }
+
+    function getArticle(newsId) {
+      return document.getElementById("newsArticleId" + newsId)
+    }
+
+    function getArrow(newsId) {
+      return document.getElementById("newsArrowIcon" + newsId)
+    }
+
+    function stopEventPropagation() {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+
+    scope.showNewsFunction = function (pageNumber) {
+      console.log("View.News.tag.showNewsFunction(): ", pageNumber);
+
       var signString = hex_md5(phoneNumber.substring(0, 5) + "CLICK" + phoneNumber.substring(phoneNumber.length - 7, phoneNumber.length));
       var timeOutTimerNews = 0;
-      var newsToOpen;
 
       window.startSpinner();
 
@@ -210,83 +325,187 @@
           phone_num: phoneNumber,
           sign_string: signString,
           page_number: pageNumber
-
         },
 
-        scope: this,
+        scope: scope,
 
-        onSuccess: function (result) {
-          console.log('Clearing timer onSuccess', timeOutTimerNews);
+        onSuccess: function (response) {
+          console.log('View.News.tag.showNewsFunction.onSuccess()', response);
           window.clearTimeout(timeOutTimerNews);
 
-          if (result[0][0].error === 0) {
-            for (var i in result[1]) {
-              result[1][i].opened = false;
-              if (result[1][i].news_image) {
-                result[1][i].image_exist = true;
-              }
-              else {
-                result[1][i].image_exist = false;
-              }
-              if (result[1][i].news_content.length > 120) {
-                if (result[1][i].news_content_short)
-                  result[1][i].content_short = result[1][i].news_content_short.substring(0, 120) + '...';
-              }
+          const error = response[0][0].error;
+          const errorNote = response[0][0].error_note;
+          const responseNews = response[1];
 
-              if (news_id && news_id == result[1][i].news_id)
-                newsToOpen = result[1][i];
-              scope.newsArray.push(result[1][i])
+          if (error === 0) {
+            for (var i = 0; i < responseNews.length; i++) {
+              responseNews[i].isOpened = false;
+//              for test purposes
+//              responseNews[i].likes_count = Math.random() * 1000000;
+//              responseNews[i].views_count = Math.random() * 100000;
+              scope.newsArray.push(responseNews[i]);
             }
+
             scope.update();
-            if (newsToOpen)
-              openNews(newsToOpen);
+
+            // We need to load img  immediately. If you have better solution, you are welcome
+            for (var i = 0; i < scope.newsArray.length; i++) {
+              const newsImgHolderTag = document.getElementById('newsImageHolderId' + scope.newsArray[i].news_id);
+              const newsImgTag = document.getElementById('newsImageId' + scope.newsArray[i].news_id);
+              newsImgTag.setAttribute('src', scope.newsArray[i].news_image);
+              newsImgTag.onload = function() {
+                newsImgTag.style.opacity = 1;
+              };
+              newsImgTag.onerror = function () {
+                console.error('View.News.tag.showNewsFunction.newsImgTag.onerror()', response);
+                newsImgTag.setAttribute('hidden', true);
+                newsImgHolderTag.setAttribute('hidden', true);
+              }
+            }
+
           }
           else {
-            console.log("view news error 1");
             window.common.alert.show("componentAlertId", {
               parent: scope,
-              errornote: result[0][0].error_note,
+              errornote: errorNote,
               viewpage: 'view-main-page'
             });
+
             scope.update();
-            console.log(result[0][0].error_note);
           }
         },
 
         onFail: function (api_status, api_status_message, data) {
-          console.log('Clearing timer onFail', timeOutTimerNews);
+          console.error('View.News.tag.showNewsFunction.onFail()', api_status, api_status_message, data);
+
           window.clearTimeout(timeOutTimerNews);
           window.common.alert.show("componentAlertId", {
             parent: scope,
             errornote: api_status_message,
             viewpage: 'view-main-page'
           });
+
           scope.update();
-          console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
-          console.error(data);
         },
         onTimeOut: function () {
+          console.log('View.News.tag.showNewsFunction.onTimeOut()');
+
           timeOutTimerNews = setTimeout(function () {
             window.writeLog({
               reason: 'Timeout',
-              method: 'get.news',
+              method: 'get.news'
             });
+
             window.common.alert.show("componentAlertId", {
               parent: scope,
               errornote: window.languages.WaitingTimeExpiredText,
               viewpage: 'view-main-page'
             });
+
             scope.update();
             window.stopSpinner();
 
           }, 30000);
-          console.log('creating timeOut', timeOutTimerNews);
+
+          console.log('View.News.tag.showNewsFunction.onTimeOut() | creating timeOut', timeOutTimerNews);
         },
         onEmergencyStop: function () {
-          console.log('Clearing timer emergencyStop', timeOutTimerNews);
+          console.error('View.News.tag.showNewsFunction.onEmergencyStop()');
           window.clearTimeout(timeOutTimerNews);
         }
       }, 30000);
+    };
+
+    onLikeTouchStart = function() {
+      console.log('View.News.tag.onLikeTouchStart()');
+      isLikeClick = true;
+      likeTouchStartX = event.changedTouches[0].pageY;
+      likeTouchStartY = event.changedTouches[0].pageY;
+    };
+
+    onLikeTouchEnd = function(newsId) {
+      console.log('View.News.tag.onLikeTouchEnd()', newsId);
+      likeTouchEndX = event.changedTouches[0].pageY;
+      likeTouchEndY = event.changedTouches[0].pageY;
+
+      isLikeClick = false;
+
+      const isTap = (Math.abs(likeTouchStartX - likeTouchEndX) <= 20 && Math.abs(likeTouchStartY - likeTouchEndY) <= 20);
+      if(!isTap) return;
+
+      var tapedNews = getNewsById(newsId);
+      if(!tapedNews) return;
+
+      if(!tapedNews.like_status) {
+       likeNews(tapedNews);
+      } else {
+        unlikeNews(tapedNews);
+      }
+    };
+
+    function likeNews(news) {
+      const likeIcon = document.getElementById('like_' + news.news_id);
+      likeIcon.classList.remove('view-news-item-icon-liked');
+      news.like_status = 1;
+      news.likes_count++;
+
+      window.api.call({
+        method: 'news.like',
+        input: {
+          phone_num: phoneNumber,
+          session_key: sessionKey,
+          news_id: news.news_id
+        },
+        scope: scope,
+        onSuccess: function (response) {
+          console.log('View.News.tag.onLikeTouchEnd.news.like.onSuccess()', response);
+        },
+        onFail: function (api_status, api_status_message, data) {
+        },
+        onTimeOut: function () {
+        },
+        onEmergencyStop: function () {
+        }
+      }, 30000);
+
+      scope.update();
+    }
+
+    function unlikeNews(news) {
+      const likeIcon = document.getElementById('like_' + news.news_id);
+      likeIcon.classList.add('view-news-item-icon-liked');
+      news.like_status = 0;
+      news.likes_count--;
+
+      window.api.call({
+        method: 'news.unlike',
+        input: {
+          phone_num: phoneNumber,
+          session_key: sessionKey,
+          news_id: news.news_id
+        },
+        scope: scope,
+        onSuccess: function (response) {
+          console.log('View.News.tag.onLikeTouchEnd.news.unlike.onSuccess()', response);
+        },
+        onFail: function (api_status, api_status_message, data) {
+        },
+        onTimeOut: function () {
+        },
+        onEmergencyStop: function () {
+        }
+      }, 30000);
+
+      scope.update();
+    }
+
+    function getNewsById(newsId) {
+      for(var i in scope.newsArray) {
+        if(scope.newsArray[i].news_id == newsId) {
+          return scope.newsArray[i];
+        }
+      }
+      return null;
     }
 
   </script>

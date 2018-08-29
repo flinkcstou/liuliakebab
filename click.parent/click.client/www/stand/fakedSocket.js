@@ -28,7 +28,6 @@ window.fakedSocket.send = function (message) {
   //console.log(message);
   var parsedMessage = JSON.parse(message);
 
-
   var method = parsedMessage.method;
 
   var callback = window.fakedSocket.callbacks[method];
@@ -48,7 +47,7 @@ window.fakedSocket.send = function (message) {
         api_status: 0,
         api_status_message: 'ok',
 
-        data: arrayOfAnswer,
+        data: arrayOfAnswer
       };
       //console.log('result of fake API', retData)
       //Chtobi dobavlyali dinamichno vse objecti
@@ -64,7 +63,7 @@ window.fakedSocket.send = function (message) {
         data: [
           [{method: method, success: 1, error: 0, error_note: ''}],
           [e]
-        ],
+        ]
       };
     }
 
