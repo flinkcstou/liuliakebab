@@ -4717,6 +4717,16 @@ var css = {
   "color: #515151;" +
   "background-color: transparent;" +
   "}",
+  
+  servicePageNumberInputPrefixWideWidth: ".servicepage-number-input-prefix-wide-width" +
+  "{" +
+  "width: 81%;" +
+  "}",
+  
+  servicePageNumberInputPrefixWidth: ".servicepage-number-input-prefix-width" +
+  "{" +
+  "width: 72%;" +
+  "}",
 
   servicePageNumberInputPartPlaceHolder: ".servicepage-number-input-part::-webkit-input-placeholder" +
   "{" +

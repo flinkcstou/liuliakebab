@@ -49,6 +49,7 @@
            hidden="{modeOfApp.offlineMode && opts.chosenServiceId == 'mynumber'}">
         <p id="firstFieldTitle" class="servicepage-text-field">{chosenFieldName}</p>
         <p class="servicepage-number-first-part" if="{phoneFieldBool}">+{window.languages.CodeOfCountry}</p>
+        <p class="servicepage-number-first-part" if="{!phoneFieldBool && parameterPrefix}">{parameterPrefix}</p>
 
         <div class="servicepage-prefix-dropdown" if="{!phoneFieldBool && hasPrefixes}"
              ontouchend="openPrefixesDropDown()"
@@ -57,8 +58,11 @@
           <div class="servicepage-prefix-dropdown-icon"></div>
         </div>
 
-        <input class="{servicepage-number-input-part: phoneFieldBool || hasPrefixes, servicepage-number-input-part-two: !phoneFieldBool && isNumber && !hasPrefixes,
-                           servicepage-number-input-part-three: !phoneFieldBool && !isNumber && !hasPrefixes}"
+        <input class="{servicepage-number-input-part: phoneFieldBool || hasPrefixes || parameterPrefix,
+                        servicepage-number-input-prefix-wide-width: parameterPrefix && parameterPrefix.length < 4,
+                        servicepage-number-input-prefix-width: parameterPrefix && parameterPrefix.length >= 4 && parameterPrefix.length < 6,
+                        servicepage-number-input-part-two: !phoneFieldBool && isNumber && !hasPrefixes && !parameterPrefix,
+                        servicepage-number-input-part-three: !phoneFieldBool && !isNumber && !hasPrefixes && !parameterPrefix}"
                type="{inputType}"
                id="firstFieldInput"
                onfocus="colorFieldGlobal('firstField','firstFieldTitle')"
@@ -757,6 +761,8 @@
       scope.rate = scope.service.rate;
       scope.nds = scope.service.nds;
       scope.currency = scope.service.currency;
+      scope.parameterPrefix = scope.service.parameter_prefix;
+      scope.update();
       opts.currency = scope.service.currency;
 
       if (parseInt(opts.amountWithoutSpace) >= 1000) {
