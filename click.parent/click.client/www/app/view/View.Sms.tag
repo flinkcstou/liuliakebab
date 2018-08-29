@@ -238,7 +238,7 @@
     helpTouchStartSms = function () {
       stopEventPropagation();
 
-      scope.smsButtonHelpId.style.webkitTransform = 'scale(0.8)';
+      smsButtonHelpId.style.webkitTransform = 'scale(0.8)';
 
       helpTouchStartXSms = event.changedTouches[0].pageX;
       helpTouchStartYSms = event.changedTouches[0].pageY;
@@ -247,7 +247,7 @@
     helpTouchEndSms = function () {
       stopEventPropagation();
 
-      scope.smsButtonHelpId.style.webkitTransform = 'scale(1)';
+      smsButtonHelpId.style.webkitTransform = 'scale(1)';
 
       helpTouchEndXSms = event.changedTouches[0].pageX;
       helpTouchEndYSms = event.changedTouches[0].pageY;
