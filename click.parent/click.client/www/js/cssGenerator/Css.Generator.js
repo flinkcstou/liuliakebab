@@ -16454,11 +16454,16 @@ var css = {
   viewNewsCloseButton: ".view-news-close-button " +
   "{" +
   "position: absolute;" +
-  "width:" + 40 * widthK + "px;" +
-  "height:" + 40 * widthK + "px;" +
+  "width:" + 144 * widthK + "px;" +
+  "height:" + 92 * widthK + "px;" +
+  "right:" + -20 * widthK + "px;" +
   "background-image: url('resources/icons/ViewTransfer/banks_close.png');" +
-  "bottom:" + 40 * widthK + "px;" +
-  "right:5%;" +
+  "background-repeat: no-repeat;" +
+  "-webkit-background-size: 22% !important;" +
+  "background-position-y: center;" +
+  "background-position-x:" + 54 * widthK + "px;" +
+  "background-size: 22% !important;" +
+  "top:" + 30 * widthK + "px;" +
   "}",
 
   viewNewsItem: ".view-news-item" +
@@ -16600,7 +16605,7 @@ var css = {
 
   viewNewsIconContainer: ".view-news-icon-container" +
   "{" +
-  "background-size: 70%;" +
+  "background-size: 80%;" +
   "background-position: center;" +
   "background-repeat: no-repeat;" +
   "}",

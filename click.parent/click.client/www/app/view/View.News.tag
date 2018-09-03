@@ -14,7 +14,7 @@
         class="view-news-item-image">
         <img id="newsImageId{i.news_id}"
              class="view-news-item-image"
-              style="opacity: 0;">
+              style="opacity: 0;" onload="onLoadImage({i.news_id})" onerror="onLoadImageError({i.news_id})">
       </div>
       <div class="view-news-item-content" shorttext="{i.content_short}"
            opened="false" title="{i.news_content}">
@@ -96,6 +96,17 @@
     scope.on('mount', function () {
       console.log("MOUNT NEWS");
     });
+
+    onLoadImage = function(newsId){
+      console.log('View.News.tag.onLoadImage', newsId);
+      document.getElementById("newsImageId" + newsId).style.opacity = 1;
+    };
+
+    onLoadImageError = function(newsId) {
+      console.log('View.News.tag.onLoadImageError', newsId);
+      document.getElementById("newsImageId" + newsId).setAttribute("hidden", true);
+      document.getElementById("newsImageHolderId" + newsId).setAttribute("hidden", true);
+    };
 
     scope.getNewsById = function (newsId) {
       for (var i in scope.newsArray) {
@@ -350,17 +361,7 @@
 
             // We need to load img  immediately. If you have better solution, you are welcome
             for (var i = 0; i < scope.newsArray.length; i++) {
-              const newsImgHolderTag = document.getElementById('newsImageHolderId' + scope.newsArray[i].news_id);
-              const newsImgTag = document.getElementById('newsImageId' + scope.newsArray[i].news_id);
-              newsImgTag.setAttribute('src', scope.newsArray[i].news_image);
-              newsImgTag.onload = function() {
-                newsImgTag.style.opacity = 1;
-              };
-              newsImgTag.onerror = function () {
-                console.error('View.News.tag.showNewsFunction.newsImgTag.onerror()', response);
-                newsImgTag.setAttribute('hidden', true);
-                newsImgHolderTag.setAttribute('hidden', true);
-              }
+              document.getElementById('newsImageId' + scope.newsArray[i].news_id).setAttribute('src', scope.newsArray[i].news_image);
             }
 
           }
