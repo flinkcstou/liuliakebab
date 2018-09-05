@@ -81,16 +81,25 @@
       if (myValue == 'x' && inputFocusIndexSms != 0) {
         setConfirmSms(scope.confirmSms.slice(0, inputFocusIndexSms - 1) + scope.confirmSms.slice(inputFocusIndexSms));
       }
+
+      if (scope.confirmSms.length == 5) {
+        var sms = scope.confirmSms;
+        viewSms.getSms(sms);
+        return;
+      }
     };
 
     function setConfirmSms(sms) {
       scope.confirmSms = sms;
       inputFocusIndexSms = sms.length;
       inputCaretSms.style.left = ctx.measureText(sms.substring(0, inputFocusIndexSms)).width + inputLocalStartXSms - 3 * widthK + 'px';
-      scope.showContinueButton = scope.confirmSms.length == 5;
+      scope.showContinueButton = isPlatformIOS() ? false : scope.confirmSms.length == 5;
       scope.update();
     }
 
+    function isPlatformIOS() {
+      return device.platform === 'iOS';
+    }
 
     var getContinueButtonTouchStartX, getContinueButtonTouchStartY,
       getContinueButtonTouchEndX, getContinueButtonTouchEndY;
