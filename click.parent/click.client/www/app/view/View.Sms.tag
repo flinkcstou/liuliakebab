@@ -82,7 +82,7 @@
         setConfirmSms(scope.confirmSms.slice(0, inputFocusIndexSms - 1) + scope.confirmSms.slice(inputFocusIndexSms));
       }
 
-      if (scope.confirmSms.length == 5) {
+      if (isPlatformIOS() && scope.confirmSms.length == 5) {
         var sms = scope.confirmSms;
         viewSms.getSms(sms);
         return;

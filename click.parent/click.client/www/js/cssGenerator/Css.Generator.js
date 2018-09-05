@@ -3931,8 +3931,8 @@ var css = {
   "{" +
   "width: 100%;" +
   "height:" + 70 * widthK + "px;" +
-  "box-shadow: 0 " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + "rgb(37, 36, 36);" +
-  "-webkit-box-shadow: 0 " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + "rgb(37, 36, 36);" +
+  "box-shadow: 0 " + 17 * widthK + "px " + 47 * widthK + "px " + -27 * widthK + "px " + "rgb(37, 36, 36);" +
+  "-webkit-box-shadow: 0 " + 17 * widthK + "px " + 47 * widthK + "px " + -27 * widthK + "px " + "rgb(37, 36, 36);" +
   "}",
 
   viewOperationInfoContainer: ".info-center-container" +

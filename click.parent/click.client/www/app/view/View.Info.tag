@@ -20,7 +20,7 @@
             {window.languages.ViewInfoBalanceTitle}
           </p>
 
-          <div if="{!modeOfApp.offlineMode}" id="fullCardBalanceContainer" style="overflow: auto;">
+          <div if="{!modeOfApp.offlineMode}" id="fullCardBalanceContainer">
             <canvas id="fullScaleCanvas" style="display: none;">
             </canvas>
             <canvas id="fractionalScaleCanvas" style="display: none;">
