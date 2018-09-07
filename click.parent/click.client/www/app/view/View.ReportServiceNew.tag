@@ -416,8 +416,8 @@
           console.log("scope.service=", servicesMap[scope.opts.service_id][0]);
 
 
-          var amount = parseInt(inputVerification.spaceDeleter(scope.opts.amount.toString()))
-            - scope.opts.comission_amount;
+          var amount = Math.floor(parseInt(inputVerification.spaceDeleter(scope.opts.amount.toString()))
+            - scope.opts.comission_amount);
 
           opts.amountText = inputVerification.spaceDeleter(amount.toString());
           opts.amountWithoutSpace = inputVerification.spaceDeleter(amount.toString());

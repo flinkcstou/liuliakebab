@@ -15,7 +15,7 @@
       </div>
 
       <div class="info-center-container">
-        <div class="horizontal-centering">
+        <div class="horizontal-centering" style="overflow: hidden;">
           <p class="title-text text-margin">
             {window.languages.ViewInfoBalanceTitle}
           </p>
@@ -239,9 +239,6 @@
 
     writeBalanceInfo = function () {
       var j = 0;
-      scope.fullBalance = 0;
-      scope.fullBalanceCopy = 0;
-      scope.fractionalPart = 0;
       window.api.call({
         method: 'get.balance.multiple',
         input: {
@@ -266,7 +263,6 @@
 
                 scope.fullBalanceCopy = scope.fullBalanceCopy.toFixed(0).toString();
                 scope.fullBalanceCopy = window.amountTransform(scope.fullBalanceCopy);
-                scope.update();
                 textWidthFull = contextFull.measureText(scope.fullBalanceCopy + ' ').width;
                 textWidthFractional = contextFractional.measureText(scope.fractionalPart).width;
                 textWidthCurrency = contextCurrency.measureText(window.languages.ViewReportServiceCommissionCurrency).width;
@@ -292,8 +288,8 @@
           }
           else {
             scope.error_message = 'Ошибка';
-            scope.update();
           }
+          scope.update();
         },
 
         onFail: function (api_status, api_status_message, data) {
@@ -301,8 +297,6 @@
           console.error(data);
         }
       });
-
-      scope.update();
     };
 
     offlineBalanceInfoTrue = function () {
