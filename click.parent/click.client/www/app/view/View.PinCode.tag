@@ -560,7 +560,7 @@
               localStorage.setItem('myNumberOperatorId', result[1][0].my_service_id);
               modeOfflineMode.check = false;
               var JsonInfo = JSON.stringify(result[1][0]);
-              {
+              if (result[1][0].sync) {
                 var otpTime = result[1][0].sync;
                 otpTime.returned_time = parseInt(new Date().getTime());
                 otpTime.sending = parseInt(otpTime.receive_time) - parseInt(otpTime.client_time);

@@ -422,10 +422,10 @@
               clearInterval(time);
               localStorage.setItem('confirm_needed', false);
               if (result[0][0].client_exists == 1) {
-                mountTo("view-authorization");
+                mountTo("view-authorization", true, null);
               }
               else {
-                mountTo("view-pin-code");
+                mountTo("view-pin-code", false, ['view-sms']);
               }
             }
             else {
@@ -449,11 +449,11 @@
       }, 10000);
     }
 
-    function mountTo(view) {
-      localStorage.setItem('click_client_registered', true);
+    function mountTo(view, isRegistered, opts) {
+      localStorage.setItem('click_client_registered', isRegistered);
       history.arrayOfHistory.pop();
       this.riotTags.innerHTML = "<" + view + ">";
-      riot.mount(view);
+      riot.mount(view, opts);
       stopSMSReceive();
       scope.unmount()
     }
