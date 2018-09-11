@@ -13353,7 +13353,7 @@ var css = {
   "width: 91%;" +
   "left: 4%;" +
   "margin-top: 1%;" +
-  "border-bottom:" + 1 * widthK + "px solid gainsboro;" +
+  "border-bottom: 1px solid gainsboro;" +
   "background-color: transparent;" +
   "}",
 
@@ -17846,7 +17846,7 @@ var css = {
   "width: 100%;" +
   //"border:" + 1 * widthK + "px solid red;" +
   "overflow:hidden;" +
-  "border-bottom:" + 1 * widthK + "px solid gainsboro;" +
+  "border-bottom: 1px solid gainsboro;" +
   "}",
 
   serviceInfoOptionTitleText: ".serviceinfo-option-title-text" +
