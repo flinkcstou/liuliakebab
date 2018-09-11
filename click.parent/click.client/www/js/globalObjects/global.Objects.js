@@ -403,7 +403,7 @@ window.calculateNds = function (amount, nds) {
 };
 
 function financial(x) {
-  return Number.parseFloat(x).toFixed(2);
+  return parseFloat(x).toFixed(2);
 }
 
 function calculatePercent(amount, percent) {
