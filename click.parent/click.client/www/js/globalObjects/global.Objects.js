@@ -377,10 +377,14 @@ window.calculateCommission = function (amount, commissionPercent) {
 };
 
 window.calculateEnrollment = function (amount, rate, low_ratio) {
+  console.log("amount="+amount+" rate="+rate+" low_ratio="+low_ratio);
   if (rate <= 1 && low_ratio <= 0) return 0;
   var ret = (amount / rate) / 100 * (100 - low_ratio);
+  console.log("ret="+ret);
   ret = financial(ret);
+  console.log("financial(ret)="+ret);
   if (isInt(ret)) {
+    console.log("parseInt(ret)="+parseInt(ret));
     return parseInt(ret);
   } else {
     return ret;
