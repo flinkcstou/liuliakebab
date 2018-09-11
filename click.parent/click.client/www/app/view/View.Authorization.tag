@@ -367,6 +367,7 @@
             if (device.platform !== 'BrowserStand') {
               window.FirebasePlugin.unsubscribe("news");
             }
+            onBackParams.opts = null;
             riotTags.innerHTML = "<view-registration-device>";
             riot.mount('view-registration-device');
             scope.unmount();
