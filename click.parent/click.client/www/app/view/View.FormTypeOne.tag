@@ -1045,8 +1045,10 @@
     sumForPay = function () {
       event.preventDefault();
       event.stopPropagation();
-
+      console.log("zdn amount.value="+amount.value);
       var amountInput = accounting.formatMoney(amount.value, options);
+      console.log("zdn amountInput="+amountInput);
+
 
       console.log("amountInput =", JSON.stringify(amountInput));
 
@@ -1076,7 +1078,7 @@
       );
 
       amountForPayTransaction = accounting.unformat(amount.value);
-
+      console.log("zdn amountForPayTransaction="+amountForPayTransaction);
       opts.amountText = amount.value;
       opts.amountWithoutSpace = amountForPayTransaction;
 
