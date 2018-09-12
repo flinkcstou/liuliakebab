@@ -5031,7 +5031,7 @@ var css = {
   "width: 82%;" +
   "height:" + 280 * heightK + "px;" +
   "top:" + 95 * heightK + "px;" +
-  "overflow-y: scroll; " +
+  "overflow-y: auto; " +
   "overflow-x: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
   "}",
@@ -17787,7 +17787,7 @@ var css = {
   "top: " + 130 * heightK + "px; " +
   "background-color: #f2f2f1;" +
   // "overflow-x: hidden;" +
-  "overflow-y: scroll;" +
+  "overflow-y: auto;" +
   "-webkit-overflow-scrolling: touch; " +
   "}",
 
