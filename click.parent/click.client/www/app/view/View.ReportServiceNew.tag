@@ -213,6 +213,10 @@
 
     addToFavoritesTouchEnd = function (id) {
 
+      var amount = Math.floor(parseInt(inputVerification.spaceDeleter(scope.opts.amount.toString()))
+        - scope.opts.comission_amount);
+      var amountText=inputVerification.spaceDeleter(amount.toString());
+      console.log('addToFavoritesTouchEnd amountText='+amountText);
       document.getElementById(id).style.webkitTransform = 'scale(1)'
 
       addToFavoritesTouchEndX = event.changedTouches[0].pageX;
@@ -233,7 +237,7 @@
         newFavorite.firstFieldText = scope.opts.cntrg_info_param2;
         newFavorite.cardTypeId = scope.opts.account_id;
         newFavorite.communalParam = opts.cntrg_info_param5;
-        newFavorite.amountText = scope.opts.amount;
+        newFavorite.amountText = amountText;
         newFavorite.internetPackageParam = scope.opts.cntrg_info_param5;
         newFavorite.isInFavorites = true;
         scope.isInFavorites = true;
