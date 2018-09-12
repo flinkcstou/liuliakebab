@@ -79,12 +79,16 @@
     var scope = this;
     scope.newsArray = [];
     scope.newsOpened = false;
+    scope.scrolling = false;
+    scope.scrollTimer = null;
     var touchStartY, touchEndY;
     var likeTouchStartX, likeTouchStartY, likeTouchEndX, likeTouchEndY;
     var followTouchStartX, followTouchStartY, followTouchEndX, followTouchEndY;
     var isLikeClick = false;
+    var isNewsClick = false;
     var isFollowClick = false;
     var pageNumber = 2;
+    var isRequestSended = false;
 
     const phoneNumber = localStorage.getItem('click_client_phoneNumber');
     const loginInfo = JSON.parse(localStorage.getItem('click_client_loginInfo'));
@@ -183,26 +187,37 @@
     }
 
     newsScrollFunction = function () {
-      if ((newsMainContainerId.scrollHeight - newsMainContainerId.scrollTop) == newsMainContainerId.offsetHeight) {
-        scope.showNewsFunction(pageNumber);
-        pageNumber++;
-      }
-    };
+      scope.scrolling = true;
+      window.clearTimeout(scope.scrollTimer);
 
-    newsTouchStart = function () {
-      if(isLikeClick || isFollowClick) return;
-      touchStartY = event.changedTouches[0].pageY;
-      console.log('View.News.tag.onNewsTouchStart()');
+      scope.scrollTimer = setTimeout(function() {
+        scope.scrolling = false;
+        isLikeClick = false;
+        isFollowClick = false;
+        isNewsClick = false;
+      }, 250);
+
+      if ((newsMainContainerId.scrollHeight - newsMainContainerId.scrollTop) - 20 <= newsMainContainerId.offsetHeight) {
+        if(!isRequestSended) {
+          scope.showNewsFunction(pageNumber);
+          pageNumber++;
+        }
+      }
     };
 
     followLinkTouchStart = function() {
       console.log('View.News.tag.followLinkTouchStart()')
+      if(scope.scrolling) {
+        isFollowClick = false;
+        return;
+      }
       isFollowClick = true;
       followTouchStartX = event.changedTouches[0].pageY;
       followTouchStartY = event.changedTouches[0].pageY;
     };
 
     followLinkTouchEnd = function (LinkToNews, newsId) {
+      if(!isFollowClick) return;
       console.log('View.News.tag.followLinkTouchEnd()')
       console.log("Link to news", LinkToNews);
 
@@ -240,7 +255,21 @@
       return result;
     };
 
+    newsTouchStart = function () {
+      if(isLikeClick || isFollowClick) return;
+      if(scope.scrolling) {
+        isNewsClick = false;
+        return;
+      }
+      isNewsClick = true;
+      touchStartY = event.changedTouches[0].pageY;
+      console.log('View.News.tag.onNewsTouchStart()');
+    };
+
     newsTouchEnd = function (newsId) {
+      if(!isNewsClick) {
+        return;
+      }
       console.log('View.News.tag.newsTouchEnd()');
 
       stopEventPropagation();
@@ -330,6 +359,7 @@
 
       window.startSpinner();
 
+      isRequestSended = true;
       window.api.call({
         method: 'get.news',
         input: {
@@ -341,6 +371,7 @@
         scope: scope,
 
         onSuccess: function (response) {
+          isRequestSended = false;
           console.log('View.News.tag.showNewsFunction.onSuccess()', response);
           window.clearTimeout(timeOutTimerNews);
 
@@ -377,6 +408,7 @@
         },
 
         onFail: function (api_status, api_status_message, data) {
+          isRequestSended = false;
           console.error('View.News.tag.showNewsFunction.onFail()', api_status, api_status_message, data);
 
           window.clearTimeout(timeOutTimerNews);
@@ -392,6 +424,7 @@
           console.log('View.News.tag.showNewsFunction.onTimeOut()');
 
           timeOutTimerNews = setTimeout(function () {
+            isRequestSended = false;
             window.writeLog({
               reason: 'Timeout',
               method: 'get.news'
@@ -411,6 +444,7 @@
           console.log('View.News.tag.showNewsFunction.onTimeOut() | creating timeOut', timeOutTimerNews);
         },
         onEmergencyStop: function () {
+          isRequestSended = false;
           console.error('View.News.tag.showNewsFunction.onEmergencyStop()');
           window.clearTimeout(timeOutTimerNews);
         }
@@ -419,12 +453,19 @@
 
     onLikeTouchStart = function() {
       console.log('View.News.tag.onLikeTouchStart()');
+      if(scope.scrolling) {
+        isLikeClick = false;
+        return;
+      }
       isLikeClick = true;
       likeTouchStartX = event.changedTouches[0].pageY;
       likeTouchStartY = event.changedTouches[0].pageY;
     };
 
     onLikeTouchEnd = function(newsId) {
+      if(!isLikeClick) {
+        return;
+      }
       console.log('View.News.tag.onLikeTouchEnd()', newsId);
       likeTouchEndX = event.changedTouches[0].pageY;
       likeTouchEndY = event.changedTouches[0].pageY;
