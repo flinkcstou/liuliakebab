@@ -676,21 +676,28 @@
             if (!publicOfferHidden) {
               if (publicOfferRect.top > flipCardTouchEndY) {
                 if (device.platform == 'Android')
+                {
                   object.style.transform = "rotateY(0deg)";
+                  object.style.webkitTransform = "rotateY(0deg)";
+                }
                 else
                   object.style.webkitTransform = "rotateY(0deg)";
               }
             }
             else {
-              if (device.platform == 'Android')
+              if (device.platform == 'Android'){
                 object.style.transform = "rotateY(0deg)";
+                object.style.webkitTransform = "rotateY(0deg)";
+              }
               else
                 object.style.webkitTransform = "rotateY(0deg)";
             }
           }
           else {
-            if (device.platform == 'Android')
+            if (device.platform == 'Android'){
               object.style.transform = "rotateY(-180deg)";
+              object.style.webkitTransform = "rotateY(-180deg)";
+            }
             else
               object.style.webkitTransform = "rotateY(-180deg)";
           }

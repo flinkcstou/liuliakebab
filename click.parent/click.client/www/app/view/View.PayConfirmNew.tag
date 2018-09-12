@@ -142,38 +142,6 @@
 
   <script>
 
-    //    97 125
-    //
-    //    </div>
-    //    <div class="payconfirm-bottom-container">
-    //      <div class="payconfirm-action-autopay-container" if="{opts.mode!='ADDAUTOPAY'}">
-    //      <div
-    //      class="{payconfirm-action-containter: cardOrFriendBool, payconfirm-action-containter-favorite-center:!cardOrFriendBool}">
-    //      <div class="payconfirm-action-icon-one" if="{!isInFavorites}"
-    //      style="background-image: url('resources/icons/ViewService/addfavorite.png');"
-    //    ontouchstart="onTouchStartOfFavorite()"
-    //    ontouchend="addToFavoritesinPayConfirm()"></div>
-    //      <div class="payconfirm-action-text" ontouchstart="onTouchStartOfFavorite()"
-    //    ontouchend="addToFavoritesinPayConfirm()" if="{!isInFavorites}">
-    //      {window.languages.ViewPayConfirmAddToFavorites}
-    //    </div>
-    //    <div class="payconfirm-action-icon-one" if="{isInFavorites}"
-    //      style="background-image: url('resources/icons/ViewService/addedfavorite.png');"
-    //    ontouchstart="onTouchStartOfFavorite()" ontouchend="removeFromFavorites()"></div>
-    //      <div class="payconfirm-action-text" ontouchstart="onTouchStartOfFavorite()" ontouchend="removeFromFavorites()"
-    //    if="{isInFavorites}">
-    //      {window.languages.ViewPayConfirmRemoveFromFavorites}
-    //    </div>
-    //    </div>
-    //    <div id="addToAutoPayContainerId"
-    //    class="{payconfirm-action-containter: cardOrFriendBool, payconfirm-action-containter-autopay-none:!cardOrFriendBool}">
-    //      <div class="payconfirm-action-icon-two"
-    //    style="background-image: url('resources/icons/ViewService/addautopay.png');"
-    //    ontouchstart="onTouchStartOfAutoPay()" ontouchend="addToAutoPay()"></div>
-    //      <div class="payconfirm-action-text" ontouchstart="onTouchStartOfAutoPay()" ontouchend="addToAutoPay()">
-    //      {window.languages.ViewPayConfirmAddToAutoPay}
-    //    >>>>>>> adilbek
-
     console.log("OPTS PAYCONFIRM NEW", opts);
 
     var scope = this;

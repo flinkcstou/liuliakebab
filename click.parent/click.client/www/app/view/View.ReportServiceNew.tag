@@ -213,6 +213,10 @@
 
     addToFavoritesTouchEnd = function (id) {
 
+      var amount = Math.floor(parseInt(inputVerification.spaceDeleter(scope.opts.amount.toString()))
+        - scope.opts.comission_amount);
+      var amountText=inputVerification.spaceDeleter(amount.toString());
+      console.log('addToFavoritesTouchEnd amountText='+amountText);
       document.getElementById(id).style.webkitTransform = 'scale(1)'
 
       addToFavoritesTouchEndX = event.changedTouches[0].pageX;
@@ -227,13 +231,12 @@
 //        console.log("scope.opts.service_id=", scope.opts.service_id);
 //        console.log("scope.opts.payment_id=", scope.opts.payment_id);
 //        console.log("scope.service=", servicesMap[scope.opts.service_id][0]);
-
         newFavorite.formtype = servicesMap[scope.opts.service_id][0].form_type;
         newFavorite.firstFieldId = servicesMap[scope.opts.service_id][0].service_parameters;
         newFavorite.firstFieldText = scope.opts.cntrg_info_param2;
         newFavorite.cardTypeId = scope.opts.account_id;
         newFavorite.communalParam = opts.cntrg_info_param5;
-        newFavorite.amountText = scope.opts.amount;
+        newFavorite.amountText = amountText;
         newFavorite.internetPackageParam = scope.opts.cntrg_info_param5;
         newFavorite.isInFavorites = true;
         scope.isInFavorites = true;
@@ -244,6 +247,9 @@
         newFavorite.chosenPrefixTitle = scope.opts.chosenPrefixTitle;
         newFavorite.chosenPrefixId = scope.opts.chosenPrefixId;
         newFavorite.chosenPrefixName = scope.opts.chosenPrefixName;
+        newFavorite.nds=servicesMap[scope.opts.service_id][0].nds;
+        newFavorite.amountWithoutSpace=amountText;
+        newFavorite.commissionPercent=servicesMap[scope.opts.service_id][0].commission_percent;
 
 
         favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));

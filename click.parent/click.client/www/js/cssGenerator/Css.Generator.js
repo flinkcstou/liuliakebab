@@ -13101,8 +13101,8 @@ var css = {
   "background-color: white;" +
   "backface-visibility: hidden;" +
   "-webkit-backface-visibility: hidden;" +
-  "transform: rotateY(180deg);" +
-  "-webkit-transform: rotateY(180deg);" +
+  "transform: rotateY(180deg) translateZ(2px);" +
+  "-webkit-transform: rotateY(180deg) translateZ(2px);" +
   "}",
 
   componentBankListCardFront: ".component-banklist-card-front" +
@@ -13118,8 +13118,8 @@ var css = {
   "backface-visibility: hidden;" +
   "-webkit-backface-visibility: hidden;" +
   "z-index: 2;" +
-  "transform: rotateY(0deg);" +
-  "-webkit-transform: rotateY(0deg);" +
+  "transform: rotateY(0deg) translateZ(2px);" +
+  "-webkit-transform: rotateY(0deg) translateZ(2px);" +
   "}",
 
 
