@@ -125,7 +125,16 @@
         else return
       };
 
+      function isMainPage() {
+        try {
+          return window.history.arrayOfHistory[window.history.arrayOfHistory.length - 1].view == 'view-main-page'
+        } catch (e) {
+          return false;
+        }
+      }
+
       blockForSwipeTouchStart = function () {
+        if(!isMainPage()) return;
         touchStartX = event.changedTouches[0].pageX;
         timeStartX = event.timeStamp.toFixed(0);
         sideMenuId.style.webkitTransition = '0s';
@@ -135,6 +144,7 @@
 
       blockForSwipeTouchEnd = function () {
         event.stopPropagation();
+        if(!isMainPage()) return;
 
         touchEndX = event.changedTouches[0].pageX;
         timeEndX = event.timeStamp.toFixed(0);
@@ -156,6 +166,7 @@
       blockForSwipeTouchMove = function () {
         event.preventDefault();
         event.stopPropagation();
+        if(!isMainPage()) return;
         var deltaForSideMenuBack = event.changedTouches[0].pageX.toFixed(0) / width;
         var deltaForMainPage = 1 - deltaForSideMenuBack;
         if (deltaForMainPage < 0.1)
