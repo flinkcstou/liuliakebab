@@ -6706,7 +6706,7 @@ var css = {
   "width: 33.31%;" +
   "top: 10%;" +
   "left: 66.66%;" +
-  "border-left:" + 1 * widthK + "px solid #e8e8e8;" +
+  "border-left: 1px solid #e8e8e8;" +
   "background: transparent;" +
   "}",
 
