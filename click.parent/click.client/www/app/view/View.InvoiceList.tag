@@ -530,7 +530,15 @@
                 serviceName: invoice.service_name,
                 is_friend_help: invoice.is_friend_help,
                 description: invoice.description,
-                parameter: invoice.parameter
+                parameter: invoice.parameter,
+                commission_percent: invoice.commission_percent,
+                friend_name: invoice.friend_name,
+                nds: invoice.nds,
+                service_id: invoice.service_id,
+                rate: invoice.rate,
+                low_ratio: invoice.low_ratio,
+                category_id: invoice.category_id,
+                currency: invoice.currency
               };
 
               console.log("PAYMENT PARAMS", params);
