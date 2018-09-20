@@ -95,7 +95,7 @@
             </p>
             <p if="{i.cost > 0}"
                class="text-margin title-text">
-              {i.lang_amount_title+':'}{i.amount/i.cost}
+              {i.lang_amount_title+':'}{i.amount_in_int/i.cost}
             </p>
             <p if="{i.comission_amount > 0 && (i.nds == null || i.nds === 0)}"
                class="text-margin title-text">
@@ -420,6 +420,7 @@
                 {
                   result[1][i].cost = scope.servicesMap[result[1][i].service_id][0].cost;
                   result[1][i].lang_amount_title=scope.servicesMap[result[1][i].service_id][0].lang_amount_title;
+                  if(result[1][i].amount)result[1][i].amount_in_int=parseInt(result[1][i].amount.replace(/\s/g,''));
                 }
 
                 scope.lastOperationContainer.push(result[1][i]);
