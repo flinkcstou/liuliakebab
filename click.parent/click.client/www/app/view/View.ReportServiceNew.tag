@@ -44,6 +44,11 @@
               style="color: #ff6d65">
               -
               {(opts.amount) ? (amountTransform(opts.amount.toString())) : ("")} сум</p>
+            <p if="{cost > 0}"
+               class="title-text text-margin">
+              {lang_amount_title+':'}
+              {opts.amount/cost}
+            </p>
             <p if="{opts.comission_amount > 0 && (opts.nds == null || opts.nds == 0)}"
                class="title-text text-margin">
               {window.languages.Commission}
@@ -150,6 +155,12 @@
     var favoritePaymentsListForApi = JSON.parse(localStorage.getItem('favoritePaymentsListForApi'));
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
+
+
+    if(servicesMap[scope.opts.service_id]) {
+      scope.cost = servicesMap[scope.opts.service_id][0].cost;
+      scope.lang_amount_title = servicesMap[scope.opts.service_id][0].lang_amount_title;
+    }
 
 
     scope.isInFavorites = scope.opts.isInFavorites;
@@ -424,9 +435,14 @@
 
           var amount = Math.floor(parseInt(inputVerification.spaceDeleter(scope.opts.amount.toString()))
             - scope.opts.comission_amount);
-
-          opts.amountText = inputVerification.spaceDeleter(amount.toString());
-          opts.amountWithoutSpace = inputVerification.spaceDeleter(amount.toString());
+          if(scope.cost){
+            opts.amountText = inputVerification.spaceDeleter(amount.toString())/scope.cost;
+            opts.amountWithoutSpace = inputVerification.spaceDeleter(amount.toString())/scope.cost;
+          }
+          else {
+            opts.amountText = inputVerification.spaceDeleter(amount.toString());
+            opts.amountWithoutSpace = inputVerification.spaceDeleter(amount.toString());
+          }
 
           //
           opts.formtype = servicesMap[scope.opts.service_id][0].form_type;

@@ -93,6 +93,10 @@
             <p class="main-text text-margin">
               - {i.amount} {window.languages.Currency}
             </p>
+            <p if="{i.cost > 0}"
+               class="text-margin title-text">
+              {i.lang_amount_title+':'}{i.amount/i.cost}
+            </p>
             <p if="{i.comission_amount > 0 && (i.nds == null || i.nds === 0)}"
                class="text-margin title-text">
               {window.languages.Commission}{i.comission_amount}
@@ -165,6 +169,8 @@
     var timeOutTimerPayment = 0;
 
     window.saveHistory('view-info', opts);
+
+    scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
 
     for (var j in getAccountsCards) {
       objectAccount.account_id = getAccountsCards[j].id;
@@ -268,10 +274,8 @@
                 textWidthCurrency = contextCurrency.measureText(window.languages.ViewReportServiceCommissionCurrency).width;
                 totalTextWidth = textWidthFull + textWidthFractional + textWidthCurrency;
 
-                console.log("full card balance container", fullCardBalanceContainer.offsetWidth);
-                console.log("full card balance", fullCardBalanceScaleContainer.offsetWidth);
 
-                if (totalTextWidth > fullCardBalanceContainer.offsetWidth) {
+                if (fullCardBalanceContainer && totalTextWidth > fullCardBalanceContainer.offsetWidth) {
                   scaleK = fullCardBalanceContainer.offsetWidth / totalTextWidth;
                   left_d = (scaleK - 1) * totalTextWidth / 2;
                   fullCardBalanceScaleContainer.style.webkitTransform = 'scale(' + scaleK + ')';
@@ -411,6 +415,11 @@
 
                 if (result[1][i].state == 2) {
                   result[1][i].state_image = "resources/icons/ViewReport/report_status_ok.png"
+                }
+                if(scope.servicesMap[result[1][i].service_id])
+                {
+                  result[1][i].cost = scope.servicesMap[result[1][i].service_id][0].cost;
+                  result[1][i].lang_amount_title=scope.servicesMap[result[1][i].service_id][0].lang_amount_title;
                 }
 
                 scope.lastOperationContainer.push(result[1][i]);
