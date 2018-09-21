@@ -55,7 +55,7 @@ var css = {
   "font-weight: normal;" +
   "font-style: normal;" +
   "}",
-
+  
   OcrAStdRegular: "@font-face " +
   "{" +
   "font-family: 'OCRAStd';" +
@@ -64,8 +64,8 @@ var css = {
   "font-weight: normal;" +
   "font-style: normal;" +
   "}",
-
-
+  
+  
   // riotTagsMainContainer: ".riot-tags-main-container " +
   // "{" +
   // "-webkit-animation-name: mountAnimation !important;" +
@@ -79,7 +79,7 @@ var css = {
   // "from {opacity: 0 !important;}" +
   // "to {opacity: 1 !important;}" +
   // "}",
-
+  
   html: "html" +
   "{ " +
   "width: 100%;" +
@@ -126,8 +126,8 @@ var css = {
   //"{ " +
   //"background: rgb(128,128,128);" +
   //"}",
-
-
+  
+  
   loaderDots: ".loader-dots" +
   "{" +
   "position: absolute;" +
@@ -142,13 +142,13 @@ var css = {
   "z-index: 999;" +
   "display:none;" +
   "}",
-
+  
   loaderDotsPagination: ".loader-dots-pagination" +
   "{" +
   "top:" + 1160 * widthK + "px;" +
   "bottom: 0;" +
   "}",
-
+  
   loaderDotsPaginationInContainer: ".loader-dots-pagination-in-container" +
   "{" +
   "position: absolute;" +
@@ -156,9 +156,9 @@ var css = {
   "left:" + 240 * widthK + "px;" +
   "top:" + 55 * widthK + "px;" +
   "}",
-
+  
   //DEMO
-
+  
   demoVersionButtonExit: ".demo-version-button-exit" +
   "{ " +
   "position: absolute;" +
@@ -171,7 +171,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "z-index: 999999999;" +
   "}",
-
+  
   demoVersionContinue: ".demo-version-continue " +
   "{" +
   "position: absolute;" +
@@ -184,7 +184,7 @@ var css = {
   "background-size: cover;" +
   "background-repeat: no-repeat;" +
   "}",
-
+  
   demoVersionDemonstrationText: ".demo-version-demonstration-text " +
   "{" +
   "position: relative;" +
@@ -196,7 +196,7 @@ var css = {
   "margin-left: auto;" +
   "margin-right: auto;" +
   "}",
-
+  
   demoVersionContinueText: ".demo-version-continue-text " +
   "{" +
   "position: relative;" +
@@ -208,7 +208,7 @@ var css = {
   "margin-left: auto;" +
   "margin-right: auto;" +
   "}",
-
+  
   demoVersionContinueContainer: ".demo-version-continue-container " +
   "{" +
   "position: absolute;" +
@@ -217,7 +217,7 @@ var css = {
   "top:" + 0 * widthK + "px;" +
   "overflow: hidden;" +
   "}",
-
+  
   demoVersionContinueContinue: ".demo-version-continue-continue " +
   "{" +
   "position: absolute;" +
@@ -230,7 +230,7 @@ var css = {
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
   "}",
-
+  
   demoVersionContinueButtonContinue: ".demo-version-continue-button-continue" +
   "{" +
   "height: " + 62 * widthK + "px;" +
@@ -247,9 +247,9 @@ var css = {
   "color: #555555;" +
   "}",
   //
-
+  
   //animation
-
+  
   // riotTagsMainContainer: ".riot-tags-main-container" +
   // "{ " +
   // "-webkit-animation-name: mountAnimation; " +
@@ -261,7 +261,7 @@ var css = {
   // "from {opacity: 0;}; " +
   // "to {opacity: 1;}; " +
   // "}",
-
+  
   body: "body{" +
   "margin: 0;" +
   "position: absolute;" +
@@ -271,7 +271,7 @@ var css = {
   "overflow: hidden;" +
   "bottom: 0;" +
   "}",
-
+  
   // //ALERTS
   // componentAlertBlockId: "#alertComponentBlockId display: none;}",
   //
@@ -290,9 +290,9 @@ var css = {
   // componentGenQRId: "#componentGeneratedQrId {display: none;}",
   //
   // //ALERTS
-
+  
   //VIEW INVOICE LIST
-
+  
   invoiceListPageTitle: ".invoice-list-page-title" +
   "{" +
   "position: absolute;" +
@@ -303,7 +303,7 @@ var css = {
   "height:" + 93 * widthK + "px;" +
   "background: transparent;" +
   "}",
-
+  
   invoiceListNameTitle: ".invoice-list-name-title" +
   "{" +
   "position: absolute;" +
@@ -314,7 +314,7 @@ var css = {
   "margin: 0;" +
   "color: #565d6a;" +
   "}",
-
+  
   invoiceListBackButton: ".invoice-list-back-button" +
   "{" +
   "position: absolute;" +
@@ -329,7 +329,7 @@ var css = {
   "left: 2%;" +
   "top:" + 28 * widthK + "px;" +
   "}",
-
+  
   invoiceListContentHolder: ".invoice-list-content-holder" +
   "{" +
   "position: absolute;" +
@@ -339,12 +339,12 @@ var css = {
   "width: 100%;" +
   "background-color: white" +
   "}",
-
+  
   invoiceListNavButtonsHolder: ".invoice-list-nav-buttons-holder" +
   "{" +
   "height:" + 120 * widthK + "px;" +
   "}",
-
+  
   invoiceListNavButtonsBorder: ".invoice-list-nav-buttons-border" +
   "{" +
   "position: absolute;" +
@@ -354,19 +354,19 @@ var css = {
   "border-right: 1px solid #e8e8e8;" +
   "background: transparent;" +
   "}",
-
+  
   invoiceListInvoicesIn: ".invoice-list-invoices-in" +
   "{" +
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
   "}",
-
+  
   invoiceListInvoicesOut: ".invoice-list-invoices-out" +
   "{" +
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
   "}",
-
+  
   invoiceListNavButtonToUser: ".invoice-list-nav-button-to-user" +
   "{" +
   "width:" + 286 * widthK + "px;" +
@@ -375,7 +375,7 @@ var css = {
   "padding-top:" + 26 * widthK + "px;" +
   "padding-left:" + 74 * widthK + "px;" +
   "}",
-
+  
   invoiceListNavButtonFromUser: ".invoice-list-nav-button-from-user" +
   "{" +
   "width:" + 286 * widthK + "px;" +
@@ -383,14 +383,14 @@ var css = {
   "height:" + 81 * widthK + "px;" +
   "padding-top:" + 26 * widthK + "px;" +
   "}",
-
+  
   invoiceListNavButtonsIcon: ".invoice-list-nav-buttons-icon" +
   "{" +
   "width:" + 45 * widthK + "px;" +
   "height:" + 52 * widthK + "px;" +
   "float: left;" +
   "}",
-
+  
   invoiceListNavButtonsTitle: ".invoice-list-nav-buttons-title" +
   "{" +
   "margin:" + 13 * widthK + "px 0 0 " + 57 * widthK + "px;" +
@@ -398,12 +398,12 @@ var css = {
   "text-transform: uppercase;" +
   "font-size:" + 26 * widthK + "px;" +
   "}",
-
+  
   invoiceListNavButtonNotSelected: ".invoice-list-nav-button-not-selected" +
   "{" +
   "color: #ACBDC4;" +
   "}",
-
+  
   invoiceListInvoicesHolder: ".invoice-list-invoices-holder" +
   "{" +
   "overflow-y: scroll;" +
@@ -414,7 +414,7 @@ var css = {
   "padding: 0 " + 25 * widthK + "px 0 " + 30 * widthK + "px;" +
   "width:95%;" +
   "}",
-
+  
   invoiceListInvoice: ".invoice-list-invoice" +
   "{" +
   "height:" + 132 * widthK + "px;" +
@@ -422,14 +422,14 @@ var css = {
   "padding-top:" + 29 * widthK + "px;" +
   "padding-left:" + 25 * widthK + "px;" +
   "}",
-
+  
   invoiceListFromWhomLabel: ".invoice-list-from-whom-label" +
   "{" +
   "margin: 0;" +
   "font-size:" + 24 * widthK + "px;" +
   "float: left;" +
   "}",
-
+  
   invoiceListInvoiceSumHolder: ".invoice-list-invoice-sum-holder" +
   "{" +
   "margin-right: 5.5%;" +
@@ -437,13 +437,13 @@ var css = {
   "width: 40%;" +
   "height:" + 120 * widthK + "px;" +
   "}",
-
+  
   invoiceListInvoiceInfoHolder: ".invoice-list-invoice-info-holder" +
   "{" +
   "float: left;" +
   "width: 53%;" +
   "}",
-
+  
   invoiceListInvoiceSumFloatContainer: ".invoice-list-invoice-sum-float-container" +
   "{" +
   "float: right;" +
@@ -453,7 +453,7 @@ var css = {
   "white-space: nowrap;" +
   "color: #595759;" +
   "}",
-
+  
   invoiceListInvoiceSum: ".invoice-list-invoice-sum" +
   "{" +
   "display: inline;" +
@@ -466,7 +466,7 @@ var css = {
   "white-space: nowrap;" +
   "color: #595759;" +
   "}",
-
+  
   invoiceListInvoiceSumSym: ".invoice-list-invoice-sum-sym" +
   "{" +
   "display: inline;" +
@@ -477,7 +477,7 @@ var css = {
   "color: inherit;" +
   "color: #595759;" +
   "}",
-
+  
   invoiceListInvoicePhoneNumberHolder: ".invoice-list-invoice-phone-number-holder" +
   "{" +
   "margin: 0;" +
@@ -486,7 +486,7 @@ var css = {
   "color: #8B8B8B;" +
   "width:" + 290 * widthK + "px;" +
   "}",
-
+  
   invoiceListInvoicePhoneNumber: ".invoice-list-invoice-phone-number" +
   "{" +
   "margin: 0;" +
@@ -496,7 +496,7 @@ var css = {
   "overflow: hidden;" +
   "white-space: nowrap;" +
   "}",
-
+  
   invoiceListInvoiceServiceName: ".invoice-list-invoice-service-name" +
   "{" +
   "margin: 0;" +
@@ -506,7 +506,7 @@ var css = {
   "overflow: hidden;" +
   "white-space: nowrap;" +
   "}",
-
+  
   invoiceListInvoiceDate: ".invoice-list-invoice-date" +
   "{" +
   "margin: 0;" +
@@ -516,17 +516,17 @@ var css = {
   "word-spacing:" + 7 * widthK + "px;" +
   "color: #c2c2c2;" +
   "}",
-
+  
   invoiceListInvoiceIsP2P: ".invoice-list-invoice-is-p2p" +
   "{" +
   "color: #6DBF34;" +
   "}",
-
+  
   invoiceListInvoiceIsNotP2P: ".invoice-list-invoice-is-not-p2p" +
   "{" +
   "color: #FF544A;" +
   "}",
-
+  
   //REGISTRATION ANIMATION
   registrationProcess: ".registration-process " +
   "{" +
@@ -540,7 +540,7 @@ var css = {
   "background-size: cover;" +
   "background-repeat: no-repeat;" +
   "}",
-
+  
   registrationProcessText: ".registration-process-text " +
   "{" +
   "position: relative;" +
@@ -552,7 +552,7 @@ var css = {
   "margin-left: auto;" +
   "margin-right: auto;" +
   "}",
-
+  
   registrationProcessContainer: ".registration-process-container " +
   "{" +
   "position: absolute;" +
@@ -561,7 +561,7 @@ var css = {
   "top:" + 290 * widthK + "px;" +
   "overflow: hidden;" +
   "}",
-
+  
   registrationProcessProcessing: ".registration-process-processing " +
   "{" +
   "position: absolute;" +
@@ -574,7 +574,7 @@ var css = {
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
   "}",
-
+  
   registrationProcessOk: ".registration-process-ok " +
   "{" +
   "position: absolute;" +
@@ -586,7 +586,7 @@ var css = {
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
   "}",
-
+  
   registrationProcessX: ".registration-process-x " +
   "{" +
   "position: absolute;" +
@@ -598,7 +598,7 @@ var css = {
   "background-size: contain;" +
   "background-repeat: no-repeat;" +
   "}",
-
+  
   registrationProcessButtonNext: ".registration-process-button-next" +
   "{" +
   "height: " + 62 * widthK + "px;" +
@@ -614,7 +614,7 @@ var css = {
   "top: " + 80 + "%;" +
   "color: #555555;" +
   "}",
-
+  
   registrationProcessButtonCheckStatus: ".registration-process-button-check-status" +
   "{" +
   "height: " + 62 * widthK + "px;" +
@@ -630,7 +630,7 @@ var css = {
   "top: " + 80 + "%;" +
   "color: #555555;" +
   "}",
-
+  
   registrationProcessCheckStatusLabel: ".registration-process-check-status-label" +
   "{" +
   "margin-top: 34%;" +
@@ -638,10 +638,10 @@ var css = {
   "margin-left: auto;" +
   "margin-right: auto;" +
   "}",
-
+  
   //VIEW REGISTRATION DEVICE
-
-  viewRegistrationDevice         : ".view-registration-device " +
+  
+  viewRegistrationDevice: ".view-registration-device " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
@@ -660,7 +660,7 @@ var css = {
   "width: 100%;" +
   "display: flex;" +
   "}",
-
+  
   registrationDeviceUnchanbgableContainer: ".registration-device-unchangable-container " +
   "{" +
   "width: 100%;" +
@@ -671,7 +671,7 @@ var css = {
   //"top:" + 155 * heightK + "px;" +
   "top:" + 194 * heightK + "px;" +
   "}",
-
+  
   registrationDevicePhoneField: ".registration-device-phone-field " +
   "{" +
   "position: relative;" +
@@ -683,14 +683,14 @@ var css = {
   // "bottom:" + 210 * widthK + "px;" +
   "color: #535b67;" +
   "}",
-
+  
   registrationDeviceTextField: ".registration-device-text-field " +
   "{" +
   "position: absolute;" +
   "margin: 0;" +
   "color: #aaabae;" +
   "}",
-
+  
   registrationDevicePhoneInput: ".registration-device-phone-input " +
   "{" +
   "position: absolute;" +
@@ -698,7 +698,7 @@ var css = {
   "top:" + 30 * widthK + "px;" +
   "font-size:" + 64 * widthK + "px;" +
   "}",
-
+  
   registrationDevicePhoneCodePart: ".registration-device-phone-code-part " +
   "{" +
   "position: absolute;" +
@@ -706,7 +706,7 @@ var css = {
   "bottom:" + 12 * widthK + "px;" +
   "font-size:" + 64 * widthK + "px;" +
   "}",
-
+  
   registrationDevicePhoneInputPart: ".registration-device-phone-input-part " +
   "{" +
   "position: absolute;" +
@@ -724,7 +724,7 @@ var css = {
   "background-color: transparent;" +
   "opacity:1;" +
   "}",
-
+  
   registrationCaret: ".registration-caret " +
   "{" +
   "position: absolute;" +
@@ -739,7 +739,7 @@ var css = {
   "transition-property: width height background-color left top opacity transform -webkit-transform opacity;" +
   "transition-duration: 0s;" +
   "}",
-
+  
   registrationCaretTwo: ".registration-caret-two " +
   "{" +
   "position: absolute;" +
@@ -755,7 +755,7 @@ var css = {
   "transition-property: width height background-color left top opacity transform -webkit-transform opacity;" +
   "transition-duration: 0s;" +
   "}",
-
+  
   SmsCaret: ".sms-caret " +
   "{" +
   "position: absolute;" +
@@ -770,7 +770,7 @@ var css = {
   "transition-property: width height background-color left top opacity transform -webkit-transform opacity;" +
   "transition-duration: 0s;" +
   "}",
-
+  
   SmsCaretTwo: ".sms-caret-two " +
   "{" +
   "position: absolute;" +
@@ -786,7 +786,7 @@ var css = {
   "transition-property: width height background-color left top opacity transform -webkit-transform opacity;" +
   "transition-duration: 0s;" +
   "}",
-
+  
   registrationDeviceRemember: ".registration-device-remember " +
   "{" +
   "position: absolute;" +
@@ -794,7 +794,7 @@ var css = {
   "width: 100%;" +
   "height:" + 100 * widthK + "px;" +
   "}",
-
+  
   registrationDeviceRememberLabel: ".registration-device-remember-label " +
   "{" +
   "position: absolute;" +
@@ -804,7 +804,7 @@ var css = {
   "margin: 0;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
-
+  
   registrationRememberIcon: ".registration-device-remember-icon " +
   "{" +
   "position: absolute;" +
@@ -818,7 +818,7 @@ var css = {
   "top:" + 28 * widthK + "px;" +
   "opacity: 1;" +
   "}",
-
+  
   registrationRememberIconContainer: ".registration-device-remember-icon-container " +
   "{" +
   "position: absolute;" +
@@ -829,8 +829,8 @@ var css = {
   "opacity: 0.3;" +
   "border:" + 4 * widthK + "px solid white;" +
   "}",
-
-
+  
+  
   buttonEnter: ".button-enter " +
   "{" +
   "position: relative;" +
@@ -841,8 +841,8 @@ var css = {
   "border-radius:" + 80 * widthK + "px;" +
   "margin-left: auto;" +
   "}",
-
-  buttonEnterLabel       : ".button-enter-label " +
+  
+  buttonEnterLabel: ".button-enter-label " +
   "{" +
   "position: absolute;" +
   "top: 19%;" +
@@ -857,8 +857,8 @@ var css = {
   "{" +
   "top:" + 230 * widthK + "px;" +
   "}",
-
-
+  
+  
   smsButtonEnterLabel: ".sms-button-enter-label " +
   "{" +
   "position: relative;" +
@@ -869,7 +869,7 @@ var css = {
   "margin: auto;" +
   "color: white;" +
   "}",
-
+  
   smsButtonEnter: ".sms-button-enter " +
   "{" +
   "position: relative;" +
@@ -879,14 +879,14 @@ var css = {
   "margin-top:" + 15 * widthK + "px;" +
   "color: #535b67;" +
   "}",
-
+  
   keyboardField: ".keyboard-field " +
   "{" +
   "position: absolute;" +
   "width:" + 540 * widthK + "px;" +
   "height:" + 472 * heightK + "px;" +
   "}",
-
+  
   registrationKeyboardField: ".registration-keyboard-field " +
   "{" +
   "position: relative;" +
@@ -896,8 +896,8 @@ var css = {
   "top:" + 490 * heightK + "px;" +
   // "left:" + 110 * widthK + "px;" +
   "}",
-
-  registrationButtonsContainer    : ".registration-buttons-container " +
+  
+  registrationButtonsContainer: ".registration-buttons-container " +
   "{" +
   "position: absolute;" +
   "margin-left: 5%;" +
@@ -906,7 +906,7 @@ var css = {
   "bottom:" + 88 * widthK + "px;" +
   "border-top: 1px solid #e8e8e8;" +
   "}",
-  registrationContainerOffline    : ".registration-container-offline " +
+  registrationContainerOffline: ".registration-container-offline " +
   "{" +
   "position: absolute;" +
   "width:" + 300 * widthK + "px;" +
@@ -914,7 +914,7 @@ var css = {
   "top: 0;" +
   "left: 0;" +
   "}",
-  registrationButtonOffline       : ".registration-button-offline " +
+  registrationButtonOffline: ".registration-button-offline " +
   "{" +
   "position: absolute;" +
   "color: #535b67;" +
@@ -930,7 +930,7 @@ var css = {
   "top: 0;" +
   "right: 0;" +
   "}",
-  RegistrationButtonDemoVersion   : ".registration-button-demo-version " +
+  RegistrationButtonDemoVersion: ".registration-button-demo-version " +
   "{" +
   "position: absolute;" +
   "font-size:" + 33 * widthK + "px;" +
@@ -942,7 +942,7 @@ var css = {
   "margin-bottom:" + 14 * widthK + "px;" +
   "text-align: center;" +
   "}",
-  registrationButtonHelp          : ".registration-button-help " +
+  registrationButtonHelp: ".registration-button-help " +
   "{" +
   "position: absolute;" +
   "font-size:" + 33 * widthK + "px;" +
@@ -951,7 +951,7 @@ var css = {
   "background-size: contain;" +
   "color: #535b67;" +
   "}",
-  registrationButtonRegistration  : ".registration-button-registration " +
+  registrationButtonRegistration: ".registration-button-registration " +
   "{" +
   "position: absolute;" +
   "top:" + 30 * widthK + "px;" +
@@ -961,7 +961,7 @@ var css = {
   "color: white;" +
   "border-bottom:" + 1 + "px solid white;" +
   "}",
-  registrationTextField           : ".registration-text-field " +
+  registrationTextField: ".registration-text-field " +
   "{" +
   "position: absolute;" +
   "background-size: contain;" +
@@ -972,44 +972,44 @@ var css = {
   "font-size:" + 30 * widthK + "px;" +
   "margin: 0;" +
   "}",
-
+  
   //KEYBOARD COMPONENT
-
-  keyboardContainer   : ".keyboard-container " +
+  
+  keyboardContainer: ".keyboard-container " +
   "{" +
   "position: absolute;" +
   "width:" + 540 * widthK + "px;" +
   "height:" + 472 * heightK + "px;" +
   "}",
-  keyboardFieldOne    : ".keyboard-field-one " +
+  keyboardFieldOne: ".keyboard-field-one " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * heightK + "px;" +
   "top: 0;" +
   "}",
-  keyboardFieldTwo    : ".keyboard-field-two " +
+  keyboardFieldTwo: ".keyboard-field-two " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
   "top:" + 120 * heightK + "px;" +
   "}",
-  keyboardFieldThree  : ".keyboard-field-three " +
+  keyboardFieldThree: ".keyboard-field-three " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
   "top:" + 236 * heightK + "px;" +
   "}",
-  keyboardFieldFour   : ".keyboard-field-four " +
+  keyboardFieldFour: ".keyboard-field-four " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
   "top:" + 353 * heightK + "px;" +
   "}",
-  keyboardFieldFive   : ".keyboard-field-five " +
+  keyboardFieldFive: ".keyboard-field-five " +
   "{" +
   "position: absolute;" +
   "width: " + 140 * widthK + "px;" +
@@ -1019,7 +1019,7 @@ var css = {
   "font-size:" + 70 * widthK + "px;" +
   "text-align: center;" +
   "}",
-  keyboardButtons     : ".keyboard-buttons " +
+  keyboardButtons: ".keyboard-buttons " +
   "{" +
   "position: absolute;" +
   "width:" + 134 * widthK + "px;" +
@@ -1036,16 +1036,16 @@ var css = {
   "top:" + 13 * widthK + "px;" +
   "margin: 0;" +
   "}",
-  keyboardButtonOne   : ".keyboard-button-one {left: 0;}",
-  keyboardButtonTwo   : ".keyboard-button-two {left:" + 202 * widthK + "px;}",
-  keyboardButtonThree : ".keyboard-button-three {right: 0;}",
-  keyboardButtonFour  : ".keyboard-button-four {left: 0;}",
-  keyboardButtonFive  : ".keyboard-button-five {left:" + 202 * widthK + "px;}",
-  keyboardButtonSix   : ".keyboard-button-six {right: 0;}",
-  keyboardButtonSeven : ".keyboard-button-seven {left: 0;}",
-  keyboardButtonEight : ".keyboard-button-eight {left:" + 202 * widthK + "px;}",
-  keyboardButtonNine  : ".keyboard-button-nine {right: 0;}",
-  keyboardSpace       : ".keyboard-space {" +
+  keyboardButtonOne: ".keyboard-button-one {left: 0;}",
+  keyboardButtonTwo: ".keyboard-button-two {left:" + 202 * widthK + "px;}",
+  keyboardButtonThree: ".keyboard-button-three {right: 0;}",
+  keyboardButtonFour: ".keyboard-button-four {left: 0;}",
+  keyboardButtonFive: ".keyboard-button-five {left:" + 202 * widthK + "px;}",
+  keyboardButtonSix: ".keyboard-button-six {right: 0;}",
+  keyboardButtonSeven: ".keyboard-button-seven {left: 0;}",
+  keyboardButtonEight: ".keyboard-button-eight {left:" + 202 * widthK + "px;}",
+  keyboardButtonNine: ".keyboard-button-nine {right: 0;}",
+  keyboardSpace: ".keyboard-space {" +
   "left: 0; " +
   "background-size:" + 60 * widthK + "px;" +
   "background-image: url('resources/icons/authorization/touchid.png');" +
@@ -1053,14 +1053,14 @@ var css = {
   "background-position-y:" + 25 * widthK + "px;" +
   "background-position-x: center;" +
   "}",
-  keyboardButtonZero  : ".keyboard-button-zero {left:" + 202 * widthK + "px;}",
-  keyboardButtonEnter : ".keyboard-button-enter {position: absolute;}",
-
+  keyboardButtonZero: ".keyboard-button-zero {left:" + 202 * widthK + "px;}",
+  keyboardButtonEnter: ".keyboard-button-enter {position: absolute;}",
+  
   //keyboardButtonsActive: ".keyboard-buttons:active " +
   //"{" +
   //"background: radial-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.08), transparent);" +
   //"}",
-
+  
   keyboardButtonX: ".keyboard-button-x " +
   "{" +
   "background-size:" + 76 * widthK + "px;" +
@@ -1071,9 +1071,9 @@ var css = {
   "right: 0;" +
   "top:" + 25 * widthK + "px;" +
   "}",
-
+  
   //VIEW SMS
-
+  
   viewSms: ".view-sms " +
   "{" +
   "position: absolute;" +
@@ -1084,7 +1084,7 @@ var css = {
   "background-size: cover;" +
   "background-repeat: no-repeat;" +
   "}",
-
+  
   smsFlexContainer: ".sms-flex-container" +
   "{" +
   "position: absolute;" +
@@ -1092,7 +1092,7 @@ var css = {
   "bottom:" + 565 * widthK + "px;" +
   "width: 100%;" +
   "}",
-
+  
   smsUnchangableContainer: ".sms-unchangable-container" +
   "{" +
   "width: 100%;" +
@@ -1102,7 +1102,7 @@ var css = {
   "height:" + 320 * widthK + "px;" +
   "top:" + 194 * heightK + "px;" +
   "}",
-
+  
   smsTextField: ".sms-text-field " +
   "{" +
   "position: relative;" +
@@ -1113,7 +1113,7 @@ var css = {
   "margin-left: auto;" +
   "margin-right: auto;" +
   "}",
-
+  
   smsPhoneField: ".sms-phone-field " +
   "{" +
   "position: absolute;" +
@@ -1124,7 +1124,7 @@ var css = {
   // "bottom:" + 210 * widthK + "px;" +
   "color: #535b67;" +
   "}",
-
+  
   smsTextFieldOne: ".sms-text-field-one " +
   "{" +
   "position: absolute;" +
@@ -1135,7 +1135,7 @@ var css = {
   "font-size:" + 30 * widthK + "px;" +
   "margin: 0;" +
   "}",
-
+  
   smsPhoneInput: ".sms-phone-input " +
   "{" +
   "position: absolute;" +
@@ -1152,7 +1152,7 @@ var css = {
   "background-color: transparent;" +
   "opacity:1;" +
   "}",
-
+  
   smsTimer: ".sms-timer " +
   "{" +
   "position: absolute;" +
@@ -1162,7 +1162,7 @@ var css = {
   "right:" + -40 * widthK + "px;" +
   "bottom: 0;" +
   "}",
-
+  
   smsResendIcon: ".sms-resend-icon " +
   "{" +
   "position: absolute;" +
@@ -1175,7 +1175,7 @@ var css = {
   "left:" + 70 * widthK + "px;" +
   "top:" + -4 * widthK + "px;" +
   "}",
-
+  
   smsKeyboardField: ".sms-keyboard-field " +
   "{" +
   "position: relative;" +
@@ -1186,9 +1186,9 @@ var css = {
   "top:" + 550 * heightK + "px;" +
   // "left:" + 110 * widthK + "px;" +
   "}",
-
+  
   //VIEW AUTHORIZATION
-
+  
   viewAuthorization: ".view-authorization " +
   "{" +
   "position: absolute;" +
@@ -1200,7 +1200,7 @@ var css = {
   "background: white;" +
   "background-repeat: no-repeat;" +
   "}",
-
+  
   viewAuthorizationInnerContainer: ".view-authorization-inner-container " +
   "{" +
   "position: absolute;" +
@@ -1208,7 +1208,7 @@ var css = {
   "height: 100%;" +
   "overflow: hidden;" +
   "}",
-
+  
   authFingerPrintModeLabel: ".auth-fingerprint-mode-label " +
   "{" +
   "position: absolute;" +
@@ -1220,7 +1220,7 @@ var css = {
   "margin-left:" + 65 * widthK + "px;" +
   "color: white;" +
   "}",
-
+  
   buttonAuthFingerprintClickPinIcon: ".button-auth-fingerprint-clickpin-icon" +
   "{" +
   "position: absolute;" +
@@ -1233,7 +1233,7 @@ var css = {
   "top:" + 29 * widthK + "px;" +
   "transition: 0.8s;" +
   "}",
-
+  
   buttonAuthFingerprint: ".button-auth-fingerprint" +
   "{" +
   "height: " + 87 * widthK + "px;" +
@@ -1249,7 +1249,7 @@ var css = {
   "left: 0;" +
   "color: #ffffff;" +
   "}",
-
+  
   authFingerPrintBodyLabel: ".auth-fingerprint-body-label " +
   "{" +
   "position: absolute;" +
@@ -1262,7 +1262,7 @@ var css = {
   "color: #353340;" +
   "text-align: center;" +
   "}",
-
+  
   authFingerPrintLogo: ".auth-fingerprint-logo" +
   "{" +
   "position: relative;" +
@@ -1276,7 +1276,7 @@ var css = {
   "background-size: contain;" +
   "background-position-x: center;" +
   "}",
-
+  
   authFingerPrintIcon: ".auth-fingerprint-icon" +
   "{" +
   "position: relative;" +
@@ -1290,7 +1290,7 @@ var css = {
   "background-size: cover;" +
   "background-position-x: center;" +
   "}",
-
+  
   authFingerPrintErrorText: ".auth-fingerprint-errortext" +
   "{" +
   "position: relative;" +
@@ -1305,7 +1305,7 @@ var css = {
   "margin-left: auto;" +
   "margin-right: auto;" +
   "}",
-
+  
   authFingerPrintErrorTextStart: ".auth-fingerprint-errortext-start " +
   "{" +
   "-webkit-transition: 0.7s;" +
@@ -1315,7 +1315,7 @@ var css = {
   "top:" + 389 * widthK + "px" + "!important;" +
   "opacity: 1 !important;" +
   "}",
-
+  
   authFingerPrintErrorTextStop: ".auth-fingerprint-errortext-stop " +
   "{" +
   "-webkit-transition: 0.7s;" +
@@ -1323,8 +1323,8 @@ var css = {
   "top:" + 401 * widthK + "px" + "!important;" +
   "opacity: 0 !important;" +
   "}",
-
-
+  
+  
   authorizationFlexContainer: ".authorization-flex-container" +
   "{" +
   "position: absolute;" +
@@ -1332,7 +1332,7 @@ var css = {
   "top: 0;" +
   "height:" + 255 * heightK + "px;" +
   "}",
-
+  
   authorizationButtonFirstEnter: ".authorization-button-first-enter " +
   "{" +
   "position: relative;" +
@@ -1345,7 +1345,7 @@ var css = {
   "border-radius:" + 80 * widthK + "px;" +
   //"margin-left: auto;" +
   "}",
-
+  
   authorizationUnchangableContainer: ".authorization-unchangable-container " +
   "{" +
   "position: absolute;" +
@@ -1353,7 +1353,7 @@ var css = {
   "top:" + 85 * widthK + "px;" +
   "width: 100%;" +
   "}",
-
+  
   authorizationPinContainer: ".authorization-pin-container " +
   "{" +
   "position: relative;" +
@@ -1363,7 +1363,7 @@ var css = {
   "margin-top:" + 60 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "}",
-
+  
   authorizationPinField: ".authorization-pin-field " +
   "{" +
   "position: relative;" +
@@ -1373,7 +1373,7 @@ var css = {
   "margin-left: auto;" +
   "margin-top:" + 20 * widthK + "px;" +
   "}",
-
+  
   authorizationPinInputFirstEnterContainer: ".authorization-pin-input-first-enter-container " +
   "{" +
   "position: relative;" +
@@ -1390,7 +1390,7 @@ var css = {
   "outline: none;" +
   "padding: 0;" +
   "}",
-
+  
   authorizationPinInputFirstEnter: ".authorization-pin-input-first-enter " +
   "{" +
   "position: absolute;" +
@@ -1403,7 +1403,7 @@ var css = {
   "bottom:" + 12 * widthK + "px;" +
   "outline: none;" +
   "}",
-
+  
   authorizationPinCircle: ".authorization-pin-circles " +
   "{" +
   "position: absolute;" +
@@ -1413,39 +1413,39 @@ var css = {
   "border:" + 4.5 * widthK + "px solid #fafafa;" +
   "background-color: #b0aeb2;" +
   "}",
-
+  
   authorizationPinTwo: ".authorization-pin-two " +
   "{" +
   "left:" + 80 * widthK + "px;" +
   "}",
-
+  
   authorizationPinThree: ".authorization-pin-three " +
   "{" +
   "left:" + 160 * widthK + "px;" +
   "}",
-
+  
   authorizationPinFour: ".authorization-pin-four " +
   "{" +
   "left:" + 240 * widthK + "px;" +
   "}",
-
+  
   authorizationPinFive: ".authorization-pin-five " +
   "{" +
   "left:" + 320 * widthK + "px;" +
   "}",
-
+  
   authorizationKeyboardField: ".authorization-keyboard-field " +
   "{" +
   "position: relative;" +
   "margin-left: auto;" +
   "margin-right: auto;" +
   "}",
-
+  
   authorizationButtonEnter: ".authorization-button-enter " +
   "{" +
   "top:" + 240 * widthK + "px;" +
   "}",
-
+  
   authorizationButtonsContainer: ".authorization-buttons-container " +
   "{" +
   "position: relative;" +
@@ -1456,7 +1456,7 @@ var css = {
   "margin-top:" + 330 * widthK + "px;" +
   "height:" + 180 * widthK + "px;" +
   "}",
-
+  
   authorizationButtonForgetPin: ".authorization-button-forget-pin " +
   "{" +
   "position: relative;" +
@@ -1469,7 +1469,7 @@ var css = {
   "background-size: contain;" +
   "color: #535b67;" +
   "}",
-
+  
   authorizationButtonRegistration: ".authorization-button-registration " +
   "{" +
   "position: relative;" +
@@ -1480,7 +1480,7 @@ var css = {
   "text-align: center;" +
   // "border-bottom:" + 1 + "px solid white;" +
   "}",
-
+  
   authorizationButtonOffline: ".authorization-button-offline " +
   "{" +
   "position: relative;" +
@@ -1494,7 +1494,7 @@ var css = {
   "text-align: center;" +
   // "left:" + 240 * widthK + "px;" +
   "}",
-
+  
   authorizationFooterContainer: ".authorization-footer-button-container " +
   "{" +
   "position: absolute;" +
@@ -1511,7 +1511,7 @@ var css = {
   "outline: none;" +
   "border-top: 1px solid #e8e8e8;" +
   "}",
-
+  
   authorizationFooterContainerIOS: ".authorization-footer-button-container-ios " +
   "{" +
   "position: absolute;" +
@@ -1525,7 +1525,7 @@ var css = {
   "border: none;" +
   "background-color: white;" +
   "}",
-
+  
   authorizationFooterContainerIOSForBorder: ".authorization-footer-button-container-ios-for-border " +
   "{" +
   "position: absolute;" +
@@ -1539,7 +1539,7 @@ var css = {
   "background-color: white;" +
   "border-top: 1px solid #e8e8e8;" +
   "}",
-
+  
   authorizationFooterNotFirstButton: ".authorization-footer-not-first-button " +
   "{" +
   "position: relative;" +
@@ -1547,7 +1547,7 @@ var css = {
   "height: 100%;" +
   "float: left;" +
   "}",
-
+  
   authorizationFooterNotFirstButtonIOS: ".authorization-footer-not-first-button-ios" +
   "{" +
   "position: relative;" +
@@ -1556,7 +1556,7 @@ var css = {
   "margin-left: auto;" +
   "margin-right: auto;" +
   "}",
-
+  
   authorizationFooterNotFirstOfflineIcon: ".authorization-footer-not-first-offline-icon " +
   "{" +
   "position: relative;" +
@@ -1571,7 +1571,7 @@ var css = {
   "background-position: center;" +
   "background-repeat: no-repeat;" +
   "}",
-
+  
   authorizationFooterNotFirstOfflineLabel: ".authorization-footer-not-first-offline-label " +
   "{" +
   "position: absolute;" +
@@ -1584,7 +1584,7 @@ var css = {
   "text-align: center;" +
   "font-family: SFUIDisplay-Semibold;" +
   "}",
-
+  
   authorizationFooterNotFirstClickPassIcon: ".authorization-footer-not-first-click-pass-icon " +
   "{" +
   "position: relative;" +
@@ -1599,7 +1599,7 @@ var css = {
   "background-position: center;" +
   "background-repeat: no-repeat;" +
   "}",
-
+  
   authorizationFooterNotFirstClickPassIconIos: ".authorization-footer-not-first-click-pass-icon-ios " +
   "{" +
   "position: absolute;" +
@@ -1612,7 +1612,7 @@ var css = {
   "background-position: center;" +
   "background-repeat: no-repeat;" +
   "}",
-
+  
   authorizationFooterNotFirstClickPassLabel: ".authorization-footer-not-first-click-pass-label " +
   "{" +
   "position: absolute;" +
@@ -1625,7 +1625,7 @@ var css = {
   "text-align: center;" +
   "font-family: SFUIDisplay-Semibold;" +
   "}",
-
+  
   authorizationFooterNotFirstClickPassLabelIos: ".authorization-footer-not-first-click-pass-label-ios " +
   "{" +
   "position: absolute;" +
@@ -1636,7 +1636,7 @@ var css = {
   "text-align: center;" +
   "font-family: SFUIDisplay-Semibold;" +
   "}",
-
+  
   authorizationFooterNotFirstBorderRight: ".authorization-footer-not-first-border-right" +
   "{" +
   "position: relative;" +
@@ -1647,7 +1647,7 @@ var css = {
   "border-right: 1px solid #e8e8e8;" +
   "background: transparent;" +
   "}",
-
+  
   authorizationFooterContainerFirst: ".authorization-footer-button-container-first " +
   "{" +
   "position: absolute;" +
@@ -1663,7 +1663,7 @@ var css = {
   "background-color: white;" +
   "border-top: 1px solid #e8e8e8;" +
   "}",
-
+  
   authorizationButtonOfflineFirstEnter: ".authorization-button-offline-first-enter " +
   "{" +
   "position: absolute;" +
@@ -1676,7 +1676,7 @@ var css = {
   "top:" + 10 * widthK + "px;" +
   "right:" + 50 * widthK + "px;" +
   "}",
-
+  
   authorizationEnterPinLabel: ".authorization-enter-pin-label " +
   "{" +
   "position: relative;" +
@@ -1687,7 +1687,7 @@ var css = {
   "color: #aaabae;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
-
+  
   authorizationFirstEnterPinLabel: ".authorization-first-enter-pin-label " +
   "{" +
   "position: relative;" +
@@ -1699,7 +1699,7 @@ var css = {
   "color: #b0aeb2;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
-
+  
   AuthorizationInputEyeButton: ".authorization-input-eye-button " +
   "{" +
   "position: absolute;" +
@@ -1712,10 +1712,10 @@ var css = {
   "top:" + 20 * widthK + "px;" +
   "right:" + 10 * widthK + "px;" +
   "}",
-
-
+  
+  
   //VIEW MAIN PAGE
-
+  
   viewMainPage: ".view-main-page " +
   "{" +
   "position: absolute;" +
@@ -1724,9 +1724,9 @@ var css = {
   "overflow: hidden;" +
   // "filter: blur(5px);" +
   "}",
-
+  
   //TOOLBAR COMPONENT
-
+  
   toolbar: ".toolbar " +
   "{" +
   "position: absolute;" +
@@ -1741,7 +1741,7 @@ var css = {
   "-moz-box-shadow: 0 0px 40px 8px rgba(0,0,0, .05);" +
   "box-shadow: 0 0px 40px 8px rgba(0,0,0, .05);" +
   "}",
-
+  
   toolbarCircleContainer: ".toolbar-circle-container " +
   "{" +
   "position: relative;" +
@@ -1764,7 +1764,7 @@ var css = {
   "-moz-box-shadow: 10px 10px 30px 0px rgba(0,0,0, .05);" +
   "box-shadow: 10px 10px 30px 0px rgba(0,0,0, .05);" +
   "}",
-
+  
   toolbarCircleContainerTitle: ".toolbar-circle-container-title " +
   "{" +
   "position: relative;" +
@@ -1775,7 +1775,7 @@ var css = {
   "color: #a9abaf;" +
   "font-size:" + 30 * widthK + "px;" +
   "}",
-
+  
   menuButton: ".menu-button " +
   "{" +
   "position: absolute;" +
@@ -1785,7 +1785,7 @@ var css = {
   "height: 100%;" +
   "background-position: center;" +
   "}",
-
+  
   menuIcon: ".menu-icon " +
   "{" +
   "position: absolute;" +
@@ -1800,7 +1800,7 @@ var css = {
   "background-position: center;" +
   "left:" + 10 * widthK + "px;" +
   "}",
-
+  
   bellButton: ".bell-button " +
   "{" +
   "position: absolute;" +
@@ -1810,7 +1810,7 @@ var css = {
   "height: 100%;" +
   "background-position: center;" +
   "}",
-
+  
   bellButtonNewsCounter: ".bell-button-news-counter " +
   "{" +
   "position: absolute;" +
@@ -1825,7 +1825,7 @@ var css = {
   "color: white;" +
   "overflow: hidden;" +
   "}",
-
+  
   bellIcon: ".bell-icon " +
   "{" +
   "position: absolute;" +
@@ -1840,7 +1840,7 @@ var css = {
   "right:" + 14 * widthK + "px;" +
   "top:" + 20 * widthK + "px;" +
   "}",
-
+  
   toolbarUSSDContainer: ".toolbar-ussd-container" +
   "{" +
   "position: absolute;" +
@@ -1851,7 +1851,7 @@ var css = {
   "right:" + 14 * widthK + "px;" +
   "top:" + 20 * widthK + "px;" +
   "}",
-
+  
   toolbarUSSDIcon: ".toolbar-ussd-icon" +
   "{" +
   "position: relative;" +
@@ -1859,7 +1859,7 @@ var css = {
   "height:" + 45 * widthK + "px;" +
   "top: 10%;" +
   "}",
-
+  
   toolbarUSSDText: ".toolbar-ussd-text" +
   "{" +
   "margin: 0;" +
@@ -1870,9 +1870,9 @@ var css = {
   "line-height: " + 110 * widthK + "px;" +
   "margin-right:" + 10 * widthK + "px;" +
   "}",
-
+  
   //BANK OPERATION COMPONENT
-
+  
   bankOperations: ".bank-operations " +
   "{" +
   "position: absolute;" +
@@ -1880,7 +1880,7 @@ var css = {
   "top:" + 564 * widthK + "px;" +
   "width: 100%;" +
   "}",
-
+  
   bankOperationButton: ".bank-operation-button " +
   "{" +
   "position: absolute;" +
@@ -1889,12 +1889,12 @@ var css = {
   "width:" + 140 * widthK + "px;" +
   "bottom: 20%;" +
   "}",
-
+  
   bankOperationButtonPay: ".bank-operation-button-pay " +
   "{" +
   "left:" + 50 * widthK + "px;" +
   "}",
-
+  
   bankOperationButtonTransfer: ".bank-operation-button-transfer " +
   "{" +
   "left:" + 290 * widthK + "px;" +
@@ -1926,17 +1926,17 @@ var css = {
   //"transition: 0s;" +
   //"border: none;" +
   //"}",
-
+  
   bankOperationButtonAutoPay: ".bank-operation-button-autopay " +
   "{" +
   "left:" + 511 * widthK + "px;" +
   "}",
-
+  
   bankOperationButtonQr: ".bank-operation-button-qr " +
   "{" +
   "left:" + 521 * widthK + "px;" +
   "}",
-
+  
   topOperationsButtons: ".top-operations-buttons " +
   "{" +
   "position: relative;" +
@@ -1948,14 +1948,14 @@ var css = {
   "top:" + 55 * heightK + "px;" +
   // "top: 15%;" +
   "}",
-
+  
   bankOperationsContainers: ".bank-operations-containers " +
   "{" +
   "float: left;" +
   "height: 137%;" +
   "width: 33.33%;" +
   "}",
-
+  
   bankOperationIcon: ".bank-operation-icon " +
   "{" +
   "position: absolute;" +
@@ -1965,7 +1965,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "}",
-
+  
   bankOperationButtonMyCardContainer: ".bank-operation-button-my-cards-container " +
   "{" +
   "position: relative;" +
@@ -1976,7 +1976,7 @@ var css = {
   "width:" + 270 * widthK + "px;" +
   "height:" + 75 * widthK + "px;" +
   "}",
-
+  
   bankOperationButtonMyCard: ".bank-operation-button-my-cards " +
   "{" +
   "position: absolute;" +
@@ -1987,7 +1987,7 @@ var css = {
   "top:" + 473 * widthK + "px;" +
   "height:" + 100 * heightK + "px;" +
   "}",
-
+  
   bankOperationButtonMyCardsIcon: ".bank-operation-button-my-cards-icon " +
   "{" +
   "position: absolute;" +
@@ -1999,7 +1999,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-image: url(resources/icons/bank-operations/allcards.png);" +
   "}",
-
+  
   bankOperationButtonMyCardsLabel: ".bank-operation-button-my-cards-label " +
   "{" +
   "width:" + 186 * widthK + "px;" +
@@ -2009,7 +2009,7 @@ var css = {
   "font-size:" + 28 * widthK + "px;" +
   "color: #565d6a;" +
   "}",
-
+  
   bankOperationButtonContainer: ".bank-operation-button-container" +
   "{" +
   "position: absolute;" +
@@ -2018,7 +2018,7 @@ var css = {
   "top:" + -13 * widthK + "px;" +
   "background-color: transparent;" +
   "}",
-
+  
   bankOperationLabel: ".bank-operation-label " +
   "{" +
   "position: absolute;" +
@@ -2027,27 +2027,27 @@ var css = {
   "text-align: center;" +
   "font-size:" + 29 * widthK + "px;" +
   "}",
-
+  
   bankOperationLabelPay: ".bank-operation-label-pay " +
   "{" +
   "left:" + 73 * widthK + "px;" +
   "}",
-
+  
   bankOperationLabelTransfer: ".bank-operation-label-transfer " +
   "{" +
   "left:" + 286 * widthK + "px;" +
   "}",
-
+  
   bankOperationLabelAutoPay: ".bank-operation-label-autopay " +
   "{" +
   "left:" + 496 * widthK + "px;" +
   "}",
-
+  
   bankOperationLabelQr: ".bank-operation-label-qr " +
   "{" +
   "left:" + 505 * widthK + "px;" +
   "}",
-
+  
   bankOperationLabelInPlacePay: ".bank-operation-label-inplace-pay " +
   "{" +
   "left:" + 467 * widthK + "px;" +
@@ -2055,28 +2055,28 @@ var css = {
   "bottom:" + -50 * widthK + "px;" +
   "height:" + 66 * widthK + "px;" +
   "}",
-
+  
   operationPayIcon: ".operation-pay-icon " +
   "{" +
   "background-image: url(resources/icons/bank-operations/payment.png);" +
   "background-size: 49%;" +
   "left:" + 8 * widthK + "px;" +
   "}",
-
+  
   operationTransferIcon: ".operation-transfer-icon " +
   "{" +
   "background-image: url(resources/icons/bank-operations/transfers.png);" +
   "background-size: 69%;" +
   "}",
-
+  
   operationQrIcon: ".operation-qr-icon " +
   "{" +
   "background-image: url(resources/icons/bank-operations/qr.png);" +
   "background-size: 56%;" +
   "}",
-
+  
   //CAROUSEL COMPONENT
-
+  
   cardCarousel: ".card-carousel " +
   "{" +
   "position: absolute;" +
@@ -2088,12 +2088,12 @@ var css = {
   "transition: 1s;" +
   "-webkit-transform: scale(1);" +
   "}",
-
+  
   cards: ".cards " +
   "{" +
   "position: relative;" +
   "}",
-
+  
   card: ".card " +
   "{" +
   //"background-color: #d7d7d7;" +
@@ -2114,7 +2114,7 @@ var css = {
   "background-color: #BDC7D0;" +
   "background-repeat: no-repeat;" +
   "}",
-
+  
   invoiceCardPartOne: ".invoice-card-part-one " +
   "{" +
   "-webkit-appearance: none;" +
@@ -2129,7 +2129,7 @@ var css = {
   //"-moz-box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
   //"box-shadow: 0px 50px 50px -50px rgba(0,0,0,1);" +
   "}",
-
+  
   invoiceCardPartTwo: ".invoice-card-part-two" +
   "{" +
   "-webkit-appearance: none;" +
@@ -2141,13 +2141,13 @@ var css = {
   "background-size: cover;" +
   "color: white;" +
   "}",
-
+  
   invoiceCardInfoHolder: ".invoice-card-info-holder" +
   "{" +
   "width:" + 430 * widthK + "px;" +
   "float: left;" +
   "}",
-
+  
   invoiceCardTransfer: ".invoice-card-transfer" +
   "{" +
   "float: right;" +
@@ -2160,14 +2160,14 @@ var css = {
   "height: 100%;" +
   "width:" + 80 * widthK + "px;" +
   "}",
-
+  
   invoiceCardFromLabel: ".invoice-card-from-label" +
   "{" +
   "color: #8f8f8f;" +
   "margin:" + 5 * widthK + "px 0 0 " + 20 * widthK + "px;" +
   "font-size:" + 27 * widthK + "px;" +
   "}",
-
+  
   invoiceCardFromSenderHolder: ".invoice-card-from-sender-holder" +
   "{" +
   "color: #8f8f8f;" +
@@ -2180,7 +2180,7 @@ var css = {
   "max-width:" + 365 * widthK + "px;" +
   "white-space: nowrap;" +
   "}",
-
+  
   invoiceCardFromSenderServiceName: ".invoice-card-from-sender-service-name" +
   "{" +
   "margin: 0;" +
@@ -2190,7 +2190,7 @@ var css = {
   "width:" + 70 * widthK + "px;" +
   "white-space: nowrap;" +
   "}",
-
+  
   invoiceCardFromSenderNumber: ".invoice-card-from-sender-number" +
   "{" +
   "margin: 0;" +
@@ -2199,7 +2199,7 @@ var css = {
   "max-width:" + 295 * widthK + "px;" +
   "white-space: nowrap;" +
   "}",
-
+  
   invoiceCardDate: ".invoice-card-date" +
   "{" +
   "color: #b5b5b5;" +
@@ -2208,21 +2208,21 @@ var css = {
   "float: left;" +
   "word-spacing:" + 15 * widthK + "px;" +
   "}",
-
+  
   invoiceCardTransferSumHolder: ".invoice-card-transfer-sum-holder" +
   "{" +
   "float: right;" +
   "color: #ABD15B;" +
   "margin:" + 5 * widthK + "px " + 20 * widthK + "px " + 10 * widthK + "px 0;" +
   "}",
-
+  
   invoiceCardSumMarked: ".invoice-card-sum-marked" +
   "{" +
   "background-color: transparent;" +
   "font-size:" + 21 * widthK + "px;" +
   "color: inherit;" +
   "}",
-
+  
   invoiceCardPayment: ".invoice-card-payment" +
   "{" +
   "float: right;" +
@@ -2235,14 +2235,14 @@ var css = {
   "height: 100%;" +
   "width:" + 80 * widthK + "px;" +
   "}",
-
+  
   invoiceCardPaymentSumHolder: ".invoice-card-payment-sum-holder" +
   "{" +
   "float: right;" +
   "color: #FC8379;" +
   "margin:" + 5 * widthK + "px " + 20 * widthK + "px " + 10 * widthK + "px 0;" +
   "}",
-
+  
   invoiceCardSum: ".invoice-card-sum" +
   "{" +
   "background-color: inherit;" +
@@ -2255,7 +2255,7 @@ var css = {
   "margin-right:" + 7 * widthK + "px;" +
   "float: left;" +
   "}",
-
+  
   cardBankName: ".card-bank-name " +
   "{" +
   "position: absolute;" +
@@ -2268,7 +2268,7 @@ var css = {
   "width:" + 118 * widthK + "px;" +
   "background-position: top right;" +
   "}",
-
+  
   //cardBankNameUrl: ".card-bank-name-url " +
   //"{" +
   //"position: absolute;" +
@@ -2280,7 +2280,7 @@ var css = {
   //"left:" + 30 * widthK + "px;" +
   //"top:" + 20 * widthK + "px" +
   //"}",
-
+  
   cardSalaryTitle: ".card-salary-title " +
   "{" +
   "position: absolute;" +
@@ -2294,7 +2294,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "}",
-
+  
   cardBalansCurrencyContainer: ".card-balance-currency-container " +
   "{" +
   "position: absolute;" +
@@ -2304,7 +2304,7 @@ var css = {
   "margin: 0;" +
   "overflow: hidden;" +
   "}",
-
+  
   cardBalance: ".card-balance " +
   "{" +
   "position: relative;" +
@@ -2319,12 +2319,12 @@ var css = {
   "overflow: hidden;" +
   "max-height: 52%;" +
   "}",
-
+  
   cardBalanceFractional: ".card-balance-fractional " +
   "{" +
   "font-size:" + 36 * widthK + "px;" +
   "}",
-
+  
   cardCurrency: ".card-currency " +
   "{" +
   "position: relative;" +
@@ -2335,7 +2335,7 @@ var css = {
   "float: left;" +
   "width:" + 60 * widthK + "px;" +
   "}",
-
+  
   cardNumber: ".card-number " +
   "{" +
   "position: absolute;" +
@@ -2349,28 +2349,28 @@ var css = {
   "font-family: 'OCRAStd';" +
   "left:" + 20 * widthK + "px;" +
   "}",
-
+  
   cardNumberPartOne: ".card-number-part-one " +
   "{" +
   "position: absolute;" +
   "left: 0px;" +
   // "font-weight: bold;" +
   "}",
-
+  
   cardNumberMiddleTwo: ".card-number-middle-two " +
   "{" +
   "position: absolute;" +
   "left:" + 107 * widthK + "px;" +
   // "font-weight: bold;" +
   "}",
-
+  
   cardNumberPartTwo: ".card-number-part-two " +
   "{" +
   "position: absolute;" +
   "left:" + 304 * widthK + "px;" +
   // "font-weight: bold;" +
   "}",
-
+  
   numberStars: ".number-stars " +
   "{" +
   "position: absolute;" +
@@ -2381,9 +2381,9 @@ var css = {
   "font-size:" + 26 * widthK + "px;" +
   // "word-spacing:" + -8 * widthK + "px;" +
   "}",
-
+  
   //SERVICE CAROUSEL COMPONENT
-
+  
   serviceCarousel: ".service-carousel " +
   "{" +
   "position: absolute;" +
@@ -2392,7 +2392,7 @@ var css = {
   "bottom:" + 65 * widthK + "px;" +
   "background: transparent;" +
   "}",
-
+  
   serviceComponent: ".service-component " +
   "{" +
   "position: absolute;" +
@@ -2406,7 +2406,7 @@ var css = {
   "-moz-box-shadow: " + 9 * widthK + "px " + 9 * widthK + "px " + 29.4 * widthK + "px " + "rgba(0,0,0, 0.08);" +
   "box-shadow: " + 9 * widthK + "px " + 9 * widthK + "px " + 29.4 * widthK + "px " + "rgba(0,0,0, 0.08);" +
   "}",
-
+  
   serviceComponentOpenIcon: ".service-component-open-icon " +
   "{" +
   "position: absolute;" +
@@ -2419,16 +2419,16 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "}",
-
+  
   serviceContainer: ".service-container " +
   "{" +
   "position: absolute;" +
   "height: 55%;" +
-  // "width: 100%;" +
+  "width: 100%;" +
   "bottom: 23%;" +
   "left:" + 25 * widthK + "px;" +
   "}",
-
+  
   serviceButtons: ".service-buttons " +
   "{" +
   "position: relative;" +
@@ -2445,11 +2445,11 @@ var css = {
   "margin-top:" + 20 * widthK + "px;" +
   "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
   "}",
-
+  
   serviceButtonsNoLoader: ".service-buttons-noloader " +
   "{" +
   "position: relative;" +
-  // "width:" + 100 * widthK + "px;" +
+  "width:" + 100 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "border: 0px;" +
   "float: left;" +
@@ -2457,8 +2457,8 @@ var css = {
   "margin-left:" + 15 * widthK + "px;" +
   "margin-top:" + 20 * widthK + "px;" +
   "}",
-
-
+  
+  
   serviceEachContainer: ".service-each-container" +
   "{" +
   "position: relative;" +
@@ -2468,20 +2468,20 @@ var css = {
   "float: left;" +
   "margin-right: " + 20 * widthK + "px;" +
   "}",
-
+  
   beelineButton: ".beeline-button " +
   "{" +
   "background-image: url(resources/icons/services/beelineS.png);" +
   "background-size: 60%;" +
   "}",
-
+  
   ucellButton: ".ucell-button " +
   "{" +
   "top:0;" +
   "background-image: url(resources/icons/services/ucellS.png);" +
   "background-size: 80%;" +
   "}",
-
+  
   umsButton: ".ums-button " +
   "{" +
   //"left:" + 288 * widthK + "px;" +
@@ -2489,7 +2489,7 @@ var css = {
   "background-image: url(resources/icons/services/umsS.png);" +
   "background-size: 60%;" +
   "}",
-
+  
   myPhoneButton: ".my-phone-button " +
   "{" +
   //"left:" + 425 * widthK + "px;" +
@@ -2498,13 +2498,12 @@ var css = {
   "background-image: url(resources/icons/ViewPay/myphone.png);" +
   "background-size: 60%;" +
   "}",
-
+  
   serviceLabels: ".service-labels " +
   "{" +
   "position: absolute;" +
   "bottom:" + 12 * widthK + "px;" +
   "font-size:" + 25 * widthK + "px;" +
-  "margin-left:" + 15 * widthK + "px;" +
   "color: grey;" +
   "width: 100%;" +
   "white-space: nowrap;" +
@@ -2512,19 +2511,19 @@ var css = {
   "overflow: hidden;" +
   "text-align: center;" +
   "}",
-
+  
   serviceLabelsUcell: ".service-labels-ucell " +
   "{" +
   "left:" + 40 * widthK + "px;" +
   "bottom:" + -80 * widthK + "px;" +
   "}",
-
+  
   serviceLabelBeeline: ".service-labels-beeline " +
   "{" +
   "bottom:" + -80 * widthK + "px;" +
   "left:" + 24 * widthK + "px;" +
   "}",
-
+  
   serviceLabelsUms: ".service-labels-ums " +
   "{" +
   "left:" + 33 * widthK + "px;" +
@@ -2560,7 +2559,7 @@ var css = {
   "z-index: 1;" +
   "width:" + 20 * widthK + "px;" +
   "}",
-
+  
   sideMenu: ".side-menu " +
   "{" +
   "position: absolute;" +
@@ -2575,7 +2574,7 @@ var css = {
   "z-index: 1;" +
   //"top:" + topOfIos + "px;" +
   "}",
-
+  
   sideMenuInsideButton: ".side-menu-inside-button " +
   "{" +
   "position: absolute;" +
@@ -2588,7 +2587,7 @@ var css = {
   "background-size: 30%;" +
   "background-position: center;" +
   "}",
-
+  
   sideMenuUserInfoContainer: ".side-menu-user-info-container " +
   "{" +
   "position: absolute;" +
@@ -2597,7 +2596,7 @@ var css = {
   "top: 2%;" +
   "right: 0;" +
   "}",
-
+  
   sideMenuUserIcon: ".side-menu-user-icon " +
   "{" +
   "position: absolute;" +
@@ -2610,7 +2609,7 @@ var css = {
   "background-size: cover;" +
   "background-position: center;" +
   "}",
-
+  
   sideMenuUserFirstName: ".side-menu-user-first-name " +
   "{" +
   "position: absolute;" +
@@ -2625,7 +2624,7 @@ var css = {
   "text-align: right;" +
   "white-space: nowrap;" +
   "}",
-
+  
   sideMenuUserSecondName: ".side-menu-user-second-name " +
   "{" +
   "position: absolute;" +
@@ -2640,7 +2639,7 @@ var css = {
   "text-align: right;" +
   "white-space: nowrap;" +
   "}",
-
+  
   sideMenuReportsContainer: ".side-menu-reports-container " +
   "{" +
   "position: relative;" +
@@ -2650,7 +2649,7 @@ var css = {
   "left: 8%;" +
   // "border-bottom: 1px solid #f2f2f2;" +
   "}",
-
+  
   sideMenuBillingsContainer: ".side-menu-billings-container " +
   "{" +
   "position: relative;" +
@@ -2661,7 +2660,7 @@ var css = {
   "left: 8%;" +
   // "border-bottom: 1px solid #f2f2f2;" +
   "}",
-
+  
   sideMenuFavoriteContainer: ".side-menu-favorite-container " +
   "{" +
   "position: relative;" +
@@ -2672,7 +2671,7 @@ var css = {
   "left: 8%;" +
   // "border-bottom: 1px solid #f2f2f2;" +
   "}",
-
+  
   sideMenuAutoPayContainer: ".side-menu-auto-pay-container " +
   "{" +
   "position: relative;" +
@@ -2683,7 +2682,7 @@ var css = {
   "left: 8%;" +
   // "border-bottom: 1px solid #f2f2f2;" +
   "}",
-
+  
   sideMenuActionContainer: ".side-menu-action-container " +
   "{" +
   "position: relative;" +
@@ -2697,7 +2696,7 @@ var css = {
   "text-align: center;" +
   "padding-bottom: " + 20 * widthK + "px;" +
   "}",
-
+  
   sideMenuScannerQrContainer: ".side-menu-scanner-qr-container " +
   "{" +
   "position: relative;" +
@@ -2706,7 +2705,7 @@ var css = {
   "float: left;" +
   "text-align: center;" +
   "}",
-
+  
   sideMenuActionContainerSeparator: ".side-menu-action-container-separator " +
   "{" +
   "position: absolute;" +
@@ -2715,7 +2714,7 @@ var css = {
   "bottom: 10%;" +
   "border-left: 2px solid #F0F0F0;" +
   "}",
-
+  
   sideMenuClickPassContainer: ".side-menu-click-pass-container " +
   "{" +
   "position: relative;" +
@@ -2724,7 +2723,7 @@ var css = {
   "float: left;" +
   "text-align: center;" +
   "}",
-
+  
   sideMenuSettingsContainer: ".side-menu-settings-container " +
   "{" +
   "clear: both;" +
@@ -2734,7 +2733,7 @@ var css = {
   "width: 77%;" +
   "left: 8%;" +
   "}",
-
+  
   sideMenuNewsContainer: ".side-menu-news-container " +
   "{" +
   "clear: both;" +
@@ -2744,7 +2743,7 @@ var css = {
   "width: 77%;" +
   "left: 8%;" +
   "}",
-
+  
   sideMenuCallContainer: ".side-menu-call-container " +
   "{" +
   "clear: both;" +
@@ -2756,7 +2755,7 @@ var css = {
   //"margin-top: 2%;" +
   // "border-bottom: 1px solid #f2f2f2;" +
   "}",
-
+  
   sideMenuExitContainer: ".side-menu-exit-container " +
   "{" +
   "position: absolute;" +
@@ -2766,7 +2765,7 @@ var css = {
   "left: 8%;" +
   // "border-bottom: 1px solid #2dadf0;" +
   "}",
-
+  
   sideMenuContainersIcon: ".side-menu-containers-icon " +
   "{" +
   "position: absolute;" +
@@ -2777,44 +2776,44 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "}",
-  sideMenuActionIcon    : ".side-menu-action-icon " +
+  sideMenuActionIcon: ".side-menu-action-icon " +
   "{" +
   "width: 7%;" +
   "height: 81%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "}",
-
+  
   sideMenuContainersIconSettings: ".side-menu-containers-icon-settings" +
   "{" +
   "background-image: url(resources/icons/menu/menu_settings.png);" +
   "background-size: 100%;" +
   "}",
-
+  
   sideMenuContainersIconNews: ".side-menu-containers-icon-news" +
   "{" +
   "background-image: url(resources/icons/menu/menu_news.png);" +
   "background-size: 100%;" +
   "}",
-
+  
   sideMenuContainersIconReports: ".side-menu-containers-icon-reports" +
   "{" +
   "background-image: url(resources/icons/menu/menu_reports.png);" +
   "background-size: 100%;" +
   "}",
-
+  
   sideMenuContainersIconBillings: ".side-menu-containers-icon-billings" +
   "{" +
   "background-image: url(resources/icons/menu/menu_bills.png);" +
   "background-size: 90%;" +
   "}",
-
+  
   sideMenuContainersIconAutopayment: ".side-menu-containers-icon-autopayment" +
   "{" +
   "background-image: url(resources/icons/menu/menu_autopayment.png);" +
   "background-size: 90%;" +
   "}",
-
+  
   sideMenuActionImage: ".side-menu-action-image " +
   "{" +
   "display: block;" +
@@ -2825,28 +2824,28 @@ var css = {
   "width: " + 100 * widthK + "px;" +
   "height: " + 100 * widthK + "px;" +
   "}",
-
+  
   sideMenuContainersIconScannerQr: ".side-menu-containers-icon-scanner-qr" +
   "{" +
   "background-image: url(resources/icons/menu/menu_qr.png);" +
   "background-size: 100%;" +
   "width: 18%;" +
   "}",
-
+  
   sideMenuContainersIconClickPass: ".side-menu-containers-icon-click-pass" +
   "{" +
   "background-image: url(resources/icons/menu/menu_scanner.png);" +
   "background-size: 100%;" +
   "width: 18%;" +
   "}",
-
+  
   sideMenuContainersIconCall: ".side-menu-containers-icon-call" +
   "{" +
   "background-image: url(resources/icons/menu/menu_call.png);" +
   "background-size: 100%;" +
   "top: 9%;" +
   "}",
-
+  
   sideMenuContainersIconExit: ".side-menu-containers-icon-exit" +
   "{" +
   "background-image: url(resources/icons/back/back_red.png);" +
@@ -2855,14 +2854,14 @@ var css = {
   "height: 36%;" +
   "width: 8%;" +
   "}",
-
+  
   sideMenuContainersIconFavorite: ".side-menu-containers-icon-favorite" +
   "{" +
   "background-image: url(resources/icons/menu/menu_favorites.png);" +
   "background-size: 100%;" +
   "}",
-
-
+  
+  
   sideMenuContainersName: ".side-menu-containers-name " +
   "{" +
   "position: absolute;" +
@@ -2871,11 +2870,11 @@ var css = {
   "font-size:" + 29 * widthK + "px;" +
   "color: #565d6a;" +
   "}",
-
+  
   sideMenuContainersNameAutopayment: ".side-menu-containers-name-autopayment " +
   "{" +
   "}",
-
+  
   sideMenuContainersNameScannerQr: ".side-menu-containers-name-scanner-qr " +
   "{" +
   // "left: 28%;" +
@@ -2886,7 +2885,7 @@ var css = {
   "color: #707381;" +
   "font-size:" + 25 * widthK + "px;" +
   "}",
-
+  
   sideMenuContainersHintScannerQr: ".side-menu-containers-hint-scanner-qr " +
   "{" +
   "margin: 0;" +
@@ -2894,7 +2893,7 @@ var css = {
   "font-size:" + 20 * widthK + "px;" +
   "color: #A9ABB3;" +
   "}",
-
+  
   sideMenuContainersNameClickPass: ".side-menu-containers-name-click-pass " +
   "{" +
   // "left: 28%;" +
@@ -2905,7 +2904,7 @@ var css = {
   "color: #707381;" +
   "font-weight: bold;" +
   "}",
-
+  
   sideMenuContainersHintClickPass: ".side-menu-containers-hint-click-pass " +
   "{" +
   "margin: 0;" +
@@ -2913,16 +2912,16 @@ var css = {
   "font-size:" + 20 * widthK + "px;" +
   "color: #A9ABB3;" +
   "}",
-
+  
   sideMenuContainersNameSettings: ".side-menu-containers-name-settings " +
   "{" +
   "}",
-
+  
   sideMenuContainersNameCall: ".side-menu-containers-name-call " +
   "{" +
   "top: 33%;" +
   "}",
-
+  
   sideMenuChangeMode: ".side-menu-change-mode " +
   "{" +
   "position: relative;" +
@@ -2933,7 +2932,7 @@ var css = {
   // "border: 1px solid #92bf3a;" +
   "color: white;" +
   "}",
-
+  
   sideMenuChangeModeText: ".side-menu-change-mode-text " +
   "{" +
   "position: absolute;" +
@@ -2945,7 +2944,7 @@ var css = {
   "font-size:" + 29 * widthK + "px;" +
   "word-spacing:" + 2 * widthK + "px;" +
   "}",
-
+  
   sideMenuChangeModeHintText: ".side-menu-change-mode-hint-text " +
   "{" +
   "position: absolute;" +
@@ -2958,7 +2957,7 @@ var css = {
   "font-size:" + 16 * widthK + "px;" +
   "word-spacing:" + 2 * widthK + "px;" +
   "}",
-
+  
   switchMenu: ".switch-menu" +
   "{" +
   "position: absolute;" +
@@ -2971,12 +2970,12 @@ var css = {
   "z-index: 2;" +
   "border-radius:" + 50 * widthK + "px;" +
   "}",
-
+  
   switchMenuInput: ".switch-menu input" +
   "{" +
   "display: none;" +
   "}",
-
+  
   sliderMenu: ".slider-menu" +
   "{" +
   "position: absolute;" +
@@ -2988,7 +2987,7 @@ var css = {
   "-webkit-transition: .4s;" +
   "transition: .4s;" +
   "}",
-
+  
   sliderMenuBefore: ".slider-menu:before" +
   "{" +
   "position: absolute;" +
@@ -3000,46 +2999,46 @@ var css = {
   "-webkit-transition: .4s;" +
   "transition: .4s;" +
   "}",
-
+  
   sliderMenuBeforeOnline: ".slider-menu.online:before" +
   "{" +
   "background-color: #92bf3a;" +
   "}",
-
+  
   sliderMenuBeforeOffline: ".slider-menu.offline:before" +
   "{" +
   "background-color: #F24746;" +
   "}",
-
+  
   inputCheckedSlider: "input:checked + .slider-menu" +
   "{" +
   "background-color: #2196F3;" +
   "}",
-
+  
   inputFocusSlider: "input:focus + .slider-menu" +
   "{" +
   "box-shadow: 0 0 1px #2196F3;" +
   "}",
-
+  
   inputCheckedSliderBefore: "input:checked + .slider-menu:before" +
   "{" +
   "-webkit-transform: translateX(" + 17 * widthK + "px);" +
   "transform: translateX(" + 17 * widthK + "px);" +
   "}",
-
+  
   sliderMenuRound: ".slider-menu.round" +
   "{" +
   "border-radius:" + 34 * widthK + "px;" +
   "position: absolute;" +
   "top:" + 29 * widthK + "px;" +
   "}",
-
+  
   sliderMenuRoundBefore: ".slider-menu.round:before" +
   "{" +
   "border-radius: 50%;" +
   "}",
-
-
+  
+  
   sideMenuChangeModeIcon: ".side-menu-change-mode-icon " +
   "{" +
   "position: absolute;" +
@@ -3052,7 +3051,7 @@ var css = {
   "background-image: url(resources/icons/menu/menu_online.png);" +
   "background-size: 56%;" +
   "}",
-
+  
   sideMenuBackPage: ".side-menu-back-page " +
   "{" +
   "position: absolute;" +
@@ -3065,9 +3064,9 @@ var css = {
   "background-color: rgba(0, 0, 0, 0.6);" +
   "opacity: 0;" +
   "}",
-
+  
   //TITLE COMPONENT
-
+  
   pageTitle: ".page-title " +
   "{" +
   "position: absolute;" +
@@ -3077,21 +3076,21 @@ var css = {
   "background: white;" +
   "z-index: 5;" +
   "}",
-
+  
   pageTitleShadow: ".page-title-shadow " +
   "{" +
   "-webkit-box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
   "-moz-box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
   "box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
   "}",
-
+  
   upperShadow: ".upper-shadow " +
   "{" +
   "-webkit-box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
   "-moz-box-shadow: 0 -8px 40px 8px rgba(0,0,0, .05);" +
   "box-shadow: 0 -8px 40px 8px rgba(0,0,0, .05);" +
   "}",
-
+  
   nameTitle: ".name-title " +
   "{" +
   "position: absolute;" +
@@ -3102,7 +3101,7 @@ var css = {
   "margin: 0;" +
   "color: #565d6a;" +
   "}",
-
+  
   backButton: ".back-button " +
   "{" +
   "position: absolute;" +
@@ -3116,7 +3115,7 @@ var css = {
   "background-size: 50%;" +
   "left: 1.5%;" +
   "}",
-
+  
   borderBottom: ".border-bottom" +
   "{" +
   "position: absolute;" +
@@ -3127,7 +3126,7 @@ var css = {
   "bottom:0;" +
   "z-index:9999" +
   "}",
-
+  
   titleBottomBorder: ".title-bottom-border " +
   "{" +
   "position: absolute;" +
@@ -3136,7 +3135,7 @@ var css = {
   "bottom: 0%;" +
   "border-bottom: 1px solid #e8e8e8;" +
   "}",
-
+  
   InPlacetitleBottomBorder: ".inplace-title-bottom-border " +
   "{" +
   "position: absolute;" +
@@ -3144,7 +3143,7 @@ var css = {
   "bottom: 0%;" +
   "border-bottom: 1px solid #e8e8e8;" +
   "}",
-
+  
   titleTopBorder: ".title-top-border " +
   "{" +
   "position: absolute;" +
@@ -3153,7 +3152,7 @@ var css = {
   "top: 0%;" +
   "border-bottom: 1px solid #e8e8e8;" +
   "}",
-
+  
   verLineBorder: ".hor-line-border " +
   "{" +
   "position: relative;" +
@@ -3162,7 +3161,7 @@ var css = {
   "bottom: 0%;" +
   "border-bottom: 1px solid #e8e8e8;" +
   "}",
-
+  
   settingsButton: ".settings-button " +
   "{" +
   "position: absolute;" +
@@ -3176,7 +3175,7 @@ var css = {
   "background-position-x: center;" +
   "background-size: 50%;" +
   "}",
-
+  
   searchButton: ".search-button " +
   "{" +
   "position: absolute;" +
@@ -3191,9 +3190,9 @@ var css = {
   "background-size: 45%;" +
   "top:" + 25 * widthK + "px;" +
   "}",
-
+  
   //FOOTER COMPONENT
-
+  
   footer: ".footer " +
   "{" +
   "position: absolute;" +
@@ -3209,7 +3208,7 @@ var css = {
   "background: -webkit-linear-gradient(left, rgb(86,93,106) 20%,rgb(87,132,169));" +
   "background: -ms-linear-gradient(left, rgb(86,93,106) 20%,rgb(87,132,169));" +
   "}",
-
+  
   footerIconTick: ".footer-icon-tick " +
   "{" +
   "position: absolute;" +
@@ -3222,7 +3221,7 @@ var css = {
   "top:" + 29 * widthK + "px;" +
   "transition: 0.8s;" +
   "}",
-
+  
   footerContactsContainer: ".footer-contacts-container " +
   "{" +
   "position: absolute;" +
@@ -3237,7 +3236,7 @@ var css = {
   "-webkit-transform: translate3d(0," + 200 * widthK + "px,0);" +
   "-ms-transform: translate3d(0," + 200 * widthK + "px,0);" +
   "}",
-
+  
   footerContactLabel: ".footer-contacts-label " +
   "{" +
   "position: absolute;" +
@@ -3246,7 +3245,7 @@ var css = {
   "color: white;" +
   "left:" + -1 * widthK + "px;" +
   "}",
-
+  
   footerContacts: ".footer-contacts " +
   "{" +
   "position: absolute;" +
@@ -3257,7 +3256,7 @@ var css = {
   "background: -webkit-linear-gradient(left, rgb(86,93,106) 20%,rgb(87,132,169));" +
   "background: -ms-linear-gradient(left, rgb(86,93,106) 20%,rgb(87,132,169));" +
   "}",
-
+  
   footerFavouriteContactsContainer: ".footer-favourite-contacts-container " +
   "{" +
   "position: relative;" +
@@ -3268,7 +3267,7 @@ var css = {
   "top: 0;" +
   "left:" + 20 * widthK + "px;" +
   "}",
-
+  
   footerFavouriteContactsCircles: ".footer-favourite-contacts-circles " +
   "{" +
   "position: absolute;" +
@@ -3286,7 +3285,7 @@ var css = {
   "background-position: center;" +
   "left:" + 10 * widthK + "px;" +
   "}",
-
+  
   footerContacsBlocks: ".footer-contacts-blocks " +
   "{" +
   "position: absolute;" +
@@ -3294,32 +3293,32 @@ var css = {
   "width:" + 120 * widthK + "px;" +
   "text-align: center;" +
   "}",
-
+  
   footerContactsBlockOne: ".footer-contacts-block-one " +
   "{" +
   "left:" + -30 * widthK + "px;" +
   "}",
-
+  
   footerContactsBlockTwo: ".footer-contacts-block-two " +
   "{" +
   "left:" + 110 * widthK + "px;" +
   "}",
-
+  
   footerContactsBlockThree: ".footer-contacts-block-three " +
   "{" +
   "left:" + 250 * widthK + "px;" +
   "}",
-
+  
   footerContacsBlockFour: ".footer-contacts-block-four " +
   "{" +
   "left:" + 390 * widthK + "px;" +
   "}",
-
+  
   footerContactsBlockFive: ".footer-contacts-block-five " +
   "{" +
   "left:" + 530 * widthK + "px;" +
   "}",
-
+  
   footerFavouriteContactsLabel: ".footer-favourite-contacts-label " +
   "{" +
   "position: relative;" +
@@ -3336,7 +3335,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "}",
-
+  
   footerContactsLabelIconContainer: ".footer-contacts-label-icon-container " +
   "{" +
   "position: relative;" +
@@ -3346,9 +3345,9 @@ var css = {
   "width:" + 214 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "}",
-
+  
   //VIEW MY CARDS
-
+  
   viewMyCards: ".view-my-cards " +
   "{" +
   "position: absolute;" +
@@ -3356,14 +3355,14 @@ var css = {
   "height: 100%;" +
   "overflow: hidden;" +
   "}",
-
+  
   myCardsCarousel: ".my-cards-carousel " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "top:" + -64 * widthK + "px;" +
   "}",
-
+  
   myCardsButtonContainer: ".my-cards-button-container " +
   "{" +
   "position: absolute;" +
@@ -3374,29 +3373,29 @@ var css = {
   "height:" + 300 * widthK + "px;" +
   "background: transparent;" +
   "}",
-
+  
   myCardsButtonField: ".my-cards-button-field " +
   "{" +
   "position: absolute;" +
   "width:" + 800 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "}",
-
+  
   myCardsButtonFieldTransfer: ".my-cards-button-field-transfer " +
   "{" +
   "top: 0;" +
   "}",
-
+  
   myCardsFieldPayment: ".my-cards-button-field-payment " +
   "{" +
   "top:" + 100 * widthK + "px;" +
   "}",
-
+  
   myCardsFieldReport: ".my-cards-button-field-report " +
   "{" +
   "top:" + 200 * widthK + "px;" +
   "}",
-
+  
   myCardsButtonIcon: ".my-cards-button-icon " +
   "{" +
   "position: absolute;" +
@@ -3407,28 +3406,28 @@ var css = {
   "opacity: 0.7;" +
   "left:" + 24 * widthK + "px;" +
   "}",
-
+  
   myCardsButtonIconTransfer: ".my-cards-button-icon-transfer " +
   "{" +
   "background-image: url(resources/icons/ViewMyCards/cardtransfer.png);" +
   "background-size: 35%;" +
   "background-position: center;" +
   "}",
-
+  
   myCardsButtonIconPayment: ".my-cards-button-icon-payment " +
   "{" +
   "background-image: url(resources/icons/ViewMyCards/cardpayments.png);" +
   "background-size: 35%;" +
   "background-position: center;" +
   "}",
-
+  
   myCardsButtonIconReport: ".my-cards-button-icon-report " +
   "{" +
   "background-image: url(resources/icons/ViewMyCards/cardreport.png);" +
   "background-size: 35%;" +
   "background-position: center;" +
   "}",
-
+  
   myCardsButtonIconBlock: ".my-cards-button-icon-block" +
   "{" +
   "background-image: url(resources/icons/ViewMyCards/cardblock.png);" +
@@ -3437,7 +3436,7 @@ var css = {
   "top:" + 4 * widthK + "px;" +
   "left:" + -2 * widthK + "px;" +
   "}",
-
+  
   myCardsButtonLabel: ".my-cards-button-label " +
   "{" +
   "position: absolute;" +
@@ -3449,7 +3448,7 @@ var css = {
   "top:" + 30 * widthK + "px;" +
   "border-bottom: 1px solid #e8e8e8;" +
   "}",
-
+  
   myCardsButtonBlockCard: ".my-cards-button-block-card " +
   "{" +
   "position: absolute;" +
@@ -3458,7 +3457,7 @@ var css = {
   "background-color: #eb604d;" +
   "top:" + 726 * widthK + "px;" +
   "}",
-
+  
   myCardsButtonBlockCardLabel: ".my-cards-button-block-card-label " +
   "{" +
   "position: absolute;" +
@@ -3468,7 +3467,7 @@ var css = {
   "color: white;" +
   "top:" + 33 * widthK + "px;" +
   "}",
-
+  
   myCardsLastOperationContainer: ".my-cards-last-operations-container " +
   "{" +
   "position: absolute;" +
@@ -3480,7 +3479,7 @@ var css = {
   "-webkit-overflow-scrolling: touch;" +
   "height:" + (1232 * heightK - 922 * widthK) + "px;" +
   "}",
-
+  
   myCardsLastOperations: ".my-cards-last-operations " +
   "{" +
   "position: absolute;" +
@@ -3495,7 +3494,7 @@ var css = {
   "background-color: #ffffff;" +
   // "bottom: 0;" +
   "}",
-
+  
   myCardsLastOperationsContainerLabel: ".my-cards-last-operations-container-label " +
   "{" +
   "position: absolute;" +
@@ -3510,7 +3509,7 @@ var css = {
   // "box-shadow: 0px 17px 63px -23px rgb(37, 36, 36);" +
   "box-shadow: 0px " + 17 * widthK + "px " + 63 * widthK + "px " + -23 * widthK + "px " + " rgb(37, 36, 36);" +
   "}",
-
+  
   myCardsLastOperationsContainerIcon: ".my-cards-last-operations-container-icon " +
   "{" +
   "position: absolute;" +
@@ -3524,7 +3523,7 @@ var css = {
   "-webkit-transition: 1s;" +
   "background-repeat: no-repeat;" +
   "}",
-
+  
   myCardsLastOperationLabel: ".my-cards-last-operations-label " +
   "{" +
   "position: absolute;" +
@@ -3532,13 +3531,13 @@ var css = {
   "left:" + 43 * widthK + "px;" +
   "top:" + 23 * widthK + "px;" +
   "}",
-
+  
   myCardsLastOperationsInnerContainer: ".my-cards-last-operations-inner-container" +
   "{" +
   "position: relative;" +
   "width: 100%;" +
   "}",
-
+  
   solidBorderButton: ".solid-border-bottom" +
   "{" +
   "position: absolute;" +
@@ -3549,7 +3548,7 @@ var css = {
   "left:0;" +
   "right:0;" +
   "}",
-
+  
   myCardsLastOperationInfoStateImage: ".my-cards-last-operations-info-state-image " +
   "{" +
   "position: absolute;" +
@@ -3563,14 +3562,14 @@ var css = {
   "background-position: center;" +
   "margin: 0;" +
   "}",
-
+  
   stateImageContainer: ".state-image-container" +
   "{" +
   "background-size: 60%;" +
   "height:" + 60 * widthK + "px;" +
   "margin-top: 1" +
   "}",
-
+  
   myCardsLastOperationInfoDateName: ".my-cards-last-operation-info-date-name " +
   "{" +
   "position: relative;" +
@@ -3582,7 +3581,7 @@ var css = {
   "font-size:" + 24 * widthK + "px; " +
   "color: gray;" +
   "}",
-
+  
   myCardsOperationAmounts: ".my-cards-operation-amount " +
   "{" +
   "position: relative;" +
@@ -3593,7 +3592,7 @@ var css = {
   "top:" + 12 * widthK + "px;" +
   "float: left;" +
   "}",
-
+  
   myCardsOperationCurrency: ".my-cards-operation-currency " +
   "{" +
   "position: relative;" +
@@ -3604,7 +3603,7 @@ var css = {
   "left:" + 10 * widthK + "px;" +
   "font-size:" + 25 * widthK + "px;" +
   "}",
-
+  
   myCardsOperationDate: ".my-cards-operation-date " +
   "{" +
   "position: absolute;" +
@@ -3616,9 +3615,9 @@ var css = {
   "overflow: hidden;" +
   "width: 100%;" +
   "}",
-
+  
   //VIEW CARD EDIT
-
+  
   cardEditBodyContainer: ".card-edit-body-container" +
   "{" +
   "position: absolute;" +
@@ -3630,7 +3629,7 @@ var css = {
   "overflow-y: auto; " +
   "overflow-x: hidden; " +
   "}",
-
+  
   checkButton: ".check-button " +
   "{" +
   "position: absolute;" +
@@ -3645,7 +3644,7 @@ var css = {
   "background-size: 50%;" +
   "top: 11%;" +
   "}",
-
+  
   cardEditField: ".card-edit-field" +
   "{position: relative;" +
   "left: 10%;" +
@@ -3655,7 +3654,7 @@ var css = {
   "color: white;" +
   "top: 6%" +
   "}",
-
+  
   cardEditTextField: ".card-edit-text-field" +
   "{" +
   "position: absolute;" +
@@ -3664,7 +3663,7 @@ var css = {
   "font-size:" + 24 * widthK + "px; " +
   "bottom: 88%;" +
   "}",
-
+  
   cardEditInput: ".card-edit-input" +
   "{" +
   "border: none;" +
@@ -3679,7 +3678,7 @@ var css = {
   "padding: 0;" +
   "margin: 0;" +
   "}",
-
+  
   cardEditMakeMainContainer: ".card-edit-makemain-container" +
   "{" +
   "position: relative;" +
@@ -3688,14 +3687,14 @@ var css = {
   "top:12%;" +
   "left:10%;" +
   "}",
-
+  
   cardEditMakeMainText: ".card-edit-makemain-text" +
   "{" +
   "position: absolute;" +
   "font-size: " + 28 * widthK + "px; " +
   "color: #595759;" +
   "}",
-
+  
   cardEditMakeMainCheck: ".card-edit-makemain-check" +
   "{" +
   "position: absolute;" +
@@ -3708,10 +3707,10 @@ var css = {
   "top: 50%;" +
   "left: 93%;" +
   "}",
-
-
+  
+  
   //VIEW INFO
-
+  
   viewInfo: ".view-info " +
   "{" +
   "position: absolute;" +
@@ -3721,14 +3720,14 @@ var css = {
   "overflow-y: hidden;" +
   "background-color: #ffffff;" +
   "}",
-
+  
   viewInfoTitleContainer: ".view-info-title-container " +
   "{" +
   "position: relative;" +
   "height:" + 90 * widthK + "px;" +
   "z-index: 1000002;" +
   "}",
-
+  
   viewInfoBodyContainer: ".view-info-body-container " +
   "{" +
   "position: absolute;" +
@@ -3739,7 +3738,7 @@ var css = {
   "-webkit-overflow-scrolling: touch;" +
   "overflow-x: hidden;" +
   "}",
-
+  
   viewInfoBackButton: ".view-info-back-button " +
   "{position: absolute;" +
   "left:" + 35 * widthK + "px;" +
@@ -3755,14 +3754,14 @@ var css = {
   "background-color: #ffffff;" +
   "z-index: 10000;" +
   "}",
-
+  
   viewInfoHeadInfoContainer: ".view-info-head-info-container " +
   "{" +
   "position:relative;" +
   "height:" + 160 * widthK + "px;" +
   "padding:" + 10 * widthK + "px " + 15 * widthK + "px;" +
   "}",
-
+  
   viewInfoCardBalanceCurrencyContainer: ".view-info-card-balance-currency-container " +
   "{" +
   "position: absolute;" +
@@ -3773,7 +3772,7 @@ var css = {
   "margin: 0;" +
   "overflow: hidden;" +
   "}",
-
+  
   viewInfoCardBalanceScaleContainer: ".view-info-card-balance-scale-container " +
   "{" +
   "position: relative;" +
@@ -3782,7 +3781,7 @@ var css = {
   "float: left;" +
   "padding: 0;" +
   "}",
-
+  
   viewInfoCardBalanceSum: ".view-info-card-balance-sum " +
   "{" +
   "position: relative;" +
@@ -3795,12 +3794,12 @@ var css = {
   "overflow: hidden;" +
   "white-space: nowrap;" +
   "}",
-
+  
   viewInfoCardBalanceSumFractional: ".view-info-card-balance-sum-fractional " +
   "{" +
   "font-size:" + 51 * widthK + "px;" +
   "}",
-
+  
   viewInfoCardCurrency: ".view-info-card-currency " +
   "{" +
   // "position: relative;" +
@@ -3813,7 +3812,7 @@ var css = {
   // "color: #91cc00;" +
   // "width:" + 60 * widthK + "px;" +
   "}",
-
+  
   viewInfoMyFinanceContainer: ".view-info-my-finance-container " +
   "{" +
   "position: absolute;" +
@@ -3823,7 +3822,7 @@ var css = {
   "top:" + 190 * widthK + "px;" +
   "border-bottom:" + 1 + "px solid #f4f4f4;" +
   "}",
-
+  
   viewInfoBagIcon: ".view-info-bag-icon " +
   "{" +
   "position: absolute;" +
@@ -3836,7 +3835,7 @@ var css = {
   "background-position: center;" +
   "background-size: 60%;" +
   "}",
-
+  
   viewInfoAttentionIcon: ".view-info-attention-icon " +
   "{" +
   "position: absolute;" +
@@ -3849,7 +3848,7 @@ var css = {
   "background-position: center;" +
   "background-size: 60%;" +
   "}",
-
+  
   viewInfoReloadIcon: ".view-info-reload-icon " +
   "{" +
   "position: absolute;" +
@@ -3863,7 +3862,7 @@ var css = {
   "background-size: 73%;" +
   "transition: 0.5s;" +
   "}",
-
+  
   viewInfoMyFinanceIcon: ".view-info-my-finance-icon " +
   "{" +
   "position: absolute;" +
@@ -3876,7 +3875,7 @@ var css = {
   "background-position: center;" +
   "background-size: 67%;" +
   "}",
-
+  
   viewInfoMyFinanceTitle: ".view-info-my-finance-title " +
   "{" +
   "position: absolute;" +
@@ -3887,7 +3886,7 @@ var css = {
   "font-size:" + 29 * widthK + "px;" +
   "color: #8b8b8b;" +
   "}",
-
+  
   viewInfoReportTitle: ".view-info-reports-title " +
   "{" +
   "position: absolute;" +
@@ -3899,7 +3898,7 @@ var css = {
   "font-size:" + 29 * widthK + "px;" +
   "color: #8b8b8b;" +
   "}",
-
+  
   InfoContainer: ".info-container " +
   "{" +
   "height:" + 160 * widthK + "px;" +
@@ -3907,27 +3906,27 @@ var css = {
   "padding:" + 10 * widthK + "px " + 15 * widthK + "px;" +
   "position: relative;" +
   "}",
-
+  
   viewInfoOperationsIcon: ".view-info-left-item " +
   "{" +
   "width:20%;" +
   "height:100%;" +
   "float: left;" +
   "}",
-
+  
   centeringBackgroundImage: ".centering-background-image" +
   "{" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "}",
-
+  
   viewInfoStateImage: ".view-info-right-item" +
   "{" +
   "width:10%;" +
   "height: 100%;" +
   "float: left;" +
   "}",
-
+  
   viewInfoOperationTitle: ".view-info-operations-title " +
   "{" +
   "width: 100%;" +
@@ -3935,7 +3934,7 @@ var css = {
   "box-shadow: 0 " + 17 * widthK + "px " + 47 * widthK + "px " + -27 * widthK + "px " + "rgb(37, 36, 36);" +
   "-webkit-box-shadow: 0 " + 17 * widthK + "px " + 47 * widthK + "px " + -27 * widthK + "px " + "rgb(37, 36, 36);" +
   "}",
-
+  
   viewOperationInfoContainer: ".info-center-container" +
   "{" +
   "height: 100%;" +
@@ -3943,7 +3942,7 @@ var css = {
   "color: #8b8b8b;" +
   "float: left;" +
   "}",
-
+  
   horizontalCentering: ".horizontal-centering" +
   "{" +
   "position: relative;" +
@@ -3953,17 +3952,17 @@ var css = {
   "-ms-transform: translateY(-50%);" +
   "overflow: auto;" +
   "}",
-
+  
   verticalCenteringContent: ".vertical-centering-content" +
   "{" +
   "text-align: center;" +
   "}",
-
+  
   textMargin: ".text-margin" +
   "{" +
   "margin: 0;" +
   "}",
-
+  
   titleText: ".title-text" +
   "{" +
   "color: darkgray;" +
@@ -3971,7 +3970,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "white-space: nowrap;" +
   "}",
-
+  
   mainText: ".main-text" +
   "{" +
   "color:gray;" +
@@ -3979,7 +3978,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "white-space: nowrap;" +
   "}",
-
+  
   payNameTitle: ".pay-name-title " +
   "{" +
   "position: absolute;" +
@@ -3990,7 +3989,7 @@ var css = {
   "margin: 0;  " +
   "color: #565d6a;" +
   "}",
-
+  
   payBackButton: ".pay-back-button " +
   "{" +
   "position: absolute;" +
@@ -4005,7 +4004,7 @@ var css = {
   "left: 2%;" +
   "top:" + 28 * widthK + "px; " +
   "}",
-
+  
   paySearchButton: ".pay-search-button " +
   "{" +
   "position: absolute;" +
@@ -4020,7 +4019,7 @@ var css = {
   "background-position-x:center;" +
   "background-size: 50%;" +
   "}",
-
+  
   payCategoryContainer: ".pay-category-container" +
   "{" +
   "position: absolute;" +
@@ -4032,7 +4031,7 @@ var css = {
   "overflow: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
   "}",
-
+  
   payServiceBlockContainer: ".pay-service-block-containter" +
   "{" +
   "position: relative;" +
@@ -4043,7 +4042,7 @@ var css = {
   "background-color: transparent;" +
   "overflow: visible;" +
   "}",
-
+  
   payServiceHintContainer: ".pay-service-hint-containter" +
   "{" +
   "position: absolute;" +
@@ -4059,7 +4058,7 @@ var css = {
   "-moz-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.5);" +
   "box-shadow: 0 8px 6px -6px rgba(0,0,0,0.5);" +
   "}",
-
+  
   payHintIconTick: ".pay-hint-icon-tick " +
   "{" +
   "position: relative;" +
@@ -4071,7 +4070,7 @@ var css = {
   "height:" + 18 * widthK + "px;" +
   "top:" + 9 * widthK + "px;" +
   "}",
-
+  
   payServicesBlock: ".pay-services-block" +
   "{" +
   "position: relative;" +
@@ -4082,11 +4081,11 @@ var css = {
   "padding: 0;" +
   "overflow: hidden;" +
   "}",
-
+  
   payServiceIcon: ".pay-service-icon" +
   "{" +
   "position: relative;" +
-  // "width: 75%;" +
+  "width: 75%;" +
   "height: " + 150 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
@@ -4094,8 +4093,8 @@ var css = {
   //"border: " + 1 + "px solid white;" +
   "background-size: 80%;" +
   "}",
-
-
+  
+  
   payServiceImageContainer: ".pay-service-image-container " +
   "{" +
   "position: relative;" +
@@ -4107,7 +4106,7 @@ var css = {
   "margin-bottom: " + 15 * widthK + "px; " +
   // "background-image: url('resources/icons/services/nologo.png');" +
   "}",
-
+  
   payServiceImage: ".pay-service-image" +
   "{" +
   "position: relative;" +
@@ -4124,25 +4123,25 @@ var css = {
   "background-size: 80%;" +
   "background-image: url(resources/icons/services/nologo.png);" +
   "}",
-
+  
   payServiceImageCached: ".pay-service-image-cached" +
   "{" +
   "transition: none;" +
   "-webkit-transition: none;" +
   "opacity: 1;" +
   "}",
-
+  
   payServiceImageNoLoader: ".pay-service-image-noloader" +
   "{" +
   "position: relative;" +
-  // "width:  " + 120 * widthK + "px; " +
+  "width:  " + 120 * widthK + "px; " +
   "height: " + 120 * widthK + "px; " +
   "margin-left: " + 15 * widthK + "px; " +
   "margin-top: " + 15 * widthK + "px; " +
   "margin-right: " + 15 * widthK + "px; " +
   "margin-bottom: " + 15 * widthK + "px; " +
   "}",
-  payServiceImageNoLogo  : ".pay-service-image-nologo" +
+  payServiceImageNoLogo: ".pay-service-image-nologo" +
   "{" +
   "background-image: url('resources/icons/services/nologo.png');" +
   // "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
@@ -4151,7 +4150,7 @@ var css = {
   "border: none;" +
   "background-size: 80%;" +
   "}",
-
+  
   payServiceNameField: ".pay-service-name-field" +
   "{" +
   "position: relative;" +
@@ -4160,31 +4159,30 @@ var css = {
   // "right:" + 20 * widthK + "px; " +
   "color: gray;" +
   "text-align: center;" +
-  // "margin-left:" + 15 * widthK + "px; " +
   "margin-right: auto;" +
   // "top: 104%;" +
   "width: 100%;" +
   "height: 40%;" +
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
-
+  
   "}",
-
+  
   payCategoryIcon: ".pay-category-icon" +
   "{" +
   "position: relative;" +
-  "width:" + 77 * widthK + "px; " +
-  "height:" + 77 * widthK + "px; " +
+  "width:" + 50 * widthK + "px; " +
+  "height:" + 50 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "float: left;" +
   "left: 4%;" +
-  "top:" + 10 * widthK + "px; " +
+  "top:" + 20 * widthK + "px; " +
   "margin-right:" + 15 * widthK + "px; " +
   "background-size: 80%;" +
   "background-image: url(resources/icons/services/nologo.png);" +
   "}",
-
+  
   payCategoryIconNoLoader: ".pay-category-icon-noloader" +
   "{" +
   "position: relative;" +
@@ -4195,8 +4193,8 @@ var css = {
   "top:" + 20 * widthK + "px; " +
   "margin-right:" + 15 * widthK + "px; " +
   "}",
-
-
+  
+  
   payCategoryNameField: ".pay-category-name-field" +
   "{" +
   "position: relative;" +
@@ -4209,7 +4207,7 @@ var css = {
   "font-size:" + 29 * widthK + "px; " +
   "color: gray;" +
   "}",
-
+  
   payCategoryBottomBorder: ".pay-category-bottom-border" +
   "{" +
   "position: absolute;" +
@@ -4219,12 +4217,11 @@ var css = {
   "width: " + (720 - 80) * widthK + "px;" +
   "background-color: #e8e8e8;" +
   "}",
-
+  
   payServiceContainer: ".pay-service-containter" +
   "{" +
   "position: relative;" +
   "width: 28%;" +
-  "display: flex;" +
   "margin-left: 3%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
@@ -4232,7 +4229,7 @@ var css = {
   "margin-bottom: 10%;" +
   "float: left;" +
   "}",
-
+  
   paySearchServicesIcon: ".pay-search-services-icon" +
   "{" +
   "position: relative;" +
@@ -4245,7 +4242,7 @@ var css = {
   "left: 3%;" +
   "background-size: 60%;" +
   "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
-
+  
   // "position: absolute;" +
   // "width:" + 167 * widthK + "px; " +
   // "height:" + 167 * widthK + "px; " +
@@ -4257,7 +4254,7 @@ var css = {
   // "background-size: 50%;" +
   // "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
   "}",
-
+  
   paySearchServicesIconNoLoader: ".pay-search-services-icon-noloader" +
   "{" +
   "position: relative;" +
@@ -4267,8 +4264,8 @@ var css = {
   "float: left;" +
   "left: 3%;" +
   "}",
-
-
+  
+  
   //viewPay: ".view-pay" +
   //"{" +
   //"position: absolute;" +
@@ -4279,7 +4276,7 @@ var css = {
   //"background-repeat: no-repeat;" +
   //"background-image: url('resources/icons/background/transparent.png');" +
   //"}",
-
+  
   viewCommonPage: ".view-common-page" +
   "{" +
   "position: absolute;" +
@@ -4288,7 +4285,7 @@ var css = {
   "overflow: hidden;" +
   "z-index: 1;" +
   "}",
-
+  
   //viewServicePincards: ".view-service-pincards" +
   //"{" +
   //"position: absolute;" +
@@ -4325,7 +4322,7 @@ var css = {
   //"background-image: url('resources/icons/background/transparent.png');" +
   //"}",
   //
-
+  
   payIconTick: ".pay-icon-tick " +
   "{" +
   "position: relative;" +
@@ -4337,7 +4334,7 @@ var css = {
   "height:" + 18 * widthK + "px;" +
   "top:" + 9 * widthK + "px;" +
   "}",
-
+  
   payPageTitle: ".pay-page-title " +
   "{" +
   "position: absolute;" +
@@ -4348,7 +4345,7 @@ var css = {
   "z-index: 2;" +
   //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
   "}",
-
+  
   servicePageTitle: ".servicepage-title" +
   "{" +
   "position: absolute;" +
@@ -4363,7 +4360,7 @@ var css = {
   "overflow: hidden;" +
   "width: 60%;" +
   "}",
-
+  
   servicePageLimitTitle: ".servicepage-limit-title" +
   "{" +
   "position: absolute;" +
@@ -4372,7 +4369,7 @@ var css = {
   "margin: 0;" +
   "color: #515151;" +
   "}",
-
+  
   servicePageCategoryField: ".servicepage-category-field" +
   "{" +
   "position: absolute;" +
@@ -4383,7 +4380,7 @@ var css = {
   "margin: 0;" +
   "color: #565d6a;" +
   "}",
-
+  
   servicePageServiceIcon: ".servicepage-service-icon" +
   "{" +
   "top: 33%;" +
@@ -4400,7 +4397,7 @@ var css = {
   "background-color: white;" +
   "display:none;" +
   "}",
-
+  
   servicePageBodyContainer: ".servicepage-body-container" +
   "{" +
   "position: absolute;" +
@@ -4412,8 +4409,8 @@ var css = {
   // "overflow-y: scroll;" +
   // "-webkit-overflow-scrolling: touch; " +
   "}",
-
-
+  
+  
   pincardBodyContainer: ".pincard-body-container" +
   "{" +
   "position: absolute;" +
@@ -4425,7 +4422,7 @@ var css = {
   // "overflow-y: scroll;" +
   // "-webkit-overflow-scrolling: touch; " +
   "}",
-
+  
   payconfirmBodyContainer: ".payconfirm-body-container" +
   "{" +
   "position: absolute;" +
@@ -4437,7 +4434,7 @@ var css = {
   // "overflow-y: scroll;" +
   // "-webkit-overflow-scrolling: touch; " +
   "}",
-
+  
   componentFirstField: ".component-first-field" +
   "{" +
   "position: absolute;" +
@@ -4448,7 +4445,7 @@ var css = {
   "background-color: #353340;" +
   "display: none;" +
   "}",
-
+  
   servicePageFieldsDropdown: ".servicepage-fields-dropdown" +
   "{" +
   "position: relative;" +
@@ -4458,7 +4455,7 @@ var css = {
   "color: white;" +
   "border-bottom:" + 3 * widthK + "px solid lightgray;" +
   "}",
-
+  
   servicePagePrefixDropdown: ".servicepage-prefix-dropdown" +
   "{" +
   "position: relative;" +
@@ -4471,7 +4468,7 @@ var css = {
   "color: #515151;" +
   "margin: 0;" +
   "}",
-
+  
   servicePagePrefixDropdownTextField: ".servicepage-prefix-dropdown-text-field" +
   "{" +
   "position: absolute;" +
@@ -4485,7 +4482,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "}",
-
+  
   servicePagePrefixDropdownIcon: ".servicepage-prefix-dropdown-icon" +
   "{" +
   "position: absolute;" +
@@ -4502,9 +4499,9 @@ var css = {
   "-ms-transform: rotate(90deg);" +
   "-o-transform: rotate(90deg);" +
   "transform: rotate(90deg);" +
-
+  
   "}",
-
+  
   servicePageFieldsDropdownCloseButton: ".servicepage-fields-dropdown-close-button " +
   "{" +
   "position: absolute;" +
@@ -4519,7 +4516,7 @@ var css = {
   "background-size: 22%;" +
   "top: 0;" +
   "}",
-
+  
   servicePageFieldsDropdownTwo: ".servicepage-fields-dropdown-two" +
   "{" +
   "position: absolute;" +
@@ -4530,7 +4527,7 @@ var css = {
   "color: white;" +
   "border-bottom:" + 3 * widthK + "px solid #95e6fd;" +
   "}",
-
+  
   servicePageDropdownTextField: ".servicepage-dropdown-text-field" +
   "{" +
   "position: absolute;" +
@@ -4544,7 +4541,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "}",
-
+  
   servicePageDropdownContainer: ".servicepage-dropdown-container" +
   "{" +
   "position: absolute;" +
@@ -4555,7 +4552,7 @@ var css = {
   "overflow: scroll;" +
   "-webkit-overflow-scrolling: touch; " +
   "}",
-
+  
   servicePageDropdownVariant: ".servicepage-dropdown-variant" +
   "{" +
   "position: relative;" +
@@ -4566,7 +4563,7 @@ var css = {
   //"margin-right: auto;" +
   "margin-bottom:" + 5 * widthK + "px;" +
   "}",
-
+  
   servicePageFirstField: ".servicepage-first-field" +
   "{" +
   "position: relative;" +
@@ -4577,7 +4574,7 @@ var css = {
   "color: white;" +
   "margin-top: 4%;" +
   "}",
-
+  
   servicePagePhoneField: ".servicepage-phone-field" +
   "{" +
   "position: relative;" +
@@ -4588,7 +4585,7 @@ var css = {
   "color: white;" +
   "top: 4.5%" +
   "}",
-
+  
   servicePagePhoneIcon: ".servicepage-phone-icon" +
   "{" +
   "position: relative;" +
@@ -4602,7 +4599,7 @@ var css = {
   "top: 25%;" +
   "right: -2%;" +
   "}",
-
+  
   servicePageAmountField: ".servicepage-amount-field" +
   "{position: relative;" +
   "left: 10%;" +
@@ -4612,7 +4609,7 @@ var css = {
   "color: white;" +
   "margin-top: 4%" +
   "}",
-
+  
   servicePageAmountFieldTwo: ".servicepage-amount-field-two" +
   "{position: relative;" +
   "left: 10%;" +
@@ -4622,7 +4619,7 @@ var css = {
   "color: white;" +
   "margin-top: 4%;" +
   "}",
-
+  
   servicePageAmountTaxTextField: ".servicepage-amount-tax-text-field" +
   "{" +
   "margin: 0;" +
@@ -4630,14 +4627,14 @@ var css = {
   "color: gray;" +
   "font-size:" + 24 * widthK + "px;" +
   "}",
-
+  
   PublicOffer: ".public-offer" +
   "{" +
   "bottom:-90%;" +
   "font-size:" + 20.8 * widthK + "px;" +
   "margin-top:4%;" +
   "}",
-
+  
   servicePageAmountIcon: ".servicepage-amount-icon" +
   "{" +
   "position: relative;" +
@@ -4650,8 +4647,8 @@ var css = {
   "background-size: 100%;" +
   "top: 40%;" +
   "}",
-
-
+  
+  
   servicePageTextField: ".servicepage-text-field" +
   "{" +
   "position: absolute;" +
@@ -4660,7 +4657,7 @@ var css = {
   "font-size:" + 24 * widthK + "px; " +
   "bottom: 88%;" +
   "}",
-
+  
   servicePageNumberFirstPart: ".servicepage-number-first-part" +
   "{" +
   "float: left;" +
@@ -4671,7 +4668,7 @@ var css = {
   "color: #515151;" +
   "margin: 0;" +
   "}",
-
+  
   servicePageAmountInput: ".servicepage-amount-input" +
   "{" +
   "border: none;" +
@@ -4686,25 +4683,25 @@ var css = {
   "margin: 0;" +
   "background-color: transparent;" +
   "}",
-
+  
   // servicePageAmountInputPlaceHolder: ".servicepage-amount-input::-webkit-input-placeholder" +
   // "{" +
   // "font-size:" + 30 * widthK + "px; " +
   // "color: gainsboro;" +
   // //"line-height:" + 50 * widthK + "px; " +
   // "}",
-
+  
   inputDefaultPlaceholder: "input::-webkit-input-placeholder" +
   "{" +
   "font-size:" + 30 * widthK + "px;" +
   "color: gainsboro;" +
   "padding: " + 20 * widthK + "px 0 0 0;" +
   "}",
-
+  
   // "-moz-placeholder { color:#f00; font-size:" + 40 * widthK + "px;}" + /* firefox 19+ */
   // "-ms-input-placeholder { color:#f00; }" + /* ie */
   // "input:-moz-placeholder { color:#f00; font-size:" + 40 * widthK + "px;}" +
-
+  
   servicePageNumberInputPart: ".servicepage-number-input-part" +
   "{" +
   "border: none;" +
@@ -4720,31 +4717,31 @@ var css = {
   "color: #515151;" +
   "background-color: transparent;" +
   "}",
-
+  
   servicePageNumberInputPrefixWideWidth: ".servicepage-number-input-prefix-wide-width" +
   "{" +
   "width: 81%;" +
   "}",
-
+  
   servicePageNumberInputPrefixWidth: ".servicepage-number-input-prefix-width" +
   "{" +
   "width: 72%;" +
   "}",
-
+  
   servicePageNumberInputPartPlaceHolder: ".servicepage-number-input-part::-webkit-input-placeholder" +
   "{" +
   "font-size:" + 36 * widthK + "px; " +
   "color: gainsboro;" +
   "padding: " + 20 * widthK + "px 0 0 0;" +
   "}",
-
+  
   servicePageAmountInputPlaceholder: ".servicepage-amount-input::-webkit-input-placeholder" +
   "{" +
   "font-size:" + 30 * widthK + "px;" +
   "color: #8b8b8b;" +
   "padding: " + 20 * widthK + "px 0 0 0;" +
   "}",
-
+  
   servicePageNumberInputPartTwo: ".servicepage-number-input-part-two" +
   "{" +
   "border: none;" +
@@ -4760,7 +4757,7 @@ var css = {
   "background: transparent;" +
   "color: #515151;" +
   "}",
-
+  
   servicePageNumberInputPartThree: ".servicepage-number-input-part-three" +
   "{" +
   "border: none;" +
@@ -4776,8 +4773,8 @@ var css = {
   "color: #515151;" +
   "background-color: transparent;" +
   "}",
-
-
+  
+  
   servicePagePhoneInput: ".servicepage-phone-input" +
   "{" +
   "position: absolute;" +
@@ -4786,7 +4783,7 @@ var css = {
   "font-size: " + 28 * widthK + "px; " +
   "color: #515151;" +
   "}",
-
+  
   servicePageButtonEnterEnabled: ".servicepage-button-enter-enabled" +
   "{" +
   "height: " + 87 * widthK + "px;" +
@@ -4804,7 +4801,7 @@ var css = {
   "pointer-events: auto;" +
   "z-index:1000000;" +
   "}",
-
+  
   servicePageButtonEnterDisabled: ".servicepage-button-enter-disabled" +
   "{" +
   "height: " + 87 * widthK + "px;" +
@@ -4822,7 +4819,7 @@ var css = {
   "pointer-events: none;" +
   "z-index:9999" +
   "}",
-
+  
   servicePageButtonEnterLabel: ".servicepage-button-enter-label" +
   "{" +
   "position: relative;" +
@@ -4832,7 +4829,7 @@ var css = {
   "margin: auto;" +
   "color: white;" +
   "}",
-
+  
   buttonEnterIcon: ".button-enter-icon" +
   "{" +
   "position: absolute;" +
@@ -4845,7 +4842,7 @@ var css = {
   "top:" + 29 * widthK + "px;" +
   "transition: 0.8s;" +
   "}",
-
+  
   servicePageButtonBack: ".servicepage-button-back" +
   "{" +
   "position: absolute;" +
@@ -4859,7 +4856,7 @@ var css = {
   "background-size: 50%;" +
   "left: 1.5%;" +
   "}",
-
+  
   servicePageFormTypeTwoContainer: ".servicepage-formtype-two-container" +
   "{" +
   "position: absolute;" +
@@ -4868,8 +4865,8 @@ var css = {
   "top: " + 130 * heightK + "px; " +
   "background-color: white;" +
   "}",
-
-
+  
+  
   servicePagePincardsContainerTwo: ".servicepage-pincards-container-two" +
   "{" +
   "position: absolute;" +
@@ -4880,7 +4877,7 @@ var css = {
   "overflow-y: scroll;" +
   "-webkit-overflow-scrolling: touch; " +
   "}",
-
+  
   servicePagePincardsContainer: ".servicepage-pincards-container" +
   "{" +
   "position: absolute;" +
@@ -4890,7 +4887,7 @@ var css = {
   "overflow-y: scroll;" +
   "-webkit-overflow-scrolling: touch; " +
   "}",
-
+  
   servicePagePincardsBlockContainer: ".servicepage-pincards-block-container" +
   "{" +
   "position: relative;" +
@@ -4901,7 +4898,7 @@ var css = {
   "padding-bottom: 2%;" +
   "border-bottom: 1px solid gray;" +
   "}",
-
+  
   servicePagePincardTitle: ".servicepage-pincard-title" +
   "{" +
   "position: relative;" +
@@ -4910,21 +4907,21 @@ var css = {
   "width: 100%;" +
   "height: " + 25 * widthK + "px; " +
   "}",
-
+  
   servicePagePincardNominalContainer: ".servicepage-pincard-nominal-container" +
   "{" +
   "position: relative;" +
   "width: 100%;" +
   "height: " + 70 * widthK + "px; " +
   "}",
-
+  
   servicePagePincardNominalValue: ".servicepage-pincard-nominal-value" +
   "{" +
   "position: absolute;" +
   "font-size: " + 28 * widthK + "px; " +
   "color: #595759;" +
   "}",
-
+  
   servicePagePincardRadioUnselected: ".servicepage-pincard-radio-unselected" +
   "{" +
   "position: absolute;" +
@@ -4937,7 +4934,7 @@ var css = {
   "top: 31%;" +
   "left: 94%;" +
   "}",
-
+  
   servicePagePincardRadioSelected: ".servicepage-pincard-radio-selected" +
   "{" +
   "position: absolute;" +
@@ -4950,7 +4947,7 @@ var css = {
   "top: 31%;" +
   "left: 94%;" +
   "}",
-
+  
   servicePageSecondDropdownField: ".servicepage-second-dropdown-field" +
   "{" +
   "position: relative;" +
@@ -4960,7 +4957,7 @@ var css = {
   "color: white;" +
   "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
   "}",
-
+  
   servicePageSecondDropdownFieldPakety: ".servicepage-second-dropdown-field-pakety" +
   "{" +
   "position: relative;" +
@@ -4971,13 +4968,13 @@ var css = {
   "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
   "margin-top: 4%;" +
   "}",
-
+  
   servicePageSecondDropdownFieldText: ".servicepage-second-dropdown-field-text" +
   "{" +
   "bottom: 75%;" +
   "font-size:" + 23 * widthK + "px;" +
   "}",
-
+  
   servicePageSecondDropdownFieldDifTop: ".servicepage-second-dropdown-field-diftop" +
   "{" +
   "position: relative;" +
@@ -4988,7 +4985,7 @@ var css = {
   "border-bottom:  " + 3 * widthK + "px solid lightgray;" +
   "margin-top: 4%;" +
   "}",
-
+  
   servicePageDropdownIcon: ".servicepage-dropdown-icon" +
   "{" +
   "position: absolute;" +
@@ -5006,7 +5003,7 @@ var css = {
   "-o-transform: rotate(90deg);" +
   "transform: rotate(90deg);" +
   "}",
-
+  
   formTypeSevenInfoContainer: ".formtype-seven-info-container" +
   "{" +
   "position: absolute;" +
@@ -5016,7 +5013,7 @@ var css = {
   "top:" + 410 * widthK + "px;" +
   "background-color: #f8f7f7;" +
   "}",
-
+  
   formTypeSevenInfoTitleContainer: ".formtype-seven-info-title-container" +
   "{" +
   "position: relative;" +
@@ -5026,7 +5023,7 @@ var css = {
   "border-bottom:" + 2 * widthK + "px solid #e8e8e8;" +
   "top: 8%;" +
   "}",
-
+  
   formTypeSevenInfoBodyContainer: ".formtype-seven-info-body-container" +
   "{" +
   "position: relative;" +
@@ -5038,7 +5035,7 @@ var css = {
   "overflow-x: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
   "}",
-
+  
   formTypeSevenInfoTitle: ".formtype-seven-info-title" +
   "{" +
   "position: absolute;" +
@@ -5052,7 +5049,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "}",
-
+  
   formTypeSevenInfoLineContainer: ".formtype-seven-info-line-container" +
   "{" +
   "position: relative;" +
@@ -5060,7 +5057,7 @@ var css = {
   "min-height:" + 65 * widthK + "px;" +
   "float: left;" +
   "}",
-
+  
   formTypeSevenInfoLineName: ".formtype-seven-info-line-name" +
   "{" +
   "position: relative;" +
@@ -5075,7 +5072,7 @@ var css = {
   "overflow: hidden;" +
   "float: left;" +
   "}",
-
+  
   formTypeSevenInfoLineAmount: ".formtype-seven-info-line-amount" +
   "{" +
   "width:" + 176 * widthK + "px; " +
@@ -5083,10 +5080,10 @@ var css = {
   "color: #00a8f1;" +
   "float: right;" +
   "}",
-
+  
   //Component dropdown
-
-
+  
+  
   dropdownMenu: ".dropdown-menu " +
   "{" +
   "position: absolute;" +
@@ -5101,7 +5098,7 @@ var css = {
   // "z-index: 1;" +
   "right: 0;" +
   "}",
-
+  
   dropdownBackPage: ".dropdown-back-page " +
   "{" +
   "position: absolute;" +
@@ -5114,7 +5111,7 @@ var css = {
   "background-color: rgba(86, 93, 106, 0.29);" +
   "opacity: 0;" +
   "}",
-
+  
   dropdownCloseButton: ".dropdown-close-button " +
   "{" +
   "position: absolute;" +
@@ -5127,7 +5124,7 @@ var css = {
   "background-size: 30%;" +
   "background-position: center;" +
   "}",
-
+  
   dropdownTitle: ".dropdown-title" +
   "{" +
   "position: absolute;" +
@@ -5139,7 +5136,7 @@ var css = {
   "height:" + 53 * widthK + "px; " +
   "border-bottom:  " + 1 * widthK + "px solid lightgray;" +
   "}",
-
+  
   dropdownElementsContainer: ".dropdown-elements-container " +
   "{" +
   "position: absolute;" +
@@ -5149,17 +5146,17 @@ var css = {
   "overflow-y: auto;" +
   "overflow-x: hidden;" +
   "}",
-
+  
   dropdownElementsContainerScroll: ".dropdown-elements-container::-webkit-scrollbar" +
   "{" +
   "width:" + 5 * widthK + "px; " +
   "}",
-
+  
   dropdownElementsContainerScrollThumb: ".dropdown-elements-container::-webkit-scrollbar-thumb" +
   "{" +
   "background-color: rgba(0, 0, 0, .15); " +
   "}",
-
+  
   dropdownElement: ".dropdown-element" +
   "{" +
   "position: relative;" +
@@ -5170,9 +5167,9 @@ var css = {
   "margin-bottom:" + 10 * widthK + "px; " +
   "width:" + 485 * widthK + "px; " +
   "}",
-
+  
   //Component Calc
-
+  
   componentCalc: ".component-calc" +
   "{" +
   "position: absolute;" +
@@ -5183,7 +5180,7 @@ var css = {
   "background-color: #f0f1f4;" +
   //"display: none;" +
   "}",
-
+  
   componentCalcNameTitle: ".component-calc-name-title " +
   "{" +
   "position: absolute;" +
@@ -5194,7 +5191,7 @@ var css = {
   "margin: 0;" +
   "color: #353340;" +
   "}",
-
+  
   componentCalcFieldsContainer: ".component-calc-fields-container" +
   "{" +
   "position: absolute;" +
@@ -5202,7 +5199,7 @@ var css = {
   "width: 100%;" +
   "top: 20%;" +
   "}",
-
+  
   componentCalcFirstField: ".component-calc-first-field" +
   "{" +
   "position: absolute;" +
@@ -5213,7 +5210,7 @@ var css = {
   "color: white;" +
   "top: 8%;" +
   "}",
-
+  
   componentCalcFirstFieldText: ".component-calc-first-field-text" +
   "{" +
   "position: absolute;" +
@@ -5222,7 +5219,7 @@ var css = {
   "font-size:" + 24 * widthK + "px;" +
   "top: -14%;" +
   "}",
-
+  
   componentCalcFirstFieldInputPart: ".component-calc-first-field-input-part" +
   "{" +
   "border: none;" +
@@ -5237,7 +5234,7 @@ var css = {
   "color: #515151;" +
   "background-color: transparent" +
   "}",
-
+  
   componentCalcCurrencyText: ".component-calc-currency-text" +
   "{" +
   "position: absolute;" +
@@ -5247,7 +5244,7 @@ var css = {
   "top: 27%;" +
   "left: 8%;" +
   "}",
-
+  
   componentCalcSecondField: ".component-calc-second-field" +
   "{" +
   "position: absolute;" +
@@ -5258,7 +5255,7 @@ var css = {
   "color: white;" +
   "top: 40%;" +
   "}",
-
+  
   componentCalcSecondFieldText: ".component-calc-second-field-text" +
   "{" +
   "position: absolute;" +
@@ -5267,7 +5264,7 @@ var css = {
   "font-size:" + 24 * widthK + "px;" +
   "top: -14%;" +
   "}",
-
+  
   componentCalcSecondFieldInputPart: ".component-calc-second-field-input-part" +
   "{" +
   "border: none;" +
@@ -5282,7 +5279,7 @@ var css = {
   "color: #515151;" +
   "background-color: transparent" +
   "}",
-
+  
   componentCalcButtonsContainer: ".component-calc-buttons-container" +
   "{" +
   "position: absolute;" +
@@ -5290,7 +5287,7 @@ var css = {
   "width: 100%;" +
   "top: 67%;" +
   "}",
-
+  
   componentCalcButton: ".component-calc-button" +
   "{" +
   "position: relative;" +
@@ -5303,7 +5300,7 @@ var css = {
   "left:11%;" +
   "margin-right: 8%;" +
   "}",
-
+  
   componentCalcButtonLabel: ".component-calc-button-label" +
   "{" +
   "position: relative;" +
@@ -5314,20 +5311,20 @@ var css = {
   "display: table-cell;" +
   "vertical-align: middle;" +
   "}",
-
+  
   componentCalcCancelButton: ".component-calc-cancel-button" +
   "{" +
   "background-color: white;" +
   "}",
-
+  
   componentCalcCancelButtonLabel: ".component-calc-cancel-button-label" +
   "{" +
   "color: #c1c1c1;" +
   "}",
-
+  
   //VIEW PINCARD
-
-
+  
+  
   pincardPayfromContainer: ".pincard-payfrom-container" +
   "{" +
   "position: relative;" +
@@ -5336,7 +5333,7 @@ var css = {
   "height: 7.5%;" +
   // "border-bottom: 1px solid lightgray;" +
   "}",
-
+  
   pincardPayfromField: ".pincard-payfrom-field" +
   "{" +
   "position: absolute;" +
@@ -5346,7 +5343,7 @@ var css = {
   "left: 8%;" +
   "top:29%;" +
   "}",
-
+  
   pincardAllcardsContainer: ".pincard-allcards-container" +
   "{" +
   "position: relative;" +
@@ -5358,7 +5355,7 @@ var css = {
   "overflow-y: scroll;" +
   "-webkit-overflow-scrolling: touch;" +
   "}",
-
+  
   pincardAllcardsTransparentBlock: ".pincard-allcards-transparent-block" +
   "{" +
   "position: absolute;" +
@@ -5369,7 +5366,7 @@ var css = {
   "background-size: cover;" +
   "background-repeat: no-repeat;" +
   "}",
-
+  
   pincardCardContainer: ".pincard-card-container" +
   "{" +
   "position: relative;" +
@@ -5378,7 +5375,7 @@ var css = {
   "background-color: transparent;" +
   // "border-bottom:  " + 1 + "px solid lightgray;" +
   "}",
-
+  
   pincardCardLogoContainer: ".pincard-card-logo-container" +
   "{" +
   "width: 25%;" +
@@ -5393,7 +5390,7 @@ var css = {
   "right: 61%;" +
   "position: absolute;" +
   "}",
-
+  
   pincardCardInfoContainer: ".pincard-card-info-container" +
   "{" +
   "position: absolute;" +
@@ -5402,7 +5399,7 @@ var css = {
   "left: 42%;" +
   "background-color: transparent;" +
   "}",
-
+  
   pincardCardInfoTextOne: ".pincard-card-info-text-one" +
   "{" +
   "position: absolute;" +
@@ -5414,7 +5411,7 @@ var css = {
   "white-space: nowrap;" +
   "overflow: hidden;" +
   "}",
-
+  
   pincardCardInfoTextTwo: ".pincard-card-info-text-two" +
   "{" +
   "position: absolute;" +
@@ -5427,12 +5424,12 @@ var css = {
   "white-space: nowrap;" +
   "overflow: hidden;" +
   "}",
-
+  
   pincardCardBalanceFractional: ".pincard-card-balance-fractional" +
   "{" +
   "font-size: " + 34 * widthK + "px; " +
   "}",
-
+  
   pincardCardInfoTextThree: ".pincard-card-info-text-three" +
   "{" +
   "position: absolute;" +
@@ -5440,8 +5437,8 @@ var css = {
   "color: gray;" +
   "top: 51%;" +
   "}",
-
-  pincardCardCheckmark  : ".pincard-card-checkmark" +
+  
+  pincardCardCheckmark: ".pincard-card-checkmark" +
   "{" +
   "position: absolute;" +
   "width: 17%;" +
@@ -5467,7 +5464,7 @@ var css = {
   "background-size: 30%;" +
   "background-image: url(resources/icons/ViewService/radio_unselected.png);" +
   "}",
-
+  
   pincardFriendHelpContainer: ".pincard-friend-help-container" +
   "{" +
   "position: relative;" +
@@ -5479,7 +5476,7 @@ var css = {
   //"border-bottom:  " + 1 + "px solid lightgray;" +
   "left: 25%;" +
   "}",
-
+  
   pincardFriendHelpText: ".pincard-friend-help-text" +
   "{" +
   "top: 65%;" +
@@ -5490,7 +5487,7 @@ var css = {
   "text-align: center;" +
   "text-decoration: underline;" +
   "}",
-
+  
   pincardFriendHelpIcon: ".pincard-friend-help-icon" +
   "{" +
   "width: 40%;" +
@@ -5504,7 +5501,7 @@ var css = {
   "position: absolute;" +
   "background-image: url(resources/icons/ViewService/friend.png);" +
   "}",
-
+  
   pincardChosenFriendContainer: ".pincard-chosen-friend-container" +
   "{" +
   "position: relative;" +
@@ -5514,7 +5511,7 @@ var css = {
   //"left: 10%;" +
   //"top:" + 165 * widthK + "px;" +
   "}",
-
+  
   pincardFriendHelpTextTwo: ".pincard-friend-help-text-two" +
   "{" +
   //"top: 65%;" +
@@ -5525,7 +5522,7 @@ var css = {
   "text-align: center;" +
   //"text-decoration: underline;" +
   "}",
-
+  
   pincardFriendChangeText: ".pincard-friend-change-text" +
   "{" +
   "top: 80%;" +
@@ -5536,7 +5533,7 @@ var css = {
   "text-align: center;" +
   "text-decoration: underline;" +
   "}",
-
+  
   pincardChosenFriendInnerContainer: ".pincard-chosen-friend-inner-container" +
   "{" +
   "position: absolute;" +
@@ -5546,7 +5543,7 @@ var css = {
   // "left: 10%;" +
   "top:22%;" +
   "}",
-
+  
   pincardChosenFriendPhoto: ".pincard-chosen-friend-photo" +
   "{" +
   "top:" + 21 * widthK + "px;" +
@@ -5564,7 +5561,7 @@ var css = {
   "color: white;" +
   "left: 12%;" +
   "}",
-
+  
   pincardChosenFriendTextContainer: ".pincard-chosen-friend-text-container" +
   "{" +
   "position: absolute;" +
@@ -5574,8 +5571,8 @@ var css = {
   "height: 100%;" +
   "display: table;" +
   "}",
-
-
+  
+  
   pincardChosenFriendTextOne: ".pincard-chosen-friend-text-one" +
   "{" +
   "margin: 0;" +
@@ -5591,7 +5588,7 @@ var css = {
   "overflow: hidden;" +
   "line-height: 30px;" +
   "}",
-
+  
   pincardChosenFriendTextTwo: ".pincard-chosen-friend-text-two" +
   "{" +
   "position: absolute;" +
@@ -5601,7 +5598,7 @@ var css = {
   "font-size:" + 23 * widthK + "px;" +
   "top: 60%;" +
   "}",
-
+  
   pincardChosenFriendEditIcon: ".pincard-chosen-friend-edit-icon" +
   "{" +
   "position: absolute;" +
@@ -5613,7 +5610,7 @@ var css = {
   "background-position: center;" +
   "background-image: url(resources/icons/ViewService/edit.png);" +
   "}",
-
+  
   pincardChosenFriendRadioIcon: ".pincard-chosen-friend-radio-icon" +
   "{" +
   "position: absolute;" +
@@ -5625,8 +5622,8 @@ var css = {
   "background-position: center;" +
   "background-image: url(resources/icons/ViewService/radio_selected.png);" +
   "}",
-
-
+  
+  
   pincardBottomContainer: ".pincard-bottom-container" +
   "{" +
   "position: absolute;" +
@@ -5639,7 +5636,7 @@ var css = {
   // "overflow-x: hidden;" +
   // "-webkit-overflow-scrolling: touch; " +
   "}",
-
+  
   pincardButtonEnter: " .pincard-button-enter" +
   "{" +
   "height: " + 87 * widthK + "px;" +
@@ -5655,7 +5652,7 @@ var css = {
   "left: 0;" +
   "color: #ffffff;" +
   "}",
-
+  
   pincardButtonEnterLabel: ".pincard-button-enter-label" +
   "{" +
   "position: relative;" +
@@ -5666,7 +5663,7 @@ var css = {
   "color: white;" +
   //"right: 10%;" +
   "}",
-
+  
   payconfirmDataContainer: ".payconfirm-data-container" +
   "{" +
   "position: absolute;" +
@@ -5675,7 +5672,7 @@ var css = {
   "background-color: transparent;" +
   //"border-bottom:  " + 1 + "px solid lightgray;" +
   "}",
-
+  
   payconfirmPhoneField: ".payconfirm-phone-field" +
   "{" +
   "position: relative;" +
@@ -5684,7 +5681,7 @@ var css = {
   // "border-bottom: 1px solid lightgray;" +
   "color: white;" +
   "}",
-
+  
   payconfirmTextField: ".payconfirm-text-field" +
   "{" +
   "position: absolute;" +
@@ -5694,7 +5691,7 @@ var css = {
   "left: 8%;" +
   "top: 25%;" +
   "}",
-
+  
   payconfirmPhoneInput: ".payconfirm-phone-input" +
   "{" +
   "position: absolute;" +
@@ -5704,7 +5701,7 @@ var css = {
   "font-size: " + 40 * widthK + "px; " +
   "color: gray;" +
   "}",
-
+  
   payconfirmCategoryField: ".payconfirm-category-input" +
   "{" +
   "position: absolute;" +
@@ -5715,7 +5712,7 @@ var css = {
   "color: gray;" +
   "text-decoration: underline" +
   "}",
-
+  
   payconfirmField: ".payconfirm-field" +
   "{" +
   "position: relative;" +
@@ -5725,7 +5722,7 @@ var css = {
   "color: white;" +
   //"top: 23%;" +
   "}",
-
+  
   payconfirmAmountField: ".payconfirm-amount-field" +
   "{" +
   "position: relative;" +
@@ -5735,7 +5732,7 @@ var css = {
   "color: white;" +
   //"top: 23%;" +
   "}",
-
+  
   payconfirmAmountTextField: ".payconfirm-amount-text-field" +
   "{" +
   "position: relative;" +
@@ -5745,7 +5742,7 @@ var css = {
   "left: 8%;" +
   "top: 15%;" +
   "}",
-
+  
   payconfirmAmountValue: ".payconfirm-amount-value" +
   "{" +
   "position: relative;" +
@@ -5755,7 +5752,7 @@ var css = {
   "font-size: " + 40 * widthK + "px; " +
   "color: gray;" +
   "}",
-  payconfirmCardField  : ".payconfirm-card-field" +
+  payconfirmCardField: ".payconfirm-card-field" +
   "{" +
   "position: relative;" +
   "width: 100%;" +
@@ -5764,7 +5761,7 @@ var css = {
   "color: white;" +
   //"top: 23%;" +
   "}",
-
+  
   payconfirmCardInfoContainer: ".payconfirm-card-info-container" +
   "{" +
   "position: absolute;" +
@@ -5773,7 +5770,7 @@ var css = {
   "background-color: transparent;" +
   "left: 4%;" +
   "}",
-
+  
   payconfirmTextOne: ".payconfirm-text-one" +
   "{" +
   "position: absolute;" +
@@ -5783,7 +5780,7 @@ var css = {
   "left: 7%;" +
   "top: 17%;" +
   "}",
-
+  
   payconfirmTextTwo: ".payconfirm-text-two" +
   "{" +
   "position: absolute;" +
@@ -5797,7 +5794,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "}",
-
+  
   payconfirmDetailText: ".payconfirm-detail-text" +
   "{" +
   "position: relative;" +
@@ -5807,7 +5804,7 @@ var css = {
   "left: 7%;" +
   "top: 56%;" +
   "}",
-
+  
   payconfirmCardLogoContainer: ".payconfirm-card-logo-container" +
   "{" +
   "position: absolute;" +
@@ -5820,7 +5817,7 @@ var css = {
   "background-position: center;" +
   "background-size: contain;" +
   "}",
-
+  
   payconfirmChosenFriendPhoto: ".payconfirm-chosen-friend-photo" +
   "{" +
   "top:" + 40 * widthK + "px;" +
@@ -5838,8 +5835,8 @@ var css = {
   "color: white;" +
   "right: 10%;" +
   "}",
-
-
+  
+  
   payconfirmBottomContainer: ".payconfirm-bottom-container" +
   "{" +
   "position: absolute;" +
@@ -5849,14 +5846,14 @@ var css = {
   "background-color: transparent;" +
   "overflow: hidden;" +
   "}",
-
+  
   payconfirmActionAutoPayContainer: ".payconfirm-action-autopay-container" +
   "{" +
   "position: relative;" +
   "width: 100%;" +
   "height: " + 290 * widthK + "px;" +
   "}",
-
+  
   payconfirmActionContainer: ".payconfirm-action-containter" +
   "{" +
   "position: relative;" +
@@ -5867,7 +5864,7 @@ var css = {
   "background-color: transparent;" +
   "margin: auto;" +
   "}",
-
+  
   payconfirmActionContainerAutoPayNone: ".payconfirm-action-containter-autopay-none" +
   "{" +
   "position: relative;" +
@@ -5878,7 +5875,7 @@ var css = {
   "background-color: transparent;" +
   "display: none;" +
   "}",
-
+  
   payconfirmActionContainerFavoriteCenter: ".payconfirm-action-containter-favorite-center" +
   "{" +
   "position: relative;" +
@@ -5889,7 +5886,7 @@ var css = {
   "background-color: transparent;" +
   "margin: auto;" +
   "}",
-
+  
   payconfirmActionIconOne: ".payconfirm-action-icon-one" +
   "{" +
   "position: relative;" +
@@ -5901,7 +5898,7 @@ var css = {
   "top: 14%;" +
   "background-size: 50%;" +
   "}",
-
+  
   payconfirmActionIconTwo: ".payconfirm-action-icon-two" +
   "{" +
   "position: relative;" +
@@ -5913,7 +5910,7 @@ var css = {
   "top: 14%;" +
   "background-size: 41%;" +
   "}",
-
+  
   payconfirmActionText: ".payconfirm-action-text" +
   "{" +
   "top: 30%;" +
@@ -5927,7 +5924,7 @@ var css = {
   "text-decoration: underline;" +
   "width: 50%;" +
   "}",
-
+  
   payconfirmButtonEnter: ".payconfirm-button-enter" +
   "{" +
   "height: " + 87 * widthK + "px;" +
@@ -5946,7 +5943,7 @@ var css = {
   "left: 0;" +
   "color: #ffffff;" +
   "}",
-
+  
   payconfirmButtonEnterLabel: ".payconfirm-button-enter-label" +
   "{" +
   "position: relative;" +
@@ -5956,7 +5953,7 @@ var css = {
   "margin: auto;" +
   "color: white;" +
   "}",
-
+  
   payconfirmButtonDelete: ".payconfirm-button-delete" +
   "{" +
   "height: " + 87 * widthK + "px;" +
@@ -5975,9 +5972,9 @@ var css = {
   "left: 0;" +
   "color: #ffffff;" +
   "}",
-
+  
   //COMPONENT SEARCH
-
+  
   componentSearch: ".component-search " +
   "{" +
   "position: absolute;" +
@@ -5988,7 +5985,7 @@ var css = {
   "display: none;" +
   "z-index: 9999;" +
   "}",
-
+  
   searchContainer: ".search-container" +
   "{" +
   "position: absolute;" +
@@ -5997,14 +5994,14 @@ var css = {
   "left:" + 70 * widthK + "px;" +
   "top: 0px;" +
   "}",
-
+  
   searchTitleContainer: ".search-title-container " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height: 7%;" +
   "}",
-
+  
   searchSearchIcon: ".search-search-icon " +
   "{" +
   "position: absolute;" +
@@ -6018,7 +6015,7 @@ var css = {
   "background-position: center;" +
   "background-size: 100%;" +
   "}",
-
+  
   searchTitleName: ".search-title-name " +
   "{" +
   "position: absolute;" +
@@ -6028,7 +6025,7 @@ var css = {
   "left: 13%;" +
   "color: white;" +
   "}",
-
+  
   searchCancelIcon: ".search-cancel-icon " +
   "{" +
   "position: absolute;" +
@@ -6043,7 +6040,7 @@ var css = {
   "background-size: 40%;" +
   "z-index: 1;" +
   "}",
-
+  
   searchInput: ".search-input " +
   "{" +
   "position: absolute;" +
@@ -6060,7 +6057,7 @@ var css = {
   "-webkit-text-fill-color: white;" +
   "color: #e2e3e5;" +
   "}",
-
+  
   searchSuggestionContainer: ".search-suggestion-container " +
   "{" +
   "position: absolute;" +
@@ -6069,7 +6066,7 @@ var css = {
   "left: 2%;" +
   "top: 30%;" +
   "}",
-
+  
   searchSuggestionFieldOne: ".search-suggestion-field-one " +
   "{" +
   "position: relative;" +
@@ -6080,7 +6077,7 @@ var css = {
   // "display: none;" +
   "background-color: white;" +
   "}",
-
+  
   searchSuggestionFieldTwo: ".search-suggestion-field-two " +
   "{" +
   "position: absolute;" +
@@ -6091,7 +6088,7 @@ var css = {
   "display: none;" +
   "background-color: white;" +
   "}",
-
+  
   searchSuggestionFieldThree: ".search-suggestion-field-three " +
   "{" +
   "position: absolute;" +
@@ -6102,7 +6099,7 @@ var css = {
   "display: none;" +
   "background-color: white;" +
   "}",
-
+  
   searchSuggestionFieldFour: ".search-suggestion-field-four " +
   "{" +
   "position: absolute;" +
@@ -6113,7 +6110,7 @@ var css = {
   "display: none;" +
   "background-color: white;" +
   "}",
-
+  
   searchPartOfSuggestion: ".search-part-of-suggestion" +
   "{" +
   "position: relative;" +
@@ -6127,13 +6124,13 @@ var css = {
   "white-space: nowrap;" +
   "text-overflow: ellipsis;" +
   "}",
-
-
+  
+  
   searchSelectedFieldColor: ".search-selected-field-color " +
   "{" +
   "background-color: #28a2f9;" +
   "}",
-
+  
   myCardListPageTitle: ".mycardlist-page-title " +
   "{" +
   "position: absolute;" +
@@ -6144,7 +6141,7 @@ var css = {
   "background: transparent;" +
   "border-bottom:" + 3 * widthK + "px solid rgb(149, 230, 253);" +
   "}",
-
+  
   mycardlistAddButton: ".add-button " +
   "{" +
   "position: absolute;" +
@@ -6159,7 +6156,7 @@ var css = {
   "background-size: 50%;" +
   "top: 5%" +
   "}",
-
+  
   myCardListNameTitle: ".mycardlist-name-title " +
   "{" +
   "position: absolute;" +
@@ -6170,7 +6167,7 @@ var css = {
   "margin: 0;  " +
   "color: #fffaf9;" +
   "}",
-
+  
   myCardListContainer: ".mycardlist-container" +
   "{" +
   "position: absolute;" +
@@ -6183,7 +6180,7 @@ var css = {
   "overflow-x:hidden;" +
   "-webkit-overflow-scrolling: touch; " +
   "}",
-
+  
   myCardListCard: ".mycardlist-card" +
   "{" +
   "background-image: url(resources/icons/cards/all.png);" +
@@ -6204,7 +6201,7 @@ var css = {
   "margin: " + 7 * widthK + "px;" +
   "left: " + 17 * widthK + "px;" +
   "}",
-
+  
   //myCardListCardBankNameUrl: ".mycardlist-card-bank-name-url" +
   //"{" +
   //"position: absolute;" +
@@ -6216,7 +6213,7 @@ var css = {
   //"left:" + 19 * widthK + "px;" +
   //"top:" + 13 * widthK + "px" +
   //"}",
-
+  
   myCardListbackButton: ".mycardlist-back-button " +
   "{" +
   "position: absolute;" +
@@ -6231,8 +6228,8 @@ var css = {
   "left: -3%;" +
   "top: 0;" +
   "}",
-
-
+  
+  
   myCardListcardBankName: ".mycardlist-card-bank-name " +
   "{" +
   "position: absolute;" +
@@ -6245,7 +6242,7 @@ var css = {
   "width:" + 118 * widthK + "px;" +
   "background-position: top right;" +
   "}",
-
+  
   myCardListCardSalaryTitle: ".mycardlist-card-salary-title" +
   "{" +
   "position: absolute;" +
@@ -6259,7 +6256,7 @@ var css = {
   "white-space: nowrap;" +
   "text-overflow: ellipsis;" +
   "}",
-
+  
   myCardListCardBalanceCurrencyContainer: ".mycardlist-card-balance-currency-container" +
   "{" +
   "position: absolute;" +
@@ -6269,7 +6266,7 @@ var css = {
   "display: inline-block;" +
   "margin: 0;" +
   "}",
-
+  
   myCardListcardBalance: ".mycardlist-card-balance " +
   "{" +
   "position: relative;" +
@@ -6283,12 +6280,12 @@ var css = {
   "white-space: nowrap;" +
   "text-overflow: ellipsis;" +
   "}",
-
+  
   myCardListcardBalanceFractional: ".mycardlist-card-balance-fractional " +
   "{" +
   "font-size:" + 27 * widthK + "px;" +
   "}",
-
+  
   myCardListcardCurrency: ".mycardlist-card-currency " +
   "{" +
   "position: relative;" +
@@ -6300,7 +6297,7 @@ var css = {
   "float: left;" +
   "margin:0;" +
   "}",
-
+  
   myCardListcardNumber: ".mycardlist-card-number " +
   "{" +
   "position: absolute;" +
@@ -6313,28 +6310,28 @@ var css = {
   // "color: transparent;" +
   "left:5%" +
   "}",
-
+  
   myCardListcardNumberPartOne: ".mycardlist-card-number-part-one " +
   "{" +
   "position: absolute;" +
   "left: 0px;" +
   // "font-weight: bold;" +
   "}",
-
+  
   myCardListcardNumberMiddleTwo: ".mycardlist-card-number-middle-two " +
   "{" +
   "position: absolute;" +
   "left: 19%;" +
   // "font-weight: bold;" +
   "}",
-
+  
   myCardListcardNumberPartTwo: ".mycardlist-card-number-part-two " +
   "{" +
   "position: absolute;" +
   "left:58%;" +
   // "font-weight: bold;" +
   "}",
-
+  
   myCardListnumberStars: ".mycardlist-number-stars " +
   "{" +
   "position: absolute;" +
@@ -6343,9 +6340,9 @@ var css = {
   // "letter-spacing:" + -8 * widthK + "px;" +
   "font-size:" + 18 * widthK + "px;" +
   "}",
-
+  
   //VIEW TRANSFER
-
+  
   transferBlockContainer: ".transfer-block-container" +
   "{" +
   "position: relative;" +
@@ -6355,7 +6352,7 @@ var css = {
   "border-bottom:" + 1 + "px solid gainsboro;" +
   "background-color: transparent;" +
   "}",
-
+  
   transferCategoryIcon: ".transfer-category-icon" +
   "{" +
   "position: relative;" +
@@ -6367,7 +6364,7 @@ var css = {
   "left: 3%;" +
   "background-size: 50%;" +
   "}",
-
+  
   transferCategoryNameField: ".transfer-category-name-field" +
   "{" +
   "position: relative;" +
@@ -6378,7 +6375,7 @@ var css = {
   "font-size:" + 29 * widthK + "px; " +
   "color: gray;" +
   "}",
-
+  
   transferIconTick: ".transfer-icon-tick " +
   "{" +
   "position: relative;" +
@@ -6390,7 +6387,7 @@ var css = {
   "height:" + 18 * widthK + "px;" +
   "top:" + 9 * widthK + "px;" +
   "}",
-
+  
   transferBetweenCardsTitle: ".transfer-between-cards-title" +
   "{" +
   "position: relative;" +
@@ -6398,7 +6395,7 @@ var css = {
   "color: gray;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
-
+  
   transferBetweenCardsComission: ".transfer-between-cards-commission" +
   "{" +
   "position: absolute;" +
@@ -6408,7 +6405,7 @@ var css = {
   "right:" + 6 * widthK + "px;" +
   "bottom: -" + 52 * widthK + "px;" +
   "}",
-
+  
   transferBetweenCardsSumContainer: ".transfer-between-cards-sum-container" +
   "{" +
   "position: relative;" +
@@ -6419,7 +6416,7 @@ var css = {
   "color: white;" +
   "top:" + 52 * widthK + "px;" +
   "}",
-
+  
   transferBetweenCardsCardsContainer: ".transfer-between-cards-cards-container" +
   "{" +
   "position: relative;" +
@@ -6429,7 +6426,7 @@ var css = {
   "color: white;" +
   "top:" + 52 * widthK + "px;" +
   "}",
-
+  
   transferBetweenCardsFromContainer: ".transfer-between-cards-from-to-container" +
   "{" +
   "position: relative;" +
@@ -6438,7 +6435,7 @@ var css = {
   "color: white;" +
   "top:" + 52 * widthK + "px;" +
   "}",
-
+  
   transferBetweenCardsSumInput: ".transfer-between-cards-sum-input" +
   "{" +
   "border: none;" +
@@ -6451,7 +6448,7 @@ var css = {
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "}",
-
+  
   transferBetweenCardsArrowDown: ".transfer-between-cards-arrow-down" +
   "{" +
   "position: relative;" +
@@ -6463,7 +6460,7 @@ var css = {
   "width:" + 30 * widthK + "px;" +
   "background-image: url('resources/icons/ViewTransfer/banks_limit_receipt.png');" +
   "}",
-
+  
   transferBodyContainer: ".transfer-body-container" +
   "{" +
   "position: absolute;" +
@@ -6473,7 +6470,7 @@ var css = {
   "background-color: white;" +
   "overflow: hidden;" +
   "}",
-
+  
   transferMenusContainer: ".transfer-menus-container" +
   "{" +
   "position: absolute;" +
@@ -6486,7 +6483,7 @@ var css = {
   "background-size: 100%;" +
   "background-position: center;" +
   "}",
-
+  
   transferMenuContainerContact: ".transfer-menu-container-contact" +
   "{" +
   "position: absolute;" +
@@ -6495,7 +6492,7 @@ var css = {
   "left: 18%;" +
   "background-color: transparent;" +
   "}",
-
+  
   transferNewMenuItem: ".transfer-new-menu-item" +
   "{" +
   "width: 33.33%;" +
@@ -6503,7 +6500,7 @@ var css = {
   "float: left;" +
   "font-size:" + 27 * widthK + "px;" +
   "}",
-
+  
   transferNewMenuContainer: ".transfer-new-menu-container" +
   "{" +
   "position: absolute;" +
@@ -6516,7 +6513,7 @@ var css = {
   "-moz-box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
   "box-shadow: 0 8px 40px 8px rgba(0,0,0, .05);" +
   "}",
-
+  
   transferNewContactPhoneField: ".transfer-new-contact-phone-field" +
   "{" +
   "position: relative;" +
@@ -6527,7 +6524,7 @@ var css = {
   "color: white;" +
   "padding-top: 8%;" +
   "}",
-
+  
   transferCardOwnerContainer: ".transfer-card-owner-container " +
   "{" +
   "position: relative;" +
@@ -6539,7 +6536,7 @@ var css = {
   "border-bottom: 1px solid lightgrey;" +
   "border-top: 1px solid lightgrey;" +
   "}",
-
+  
   transferCardOwnerTitle: ".transfer-card-owner-title " +
   "{" +
   "position: absolute;" +
@@ -6550,7 +6547,7 @@ var css = {
   "margin: 0;" +
   "text-align: center;" +
   "}",
-
+  
   transferCardOwnerInfo: ".transfer-card-owner-info " +
   "{" +
   "position: absolute;" +
@@ -6562,7 +6559,7 @@ var css = {
   "text-align: center;" +
   "color: #626062;" +
   "}",
-
+  
   transferMenuContainerCard: ".transfer-menu-container-card" +
   "{" +
   "position: absolute;" +
@@ -6571,7 +6568,7 @@ var css = {
   "left: 50%;" +
   "background-color: transparent;" +
   "}",
-
+  
   transferMenuContactIcon: ".transfer-menu-contact-icon" +
   "{" +
   "position: relative;" +
@@ -6585,7 +6582,7 @@ var css = {
   "background-size: 54%;" +
   "background-position: center;" +
   "}",
-
+  
   transferMenuCardIcon: ".transfer-menu-card-icon" +
   "{" +
   "position: relative;" +
@@ -6600,7 +6597,7 @@ var css = {
   "background-position: center;" +
   "opacity: 0.5;" +
   "}",
-
+  
   transferNewMenuLabelContact: ".transfer-new-menu-label-contact" +
   "{" +
   "position: relative;" +
@@ -6613,7 +6610,7 @@ var css = {
   "word-wrap: break-word;" +
   "margin-bottom: 0;" +
   "}",
-
+  
   transferNewMenuLabelCard: ".transfer-new-menu-label-card" +
   "{" +
   "margin-left: auto;" +
@@ -6624,7 +6621,7 @@ var css = {
   "word-wrap: break-word;" +
   "margin-bottom: 0;" +
   "}",
-
+  
   transferNewMenuLabelBetween: ".transfer-new-menu-label-between" +
   "{" +
   "position: relative;" +
@@ -6637,7 +6634,7 @@ var css = {
   "word-wrap: break-word;" +
   "margin-bottom: 0;" +
   "}",
-
+  
   transferNewContactPhoneIcon: ".transfer-new-contact-phone-icon" +
   "{" +
   "position: absolute;" +
@@ -6650,7 +6647,7 @@ var css = {
   "top: 56%;" +
   "right: -2%;" +
   "}",
-
+  
   transferNewContactPhoneBottom: ".transfer-new-contact-phone-bottom" +
   "{" +
   "position: relative;" +
@@ -6658,14 +6655,14 @@ var css = {
   "border-bottom:" + 3 * widthK + "px solid #01cfff;" +
   "top:" + 16 * widthK + "px;" +
   "}",
-
+  
   transferNewContactTextField: ".transfer-new-contact-text-field" +
   "{" +
   "margin: 0;" +
   "color: gray;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
-
+  
   transferNewContactNumberFirstPart: ".transfer-new-contact-number-first-part" +
   "{" +
   "float: left;" +
@@ -6676,7 +6673,7 @@ var css = {
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "}",
-
+  
   transferNewMenuContactIcon: ".transfer-new-menu-contact-icon" +
   "{" +
   "position: relative;" +
@@ -6691,7 +6688,7 @@ var css = {
   "background-size:" + 61 * widthK + "px;" +
   "background-position: center;" +
   "}",
-
+  
   transferNewMenuBorderRight: ".transfer-new-menu-border-right" +
   "{" +
   "position: absolute;" +
@@ -6701,7 +6698,7 @@ var css = {
   "border-right: 1px solid #e8e8e8;" +
   "background: transparent;" +
   "}",
-
+  
   transferNewMenuBorderLeft: ".transfer-new-menu-border-left" +
   "{" +
   "position: absolute;" +
@@ -6712,7 +6709,7 @@ var css = {
   "border-left: 1px solid #e8e8e8;" +
   "background: transparent;" +
   "}",
-
+  
   transferNewMenuContactIconImg1: ".transfer-new-menu-contact-icon-img-1" +
   "{" +
   "position: relative;" +
@@ -6725,7 +6722,7 @@ var css = {
   "background-size:" + 61 * widthK + "px;" +
   "background-position: center;" +
   "}",
-
+  
   transferNewMenuContactIconImg2: ".transfer-new-menu-contact-icon-img-2" +
   "{" +
   "position: absolute;" +
@@ -6739,7 +6736,7 @@ var css = {
   "background-size:" + 61 * widthK + "px;" +
   "background-position: center;" +
   "}",
-
+  
   transferNewMenuCardIcon: ".transfer-new-menu-card-icon" +
   "{" +
   "position: relative;" +
@@ -6753,7 +6750,7 @@ var css = {
   "background-size:" + 58 * widthK + "px;" +
   "background-position: center;" +
   "}",
-
+  
   transferNewMenuCardIconImg1: ".transfer-new-menu-card-icon-img-1" +
   "{" +
   "position: relative;" +
@@ -6766,8 +6763,8 @@ var css = {
   "background-size:" + 58 * widthK + "px;" +
   "background-position: center;" +
   "}",
-
-
+  
+  
   transferNewMenuCardIconImg2: ".transfer-new-menu-card-icon-img-2" +
   "{" +
   "position: absolute;" +
@@ -6781,7 +6778,7 @@ var css = {
   "background-size:" + 58 * widthK + "px;" +
   "background-position: center;" +
   "}",
-
+  
   transferNewMenuBetweenIcon: ".transfer-new-menu-between-icon" +
   "{" +
   "position: relative;" +
@@ -6796,7 +6793,7 @@ var css = {
   "background-size:" + 50 * widthK + "px;" +
   "background-position: center;" +
   "}",
-
+  
   transferNewMenuBetweenIconImg1: ".transfer-new-menu-between-icon-img-1" +
   "{" +
   "position: relative;" +
@@ -6809,7 +6806,7 @@ var css = {
   "background-size:" + 50 * widthK + "px;" +
   "background-position: center;" +
   "}",
-
+  
   transferNewMenuBetweenIconImg2: ".transfer-new-menu-between-icon-img-2" +
   "{" +
   "position: absolute;" +
@@ -6823,7 +6820,7 @@ var css = {
   "background-size:" + 50 * widthK + "px;" +
   "background-position: center;" +
   "}",
-
+  
   transferNewButtonContainer: ".bottom-button-container" +
   "{" +
   "height: " + 87 * widthK + "px;" +
@@ -6842,7 +6839,7 @@ var css = {
   "left: 0;" +
   "color: #ffffff;" +
   "}",
-
+  
   transferNewSubmitButtonContainer: ".transfer-new-submit-button-container" +
   "{" +
   "height: " + 87 * widthK + "px;" +
@@ -6858,7 +6855,7 @@ var css = {
   "color: #ffffff;" +
   "left: 0;" +
   "}",
-
+  
   transferNewSubmitButtonIcon: ".transfer-new-submit-button-icon" +
   "{" +
   "height: " + 22 * widthK + "px;" +
@@ -6872,7 +6869,7 @@ var css = {
   "background-position: center;" +
   "background-image: url('resources/icons/ViewTransfer/check_mark_submit.png');" +
   "}",
-
+  
   transferNewSubmitButtonText: ".transfer-new-submit-button-text" +
   "{" +
   // "float: left;" +
@@ -6881,7 +6878,7 @@ var css = {
   "margin-top:" + 24 * widthK + "px;" +
   "top: 0;" +
   "}",
-
+  
   transferNewContactNumberInputPart: ".transfer-new-contact-number-input-part" +
   "{" +
   "border: none;" +
@@ -6896,7 +6893,7 @@ var css = {
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "}",
-
+  
   transferNewContactSuggestion: ".transfer-new-contact-suggestion" +
   "{" +
   "width: 79.5%;" +
@@ -6906,7 +6903,7 @@ var css = {
   "left: 10%;" +
   "margin-top:" + 5 * widthK + "px;" +
   "}",
-
+  
   transferNewFormContainer: ".transfer-new-form-container" +
   "{" +
   "position: absolute;" +
@@ -6915,13 +6912,13 @@ var css = {
   "height:" + (1232 * heightK - 241 * widthK) + "px;" +
   "width: 100%;" +
   "}",
-
+  
   transferNewTypeCarousel: ".transfer-new-type-carousel" +
   "{" +
   "height: 100%;" +
   "width: 100%;" +
   "}",
-
+  
   transferNewContactPhoto: ".transfer-new-contact-photo" +
   "{" +
   "top:" + 8 * widthK + "px;" +
@@ -6939,7 +6936,7 @@ var css = {
   "color: white;" +
   "left: 5%;" +
   "}",
-
+  
   transferNewCardTextField: ".transfer-new-card-text-field" +
   "{" +
   "position: relative;" +
@@ -6949,7 +6946,7 @@ var css = {
   "padding-top:" + 35 * widthK + "px;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
-
+  
   transferNewCardContainer: ".transfer-new-card-container" +
   "{" +
   "position: relative;" +
@@ -6970,7 +6967,7 @@ var css = {
   "-moz-box-shadow: " + "0px " + 5 * widthK + "px " + 60 * widthK + "px " + 4 * widthK + "px " + "rgba(86, 93, 106, 0.29);" +
   "box-shadow: " + "0px " + 5 * widthK + "px " + 60 * widthK + "px " + 4 * widthK + "px " + "rgba(86, 93, 106, 0.29);" +
   "}",
-
+  
   transferNewCardDesign: ".transfer-new-card-design" +
   "{" +
   "position: absolute;" +
@@ -6983,7 +6980,7 @@ var css = {
   "transition: 0.7s;" +
   "opacity: 0;" +
   "}",
-
+  
   transferNewCardInputFields: ".transfer-new-card-input-fields" +
   "{" +
   "position: absolute;" +
@@ -6995,18 +6992,18 @@ var css = {
   "-webkit-transform-origin: bottom left;" +
   "color: #757389;" +
   "}",
-
+  
   transferNewCardInputFieldsReduce: ".transfer-new-card-input-fields-reduce" +
   "{" +
   "transform: scale(0.7);" +
   "-webkit-transform: scale(0.7);" +
   "}",
-
+  
   transferNewCardDesignAppear: ".transfer-new-card-design-appear" +
   "{" +
   "opacity: 1;" +
   "}",
-
+  
   hiddenInput: ".hidden-input" +
   "{" +
   "border: none;" +
@@ -7018,7 +7015,7 @@ var css = {
   "padding: 0;" +
   "opacity: 0;" +
   "}",
-
+  
   transferNewCardNumberInputContainer: ".transfer-new-card-number-input-container" +
   "{" +
   "border: none;" +
@@ -7034,7 +7031,7 @@ var css = {
   "margin: 0%;" +
   "padding: 0;" +
   "}",
-
+  
   transferNewCardNumberInputContainerBottomShadow: ".transfer-new-card-number-input-container-bottom-shadow" +
   "{" +
   "border: none;" +
@@ -7051,7 +7048,7 @@ var css = {
   "margin: 0;" +
   "padding: 0;" +
   "}",
-
+  
   transferNewCardNumberInput: ".transfer-new-card-number-input" +
   "{" +
   "position: absolute;" +
@@ -7067,14 +7064,14 @@ var css = {
   "margin: 0%;" +
   "padding: 0;" +
   "}",
-
+  
   transferNewCardOwnerContainer: ".transfer-new-card-owner-container " +
   "{" +
   "position: absolute;" +
   "top:" + 254 * widthK + "px;" +
   "left:" + 60 * widthK + "px;" +
   "}",
-
+  
   transferNewCardOwnerTitle: ".transfer-new-card-owner-title " +
   "{" +
   "position: relative;" +
@@ -7082,7 +7079,7 @@ var css = {
   "margin: 0;" +
   "float: left;" +
   "}",
-
+  
   transferNewCardOwnerInfo: ".transfer-new-card-owner-info " +
   "{" +
   "position: relative;" +
@@ -7091,7 +7088,7 @@ var css = {
   "float: left;" +
   "padding-left:" + 8 * widthK + "px;" +
   "}",
-
+  
   transferNewCardProcessingIcon: ".transfer-new-card-processingIcon" +
   "{" +
   "position: absolute;" +
@@ -7106,7 +7103,7 @@ var css = {
   // "display: none;" +
   // "background-image: url('resources/icons/cards/typeOfCards/uzcard.png');" +
   "}",
-
+  
   transferNewCardBankIcon: ".transfer-new-card-bankIcon" +
   "{" +
   "position: absolute;" +
@@ -7121,14 +7118,14 @@ var css = {
   // "display: none;" +
   // "background-image: url('resources/icons/cards/typeOfCards/uzcard.png');" +
   "}",
-
+  
   transferNewCardSuggestionsContainer: ".transfer-new-card-suggestions-container" +
   "{" +
   "padding-top:" + 204 * widthK + "px;" +
   "-webkit-transition: 0.7s;" +
   "transition: 0.7s;" +
   "}",
-
+  
   transferNewContactFoundContainer: ".transfer-new-card-found-container" +
   "{" +
   "position: relative;" +
@@ -7140,7 +7137,7 @@ var css = {
   "-webkit-transition: 0.7s;" +
   "transition: 0.7s;" +
   "}",
-
+  
   transferNewContactFoundContainerReduce: ".transfer-new-card-input-fields-reduce .transfer-new-card-found-container" +
   "{" +
   "position: relative;" +
@@ -7151,7 +7148,7 @@ var css = {
   "margin-top:" + 13 * widthK + "px;" +
   "border: 2px solid #e7e7e7;" +
   "}",
-
+  
   transferNewCardFoundTextTwo: ".transfer-new-card-found-text-two" +
   "{" +
   "position: absolute;" +
@@ -7166,12 +7163,12 @@ var css = {
   "white-space: nowrap;" +
   "font-family: SFUIDisplay-Semibold;" +
   "}",
-
+  
   transferNewContactSuggestionsContainer: ".transfer-new-contact-suggestions-container" +
   "{" +
   "padding-top:" + 15 * widthK + "px;" +
   "}",
-
+  
   transferNewBetweenAmountField: ".transfer-new-between-amount-field" +
   "{" +
   "position: relative;" +
@@ -7182,14 +7179,14 @@ var css = {
   "color: white;" +
   "padding-top:" + 25 * widthK + "px;" +
   "}",
-
+  
   transferNewBetweenTextField: ".transfer-new-between-text-field" +
   "{" +
   "margin: 0;" +
   "color: gray;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
-
+  
   transferNewSubmitNoCards: ".transfer-new-submit-no-cards" +
   "{" +
   "margin: 0;" +
@@ -7199,7 +7196,7 @@ var css = {
   "word-break: break-word;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
-
+  
   transferNewBetweenAmountInput: ".transfer-new-between-amount-input" +
   "{" +
   "border: none;" +
@@ -7212,7 +7209,7 @@ var css = {
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "}",
-
+  
   transferNewBetweenInputCommission: ".transfer-new-between-input-commission" +
   "{" +
   "position: relative;" +
@@ -7221,7 +7218,7 @@ var css = {
   "font-size:" + 32 * widthK + "px;" +
   "margin-top:" + 30 * heightK + "px;" +
   "}",
-
+  
   transferNewCardCarousel: ".transfer-new-card-carousel " +
   "{" +
   // "left:" + (360 * widthK - 296 * heightK) + "px;" +
@@ -7233,7 +7230,7 @@ var css = {
   "transition: 1s;" +
   "-webkit-transform: scale(1);" +
   "}",
-
+  
   transferNewCard: ".transfer-new-card " +
   "{" +
   "background-image: url(resources/icons/cards/all.png);" +
@@ -7251,19 +7248,19 @@ var css = {
   "background-size: cover;" +
   "color: white;" +
   "}",
-
+  
   transferNewCardFrom: ".transfer-new-card-from " +
   "{" +
   "position: relative;" +
   "margin-top:" + 50 * heightK + "px;" +
   "}",
-
+  
   transferNewCardTo: ".transfer-new-card-to " +
   "{" +
   "position: relative;" +
   "margin-top:" + 7 * heightK + "px;" +
   "}",
-
+  
   transferNewCardBalansCurrencyContainer: ".transfer-new-card-balance-currency-container " +
   "{" +
   "position: absolute;" +
@@ -7274,7 +7271,7 @@ var css = {
   "margin: 0;" +
   "overflow: hidden;" +
   "}",
-
+  
   transferNewCardBalance: ".transfer-new-card-balance " +
   "{" +
   "position: relative;" +
@@ -7287,12 +7284,12 @@ var css = {
   "max-height: 52%;" +
   "max-width: 65%;" +
   "}",
-
+  
   transferNewCardBalanceFractional: ".transfer-new-card-balance-fractional" +
   "{" +
   "font-size:" + 34 * heightK + "px;" +
   "}",
-
+  
   transferNewCardCurrency: ".transfer-new-card-currency " +
   "{" +
   "position: relative;" +
@@ -7303,7 +7300,7 @@ var css = {
   "float: left;" +
   "width:" + 60 * heightK + "px;" +
   "}",
-
+  
   transferNewCardSalaryTitle: ".transfer-new-card-salary-title " +
   "{" +
   "position: absolute;" +
@@ -7317,7 +7314,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "}",
-
+  
   transferNewCardNumber: ".transfer-new-card-number " +
   "{" +
   "position: absolute;" +
@@ -7328,19 +7325,19 @@ var css = {
   "font-family: 'OCRAStd';" +
   "left:" + 27 * heightK + "px;" +
   "}",
-
+  
   transferNewCardNumberPartOne: ".transfer-new-card-number-part-one " +
   "{" +
   "position: absolute;" +
   "left: 0px;" +
   "}",
-
+  
   transferNewCardNumberMiddleTwo: ".transfer-new-card-number-middle-two " +
   "{" +
   "position: absolute;" +
   "left:" + 76 * heightK + "px;" +
   "}",
-
+  
   transferNewNumberStars: ".transfer-new-number-stars " +
   "{" +
   "position: absolute;" +
@@ -7348,13 +7345,13 @@ var css = {
   "left:" + 110 * heightK + "px;" +
   "font-size:" + 23 * heightK + "px;" +
   "}",
-
+  
   transferNewCardNumberPartTwo: ".transfer-new-card-number-part-two " +
   "{" +
   "position: absolute;" +
   "left:" + 233 * heightK + "px;" +
   "}",
-
+  
   transferNewBetweenFromTextField: ".transfer-new-between-from-text-field" +
   "{" +
   "margin: 0;" +
@@ -7362,7 +7359,7 @@ var css = {
   "font-size:" + 29 * widthK + "px;" +
   "margin-left: 10%;" +
   "}",
-
+  
   transferNewBetweenCardsArrow: ".transfer-new-between-cards-arrow" +
   "{" +
   "position: relative;" +
@@ -7375,7 +7372,7 @@ var css = {
   "background-size: cover;" +
   "background-position: center;" +
   "}",
-
+  
   transferNewSubmitReceiverContainer: ".transfer-new-submit-receiver-container" +
   "{" +
   "position: relative;" +
@@ -7386,7 +7383,7 @@ var css = {
   "margin-left: 10%;" +
   "margin-top:" + 30 * widthK + "px;" +
   "}",
-
+  
   transferNewSubmitReceiverLabel: ".transfer-new-submit-receiver-label" +
   "{" +
   "margin: 0;" +
@@ -7399,7 +7396,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
-
+  
   transferMenuContactLabel: ".transfer-menu-contact-label" +
   "{" +
   "margin: 0;" +
@@ -7409,7 +7406,7 @@ var css = {
   "font-size:" + 23 * widthK + "px;" +
   "color: black;" +
   "}",
-
+  
   transferMenuCardLabel: ".transfer-menu-card-label" +
   "{" +
   "margin: 0;" +
@@ -7419,7 +7416,7 @@ var css = {
   "font-size:" + 23 * widthK + "px;" +
   "color: gray;" +
   "}",
-
+  
   transferContactBodyContainer: ".transfer-contact-body-container" +
   "{" +
   "position: absolute;" +
@@ -7428,7 +7425,7 @@ var css = {
   "width: 100%;" +
   "background-color: transparent;" +
   "}",
-
+  
   transferNewContactBodyContainer: ".transfer-new-contact-body-container" +
   "{" +
   "position: absolute;" +
@@ -7436,7 +7433,7 @@ var css = {
   "width: 100%;" +
   "background-color: transparent;" +
   "}",
-
+  
   transferContactPhoneField: ".transfer-contact-phone-field" +
   "{" +
   "position: absolute;" +
@@ -7447,7 +7444,7 @@ var css = {
   "color: white;" +
   "top: 7%;" +
   "}",
-
+  
   transferContactTextField: ".transfer-contact-text-field" +
   "{" +
   "position: absolute;" +
@@ -7456,7 +7453,7 @@ var css = {
   "font-size:" + 24 * widthK + "px;" +
   "top: -9%;" +
   "}",
-
+  
   transferContactAccess: ".transfer-contact-access-text" +
   "{" +
   "position: relative;" +
@@ -7464,7 +7461,7 @@ var css = {
   "color: gray;" +
   "font-size:" + 24 * widthK + "px;" +
   "}",
-
+  
   transferContactAccessSettings: ".transfer-contact-access-text-settings" +
   "{" +
   "position: relative;" +
@@ -7472,7 +7469,7 @@ var css = {
   "color: #01cfff;" +
   "font-size:" + 24 * widthK + "px;" +
   "}",
-
+  
   transferContactAccessContainer: ".transfer-contact-access-container" +
   "{" +
   "position: relative;" +
@@ -7481,7 +7478,7 @@ var css = {
   "left: 10%;" +
   "top:" + 15 * widthK + "px;" +
   "}",
-
+  
   transferContactPhoneIcon: ".transfer-contact-phone-icon" +
   "{" +
   "position: absolute;" +
@@ -7494,7 +7491,7 @@ var css = {
   "top: 34%;" +
   "right: -2%;" +
   "}",
-
+  
   transferContactNumberFirstPart: ".transfer-contact-number-first-part" +
   "{" +
   "float: left;" +
@@ -7506,7 +7503,7 @@ var css = {
   "color: #515151;" +
   "margin: 0;" +
   "}",
-
+  
   transferContactNumberInputPart: ".transfer-contact-number-input-part" +
   "{" +
   "border: none;" +
@@ -7521,7 +7518,7 @@ var css = {
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "}",
-
+  
   transferContactFoundContainerOne: ".transfer-contact-found-container-one" +
   "{" +
   "position: absolute;" +
@@ -7532,7 +7529,7 @@ var css = {
   "top:" + 165 * widthK + "px;" +
   "display: none;" +
   "}",
-
+  
   transferContactFoundContainerTwo: ".transfer-contact-found-container-two" +
   "{" +
   "position: absolute;" +
@@ -7543,7 +7540,7 @@ var css = {
   "top:" + 290 * widthK + "px;" +
   "display: none;" +
   "}",
-
+  
   transferContactFoundContainerThree: ".transfer-contact-found-container-three" +
   "{" +
   "position: absolute;" +
@@ -7554,7 +7551,7 @@ var css = {
   "top:" + 415 * widthK + "px;" +
   "display: none;" +
   "}",
-
+  
   transferContactFoundContainerFour: ".transfer-contact-found-container-four" +
   "{" +
   "position: absolute;" +
@@ -7565,7 +7562,7 @@ var css = {
   "top:" + 540 * widthK + "px;" +
   "display: none;" +
   "}",
-
+  
   transferContactFoundContainerFive: ".transfer-contact-found-container-five" +
   "{" +
   "position: absolute;" +
@@ -7576,7 +7573,7 @@ var css = {
   "top:" + 665 * widthK + "px;" +
   "display: none;" +
   "}",
-
+  
   transferCardNumberInputPart: ".transfer-card-number-input-part" +
   "{" +
   "border: none;" +
@@ -7590,7 +7587,7 @@ var css = {
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "}",
-
+  
   transferContactFoundPhoto: ".transfer-contact-found-photo" +
   "{" +
   "top:" + 8 * widthK + "px;" +
@@ -7608,7 +7605,7 @@ var css = {
   "color: white;" +
   "left: 5%;" +
   "}",
-
+  
   transferCardFoundPhoto: ".transfer-card-found-photo" +
   "{" +
   "position: absolute;" +
@@ -7619,7 +7616,7 @@ var css = {
   "left: 1%;" +
   "background-size: 100%;" +
   "}",
-
+  
   transferContactFoundTextContainer: ".transfer-contact-found-text-container" +
   "{" +
   "position: absolute;" +
@@ -7629,7 +7626,7 @@ var css = {
   "height: 100%;" +
   "display: table;" +
   "}",
-
+  
   transferContactFoundTextContainerForCard: ".transfer-contact-found-text-container-for-card" +
   "{" +
   "position: absolute;" +
@@ -7642,8 +7639,8 @@ var css = {
   "text-overflow: ellipsis;" +
   "white-space: nowrap;" +
   "}",
-
-
+  
+  
   transferContactFoundTextOne: ".transfer-contact-found-text-one" +
   "{" +
   "margin: 0;" +
@@ -7652,7 +7649,7 @@ var css = {
   "display: table-cell;" +
   "vertical-align: middle;" +
   "}",
-
+  
   transferContactFoundTextTwo: ".transfer-contact-found-text-two" +
   "{" +
   "position: absolute;" +
@@ -7662,7 +7659,7 @@ var css = {
   "font-size:" + 24 * widthK + "px;" +
   "top: 40%;" +
   "}",
-
+  
   transferNextButtonInnerContainer: ".transfer-next-button-inner-container" +
   "{" +
   "height: " + 74 * widthK + "px;" +
@@ -7679,7 +7676,7 @@ var css = {
   "bottom: 0;" +
   "color: #ffffff;" +
   "}",
-
+  
   transferNextButtonLabel: ".transfer-next-button-label" +
   "{" +
   "position: relative;" +
@@ -7689,7 +7686,7 @@ var css = {
   "margin: auto;" +
   "color: white;" +
   "}",
-
+  
   transferNextButtonIcon: ".transfer-next-button-icon" +
   "{" +
   "position: relative;" +
@@ -7702,7 +7699,7 @@ var css = {
   "top: 31%;" +
   "left: 50%;" +
   "}",
-
+  
   transferNameTitle: ".transfer-name-title " +
   "{" +
   "position: absolute;" +
@@ -7713,7 +7710,7 @@ var css = {
   "margin: 0;" +
   "color: #565d6a;" +
   "}",
-
+  
   transferPageTitle: ".transfer-page-title " +
   "{" +
   "position: absolute;" +
@@ -7723,7 +7720,7 @@ var css = {
   "height:" + 93 * widthK + "px;" +
   "background: transparent;" +
   "}",
-
+  
   transferBackButton: ".transfer-back-button " +
   "{" +
   "position: absolute;" +
@@ -7738,7 +7735,7 @@ var css = {
   "left:" + -39 * widthK + "px;" +
   "top: 0;" +
   "}",
-
+  
   transferIButton: ".transfer-i-button " +
   "{" +
   "position: absolute;" +
@@ -7752,9 +7749,9 @@ var css = {
   "background-position-x: center;" +
   "background-size: 48%;" +
   "}",
-
+  
   //VIEW TRANSFER TWO
-
+  
   transferTwoBodyContainer: ".transfertwo-body-container " +
   "{" +
   "position: absolute;" +
@@ -7764,7 +7761,7 @@ var css = {
   "background-color: white;" +
   "overflow: hidden;" +
   "}",
-
+  
   transferTwoContactPhoneField: ".transfertwo-contact-phone-field" +
   "{" +
   "position: absolute;" +
@@ -7775,7 +7772,7 @@ var css = {
   "color: white;" +
   "top:" + 100 * widthK + "px;" +
   "}",
-
+  
   transferTwoContactTextField: ".transfertwo-contact-text-field" +
   "{" +
   "position: relative;" +
@@ -7784,7 +7781,7 @@ var css = {
   "font-size:" + 24 * widthK + "px;" +
   "bottom:" + -15 * widthK + "px;" +
   "}",
-
+  
   transferTwoContactNumberInputPart: ".transfertwo-contact-number-input-part" +
   "{" +
   "border: none;" +
@@ -7797,7 +7794,7 @@ var css = {
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "}",
-
+  
   transferTwoNextButtonInnerContainer: ".transfertwo-next-button-inner-container" +
   "{" +
   "height: " + 74 * widthK + "px;" +
@@ -7814,8 +7811,8 @@ var css = {
   "bottom: 0;" +
   "color: #ffffff;" +
   "}",
-
-
+  
+  
   transferTwoNextButtonLabel: ".transfertwo-next-button-label" +
   "{" +
   "position: relative;" +
@@ -7825,7 +7822,7 @@ var css = {
   "margin: auto;" +
   "color: white;" +
   "}",
-
+  
   transferTwoCommentContainer: ".transfertwo-comment-container" +
   "{" +
   "position: absolute;" +
@@ -7839,7 +7836,7 @@ var css = {
   "background-color: transparent;" +
   "color: #ffffff;" +
   "}",
-
+  
   transferTwoCommentInput: ".transfertwo-comment-input" +
   "{" +
   "position: absolute;" +
@@ -7855,7 +7852,7 @@ var css = {
   "padding: 0;" +
   "color: gray;" +
   "}",
-
+  
   transferTwoMenusContainer: ".transfertwo-menus-container " +
   "{" +
   "position: absolute;" +
@@ -7864,7 +7861,7 @@ var css = {
   "background-color: transparent;" +
   "border-bottom:1px solid #e3e3e3;" +
   "}",
-
+  
   transferTwoMenuNameLabel: ".transfertwo-menu-name-label " +
   "{" +
   "margin: 0;" +
@@ -7875,7 +7872,7 @@ var css = {
   "font-size:" + 27 * widthK + "px;" +
   "color: #515151;" +
   "}",
-
+  
   transferTwoLimitTitle: ".transfertwo-limit-title" +
   "{" +
   "position: relative;" +
@@ -7884,10 +7881,10 @@ var css = {
   "margin: 0;" +
   "color: red;" +
   "}",
-
-
+  
+  
   //VIEW TRANSFER THREE
-
+  
   transferThreeBodyContainer: ".transferthree-body-container " +
   "{" +
   "position: absolute;" +
@@ -7897,7 +7894,7 @@ var css = {
   "background-color: white;" +
   "overflow: hidden;" +
   "}",
-
+  
   transferThreeMenusContainer: ".transferthree-menus-container " +
   "{" +
   "position: relative;" +
@@ -7907,7 +7904,7 @@ var css = {
   "background-color: transparent;" +
   "border-bottom:1px solid #e3e3e3;" +
   "}",
-
+  
   transferThreeMenuNameLabel: ".transferthree-menu-name-label " +
   "{" +
   "margin: 0;" +
@@ -7918,7 +7915,7 @@ var css = {
   "font-size:" + 27 * widthK + "px;" +
   "color: #515151;" +
   "}",
-
+  
   transferThreeContactBodyContainer: ".transferthree-contact-body-container " +
   "{" +
   "position: absolute;" +
@@ -7926,7 +7923,7 @@ var css = {
   "height: 50%;" +
   "background-color: transparent;" +
   "}",
-
+  
   transferThreeContactPhoneField: ".transferthree-contact-phone-field " +
   "{" +
   "position: relative;" +
@@ -7938,7 +7935,7 @@ var css = {
   "top: 45px;" +
   "margin-bottom: 8%;" +
   "}",
-
+  
   transferThreeNextButtonInnerContainer: ".transferthree-next-button-inner-container" +
   "{" +
   "position: absolute;" +
@@ -7955,7 +7952,7 @@ var css = {
   "font-family: SFUIDisplay-Light;" +
   "border-radius: " + 10 * widthK + "px; " +
   "}",
-
+  
   transferThreeNextButtonLabel: ".transferthree-next-button-label" +
   "{" +
   "position: relative;" +
@@ -7965,9 +7962,9 @@ var css = {
   "margin: auto;" +
   "color: white;" +
   "}",
-
+  
   //VIEW TRANSFER FOUR
-
+  
   transferFourBodyContainer: ".transferfour-body-container " +
   "{" +
   "position: absolute;" +
@@ -7977,7 +7974,7 @@ var css = {
   "background-color: white;" +
   "overflow: hidden;" +
   "}",
-
+  
   transferFourDataContainer: ".transferfour-data-container" +
   "{" +
   "position: absolute;" +
@@ -7986,7 +7983,7 @@ var css = {
   "background-color: transparent;" +
   //"border-bottom:  " + 1 + "px solid lightgray;" +
   "}",
-
+  
   transferFourPhoneField: ".transferfour-phone-field" +
   "{" +
   "position: absolute;" +
@@ -7995,7 +7992,7 @@ var css = {
   "border-bottom: 1px solid lightgray;" +
   "color: white;" +
   "}",
-
+  
   transferFourTextField: ".transferfour-text-field" +
   "{" +
   "position: absolute;" +
@@ -8005,7 +8002,7 @@ var css = {
   "left: 8%;" +
   "top: 23%;" +
   "}",
-
+  
   transferFourPhoneInput: ".transferfour-phone-input" +
   "{" +
   "position: absolute;" +
@@ -8015,7 +8012,7 @@ var css = {
   "font-size: " + 40 * widthK + "px; " +
   "color: gray;" +
   "}",
-
+  
   transferFourOwnerField: ".transferfour-owner-field" +
   "{" +
   "position: absolute;" +
@@ -8025,7 +8022,7 @@ var css = {
   "left: 8%;" +
   "top: 23%;" +
   "}",
-
+  
   transferFourOwnerInput: ".transferfour-owner-input" +
   "{" +
   "position: absolute;" +
@@ -8035,8 +8032,8 @@ var css = {
   "font-size: " + 40 * widthK + "px; " +
   "color: gray;" +
   "}",
-
-
+  
+  
   transferFourContainer: ".transferfour-owner-container" +
   "{" +
   "position: relative;" +
@@ -8046,7 +8043,7 @@ var css = {
   "color: white;" +
   "top: 23%;" +
   "}",
-
+  
   transferFourCategoryContainer: ".transferfour-category-container" +
   "{" +
   "position: relative;" +
@@ -8057,7 +8054,7 @@ var css = {
   "top: 23%;" +
   "display: none;" +
   "}",
-
+  
   transferFourCardField: ".transferfour-card-field" +
   "{" +
   "position: relative;" +
@@ -8066,7 +8063,7 @@ var css = {
   "color: white;" +
   "top: 23%;" +
   "}",
-
+  
   transferFourCardInfoContainer: ".transferfour-card-info-container" +
   "{" +
   "position: absolute;" +
@@ -8075,7 +8072,7 @@ var css = {
   "background-color: transparent;" +
   "left: 4%;" +
   "}",
-
+  
   transferFourTextOne: ".transferfour-text-one" +
   "{" +
   "position: absolute;" +
@@ -8085,7 +8082,7 @@ var css = {
   "left: 7%;" +
   "top: 13%;" +
   "}",
-
+  
   transferFourTextTwo: ".transferfour-text-two" +
   "{" +
   "position: absolute;" +
@@ -8099,7 +8096,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "}",
-
+  
   transferFourDetailText: ".transferfour-detail-text" +
   "{" +
   "position: relative;" +
@@ -8109,7 +8106,7 @@ var css = {
   "left: 7%;" +
   "top: 55%;" +
   "}",
-
+  
   transferFourCardLogoContainer: ".transferfour-card-logo-container" +
   "{" +
   "position: absolute;" +
@@ -8123,7 +8120,7 @@ var css = {
   "background-size: contain;" +
   "float: left;" +
   "}",
-
+  
   transferFourFieldSum: ".transferfour-field-sum" +
   "{" +
   "position: relative;" +
@@ -8133,7 +8130,7 @@ var css = {
   "color: white;" +
   "top: 23%;" +
   "}",
-
+  
   transferFourAmountField: ".transferfour-amount-field" +
   "{" +
   "position: absolute;" +
@@ -8143,7 +8140,7 @@ var css = {
   "left: 8%;" +
   "top: 18%;" +
   "}",
-
+  
   transferFourAmountInput: ".transferfour-amount-input" +
   "{" +
   "position: absolute;" +
@@ -8153,7 +8150,7 @@ var css = {
   "font-size: " + 40 * widthK + "px; " +
   "color: gray;" +
   "}",
-
+  
   transferFourTaxField: ".transferfour-tax-field" +
   "{" +
   "position: absolute;" +
@@ -8163,7 +8160,7 @@ var css = {
   "left: 8%;" +
   "top: 63%;" +
   "}",
-
+  
   transferFourBottomContainer: ".transferfour-bottom-container" +
   "{" +
   "position: absolute;" +
@@ -8173,7 +8170,7 @@ var css = {
   "background-color: transparent;" +
   "overflow: hidden;" +
   "}",
-
+  
   transferFourActionContainer: ".transferfour-action-containter" +
   "{" +
   "position: absolute;" +
@@ -8184,7 +8181,7 @@ var css = {
   "display: none;" +
   "background-color: transparent;" +
   "}",
-
+  
   transferFourActionIconOne: ".transferfour-action-icon-one" +
   "{" +
   "position: absolute;" +
@@ -8196,7 +8193,7 @@ var css = {
   "top: 0;" +
   "background-size: 78%;" +
   "}",
-
+  
   transferFourActionText: ".transferfour-action-text" +
   "{" +
   "top: 52%;" +
@@ -8210,7 +8207,7 @@ var css = {
   "text-decoration: underline;" +
   "width: 92%;" +
   "}",
-
+  
   transferFourButtonEnter: ".transferfour-button-enter" +
   "{" +
   "background-color: #00a8f1;" +
@@ -8227,7 +8224,7 @@ var css = {
   "width: 44%;" +
   "border-radius: " + 10 * widthK + "px;" +
   "}",
-
+  
   transferFourButtonEnterLabel: ".transferfour-button-enter-label" +
   "{" +
   "position: relative;" +
@@ -8242,7 +8239,7 @@ var css = {
   "margin-right: auto;" +
   "text-align: center;" +
   "}",
-
+  
   //VIEW CODE CONFIRM PAGE
   codeConfirm: ".code-confirm " +
   "{" +
@@ -8254,7 +8251,7 @@ var css = {
   "z-index: 10;" +
   "display: none;" +
   "}",
-
+  
   codeConfirmContainer: ".code-confirm-container" +
   "{" +
   "position: absolute;" +
@@ -8263,14 +8260,14 @@ var css = {
   "left:" + 70 * widthK + "px;" +
   "top: 0px;" +
   "}",
-
+  
   codeConfirmTitleContainer: ".code-confirm-title-container " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height: 7%;" +
   "}",
-
+  
   codeConfirmTitleName: ".code-confirm-title-name " +
   "{" +
   "position: relative;" +
@@ -8280,7 +8277,7 @@ var css = {
   "left: 10%;" +
   "color: white;" +
   "}",
-
+  
   codeConfirmCancelIcon: ".code-confirm-cancel-icon " +
   "{" +
   "position: absolute;" +
@@ -8293,7 +8290,7 @@ var css = {
   "background-position-x: 70%;" +
   "background-size: 20%;" +
   "}",
-
+  
   codeConfirmCodeContainer: ".code-confirm-code-container " +
   "{" +
   "position: relative;" +
@@ -8304,7 +8301,7 @@ var css = {
   // "left:" + 135 * widthK + "px;" +
   "top:" + 150 * widthK + "px;" +
   "}",
-
+  
   codeConfirmCodeText: ".code-confirm-code-text " +
   "{" +
   "position: relative;" +
@@ -8325,7 +8322,7 @@ var css = {
   "border-bottom:" + 3 * widthK + "px solid #6abfff;" +
   "font-size:" + 100 * widthK + "px;" +
   "}",
-
+  
   codeConfirmMessageText: ".code-confirm-message-text " +
   "{" +
   "position: relative;" +
@@ -8336,7 +8333,7 @@ var css = {
   "font-size:" + 28 * widthK + "px;" +
   "color: white;" +
   "}",
-
+  
   codeConfirmButtonEnter: ".code-confirm-button-enter" +
   "{" +
   //"bottom: 24%;" +
@@ -8357,7 +8354,7 @@ var css = {
   "left: 19%;" +
   "position: absolute;" +
   "}",
-
+  
   codeConfirmButtonEnterLabel: ".code-confirm-button-enter-label" +
   "{" +
   "position: relative;" +
@@ -8371,7 +8368,7 @@ var css = {
   "}",
 
 //  Component Contact Search
-
+  
   componentContactSearch: ".component-contact-search " +
   "{" +
   "position: absolute;" +
@@ -8381,7 +8378,7 @@ var css = {
   "background-color: #353340;" +
   "display: none;" +
   "}",
-
+  
   contactSearchContainer: ".contact-search-container" +
   "{" +
   "position: absolute;" +
@@ -8390,14 +8387,14 @@ var css = {
   "left:" + 70 * widthK + "px;" +
   "top: 0px;" +
   "}",
-
+  
   contactSearchTitleContainer: ".contact-search-title-container " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height: 7%;" +
   "}",
-
+  
   contactSearchSearchIcon: ".contact-search-search-icon " +
   "{" +
   "position: relative;" +
@@ -8410,7 +8407,7 @@ var css = {
   "background-position: center;" +
   "background-size: 38%;" +
   "}",
-
+  
   contactSearchTitleName: ".contact-search-title-name " +
   "{" +
   "position: relative;" +
@@ -8420,7 +8417,7 @@ var css = {
   "left: 3%;" +
   "color: white;" +
   "}",
-
+  
   contactSearchCancelIcon: ".contact-search-cancel-icon " +
   "{" +
   "position: absolute;" +
@@ -8433,7 +8430,7 @@ var css = {
   "background-position-x: 70%;" +
   "background-size: 20%;" +
   "}",
-
+  
   contactSearchPhoneField: ".contact-search-phone-field" +
   "{" +
   "position: absolute;" +
@@ -8444,7 +8441,7 @@ var css = {
   "color: white;" +
   "top:14%;" +
   "}",
-
+  
   contactNumberFirstPart: ".contact-number-first-part" +
   "{" +
   "float: left;" +
@@ -8456,7 +8453,7 @@ var css = {
   "color: white;" +
   "margin: 0;" +
   "}",
-
+  
   contactSearchInput: ".contact-search-input " +
   "{" +
   "border: none;" +
@@ -8473,7 +8470,7 @@ var css = {
   "-webkit-text-fill-color: white;" +
   "background: none;" +
   "}",
-
+  
   contactSearchSuggestionContainer: ".contact-search-suggestion-container " +
   "{" +
   "position: absolute;" +
@@ -8482,7 +8479,7 @@ var css = {
   "left: 2%;" +
   "top: 31%;" +
   "}",
-
+  
   contactSearchSuggestionFieldOne: ".contact-search-suggestion-field-one " +
   "{" +
   "position: absolute;" +
@@ -8493,7 +8490,7 @@ var css = {
   "display: none;" +
   "background-color: white;" +
   "}",
-
+  
   contactSearchSuggestionFieldTwo: ".contact-search-suggestion-field-two " +
   "{" +
   "position: absolute;" +
@@ -8504,7 +8501,7 @@ var css = {
   "display: none;" +
   "background-color: white;" +
   "}",
-
+  
   contactSearchSuggestionFieldThree: ".contact-search-suggestion-field-three " +
   "{" +
   "position: absolute;" +
@@ -8515,7 +8512,7 @@ var css = {
   "display: none;" +
   "background-color: white;" +
   "}",
-
+  
   contactSearchSuggestionFieldFour: ".contact-search-suggestion-field-four " +
   "{" +
   "position: absolute;" +
@@ -8526,7 +8523,7 @@ var css = {
   "display: none;" +
   "background-color: white;" +
   "}",
-
+  
   contactSearchFoundPhoto: ".contact-search-found-photo" +
   "{" +
   "top: 8%;" +
@@ -8540,7 +8537,7 @@ var css = {
   "left: 5%;" +
   "background-size: 150%;" +
   "}",
-
+  
   contactSearchFoundTextContainer: ".contact-search-found-text-container" +
   "{" +
   "position: absolute;" +
@@ -8550,8 +8547,8 @@ var css = {
   "height: 100%;" +
   "display: table;" +
   "}",
-
-
+  
+  
   contactSearchFoundTextOne: ".contact-search-found-text-one" +
   "{" +
   "margin: 0;" +
@@ -8560,7 +8557,7 @@ var css = {
   "display: table-cell;" +
   "vertical-align: middle;" +
   "}",
-
+  
   contactSearchFoundTextTwo: ".contact-search-found-text-two" +
   "{" +
   "position: absolute;" +
@@ -8570,9 +8567,9 @@ var css = {
   "font-size:" + 24 * widthK + "px;" +
   "top: 40%;" +
   "}",
-
+  
   //COMPONENT INPROCESSING
-
+  
   componentInProcessing: ".component-in-processing " +
   "{" +
   "position: absolute;" +
@@ -8585,7 +8582,7 @@ var css = {
   "z-index: 999999999;" +
   "background-color: rgba(255,255,255,0.95);" +
   "}",
-
+  
   InProcessingOperationSuccessMessagePartOne: ".in-processing-operation-success-message-part-one" +
   "{" +
   "position: relative;" +
@@ -8600,7 +8597,7 @@ var css = {
   "left:" + -10 * widthK + "px;" +
   "font-size:" + 36 * widthK + "px;" +
   "}",
-
+  
   InProcessingOperationSuccessMessagePartTwo: ".in-processing-operation-success-message-part-two" +
   "{" +
   "position: relative;" +
@@ -8615,7 +8612,7 @@ var css = {
   "left:" + -10 * widthK + "px;" +
   "font-size:" + 36 * widthK + "px;" +
   "}",
-
+  
   InProcessingOperationSuccessMessagePartTwoForTransfer: ".in-processing-operation-success-message-part-two-for-transfer" +
   "{" +
   "position: relative;" +
@@ -8630,7 +8627,7 @@ var css = {
   "left: 0;" +
   "font-size:" + 36 * widthK + "px;" +
   "}",
-
+  
   InProcessingNextButtonInnerContainer: ".in-processing-next-button-inner-container" +
   "{" +
   // "top: 83%;" +
@@ -8651,7 +8648,7 @@ var css = {
   "left: 28%;" +
   "display: table;" +
   "}",
-
+  
   InProcessingNextButtonLabel: ".in-processing-next-button-label" +
   "{" +
   "position: relative;" +
@@ -8662,7 +8659,7 @@ var css = {
   "display: table-cell;" +
   "vertical-align: middle;" +
   "}",
-
+  
   InProcessingSuccessIcon: ".in-processing-success-icon" +
   "{" +
   "position: relative;" +
@@ -8677,7 +8674,7 @@ var css = {
   "background-size: 93%;" +
   "background-position: center;" +
   "}",
-
+  
   //COMPONENT SUCCESS
   componentSuccess: ".component-success " +
   "{" +
@@ -8688,7 +8685,7 @@ var css = {
   "z-index: 999999999;" +
   "background-color: rgba(255,255,255,0.95);" +
   "}",
-
+  
   successOperationSuccessMessage: ".success-operation-success-message" +
   "{" +
   "position: relative;" +
@@ -8706,7 +8703,7 @@ var css = {
   "overflow-y: auto;" +
   "word-wrap: break-word;" +
   "}",
-
+  
   successNextButtonInnerContainer: ".success-next-button-inner-container" +
   "{" +
   "top: 83%;" +
@@ -8725,7 +8722,7 @@ var css = {
   "border-radius: " + 10 * widthK + "px;" +
   "color: #00a8f1;" +
   "}",
-
+  
   successNextButtonLabel: ".success-next-button-label" +
   "{" +
   "position: relative;" +
@@ -8736,7 +8733,7 @@ var css = {
   "display: table-cell;" +
   "vertical-align: middle;" +
   "}",
-
+  
   successSuccessIcon: ".success-success-icon" +
   "{" +
   "position: relative;" +
@@ -8751,7 +8748,7 @@ var css = {
   "background-size: 93%;" +
   "background-position: center;" +
   "}",
-
+  
   //COMPONENT DELETE
   componentDelete: ".component-delete " +
   "{" +
@@ -8764,7 +8761,7 @@ var css = {
   "background-image: url(resources/icons/transparent.png);" +
   //"background-repeat: no-repeat;" +
   "}",
-
+  
   deleteOperationConfirmMessage: ".delete-operation-confirm-message" +
   "{" +
   "position: relative;" +
@@ -8779,7 +8776,7 @@ var css = {
   "left:" + -5 * widthK + "px;" +
   "font-size:" + 37 * widthK + "px;" +
   "}",
-
+  
   deleteDeleteIcon: ".delete-delete-icon" +
   "{" +
   "position: absolute;" +
@@ -8791,7 +8788,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 93%;" +
   "}",
-
+  
   deleteButtonsContainer: ".delete-buttons-container" +
   "{" +
   "position: relative;" +
@@ -8799,7 +8796,7 @@ var css = {
   "width:100%;" +
   "top: 58%;" +
   "}",
-
+  
   deleteButtonAccept: ".delete-button-accept" +
   "{" +
   "position: relative;" +
@@ -8815,7 +8812,7 @@ var css = {
   "font-size:" + 29 * widthK + "px;" +
   "width: 33%;" +
   "}",
-
+  
   deleteButtonCancel: ".delete-button-cancel" +
   "{" +
   "position: relative;" +
@@ -8831,10 +8828,10 @@ var css = {
   "font-size:" + 29 * widthK + "px;" +
   "width: 33%;" +
   "}",
-
-
+  
+  
   //COMPONENT UNSUCCESS
-
+  
   uncomponentUnuccess: ".component-unsuccess " +
   "{" +
   "position: absolute;" +
@@ -8845,7 +8842,7 @@ var css = {
   // "display: none;" +
   "z-index: 999999999;" +
   "}",
-
+  
   unsuccessOperationSuccessMessage: ".unsuccess-operation-success-message" +
   "{" +
   "position: relative;" +
@@ -8859,7 +8856,7 @@ var css = {
   "overflow-y: auto;" +
   "word-wrap: break-word;" +
   "}",
-
+  
   unsuccessNextButtonInnerContainer: ".unsuccess-next-button-inner-container" +
   "{" +
   "bottom: 10%;" +
@@ -8877,7 +8874,7 @@ var css = {
   "border-radius: " + 10 * widthK + "px;" +
   "color: #ffffff;" +
   "}",
-
+  
   unsuccessNextButtonLabel: ".unsuccess-next-button-label" +
   "{" +
   "position: relative;" +
@@ -8888,8 +8885,8 @@ var css = {
   "display: table-cell;" +
   "vertical-align: middle;" +
   "}",
-
-
+  
+  
   unsuccessUnsuccessIcon: ".unsuccess-unsuccess-icon" +
   "{" +
   "position: relative;" +
@@ -8904,7 +8901,7 @@ var css = {
   "background-size: 75%;" +
   "background-position: center;" +
   "}",
-
+  
   viewClickPass: ".view-click-pass" +
   "{" +
   "position: absolute;" +
@@ -8912,7 +8909,7 @@ var css = {
   "width: 100%;" +
   "background-color: white;" +
   "}",
-
+  
   clickPassHelpButton: ".click-pass-help-button " +
   "{" +
   "position: absolute;" +
@@ -8926,7 +8923,7 @@ var css = {
   "background-position-x: center;" +
   "background-size: 65%;" +
   "}",
-
+  
   clickPassHelpMenu: ".click-pass-help-menu " +
   "{" +
   "position: absolute;" +
@@ -8940,7 +8937,7 @@ var css = {
   "background-color: #ffffff;" +
   "z-index: 1;" +
   "}",
-
+  
   clickPassHelpMenuCloseButton: ".click-pass-help-menu-close-button " +
   "{" +
   "position: absolute;" +
@@ -8954,7 +8951,7 @@ var css = {
   "background-position-x: center;" +
   "background-size: 40%;" +
   "}",
-
+  
   clickPassHelpMenuTextContainer: ".click-pass-help-menu-text-container " +
   "{" +
   "position: absolute;" +
@@ -8965,7 +8962,7 @@ var css = {
   "border-bottom: 1px solid #e8e8e8;" +
   "color: #565d6a;" +
   "}",
-
+  
   clickPassHelpMenuFirst: ".click-pass-help-menu-first " +
   "{" +
   "position: relative;" +
@@ -8973,7 +8970,7 @@ var css = {
   "font-size:" + 32 * widthK + "px;" +
   "margin: 0;" +
   "}",
-
+  
   clickPassHelpMenuSecond: ".click-pass-help-menu-second " +
   "{" +
   "position: relative;" +
@@ -8981,7 +8978,7 @@ var css = {
   "margin: 0;" +
   "font-size:" + 31.5 * widthK + "px;" +
   "}",
-
+  
   clickPassHelpMenuHand: ".click-pass-help-menu-hand " +
   "{" +
   "position: absolute;" +
@@ -8997,7 +8994,7 @@ var css = {
   "background-position-x: center;" +
   "background-size: 100%;" +
   "}",
-
+  
   clickPassHelpMenuProgress: ".click-pass-help-menu-progress " +
   "{" +
   "position: absolute;" +
@@ -9013,7 +9010,7 @@ var css = {
   "background-position-x: center;" +
   "background-size: contain;" +
   "}",
-
+  
   clickPassHelpMenuSteps: ".click-pass-help-menu-steps " +
   "{" +
   "position: absolute;" +
@@ -9024,25 +9021,25 @@ var css = {
   "font-size:" + 30 * widthK + "px;" +
   "color: #565d6a;" +
   "}",
-
+  
   clickPassHelpMenuFirstStep: ".click-pass-help-menu-first-step " +
   "{" +
   "position: relative;" +
   "margin-top:" + 104 * widthK + "px;" +
   "}",
-
+  
   clickPassHelpMenuSecondStep: ".click-pass-help-menu-second-step " +
   "{" +
   "position: relative;" +
   "margin-top:" + 93 * widthK + "px;" +
   "}",
-
+  
   clickPassHelpMenuThirdStep: ".click-pass-help-menu-third-step " +
   "{" +
   "position: relative;" +
   "margin-top:" + 56 * widthK + "px;" +
   "}",
-
+  
   clickPassShowToSeller: ".view-click-pass-shot-to-seller " +
   "{" +
   "position: absolute;" +
@@ -9052,7 +9049,7 @@ var css = {
   "font-size:" + 33 * widthK + "px;" +
   "color: #01cfff;" +
   "}",
-
+  
   clickPassQrCodeCanvas: ".click-pass-qr-code-canvas " +
   "{" +
   "position: absolute;" +
@@ -9061,7 +9058,7 @@ var css = {
   "left: 0;" +
   "right: 0;" +
   "}",
-
+  
   clickPassProgressBarContainer: ".click-pass-progress-bar-container" +
   "{" +
   "position: absolute;" +
@@ -9078,7 +9075,7 @@ var css = {
   "background-size: cover;" +
   "overflow: hidden;" +
   "}",
-
+  
   clickPassProgressBarContainerLine: ".click-pass-progress-bar-container-line" +
   "{" +
   "position: absolute;" +
@@ -9092,7 +9089,7 @@ var css = {
   "background-size: cover;" +
   "overflow: hidden;" +
   "}",
-
+  
   clickPassBarCodeCanvas: ".click-pass-bar-code-canvas " +
   "{" +
   "position: absolute;" +
@@ -9103,7 +9100,7 @@ var css = {
   "left: 0;" +
   "right: 0;" +
   "}",
-
+  
   clickPassFullBarCode: ".click-pass-full-bar-code " +
   "{" +
   "position: absolute;" +
@@ -9114,14 +9111,14 @@ var css = {
   "display: none;" +
   "background-image: url('resources/icons/transparent.png');" +
   "}",
-
+  
   clickPassFullBarCodeCanvas: ".click-pass-full-bar-code-canvas " +
   "{" +
   "position: absolute;" +
   "width: 0;" +
   "height: 0;" +
   "}",
-
+  
   clickPassFullBarCodeImg: ".click-pass-full-bar-code-img " +
   "{" +
   "position: absolute;" +
@@ -9130,7 +9127,7 @@ var css = {
   "width: 90%;" +
   "height: 90%;" +
   "}",
-
+  
   clickPassChosenCardContainer: ".click-pass-chosen-card-container" +
   "{" +
   "position: absolute;" +
@@ -9144,7 +9141,7 @@ var css = {
   "border-top: " + 1 + "px solid #e8e8e8;" +
   "border-bottom: " + 1 + "px solid #e8e8e8;" +
   "}",
-
+  
   clickPassChosenCardInfoContainer: ".click-pass-chosen-card-info-container" +
   "{" +
   "position: absolute;" +
@@ -9153,7 +9150,7 @@ var css = {
   "left: 35%;" +
   "background-color: transparent;" +
   "}",
-
+  
   clickPassChosenCardInfoTextOne: ".click-pass-chosen-card-info-text-one" +
   "{" +
   "position: absolute;" +
@@ -9166,7 +9163,7 @@ var css = {
   "white-space: nowrap;" +
   "overflow: hidden;" +
   "}",
-
+  
   clickPassChosenCardBalanceCurrencyContainer: ".click-pass-chosen-card-balance-currency-container" +
   "{" +
   "position: absolute;" +
@@ -9181,7 +9178,7 @@ var css = {
   "white-space: nowrap;" +
   "overflow: hidden;" +
   "}",
-
+  
   clickPassChosenCardBalance: ".click-pass-chosen-card-balance" +
   "{" +
   "position: relative;" +
@@ -9192,12 +9189,12 @@ var css = {
   "white-space: nowrap;" +
   "overflow: hidden;" +
   "}",
-
+  
   clickPassChosenCardBalanceFractional: ".click-pass-chosen-card-balance-fractional" +
   "{" +
   "font-size:" + 33 * widthK + "px;" +
   "}",
-
+  
   clickPassChosenCardCurrency: ".click-pass-chosen-card-currency" +
   "{" +
   "position: relative;" +
@@ -9206,7 +9203,7 @@ var css = {
   "margin-left:" + 9 * widthK + "px;" +
   "font-size:" + 40 * widthK + "px;" +
   "}",
-
+  
   clickPassChosenCardInfoTextThree: ".click-pass-chosen-card-info-text-three" +
   "{" +
   "position: absolute;" +
@@ -9214,7 +9211,7 @@ var css = {
   "color: gray;" +
   "top: 48%;" +
   "}",
-
+  
   clickPassChosenCardLogoContainer: ".click-pass-chosen-card-logo-container" +
   "{" +
   "width: 35%;" +
@@ -9227,7 +9224,7 @@ var css = {
   "float: left;" +
   "position: absolute;" +
   "}",
-
+  
   clickPassChosenCardNextIcon: ".click-pass-chosen-card-next-icon" +
   "{" +
   "position: absolute;" +
@@ -9240,7 +9237,7 @@ var css = {
   "background-position: center;" +
   "background-image: url(resources/icons/ViewClickPass/open.png);" +
   "}",
-
+  
   clickPassCardsListContainer: ".click-pass-cards-list-container" +
   "{" +
   "position: absolute;" +
@@ -9248,7 +9245,7 @@ var css = {
   "top: " + 88 * widthK + "px; " +
   "margin: auto;" +
   "}",
-
+  
   clickPassCardInList: ".click-pass-card-in-list" +
   "{" +
   "position: relative;" +
@@ -9260,7 +9257,7 @@ var css = {
   "background-color: transparent;" +
   "border-bottom: " + 1 + "px solid #e8e8e8;" +
   "}",
-
+  
   clickPassChosenCardBackground: ".click-pass-chosen-card-background" +
   "{" +
   "position: absolute;" +
@@ -9271,7 +9268,7 @@ var css = {
   "right: 0;" +
   "background-color: rgba(231,231,231,0.5);" +
   "}",
-
+  
   //COMPONENT Generated qr
   componentGeneratedQr: ".component-generated-qr " +
   "{" +
@@ -9285,7 +9282,7 @@ var css = {
   "z-index: 999999999;" +
   "background-color: rgba(255,255,255,0.95);" +
   "}",
-
+  
   generatedqrOperationUpperInfoMessage: ".generatedqr-operation-upper-info-message" +
   "{" +
   "position: relative;" +
@@ -9299,7 +9296,7 @@ var css = {
   "top:" + 150 * heightK + "px;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
-
+  
   generatedqrOperationInfoMessage: ".generatedqr-operation-info-message" +
   "{" +
   "position: relative;" +
@@ -9313,7 +9310,7 @@ var css = {
   "top:" + 215 * heightK + "px;" +
   "font-size:" + 30 * widthK + "px;" +
   "}",
-
+  
   generatedqrCloseButtonInnerContainer: ".generatedqr-close-button-inner-container" +
   "{" +
   "top:" + 275 * heightK + "px;" +
@@ -9332,7 +9329,7 @@ var css = {
   "border-radius: " + 10 * widthK + "px;" +
   "color: #00a8f1;" +
   "}",
-
+  
   generatedqrImage: ".generatedqr-image" +
   "{" +
   "position: relative;" +
@@ -9348,7 +9345,7 @@ var css = {
   "background-position: center;" +
   "background-color: grey;" +
   "}",
-
+  
   //OFFLINE MODE
   offlineCardBalance: ".offline-card-balance " +
   "{" +
@@ -9362,9 +9359,9 @@ var css = {
   "float: left;" +
   "padding: 0;" +
   "}",
-
+  
   //VIEW REGISTRATION CLIENT
-
+  
   viewRegistrationClient: ".view-registration-client " +
   "{" +
   "position: absolute;" +
@@ -9375,7 +9372,7 @@ var css = {
   "background-size: cover;" +
   "background-repeat: no-repeat;" +
   "}",
-
+  
   registrationClientCardField: ".registration-client-card-field " +
   "{" +
   "position: relative;" +
@@ -9388,13 +9385,13 @@ var css = {
   "margin-right: auto;" +
   "border-radius:" + 10 * heightK + "px;" +
   "}",
-
+  
   registrationClientCardNumberText: ".registration-client-card-number-text " +
   "{" +
   "left: 4%;" +
   "top: 10%;" +
   "}",
-
+  
   registrationClientTextField: ".registration-client-text-field " +
   "{" +
   "position: relative;" +
@@ -9407,7 +9404,7 @@ var css = {
   "font-size:" + 30 * widthK + "px;" +
   "top:" + 20 * widthK + "px;" +
   "}",
-
+  
   registrationClientCardNumber: ".registration-client-card-number " +
   "{" +
   "position: absolute;" +
@@ -9420,7 +9417,7 @@ var css = {
   "left: 7%;" +
   "top: 24%;" +
   "}",
-
+  
   registrationClientCardNumberBox: ".registration-client-card-number-box " +
   "{" +
   "position: absolute;" +
@@ -9433,27 +9430,27 @@ var css = {
   "text-align: center;" +
   "font-size:" + 30 * widthK + "px;" +
   "}",
-
+  
   registrationClientCardNumberBoxOne: ".registration-client-card-number-box-one " +
   "{" +
   "left: 6%;" +
   "}",
-
+  
   registrationClientCardNumberBoxTwo: ".registration-client-card-number-box-two " +
   "{" +
   "left: 30%;" +
   "}",
-
+  
   registrationClientCardNumberBoxThree: ".registration-client-card-number-box-three " +
   "{" +
   "right: 30%;" +
   "}",
-
+  
   registrationClientCardNumberBoxFour: ".registration-client-card-number-box-four " +
   "{" +
   "right: 6%;" +
   "}",
-
+  
   registrationClientCardText: ".registration-client-card-text " +
   "{" +
   "position: absolute;" +
@@ -9462,21 +9459,21 @@ var css = {
   "color: #757389;" +
   "font-size:" + 30 * widthK + "px;" +
   "}",
-
+  
   registrationClientCardTextDate: ".registration-client-card-text-date " +
   "{" +
   "left: -12%;" +
   "width: 200%;" +
   "top: -65%;" +
   "}",
-
+  
   registrationClientCardTextPin: ".registration-client-card-text-pin " +
   "{" +
   "top: -65%;" +
   "left: 0;" +
   "width: 200%;" +
   "}",
-
+  
   registrationClientCardDate: ".registration-client-card-date " +
   "{" +
   "position: absolute;" +
@@ -9489,7 +9486,7 @@ var css = {
   "left: 7%;" +
   "bottom: 15%;" +
   "}",
-
+  
   registrationClientCardDateBox: ".registration-client-card-date-box " +
   "{" +
   "position: absolute;" +
@@ -9503,7 +9500,7 @@ var css = {
   "text-align: center;" +
   "font-size:" + 30 * widthK + "px;" +
   "}",
-
+  
   registrationClientCardPin: ".registration-client-card-pin " +
   "{" +
   "position: absolute;" +
@@ -9516,7 +9513,7 @@ var css = {
   "left: 50%;" +
   "bottom: 15%;" +
   "}",
-
+  
   registrationClientCardDatePinBox: ".registration-client-card-date-pin-box " +
   "{" +
   "position: absolute;" +
@@ -9529,7 +9526,7 @@ var css = {
   "color: white;" +
   "font-size:" + 30 * widthK + "px;" +
   "}",
-
+  
   registrationClientButtonsContainer: ".registration-client-buttons-container " +
   "{" +
   "position: relative;" +
@@ -9539,12 +9536,12 @@ var css = {
   "bottom:" + -10 * widthK + "px;" +
   // "left:" + 84 * widthK + "px;" +
   "}",
-
+  
   registrationClientButtonEnter: ".registration-client-button-enter " +
   "{" +
   "top:" + 20 * widthK + "px;" +
   "}",
-
+  
   registrationClientKeyboardField: ".registration-client-keyboard-field " +
   "{" +
   "position: relative;" +
@@ -9553,7 +9550,7 @@ var css = {
   "top:" + 30 * heightK + "px;" +
   // "left:" + 110 * widthK + "px;" +
   "}",
-
+  
   registrationClientButtonEnterContainer: ".registration-client-button-enter-container " +
   "{" +
   "position: relative;" +
@@ -9564,9 +9561,9 @@ var css = {
   "border-radius:" + 80 * widthK + "px;" +
   "margin-left: auto;" +
   "}",
-
+  
   //VIEW PIN CODE
-
+  
   viewPinCode: ".view-pincode " +
   "{" +
   "position: absolute;" +
@@ -9575,7 +9572,7 @@ var css = {
   "overflow: hidden;" +
   "background: white;" +
   "}",
-
+  
   pinCodeFlexContainer: ".pincode-flex-container" +
   "{" +
   "position: absolute;" +
@@ -9583,7 +9580,7 @@ var css = {
   "top: 0;" +
   "bottom:" + 610 * widthK + "px;" +
   "}",
-
+  
   pinCodeBackButton: ".pincode-back-button " +
   "{" +
   "position: absolute;" +
@@ -9598,7 +9595,7 @@ var css = {
   // "left:" + -25 * widthK + "px;" +
   "top: 0;" +
   "}",
-
+  
   pinCodeUnchangableContainer: ".pincode-unchangable-container " +
   "{" +
   "position: absolute;" +
@@ -9606,7 +9603,7 @@ var css = {
   "bottom: 50%;" +
   "width: 100%;" +
   "}",
-
+  
   pinCodePinContainer: ".pincode-pin-container " +
   "{" +
   "position: relative;" +
@@ -9615,7 +9612,7 @@ var css = {
   "margin-left: auto;" +
   "height:" + 100 * widthK + "px;" +
   "}",
-
+  
   pinCodePinField: ".pincode-pin-field " +
   "{" +
   "position: relative;" +
@@ -9625,7 +9622,7 @@ var css = {
   "margin-left: auto;" +
   "margin-top:" + 20 * widthK + "px;" +
   "}",
-
+  
   pinCodePinCircle: ".pincode-pin-circles " +
   "{" +
   "position: absolute;" +
@@ -9635,27 +9632,27 @@ var css = {
   "border:" + 4.5 * widthK + "px solid #fafafa;" +
   "background-color: #b0aeb2;" +
   "}",
-
+  
   pinCodePinTwo: ".pincode-pin-two " +
   "{" +
   "left:" + 70 * widthK + "px;" +
   "}",
-
+  
   pinCodePinThree: ".pincode-pin-three " +
   "{" +
   "left:" + 140 * widthK + "px;" +
   "}",
-
+  
   pinCodePinFour: ".pincode-pin-four " +
   "{" +
   "left:" + 210 * widthK + "px;" +
   "}",
-
+  
   pinCodePinFive: ".pincode-pin-five " +
   "{" +
   "left:" + 280 * widthK + "px;" +
   "}",
-
+  
   pinCodeKeyboardField: ".pincode-keyboard-field " +
   "{" +
   "position: relative;" +
@@ -9663,12 +9660,12 @@ var css = {
   "margin-right: auto;" +
   "top:" + 460 * heightK + "px;" +
   "}",
-
+  
   pinCodeButtonEnter: ".pincode-button-enter " +
   "{" +
   "top:" + 240 * widthK + "px;" +
   "}",
-
+  
   pinCodeButtonsContainer: ".pincode-buttons-container " +
   "{" +
   "position: absolute;" +
@@ -9677,7 +9674,7 @@ var css = {
   "bottom:" + 700 * widthK + "px;" +
   "height:" + 45 * widthK + "px;" +
   "}",
-
+  
   pinCodeButtonForgetPin: ".pincode-button-forget-pin " +
   "{" +
   "position: absolute;" +
@@ -9687,7 +9684,7 @@ var css = {
   "color: #05eeff;" +
   "border-bottom:" + 1 + "px solid #05eeff;" +
   "}",
-
+  
   pinCodeButtonRegistration: ".pincode-button-registration " +
   "{" +
   "position: absolute;" +
@@ -9697,7 +9694,7 @@ var css = {
   "right: 0;" +
   "border-bottom:" + 1 + "px solid white;" +
   "}",
-
+  
   pinCodeButtonOffline: ".pincode-button-offline " +
   "{" +
   "position: relative;" +
@@ -9712,7 +9709,7 @@ var css = {
   "top:" + 580 * heightK + "px;" +
   // "left:" + 240 * widthK + "px;" +
   "}",
-
+  
   pinCodeEnterPinLabel: ".pincode-enter-pin-label " +
   "{" +
   "position: relative;" +
@@ -9724,7 +9721,7 @@ var css = {
   "color: #aaabae;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
-
+  
   pinCodeEnterPinConfirmLabel: ".pincode-enter-pin-confirm-label " +
   "{" +
   "position: relative;" +
@@ -9735,9 +9732,9 @@ var css = {
   "color: #565d6a;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
-
+  
   //COMPONENT PIN RESET
-
+  
   componentPinReset: ".component-pinreset" +
   "{" +
   "position: absolute;" +
@@ -9748,7 +9745,7 @@ var css = {
   "background-color: #353340;" +
   "display: none;" +
   "}",
-
+  
   componentPinResetMessage: ".component-pinreset-message" +
   "{" +
   "position: relative;" +
@@ -9762,7 +9759,7 @@ var css = {
   "top:" + 410 * widthK + "px;" +
   "font-size:" + 30 * widthK + "px;" +
   "}",
-
+  
   componentPinResetLine: ".component-pinreset-line" +
   "{" +
   "position: relative;" +
@@ -9772,12 +9769,12 @@ var css = {
   "margin-bottom: " + 30 * widthK + "px;" +
   "top:" + 410 * widthK + "px;" +
   "}",
-
+  
   componentPinResetMessageRegistration: ".component-pinreset-message-registration" +
   "{" +
   "font-size:" + 38 * widthK + "px;" +
   "}",
-
+  
   componentPinResetButtonsContainer: ".component-pinreset-buttons-container" +
   "{" +
   "position: relative;" +
@@ -9789,7 +9786,7 @@ var css = {
   "margin-right: auto;" +
   "margin-left: auto;" +
   "}",
-
+  
   componentPinResetButton: ".component-pinreset-button" +
   "{" +
   "position: relative;" +
@@ -9805,7 +9802,7 @@ var css = {
   "left:18%;" +
   "margin-right: 9%;" +
   "}",
-
+  
   componentPinResetButtonLabel: ".component-pinreset-button-label" +
   "{" +
   "position: relative;" +
@@ -9816,13 +9813,13 @@ var css = {
   "display: table-cell;" +
   "vertical-align: middle;" +
   "}",
-
+  
   componentPinResetNoButton: ".component-pinreset-no-button" +
   "{" +
   "background-color: transparent;" +
   "border: 1px solid white;" +
   "}",
-
+  
   componentPinResetRegistrationButton: ".component-pinreset-registration-button" +
   "{" +
   "position: relative;" +
@@ -9836,7 +9833,7 @@ var css = {
   "margin-right: auto;" +
   "margin-left: auto;" +
   "}",
-
+  
   componentPinResetRegistrationButtonLabel: ".component-pinreset-registration-button-label" +
   "{" +
   "position: relative;" +
@@ -9847,7 +9844,7 @@ var css = {
   "display: table-cell;" +
   "vertical-align: middle;" +
   "}",
-
+  
   //switch: ".switch" +
   //"{" +
   //"position: absolute;" +
@@ -9919,7 +9916,7 @@ var css = {
   //"}",
 
 //  SETTINGS
-
+  
   settingsContainer: ".settings-container" +
   "{" +
   "position: absolute;" +
@@ -9932,7 +9929,7 @@ var css = {
   "overflow-x: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
   "}",
-
+  
   settingsPageTitle: ".settings-page-title " +
   "{" +
   "position: absolute;" +
@@ -9944,7 +9941,7 @@ var css = {
   "background: transparent;" +
   //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
   "}",
-
+  
   settingsNameTitle: ".settings-name-title " +
   "{" +
   "position: absolute;" +
@@ -9955,7 +9952,7 @@ var css = {
   "margin: 0;  " +
   "color: #565d6a;" +
   "}",
-
+  
   settingsBackButton: ".settings-back-button " +
   "{" +
   "position: absolute;" +
@@ -9969,7 +9966,7 @@ var css = {
   "background-size: 42%;" +
   "right: 87%;" +
   "}",
-
+  
   settingsBlockContainer: ".settings-block-containter" +
   "{" +
   "position: relative;" +
@@ -9980,7 +9977,7 @@ var css = {
   "border-bottom:" + 1 + "px solid #e8e8e8;" +
   "background-color: transparent;" +
   "}",
-
+  
   settingsBlockNameField: ".settings-block-name-field" +
   "{" +
   "position: relative;" +
@@ -9991,7 +9988,7 @@ var css = {
   "font-size:" + 29 * widthK + "px; " +
   "color: gray;" +
   "}",
-
+  
   settingsBlockIcon: ".settings-block-icon" +
   "{" +
   "position: relative;" +
@@ -10002,7 +9999,7 @@ var css = {
   "float: left;" +
   "background-size: 55%;" +
   "}",
-
+  
   settingsBlockNextIcon: ".settings-block-next-icon" +
   "{" +
   "position: absolute;" +
@@ -10015,7 +10012,7 @@ var css = {
   "background-position: center;" +
   "background-image: url(resources/icons/ViewInfo/open.png);" +
   "}",
-
+  
   settingsGeneralPageTitle: ".settings-general-page-title " +
   "{" +
   //"position: absolute;" +
@@ -10026,7 +10023,7 @@ var css = {
   //"background: transparent;" +
   "border: none;" +
   "}",
-
+  
   settingsGeneralBackButton: ".settings-general-back-button " +
   "{" +
   "position: absolute;" +
@@ -10041,7 +10038,7 @@ var css = {
   // "left: -3%;" +
   "top: 0;" +
   "}",
-
+  
   settingsGeneralCheckButton: ".settings-general-check-button " +
   "{" +
   "position: absolute;" +
@@ -10056,12 +10053,12 @@ var css = {
   "background-size: 31%;" +
   "top: 0;" +
   "}",
-
+  
   settingsGeneralContainer: ".settings-general-container" +
   "{" +
   "top:" + 582 * widthK + "px; " +
   "}",
-
+  
   settingsGeneralUserInfoContainer: ".settings-general-user-info-container" +
   "{" +
   "position: absolute;" +
@@ -10069,7 +10066,7 @@ var css = {
   "width:100%;" +
   "background: white;" +
   "}",
-
+  
   settingsGeneralUserIcon: ".settings-general-user-icon" +
   "{" +
   "position: absolute;" +
@@ -10083,7 +10080,7 @@ var css = {
   "background-size: cover;" +
   "background-position: center;" +
   "}",
-
+  
   settingsGeneralUserUploadAvatar: ".settings-general-user-upload-avatar" +
   "{" +
   "position: absolute;" +
@@ -10094,7 +10091,7 @@ var css = {
   "font-size:" + 38 * widthK + "px;" +
   "letter-spacing:" + -21 * widthK + "px;" +
   "}",
-
+  
   settingsGeneralUserFirstName: ".settings-general-user-first-name" +
   "{" +
   "border: none;" +
@@ -10111,7 +10108,7 @@ var css = {
   "background: transparent;" +
   "text-align: center;" +
   "}",
-
+  
   settingsGeneralGenderContainer: ".settings-general-gender-container " +
   "{" +
   "position: absolute;" +
@@ -10119,7 +10116,7 @@ var css = {
   "height: 25%;" +
   "top: 5%;" +
   "}",
-
+  
   settingsGeneralLanguagesContainer: ".settings-general-languages-container " +
   "{" +
   "position: absolute;" +
@@ -10128,7 +10125,7 @@ var css = {
   "top: 23%;" +
   "background-color: lightblue;" +
   "}",
-
+  
   settingsGeneralMaleContainer: ".settings-general-male-container " +
   "{" +
   "position: absolute;" +
@@ -10136,7 +10133,7 @@ var css = {
   "height:" + 162 * widthK + "px;" +
   "left: 25%;" +
   "}",
-
+  
   settingsGeneralFemaleContainer: ".settings-general-female-container" +
   "{" +
   "position: absolute;" +
@@ -10144,7 +10141,7 @@ var css = {
   "height:" + 162 * widthK + "px;" +
   "left: 54%;" +
   "}",
-
+  
   settingsGeneralMaleIcon: ".settings-general-male-icon" +
   "{" +
   "position: relative;" +
@@ -10157,7 +10154,7 @@ var css = {
   "background-size: 100%;" +
   "background-image: url('resources/icons/ViewSettingsGeneral/general_male_inactive.png');" +
   "}",
-
+  
   settingsGeneralFemaleIcon: ".settings-general-female-icon" +
   "{" +
   "position: relative;" +
@@ -10170,7 +10167,7 @@ var css = {
   "background-size: 100%;" +
   "background-image: url('resources/icons/ViewSettingsGeneral/general_female_inactive.png');" +
   "}",
-
+  
   settingsGeneralGenderText: ".settings-general-gender-text" +
   "{" +
   "position: relative;" +
@@ -10182,7 +10179,7 @@ var css = {
   "color: lightgray;" +
   "font-size:" + 24 * widthK + "px;" +
   "}",
-
+  
   settingsGeneralLineBetween: ".settings-general-line-between" +
   "{" +
   "position: absolute;" +
@@ -10192,7 +10189,7 @@ var css = {
   "top: 18%;" +
   "background-color: lightgrey;" +
   "}",
-
+  
   settingsGeneralEditIcon: ".settings-general-edit-icon" +
   "{" +
   "position: absolute;" +
@@ -10205,7 +10202,7 @@ var css = {
   "background-position: center;" +
   "background-image: url('resources/icons/ViewSettingsGeneral/general_edit.png');" +
   "}",
-
+  
   settingsGeneralUserNameContainer: ".settings-general-user-name-container" +
   "{" +
   "position: absolute;" +
@@ -10215,7 +10212,7 @@ var css = {
   "border-bottom: 1px solid #e8e8e8;" +
   "left: 5%;" +
   "}",
-
+  
   settingsGeneralUserNameSave: ".settings-general-user-name-save" +
   "{" +
   "position: absolute;" +
@@ -10229,7 +10226,7 @@ var css = {
   "background-image: url('resources/icons/ViewSettingsGeneral/general_edit.png');" +
   //"background-image: url('resources/icons/ViewSettingsGeneral/general_save.png');" +
   "}",
-
+  
   settingsGeneralDownloadDeleteContainer: ".settings-general-download-delete-container" +
   "{" +
   "position: absolute;" +
@@ -10237,7 +10234,7 @@ var css = {
   "height:" + 120 * widthK + "px;" +
   "bottom: 0%;" +
   "}",
-
+  
   settingsGeneralDownloadContainer: ".settings-general-download-container" +
   "{" +
   "position: relative;" +
@@ -10248,7 +10245,7 @@ var css = {
   "margin-right: 0%;" +
   "float: left;" +
   "}",
-
+  
   settingsGeneralDownloadTitle: ".settings-general-download-title" +
   "{" +
   "position: absolute;" +
@@ -10258,7 +10255,7 @@ var css = {
   "color: #565d6a;" +
   "font-size:" + 27 * widthK + "px;" +
   "}",
-
+  
   settingsGeneralDownloadIcon: ".settings-general-download-icon" +
   "{" +
   "position: absolute;" +
@@ -10271,7 +10268,7 @@ var css = {
   "background-size: 100%;" +
   "background-image: url('resources/icons/ViewSettingsGeneral/general_upload.png');" +
   "}",
-
+  
   settingsGeneralDeleteContainer: ".settings-general-delete-container" +
   "{" +
   "position: relative;" +
@@ -10280,7 +10277,7 @@ var css = {
   "height: 50%;" +
   "float: left;" +
   "}",
-
+  
   settingsGeneralDeleteTitle: ".settings-general-delete-title" +
   "{" +
   "position: absolute;" +
@@ -10290,7 +10287,7 @@ var css = {
   "color: #565d6a;" +
   "font-size:" + 27 * widthK + "px;" +
   "}",
-
+  
   settingsGeneralDeleteIcon: ".settings-general-delete-icon" +
   "{" +
   "position: absolute;" +
@@ -10303,8 +10300,8 @@ var css = {
   "background-size: 100%;" +
   "background-image: url('resources/icons/ViewSettingsGeneral/general_delete.png');" +
   "}",
-
-
+  
+  
   settingsGeneralLangContainer: ".settings-general-lang-container" +
   "{" +
   "position: relative;" +
@@ -10313,14 +10310,14 @@ var css = {
   "top:12%;" +
   "left:10%;" +
   "}",
-
+  
   settingsGeneralLangText: ".settings-general-lang-text" +
   "{" +
   "position: absolute;" +
   "font-size: " + 28 * widthK + "px; " +
   "color: #595759;" +
   "}",
-
+  
   settingsGeneralLangCheck: ".settings-general-lang-check" +
   "{" +
   "position: absolute;" +
@@ -10333,7 +10330,7 @@ var css = {
   "top: 50%;" +
   "left: 93%;" +
   "}",
-
+  
   //SETTINGS ADD FRIEND
   settingsAddFriendAddContainer: ".settings-add-friend-add-container" +
   "{" +
@@ -10342,7 +10339,7 @@ var css = {
   //"border-bottom: 1px solid gray;" +
   "height:" + 150 * widthK + "px;" +
   "}",
-
+  
   settingsAddFriendAddTitle: ".settings-add-friend-add-title" +
   "{" +
   "position: relative;" +
@@ -10351,7 +10348,7 @@ var css = {
   "color: #cbcbcb;" +
   "font-size:" + 24 * widthK + "px;" +
   "}",
-
+  
   settingsAddFriendContactPhoneField: ".settings-add-friend-contact-phone-field" +
   "{" +
   "position: relative;" +
@@ -10362,7 +10359,7 @@ var css = {
   "color: white;" +
   "margin-top: 10%" +
   "}",
-
+  
   settingsAddFriendContactNumberInputPart: ".settings-add-friend-contact-number-input-part" +
   "{" +
   "border: none;" +
@@ -10377,7 +10374,7 @@ var css = {
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "}",
-
+  
   settingsAddFriendNameNumberInputPart: ".settings-add-friend-name-number-input-part" +
   "{" +
   "border: none;" +
@@ -10391,7 +10388,7 @@ var css = {
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "}",
-
+  
   settingsAddFriendNamePhoneField: ".settings-add-friend-name-phone-field" +
   "{" +
   "position: absolute;" +
@@ -10402,7 +10399,7 @@ var css = {
   "color: white;" +
   "top: 30%" +
   "}",
-
+  
   settingsAddFriendContactTextField: ".settings-add-friend-contact-text-field" +
   "{" +
   "position: absolute;" +
@@ -10411,7 +10408,7 @@ var css = {
   "font-size:" + 24 * widthK + "px;" +
   "top: -14%;" +
   "}",
-
+  
   settingsAddFriendContactPhoneIcon: ".settings-add-friend-contact-phone-icon" +
   "{" +
   "position: absolute;" +
@@ -10424,7 +10421,7 @@ var css = {
   "top: 34%;" +
   "right: -2%;" +
   "}",
-
+  
   settingsAddFriendContactNumberFirstPart: ".settings-add-friend-contact-number-first-part" +
   "{" +
   "float: left;" +
@@ -10436,8 +10433,8 @@ var css = {
   "color: #515151;" +
   "margin: 0;" +
   "}",
-
-
+  
+  
   settingsAddFriendNextButtonInnerContainer: ".settings-add-friend-next-button-inner-container" +
   "{" +
   "height: " + 87 * widthK + "px;" +
@@ -10456,7 +10453,7 @@ var css = {
   "left: 0;" +
   "color: #ffffff;" +
   "}",
-
+  
   settingsAddFriendNextButtonLabel: ".settings-add-friend-next-button-label" +
   "{" +
   "position: relative;" +
@@ -10466,7 +10463,7 @@ var css = {
   "margin: auto;" +
   "color: white;" +
   "}",
-
+  
   settingsAddFriendContactFoundContainerOne: ".settings-add-friend-contact-found-container-one" +
   "{" +
   "position: absolute;" +
@@ -10477,7 +10474,7 @@ var css = {
   "top:" + 365 * widthK + "px;" +
   "display: none;" +
   "}",
-
+  
   settingsAddFriendContactFoundContainerTwo: ".settings-add-friend-contact-found-container-two" +
   "{" +
   "position: absolute;" +
@@ -10488,7 +10485,7 @@ var css = {
   "top:" + 490 * widthK + "px;" +
   "display: none;" +
   "}",
-
+  
   //SETTINGS ABOUT PROGRAM
   settingsAboutProgramBlueContainer: ".settings-about-program-blue-container" +
   "{" +
@@ -10498,14 +10495,14 @@ var css = {
   "background-color: white;" +
   "text-align: center;" +
   "}",
-
+  
   settingsAboutProgramUserAgreementContainer: ".settings-about-program-user-agreement-container" +
   "{" +
   "position: relative;" +
   "width: 100%;" +
   "height: 12%;" +
   "}",
-
+  
   settingsAboutProgramUserAgreementTitle: ".settings-about-program-user-agreement-title" +
   "{" +
   "position: relative;" +
@@ -10515,7 +10512,7 @@ var css = {
   "font-size:" + 29 * widthK + "px;" +
   "color: #565d6a;" +
   "}",
-
+  
   settingsAboutProgramUserAgreementIcon: ".settings-about-program-user-agreement-icon" +
   "{" +
   "position: absolute;" +
@@ -10528,14 +10525,14 @@ var css = {
   "background-position: center;" +
   "background-image: url(resources/icons/ViewInfo/open.png);" +
   "}",
-
+  
   settingsAboutProgramRankContainer: ".settings-about-program-rank-container" +
   "{" +
   "position: relative;" +
   "width: 100%;" +
   "height: 12%;" +
   "}",
-
+  
   settingsAboutProgramRankTitle: ".settings-about-program-rank-title" +
   "{" +
   "position: relative;" +
@@ -10548,7 +10545,7 @@ var css = {
   "background-size: 10%;" +
   "background-position: center;" +
   "}",
-
+  
   settingsAboutProgramRankIcon: ".settings-about-program-rank-icon" +
   "{" +
   "position: absolute;" +
@@ -10561,12 +10558,12 @@ var css = {
   "background-position: center;" +
   "background-image: url(resources/icons/ViewInfo/open.png);" +
   "}",
-
+  
   settingsAboutProgramContainer: ".settings-about-program-container" +
   "{" +
   "top:" + 418 * widthK + "px;" +
   "}",
-
+  
   settingsAboutProgramPageTitle: ".settings-about-program-page-title " +
   "{" +
   "position: absolute;" +
@@ -10577,7 +10574,7 @@ var css = {
   "background: transparent;" +
   //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
   "}",
-
+  
   settingsAboutProgramNameTitle: ".settings-about-program-name-title " +
   "{" +
   "position: absolute;" +
@@ -10588,7 +10585,7 @@ var css = {
   "margin: 0;  " +
   "color: #fffaf9;" +
   "}",
-
+  
   settingsAboutProgramVersionTitlePartOne: ".settings-about-program-version-title-part-one " +
   "{" +
   "position: relative;" +
@@ -10600,7 +10597,7 @@ var css = {
   "text-align: left; " +
   "color: #565d6a;" +
   "}",
-
+  
   settingsAboutProgramVersionTitlePartTwo: ".settings-about-program-version-title-part-two " +
   "{" +
   "position: relative;" +
@@ -10614,7 +10611,7 @@ var css = {
   //"top: 11%; " +
   "color: #a9abaf;" +
   "}",
-
+  
   settingsAboutProgramClickIcon: ".settings-about-program-click-icon" +
   "{" +
   "position: absolute;" +
@@ -10628,7 +10625,7 @@ var css = {
   "background-size: 100%;" +
   "background-position: center;" +
   "}",
-
+  
   //SETTINGS FRIEND HELP
   settingsFriendHelpContactContainer: ".settings-friend-help-contact-container" +
   "{" +
@@ -10637,7 +10634,7 @@ var css = {
   "border-bottom: 1px solid #f4f4f4;" +
   "height:" + 160 * widthK + "px;" +
   "}",
-
+  
   settingsFriendHelpAddButton: ".settings-friend-help-add-button " +
   "{" +
   "position: absolute;" +
@@ -10652,7 +10649,7 @@ var css = {
   "background-size: 30%;" +
   "top:0" +
   "}",
-
+  
   settingsFriendHelpContactFoundPhoto: ".settings-friend-help-contact-found-photo" +
   "{" +
   "top:" + 32 * widthK + "px;" +
@@ -10670,7 +10667,7 @@ var css = {
   "text-align: center;" +
   "left: 6%;" +
   "}",
-
+  
   settingsFriendHelpContactFoundTextContainer: ".settings-friend-help-contact-found-text-container" +
   "{" +
   "position: absolute;" +
@@ -10680,8 +10677,8 @@ var css = {
   "height: 100%;" +
   "display: table;" +
   "}",
-
-
+  
+  
   settingsFriendHelpContactFoundTextOne: ".settings-friend-help-contact-found-text-one" +
   "{" +
   "position: absolute;" +
@@ -10691,7 +10688,7 @@ var css = {
   "font-size:" + 29 * widthK + "px;" +
   "width:" + 400 * widthK + "px;" +
   "}",
-
+  
   settingsFriendHelpContactFoundTextTwo: ".settings-friend-help-contact-found-text-two" +
   "{" +
   "position: absolute;" +
@@ -10701,7 +10698,7 @@ var css = {
   "font-size:" + 24 * widthK + "px;" +
   "top: 53%;" +
   "}",
-
+  
   settingsFriendHelpContactCancelIcon: ".settings-friend-help-contact-cancel-icon" +
   "{" +
   "top:" + 33 * widthK + "px;" +
@@ -10715,8 +10712,8 @@ var css = {
   "right: 2%;" +
   "z-index: 2;" +
   "}",
-
-
+  
+  
   //SETTINGS SECURITY
   settingsSecurityCheckButton: ".settings-security-check-button " +
   "{" +
@@ -10733,7 +10730,7 @@ var css = {
   "background-size: 31%;" +
   "top: " + 0 * widthK + "px;" +
   "}",
-
+  
   settingsSecurityCheckIcon: ".settings-security-check-icon" +
   "{" +
   "position: absolute;" +
@@ -10745,18 +10742,18 @@ var css = {
   "background-size: 63%;" +
   "background-position: center;" +
   "}",
-
+  
   settingsSecurityScannerBlock: ".settings-security-scanner-block" +
   "{" +
   "height:" + 120 * widthK + "px;" +
   "}",
-
+  
   settingsSecurityScannerBlockName: ".settings-security-scanner-block-name" +
   "{" +
   "width: 70%;" +
   "top:" + 18 * widthK + "px;" +
   "}",
-
+  
   settingsSecurityBlockDetailText: ".settings-security-block-detail-text" +
   "{" +
   "position: relative;" +
@@ -10767,14 +10764,14 @@ var css = {
   "font-size:" + 22 * widthK + "px; " +
   "color: darkgray;" +
   "}",
-
+  
   settingsSecurityBlock: ".settings-security-block" +
   "{" +
   "height:" + 160 * widthK + "px;" +
   "}",
-
+  
   //SETTINGS USER AGREEMENT
-
+  
   settingsUserAgreementText: ".settings-user-agreement-text" +
   "{" +
   "position: relative;" +
@@ -10789,7 +10786,7 @@ var css = {
   "white-space: pre-line; " +
   "overflow-x: hidden; " +
   "}",
-
+  
   settingsUserAgreementNameTitle: ".settings-user-agreement-name-title " +
   "{" +
   "position: absolute;" +
@@ -10801,7 +10798,7 @@ var css = {
   "width: 100%;  " +
   "color: #565d6a;" +
   "}",
-
+  
   paymentMonitorContainer: ".payment-monitor-container " +
   "{" +
   "position: absolute;" +
@@ -10810,7 +10807,7 @@ var css = {
   "bottom:0; " +
   "background-color: #f2f2f1; " +
   "}",
-
+  
   paymentMonitorAboutContainer: ".payment-monitor-about-container" +
   "{" +
   "position: absolute;" +
@@ -10819,7 +10816,7 @@ var css = {
   "top: 0; " +
   "background-color: white; " +
   "}",
-
+  
   paymentMonitorAboutText: ".payment-monitor-about-text" +
   "{" +
   "position: absolute;" +
@@ -10832,7 +10829,7 @@ var css = {
   "text-align: left; " +
   "color: #565d6a; " +
   "}",
-
+  
   paymentMonitorCostContainer: ".payment-monitor-cost-container" +
   "{" +
   "position: absolute;" +
@@ -10841,7 +10838,7 @@ var css = {
   "top:" + 155 * widthK + "px; " +
   "background-color: transparent; " +
   "}",
-
+  
   paymentMonitorCostText: ".payment-monitor-cost-text" +
   "{" +
   "position: relative;" +
@@ -10852,7 +10849,7 @@ var css = {
   "text-align: right; " +
   "color: red; " +
   "}",
-
+  
   paymentMonitorCostOffer: ".payment-monitor-cost-offer" +
   "{" +
   "position: absolute;" +
@@ -10865,7 +10862,7 @@ var css = {
   "text-align: center; " +
   "color: #565d6a; " +
   "}",
-
+  
   paymentMonitorCardsContainer: ".payment-monitor-cards-container" +
   "{" +
   "position: absolute;" +
@@ -10879,7 +10876,7 @@ var css = {
   "backface-visibility: hidden;" +
   "-webkit-overflow-scrolling: touch;" +
   "}",
-
+  
   paymentMonitorCard: ".payment-monitor-card" +
   "{" +
   "position: relative;" +
@@ -10890,7 +10887,7 @@ var css = {
   "right: 0;" +
   "background-color: white;" +
   "}",
-
+  
   paymentMonitorCardLogoContainer: ".payment-monitor-card-logo-container" +
   "{" +
   "width: 31%;" +
@@ -10903,7 +10900,7 @@ var css = {
   "float: left;" +
   "position: absolute;" +
   "}",
-
+  
   paymentMonitorCardInfoContainer: ".payment-monitor-card-info-container" +
   "{" +
   "position: absolute;" +
@@ -10912,7 +10909,7 @@ var css = {
   "left: 33%;" +
   "background-color: transparent;" +
   "}",
-
+  
   paymentMonitorCardInfoTextOne: ".payment-monitor-card-info-text-one" +
   "{" +
   "position: absolute;" +
@@ -10925,7 +10922,7 @@ var css = {
   "overflow: hidden;" +
   "color: #565d6a;" +
   "}",
-
+  
   paymentMonitorCardInfoTextThree: ".payment-monitor-card-info-text-three" +
   "{" +
   "position: absolute;" +
@@ -10934,7 +10931,7 @@ var css = {
   "margin: 0;" +
   "top: 49%;" +
   "}",
-
+  
   paymentMonitorCardCheckBox: ".payment-monitor-card-checkbox" +
   "{" +
   "position: absolute;" +
@@ -10943,13 +10940,13 @@ var css = {
   "height: " + 33 * widthK + "px; " +
   "width: " + 60 * widthK + "px; " +
   "}",
-
+  
   paymentMonitorCardCheckBoxInputTypeCheckBox: ".payment-monitor-card-checkbox input[type='checkbox']" +
   "{" +
   "position: absolute;" +
   "visibility: hidden; " +
   "}",
-
+  
   paymentMonitorCardCheckBoxLabel: ".payment-monitor-card-checkbox label" +
   "{" +
   "position: absolute; " +
@@ -10960,7 +10957,7 @@ var css = {
   "border-radius: " + 40 * widthK + "px; " +
   "-webkit-border-radius: " + 40 * widthK + "px; " +
   "}",
-
+  
   paymentMonitorCardCheckBoxToggleLabelBefore: ".payment-monitor-card-checkbox label:before " +
   "{" +
   "position: absolute; " +
@@ -10978,7 +10975,7 @@ var css = {
   "-webkit-transition:  -webkit-transform 300ms cubic-bezier(0.390, 0.575, 0.565, 1.000); " +
   "transition:  transform 300ms cubic-bezier(0.390, 0.575, 0.565, 1.000); " +
   "}",
-
+  
   paymentMonitorCardCheckBoxCheckedBefore: ".payment-monitor-card-checkbox input[type='checkbox']:checked ~ label:before " +
   "{" +
   "-webkit-transform: translate3d(" + 25 * widthK + "px,0,0); " +
@@ -10986,14 +10983,14 @@ var css = {
   "background: #00a8f1; " +
   "border: " + 1 * widthK + "px solid #00a8f1; " +
   "}",
-
+  
   paymentMonitorCardCheckBoxCheckedBeforeToggle: ".payment-monitor-card-checkbox input[type='checkbox']:checked ~ label" +
   "{" +
   "border: " + 3 * widthK + "px solid #00a8f1; " +
   "}",
-
+  
   //TRANSFER DETAIL VIEW
-
+  
   transferDetailCover: ".transfer-detail-cover" +
   "{" +
   "position: absolute;" +
@@ -11002,7 +10999,7 @@ var css = {
   "bottom: 0;" +
   "background-color: #f4f4f4;" +
   "}",
-
+  
   transferDetailContainer: ".transfer-detail-container" +
   "{" +
   "position: absolute;" +
@@ -11014,7 +11011,7 @@ var css = {
   "overflow-y: hidden; " +
   "overflow-x: hidden; " +
   "}",
-
+  
   transferDetailTitleContainer: ".transfer-detail-title-container" +
   "{" +
   "position: absolute;" +
@@ -11022,7 +11019,7 @@ var css = {
   "width:100%;" +
   "background-color: white;" +
   "}",
-
+  
   transferDetailPageTitle: ".transfer-detail-page-title " +
   "{" +
   "position: absolute;" +
@@ -11033,8 +11030,8 @@ var css = {
   "background: transparent;" +
   "border: none;" +
   "}",
-
-
+  
+  
   transferDetailTransferContainer: ".transfer-detail-transfer-container " +
   "{" +
   "position: relative;" +
@@ -11044,7 +11041,7 @@ var css = {
   "margin-right: auto;" +
   "border-bottom: 1px solid #e8e8e8;" +
   "}",
-
+  
   transferDetailTransferIcon: ".transfer-detail-transfer-icon" +
   "{" +
   "position: absolute;" +
@@ -11057,7 +11054,7 @@ var css = {
   "background-position: center;" +
   "background-image: url(resources/icons/bank-operations/transfers.png);" +
   "}",
-
+  
   transferDetailTransferIconTitlePartOne: ".transfer-detail-transfer-icon-title-part-one " +
   "{" +
   "position: relative;" +
@@ -11069,7 +11066,7 @@ var css = {
   "text-align: left;" +
   "font-size:" + 40 * widthK + "px;" +
   "}",
-
+  
   transferDetailTransferIconTitlePartTwo: ".transfer-detail-transfer-icon-title-part-two " +
   "{" +
   "position: relative;" +
@@ -11080,7 +11077,7 @@ var css = {
   "text-align: left;" +
   "font-size:" + 40 * widthK + "px;" +
   "}",
-
+  
   transferDetailTransferIconTitlePhone: ".transfer-detail-transfer-icon-title-phone " +
   "{" +
   "position: relative;" +
@@ -11092,7 +11089,7 @@ var css = {
   "text-align: left;" +
   "font-size:" + 24 * widthK + "px;" +
   "}",
-
+  
   transferDetailTitle: ".transfer-detail-title " +
   "{" +
   "position: absolute;" +
@@ -11103,7 +11100,7 @@ var css = {
   "margin: 0;" +
   "text-align: center;" +
   "}",
-
+  
   transferDetailSum: ".transfer-detail-sum " +
   "{" +
   "position: absolute;" +
@@ -11115,7 +11112,7 @@ var css = {
   "text-align: center;" +
   "color: #9ec94a;" +
   "}",
-
+  
   transferDetailNumber: ".transfer-detail-number " +
   "{" +
   "position: absolute;" +
@@ -11127,7 +11124,7 @@ var css = {
   "text-align: center;" +
   "color: grey;" +
   "}",
-
+  
   transferDetailDate: ".transfer-detail-date " +
   "{" +
   "position: absolute;" +
@@ -11139,7 +11136,7 @@ var css = {
   "text-align: center;" +
   "color: grey;" +
   "}",
-
+  
   transferDetailStatus: ".transfer-detail-status " +
   "{" +
   "position: absolute;" +
@@ -11151,7 +11148,7 @@ var css = {
   "text-align: center;" +
   "color: #f3ba31;" +
   "}",
-
+  
   transferDetailButtonsContainer: ".transfer-detail-buttons-container" +
   "{" +
   "position: absolute;" +
@@ -11161,7 +11158,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
   "}",
-
+  
   transferDetailButtonCancel: ".transfer-detail-button-cancel" +
   "{" +
   "position: relative;" +
@@ -11180,7 +11177,7 @@ var css = {
   "color: #ffffff;" +
   "text-transform: capitalize;" +
   "}",
-
+  
   transferDetailButtonAccept: ".transfer-detail-button-accept" +
   "{" +
   "margin: 0;" +
@@ -11199,7 +11196,7 @@ var css = {
   "color: #ffffff;" +
   "text-transform: capitalize;" +
   "}",
-
+  
   transferDetailCodeConfirm: ".transfer-detail-code-confirm" +
   "{" +
   "position: absolute;" +
@@ -11209,7 +11206,7 @@ var css = {
   "z-index: 10;" +
   "background-color: #353340;" +
   "}",
-
+  
   transferDetailCodeConfirmCodeContainer: ".transfer-detail-code-confirm-code-container " +
   "{" +
   "position: relative;" +
@@ -11220,7 +11217,7 @@ var css = {
   // "left:" + 135 * widthK + "px;" +
   "top:" + 100 * widthK + "px;" +
   "}",
-
+  
   transferDetailCodeConfirmMessageText: ".transfer-detail-code-confirm-message-text " +
   "{" +
   "position: relative;" +
@@ -11230,7 +11227,7 @@ var css = {
   "font-size:" + 31 * widthK + "px;" +
   "color: white;" +
   "}",
-
+  
   transferDetailCodeConfirmCodeInput: ".transfer-detail-code-confirm-code-input" +
   "{" +
   "position: relative;" +
@@ -11246,7 +11243,7 @@ var css = {
   "outline: none;" +
   "padding: 0;" +
   "}",
-
+  
   transferDetailCodeConfirmButtonEnter: ".transfer-detail-code-confirm-button-enter" +
   "{" +
   "margin: 0;" +
@@ -11267,7 +11264,7 @@ var css = {
   "bottom: 4.4%;" +
   "position: relative;" +
   "}",
-
+  
   //transferDetailCodeConfirmButtonEnterLabel: ".transfer-detail-code-confirm-button-enter-label" +
   //"{" +
   //"position: relative;" +
@@ -11279,7 +11276,7 @@ var css = {
   //"margin: 0;" +
   //"text-align: center;" +
   //"}",
-
+  
   transferDetailCodeConfirmMessageTextInfo: ".transfer-detail-code-confirm-message-text-info" +
   "{" +
   "position: relative;" +
@@ -11291,9 +11288,9 @@ var css = {
   "font-size:" + 27 * widthK + "px;" +
   "color: white;" +
   "}",
-
+  
   //ACCOUNT DETAIL VIEW
-
+  
   accountDetailCover: ".account-detail-cover" +
   "{" +
   "position: absolute;" +
@@ -11302,7 +11299,7 @@ var css = {
   "bottom: 0;" +
   "background-color: #f4f4f4;" +
   "}",
-
+  
   accountDetailContainer: ".account-detail-container" +
   "{" +
   "position: absolute;" +
@@ -11314,7 +11311,7 @@ var css = {
   "overflow-y: hidden; " +
   "overflow-x: hidden; " +
   "}",
-
+  
   accountDetailTitleContainer: ".account-detail-title-container" +
   "{" +
   "position: absolute;" +
@@ -11322,7 +11319,7 @@ var css = {
   "width:100%;" +
   "background-color: #0280e4;" +
   "}",
-
+  
   accountDetailPageTitle: ".account-detail-page-title " +
   "{" +
   "position: absolute;" +
@@ -11333,7 +11330,7 @@ var css = {
   "background: transparent;" +
   "border: none;" +
   "}",
-
+  
   accountDetailTransferContainer: ".account-detail-payment-container " +
   "{" +
   "position: relative;" +
@@ -11343,7 +11340,7 @@ var css = {
   "margin-right: auto;" +
   "border-bottom: 1px solid lightgrey;" +
   "}",
-
+  
   accountDetailTransferPayFromContainer: ".account-detail-payment-pay-from-container " +
   "{" +
   "position: relative;" +
@@ -11353,7 +11350,7 @@ var css = {
   "margin-right: auto;" +
   "border-bottom: 1px solid lightgrey;" +
   "}",
-
+  
   accountDetailTransferIcon: ".account-detail-transfer-icon" +
   "{" +
   "position: absolute;" +
@@ -11366,7 +11363,7 @@ var css = {
   "background-position: center;" +
   "background-image: url(resources/icons/bank-operations/payment.png);" +
   "}",
-
+  
   accountDetailTransferIconTitlePartOne: ".account-detail-transfer-icon-title-part-one " +
   "{" +
   "position: relative;" +
@@ -11379,7 +11376,7 @@ var css = {
   "text-align: center;" +
   "font-size:" + 34 * widthK + "px;" +
   "}",
-
+  
   accountDetailTransferIconTitlePartTwo: ".account-detail-transfer-icon-title-part-two " +
   "{" +
   "position: relative;" +
@@ -11392,7 +11389,7 @@ var css = {
   "text-align: center;" +
   "font-size:" + 34 * widthK + "px;" +
   "}",
-
+  
   accountDetailTransferIconTitlePhone: ".account-detail-transfer-icon-title-phone " +
   "{" +
   "position: relative;" +
@@ -11405,7 +11402,7 @@ var css = {
   "text-align: center;" +
   "font-size:" + 34 * widthK + "px;" +
   "}",
-
+  
   accountDetailTitle: ".account-detail-title " +
   "{" +
   "position: absolute;" +
@@ -11416,7 +11413,7 @@ var css = {
   "margin: 0;" +
   "text-align: center;" +
   "}",
-
+  
   accountDetailSum: ".account-detail-sum " +
   "{" +
   "position: absolute;" +
@@ -11428,7 +11425,7 @@ var css = {
   "text-align: center;" +
   "color: #9ec94a;" +
   "}",
-
+  
   accountDetailPayFor: ".account-detail-pay-for " +
   "{" +
   "position: absolute;" +
@@ -11440,7 +11437,7 @@ var css = {
   "text-align: center;" +
   "color: grey;" +
   "}",
-
+  
   accountDetailPayFrom: ".account-detail-pay-from " +
   "{" +
   "position: absolute;" +
@@ -11452,7 +11449,7 @@ var css = {
   "text-align: center;" +
   "color: grey;" +
   "}",
-
+  
   accountDetailCardsContainer: ".account-detail-cards-container" +
   "{" +
   "position: relative;" +
@@ -11463,7 +11460,7 @@ var css = {
   "overflow: hidden;" +
   //"top: 9%;" +
   "}",
-
+  
   accountDetailButtonsContainer: ".account-detail-buttons-container" +
   "{" +
   "position: absolute;" +
@@ -11473,7 +11470,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
   "}",
-
+  
   //accountDetailButtonAccept: ".account-detail-button-accept" +
   //"{" +
   //"position: relative;" +
@@ -11505,7 +11502,7 @@ var css = {
   //"font-size:" + 29 * widthK + "px;" +
   //"width: 44%;" +
   //"}",
-
+  
   accountDetailButtonAccept: ".account-detail-button-cancel" +
   "{" +
   "position: relative;" +
@@ -11525,7 +11522,7 @@ var css = {
   "color: #ffffff;" +
   "text-transform: capitalize;" +
   "}",
-
+  
   accountDetailButtonCancel: ".account-detail-button-accept" +
   "{" +
   "margin: 0;" +
@@ -11545,9 +11542,9 @@ var css = {
   "color: #ffffff;" +
   "text-transform: capitalize;" +
   "}",
-
+  
   //VIEW TRANSFER TO CARD ----> VIEW PAYMENT DETAIL
-
+  
   viewTransferDetail: ".view-transfer-detail" +
   "{" +
   "position: absolute;" +
@@ -11555,7 +11552,7 @@ var css = {
   "width:100%;" +
   "z-index:999999;" +
   "}",
-
+  
   transferToCardContainer: ".transfer-to-card-container" +
   "{" +
   "position: absolute;" +
@@ -11566,7 +11563,7 @@ var css = {
   "overflow-y: hidden; " +
   "overflow-x: hidden; " +
   "}",
-
+  
   transferToCardTitleContainer: ".transfer-to-card-title-container" +
   "{" +
   "position: absolute;" +
@@ -11574,7 +11571,7 @@ var css = {
   "width:100%;" +
   "background-color: white;" +
   "}",
-
+  
   transferToCardTransferTitlePartOne: ".transfer-to-card-transfer-title-part-one " +
   "{" +
   "position: relative;" +
@@ -11588,7 +11585,7 @@ var css = {
   "overflow: hidden;" +
   "font-size:" + 40 * widthK + "px;" +
   "}",
-
+  
   transferToCardTransferTitlePartTwo: ".transfer-to-card-transfer-title-part-two " +
   "{" +
   "position: relative;" +
@@ -11601,7 +11598,7 @@ var css = {
   "overflow: hidden;" +
   "font-size:" + 40 * widthK + "px;" +
   "}",
-
+  
   transferToCardTransferTitlePhone: ".transfer-to-card-transfer-title-phone " +
   "{" +
   "position: relative;" +
@@ -11615,17 +11612,17 @@ var css = {
   "overflow: hidden;" +
   "font-size:" + 24 * widthK + "px;" +
   "}",
-
+  
   changedHeightForPaymentDetail: ".changed-height-for-payment-detail" +
   "{" +
   "height: 57%;" +
   "}",
-
+  
   changedHeightForFilterAccount: ".changed-height-for-filter-account" +
   "{" +
   "height: 60%;" +
   "}",
-
+  
   viewPaymentDetail: ".view-payment-detail" +
   "{" +
   "position: absolute;" +
@@ -11633,7 +11630,7 @@ var css = {
   "width:100%;" +
   "z-index:999999;" +
   "}",
-
+  
   paymentDetailPaymentIcon: ".payment-detail-payment-icon" +
   "{" +
   "position: absolute;" +
@@ -11646,7 +11643,7 @@ var css = {
   "background-position: center;" +
   "background-image: url(resources/icons/bank-operations/payment.png);" +
   "}",
-
+  
   paymentDetailPaymentContainer: ".payment-detail-payment-container" +
   "{" +
   "position: relative;" +
@@ -11656,12 +11653,12 @@ var css = {
   "border-bottom: 1px solid #e8e8e8;" +
   "overflow: auto;" +
   "}",
-
+  
   paymentDetailPaymentIncludeContainer: ".payment-detail-payment-include-container" +
   "{" +
   "margin: 3%;" +
   "}",
-
+  
   paymentDetailPaymentContainerPayFrom: ".payment-detail-payment-container-pay-from" +
   "{" +
   "position: relative;" +
@@ -11670,14 +11667,14 @@ var css = {
   "margin-left: auto;" +
   "margin-right: auto;" +
   "}",
-
+  
   paymentDetailTitle: ".payment-detail-title " +
   "{" +
   "font-size:" + 29 * widthK + "px;" +
   "color: #a9abaf;" +
   "margin: 0;" +
   "}",
-
+  
   paymentDetailTitlePayFrom: ".payment-detail-title-pay-from " +
   "{" +
   "position: absolute;" +
@@ -11688,21 +11685,21 @@ var css = {
   "margin: 0;" +
   "text-align: center;" +
   "}",
-
+  
   paymentDetailCommission: ".payment-detail-commission" +
   "{" +
   "margin: 0;" +
   "color: #c1c1c1;" +
   "font-size:" + 24 * widthK + "px;" +
   "}",
-
+  
   paymentDetailSum: ".payment-detail-sum " +
   "{" +
   "font-size:" + 40 * widthK + "px;" +
   "color: #a9abaf;" +
   "margin: 0;" +
   "}",
-
+  
   paymentDetailNumber: ".payment-detail-number " +
   "{" +
   "position: absolute;" +
@@ -11716,14 +11713,14 @@ var css = {
   "}",
 
 // VIEW MONITORING REPORT
-
+  
   viewMonitoringReportTypeAndTurnOnContainer: ".view-monitoring-report-type-and-turn-on-container" +
   "{" +
   "position: absolute;" +
   "top:" + 87 * widthK + "px;" +
   "width: 100%;" +
   "}",
-
+  
   viewMonitoringReportTypeContainer: ".view-monitoring-report-type-container" +
   "{" +
   "position: relative;" +
@@ -11731,7 +11728,7 @@ var css = {
   "width: 100%;" +
   "top: 0;" +
   "}",
-
+  
   viewMonitoringReportType: ".view-monitoring-report-type" +
   "{" +
   "height: 100%;" +
@@ -11739,7 +11736,7 @@ var css = {
   "float: left;" +
   "color: #c2c2c2;" +
   "}",
-
+  
   viewMonitoringReportTypeTitle: ".view-monitoring-report-type-title" +
   "{" +
   "margin: 0;" +
@@ -11748,7 +11745,7 @@ var css = {
   "text-align: left;" +
   "font-size:" + 29 * widthK + "px;" +
   "}",
-
+  
   viewMonitoringReportTurnOnContainer: ".view-monitoring-report-turnon-container" +
   "{" +
   "position: relative;" +
@@ -11760,7 +11757,7 @@ var css = {
   "background: -webkit-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
   "background: -ms-linear-gradient(left, #00a8f1 20%, #76c1f4);" +
   "}",
-
+  
   viewMonitoringReportTurnOnTextOne: ".view-monitoring-report-turnon-text-one" +
   "{" +
   "position: relative;" +
@@ -11773,7 +11770,7 @@ var css = {
   "font-family: 'SFUIDisplay-Semibold';" +
   "font-size:" + 29 * widthK + "px;" +
   "}",
-
+  
   viewMonitoringReportTurnOnTextTwo: ".view-monitoring-report-turnon-text-two" +
   "{" +
   "position: relative;" +
@@ -11785,7 +11782,7 @@ var css = {
   "font-family: 'SFUIDisplay-Semibold';" +
   "font-size:" + 29 * widthK + "px;" +
   "}",
-
+  
   viewMonitoringReportTurnOnTurnOn: ".view-monitoring-report-turnon-turnon" +
   "{" +
   "position: relative;" +
@@ -11797,7 +11794,7 @@ var css = {
   "font-family: 'SFUIDisplay-Semibold';" +
   "font-size:" + 33 * widthK + "px;" +
   "}",
-
+  
   viewMonitoringReportTurnOnArrow: ".view-monitoring-report-turnon-arrow" +
   "{" +
   "position: absolute;" +
@@ -11813,7 +11810,7 @@ var css = {
   "background-position-x: center;" +
   "background-size: 100%;" +
   "}",
-
+  
   viewMonitoringReportFilterButton: ".view-monitoring-report-filter-button" +
   "{ " +
   "position: absolute;" +
@@ -11825,7 +11822,7 @@ var css = {
   "background-position: center;" +
   "background-size: 62%;" +
   "}",
-
+  
   viewMonitoringReportFilterButtonContainer: ".view-monitoring-report-filter-button-container" +
   "{ " +
   "position: absolute;" +
@@ -11844,7 +11841,7 @@ var css = {
   "box-shadow:" + 7 * widthK + "px " + 7 * widthK + "px " + 13 * widthK + "px " + 0 * widthK + "px " + "rgba(0,0,0, 0.11);" +
   "border-radius: " + 100 * widthK + "px;" +
   "}",
-
+  
   viewMonitoringBodyContainer: ".view-monitoring-body-container" +
   "{" +
   "position: absolute;" +
@@ -11858,13 +11855,13 @@ var css = {
   "-webkit-overflow-scrolling: touch; " +
   // "background-color: #00a8f1;" +
   "}",
-
+  
   viewMonitoringPaymentsContainer: ".view-monitoring-payments-container" +
   "{" +
   "position: relative;" +
   "width: 100%;" +
   "}",
-
+  
   viewMonitoringPaymentDateContainer: ".view-monitoring-payment-date-containter" +
   "{" +
   "position: relative;" +
@@ -11875,7 +11872,7 @@ var css = {
   //"border-bottom:" + 1 * widthK + "px solid gainsboro;" +
   "background-color: #f6f6f6;" +
   "}",
-
+  
   viewMonitoringPaymentDateField: ".view-monitoring-payment-date-field" +
   "{" +
   "position: relative;" +
@@ -11889,7 +11886,7 @@ var css = {
   "letter-spacing:1px;" +
   "word-spacing:" + 4 * widthK + "px;" +
   "}",
-
+  
   viewMonitoringPaymentBlockContainer: ".view-monitoring-payment-block-containter" +
   "{" +
   "position: relative;" +
@@ -11901,8 +11898,8 @@ var css = {
   "border-top:" + 1 * widthK + "px solid #f1f1f1;" +
   "background-color: transparent;" +
   "}",
-
-
+  
+  
   viewMonitoringPaymentIcon: ".view-monitoring-payment-icon " +
   "{" +
   //"top:" + 50 * widthK + "px;" +
@@ -11916,7 +11913,7 @@ var css = {
   //"border:solid 1px #f1f1f1;" +
   "top: 6%;" +
   "}",
-
+  
   viewMonitoringPaymentInfoLeftContainer: ".view-monitoring-payment-info-left-container " +
   "{" +
   "position: absolute;" +
@@ -11925,7 +11922,7 @@ var css = {
   "left: 18%;" +
   "color: #8b8b8b;" +
   "}",
-
+  
   viewMonitoringPaymentInfoRightContainer: ".view-monitoring-payment-info-right-container " +
   "{" +
   "position: absolute;" +
@@ -11934,7 +11931,7 @@ var css = {
   "left: 59%;" +
   "color: #8b8b8b;" +
   "}",
-
+  
   viewMonitoringPaymentInfoName: ".view-monitoring-payment-info-name " +
   "{" +
   "position: absolute;" +
@@ -11948,7 +11945,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "}",
-
+  
   viewMonitoringPaymentInfoBalance: ".view-monitoring-payment-info-balance " +
   "{" +
   "position: relative;" +
@@ -11960,7 +11957,7 @@ var css = {
   "float: right;" +
   "font-weight: bold;" +
   "}",
-
+  
   viewMonitoringPaymentInfoCurrencyField: ".view-monitoring-payment-info-currency-field" +
   "{" +
   "position: relative;" +
@@ -11972,7 +11969,7 @@ var css = {
   "float: right;" +
   "font-weight: bold;" +
   "}",
-
+  
   viewMonitoringPaymentInfoNumber: ".view-monitoring-payment-info-number " +
   "{" +
   "position: absolute;" +
@@ -11986,7 +11983,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "}",
-
+  
   viewMonitoringPaymentInfoTime: ".view-monitoring-payment-info-time " +
   "{" +
   "position: absolute;" +
@@ -11998,7 +11995,7 @@ var css = {
   "margin: 0;" +
   "color: #8b8b8b;" +
   "}",
-
+  
   viewMonitoringPaymentInfoStateImage: ".view-monitoring-payment-info-state-image " +
   "{" +
   "position: absolute;" +
@@ -12016,21 +12013,21 @@ var css = {
 
 
 // VIEW REPORT FILTER
-
+  
   viewReportFiltersContainer: ".view-report-filters-container" +
   "{ " +
   "position: absolute;" +
   "width: 100%;" +
   "top: " + 87 * widthK + "px;" +
   "}",
-
+  
   viewReportFilterByDateContainer: ".view-report-filter-bydate-container" +
   "{ " +
   "position: relative;" +
   "height: " + 160 * widthK + "px;" +
   "overflow: hidden;" +
   "}",
-
+  
   viewReportFilterByDateTitle: ".view-report-filter-bydate-title" +
   "{ " +
   "position: relative;" +
@@ -12040,7 +12037,7 @@ var css = {
   "font-size: " + 33 * widthK + "px;" +
   "color: #565d6a;" +
   "}",
-
+  
   viewReportFilterByDateText: ".view-report-filter-bydate-text" +
   "{ " +
   "position: relative;" +
@@ -12050,7 +12047,7 @@ var css = {
   "font-size: " + 29 * widthK + "px;" +
   "color: #c2c2c2;" +
   "}",
-
+  
   viewReportFilterByDateIcon: ".view-report-filter-bydate-icon" +
   "{ " +
   "position: absolute;" +
@@ -12065,7 +12062,7 @@ var css = {
   "background-position-x: center;" +
   "background-size: 100%;" +
   "}",
-
+  
   viewReportFilterArrowIcon: ".view-report-filter-arrow-icon" +
   "{ " +
   "position: absolute;" +
@@ -12080,14 +12077,14 @@ var css = {
   "background-position-x: center;" +
   "background-size: 100%;" +
   "}",
-
+  
   viewReportFilterByCardContainer: ".view-report-filter-bycard-container" +
   "{ " +
   "position: relative;" +
   "height: " + 160 * widthK + "px;" +
   "overflow: hidden;" +
   "}",
-
+  
   viewReportFilterByCardTitle: ".view-report-filter-bycard-title" +
   "{ " +
   "position: relative;" +
@@ -12097,7 +12094,7 @@ var css = {
   "font-size: " + 33 * widthK + "px;" +
   "color: #565d6a;" +
   "}",
-
+  
   viewReportFilterByCardText: ".view-report-filter-bycard-text" +
   "{ " +
   "position: relative;" +
@@ -12107,7 +12104,7 @@ var css = {
   "font-size: " + 29 * widthK + "px;" +
   "color: #c2c2c2;" +
   "}",
-
+  
   viewReportFilterByCardIcon: ".view-report-filter-bycard-icon" +
   "{ " +
   "position: absolute;" +
@@ -12122,7 +12119,7 @@ var css = {
   "background-position-x: center;" +
   "background-size: 100%;" +
   "}",
-
+  
   viewReportFilterPage: ".view-report-filter-page " +
   "{" +
   "position: absolute;" +
@@ -12130,7 +12127,7 @@ var css = {
   "height: 100%;" +
   "background: #fafafa;" +
   "}",
-
+  
   viewReportFilterDateCustomText: ".view-report-filter-date-custom-text " +
   "{" +
   "position: relative;" +
@@ -12139,7 +12136,7 @@ var css = {
   "font-size:" + 32 * widthK + "px;" +
   "color: #565d6a;" +
   "}",
-
+  
   viewReportFilterDateCustomContainer: ".view-report-filter-date-custom-container " +
   "{" +
   "position: relative;" +
@@ -12147,7 +12144,7 @@ var css = {
   "margin: 0;" +
   "margin-top:" + 126 * widthK + "px;" +
   "}",
-
+  
   viewReportFilterDateCustomFrom: ".view-report-filter-date-custom-from " +
   "{" +
   "position: relative;" +
@@ -12157,7 +12154,7 @@ var css = {
   "margin-top:" + 20 * widthK + "px;" +
   "background-color: white;" +
   "}",
-
+  
   viewReportFilterDateCustomFromTitle: ".view-report-filter-date-custom-from-title " +
   "{" +
   "position: absolute;" +
@@ -12167,7 +12164,7 @@ var css = {
   "font-size:" + 31 * widthK + "px;" +
   "color: #c2c2c2;" +
   "}",
-
+  
   viewReportFilterDateCustomTo: ".view-report-filter-date-custom-to " +
   "{" +
   "position: relative;" +
@@ -12176,7 +12173,7 @@ var css = {
   "margin: 0;" +
   "background-color: white;" +
   "}",
-
+  
   viewReportFilterDateCustomToTitle: ".view-report-filter-date-custom-to-title " +
   "{" +
   "position: absolute;" +
@@ -12186,7 +12183,7 @@ var css = {
   "font-size:" + 31 * widthK + "px;" +
   "color: #c2c2c2;" +
   "}",
-
+  
   viewReportFilterDateCustomArrow: ".view-report-filter-date-custom-arrow" +
   "{ " +
   "position: absolute;" +
@@ -12201,14 +12198,14 @@ var css = {
   "background-position-x: center;" +
   "background-size: 100%;" +
   "}",
-
+  
   viewReportFilterDateRangeTypeContainer: ".view-report-filter-date-range-type-container" +
   "{" +
   "position: relative;" +
   "width: 100%;" +
   "margin-top:" + 60 * widthK + "px;" +
   "}",
-
+  
   viewReportFilterDateRangeType: ".view-report-filter-date-range-type" +
   "{" +
   "position: relative;" +
@@ -12217,7 +12214,7 @@ var css = {
   "margin: 0;" +
   "background-color: white;" +
   "}",
-
+  
   viewReportFilterDateRangeTypeTitle: ".view-report-filter-date-range-type-title" +
   "{" +
   "position: absolute;" +
@@ -12227,7 +12224,7 @@ var css = {
   "font-size:" + 33 * widthK + "px;" +
   "color: #565d6a;" +
   "}",
-
+  
   viewReportFilterDateRangeTypeCheckIcon: ".view-report-filter-date-range-type-check-icon" +
   "{" +
   "position: absolute;" +
@@ -12240,7 +12237,7 @@ var css = {
   "background-position: center;" +
   "background-image: url('resources/icons/ViewService/radio_unselected.png');" +
   "}",
-
+  
   viewReportFilterCardChooseCardText: ".view-report-filter-card-choose-card-text " +
   "{" +
   "position: relative;" +
@@ -12250,7 +12247,7 @@ var css = {
   "font-size:" + 32 * widthK + "px;" +
   "color: #565d6a;" +
   "}",
-
+  
   viewReportFilterCardCardsContainer: ".view-report-filter-card-cards-container " +
   "{" +
   "position: absolute;" +
@@ -12264,7 +12261,7 @@ var css = {
   "backface-visibility: hidden;" +
   "-webkit-overflow-scrolling: touch;" +
   "}",
-
+  
   viewReportFilterCardCard: ".view-report-filter-card-card " +
   "{" +
   "position: relative;" +
@@ -12275,7 +12272,7 @@ var css = {
   "right: 0;" +
   "background-color: white;" +
   "}",
-
+  
   viewReportFilterCardCardLogoContainer: ".view-report-filter-card-card-logo-container " +
   "{" +
   "width: 31%;" +
@@ -12288,7 +12285,7 @@ var css = {
   "float: left;" +
   "position: absolute;" +
   "}",
-
+  
   viewReportFilterCardCardInfoContainer: ".view-report-filter-card-card-info-container " +
   "{" +
   "position: absolute;" +
@@ -12297,7 +12294,7 @@ var css = {
   "left: 30%;" +
   "background-color: transparent;" +
   "}",
-
+  
   viewReportFilterCardCardInfoTextOne: ".view-report-filter-card-card-info-text-one " +
   "{" +
   "position: absolute;" +
@@ -12310,7 +12307,7 @@ var css = {
   "overflow: hidden;" +
   "color: #565d6a;" +
   "}",
-
+  
   viewReportFilterCardCardInfoTextThree: ".view-report-filter-card-card-info-text-three " +
   "{" +
   "position: absolute;" +
@@ -12319,7 +12316,7 @@ var css = {
   "margin: 0;" +
   "top: 53%;" +
   "}",
-
+  
   viewReportFilterCardCardCheckIcon: ".view-report-filter-card-card-check-icon" +
   "{" +
   "position: absolute;" +
@@ -12334,7 +12331,7 @@ var css = {
   "}",
 
 //  VIEW REPORTS
-
+  
   viewReportsPage: ".view-reports-page " +
   "{" +
   "position: absolute;" +
@@ -12342,7 +12339,7 @@ var css = {
   "height: 100%;" +
   "background: white;" +
   "}",
-
+  
   viewReportsMonthsContainer: ".view-reports-months-container " +
   "{" +
   "position: absolute;" +
@@ -12353,8 +12350,8 @@ var css = {
   //"overflow-y: hidden;" +
   "font-size:" + 23 * widthK + "px;" +
   "}",
-
-
+  
+  
   viewReportsMonthInfoContainer: ".view-reports-month-info-container " +
   "{" +
   "position: absolute;" +
@@ -12366,7 +12363,7 @@ var css = {
   "-webkit-transform: translate3d(-50%, 0,0);" +
   "text-align: center;" +
   "}",
-
+  
   viewReportsMonthInfoName: ".view-reports-month-info-name " +
   "{" +
   "position: absolute;" +
@@ -12376,7 +12373,7 @@ var css = {
   "font-size: " + 30 * widthK + "px; " +
   "width: 100%;" +
   "}",
-
+  
   viewReportsMonthNotStartedYetLabel: ".view-reports-month-not-started-yet-label" +
   "{" +
   "position: absolute;" +
@@ -12391,7 +12388,7 @@ var css = {
   "color: #b6b6b6;" +
   "text-align: center;" +
   "}",
-
+  
   viewReportsBodyContainer: ".view-reports-body-container" +
   "{" +
   "position: absolute;" +
@@ -12403,7 +12400,7 @@ var css = {
   "overflow-x: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
   "}",
-
+  
   viewReportsGraphBodyContainer: ".view-reports-graph-body-container" +
   "{" +
   "position: absolute;" +
@@ -12413,7 +12410,7 @@ var css = {
   "bottom:0; " +
   "background-color: white; " +
   "}",
-
+  
   viewReportsGraphFrame: ".view-reports-graph-frame" +
   "{" +
   "position: absolute;" +
@@ -12426,7 +12423,7 @@ var css = {
   "margin-right: auto; " +
   "background-color: white; " +
   "}",
-
+  
   viewReportsGraphPercentImageContainer: ".view-reports-graph-percent-image-container" +
   "{" +
   "position: absolute;" +
@@ -12436,7 +12433,7 @@ var css = {
   "height:" + 79 * heightK + "px; " +
   //"transform: translate(-50%, -50%); " +
   "}",
-
+  
   viewReportsGraphPercent: ".view-reports-graph-percent" +
   "{" +
   "position: relative;" +
@@ -12448,7 +12445,7 @@ var css = {
   "font-weight: bold;" +
   "font-size:" + 30 * widthK + "px !important; " +
   "}",
-
+  
   viewReportsGraphImage: ".view-reports-graph-image" +
   "{" +
   "position: relative;" +
@@ -12460,7 +12457,7 @@ var css = {
   "width: 100%;" +
   "height:" + 50 * heightK + "px;" +
   "}",
-
+  
   filterMenu: ".filter-menu " +
   "{" +
   "position: absolute;" +
@@ -12474,17 +12471,17 @@ var css = {
   "right:0;" +
   //"top:" + topOfIos + "px;" +
   "}",
-
+  
   filterMainMenu: ".filter-main-menu" +
   "{" +
   "background-color: white;" +
   "}",
-
+  
   filterMinorMenu: ".filter-minor-menu" +
   "{" +
   "background-color: white;" +
   "}",
-
+  
   reportFilterFiltersContentContainer: ".report-filter-filters-content-container" +
   "{" +
   "position: absolute;" +
@@ -12492,14 +12489,14 @@ var css = {
   "width: 100%;" +
   "bottom: 0;" +
   "}",
-
+  
   reportFilterFilterContainer: ".report-filter-filter-container" +
   "{" +
   "width: " + 516 * widthK + "px;" +
   "height: " + 147 * widthK + "px;" +
   "padding: 0px " + 48 * widthK + "px 0 " + 45 * widthK + "px;" +
   "}",
-
+  
   reportFilterFilterTitle: ".report-filter-filter-title" +
   "{" +
   "margin: 0;" +
@@ -12507,7 +12504,7 @@ var css = {
   "margin-left: " + 21 * widthK + "px;" +
   "color: #565d6a;" +
   "}",
-
+  
   reportFilterFilterPlusIcon: ".report-filter-filter-plus-icon" +
   "{" +
   "position: relative;" +
@@ -12517,7 +12514,7 @@ var css = {
   "height: " + 25 * widthK + "px;" +
   "width: " + 25 * widthK + "px;" +
   "}",
-
+  
   reportFilterFilterChosenFilterContainer: ".report-filter-filter-chosen-filter-container" +
   "{" +
   "position: relative;" +
@@ -12528,7 +12525,7 @@ var css = {
   "border-top: 1px solid #e8e8e8;" +
   "padding: " + 13.5 * widthK + "px 0 0 4.3%;" +
   "}",
-
+  
   viewReportsFilterContainer: ".view-reports-filter-container " +
   "{" +
   "position: absolute;" +
@@ -12538,7 +12535,7 @@ var css = {
   "top: 0;" +
   "z-index: 1;" +
   "}",
-
+  
   viewReportsFilterText: ".view-reports-filter-text " +
   "{" +
   "position: absolute;" +
@@ -12547,7 +12544,7 @@ var css = {
   "top: 31%;" +
   "font-size:" + 29 * widthK + "px;" +
   "}",
-
+  
   viewReportsDateFilterText: ".view-reports-date-filter-text" +
   "{" +
   "margin: 0;" +
@@ -12558,7 +12555,7 @@ var css = {
   "text-align: center;" +
   "font-size: " + 30 * widthK + "px;" +
   "}",
-
+  
   viewReportsAccountFilterText: ".view-reports-account-filter-text" +
   "{" +
   "margin: 0;" +
@@ -12570,7 +12567,7 @@ var css = {
   "left: " + 6 * widthK + "px;" +
   "color: #525252;" +
   "}",
-
+  
   viewReportsFilterButton: ".view-reports-filter-button " +
   "{" +
   "position: absolute;" +
@@ -12585,7 +12582,7 @@ var css = {
   "background-position-x: center;" +
   "background-size: 100%;" +
   "}",
-
+  
   reportFilterReadyButton: ".report-filter-ready-button" +
   "{" +
   //"transform: translate3d(-50%, 0,0);" +
@@ -12605,7 +12602,7 @@ var css = {
   "border-radius: " + 10 * widthK + "px;" +
   "color: #ffffff;" +
   "}",
-
+  
   reportFilterFilterInfoContainer: ".report-filter-filter-info-container" +
   "{" +
   "height: " + 36 * widthK + "px;" +
@@ -12613,7 +12610,7 @@ var css = {
   "float: left;" +
   "background-color: #ffffff;" +
   "}",
-
+  
   reportFilterFilterInfoText: ".report-filter-filter-info-text" +
   "{" +
   "margin: 0;" +
@@ -12626,7 +12623,7 @@ var css = {
   "overflow: hidden;" +
   "max-width: " + 400 * widthK + "px;" +
   "}",
-
+  
   reportFilterFilterDeleteIcon: ".report-filter-filter-delete-icon" +
   "{" +
   "width: " + 15 * widthK + "px;" +
@@ -12636,7 +12633,7 @@ var css = {
   "padding-bottom: " + 11 * widthK + "px;" +
   "padding-top: " + 10 * widthK + "px;" +
   "}",
-
+  
   reportFilterClearFiltersContainer: ".report-filter-clear-filters-container" +
   "{" +
   "height: " + 92 * widthK + "px;" +
@@ -12645,7 +12642,7 @@ var css = {
   "top:0;" +
   "left: " + 65 * widthK + "px;" +
   "}",
-
+  
   reportFilterClearFiltersLabel: ".report-filter-clear-filters-label" +
   "{" +
   "margin: 0;" +
@@ -12655,7 +12652,7 @@ var css = {
   "font-size: " + 29 * widthK + "px;" +
   "color: #565d6a;" +
   "}",
-
+  
   reportFilterClearFiltersIcon: ".report-filter-clear-filters-icon" +
   "{" +
   "height: " + 40 * widthK + "px;" +
@@ -12667,7 +12664,7 @@ var css = {
   "position: absolute;" +
   "top: 23%;" +
   "}",
-
+  
   reportFilterOKButton: ".report-filter-ok-button" +
   "{" +
   "border: none;" +
@@ -12683,7 +12680,7 @@ var css = {
   "bottom: " + 38 * widthK + "px;" +
   "text-transform: uppercase;" +
   "}",
-
+  
   filterMenuInsideButton: ".filter-menu-inside-button " +
   "{" +
   "position: absolute;" +
@@ -12692,27 +12689,27 @@ var css = {
   "right:" + 90 * widthK + "px;" +
   "top: 0;" +
   "}",
-
+  
   filterInsideText: ".filter-inside-text " +
   "{" +
   "color: 	#00A1EA;" +
   "}",
-
+  
   filterInsideButton: ".filter-inside-button " +
   "{" +
   "background-image: url('resources/icons/ViewReport/reports_filters_close.png');" +
   "}",
-
+  
   filterInsideTextMain: ".filter-inside-text-main " +
   "{" +
   "color: white;" +
   "}",
-
+  
   filterInsideButtonMain: ".filter-inside-button-main " +
   "{" +
   "background-image: url('resources/icons/ViewReport/reports_filters_close.png');" +
   "}",
-
+  
   filterMenuBodyContainer: ".filter-menu-body-container " +
   "{" +
   "position: absolute;" +
@@ -12721,7 +12718,7 @@ var css = {
   "left: 9%;" +
   "top: 21.3%;" +
   "}",
-
+  
   filterMenuTitle: ".filter-menu-title " +
   "{" +
   "position: absolute;" +
@@ -12732,7 +12729,7 @@ var css = {
   "top: 12%;" +
   "left: 9%;" +
   "}",
-
+  
   filterMenuBlockContainer: ".filter-menu-block-containter" +
   "{" +
   "position: relative;" +
@@ -12744,7 +12741,7 @@ var css = {
   "background-color: transparent;" +
   "float: left;" +
   "}",
-
+  
   filterMenuNameField: ".filter-menu-name-field" +
   "{" +
   "position: relative;" +
@@ -12755,7 +12752,7 @@ var css = {
   "font-size:" + 29 * widthK + "px; " +
   "color: gray;" +
   "}",
-
+  
   filterMenuDateIcon: ".filter-menu-date-icon" +
   "{" +
   "position: relative;" +
@@ -12766,7 +12763,7 @@ var css = {
   "float: left;" +
   "background-size: 65%;" +
   "}",
-
+  
   filterMenuDateNextIcon: ".filter-menu-date-next-icon" +
   "{" +
   "position: absolute;" +
@@ -12779,8 +12776,8 @@ var css = {
   "background-position: center;" +
   "background-image: url(resources/icons/ViewInfo/open.png);" +
   "}",
-
-
+  
+  
   filterMenuBillingsContainer: ".filter-menu-billings-container " +
   "{" +
   "position: relative;" +
@@ -12790,7 +12787,7 @@ var css = {
   "left: 8%;" +
   "border-bottom: 1px solid #43aee5;" +
   "}",
-
+  
   filterMenuFavoriteContainer: ".filter-menu-favorite-container " +
   "{" +
   "position: relative;" +
@@ -12800,7 +12797,7 @@ var css = {
   "left: 8%;" +
   "border-bottom: 1px solid #43aee5;" +
   "}",
-
+  
   viewReportsGraphButton: ".view-reports-graph-button " +
   "{" +
   "position: absolute;" +
@@ -12815,15 +12812,15 @@ var css = {
   "background-position-x: center;" +
   "background-size: 41%;" +
   "}",
-
+  
   //body
-
+  
   viewReportsPaymentsContainer: ".view-reports-payments-container" +
   "{" +
   "position: relative;" +
   "width: 100%;" +
   "}",
-
+  
   dateContainer: ".date-container" +
   "{" +
   "height:" + 45 * widthK + "px; " +
@@ -12831,7 +12828,7 @@ var css = {
   "background-color: #f6f6f6;" +
   "overflow: hidden;" +
   "}",
-
+  
   viewReportsPaymentDateField: ".view-reports-payment-date-field" +
   "{" +
   "position: relative;" +
@@ -12842,7 +12839,7 @@ var css = {
   "font-size:" + 24 * widthK + "px; " +
   "color: gray;" +
   "}",
-
+  
   viewReportsPaymentIcon: ".view-reports-payment-icon " +
   "{" +
   //"top:" + 50 * widthK + "px;" +
@@ -12856,7 +12853,7 @@ var css = {
   //"border:solid 1px #f1f1f1;" +
   "top: 6%;" +
   "}",
-
+  
   viewReportsPaymentInfoContainer: ".view-reports-payment-info-container " +
   "{" +
   "position: absolute;" +
@@ -12865,7 +12862,7 @@ var css = {
   "left: 18%;" +
   "color: #8b8b8b;" +
   "}",
-
+  
   viewReportsPaymentInfoNumber: ".view-reports-payment-info-number " +
   "{" +
   "position: absolute;" +
@@ -12879,9 +12876,9 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "}",
-
+  
   //graph
-
+  
   viewReportsGraphBigamountContainer: ".view-reports-graph-bigamount-container " +
   "{" +
   "position: absolute;" +
@@ -12890,7 +12887,7 @@ var css = {
   "left: 7%;" +
   "color: black;" +
   "}",
-
+  
   viewReportsGraphBigamountText: ".view-reports-graph-bigamount-text " +
   "{" +
   "position: absolute;" +
@@ -12902,7 +12899,7 @@ var css = {
   "width: 100%;" +
   "text-align: center;" +
   "}",
-
+  
   viewReportsGraphBigamountDetailText: ".view-reports-graph-bigamount-detail-text " +
   "{" +
   "position: absolute;" +
@@ -12914,7 +12911,7 @@ var css = {
   "text-align: center;" +
   "color: #8b8b8b;" +
   "}",
-
+  
   viewReportsGraphImageContainer: ".view-reports-graph-image-container " +
   "{" +
   "position: absolute;" +
@@ -12924,7 +12921,7 @@ var css = {
   "color: black;" +
   "background-color: white;" +
   "}",
-
+  
   viewReportsGraphContentContainer: ".view-reports-graph-content-container " +
   "{" +
   "position: absolute;" +
@@ -12935,7 +12932,7 @@ var css = {
   "overflow-y: auto;" +
   "overflow-x: hidden;" +
   "}",
-
+  
   viewReportsGraphBlockContainer: ".view-reports-graph-block-containter" +
   "{" +
   "position: relative;" +
@@ -12946,7 +12943,7 @@ var css = {
   "border-bottom:" + 1 * widthK + "px solid #f1f1f1;" +
   "background-color: transparent;" +
   "}",
-
+  
   viewReportsGraphBlockNameField: ".view-reports-graph-block-name-field" +
   "{" +
   "position: absolute;" +
@@ -12957,7 +12954,7 @@ var css = {
   "font-size:" + 25 * widthK + "px; " +
   "color: gray;" +
   "}",
-
+  
   viewReportsGraphBlockAmountField: ".view-reports-graph-block-amount-field" +
   "{" +
   "position: relative;" +
@@ -12968,7 +12965,7 @@ var css = {
   "color: #595759;" +
   "float: left;" +
   "}",
-
+  
   viewReportsGraphBlockCurrencyField: ".view-reports-graph-block-currency-field" +
   "{" +
   "position: relative;" +
@@ -12980,7 +12977,7 @@ var css = {
   //"color: #ee4d3d;" +
   "float: left;" +
   "}",
-
+  
   viewReportsGraphBlockIcon: ".view-reports-graph-block-icon" +
   "{" +
   "position: relative;" +
@@ -12992,7 +12989,7 @@ var css = {
   "background-size: 70%;" +
   "top: 6%;" +
   "}",
-
+  
   viewReportsGraphBlockNextIcon: ".view-reports-graph-block-next-icon" +
   "{" +
   "position: absolute;" +
@@ -13005,7 +13002,7 @@ var css = {
   "background-position: center;" +
   "background-image: url(resources/icons/ViewInfo/open.png);" +
   "}",
-
+  
   billsHolder: ".bills-holder " +
   "{" +
   "position: absolute;" +
@@ -13013,7 +13010,7 @@ var css = {
   "height:" + 305 * widthK + "px; " +
   "width:" + 627 * widthK + "px;" +
   "}",
-
+  
   addCardCarousel: ".add-card-carousel" +
   "{" +
   "height:" + 289 * widthK + "px;" +
@@ -13022,7 +13019,7 @@ var css = {
   "top:" + 7 * widthK + "px;" +
   "left:" + 735 * widthK + "px;" +
   "}",
-
+  
   addCardCarouselIcon: ".add-card-carousel-icon" +
   "{" +
   "background-image: url(resources/icons/cards/addCard/add_first_card.png);" +
@@ -13035,7 +13032,7 @@ var css = {
   "background-position-y: 45%;" +
   "background-repeat: no-repeat;" +
   "}",
-
+  
   addCardCarouselText: ".add-card-carousel-text" +
   "{" +
   "width:100%;" +
@@ -13047,7 +13044,7 @@ var css = {
   "}",
 
 //  VIEW BANK LIST
-
+  
   componentBankList: ".component-bank-list" +
   "{" +
   "position: absolute;" +
@@ -13058,7 +13055,7 @@ var css = {
   "background-color: #f0f1f4;" +
   //"display: none;" +
   "}",
-
+  
   componentBankListContainer: ".component-banklist-container" +
   "{" +
   "position: absolute;" +
@@ -13072,7 +13069,7 @@ var css = {
   "-webkit-overflow-scrolling: touch; " +
   "margin-bottom: 15px;" +
   "}",
-
+  
   componentBankListCardFlipper: ".component-banklist-card-flipper" +
   "{" +
   "height: " + 298 * widthK + "px;" +
@@ -13091,7 +13088,7 @@ var css = {
   "transform-style: preserve-3d;" +
   "-webkit-transform-style: preserve-3d;" +
   "}",
-
+  
   componentBankListCardBack: ".component-banklist-card-back" +
   "{" +
   "height: " + 298 * widthK + "px;" +
@@ -13107,7 +13104,7 @@ var css = {
   "transform: rotateY(180deg) translateZ(2px);" +
   "-webkit-transform: rotateY(180deg) translateZ(2px);" +
   "}",
-
+  
   componentBankListCardFront: ".component-banklist-card-front" +
   "{" +
   "height: " + 298 * widthK + "px;" +
@@ -13124,8 +13121,8 @@ var css = {
   "transform: rotateY(0deg) translateZ(2px);" +
   "-webkit-transform: rotateY(0deg) translateZ(2px);" +
   "}",
-
-
+  
+  
   componentBankListNameTitle: ".component-banklist-name-title " +
   "{" +
   "position: absolute;" +
@@ -13136,7 +13133,7 @@ var css = {
   "margin: 0;" +
   "color: #353340;" +
   "}",
-
+  
   componentBankListCloseButton: ".component-banklist-close-button " +
   "{" +
   "position: absolute;" +
@@ -13150,7 +13147,7 @@ var css = {
   "background-position-x: center;" +
   "background-size: 40%;" +
   "}",
-
+  
   componentBankListRotate: ".component-banklist-bank-rotate" +
   "{" +
   "position: absolute;" +
@@ -13164,7 +13161,7 @@ var css = {
   "right: 7%;" +
   "background-image: url('resources/icons/ViewTransfer/banks_rotate.png');" +
   "}",
-
+  
   componentBankListBankLogo: ".component-banklist-bank-logo" +
   "{" +
   "position: absolute;" +
@@ -13179,7 +13176,7 @@ var css = {
   "background-position-x: center;" +
   "background-position-y: center;" +
   "}",
-
+  
   componentBankListBankLogoFront: ".component-banklist-bank-logo-front" +
   "{" +
   "position: absolute;" +
@@ -13193,8 +13190,8 @@ var css = {
   "background-position-x: center;" +
   "background-position-y: center;" +
   "}",
-
-
+  
+  
   componentBankListBankLimitContainer: ".component-banklist-bank-limit-container" +
   "{" +
   "position: absolute;" +
@@ -13204,7 +13201,7 @@ var css = {
   "display: inline-block;" +
   "margin: 0;" +
   "}",
-
+  
   componentBankListBankLimitReceiptContainer: ".component-banklist-bank-limit-receipt-container" +
   "{" +
   "position: relative;" +
@@ -13213,7 +13210,7 @@ var css = {
   "left: 10%;" +
   "margin: 0;" +
   "}",
-
+  
   componentBankListBankLimitTransferContainer: ".component-banklist-bank-limit-transfer-container" +
   "{" +
   "position: relative;" +
@@ -13222,7 +13219,7 @@ var css = {
   "left: 10%;" +
   "margin: 0;" +
   "}",
-
+  
   componentBankListArrowDown: ".component-banklist-bank-arrow-down" +
   "{" +
   "position: absolute;" +
@@ -13234,7 +13231,7 @@ var css = {
   "left: 0%;" +
   "background-image: url('resources/icons/ViewTransfer/banks_limit_receipt.png');" +
   "}",
-
+  
   componentBankListArrowUp: ".component-banklist-bank-arrow-up" +
   "{" +
   "position: absolute;" +
@@ -13246,7 +13243,7 @@ var css = {
   "left: 0%;" +
   "background-image: url('resources/icons/ViewTransfer/banks_limit_transfer.png');" +
   "}",
-
+  
   componentBankListBankLimitReceipt: ".component-banklist-bank-limit-receipt " +
   "{" +
   "position: relative;" +
@@ -13258,7 +13255,7 @@ var css = {
   "float: left;" +
   "width: 92%;" +
   "}",
-
+  
   componentBankListBankLimitTransfer: ".component-banklist-bank-limit-transfer " +
   "{" +
   "position: relative;" +
@@ -13270,7 +13267,7 @@ var css = {
   "float: left;" +
   "width: 92%;" +
   "}",
-
+  
   componentBankListBankLimitCurrencyReceipt: ".component-banklist-bank-limit-currency-receipt" +
   "{" +
   "position: relative;" +
@@ -13284,7 +13281,7 @@ var css = {
   "overflow: hidden;" +
   "width: 90%;" +
   "}",
-
+  
   componentBankListBankLimitCurrencyTransfer: ".component-banklist-bank-limit-currency-transfer" +
   "{" +
   "position: relative;" +
@@ -13298,7 +13295,7 @@ var css = {
   "overflow: hidden;" +
   "width: 90%;" +
   "}",
-
+  
   componentBankListPublicOfferContainer: ".component-banklist-public-offer-container" +
   "{" +
   "position: relative;" +
@@ -13312,7 +13309,7 @@ var css = {
   "font-size:" + 18 * widthK + "px;" +
   "color: white;" +
   "}",
-
+  
   componentBankListPublicOfferLink: ".component-banklist-public-offer-link" +
   "{" +
   "position: absolute;" +
@@ -13320,7 +13317,7 @@ var css = {
   "float: left;" +
   "left: 10%;" +
   "}",
-
+  
   componentBankListPublicOfferArrow: ".component-banklist-public-offer-arrow" +
   "{" +
   "position: absolute;" +
@@ -13336,7 +13333,7 @@ var css = {
   "}",
 
 //  VIEW FAVORITES
-
+  
   viewFavoritesContainer: ".view-favorites-container" +
   "{" +
   "position: absolute;" +
@@ -13348,7 +13345,7 @@ var css = {
   "overflow-y: auto; " +
   "overflow-x: hidden; " +
   "}",
-
+  
   viewFavoritesBlockContainer: ".view-favorites-block-containter" +
   "{" +
   "position: relative;" +
@@ -13359,15 +13356,15 @@ var css = {
   "border-bottom: 1px solid gainsboro;" +
   "background-color: transparent;" +
   "}",
-
+  
   viewFavoritesBlockInnerContainer: ".view-favorites-block-inner-containter" +
   "{" +
   "position: absolute;" +
   "height:100%;" +
   "width: 100%;" +
   "}",
-
-
+  
+  
   viewFavoritesIcon: ".view-favorites-icon " +
   "{" +
   //"top:" + 50 * widthK + "px;" +
@@ -13379,7 +13376,7 @@ var css = {
   "background-position: center;" +
   "top: 6%;" +
   "}",
-
+  
   viewFavoritesInfoContainer: ".view-favorites-info-container " +
   "{" +
   "position: absolute;" +
@@ -13388,7 +13385,7 @@ var css = {
   "left: 21%;" +
   "color: #8b8b8b;" +
   "}",
-
+  
   viewFavoritesInfoName: ".view-favorites-info-name " +
   "{" +
   "position: absolute;" +
@@ -13402,7 +13399,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "}",
-
+  
   viewFavoritesInfoBalance: ".view-favorites-info-balance " +
   "{" +
   "position: relative;" +
@@ -13413,7 +13410,7 @@ var css = {
   "color: #595759;" +
   "float: left;" +
   "}",
-
+  
   viewFavoritesInfoCurrencyField: ".view-favorites-info-currency-field" +
   "{" +
   "position: relative;" +
@@ -13424,7 +13421,7 @@ var css = {
   "color: #595759;" +
   "float: left;" +
   "}",
-
+  
   viewFavoritesInfoNumber: ".view-favorites-info-number " +
   "{" +
   "position: absolute;" +
@@ -13438,7 +13435,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "}",
-
+  
   viewFavoritesDeleteIcon: ".view-favorites-delete-icon" +
   "{" +
   "position: absolute;" +
@@ -13450,7 +13447,7 @@ var css = {
   "background-position: center;" +
   "background-image: url(resources/icons/services/delete.png);" +
   "}",
-
+  
   viewFavoritesEditIcon: ".view-favorites-edit-icon" +
   "{" +
   "position: absolute;" +
@@ -13462,10 +13459,10 @@ var css = {
   "background-position: center;" +
   "background-image: url(resources/icons/services/edit_favorite.png);" +
   "}",
-
-
+  
+  
   //VIEW ADD CARD
-
+  
   viewAddCard: ".view-add-card " +
   "{" +
   "position: absolute;" +
@@ -13477,7 +13474,7 @@ var css = {
   "background-color: white;" +
   "background-repeat: no-repeat;" +
   "}",
-
+  
   viewAddNextButton: ".view-add-next-button " +
   "{" +
   "position: absolute;" +
@@ -13496,7 +13493,7 @@ var css = {
   "color: #ffffff;" +
   "text-transform: capitalize;" +
   "}",
-
+  
   addCardCardField: ".add-card-card-field " +
   "{" +
   "position: relative;" +
@@ -13515,7 +13512,7 @@ var css = {
   "background-position: center;" +
   "overflow: hidden;" +
   "}",
-
+  
   addCardCardInputFields: ".add-card-card-input-fields " +
   "{" +
   "position: absolute;" +
@@ -13528,13 +13525,13 @@ var css = {
   "overflow: hidden;" +
   "color: #757389;" +
   "}",
-
+  
   addCardCardInputFieldsReduce: ".add-card-card-input-fields-reduce" +
   "{" +
   "transform: scale(0.7);" +
   "-webkit-transform: scale(0.7);" +
   "}",
-
+  
   addCardCardDesign: ".add-card-card-design" +
   "{" +
   "position: absolute;" +
@@ -13547,13 +13544,13 @@ var css = {
   "height:" + 342 * heightK + "px;" +
   "border-radius:" + 10 * heightK + "px;" +
   "}",
-
+  
   addCardCardDesignAppear: ".add-card-card-design-appear" +
   "{" +
   "opacity: 1;" +
   "}",
-
-
+  
+  
   addCardUzcardIcon: ".add-card-uzcard-icon " +
   "{" +
   "display: none;" +
@@ -13566,7 +13563,7 @@ var css = {
   "background-size: 70%;" +
   "background-position: center;" +
   "}",
-
+  
   addCardMainCardField: ".add-card-main-card-field " +
   "{" +
   "position: absolute;" +
@@ -13578,7 +13575,7 @@ var css = {
   "border-bottom: 1px solid #e7e7e7;" +
   "font-size:" + 30 * widthK + "px;" +
   "}",
-
+  
   addCardMainCardText: ".add-card-main-card-text " +
   "{" +
   "position: absolute;" +
@@ -13586,7 +13583,7 @@ var css = {
   "top: 22%;" +
   "color: #3b3b3b;" +
   "}",
-
+  
   addCardMainCardIcon: ".add-card-main-card-icon " +
   "{" +
   "position: absolute;" +
@@ -13598,13 +13595,13 @@ var css = {
   "background-position: center;" +
   "background-image: url(resources/icons/ViewService/unchecked.png);" +
   "}",
-
+  
   addCardCardNumberText: ".add-card-card-number-text " +
   "{" +
   "left: 7%;" +
   "top: 13%;" +
   "}",
-
+  
   addCardTextField: ".add-card-text-field " +
   "{" +
   "position: absolute;" +
@@ -13615,7 +13612,7 @@ var css = {
   "top: 3%;" +
   "left: 8%;" +
   "}",
-
+  
   addCardCardNumber: ".add-card-card-number " +
   "{" +
   "position: absolute;" +
@@ -13629,7 +13626,7 @@ var css = {
   "left: 5%;" +
   "top: 27%;" +
   "}",
-
+  
   addCardCardNumberBox: ".add-card-card-number-box " +
   "{" +
   "position: absolute;" +
@@ -13645,12 +13642,12 @@ var css = {
   //"letter-spacing:1px;" +
   "word-spacing:" + 4 * widthK + "px;" +
   "}",
-
+  
   addCardCardNumberBoxOne: ".add-card-card-number-box-one " +
   "{" +
   "left:" + 21 * widthK + "px;" +
   "}",
-
+  
   addCardCardText: ".add-card-card-text " +
   "{" +
   "position: absolute;" +
@@ -13658,21 +13655,21 @@ var css = {
   "background-size: contain;" +
   "font-size:" + 28 * widthK + "px;" +
   "}",
-
+  
   addCardCardTextDate: ".add-card-card-text-date " +
   "{" +
   "left: 7%;" +
   "width: 200%;" +
   "top: 53%;" +
   "}",
-
+  
   addCardCardTextPin: ".add-card-card-text-pin " +
   "{" +
   "bottom: 36%;" +
   "left: 46%;" +
   "width: 200%;" +
   "}",
-
+  
   addCardCardDate: ".add-card-card-date " +
   "{" +
   "position: absolute;" +
@@ -13686,8 +13683,8 @@ var css = {
   "left: 5%;" +
   "top: 66%;" +
   "}",
-
-
+  
+  
   addCardBankIcon: ".add-card-bankIcon" +
   "{" +
   "position: absolute;" +
@@ -13702,7 +13699,7 @@ var css = {
   // "display: none;" +
   // "visibility: hidden;" +
   "}",
-
+  
   addCardCardDateBox: ".add-card-card-date-box " +
   "{" +
   "position: absolute;" +
@@ -13717,7 +13714,7 @@ var css = {
   "font-size:" + 37 * widthK + "px;" +
   "font-family: 'OCRAStd';" +
   "}",
-
+  
   addCardCardPin: ".add-card-card-pin " +
   "{" +
   "position: absolute;" +
@@ -13730,7 +13727,7 @@ var css = {
   "left: 46%;" +
   "bottom: 14%;" +
   "}",
-
+  
   addCardCardDatePinBox: ".add-card-card-date-pin-box " +
   "{" +
   "position: absolute;" +
@@ -13745,7 +13742,7 @@ var css = {
   "font-size:" + 32 * widthK + "px;" +
   "letter-spacing:" + 12 * widthK + "px;" +
   "}",
-
+  
   addCardPageTitle: ".add-card-page-title " +
   "{" +
   "position: absolute;" +
@@ -13756,7 +13753,7 @@ var css = {
   "background: transparent;" +
   //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
   "}",
-
+  
   addCardNameTitle: ".add-card-name-title " +
   "{" +
   "position: absolute;" +
@@ -13767,7 +13764,7 @@ var css = {
   "margin: 0;  " +
   "color: #fffaf9;" +
   "}",
-
+  
   addCardBackButton: ".add-card-back-button " +
   "{" +
   "position: absolute;" +
@@ -13781,7 +13778,7 @@ var css = {
   "background-size: 17%;" +
   "right: 87%;" +
   "}",
-
+  
   addCardCardNameInputPartContainer: ".add-card-card-name-input-part-container" +
   "{" +
   "position: absolute;" +
@@ -13796,7 +13793,7 @@ var css = {
   "border:" + 3 * heightK + "px solid #e7e7e7;" +
   "color: #515151;" +
   "}",
-
+  
   addCardCardNameInputPart: ".add-card-card-name-input-part" +
   "{" +
   "border: none;" +
@@ -13809,7 +13806,7 @@ var css = {
   "font-size:" + 39 * widthK + "px;" +
   "font-family: 'SFUIDisplay-Light';" +
   "}",
-
+  
   //VIEW INVOICE HISTORY DETAIL
   viewInvoiceHistory: ".view-invoice-history" +
   "{" +
@@ -13818,7 +13815,7 @@ var css = {
   "width:100%;" +
   "z-index:999999;" +
   "}",
-
+  
   invoiceHistoryDetailTitleContainer: ".invoice-history-detail-title-container" +
   "{" +
   "position: absolute;" +
@@ -13826,7 +13823,7 @@ var css = {
   "width:100%;" +
   "background-color: white;" +
   "}",
-
+  
   invoiceHistoryDetailTitle: ".invoice-history-detail-title" +
   "{" +
   "position: absolute;" +
@@ -13837,7 +13834,7 @@ var css = {
   "background: transparent;" +
   "border: none;" +
   "}",
-
+  
   invoiceHistoryDetailIcon: ".invoice-history-detail-icon" +
   "{" +
   "position: absolute;" +
@@ -13849,7 +13846,7 @@ var css = {
   "background-size: 100%;" +
   "background-position: center;" +
   "}",
-
+  
   invoiceHistoryDetailGeneralBackButton: ".invoice-history-detail-general-back-button " +
   "{" +
   "position: absolute;" +
@@ -13864,17 +13861,17 @@ var css = {
   "left: -3%;" +
   "top: 0;" +
   "}",
-
+  
   invoiceHistoryDetailPaymentIcon: ".invoice-history-detail-payment-icon" +
   "{" +
   "background-image: url(resources/icons/bank-operations/payment.png);" +
   "}",
-
+  
   invoiceHistoryDetailTransferIcon: ".invoice-history-detail-transfer-icon" +
   "{" +
   "background-image: url(resources/icons/bank-operations/transfers.png);" +
   "}",
-
+  
   invoiceHistoryDetailTitlePartOne: ".invoice-history-detail-title-part-one" +
   "{" +
   "position: relative;" +
@@ -13888,7 +13885,7 @@ var css = {
   "overflow: hidden;" +
   "font-size:" + 40 * widthK + "px;" +
   "}",
-
+  
   invoiceHistoryDetailTitlePhoneNumber: ".invoice-history-detail-title-phone-number" +
   "{" +
   "position: relative;" +
@@ -13902,7 +13899,7 @@ var css = {
   "overflow: hidden;" +
   "font-size:" + 24 * widthK + "px;" +
   "}",
-
+  
   invoiceHistoryDetailContainer: ".invoice-history-detail-container" +
   "{" +
   "position: absolute;" +
@@ -13913,7 +13910,7 @@ var css = {
   "overflow-y: hidden; " +
   "overflow-x: hidden; " +
   "}",
-
+  
   invoiceHistoryDetailInvoiceContainer: ".invoice-history-detail-invoice-container" +
   "{" +
   "position: relative;" +
@@ -13923,7 +13920,7 @@ var css = {
   "margin-right: auto;" +
   "border-bottom: 1px solid #e8e8e8;" +
   "}",
-
+  
   invoiceHistoryDetailInvoiceTitle: ".invoice-history-detail-invoice-title" +
   "{" +
   "position: absolute;" +
@@ -13934,7 +13931,7 @@ var css = {
   "margin: 0;" +
   "text-align: center;" +
   "}",
-
+  
   invoiceHistoryDetailStatus: ".invoice-history-detail-status " +
   "{" +
   "position: absolute;" +
@@ -13946,22 +13943,22 @@ var css = {
   "text-align: center;" +
   "color: #f3ba31;" +
   "}",
-
+  
   invoiceHistoryDetailStatusWait: ".invoice-history-detail-status-wait" +
   "{" +
   "color: #f3ba31;" +
   "}",
-
+  
   invoiceHistoryDetailStatusSuccess: ".invoice-history-detail-status-success" +
   "{" +
   "color: #6ABD38;" +
   "}",
-
+  
   invoiceHistoryDetailStatusDeleted: ".invoice-history-detail-status-deleted" +
   "{" +
   "color: #ff6d65;" +
   "}",
-
+  
   invoiceHistoryDetailCover: ".invoice-history-detail-cover" +
   "{" +
   "position: absolute;" +
@@ -13970,7 +13967,7 @@ var css = {
   "background-color: #f4f4f4;" +
   "top: 90%;" +
   "}",
-
+  
   invoiceHistoryDetailData: ".invoice-history-detail-data" +
   "{" +
   "position: absolute;" +
@@ -13982,7 +13979,7 @@ var css = {
   "text-align: center;" +
   "color: grey;" +
   "}",
-
+  
   invoiceHistoryDetailSum: ".invoice-history-detail-sum " +
   "{" +
   "position: absolute;" +
@@ -13994,7 +13991,7 @@ var css = {
   "text-align: center;" +
   "color: #9ec94a;" +
   "}",
-
+  
   invoiceHistoryDetailNumber: ".invoice-history-detail-number " +
   "{" +
   "position: absolute;" +
@@ -14006,9 +14003,9 @@ var css = {
   "text-align: center;" +
   "color: grey;" +
   "}",
-
+  
   //VIEW CONTACT
-
+  
   viewContact: ".view-contact " +
   "{" +
   "position: absolute;" +
@@ -14020,7 +14017,7 @@ var css = {
   "background-color: white;" +
   "background-repeat: no-repeat;" +
   "}",
-
+  
   viewContactPageTitle: ".view-contact-page-title " +
   "{" +
   "position: absolute;" +
@@ -14031,7 +14028,7 @@ var css = {
   "background: transparent;" +
   //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
   "}",
-
+  
   viewContactNameTitle: ".view-contact-name-title " +
   "{" +
   "position: absolute;" +
@@ -14042,7 +14039,7 @@ var css = {
   "margin: 0;  " +
   "color: #fffaf9;" +
   "}",
-
+  
   viewContactBackButton: ".view-contact-back-button " +
   "{" +
   "position: absolute;" +
@@ -14056,14 +14053,14 @@ var css = {
   "background-size: 17%;" +
   "right: 87%;" +
   "}",
-
+  
   viewContactInfoTitle: ".view-contact-info-title " +
   "{" +
   "position: relative;" +
   "width: 100%;" +
   "height:" + 150 * widthK + "px;" +
   "}",
-
+  
   viewContactInfoIcon: ".view-contact-info-icon " +
   "{" +
   "position: relative;" +
@@ -14081,7 +14078,7 @@ var css = {
   "line-height:" + 100 * widthK + "px;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
-
+  
   viewContactInfoText: ".view-contact-info-text " +
   "{" +
   "position: relative;" +
@@ -14096,7 +14093,7 @@ var css = {
   "overflow: hidden;" +
   "white-space: nowrap;" +
   "}",
-
+  
   viewContactPayTransferContainer: ".view-contact-pay-transfer-container " +
   "{" +
   "position: relative;" +
@@ -14106,7 +14103,7 @@ var css = {
   "margin-right: auto;" +
   "height:" + 105 * widthK + "px;" +
   "}",
-
+  
   viewContactPayDeleteContainer: ".view-contact-pay-delete-container " +
   "{" +
   "position: relative;" +
@@ -14116,7 +14113,7 @@ var css = {
   "margin-right: auto;" +
   "height:" + 105 * widthK + "px;" +
   "}",
-
+  
   viewContactDeleteIcon: ".view-contact-delete-icon " +
   "{" +
   "position: absolute;" +
@@ -14129,7 +14126,7 @@ var css = {
   "background-position: left;" +
   "background-size: 70%;" +
   "}",
-
+  
   viewContactPayIcon: ".view-contact-pay-icon " +
   "{" +
   "position: absolute;" +
@@ -14142,7 +14139,7 @@ var css = {
   "background-position: left;" +
   "background-size: 63%;" +
   "}",
-
+  
   viewContactTransferIcon: ".view-contact-transfer-icon " +
   "{" +
   "position: absolute;" +
@@ -14154,7 +14151,7 @@ var css = {
   "background-position: left;" +
   "background-size: 90%;" +
   "}",
-
+  
   viewContactOpenIcon: ".view-contact-open-icon " +
   "{" +
   "position: absolute;" +
@@ -14167,7 +14164,7 @@ var css = {
   "background-position: center;" +
   "background-size: 9%;" +
   "}",
-
+  
   viewContactPayTitle: ".view-contact-pay-title " +
   "{" +
   "position: absolute;" +
@@ -14178,7 +14175,7 @@ var css = {
   "font-size:" + 29 * widthK + "px;" +
   "color: #8b8b8b;" +
   "}",
-
+  
   viewContactTransferTitle: ".view-contact-transfer-title " +
   "{" +
   "position: absolute;" +
@@ -14189,10 +14186,10 @@ var css = {
   "font-size:" + 29 * widthK + "px;" +
   "color: #8b8b8b;" +
   "}",
-
-
+  
+  
   //CONTACT SELECT
-
+  
   viewContactSelectContainer: ".view-contact-select-container " +
   "{" +
   "position: absolute;" +
@@ -14202,7 +14199,7 @@ var css = {
   "display: none;" +
   "background-color: white;" +
   "}",
-
+  
   viewContactSelectInfoTitle: ".view-contact-select-info-title " +
   "{" +
   "position: relative;" +
@@ -14210,7 +14207,7 @@ var css = {
   "width: 100%;" +
   "height:" + 150 * widthK + "px;" +
   "}",
-
+  
   viewContactSelectChooseTitle: ".view-contact-select-choose-title " +
   "{" +
   "position: absolute;" +
@@ -14220,7 +14217,7 @@ var css = {
   //"font-size:" + 29 * widthK + "px;" +
   //"color: #8b8b8b;" +
   "}",
-
+  
   viewContactSelectPhoneNumberContainer: ".view-contact-select-phone-number-container " +
   "{" +
   "position: relative;" +
@@ -14232,7 +14229,7 @@ var css = {
   "margin-right: auto;" +
   "margin-top: 1%;" +
   "}",
-
+  
   viewContactSelectPhoneNumber: ".view-contact-select-phone-number" +
   "{" +
   "position: relative;" +
@@ -14246,7 +14243,7 @@ var css = {
   "white-space: nowrap;" +
   "text-overflow: ellipsis;" +
   "}",
-
+  
   viewContactSelectPhoneContainer: ".view-contact-select-phone-container " +
   "{" +
   "position: absolute;" +
@@ -14257,7 +14254,7 @@ var css = {
   //"display: none;" +
   "background-color: #efeff1;" +
   "}",
-
+  
   viewContactSelectXButton: ".view-contact-select-x-button " +
   "{" +
   "position: absolute;" +
@@ -14272,7 +14269,7 @@ var css = {
   "background-size: 22%;" +
   "top: 0;" +
   "}",
-
+  
   //VIEW QR
   viewQrBlueContainer: ".view-qr-blue-container" +
   "{" +
@@ -14282,7 +14279,7 @@ var css = {
   "height:" + 410 * widthK + "px;" +
   "background-color: white;" +
   "}",
-
+  
   viewQrContainer: ".view-qr-container" +
   "{" +
   "position: absolute;" +
@@ -14294,7 +14291,7 @@ var css = {
   "overflow: hidden; " +
   "top:" + 410 * widthK + "px;" +
   "}",
-
+  
   viewQrPageTitle: ".view-qr-page-title " +
   "{" +
   "position: absolute;" +
@@ -14305,7 +14302,7 @@ var css = {
   "background: transparent;" +
   //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
   "}",
-
+  
   viewQrNameTitle: ".view-qr-name-title " +
   "{" +
   "position: absolute;" +
@@ -14316,7 +14313,7 @@ var css = {
   "margin: 0;  " +
   "color: ##565d6a;" +
   "}",
-
+  
   viewQrCompanyName: ".view-qr-company-name " +
   "{" +
   "position: relative;" +
@@ -14330,7 +14327,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "}",
-
+  
   viewQrAddressName: ".view-qr-address-name " +
   "{" +
   "position: relative;" +
@@ -14342,11 +14339,11 @@ var css = {
   "margin-top:" + 8 * widthK + "px; " +
   "color: #a9abaf;" +
   "text-overflow: ellipsis;" +
-
+  
   //"white-space: nowrap;" +
   "overflow: hidden;" +
   "}",
-
+  
   viewQrCompanyIcon: ".view-qr-company-icon" +
   "{" +
   "position: absolute;" +
@@ -14358,7 +14355,7 @@ var css = {
   "background-size: cover;" +
   "background-position: center;" +
   "}",
-
+  
   viewQrContactPhoneFieldContainer: ".view-qr-contact-phone-field-container" +
   "{" +
   "position: absolute;" +
@@ -14366,7 +14363,7 @@ var css = {
   "height: 100%;" +
   "background-color: #fafafa;" +
   "}",
-
+  
   viewQrContactPhoneField: ".view-qr-contact-phone-field" +
   "{" +
   "position: absolute;" +
@@ -14377,7 +14374,7 @@ var css = {
   "color: white;" +
   "top:" + 43 * widthK + "px;" +
   "}",
-
+  
   viewQrContactTextField: ".view-qr-contact-text-field" +
   "{" +
   "position: absolute;" +
@@ -14385,7 +14382,7 @@ var css = {
   "color: #565d6a;" +
   "font-size:" + 32 * widthK + "px;" +
   "}",
-
+  
   viewQrContactNumberInputPart: ".view-qr-contact-number-input-part" +
   "{" +
   "border: none;" +
@@ -14399,7 +14396,7 @@ var css = {
   "color: #565d6a;" +
   "background: transparent;" +
   "}",
-
+  
   viewQrContactNumberInputCommission: ".view-qr-contact-number-input-commission" +
   "{" +
   "position: absolute;" +
@@ -14408,7 +14405,7 @@ var css = {
   "font-size:" + 24 * widthK + "px;" +
   "bottom: -30%;" +
   "}",
-
+  
   viewQrButtonsContainer: ".view-qr-buttons-container" +
   "{" +
   "position: absolute;" +
@@ -14420,7 +14417,7 @@ var css = {
   "background-size: 100%;" +
   "padding-top:" + 60 * widthK + "px;" +
   "}",
-
+  
   viewQrButtonAccept: ".view-qr-button-accept" +
   "{" +
   "position: absolute;" +
@@ -14438,7 +14435,7 @@ var css = {
   "border-radius: " + 10 * widthK + "px;" +
   "color: #ffffff;" +
   "}",
-
+  
   viewQrButtonCancel: ".view-qr-button-cancel" +
   "{" +
   "position: relative;" +
@@ -14456,9 +14453,9 @@ var css = {
   "font-size:" + 29 * widthK + "px;" +
   "width: 33%;" +
   "}",
-
+  
   //VIEW QR INFO
-
+  
   viewQrInfoMenuContainer: ".view-qr-info-menu-container" +
   "{" +
   "position: absolute;" +
@@ -14473,7 +14470,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
   "}",
-
+  
   viewQrInfoMenuTitleContainer: ".view-qr-info-menu-title-container" +
   "{" +
   "position: absolute;" +
@@ -14483,7 +14480,7 @@ var css = {
   "border-bottom:" + 2 * widthK + "px dashed #e8e8e8;" +
   // "top:" + 56 * widthK + "px;" +
   "}",
-
+  
   viewQrInfoMenuBodyContainer: ".view-qr-info-menu-body-container" +
   "{" +
   "position: absolute;" +
@@ -14495,17 +14492,17 @@ var css = {
   "overflow-x: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
   "}",
-
+  
   viewQrInfoMenuBodyContainerScroll: ".view-qr-info-menu-body-container::-webkit-scrollbar" +
   "{" +
   "width:" + 2 * widthK + "px; " +
   "}",
-
+  
   viewQrInfoMenuBodyContainerScrollThumb: ".view-qr-info-menu-body-container::-webkit-scrollbar-thumb" +
   "{" +
   "background-color: rgba(0, 168, 241, 1); " +
   "}",
-
+  
   viewQrInfoMenuSumContainer: ".view-qr-info-menu-sum-container" +
   "{" +
   "position: absolute;" +
@@ -14515,7 +14512,7 @@ var css = {
   "border-top:" + 2 * widthK + "px solid #e8e8e8;" +
   "top:" + 430 * heightK + "px;" +
   "}",
-
+  
   viewQrInfoMenuTitle: ".view-qr-info-menu-title" +
   "{" +
   // "border:" + 1 * widthK + "px solid #e8e8e8;" +
@@ -14530,18 +14527,18 @@ var css = {
   "overflow: hidden;" +
   "float: left;" +
   "}",
-
+  
   viewQrInfoMenuTitleCount: ".view-qr-info-menu-title-count" +
   "{" +
   "width:" + 100 * widthK + "px; " +
   "}",
-
+  
   viewQrInfoMenuTitleAmount: ".view-qr-info-menu-title-amount" +
   "{" +
   "width:" + 176 * widthK + "px; " +
   "text-align: right;" +
   "}",
-
+  
   viewQrInfoMenuBodyLineContainer: ".view-qr-info-menu-body-line-container" +
   "{" +
   "position: relative;" +
@@ -14549,7 +14546,7 @@ var css = {
   "min-height:" + 50 * widthK + "px;" +
   "float: left;" +
   "}",
-
+  
   viewQrInfoMenuBodyLineName: ".view-qr-info-menu-body-line-name" +
   "{" +
   "position: relative;" +
@@ -14564,20 +14561,20 @@ var css = {
   "overflow: hidden;" +
   "float: left;" +
   "}",
-
+  
   viewQrInfoMenuBodyLineCount: ".view-qr-info-menu-body-line-count" +
   "{" +
   "width:" + 100 * widthK + "px; " +
   "text-align: center;" +
   "}",
-
+  
   viewQrInfoMenuBodyLineAmount: ".view-qr-info-menu-body-line-amount" +
   "{" +
   "width:" + 176 * widthK + "px; " +
   "text-align: right;" +
   "color: #00a8f1;" +
   "}",
-
+  
   viewQrInfoTotalAmountTitle: ".view-qr-info-total-amount-title" +
   "{" +
   // "border:" + 1 * widthK + "px solid #e8e8e8;" +
@@ -14591,7 +14588,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "}",
-
+  
   viewQrInfoTotalAmount: ".view-qr-info-total-amount" +
   "{" +
   // "border:" + 1 * widthK + "px solid #e8e8e8;" +
@@ -14605,9 +14602,9 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "}",
-
+  
   //VIEW QR ONLY
-
+  
   viewQrOnlyContainer: ".view-qr-only-container" +
   "{" +
   "position: absolute;" +
@@ -14622,7 +14619,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
   "}",
-
+  
   viewQrOnlyScanContainer: ".view-qr-only-scan-container" +
   "{ " +
   "position: absolute;" +
@@ -14631,7 +14628,7 @@ var css = {
   "top: 35%;" +
   "left: 20%;" +
   "}",
-
+  
   viewQrOnlyScanButton: ".view-qr-only-scan-button" +
   "{ " +
   "position: absolute;" +
@@ -14645,7 +14642,7 @@ var css = {
   "z-index: 9999999;" +
   "border-radius: " + 100 * widthK + "px;" +
   "}",
-
+  
   viewQrOnlyScanLabel: ".view-qr-only-scan-label" +
   "{" +
   "position: absolute;" +
@@ -14656,7 +14653,7 @@ var css = {
   "font-size:" + 26 * widthK + "px;" +
   "text-align: center;" +
   "}",
-
+  
   viewQrOnlyScanInstructionLabel: ".view-qr-only-scan-instruction-label" +
   "{" +
   "position: absolute;" +
@@ -14669,10 +14666,10 @@ var css = {
   "color: #00a8f1;" +
   "font-size:" + 30 * widthK + "px;" +
   "}",
-
-
+  
+  
   //VIEW TRANSFER ON CARD
-
+  
   viewTransferOnCard: ".view-transfer-on-card" +
   "{" +
   "position: absolute;" +
@@ -14680,7 +14677,7 @@ var css = {
   "width:100%;" +
   "z-index:999999;" +
   "}",
-
+  
   viewTransferOnCardBackButton: ".view-transfer-on-card-back-button " +
   "{" +
   "position: absolute;" +
@@ -14694,8 +14691,8 @@ var css = {
   "background-size: 21%;" +
   "right: 87%;" +
   "}",
-
-
+  
+  
   viewTransferOnCardTitleContainer: ".view-transfer-on-card-title-container" +
   "{" +
   "position: absolute;" +
@@ -14704,7 +14701,7 @@ var css = {
   "width: 100%;" +
   "background-color: white;" +
   "}",
-
+  
   viewTransferOnCardTitleTextPartOne: ".view-transfer-on-card-title-text-part-one" +
   "{" +
   "color: #565d6a;" +
@@ -14713,7 +14710,7 @@ var css = {
   "font-size:" + 34 * widthK + "px;" +
   "word-spacing:" + 3 * widthK + "px;" +
   "}",
-
+  
   viewTransferOnCardTitleTextPartTwoSum: ".view-transfer-on-card-title-text-part-two-sum" +
   "{" +
   "color: #565d6a;" +
@@ -14722,7 +14719,7 @@ var css = {
   "font-size: " + 40 * widthK + "px;" +
   "word-spacing: " + 4.6 * widthK + "px;" +
   "}",
-
+  
   viewTransferOnCardTitleTextPartThree: ".view-transfer-on-card-title-text-part-three" +
   "{" +
   "color: #565d6a;" +
@@ -14731,7 +14728,7 @@ var css = {
   "font-size:" + 34 * widthK + "px;" +
   "word-spacing:" + 3 * widthK + "px;" +
   "}",
-
+  
   viewTransferOnCardContentContainer: ".view-transfer-on-card-content-container" +
   "{" +
   "position: absolute;" +
@@ -14740,12 +14737,12 @@ var css = {
   "bottom: 0;" +
   "background: white;" +
   "}",
-
+  
   transferOnCardPincardAllCardsContainer: ".transfer-on-card-pincard-all-cards-container" +
   "{" +
   "height:80%;" +
   "}",
-
+  
   transferOnCardOkButton: ".transfer-on-card-ok-button" +
   "{" +
   "height: " + 87 * widthK + "px;" +
@@ -14775,7 +14772,7 @@ var css = {
   "background-image: url(resources/icons/transparent.png);" +
   "z-index: 999999999;" +
   "}",
-
+  
   componentAlertMessage: ".component-alert-message" +
   "{" +
   "position: relative;" +
@@ -14792,7 +14789,7 @@ var css = {
   "height:" + 435 * widthK + "px;" +
   "overflow-y: auto;" +
   "}",
-
+  
   componentAlertMessageSettings: ".component-alert-message-settings" +
   "{" +
   "position: relative;" +
@@ -14807,7 +14804,7 @@ var css = {
   // "left:" + -10 * widthK + "px;" +
   "font-size:" + 36 * widthK + "px;" +
   "}",
-
+  
   componentAlertClickPinErrorContainer: ".component-alert-clickpin-error-container" +
   "{" +
   "position: relative;" +
@@ -14821,16 +14818,16 @@ var css = {
   "top:" + 601 * widthK + "px;" +
   "left:" + -10 * widthK + "px;" +
   "}",
-
+  
   componentAlertClickPinErrorMsgOne: ".component-alert-clickpin-message-one" +
   "{" +
-
+  
   //"color: #1d1d1f;" +
   "width:100%;" +
   "top:0;" +
   "left:0;" +
   "}",
-
+  
   componentAlertClickPinErrorMsgTwo: ".component-alert-clickpin-message-two" +
   "{" +
   "color: #FFAE0A;" +
@@ -14839,7 +14836,7 @@ var css = {
   "left:0;" +
   "font-weight: bold;" +
   "}",
-
+  
   componentAlertClickPinErrorMsgThree: ".component-alert-clickpin-message-three" +
   "{" +
   //"color: yellow;" +
@@ -14847,7 +14844,7 @@ var css = {
   "top:0;" +
   "left:0;" +
   "}",
-
+  
   componentAlertButtonInnerContainer: ".component-alert-button-inner-container" +
   "{" +
   "border: none;" +
@@ -14863,7 +14860,7 @@ var css = {
   "font-size: " + 38 * widthK + "px;" +
   "color: #ffffff;" +
   "}",
-
+  
   componentAlertButtonLabel: ".component-alert-button-label" +
   "{" +
   "position: relative;" +
@@ -14874,7 +14871,7 @@ var css = {
   "display: table-cell;" +
   "vertical-align: middle;" +
   "}",
-
+  
   componentAlertIcon: ".component-alert-icon" +
   "{" +
   "position: relative;" +
@@ -14889,7 +14886,7 @@ var css = {
   "background-size: 85%;" +
   "background-position-x: center;" +
   "}",
-
+  
   componentConfirmButtonOkContainer: ".component-confirm-button-ok-container" +
   "{" +
   "border: none;" +
@@ -14905,7 +14902,7 @@ var css = {
   "font-size: " + 38 * widthK + "px;" +
   "color: #ffffff;" +
   "}",
-
+  
   componentConfirmButtonCancelContainer: ".component-confirm-button-cancel-container" +
   "{" +
   "border: none;" +
@@ -14921,10 +14918,10 @@ var css = {
   "font-size: " + 38 * widthK + "px;" +
   "color: #ffffff;" +
   "}",
-
-
+  
+  
   //COMPONENT RESULT
-
+  
   //  Component Alert
   componentResult: ".component-result " +
   "{" +
@@ -14937,7 +14934,7 @@ var css = {
   "background-image: url(resources/icons/transparent.png);" +
   "z-index: 9999999;" +
   "}",
-
+  
   componentResultMessage: ".component-result-message" +
   "{" +
   "position: relative;" +
@@ -14950,9 +14947,9 @@ var css = {
   "opacity: 0;" +
   "height: " + 240 * heightK + "px;" +
   "overflow-y: auto;" +
-
+  
   "}",
-
+  
   componentResultMessageStart: ".component-result-message-start " +
   "{" +
   "-webkit-transition: 0.7s;" +
@@ -14962,7 +14959,7 @@ var css = {
   "top:" + 214 * widthK + "px" + "!important;" +
   "opacity: 1 !important;" +
   "}",
-
+  
   componentResultMessageStop: ".component-result-message-stop " +
   "{" +
   "-webkit-transition: 0.7s;" +
@@ -14970,7 +14967,7 @@ var css = {
   "top:" + 226 * widthK + "px" + "!important;" +
   "opacity: 0 !important;" +
   "}",
-
+  
   componentResultWait: ".component-result-wait " +
   "{" +
   "position: relative;" +
@@ -14984,7 +14981,7 @@ var css = {
   "animation-name: componentResultWaitStartAnimation;" +
   "animation-duration: 0.7s;" +
   "}",
-
+  
   componentResultWaitStop: ".component-result-wait-stop " +
   "{" +
   "-webkit-transition: 0.7s;" +
@@ -14992,7 +14989,7 @@ var css = {
   "top:" + 262 * widthK + "px" + "!important;" +
   "opacity: 0 !important;" +
   "}",
-
+  
   componentResultWaitStart: ".component-result-wait-start " +
   "{" +
   "-webkit-transition: 0.7s;" +
@@ -15002,7 +14999,7 @@ var css = {
   "top:" + 250 * widthK + "px" + "!important;" +
   "opacity: 1 !important;" +
   "}",
-
+  
   componentResultWaitStartWebKitAnimation: "@-webkit-keyframes componentResultWaitStartWebKitAnimation " +
   "{" +
   "from {" +
@@ -15014,7 +15011,7 @@ var css = {
   "top:" + 250 * widthK + "px;" +
   "}" +
   "}",
-
+  
   componentResultWaitStartAnimation: "@keyframes componentResultWaitStartAnimation " +
   "{" +
   "from {" +
@@ -15026,7 +15023,7 @@ var css = {
   "top:" + 250 * widthK + "px;" +
   "}" +
   "}",
-
+  
   componentResultButtonInnerContainer: ".component-result-button-inner-container" +
   "{" +
   "border: none;" +
@@ -15043,22 +15040,22 @@ var css = {
   "color: #ffffff;" +
   "opacity: 0;" +
   "}",
-
+  
   componentResultButtonSuccess: ".component-result-button-success" +
   "{" +
   "background-color: #8FD032 !important;" +
   "}",
-
+  
   componentResultButtonUnsuccess: ".component-result-button-unsuccess" +
   "{" +
   "background-color: #EB2A48 !important;" +
   "}",
-
+  
   componentResultButtonWaiting: ".component-result-button-waiting" +
   "{" +
   "background-color: #F8AE22 !important;" +
   "}",
-
+  
   componentResultButtonStart: ".component-result-button-start" +
   "{" +
   "-webkit-transition: 0.7s;" +
@@ -15067,14 +15064,14 @@ var css = {
   "transition-delay: 1s;" +
   "opacity: 1 !important;" +
   "}",
-
+  
   componentResultButtonStop: ".component-result-button-stop" +
   "{" +
   "-webkit-transition: 0.7s;" +
   "transition: 0.7s;" +
   "opacity: 0 !important;" +
   "}",
-
+  
   componentResultButtonLabel: ".component-result-button-label" +
   "{" +
   "position: relative;" +
@@ -15085,7 +15082,7 @@ var css = {
   "display: table-cell;" +
   "vertical-align: middle;" +
   "}",
-
+  
   componentResultIcon: ".component-result-icon" +
   "{" +
   "position: relative;" +
@@ -15099,8 +15096,8 @@ var css = {
   "background-size: 115%;" +
   "background-position-x: center;" +
   "}",
-
-
+  
+  
   //VIEW TRUSTED DEVICES
   trustedDevicesTitle: ".trusted-devices-title " +
   "{" +
@@ -15113,7 +15110,7 @@ var css = {
   "color: #fffaf9;" +
   "text-transform: uppercase;" +
   "}",
-
+  
   trustedDevicesPageTitle: ".trusted-devices-page-title" +
   "{" +
   "position: absolute;" +
@@ -15124,7 +15121,7 @@ var css = {
   "background: transparent;" +
   //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
   "}",
-
+  
   trustedDevicesBackButton: ".trusted-devices-back-button " +
   "{" +
   "position: absolute;" +
@@ -15138,7 +15135,7 @@ var css = {
   "background-size: 17%;" +
   "right: 87%;" +
   "}",
-
+  
   trustedDevicesContentContainer: ".trusted-devices-content-container" +
   "{" +
   "position: absolute;" +
@@ -15151,14 +15148,14 @@ var css = {
   "overflow-x: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
   "}",
-
+  
   trustedDevicesDeviceInfoContainer: ".trusted-devices-device-info-container" +
   "{" +
   "width: " + 661 * widthK + "px;" +
   "height: " + 123 * widthK + "px;" +
   "border-bottom: 1px solid #e8e8e8;" +
   "}",
-
+  
   trustedDevicesDeviceInfoIconContainer: ".trusted-devices-device-info-icon-container" +
   "{" +
   "background-image: url(resources/icons/ViewTrustedDevices/devices_android.png);" +
@@ -15169,30 +15166,30 @@ var css = {
   "width: " + 57 * widthK + "px;" +
   "float: left;" +
   "}",
-
+  
   trustedDevicesIosDeviceIcon: ".trusted-devices-ios-device-icon" +
   "{" +
   "background-image: url('resources/icons/ViewTrustedDevices/devices_ios.png');" +
   "background-size: " + 47 * widthK + "px;" +
   "}",
-
+  
   trustedDevicesIosDeviceAndroid: ".trusted-devices-android-device-icon" +
   "{" +
   "background-image: url('resources/icons/ViewTrustedDevices/devices_android.png');" +
   "background-size: " + 35 * widthK + "px;" +
   "}",
-
+  
   trustedDevicesIosDeviceWeb: ".trusted-devices-web-device-icon" +
   "{" +
   "background-image: url('resources/icons/ViewTrustedDevices/devices_web.png');" +
   "background-size: " + 55 * widthK + "px;" +
   "}",
-
+  
   trustedDevicesInfoContainer: ".trusted-devices-info-container" +
   "{" +
   "padding: " + 32 * widthK + "px " + 11 * widthK + "px " + 32 * widthK + "px " + 81 * widthK + "px;" +
   "}",
-
+  
   trustedDevicesDeviceInfoName: ".trusted-devices-device-info-name" +
   "{" +
   "margin: 0;" +
@@ -15205,7 +15202,7 @@ var css = {
   "line-height: " + 31 * widthK + "px;" +
   "color: #8a8a8a;" +
   "}",
-
+  
   trustedDevicesDeviceInfoDate: ".trusted-devices-device-info-date" +
   "{" +
   "float: left;" +
@@ -15218,7 +15215,7 @@ var css = {
   "line-height: " + 31 * widthK + "px;" +
   "color: #c8c8c8;" +
   "}",
-
+  
   trustedDevicesDeviceDeleteIcon: ".trusted-devices-device-delete-icon" +
   "{" +
   //"margin: " + 20 * widthK + "px 0 0 " + 21 * widthK + "px;" +
@@ -15232,9 +15229,9 @@ var css = {
   "background-position: center;" +
   "background-image: url(resources/icons/ViewSettingsFriendHelp/delete.png);" +
   "}",
-
+  
   //VIEW QR PIN CARD
-
+  
   qrPincardBodyContainer: ".qr-pincard-body-container" +
   "{" +
   "position: absolute;" +
@@ -15244,7 +15241,7 @@ var css = {
   "background-color: white;" +
   "overflow: hidden;" +
   "}",
-
+  
   qrPincardPayfromContainer: ".qr-pincard-payfrom-container" +
   "{" +
   "position: relative;" +
@@ -15253,7 +15250,7 @@ var css = {
   "height: 7.5%;" +
   // "border-bottom: 1px solid lightgray;" +
   "}",
-
+  
   qrPincardPayfromField: ".qr-pincard-payfrom-field" +
   "{" +
   "position: absolute;" +
@@ -15263,7 +15260,7 @@ var css = {
   "left: 8%;" +
   "top:29%;" +
   "}",
-
+  
   qrPincardAllcardsContainer: ".qr-pincard-allcards-container" +
   "{" +
   "position: relative;" +
@@ -15274,7 +15271,7 @@ var css = {
   "overflow-x: hidden;" +
   "overflow-y: auto;" +
   "}",
-
+  
   qrPincardCardContainer: ".qr-pincard-card-container" +
   "{" +
   "position: relative;" +
@@ -15283,7 +15280,7 @@ var css = {
   "background-color: transparent;" +
   "border-bottom:  " + 1 + "px solid lightgray;" +
   "}",
-
+  
   qrPincardCardLogoContainer: ".qr-pincard-card-logo-container" +
   "{" +
   "width: 25%;" +
@@ -15298,7 +15295,7 @@ var css = {
   "right: 61%;" +
   "position: absolute;" +
   "}",
-
+  
   qrPincardCardInfoContainer: ".qr-pincard-card-info-container" +
   "{" +
   "position: absolute;" +
@@ -15307,7 +15304,7 @@ var css = {
   "left: 42%;" +
   "background-color: transparent;" +
   "}",
-
+  
   qrPincardCardInfoTextOne: ".qr-pincard-card-info-text-one" +
   "{" +
   "position: absolute;" +
@@ -15319,7 +15316,7 @@ var css = {
   "white-space: nowrap;" +
   "overflow: hidden;" +
   "}",
-
+  
   qrPincardCardInfoTextTwo: ".qr-pincard-card-info-text-two" +
   "{" +
   "position: absolute;" +
@@ -15332,7 +15329,7 @@ var css = {
   "white-space: nowrap;" +
   "overflow: hidden;" +
   "}",
-
+  
   qrPincardCardInfoTextThree: ".qr-pincard-card-info-text-three" +
   "{" +
   "position: absolute;" +
@@ -15340,8 +15337,8 @@ var css = {
   "color: gray;" +
   "top: 51%;" +
   "}",
-
-  qrPincardCardCheckmark  : ".qr-pincard-card-checkmark" +
+  
+  qrPincardCardCheckmark: ".qr-pincard-card-checkmark" +
   "{" +
   "position: absolute;" +
   "width: 17%;" +
@@ -15368,7 +15365,7 @@ var css = {
   "background-size: 35%;" +
   "background-image: url(resources/icons/ViewService/unchecked.png);" +
   "}",
-
+  
   qrPincardFriendHelpContainer: ".qr-pincard-friend-help-container" +
   "{" +
   "position: absolute;" +
@@ -15380,7 +15377,7 @@ var css = {
   //"border-bottom:  " + 1 + "px solid lightgray;" +
   "left: 25%;" +
   "}",
-
+  
   qrPincardFriendHelpText: ".qr-pincard-friend-help-text" +
   "{" +
   "top: 65%;" +
@@ -15391,7 +15388,7 @@ var css = {
   "text-align: center;" +
   "text-decoration: underline;" +
   "}",
-
+  
   qrPincardFriendHelpIcon: ".qr-pincard-friend-help-icon" +
   "{" +
   "width: 40%;" +
@@ -15405,7 +15402,7 @@ var css = {
   "position: absolute;" +
   "background-image: url(resources/icons/ViewService/friend.png);" +
   "}",
-
+  
   qrPincardChosenFriendContainer: ".qr-pincard-chosen-friend-container" +
   "{" +
   "position: absolute;" +
@@ -15415,7 +15412,7 @@ var css = {
   //"left: 10%;" +
   //"top:" + 165 * widthK + "px;" +
   "}",
-
+  
   qrPincardFriendHelpTextTwo: ".qr-pincard-friend-help-text-two" +
   "{" +
   //"top: 65%;" +
@@ -15426,7 +15423,7 @@ var css = {
   "text-align: center;" +
   //"text-decoration: underline;" +
   "}",
-
+  
   qrPincardFriendChangeText: ".qr-pincard-friend-change-text" +
   "{" +
   "top: 80%;" +
@@ -15437,7 +15434,7 @@ var css = {
   "text-align: center;" +
   "text-decoration: underline;" +
   "}",
-
+  
   qrPincardChosenFriendInnerContainer: ".qr-pincard-chosen-friend-inner-container" +
   "{" +
   "position: absolute;" +
@@ -15447,7 +15444,7 @@ var css = {
   "left: 10%;" +
   "top:22%;" +
   "}",
-
+  
   qrPincardChosenFriendPhoto: ".qr-pincard-chosen-friend-photo" +
   "{" +
   "top:" + 8 * widthK + "px;" +
@@ -15465,7 +15462,7 @@ var css = {
   "color: white;" +
   "left: 5%;" +
   "}",
-
+  
   qrPincardChosenFriendTextContainer: ".qr-pincard-chosen-friend-text-container" +
   "{" +
   "position: absolute;" +
@@ -15475,8 +15472,8 @@ var css = {
   "height: 100%;" +
   "display: table;" +
   "}",
-
-
+  
+  
   qrPincardChosenFriendTextOne: ".qr-pincard-chosen-friend-text-one" +
   "{" +
   "margin: 0;" +
@@ -15485,7 +15482,7 @@ var css = {
   "display: table-cell;" +
   "vertical-align: middle;" +
   "}",
-
+  
   qrPincardChosenFriendTextTwo: ".qr-pincard-chosen-friend-text-two" +
   "{" +
   "position: absolute;" +
@@ -15495,7 +15492,7 @@ var css = {
   "font-size:" + 24 * widthK + "px;" +
   "top: 40%;" +
   "}",
-
+  
   qrPincardBottomContainer: ".qr-pincard-bottom-container" +
   "{" +
   "position: absolute;" +
@@ -15506,7 +15503,7 @@ var css = {
   "background-color: transparent;" +
   "overflow: scroll;" +
   "}",
-
+  
   qrPincardButtonEnter: " .qr-pincard-button-enter" +
   "{" +
   "height: " + 87 * widthK + "px;" +
@@ -15522,7 +15519,7 @@ var css = {
   "left: 0;" +
   "color: #ffffff;" +
   "}",
-
+  
   qrPincardButtonEnterLabel: ".qr-pincard-button-enter-label" +
   "{" +
   "position: relative;" +
@@ -15533,7 +15530,7 @@ var css = {
   "color: white;" +
   //"right: 10%;" +
   "}",
-
+  
   qrPayPageTitle: ".qr-pay-page-title " +
   "{" +
   "position: absolute;" +
@@ -15544,7 +15541,7 @@ var css = {
   "background: transparent;" +
   //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
   "}",
-
+  
   qrServicePageTitle: ".qr-servicepage-title" +
   "{" +
   "position: absolute;" +
@@ -15559,12 +15556,12 @@ var css = {
   "overflow: hidden;" +
   "width: 60%;" +
   "}",
-
+  
   qrServicePageQrTitle: ".qr-servicepage-qr-title" +
   "{" +
   "top: 20%;" +
   "}",
-
+  
   qrServicePageCategoryField: ".qr-servicepage-category-field" +
   "{" +
   "position: absolute;" +
@@ -15575,7 +15572,7 @@ var css = {
   "margin: 0;" +
   "color: lavender;" +
   "}",
-
+  
   qrServicePageServiceIcon: ".qr-servicepage-service-icon" +
   "{" +
   "top: 33%;" +
@@ -15592,7 +15589,7 @@ var css = {
   "background-color: white;" +
   "display:none;" +
   "}",
-
+  
   qrServicePageButtonBack: ".qr-servicepage-button-back" +
   "{" +
   "top: 13%;" +
@@ -15607,7 +15604,7 @@ var css = {
   "background-size: 20%;" +
   "left: -4%;" +
   "}",
-
+  
   //VIEW QR PAY CONFIRM
   qrPayconfirmBodyContainer: ".qr-payconfirm-body-container" +
   "{" +
@@ -15618,7 +15615,7 @@ var css = {
   "background-color: white;" +
   "overflow: hidden;" +
   "}",
-
+  
   qrPayconfirmDataContainer: ".qr-payconfirm-data-container" +
   "{" +
   "position: absolute;" +
@@ -15626,7 +15623,7 @@ var css = {
   "height: " + 569 * widthK + "px; " +
   "background-color: transparent;" +
   "}",
-
+  
   qrPayconfirmPhoneField: ".qr-payconfirm-phone-field" +
   "{" +
   "position: relative;" +
@@ -15635,7 +15632,7 @@ var css = {
   "border-bottom: 1px solid lightgray;" +
   "color: white;" +
   "}",
-
+  
   qrPayconfirmTextField: ".qr-payconfirm-text-field" +
   "{" +
   "position: relative;" +
@@ -15645,7 +15642,7 @@ var css = {
   "left: 8%;" +
   "top: 15%;" +
   "}",
-
+  
   qrPayconfirmPhoneInput: ".qr-payconfirm-phone-input" +
   "{" +
   "position: relative;" +
@@ -15655,7 +15652,7 @@ var css = {
   "font-size: " + 40 * widthK + "px; " +
   "color: gray;" +
   "}",
-
+  
   qrPayconfirmTaxField: ".qr-payconfirm-tax-field" +
   "{" +
   "position: relative;" +
@@ -15665,7 +15662,7 @@ var css = {
   "left: 8%;" +
   "top: 10%;" +
   "}",
-
+  
   qrPayconfirmField: ".qr-payconfirm-field" +
   "{" +
   "position: relative;" +
@@ -15675,7 +15672,7 @@ var css = {
   "color: white;" +
   //"top: 23%;" +
   "}",
-
+  
   qrPayconfirmCardField: ".qr-payconfirm-card-field" +
   "{" +
   "position: relative;" +
@@ -15685,7 +15682,7 @@ var css = {
   "color: white;" +
   //"top: 23%;" +
   "}",
-
+  
   qrPayconfirmCardInfoContainer: ".qr-payconfirm-card-info-container" +
   "{" +
   "position: absolute;" +
@@ -15694,7 +15691,7 @@ var css = {
   "background-color: transparent;" +
   "left: 4%;" +
   "}",
-
+  
   qrPayconfirmTextOne: ".qr-payconfirm-text-one" +
   "{" +
   "position: absolute;" +
@@ -15704,7 +15701,7 @@ var css = {
   "left: 7%;" +
   "top: 17%;" +
   "}",
-
+  
   qrPayconfirmTextTwo: ".qr-payconfirm-text-two" +
   "{" +
   "position: absolute;" +
@@ -15718,7 +15715,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "}",
-
+  
   qrPayconfirmetailText: ".qr-payconfirm-detail-text" +
   "{" +
   "position: relative;" +
@@ -15728,7 +15725,7 @@ var css = {
   "left: 7%;" +
   "top: 56%;" +
   "}",
-
+  
   qrPayconfirmCardLogoContainer: ".qr-payconfirm-card-logo-container" +
   "{" +
   "position: absolute;" +
@@ -15741,7 +15738,7 @@ var css = {
   "background-size: 55%;" +
   "float: left;" +
   "}",
-
+  
   qrPayconfirmChosenFriendPhoto: ".qr-payconfirm-chosen-friend-photo" +
   "{" +
   "top:" + 40 * widthK + "px;" +
@@ -15759,8 +15756,8 @@ var css = {
   "color: white;" +
   "right: 10%;" +
   "}",
-
-
+  
+  
   qrPayconfirmBottomContainer: ".qr-payconfirm-bottom-container" +
   "{" +
   "position: absolute;" +
@@ -15770,7 +15767,7 @@ var css = {
   "background-color: transparent;" +
   "overflow: scroll;" +
   "}",
-
+  
   qrPayconfirmActionContainer: ".qr-payconfirm-action-containter" +
   "{" +
   "position: relative;" +
@@ -15779,7 +15776,7 @@ var css = {
   "height: 50%;" +
   "background-color: transparent;" +
   "}",
-
+  
   qrPayconfirmActionIconOne: ".qr-payconfirm-action-icon-one" +
   "{" +
   "position: relative;" +
@@ -15791,7 +15788,7 @@ var css = {
   "top: 14%;" +
   "background-size: 50%;" +
   "}",
-
+  
   qrPayconfirmActionIconTwo: ".qr-payconfirm-action-icon-two" +
   "{" +
   "position: relative;" +
@@ -15803,7 +15800,7 @@ var css = {
   "top: 14%;" +
   "background-size: 41%;" +
   "}",
-
+  
   qrPayconfirmActionText: ".qr-payconfirm-action-text" +
   "{" +
   "top: 17%;" +
@@ -15817,7 +15814,7 @@ var css = {
   "text-decoration: underline;" +
   "width: 50%;" +
   "}",
-
+  
   qrPayconfirmButtonEnter: ".qr-payconfirm-button-enter" +
   "{" +
   "height: " + 87 * widthK + "px;" +
@@ -15836,7 +15833,7 @@ var css = {
   "left: 0;" +
   "color: #ffffff;" +
   "}",
-
+  
   qrPayconfirmButtonEnterLabel: ".qr-payconfirm-button-enter-label" +
   "{" +
   "position: relative;" +
@@ -15849,7 +15846,7 @@ var css = {
 
 
 //  View Report Service
-
+  
   viewReportService: ".view-report-service" +
   "{" +
   "position: absolute;" +
@@ -15857,7 +15854,7 @@ var css = {
   "width:100%;" +
   "z-index:999999;" +
   "}",
-
+  
   reportServiceUpperContainer: ".report-service-upper-container" +
   "{" +
   "position: absolute;" +
@@ -15865,7 +15862,7 @@ var css = {
   "width:100%;" +
   "background-color: white;" +
   "}",
-
+  
   reportServiceIcon: ".report-service-icon" +
   "{" +
   "position: absolute;" +
@@ -15880,7 +15877,7 @@ var css = {
   "background-size: cover;" +
   "background-position: center;" +
   "}",
-
+  
   reportServiceUpperInfoContainer: ".report-service-upper-info-container" +
   "{" +
   "position: absolute;" +
@@ -15888,7 +15885,7 @@ var css = {
   "height:" + 120 * widthK + "px;" +
   "top: " + 220 * widthK + "px;" +
   "}",
-
+  
   reportServiceTitle: ".report-service-title " +
   "{" +
   "position: relative;" +
@@ -15902,7 +15899,7 @@ var css = {
   "overflow: hidden; " +
   "color: #565d6a;" +
   "}",
-
+  
   reportServicePaymentInfoText: ".report-service-payment-info-text " +
   "{" +
   "position: relative;" +
@@ -15916,7 +15913,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "}",
-
+  
   reportServiceBodyContainer: ".report-service-body-container" +
   "{" +
   "position: absolute;" +
@@ -15928,7 +15925,7 @@ var css = {
   "overflow-x: hidden; " +
   "top:" + 410 * widthK + "px; " +
   "}",
-
+  
   reportServiceDataButtonInfoContainer: ".report-service-data-button-info-container" +
   "{" +
   "position: absolute;" +
@@ -15940,14 +15937,14 @@ var css = {
   "padding-top: 6.4%;" +
   "bottom: 0;" +
   "}",
-
+  
   reportServiceBodyInfoContainer: ".report-service-body-info-container" +
   "{" +
   "position: relative;" +
   "top: 0;" +
   "height: " + 452 * widthK + "px; " +
   "}",
-
+  
   reportServiceDataContainer: ".report-service-data-container" +
   "{" +
   "position: relative;" +
@@ -15957,7 +15954,7 @@ var css = {
   "background-color: transparent;" +
   //"border-bottom:  " + 1 + "px solid lightgray;" +
   "}",
-  reportServicePhoneInput   : ".report-service-phone-input" +
+  reportServicePhoneInput: ".report-service-phone-input" +
   "{" +
   "position: absolute;" +
   "margin: 0;" +
@@ -15968,7 +15965,7 @@ var css = {
   "-webkit-user-select: unset;" +
   "color: gray;" +
   "}",
-
+  
   reportServiceInfoInput: ".report-service-info-input" +
   "{" +
   "margin: 0;" +
@@ -15980,7 +15977,7 @@ var css = {
   "overflow: hidden;" +
   "word-wrap: break-word;" +
   "}",
-
+  
   reportServiceInfoInputCardName: ".report-service-info-input-card-name" +
   "{" +
   "position: absolute;" +
@@ -15996,7 +15993,7 @@ var css = {
   "word-wrap: break-word;" +
   "white-space: nowrap;" +
   "}",
-
+  
   reportInfoContainer: ".report-info-container" +
   "{" +
   "height: " + 100 * widthK + "px;" +
@@ -16004,28 +16001,28 @@ var css = {
   "margin: " + 5 * widthK + "px " + 40 * widthK + "px;" +
   "position: relative;" +
   "}",
-
+  
   reportServiceLastField: ".report-service-last-field" +
   "{" +
   "border: none;" +
   "height: 34%;" +
   "}",
-
+  
   reportServiceStatusError: ".report-service-status-error" +
   "{" +
   "color: #ff6d65;" +
   "}",
-
+  
   reportServiceStatusWait: ".report-service-status-wait" +
   "{" +
   "color: #f3ba31;" +
   "}",
-
+  
   reportServiceStatusSuccess: ".report-service-status-success" +
   "{" +
   "color: #6ABD38;" +
   "}",
-
+  
   reportServiceButtonContainer: ".report-service-button-container" +
   "{" +
   "position: relative;" +
@@ -16037,7 +16034,7 @@ var css = {
   "background-size: 100%;" +
   "padding: " + 42 * widthK + "px " + 20 * widthK + "px;" +
   "}",
-
+  
   reportServiceCover: ".report-service-cover" +
   "{" +
   "position: absolute;" +
@@ -16046,7 +16043,7 @@ var css = {
   "width: 100%;" +
   "background-color: #f4f4f4;" +
   "}",
-
+  
   reportServiceButtonInfoContainer: ".report-service-button-info-container" +
   "{" +
   "height: " + 50 * widthK + "px;" +
@@ -16054,7 +16051,7 @@ var css = {
   "margin-left: 3%;" +
   "margin-bottom: 0;" +
   "}",
-
+  
   reportServiceButtonIcon: ".report-service-button-icon" +
   "{" +
   "height: " + 50 * widthK + "px;" +
@@ -16064,7 +16061,7 @@ var css = {
   "width: " + 115 * widthK + "px;" +
   "float: left;" +
   "}",
-
+  
   reportServiceButtonAction: ".report-service-button-action" +
   "{" +
   "position: relative;" +
@@ -16073,27 +16070,27 @@ var css = {
   "color: #0185E3;" +
   "text-decoration: underline;" +
   "}",
-
+  
   reportServiceButtonFavoritesIcon: ".report-service-button-favorites-icon" +
   "{" +
   "background-image: url(resources/icons/ViewReportService/details_favorites.png);" +
   "}",
-
+  
   reportServiceButtonFavoritesIconAdded: ".report-service-button-favorites-icon-added" +
   "{" +
   "background-image: url(resources/icons/ViewReportService/details_favoritesadded.png);" +
   "}",
-
+  
   reportServiceButtonAutoPaymentIcon: ".report-service-button-auto-payment-icon" +
   "{" +
   "background-image: url(resources/icons/ViewReportService/details_autopayment.png);" +
   "}",
-
+  
   reportServiceButtonSupportIcon: ".report-service-button-support-icon" +
   "{" +
   "background-image: url(resources/icons/ViewReportService/details_support.png);" +
   "}",
-
+  
   reportServiceRepeatButton: ".report-service-repeat-button" +
   "{" +
   "border: none;" +
@@ -16111,9 +16108,9 @@ var css = {
   "border-radius: " + 10 * widthK + "px;" +
   "background-color: #00a8f1;" +
   "}",
-
+  
   //VIEW SETTINGS SUPPORT
-
+  
   viewSettingsSupport: ".view-settings-support" +
   "{" +
   "position: absolute;" +
@@ -16122,7 +16119,7 @@ var css = {
   "opacity: 0.97;" +
   "z-index: 10;" +
   "}",
-
+  
   settingsSupportBlueContainer: ".settings-support-blue-container" +
   "{" +
   "position: absolute;" +
@@ -16130,7 +16127,7 @@ var css = {
   "height:" + 555 * heightK + "px;" +
   "background-color: white;" +
   "}",
-
+  
   settingsSupportContainer: ".settings-support-container" +
   "{" +
   "position: absolute;" +
@@ -16141,7 +16138,7 @@ var css = {
   "background-color: #00a8f1; " +
   "overflow: hidden; " +
   "}",
-
+  
   settingsSupportContainerTitle: ".settings-support-container-title" +
   "{" +
   "position: relative;" +
@@ -16152,7 +16149,7 @@ var css = {
   "color: white; " +
   "font-size:" + 35 * widthK + "px; " +
   "}",
-
+  
   settingsSupportPageTitle: ".settings-support-page-title " +
   "{" +
   "position: absolute;" +
@@ -16163,7 +16160,7 @@ var css = {
   "background: transparent;" +
   //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
   "}",
-
+  
   settingsSupportXButton: ".settings-support-x-button " +
   "{" +
   "position: absolute;" +
@@ -16178,7 +16175,7 @@ var css = {
   "background-size: 22%;" +
   "top: 0;" +
   "}",
-
+  
   settingsSupportHelpIcon: ".settings-support-help-icon " +
   "{" +
   "position: absolute;" +
@@ -16191,7 +16188,7 @@ var css = {
   "background-position: center;" +
   "background-size: 100%;" +
   "}",
-
+  
   settingsSupportHelpTitle: ".settings-support-help-title " +
   "{" +
   "position: relative;" +
@@ -16202,7 +16199,7 @@ var css = {
   "margin-right: auto;" +
   "top: 58%;" +
   "}",
-
+  
   settingsSupportButtonsContainer: ".settings-support-buttons-container " +
   "{" +
   "position: relative;" +
@@ -16210,7 +16207,7 @@ var css = {
   "height: 72%;" +
   "margin: 0 auto 0 auto;" +
   "}",
-
+  
   settingsSupportButtons: ".settings-support-buttons " +
   "{" +
   "position: relative;" +
@@ -16219,28 +16216,28 @@ var css = {
   "height:" + 80 * widthK + "px;" +
   "border-bottom:" + 1 + "px solid #f4f4f4;" +
   "}",
-
+  
   settingsSupportButtonsRegistration: ".settings-support-buttons-registration " +
   "{" +
   "margin-top: 3.5%;" +
   "}",
-
+  
   settingsSupportButtonsPay: ".settings-support-buttons-pay " +
   "{" +
   "margin-top: 0%;" +
   "}",
-
+  
   settingsSupportButtonsBalance: ".settings-support-buttons-balance " +
   "{" +
   "margin-top: 0;" +
   "}",
-
+  
   settingsSupportButtonsOther: ".settings-support-buttons-other " +
   "{" +
   "margin-top: 0;" +
   "border: none;" +
   "}",
-
+  
   settingsSupportOpenIcon: ".settings-support-open-icon " +
   "{" +
   "position: absolute;" +
@@ -16253,7 +16250,7 @@ var css = {
   "background-position: center;" +
   "background-size: 9%;" +
   "}",
-
+  
   settingsSupportButtonsTitle: ".settings-support-buttons-title " +
   "{" +
   "position: absolute;" +
@@ -16265,9 +16262,9 @@ var css = {
   "font-size:" + 29 * widthK + "px;" +
   "color: white;" +
   "}",
-
+  
   //VIEW SETTINGS SUPPORT PART TWO
-
+  
   viewSettingsSupportPartTwo: ".view-settings-support-part-two" +
   "{" +
   "position: absolute;" +
@@ -16275,8 +16272,8 @@ var css = {
   "height: 100%;" +
   "background-color: #00b8ff;" +
   "}",
-
-
+  
+  
   settingsSupportPartTwoContainerTitle: ".settings-support-part-two-container-title" +
   "{" +
   "position: relative;" +
@@ -16287,14 +16284,14 @@ var css = {
   "color: white; " +
   "font-size:" + 35 * widthK + "px; " +
   "}",
-
+  
   settingsSupportPartTwoContainer: ".settings-support-part-two-container" +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height: 60%;" +
   "}",
-
+  
   settingsSupportPartTwoPageTitle: ".settings-support-part-two-page-title " +
   "{" +
   "position: absolute;" +
@@ -16305,7 +16302,7 @@ var css = {
   "background: transparent;" +
   //"border-bottom:" + 2 + "px solid rgb(149, 230, 253);" +
   "}",
-
+  
   settingsSupportPartTwoXButton: ".settings-support-part-two-x-button " +
   "{" +
   "position: absolute;" +
@@ -16320,7 +16317,7 @@ var css = {
   "background-size: 22%;" +
   "top: 0;" +
   "}",
-
+  
   settingsSupportPartTwoInputContainer: ".settings-support-part-two-input-container" +
   "{" +
   "position: relative;" +
@@ -16333,7 +16330,7 @@ var css = {
   "background-position-y: center;" +
   "background-size: 100%;" +
   "}",
-
+  
   settingsSupportPartTwoSendButton: ".settings-support-part-two-send-button" +
   "{" +
   "position: relative;" +
@@ -16347,8 +16344,8 @@ var css = {
   "line-height: 160%;" +
   "font-size:" + 30 * widthK + "px;" +
   "}",
-
-
+  
+  
   settingsSupportPartTwoInput: ".settings-support-part-two-input" +
   "{" +
   "position: absolute;" +
@@ -16364,8 +16361,8 @@ var css = {
   "padding: 0;" +
   "color: gray;" +
   "}",
-
-
+  
+  
   viewNews: ".view-news" +
   "{" +
   "position: absolute;" +
@@ -16379,7 +16376,7 @@ var css = {
   // "background-position-y: center;" +
   // "background-size: 100%;" +
   "}",
-
+  
   viewNewsContainer: ".view-news-container" +
   "{" +
   "width:100%;" +
@@ -16388,7 +16385,7 @@ var css = {
   "overflow-y: scroll;" +
   "-webkit-overflow-scrolling: touch;" +
   "}",
-
+  
   // viewNewsBlock: ".view-news-block" +
   // "{" +
   // "position: relative;" +
@@ -16404,7 +16401,7 @@ var css = {
   // "background-color: white;" +
   // "border-bottom-right-radius:" + 70 * widthK + "px;" +
   // "}",
-
+  
   // viewNewsBlockWithLink: ".view-news-block-with-link" +
   // "{" +
   // "position: relative;" +
@@ -16420,7 +16417,7 @@ var css = {
   // "background-color: white;" +
   // // "border-bottom-right-radius:" + 70 * widthK + "px;" +
   // "}",
-
+  
   viewNewsPageTitle: ".view-news-page-header " +
   "{" +
   "width: 100%;" +
@@ -16428,7 +16425,7 @@ var css = {
   "background-color: #FFFFFF;" +
   "height:" + 140 * widthK + "px;" +
   "}",
-
+  
   viewNewsNameTitle: ".view-news-name-title " +
   "{" +
   "position: absolute;" +
@@ -16438,7 +16435,7 @@ var css = {
   "margin: 0;  " +
   "color: #4f4f4f;" +
   "}",
-
+  
   viewNewsBackButton: ".view-news-back-button " +
   "{" +
   "position: absolute;" +
@@ -16453,7 +16450,7 @@ var css = {
   "right: 87%;" +
   "display: block;" +
   "}",
-
+  
   viewNewsCloseButton: ".view-news-close-button " +
   "{" +
   "position: absolute;" +
@@ -16468,7 +16465,7 @@ var css = {
   "background-size: 22% !important;" +
   "top:" + 30 * widthK + "px;" +
   "}",
-
+  
   viewNewsItem: ".view-news-item" +
   "{" +
   "width: 90%;" +
@@ -16481,7 +16478,7 @@ var css = {
   "padding: 5%;" +
   "box-shadow: 3px 5px 4px 0px rgb(216, 216, 216);" +
   "}",
-
+  
   viewNewsItemImage: ".view-news-item-image" +
   "{" +
   "margin-bottom:5%;" +
@@ -16492,13 +16489,13 @@ var css = {
   "background-position: center;" +
   "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
   "}",
-
+  
   viewNewsItemContent: ".view-news-item-content" +
   "{" +
   "width: 100%;" +
   "height: auto;" +
   "}",
-
+  
   viewNewsItemTitle: ".view-news-item-title " +
   "{" +
   "color: #000000;" +
@@ -16506,7 +16503,7 @@ var css = {
   "font-weight: bold;" +
   "font-size: " + 22 * widthK + "px;" +
   "}",
-
+  
   viewNewsItemArticle: ".view-news-item-article" +
   "{" +
   "font-size: " + 20 * widthK + "px;" +
@@ -16516,13 +16513,13 @@ var css = {
   "height: 0;" +
   "overflow: hidden;" +
   "}",
-
+  
   viewNewsItemFooter: ".view-news-item-footer" +
   "{" +
   "width: 100%;" +
   "height: " + 40 * widthK + "px;" +
   "}",
-
+  
   viewNewsFooterItemContainer: ".view-news-footer-item-container" +
   "{" +
   "width: " + 160 * widthK + "px;" +
@@ -16530,30 +16527,30 @@ var css = {
   "float:left;" +
   "display: inline-block;" +
   "}",
-
+  
   viewNewsFooterDateItem: ".view-news-footer-date-item" +
   "{" +
   "width: " + 130 * widthK + "px;" +
   "}",
-
+  
   viewNewsFooterInfoItem: ".view-news-footer-info-item" +
   "{" +
   "width: " + 230 * widthK + "px;" +
   "}",
-
+  
   textLeft: ".text-left" +
   "{" +
   "text-align: left !important;" +
   "}",
-
+  
   viewNewsItemInfo: ".view-news-item-info-container" +
   "{" +
   "float:left;" +
   "width:45%;" +
   "height: " + 40 * widthK + "px;" +
   "}",
-
-
+  
+  
   viewNewsItemLink: ".view-news-item-link" +
   "{" +
   "background-color: #07b1fe;" +
@@ -16563,7 +16560,7 @@ var css = {
   "border-radius:" + 3 * widthK + "px;" +
   "font-size:" + 20 * widthK + "px; " +
   "}",
-
+  
   viewNewsItemDate: ".view-news-item-date" +
   "{" +
   // "color: #bababa;" +
@@ -16572,47 +16569,47 @@ var css = {
   "color: rgb(170,170,170);" +
   "margin: 0;" +
   "}",
-
+  
   viewNewsItemIconTitle: ".view-news-item-icon-title" +
   "{" +
   "color: #07b1fe;" +
   "margin: 0;" +
   "font-size:" + 20 * widthK + "px; " +
   "}",
-
+  
   viewNewsItemIconLike: ".view-news-item-icon-like" +
   "{" +
   "width:100%; " +
   "height:100%; " +
   "background-image: url(resources/icons/ViewNews/like-not-fill.png);" +
   "}",
-
+  
   viewNewsItemIconLiked: ".view-news-item-icon-liked" +
   "{" +
   "background-image: url(resources/icons/ViewNews/like-fill.png);" +
   "}",
-
+  
   viewNewsItemIconView: ".view-news-item-icon-view" +
   "{" +
   "width:100%; " +
   "height:100%; " +
   "background-image: url(resources/icons/ViewNews/view.png);" +
   "}",
-
+  
   viewNewsItemIconMore: ".view-news-item-icon-more" +
   "{" +
   "width:" + 40 * widthK + "px; " +
   "height:" + 40 * heightK + "px; " +
   "background-image: url(resources/icons/ViewNews/down-arrow.png);" +
   "}",
-
+  
   viewNewsIconContainer: ".view-news-icon-container" +
   "{" +
   "background-size: 80%;" +
   "background-position: center;" +
   "background-repeat: no-repeat;" +
   "}",
-
+  
   // viewNewsBlockOfAll: ".view-news-block-of-all " +
   // "{" +
   // "position: relative;" +
@@ -16623,7 +16620,7 @@ var css = {
   // "box-sizing: border-box;" +
   // // "background-image: url('resources/icons/ViewNews/news.png');" +
   // "}",
-
+  
   // viewNewsBlockText: ".view-news-block-text " +
   // "{" +
   // "position: relative;" +
@@ -16647,7 +16644,7 @@ var css = {
   // "width: 100%;" +
   // "height:" + 330 * widthK + "px;" +
   // "}",
-
+  
   // viewNewsBlockImageLoader: ".view-news-block-image-loader " +
   // "{" +
   // "position: relative;" +
@@ -16659,7 +16656,7 @@ var css = {
   // "width: 100%;" +
   // "height:" + 330 * widthK + "px;" +
   // "}",
-
+  
   // viewNewsBlockTitle: ".view-news-block-title " +
   // "{" +
   // "position: relative;" +
@@ -16672,7 +16669,7 @@ var css = {
   // "text-overflow: ellipsis;" +
   // "overflow: hidden;" +
   // "}",
-
+  
   // viewNewsBlockDate: ".view-news-block-date " +
   // "{" +
   // // "position: relative;" +
@@ -16686,7 +16683,7 @@ var css = {
   // // "float: left;  " +
   // "color: #bbbbbb;" +
   // "}",
-
+  
   // viewNewsBlockReadMoreContainer: ".view-news-block-readmore-container " +
   // "{" +
   // // "position: relative;" +
@@ -16702,7 +16699,7 @@ var css = {
   // // "float: left;  " +
   // "color: #bbbbbb;" +
   // "}",
-
+  
   // viewNewsBlockReadMoreIcon: ".view-news-block-readmore-icon " +
   // "{" +
   // // "position: absolute;" +
@@ -16715,7 +16712,7 @@ var css = {
   // "background-position-y: center;" +
   // "background-size: 27%;" +
   // "}",
-
+  
   // viewNewsBlockOpenedIcon: ".view-news-block-opened-icon " +
   // "{" +
   // "position: absolute;" +
@@ -16728,8 +16725,8 @@ var css = {
   // "background-position-y: center;" +
   // "background-size: 40%;" +
   // "}",
-
-
+  
+  
   // viewNewsBlockSpace: ".view-news-block-space " +
   // "{" +
   // "position: relative;" +
@@ -16744,7 +16741,7 @@ var css = {
   // "height: " + 80 * widthK  + "px;" +
   // "bottom: 0;  " +
   // "}",
-
+  
   // viewNewsFollowLinkContainer: ".view-news-follow-link-container" +
   // "{" +
   // "position: relative;" +
@@ -16763,13 +16760,13 @@ var css = {
   // "border-radius:" + 5 * widthK + "px;" +
   // "color: white;" +
   // "}",
-
+  
   viewNewsFollowLinkText: ".view-news-follow-link-text" +
   "{" +
   "position: absolute;" +
   "margin: 0 auto;" +
   "}",
-
+  
   viewNewsFollowLinkArrow: ".view-news-follow-link-arrow" +
   "{" +
   "position: absolute;" +
@@ -16783,10 +16780,10 @@ var css = {
   "right: 14%;" +
   "background-image: url('resources/icons/ViewTransfer/banks_offerta.png');" +
   "}",
-
-
+  
+  
   //COMPONENT NOTIFICATION
-
+  
   componentNotification: ".component-notification " +
   "{" +
   "position: absolute;" +
@@ -16796,18 +16793,18 @@ var css = {
   "-webkit-transform: translate3d(0, -100%,0);  " +
   "background-color: #f1eff3;  " +
   "}",
-
+  
   componentNotificationSetTransition: ".component-notification-set-transition" +
   "{" +
   "transition: 1s;  " +
   "}",
-
+  
   componentNotificationShow: ".component-notification-show" +
   "{" +
   "-webkit-transform: translate3d(0, 0,0);  " +
   "transform: translate3d(0, 0,0);  " +
   "}",
-
+  
   ComponentNotificationButtonsContainer: ".component-notification-buttons-container" +
   "{" +
   "position: absolute;" +
@@ -16815,7 +16812,7 @@ var css = {
   "height:" + 70 * widthK + "px;" +
   "bottom:" + 10 * widthK + "px;" +
   "}",
-
+  
   ComponentNotificationButtonAccept: ".component-notification-button-accept" +
   "{" +
   "position: relative;" +
@@ -16832,7 +16829,7 @@ var css = {
   "font-size:" + 29 * widthK + "px;" +
   "width: 40%;" +
   "}",
-
+  
   ComponentNotificationButtonCancel: ".component-notification-button-cancel" +
   "{" +
   "position: relative;" +
@@ -16848,7 +16845,7 @@ var css = {
   "font-size:" + 29 * widthK + "px;" +
   "width: 40%;" +
   "}",
-
+  
   ComponentNotificationIcon: ".component-notification-icon" +
   "{" +
   "position: absolute;" +
@@ -16860,7 +16857,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-size: 100%;" +
   "}",
-
+  
   ComponentNotificationText: ".component-notification-text" +
   "{" +
   "position: relative;" +
@@ -16875,7 +16872,7 @@ var css = {
   "}",
 
 //  View AutoPay
-
+  
   viewAutopayContainer: ".view-autopay-container" +
   "{" +
   "position: absolute;" +
@@ -16887,7 +16884,7 @@ var css = {
   "overflow-y: auto; " +
   "overflow-x: hidden; " +
   "}",
-
+  
   viewAutopayBlockContainer: ".view-autopay-block-containter" +
   "{" +
   "position: relative;" +
@@ -16898,7 +16895,7 @@ var css = {
   "border-bottom:" + 1 + "px solid gainsboro;" +
   "background-color: transparent;" +
   "}",
-
+  
   viewAutopayBlockInnerContainer: ".view-autopay-block-inner-containter" +
   "{" +
   "position: absolute;" +
@@ -16906,8 +16903,8 @@ var css = {
   "width: 100%;" +
   //"left: 4%;" +
   "}",
-
-
+  
+  
   viewAutopayIcon: ".view-autopay-icon " +
   "{" +
   //"top:" + 50 * widthK + "px;" +
@@ -16920,7 +16917,7 @@ var css = {
   "background-position: center;" +
   "top: 15%;" +
   "}",
-
+  
   viewAutopayInfoContainer: ".view-autopay-info-container " +
   "{" +
   "position: absolute;" +
@@ -16929,7 +16926,7 @@ var css = {
   "left: 25%;" +
   "color: #8b8b8b;" +
   "}",
-
+  
   viewAutopayInfoName: ".view-autopay-info-name " +
   "{" +
   "position: absolute;" +
@@ -16943,7 +16940,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "}",
-
+  
   viewAutopayInfoBalance: ".view-autopay-info-balance " +
   "{" +
   "position: relative;" +
@@ -16954,7 +16951,7 @@ var css = {
   "color: #595759;" +
   "float: left;" +
   "}",
-
+  
   viewAutopayInfoCurrencyField: ".view-autopay-info-currency-field" +
   "{" +
   "position: relative;" +
@@ -16965,7 +16962,7 @@ var css = {
   "color: #595759;" +
   "float: left;" +
   "}",
-
+  
   viewAutopayInfoCondition: ".view-autopay-info-condition " +
   "{" +
   "position: absolute;" +
@@ -16980,7 +16977,7 @@ var css = {
   "overflow: hidden;" +
   "color: #353340;" +
   "}",
-
+  
   viewAutopayInfoNumber: ".view-autopay-info-number " +
   "{" +
   "position: absolute;" +
@@ -16994,7 +16991,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "}",
-
+  
   viewAutopayNextIcon: ".view-autopay-next-icon" +
   "{" +
   "position: absolute;" +
@@ -17007,7 +17004,7 @@ var css = {
   "background-position-x: 74%;" +
   "background-image: url(resources/icons/ViewInfo/open.png);" +
   "}",
-
+  
   autopayButton: ".autopay-button" +
   "{" +
   "position: absolute;" +
@@ -17025,8 +17022,8 @@ var css = {
   "color: #ffffff;" +
   "bottom:" + 100 * widthK + "px; " +
   "}",
-
-
+  
+  
   emptyListContainer: ".empty-list-container " +
   "{" +
   "position: absolute;" +
@@ -17036,7 +17033,7 @@ var css = {
   //"background-color: lightgray;" +
   "left:0;" +
   "}",
-
+  
   emptyListUpperContainer: ".empty-list-upper-container " +
   "{" +
   "position: absolute;" +
@@ -17047,8 +17044,8 @@ var css = {
   //"background-color: lightgray;" +
   "left:0;" +
   "}",
-
-
+  
+  
   emptyListUpperIconIn: ".empty-list-upper-icon" +
   "{" +
   "position: absolute;" +
@@ -17061,7 +17058,7 @@ var css = {
   "background-position-y: 50%;" +
   "background-image: url(resources/icons/ViewAutoPay/autopayment_empty.png);" +
   "}",
-
+  
   emptyListUpperFriend: ".empty-list-upper-icon-friend" +
   "{" +
   "position: absolute;" +
@@ -17074,7 +17071,7 @@ var css = {
   "background-position-y: 50%;" +
   "background-image: url(resources/icons/ViewAutoPay/autopayment_empty.png);" +
   "}",
-
+  
   emptyListLowerContainer: ".empty-list-lower-container " +
   "{" +
   "position: absolute;" +
@@ -17086,8 +17083,8 @@ var css = {
   "background-color: transparent;" +
   "left:0;" +
   "}",
-
-
+  
+  
   emptyListLowerTitleText: ".empty-list-lower-title-text " +
   "{" +
   "position: relative;" +
@@ -17105,7 +17102,7 @@ var css = {
   "letter-spacing: 1px;" +
   "word-spacing: 1px;" +
   "}",
-
+  
   emptyListLowerBodyText: ".empty-list-lower-body-text " +
   "{" +
   "position: relative;" +
@@ -17127,7 +17124,7 @@ var css = {
 
 
 //  View autopay method
-
+  
   autopayMethodBodyContainer: ".autopay-method-body-container" +
   "{" +
   "position: absolute;" +
@@ -17139,7 +17136,7 @@ var css = {
   "overflow-y: auto; " +
   "overflow-x: hidden; " +
   "}",
-
+  
   autopayMethodPageTitle: ".autopay-method-page-title" +
   "{" +
   "position: absolute;" +
@@ -17154,12 +17151,12 @@ var css = {
   "width: 75%;" +
   "font-size: " + 36 * widthK + "px; " +
   "}",
-
+  
   //autopayMethodServiceIcon: ".autopay-method-service-icon" +
   //"{" +
   //"display: block; " +
   //"}",
-
+  
   autopayMethodBackButton: ".autopay-method-back-button" +
   "{" +
   "position: absolute;" +
@@ -17174,7 +17171,7 @@ var css = {
   "left: -4%;" +
   "top: " + -10 * widthK + "px; " +
   "}",
-
+  
   autopayMethodEventContainer: ".autopay-method-event-container" +
   "{" +
   "position: absolute;" +
@@ -17182,7 +17179,7 @@ var css = {
   "height: 100%;" +
   "left: 4%;" +
   "}",
-
+  
   autopayMethodScheduleContainer: ".autopay-method-schedule-container" +
   "{" +
   "position: absolute;" +
@@ -17190,7 +17187,7 @@ var css = {
   "height: 100%;" +
   "left: 51%;" +
   "}",
-
+  
   autopayMethodChooseText: ".autopay-method-choose-text" +
   "{" +
   "color: darkgray;" +
@@ -17199,8 +17196,8 @@ var css = {
   "left: 10%;" +
   "position: absolute;" +
   "}",
-
-
+  
+  
   autopayMethodContainer: ".autopay-method-container " +
   "{" +
   "position: absolute;" +
@@ -17208,8 +17205,8 @@ var css = {
   "height: 25%;" +
   "top: 9%;" +
   "}",
-
-
+  
+  
   autopayMethodEventIcon: ".autopay-method-event-icon" +
   "{" +
   "position: relative;" +
@@ -17222,7 +17219,7 @@ var css = {
   "background-position: center;" +
   "background-image: url('resources/icons/ViewAutoPay/autopayment_event.png');" +
   "}",
-
+  
   autopayMethodScheduleIcon: ".autopay-method-schedule-icon" +
   "{" +
   "position: relative;" +
@@ -17235,7 +17232,7 @@ var css = {
   "background-position: center;" +
   "background-image: url('resources/icons/ViewAutoPay/autopayment_scheduler.png');" +
   "}",
-
+  
   autopayMethodText: ".autopay-method-text" +
   "{" +
   "position: relative;" +
@@ -17248,7 +17245,7 @@ var css = {
   "color: #585658;" +
   "font-size:" + 31 * widthK + "px;" +
   "}",
-
+  
   autopayMethodLineBetween: ".autopay-method-line-between" +
   "{" +
   "position: absolute;" +
@@ -17260,13 +17257,13 @@ var css = {
   "}",
 
 //  View autopay event method
-
+  
   autopayEventNumberField: ".autopay-event-number-field" +
   "{" +
   "height: 10%;" +
   "top: 11%;" +
   "}",
-
+  
   autopayEventStepField: ".autopay-event-step-field" +
   "{" +
   "position: relative;" +
@@ -17276,7 +17273,7 @@ var css = {
   "top: 18%;" +
   "background-color: transparent;" +
   "}",
-
+  
   autopayEventStepFieldText: ".autopay-event-step-field-text" +
   "{" +
   "position: absolute;" +
@@ -17285,7 +17282,7 @@ var css = {
   "font-size:" + 24 * widthK + "px;" +
   "top: -14%;" +
   "}",
-
+  
   autopayEventStepContainer: ".autopay-event-step-container" +
   "{" +
   "position: relative;" +
@@ -17298,7 +17295,7 @@ var css = {
   "background-color: transparent;" +
   "float: left;" +
   "}",
-
+  
   autopayEventStepDropdownIcon: ".autopay-event-step-dropdown-icon" +
   "{" +
   "position: absolute;" +
@@ -17316,7 +17313,7 @@ var css = {
   "-o-transform: rotate(90deg);" +
   "transform: rotate(90deg);" +
   "}",
-
+  
   autopayEventStepText: ".autopay-event-step-text" +
   "{" +
   "position: relative;" +
@@ -17328,7 +17325,7 @@ var css = {
   "font-size:" + 45 * widthK + "px; " +
   "color: #515151;" +
   "}",
-
+  
   autopayEventStepCheckIcon: ".autopay-event-step-check-icon" +
   "{" +
   // "position: absolute;" +
@@ -17342,8 +17339,8 @@ var css = {
   "background-position-y: 80%;" +
   "background-image: url(resources/icons/ViewService/radio_unselected.png);" +
   "}",
-
-
+  
+  
   autopayEventAmountDropdownField: ".autopay-event-amount-dropdown-field" +
   "{" +
   "position: relative;" +
@@ -17354,7 +17351,7 @@ var css = {
   "border-bottom:1px solid lightgray;" +
   "top: 23%;" +
   "}",
-
+  
   autopayEventAmountsDropdownComponent: ".autopay-event-amount-dropdown-component" +
   "{" +
   "position: absolute;" +
@@ -17365,7 +17362,7 @@ var css = {
   "z-index: 5;" +
   "display: none;" +
   "}",
-
+  
   autopayEventAmountDropdownFieldTwo: ".autopay-event-amount-dropdown-field-two" +
   "{" +
   "position: absolute;" +
@@ -17376,7 +17373,7 @@ var css = {
   "color: white;" +
   "border-bottom:" + 3 * widthK + "px solid #95e6fd;" +
   "}",
-
+  
   autopayEventDropdownTextField: ".autopay-event-dropdown-text-field" +
   "{" +
   "position: absolute;" +
@@ -17390,7 +17387,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "}",
-
+  
   autopayEventDropdownContainer: ".autopay-event-dropdown-container" +
   "{" +
   "position: absolute;" +
@@ -17399,7 +17396,7 @@ var css = {
   "top: 22%;" +
   "overflow: scroll;" +
   "}",
-
+  
   autopayEventDropdownVariant: ".autopay-event-dropdown-variant" +
   "{" +
   "position: relative;" +
@@ -17410,7 +17407,7 @@ var css = {
   "margin-right: auto;" +
   "margin-bottom:" + 5 * widthK + "px;" +
   "}",
-
+  
   autopayEventAmountsInfoText: ".autopay-event-amounts-info-text" +
   "{" +
   "position: relative;" +
@@ -17420,12 +17417,12 @@ var css = {
   "top: 24%;" +
   "left: 10%;" +
   "}",
-
+  
   autopayEventAmountsInfoTextTwo: ".autopay-event-amounts-info-text-two" +
   "{" +
   "top: 25%;" +
   "}",
-
+  
   autopayEventButtonEnterEnabled: " .autopay-event-button-enter-enabled" +
   "{" +
   "height: " + 87 * widthK + "px;" +
@@ -17445,7 +17442,7 @@ var css = {
   "color: #ffffff;" +
   "pointer-events: auto;" +
   "}",
-
+  
   autopayEventButtonEnterDisabled: " .autopay-event-button-enter-disabled" +
   "{" +
   "height: " + 87 * widthK + "px;" +
@@ -17468,13 +17465,13 @@ var css = {
 
 
 //  View autopay schedule method
-
+  
   autopayScheduleHowOftenText: ".autopay-schedule-howoften-text" +
   "{" +
   "top: 3%; " +
   "position:relative;" +
   "}",
-
+  
   autopayScheduleBlockContainer: ".autopay-schedule-block-containter" +
   "{" +
   "position: relative;" +
@@ -17486,7 +17483,7 @@ var css = {
   "background-color: transparent;" +
   "top: 6%; " +
   "}",
-
+  
   autopayScheduleBlockText: ".autopay-schedule-block-text" +
   "{" +
   "position: relative;" +
@@ -17497,7 +17494,7 @@ var css = {
   "font-size:" + 29 * widthK + "px; " +
   "color: #585658;" +
   "}",
-
+  
   autopayScheduleBlockNextIcon: ".autopay-schedule-block-next-icon" +
   "{" +
   "position: absolute;" +
@@ -17510,7 +17507,7 @@ var css = {
   "background-position: center;" +
   "background-image: url(resources/icons/ViewInfo/open.png);" +
   "}",
-
+  
   autopayScheduleBlockDetailText: ".autopay-schedule-block-detail-text" +
   "{" +
   "position: relative;" +
@@ -17522,7 +17519,7 @@ var css = {
   "color: darkgray;" +
   "width: 70%;" +
   "}",
-
+  
   scheduleDateBlock: ".schedule-date-block " +
   "{" +
   "position: absolute;" +
@@ -17532,7 +17529,7 @@ var css = {
   "z-index: 99999;" +
   "display: none;" +
   "}",
-
+  
   scheduleDateBlockTitleContainer: ".schedule-date-block-title-container" +
   "{" +
   "position: absolute;" +
@@ -17544,7 +17541,7 @@ var css = {
   "height:" + 100 * widthK + "px;" +
   //"background-color: #c1c1c1;" +
   "}",
-
+  
   scheduleDateBlockTitleLine: ".schedule-date-block-title-line" +
   "{" +
   "position: absolute;" +
@@ -17553,7 +17550,7 @@ var css = {
   //"margin-bottom: " + 30 * widthK + "px;" +
   "top:34%;" +
   "}",
-
+  
   scheduleDateBlockTitle: ".schedule-date-block-title" +
   "{" +
   "position: relative;" +
@@ -17568,7 +17565,7 @@ var css = {
   "font-size:" + 33 * widthK + "px;" +
   "background-color: #f4f4f4;" +
   "}",
-
+  
   scheduleDateBlockButtonChoose: ".schedule-date-block-button-choose " +
   "{" +
   "border: none;" +
@@ -17585,7 +17582,7 @@ var css = {
   "color: #ffffff;" +
   "bottom: 17%;" +
   "}",
-
+  
   scheduleDateBlockDaysOuterContainer: ".schedule-date-block-days-outer-container " +
   "{" +
   "position: absolute;" +
@@ -17596,7 +17593,7 @@ var css = {
   //"background-color: #01B8FE;" +
   "overflow: hidden;" +
   "}",
-
+  
   scheduleDateBlockTimeOuterContainer: ".schedule-date-block-time-outer-container " +
   "{" +
   "position: relative;" +
@@ -17609,7 +17606,7 @@ var css = {
   //"background-color: #01B8FE;" +
   "overflow: hidden;" +
   "}",
-
+  
   scheduleDateBlockWeekOuterContainer: ".schedule-date-block-week-outer-container " +
   "{" +
   "position: relative;" +
@@ -17622,14 +17619,14 @@ var css = {
   //"background-color: #01B8FE;" +
   "overflow: hidden;" +
   "}",
-
+  
   scheduleDateBlockDaysContainer: ".schedule-date-block-days-container " +
   "{" +
   "position: absolute;" +
   "width:" + 600 * widthK + "px;" +
   "height:" + 500 * widthK + "px;" +
   "}",
-
+  
   scheduleDateBlockHoursContainer: ".schedule-date-block-hours-container " +
   "{" +
   "position: absolute;" +
@@ -17637,7 +17634,7 @@ var css = {
   "height:" + 440 * widthK + "px;" +
   "left: 0;" +
   "}",
-
+  
   scheduleDateBlockHMColonContainer: ".schedule-date-block-hmcolon-container " +
   "{" +
   "position: absolute;" +
@@ -17646,7 +17643,7 @@ var css = {
   "left: " + 195 * widthK + "px;" +
   //"background-color: #01B8FE;" +
   "}",
-
+  
   scheduleDateBlockMinutesContainer: ".schedule-date-block-minutes-container " +
   "{" +
   "position: absolute;" +
@@ -17654,8 +17651,8 @@ var css = {
   "height:" + 440 * widthK + "px;" +
   "right:" + 10 * widthK + "px;" +
   "}",
-
-
+  
+  
   scheduleDateBlockDay: ".schedule-date-block-day " +
   "{" +
   "position: absolute;" +
@@ -17664,7 +17661,7 @@ var css = {
   "color: #8b8b8b;" +
   "text-align: center;" +
   "}",
-
+  
   scheduleDateBlockWeek: ".schedule-date-block-week " +
   "{" +
   "position: absolute;" +
@@ -17673,7 +17670,7 @@ var css = {
   "color: #8b8b8b;" +
   "text-align: center;" +
   "}",
-
+  
   scheduleDateBlockTime: ".schedule-date-block-time " +
   "{" +
   "position: absolute;" +
@@ -17682,7 +17679,7 @@ var css = {
   "color: #8b8b8b;" +
   "text-align: center;" +
   "}",
-
+  
   scheduleDateBlockDayText: ".schedule-date-block-day-text " +
   "{" +
   "position: absolute;" +
@@ -17693,7 +17690,7 @@ var css = {
   "text-align: center;" +
   "top: " + -15 * widthK + "px; " +
   "}",
-
+  
   scheduleDateBlockWeekText: ".schedule-date-block-week-text " +
   "{" +
   "position: absolute;" +
@@ -17703,7 +17700,7 @@ var css = {
   "text-align: center;" +
   "font-size: " + 70 * widthK + "px; " +
   "}",
-
+  
   scheduleDateBlockTimeText: ".schedule-date-block-time-text " +
   "{" +
   "position: absolute;" +
@@ -17713,7 +17710,7 @@ var css = {
   "text-align: center;" +
   "font-size: " + 120 * widthK + "px; " +
   "}",
-
+  
   scheduleDateBlockTimeColonText: ".schedule-date-block-time-colon-text " +
   "{" +
   "position: absolute;" +
@@ -17725,7 +17722,7 @@ var css = {
   "top: " + 135 * widthK + "px;" +
   "color: #01B8FE;" +
   "}",
-
+  
   scheduleDateBlockHMBottom: ".schedule-date-block-hm-bottom" +
   "{" +
   "position: relative;" +
@@ -17734,7 +17731,7 @@ var css = {
   "left: 10%;" +
   "height:" + 100 * widthK + "px;" +
   "}",
-
+  
   scheduleDateBlockHMBottomLine: ".schedule-date-block-hm-bottom-line" +
   "{" +
   "position: absolute;" +
@@ -17743,7 +17740,7 @@ var css = {
   //"margin-bottom: " + 30 * widthK + "px;" +
   "top:34%;" +
   "}",
-
+  
   scheduleDateBlockHMBottomHourText: ".schedule-date-block-hm-bottom-hour-text" +
   "{" +
   "position: relative;" +
@@ -17757,7 +17754,7 @@ var css = {
   "margin: 0;" +
   "float: left;" +
   "}",
-
+  
   scheduleDateBlockHMBottomMinText: ".schedule-date-block-hm-bottom-min-text" +
   "{" +
   "position: relative;" +
@@ -17771,7 +17768,7 @@ var css = {
   "margin: 0;" +
   "float: left;" +
   "}",
-
+  
   autoPayNameInputPart: ".autopay-name-input-part" +
   "{" +
   "width: 100%;" +
@@ -17779,9 +17776,9 @@ var css = {
   "margin-left: 0;" +
   "top: 25%;" +
   "}",
-
+  
   //VIEW SERVICE INFO
-
+  
   serviceInfoBodyContainer: ".serviceinfo-body-container" +
   "{" +
   "position: absolute;" +
@@ -17793,7 +17790,7 @@ var css = {
   "overflow-y: auto;" +
   "-webkit-overflow-scrolling: touch; " +
   "}",
-
+  
   serviceInfoOptions: ".serviceinfo-options" +
   "{" +
   "overflow-y: scroll;" +
@@ -17803,8 +17800,8 @@ var css = {
   "overflow: auto;" +
   //"border-bottom: 1px solid lightgray;" +
   "}",
-
-
+  
+  
   serviceInfoOptionTextContainer: ".serviceinfo-option-text-container" +
   "{" +
   "position: relative;" +
@@ -17813,7 +17810,7 @@ var css = {
   "height: 7.5%;" +
   //"border-bottom: 1px solid lightgray;" +
   "}",
-
+  
   serviceInfoOptionText: ".serviceinfo-option-text" +
   "{" +
   "font-size: " + 27 * widthK + "px; " +
@@ -17822,7 +17819,7 @@ var css = {
   "margin: 0;" +
   "padding-top: " + 22 * widthK + "px; " +
   "}",
-
+  
   serviceInfoOptionContainer: ".serviceinfo-option-containter" +
   "{" +
   "position: relative;" +
@@ -17832,7 +17829,7 @@ var css = {
   //"margin-top: 1%;" +
   "background-color: white;" +
   "}",
-
+  
   serviceInfoOptionInfoContainer: ".serviceinfo-option-info-container" +
   "{" +
   "position: relative;" +
@@ -17841,7 +17838,7 @@ var css = {
   "margin:0;" +
   //"border:" + 1 * widthK + "px solid gainsboro;" +
   "}",
-
+  
   serviceInfoOptionDetail: ".serviceinfo-option-detail" +
   "{" +
   "position: relative;" +
@@ -17851,7 +17848,7 @@ var css = {
   "overflow:hidden;" +
   "border-bottom: 1px solid gainsboro;" +
   "}",
-
+  
   serviceInfoOptionTitleText: ".serviceinfo-option-title-text" +
   "{" +
   "position: relative;" +
@@ -17861,7 +17858,7 @@ var css = {
   "font-size:" + 29 * widthK + "px; " +
   "color: gray;" +
   "}",
-
+  
   serviceInfoOptionValueText: ".serviceinfo-option-value-text" +
   "{" +
   "position: relative;" +
@@ -17875,7 +17872,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "}",
-
+  
   serviceInfoOptionTitleTextOption: ".serviceinfo-option-title-text-option" +
   "{" +
   "position: relative;" +
@@ -17887,7 +17884,7 @@ var css = {
   "font-size:" + 29 * widthK + "px; " +
   "color: gray;" +
   "}",
-
+  
   serviceInfoOptionValueTextOption: ".serviceinfo-option-value-text-option" +
   "{" +
   "position: relative;" +
@@ -17903,7 +17900,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "overflow: hidden;" +
   "}",
-
+  
   serviceInfoOptionCheckIcon: ".serviceinfo-option-check-icon" +
   "{" +
   "position: absolute;" +
@@ -17916,7 +17913,7 @@ var css = {
   "background-position-y: 40%;" +
   "background-image: url(resources/icons/ViewService/radio_unselected.png);" +
   "}",
-
+  
   serviceInfoButtonNext: ".serviceinfo-button-next" +
   "{" +
   "position: absolute;" +
@@ -17935,7 +17932,7 @@ var css = {
   "left: 0;" +
   "color: #ffffff;" +
   "}",
-
+  
   serviceInfoInformField: ".serviceinfo-inform-field" +
   "{" +
   "position: relative;" +
@@ -17945,7 +17942,7 @@ var css = {
   "color: white;" +
   "left: 5%;" +
   "}",
-
+  
   serviceInfoInformFieldTitle: ".serviceinfo-inform-field-title" +
   "{" +
   "position: absolute;" +
@@ -17955,7 +17952,7 @@ var css = {
   "left: 4%;" +
   "top: 17%;" +
   "}",
-
+  
   serviceInfoInformFieldValue: ".serviceinfo-inform-field-value" +
   "{" +
   "position: absolute;" +
@@ -17971,7 +17968,7 @@ var css = {
   "}",
 
 //  COMPONENT TOUR
-
+  
   tourBackPage: ".tour-back-page " +
   "{" +
   "position: absolute;" +
@@ -17986,7 +17983,7 @@ var css = {
   "background-color: rgba(0, 0, 0, 0.6);" +
   "opacity: 1;" +
   "}",
-
+  
   componentTour: ".component-tour " +
   "{" +
   "top:" + 30 * heightK + "px;" +
@@ -18007,7 +18004,7 @@ var css = {
   "-moz-box-shadow: 0 0 10px rgba(0,0,0, .65);" +
   "box-shadow: 0 0 10px rgba(0,0,0, .65);" +
   "}",
-
+  
   tourTitleText: ".tour-title-text" +
   "{" +
   "position: absolute;" +
@@ -18024,7 +18021,7 @@ var css = {
   "z-index: 999;" +
   "font-weight: bold;" +
   "}",
-
+  
   tourCloseIcon: ".tour-close-icon " +
   "{" +
   "position: absolute;" +
@@ -18040,7 +18037,7 @@ var css = {
   "top:1%;" +
   "z-index: 999;" +
   "}",
-
+  
   tourCardCarousel: ".tour-card-carousel" +
   "{" +
   "position: relative;" +
@@ -18050,8 +18047,8 @@ var css = {
   "top: 0;" +
   "bottom:" + 258 * widthK + "px;" +
   "}",
-
-
+  
+  
   componentTourCard: ".component-tour-card " +
   "{" +
   "position: absolute;" +
@@ -18067,7 +18064,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "top: -1px;" +
   "}",
-
+  
   componentCardUpperContainer: ".component-card-upper-container " +
   "{" +
   "position: absolute;" +
@@ -18077,7 +18074,7 @@ var css = {
   "top:0;" +
   //"background-color: lightgray;" +
   "}",
-
+  
   componentCardUpperIcon: ".component-card-upper-icon" +
   "{" +
   "position: absolute;" +
@@ -18089,7 +18086,7 @@ var css = {
   "background-position: center;" +
   "background-position-y: 60%;" +
   "}",
-
+  
   componentCardUpperIconIn: ".component-card-upper-icon-in" +
   "{" +
   "position: absolute;" +
@@ -18101,7 +18098,7 @@ var css = {
   "background-position: center;" +
   "background-position-y: 50%;" +
   "}",
-
+  
   componentCardLowerContainer: ".component-card-lower-container " +
   "{" +
   "position: absolute;" +
@@ -18110,7 +18107,7 @@ var css = {
   "top:" + 460 * heightK + "px;" +
   "background-color: transparent;" +
   "}",
-
+  
   componentCardLowerTitleText: ".component-card-lower-title-text " +
   "{" +
   "position: relative;" +
@@ -18126,7 +18123,7 @@ var css = {
   "font-size:" + 35 * widthK + "px;" +
   "font-weight: bold;" +
   "}",
-
+  
   componentCardLowerBodyText: ".component-card-lower-body-text " +
   "{" +
   "position: relative;" +
@@ -18145,7 +18142,7 @@ var css = {
   "word-spacing: 1px;" +
   "line-height:" + 46 * widthK + "px;" +
   "}",
-
+  
   componentTourBottom: ".component-tour-bottom " +
   "{" +
   "position: relative;" +
@@ -18154,7 +18151,7 @@ var css = {
   //"top:" + 110 * widthK + "px;" +
   //"background-color: #ee4d3d;" +
   "}",
-
+  
   tourNextButtonInnerContainer: ".tour-next-button-inner-container" +
   "{" +
   "top: 83%;" +
@@ -18172,8 +18169,8 @@ var css = {
   "border-radius: " + 10 * widthK + "px;" +
   "color: #ffffff;" +
   "}",
-
-
+  
+  
   tourButtonsContainer: ".tour-buttons-container" +
   "{" +
   "position: absolute;" +
@@ -18185,7 +18182,7 @@ var css = {
   "margin-right: auto;" +
   "margin-left: auto;" +
   "}",
-
+  
   tourNextButton: ".tour-next-button" +
   "{" +
   "position: relative;" +
@@ -18201,7 +18198,7 @@ var css = {
   "left:" + 60.4 * widthK + "px;" +
   "margin-right: 4%;" +
   "}",
-
+  
   tourButtonLabel: ".tour-button-label" +
   "{" +
   "position: relative;" +
@@ -18212,19 +18209,19 @@ var css = {
   "display: table-cell;" +
   "vertical-align: middle;" +
   "}",
-
+  
   tourCloseButton: ".tour-close-button" +
   "{" +
   "background-color: transparent;" +
   "border: 2px solid gainsboro;" +
   "width: 35%;" +
   "}",
-
+  
   tourCloseButtonLabel: ".tour-close-button-label" +
   "{" +
   "color: #595759;" +
   "}",
-
+  
   tourRegistrationButton: ".tour-registration-button" +
   "{" +
   "position: relative;" +
@@ -18239,7 +18236,7 @@ var css = {
   "margin-right: auto;" +
   "margin-left: auto;" +
   "}",
-
+  
   tourCloseButtonCenter: ".tour-close-button-center" +
   "{" +
   "position: relative;" +
@@ -18254,7 +18251,7 @@ var css = {
   "margin-right: auto;" +
   "margin-left: auto;" +
   "}",
-
+  
   tourRegistrationButtonLabel: ".tour-registration-button-label" +
   "{" +
   "position: relative;" +
@@ -18265,7 +18262,7 @@ var css = {
   "display: table-cell;" +
   "vertical-align: middle;" +
   "}",
-
+  
   tourCirclesContainer: ".tour-circles-container " +
   "{" +
   "position: relative;" +
@@ -18275,7 +18272,7 @@ var css = {
   "height:" + 35 * heightK + "px;" +
   "top:" + 24 * heightK + "px;" +
   "}",
-
+  
   tourCirclesField: ".tour-circles-field " +
   "{" +
   "position: relative;" +
@@ -18287,7 +18284,7 @@ var css = {
   "display: inline-block;" +
   "left: 12%;" +
   "}",
-
+  
   tourCircle: ".tour-circles " +
   "{" +
   "position: absolute;" +
@@ -18296,7 +18293,7 @@ var css = {
   "background-color:gainsboro;" +
   "border-radius:" + 50 * widthK + "px;" +
   "}",
-
+  
   iframeContainer: ".iFrame-container " +
   "{" +
   "position: absolute;" +
@@ -18305,7 +18302,7 @@ var css = {
   "width:" + 720 * widthK + "px;" +
   "height:" + heightOfMobile + "px;" +
   "}",
-
+  
   iframeMain: ".iFrame-main " +
   "{" +
   "position: absolute;" +
@@ -18315,7 +18312,7 @@ var css = {
   "height: 93%;" +
   "background-color: white;" +
   "}",
-
+  
   iframeToolbarContainer: ".iFrame-toolbar-container " +
   "{" +
   "position: absolute;" +
@@ -18324,7 +18321,7 @@ var css = {
   "height: 10%;" +
   "background-color: #00b8ff;" +
   "}",
-
+  
   iFrameBackButton: ".iFrame-back-button " +
   "{" +
   "position: absolute;" +
@@ -18339,7 +18336,7 @@ var css = {
   "left: 0%;" +
   "top:" + 20 * widthK + "px;" +
   "}",
-
+  
   iFrameTitle: ".iFrame-title " +
   "{" +
   "position: absolute;" +
@@ -18350,7 +18347,7 @@ var css = {
   "margin: 0;" +
   "color: #fffaf9;" +
   "}",
-
+  
   defaultAccountTitle: ".default-account-title" +
   "{" +
   "position: absolute;" +
@@ -18365,10 +18362,10 @@ var css = {
   "overflow: hidden;" +
   "width: 60%;" +
   "}",
-
-
+  
+  
   // InPlace Payment
-
+  
   inPlacePayCategoryContainer: ".inplace-pay-category-container" +
   "{" +
   "position: absolute;" +
@@ -18381,8 +18378,8 @@ var css = {
   // "overflow-y: auto; " +
   "background-color: white; " +
   "}",
-
-
+  
+  
   inPlacePayCategoryInnerContainer: ".inplace-pay-category-inner-container" +
   "{" +
   "position: absolute;" +
@@ -18394,7 +18391,7 @@ var css = {
   "overflow-x: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
   "}",
-
+  
   inPlacePayServiceInnerContainer: ".inplace-pay-service-inner-container" +
   "{" +
   "position: absolute;" +
@@ -18406,18 +18403,18 @@ var css = {
   "overflow-x: hidden; " +
   "-webkit-overflow-scrolling: touch; " +
   "}",
-
+  
   inPlacePayServiceInnerContainerScroll: ".inplace-pay-service-inner-container::-webkit-scrollbar" +
   "{" +
   "width:" + 10 * widthK + "px; " +
   "}",
-
+  
   inPlacePayServiceInnerContainerScrollThumb: ".inplace-pay-service-inner-container::-webkit-scrollbar-thumb" +
   "{" +
   "background-color: rgba(0, 0, 0, .15); " +
   "}",
-
-
+  
+  
   inPlacePayBlockContainer: ".inplace-pay-block-containter" +
   "{" +
   "position: relative;" +
@@ -18428,8 +18425,8 @@ var css = {
   "border-top: 1px solid gainsboro;" +
   "background-color: transparent;" +
   "}",
-
-
+  
+  
   inPlacePayCategoryIcon: ".inplace-pay-category-icon" +
   "{" +
   "position: relative;" +
@@ -18444,7 +18441,7 @@ var css = {
   "background-size: 100%;" +
   "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
   "}",
-
+  
   inPlacePayCategoryNameField: ".inplace-pay-category-name-field" +
   "{" +
   "position: relative;" +
@@ -18458,7 +18455,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "white-space: nowrap;" +
   "}",
-
+  
   inPlacePayIconTick: ".inplace-pay-icon-tick " +
   "{" +
   "position: relative;" +
@@ -18470,7 +18467,7 @@ var css = {
   "height:" + 18 * widthK + "px;" +
   // "top:" + 9 * widthK + "px;" +
   "}",
-
+  
   inPlacePaySearchContainer: ".inplace-pay-search-container" +
   "{" +
   "position: absolute;" +
@@ -18479,8 +18476,8 @@ var css = {
   "background-color: white; " +
   "z-index: 99999;" +
   "}",
-
-
+  
+  
   inPlacePaySearchField: ".inplace-pay-search-field" +
   "{" +
   "position: relative;" +
@@ -18491,7 +18488,7 @@ var css = {
   "color: white;" +
   // "top: 8%;" +
   "}",
-
+  
   inPlacePaySearchInputPart: ".inplace-pay-search-input-part" +
   "{" +
   "border: none;" +
@@ -18506,14 +18503,14 @@ var css = {
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "}",
-
+  
   inPlacePaySearchInputPlaceholder: ".inplace-pay-search-input-part::-webkit-input-placeholder" +
   "{" +
   "font-size:" + 30 * widthK + "px;" +
   "color: darkgray;" +
   "padding: " + 20 * widthK + "px 0 0 0;" +
   "}",
-
+  
   inPlacePaySearchIcon: ".inplace-pay-search-icon" +
   "{" +
   "position: relative;" +
@@ -18528,7 +18525,7 @@ var css = {
   "background-position: center;" +
   "top: 19%;" +
   "}",
-
+  
   inPlacePaySearchRemoveIcon: ".inplace-pay-search-remove-icon" +
   "{" +
   "position: relative;" +
@@ -18543,9 +18540,9 @@ var css = {
   "background-position: center;" +
   "top: 19%;" +
   "}",
-
+  
   // View InPlacePayService
-
+  
   inPlacePayServiceContainer: ".inplace-pay-service-container" +
   "{" +
   "position: relative;" +
@@ -18556,8 +18553,8 @@ var css = {
   "background-color: transparent;" +
   "z-index:9999999;" +
   "}",
-
-
+  
+  
   inPlacePayServiceIcon: ".inplace-pay-service-icon" +
   "{" +
   "position: absolute;" +
@@ -18571,7 +18568,7 @@ var css = {
   "background-size: 50%;" +
   "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
   "}",
-
+  
   inPlacePayServiceInfo: ".inplace-pay-service-info" +
   "{" +
   "position: absolute;" +
@@ -18582,7 +18579,7 @@ var css = {
   // "float: left;" +
   "background-color: transparent;" +
   "}",
-
+  
   inPlacePayServiceNameField: ".inplace-pay-service-name-field" +
   "{" +
   "position: relative;" +
@@ -18595,7 +18592,7 @@ var css = {
   "text-overflow: ellipsis;" +
   "white-space: nowrap;" +
   "}",
-
+  
   inPlacePayServiceAddressField: ".inplace-pay-service-address-field" +
   "{" +
   "position: relative;" +
@@ -18610,7 +18607,7 @@ var css = {
   "margin-right: " + -25 * widthK + "px; " +
   "padding-right: " + 20 * widthK + "px; " +
   "}",
-
+  
   inPlacePayServiceAddressFieldBefore: ".inplace-pay-service-address-field:before" +
   "{" +
   /* points in the end */
@@ -18621,7 +18618,7 @@ var css = {
   "right: 0;" +
   "bottom: 0;" +
   "}",
-
+  
   inPlacePayServiceAddressFieldAfter: ".inplace-pay-service-address-field:after" +
   "{" +
   /* points in the end */
@@ -18636,7 +18633,7 @@ var css = {
   "margin-top: " + 5 * widthK + "px; " +
   "background: white;" +
   "}",
-
+  
   inPlacePayServiceDistanceContainer: ".inplace-pay-service-distance-container" +
   "{" +
   "position: relative;" +
@@ -18646,7 +18643,7 @@ var css = {
   // "font-size:" + 26 * widthK + "px; " +
   // "color: #00a8f1;" +
   "}",
-
+  
   inPlacePayServiceDistanceField: ".inplace-pay-service-distance-field" +
   "{" +
   "position: relative;" +
@@ -18656,7 +18653,7 @@ var css = {
   "left:" + 7 * widthK + "px; " +
   "color: #00a8f1;" +
   "}",
-
+  
   inPlacePayServiceDistanceIcon: ".inplace-pay-service-distance-icon " +
   "{" +
   "position: relative;" +
@@ -18669,7 +18666,7 @@ var css = {
   "margin-top: " + 4 * widthK + "px;" +
   "float: left;" +
   "}",
-
+  
   inPlacePayServiceIconTick: ".inplace-pay-service-icon-tick " +
   "{" +
   "position: absolute;" +
@@ -18681,7 +18678,7 @@ var css = {
   "height:" + 18 * widthK + "px;" +
   "top: 47%;" +
   "}",
-
+  
   inPlacePayGoToQrContainer: ".inplace-pay-gotoqr-container" +
   "{ " +
   "position: absolute;" +
@@ -18691,7 +18688,7 @@ var css = {
   "right:" + 54 * widthK + "px;" +
   "z-index: 9999999;" +
   "}",
-
+  
   inPlacePayGoToQrButton: ".inplace-pay-gotoqr-button" +
   "{ " +
   "position: absolute;" +
@@ -18707,7 +18704,7 @@ var css = {
   "-moz-box-shadow: 0px " + 5 * widthK + "px " + 12 * widthK + "px " + -7 * widthK + "px " + "rgba(0,0,0,1);" +
   "box-shadow:  0px " + 5 * widthK + "px " + 12 * widthK + "px " + -7 * widthK + "px " + "rgba(0,0,0,1);" +
   "}",
-
+  
   inPlacePayGoToQrLabel: ".inplace-pay-gotoqr-label" +
   "{" +
   "position: absolute;" +
@@ -18718,7 +18715,7 @@ var css = {
   "color: #515151;" +
   "font-size:" + 24 * widthK + "px;" +
   "}",
-
+  
   inPlacePaySearchNoMatch: ".inplace-pay-search-no-match " +
   "{" +
   "position: relative;" +
@@ -18730,11 +18727,11 @@ var css = {
   "top: 25%;" +
   "font-size:" + 30 * widthK + "px;" +
   "}",
-
-
+  
+  
   //Service Additional Info
-
-
+  
+  
   // serviceAddInfoPeriodField: ".service-addinfo-period-field" +
   // "{" +
   // "position: relative;" +
@@ -18760,7 +18757,7 @@ var css = {
   "font-family: 'SFUIDisplay-Light';" +
   "color: #515151;" +
   "}",
-
+  
   serviceAddInfoChoosePeriodText: ".service-addinfo-choose-period-text" +
   "{" +
   "position: relative;" +
@@ -18770,7 +18767,7 @@ var css = {
   "left: 10%;" +
   // "top: 3%;" +
   "}",
-
+  
   serviceAddInfoPeriodContainer: ".service-addinfo-period-containter" +
   "{" +
   "position: relative;" +
@@ -18781,7 +18778,7 @@ var css = {
   "background-color: transparent;" +
   // "top: 6%;" +
   "}",
-
+  
   serviceAddInfoFieldTitle: ".service-addinfo-field-title" +
   "{" +
   "position: absolute;" +
@@ -18792,7 +18789,7 @@ var css = {
   "font-size:" + 29 * widthK + "px; " +
   "color: gray;" +
   "}",
-
+  
   serviceAddInfoFieldDate: ".service-addinfo-field-date" +
   "{" +
   "position: absolute;" +
@@ -18803,7 +18800,7 @@ var css = {
   "font-size:" + 29 * widthK + "px; " +
   "color: gray;" +
   "}",
-
+  
   serviceAddInfoAmountField: ".service-addinfo-amount-field" +
   "{position: relative;" +
   "left: 10%;" +
@@ -18813,7 +18810,7 @@ var css = {
   "color: white;" +
   "top: 5%" +
   "}",
-
+  
   serviceAddInfoAmountIcon: ".service-addinfo-amount-icon" +
   "{" +
   "position: relative;" +
@@ -18826,7 +18823,7 @@ var css = {
   "background-size: 100%;" +
   "top: 40%;" +
   "}",
-
+  
   serviceAddInfoAmountInput: ".service-addinfo-amount-input" +
   "{" +
   "border: none;" +
@@ -18840,7 +18837,7 @@ var css = {
   "padding: 0;" +
   "margin: 0;" +
   "}"
-
+  
 };
 
 var style = document.createElement('style');
