@@ -641,7 +641,7 @@ var css = {
 
   //VIEW REGISTRATION DEVICE
 
-  viewRegistrationDevice: ".view-registration-device " +
+  viewRegistrationDevice         : ".view-registration-device " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
@@ -842,7 +842,7 @@ var css = {
   "margin-left: auto;" +
   "}",
 
-  buttonEnterLabel: ".button-enter-label " +
+  buttonEnterLabel       : ".button-enter-label " +
   "{" +
   "position: absolute;" +
   "top: 19%;" +
@@ -897,7 +897,7 @@ var css = {
   // "left:" + 110 * widthK + "px;" +
   "}",
 
-  registrationButtonsContainer: ".registration-buttons-container " +
+  registrationButtonsContainer    : ".registration-buttons-container " +
   "{" +
   "position: absolute;" +
   "margin-left: 5%;" +
@@ -906,7 +906,7 @@ var css = {
   "bottom:" + 88 * widthK + "px;" +
   "border-top: 1px solid #e8e8e8;" +
   "}",
-  registrationContainerOffline: ".registration-container-offline " +
+  registrationContainerOffline    : ".registration-container-offline " +
   "{" +
   "position: absolute;" +
   "width:" + 300 * widthK + "px;" +
@@ -914,7 +914,7 @@ var css = {
   "top: 0;" +
   "left: 0;" +
   "}",
-  registrationButtonOffline: ".registration-button-offline " +
+  registrationButtonOffline       : ".registration-button-offline " +
   "{" +
   "position: absolute;" +
   "color: #535b67;" +
@@ -930,7 +930,7 @@ var css = {
   "top: 0;" +
   "right: 0;" +
   "}",
-  RegistrationButtonDemoVersion: ".registration-button-demo-version " +
+  RegistrationButtonDemoVersion   : ".registration-button-demo-version " +
   "{" +
   "position: absolute;" +
   "font-size:" + 33 * widthK + "px;" +
@@ -942,7 +942,7 @@ var css = {
   "margin-bottom:" + 14 * widthK + "px;" +
   "text-align: center;" +
   "}",
-  registrationButtonHelp: ".registration-button-help " +
+  registrationButtonHelp          : ".registration-button-help " +
   "{" +
   "position: absolute;" +
   "font-size:" + 33 * widthK + "px;" +
@@ -951,7 +951,7 @@ var css = {
   "background-size: contain;" +
   "color: #535b67;" +
   "}",
-  registrationButtonRegistration: ".registration-button-registration " +
+  registrationButtonRegistration  : ".registration-button-registration " +
   "{" +
   "position: absolute;" +
   "top:" + 30 * widthK + "px;" +
@@ -961,7 +961,7 @@ var css = {
   "color: white;" +
   "border-bottom:" + 1 + "px solid white;" +
   "}",
-  registrationTextField: ".registration-text-field " +
+  registrationTextField           : ".registration-text-field " +
   "{" +
   "position: absolute;" +
   "background-size: contain;" +
@@ -975,41 +975,41 @@ var css = {
 
   //KEYBOARD COMPONENT
 
-  keyboardContainer: ".keyboard-container " +
+  keyboardContainer   : ".keyboard-container " +
   "{" +
   "position: absolute;" +
   "width:" + 540 * widthK + "px;" +
   "height:" + 472 * heightK + "px;" +
   "}",
-  keyboardFieldOne: ".keyboard-field-one " +
+  keyboardFieldOne    : ".keyboard-field-one " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * heightK + "px;" +
   "top: 0;" +
   "}",
-  keyboardFieldTwo: ".keyboard-field-two " +
+  keyboardFieldTwo    : ".keyboard-field-two " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
   "top:" + 120 * heightK + "px;" +
   "}",
-  keyboardFieldThree: ".keyboard-field-three " +
+  keyboardFieldThree  : ".keyboard-field-three " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
   "top:" + 236 * heightK + "px;" +
   "}",
-  keyboardFieldFour: ".keyboard-field-four " +
+  keyboardFieldFour   : ".keyboard-field-four " +
   "{" +
   "position: absolute;" +
   "width: 100%;" +
   "height:" + 120 * widthK + "px;" +
   "top:" + 353 * heightK + "px;" +
   "}",
-  keyboardFieldFive: ".keyboard-field-five " +
+  keyboardFieldFive   : ".keyboard-field-five " +
   "{" +
   "position: absolute;" +
   "width: " + 140 * widthK + "px;" +
@@ -1019,7 +1019,7 @@ var css = {
   "font-size:" + 70 * widthK + "px;" +
   "text-align: center;" +
   "}",
-  keyboardButtons: ".keyboard-buttons " +
+  keyboardButtons     : ".keyboard-buttons " +
   "{" +
   "position: absolute;" +
   "width:" + 134 * widthK + "px;" +
@@ -1036,16 +1036,16 @@ var css = {
   "top:" + 13 * widthK + "px;" +
   "margin: 0;" +
   "}",
-  keyboardButtonOne: ".keyboard-button-one {left: 0;}",
-  keyboardButtonTwo: ".keyboard-button-two {left:" + 202 * widthK + "px;}",
-  keyboardButtonThree: ".keyboard-button-three {right: 0;}",
-  keyboardButtonFour: ".keyboard-button-four {left: 0;}",
-  keyboardButtonFive: ".keyboard-button-five {left:" + 202 * widthK + "px;}",
-  keyboardButtonSix: ".keyboard-button-six {right: 0;}",
-  keyboardButtonSeven: ".keyboard-button-seven {left: 0;}",
-  keyboardButtonEight: ".keyboard-button-eight {left:" + 202 * widthK + "px;}",
-  keyboardButtonNine: ".keyboard-button-nine {right: 0;}",
-  keyboardSpace: ".keyboard-space {" +
+  keyboardButtonOne   : ".keyboard-button-one {left: 0;}",
+  keyboardButtonTwo   : ".keyboard-button-two {left:" + 202 * widthK + "px;}",
+  keyboardButtonThree : ".keyboard-button-three {right: 0;}",
+  keyboardButtonFour  : ".keyboard-button-four {left: 0;}",
+  keyboardButtonFive  : ".keyboard-button-five {left:" + 202 * widthK + "px;}",
+  keyboardButtonSix   : ".keyboard-button-six {right: 0;}",
+  keyboardButtonSeven : ".keyboard-button-seven {left: 0;}",
+  keyboardButtonEight : ".keyboard-button-eight {left:" + 202 * widthK + "px;}",
+  keyboardButtonNine  : ".keyboard-button-nine {right: 0;}",
+  keyboardSpace       : ".keyboard-space {" +
   "left: 0; " +
   "background-size:" + 60 * widthK + "px;" +
   "background-image: url('resources/icons/authorization/touchid.png');" +
@@ -1053,8 +1053,8 @@ var css = {
   "background-position-y:" + 25 * widthK + "px;" +
   "background-position-x: center;" +
   "}",
-  keyboardButtonZero: ".keyboard-button-zero {left:" + 202 * widthK + "px;}",
-  keyboardButtonEnter: ".keyboard-button-enter {position: absolute;}",
+  keyboardButtonZero  : ".keyboard-button-zero {left:" + 202 * widthK + "px;}",
+  keyboardButtonEnter : ".keyboard-button-enter {position: absolute;}",
 
   //keyboardButtonsActive: ".keyboard-buttons:active " +
   //"{" +
@@ -2424,7 +2424,7 @@ var css = {
   "{" +
   "position: absolute;" +
   "height: 55%;" +
-  "width: 100%;" +
+  // "width: 100%;" +
   "bottom: 23%;" +
   "left:" + 25 * widthK + "px;" +
   "}",
@@ -2504,6 +2504,7 @@ var css = {
   "position: absolute;" +
   "bottom:" + 12 * widthK + "px;" +
   "font-size:" + 25 * widthK + "px;" +
+  "margin-left:" + 15 * widthK + "px;" +
   "color: grey;" +
   "width: 100%;" +
   "white-space: nowrap;" +
@@ -2776,7 +2777,7 @@ var css = {
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "}",
-  sideMenuActionIcon: ".side-menu-action-icon " +
+  sideMenuActionIcon    : ".side-menu-action-icon " +
   "{" +
   "width: 7%;" +
   "height: 81%;" +
@@ -4085,7 +4086,7 @@ var css = {
   payServiceIcon: ".pay-service-icon" +
   "{" +
   "position: relative;" +
-  "width: 75%;" +
+  // "width: 75%;" +
   "height: " + 150 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
@@ -4134,14 +4135,14 @@ var css = {
   payServiceImageNoLoader: ".pay-service-image-noloader" +
   "{" +
   "position: relative;" +
-  "width:  " + 120 * widthK + "px; " +
+  // "width:  " + 120 * widthK + "px; " +
   "height: " + 120 * widthK + "px; " +
   "margin-left: " + 15 * widthK + "px; " +
   "margin-top: " + 15 * widthK + "px; " +
   "margin-right: " + 15 * widthK + "px; " +
   "margin-bottom: " + 15 * widthK + "px; " +
   "}",
-  payServiceImageNoLogo: ".pay-service-image-nologo" +
+  payServiceImageNoLogo  : ".pay-service-image-nologo" +
   "{" +
   "background-image: url('resources/icons/services/nologo.png');" +
   // "background-image: url(resources/icons/ViewInPlacePay/loader.gif);" +
@@ -4159,6 +4160,7 @@ var css = {
   // "right:" + 20 * widthK + "px; " +
   "color: gray;" +
   "text-align: center;" +
+  "margin-left:" + 15 * widthK + "px; " +
   "margin-right: auto;" +
   // "top: 104%;" +
   "width: 100%;" +
@@ -4222,6 +4224,7 @@ var css = {
   "{" +
   "position: relative;" +
   "width: 28%;" +
+  "display: flex;" +
   "margin-left: 3%;" +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
@@ -4717,12 +4720,12 @@ var css = {
   "color: #515151;" +
   "background-color: transparent;" +
   "}",
-  
+
   servicePageNumberInputPrefixWideWidth: ".servicepage-number-input-prefix-wide-width" +
   "{" +
   "width: 81%;" +
   "}",
-  
+
   servicePageNumberInputPrefixWidth: ".servicepage-number-input-prefix-width" +
   "{" +
   "width: 72%;" +
@@ -5438,7 +5441,7 @@ var css = {
   "top: 51%;" +
   "}",
 
-  pincardCardCheckmark: ".pincard-card-checkmark" +
+  pincardCardCheckmark  : ".pincard-card-checkmark" +
   "{" +
   "position: absolute;" +
   "width: 17%;" +
@@ -5752,7 +5755,7 @@ var css = {
   "font-size: " + 40 * widthK + "px; " +
   "color: gray;" +
   "}",
-  payconfirmCardField: ".payconfirm-card-field" +
+  payconfirmCardField  : ".payconfirm-card-field" +
   "{" +
   "position: relative;" +
   "width: 100%;" +
@@ -15338,7 +15341,7 @@ var css = {
   "top: 51%;" +
   "}",
 
-  qrPincardCardCheckmark: ".qr-pincard-card-checkmark" +
+  qrPincardCardCheckmark  : ".qr-pincard-card-checkmark" +
   "{" +
   "position: absolute;" +
   "width: 17%;" +
@@ -15954,7 +15957,7 @@ var css = {
   "background-color: transparent;" +
   //"border-bottom:  " + 1 + "px solid lightgray;" +
   "}",
-  reportServicePhoneInput: ".report-service-phone-input" +
+  reportServicePhoneInput   : ".report-service-phone-input" +
   "{" +
   "position: absolute;" +
   "margin: 0;" +
@@ -16527,17 +16530,17 @@ var css = {
   "float:left;" +
   "display: inline-block;" +
   "}",
-  
+
   viewNewsFooterDateItem: ".view-news-footer-date-item" +
   "{" +
   "width: " + 130 * widthK + "px;" +
   "}",
-  
+
   viewNewsFooterInfoItem: ".view-news-footer-info-item" +
   "{" +
   "width: " + 230 * widthK + "px;" +
   "}",
-  
+
   textLeft: ".text-left" +
   "{" +
   "text-align: left !important;" +
@@ -16583,7 +16586,7 @@ var css = {
   "height:100%; " +
   "background-image: url(resources/icons/ViewNews/like-not-fill.png);" +
   "}",
-  
+
   viewNewsItemIconLiked: ".view-news-item-icon-liked" +
   "{" +
   "background-image: url(resources/icons/ViewNews/like-fill.png);" +
