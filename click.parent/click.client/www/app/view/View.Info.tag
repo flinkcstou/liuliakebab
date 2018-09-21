@@ -392,56 +392,59 @@
           scope: this,
 
           onSuccess: function (result) {
+            try {
 
-            window.clearTimeout(timeOutTimerPayment);
+              window.clearTimeout(timeOutTimerPayment);
 
-            if (result[0][0].error == 0) {
-              var j = 0;
+              if (result[0][0].error == 0) {
+                var j = 0;
 
-              for (var i in result[1]) {
+                for (var i in result[1]) {
 
-                result[1][i].count = j;
+                  result[1][i].count = j;
 
-                result[1][i].amount = result[1][i].amount.toString();
-                result[1][i].amount = window.amountTransform(result[1][i].amount);
+                  result[1][i].amount = result[1][i].amount.toString();
+                  result[1][i].amount = window.amountTransform(result[1][i].amount);
 
-                console.log("STATE ", result[1][i].state);
+                  console.log("STATE ", result[1][i].state);
 
-                if (result[1][i].state == -1) {
-                  result[1][i].state_image = "resources/icons/ViewReport/report_status_error.png"
+                  if (result[1][i].state == -1) {
+                    result[1][i].state_image = "resources/icons/ViewReport/report_status_error.png"
+                  }
+
+                  if (result[1][i].state == 1) {
+                    result[1][i].state_image = "resources/icons/ViewReport/report_status_processing.png"
+                  }
+
+                  if (result[1][i].state == 2) {
+                    result[1][i].state_image = "resources/icons/ViewReport/report_status_ok.png"
+                  }
+                  if(scope.servicesMap[result[1][i].service_id])
+                  {
+                    result[1][i].cost = scope.servicesMap[result[1][i].service_id][0].cost;
+                    result[1][i].lang_amount_title=scope.servicesMap[result[1][i].service_id][0].lang_amount_title;
+                    if(result[1][i].amount)result[1][i].amount_in_int=parseInt(result[1][i].amount.replace(/\s/g,''));
+                  }
+
+                  scope.lastOperationContainer.push(result[1][i]);
+                  console.log('scope.lastOperationContainer', scope.lastOperationContainer);
+
+                  j++;
                 }
 
-                if (result[1][i].state == 1) {
-                  result[1][i].state_image = "resources/icons/ViewReport/report_status_processing.png"
-                }
-
-                if (result[1][i].state == 2) {
-                  result[1][i].state_image = "resources/icons/ViewReport/report_status_ok.png"
-                }
-                if(scope.servicesMap[result[1][i].service_id])
-                {
-                  result[1][i].cost = scope.servicesMap[result[1][i].service_id][0].cost;
-                  result[1][i].lang_amount_title=scope.servicesMap[result[1][i].service_id][0].lang_amount_title;
-                  if(result[1][i].amount)result[1][i].amount_in_int=parseInt(result[1][i].amount.replace(/\s/g,''));
-                }
-
-                scope.lastOperationContainer.push(result[1][i]);
-                console.log('scope.lastOperationContainer', scope.lastOperationContainer);
-
-                j++;
+                scope.update()
               }
-
-              scope.update()
+              else {
+                window.common.alert.show("componentAlertId", {
+                  parent: scope,
+                  clickpinerror: false,
+                  errornote: result[0][0].error_note
+                });
+                scope.update();
+              }
+            } catch (e) {
+              console.error('Error in get payment list', e)
             }
-            else {
-              window.common.alert.show("componentAlertId", {
-                parent: scope,
-                clickpinerror: false,
-                errornote: result[0][0].error_note
-              });
-              scope.update();
-            }
-
           },
 
           onFail: function (api_status, api_status_message, data) {
