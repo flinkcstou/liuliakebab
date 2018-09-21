@@ -77,6 +77,7 @@
     opts.category_name = scope.categoryName;
     opts.location = "0.0";
     opts.id = opts.chosenServiceId;
+    opts.categoryId = scope.service.category_id;
 
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
     var payment_data, optionAttribute;
