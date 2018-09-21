@@ -47,7 +47,7 @@
             <p if="{cost > 0}"
                class="title-text text-margin">
               {lang_amount_title+':'}
-              {opts.amount/cost}
+              {amount_in_int/cost}
             </p>
             <p if="{opts.comission_amount > 0 && (opts.nds == null || opts.nds == 0)}"
                class="title-text text-margin">
@@ -160,6 +160,7 @@
     if(servicesMap[scope.opts.service_id]) {
       scope.cost = servicesMap[scope.opts.service_id][0].cost;
       scope.lang_amount_title = servicesMap[scope.opts.service_id][0].lang_amount_title;
+      if(opts.amount)scope.amount_in_int = parseInt(opts.amount.replace(/\s/g,''));
     }
 
 
@@ -247,7 +248,13 @@
         newFavorite.firstFieldText = scope.opts.cntrg_info_param2;
         newFavorite.cardTypeId = scope.opts.account_id;
         newFavorite.communalParam = opts.cntrg_info_param5;
-        newFavorite.amountText = amountText;
+        if(scope.cost) {
+          newFavorite.cost=scope.cost;
+          newFavorite.amountText = scope.amount_in_int / scope.cost;
+          newFavorite.lang_amount_title=scope.lang_amount_title;
+        }
+        else
+          newFavorite.amountText = amountText;
         newFavorite.internetPackageParam = scope.opts.cntrg_info_param5;
         newFavorite.isInFavorites = true;
         scope.isInFavorites = true;
@@ -259,7 +266,10 @@
         newFavorite.chosenPrefixId = scope.opts.chosenPrefixId;
         newFavorite.chosenPrefixName = scope.opts.chosenPrefixName;
         newFavorite.nds=servicesMap[scope.opts.service_id][0].nds;
-        newFavorite.amountWithoutSpace=amountText;
+        if(scope.cost)
+          newFavorite.amountWithoutSpace = scope.amount_in_int/scope.cost;
+        else
+          newFavorite.amountWithoutSpace=amountText;
         newFavorite.commissionPercent=servicesMap[scope.opts.service_id][0].commission_percent;
 
 
