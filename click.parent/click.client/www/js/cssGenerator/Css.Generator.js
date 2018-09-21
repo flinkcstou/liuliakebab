@@ -4173,13 +4173,13 @@ var css = {
   payCategoryIcon: ".pay-category-icon" +
   "{" +
   "position: relative;" +
-  "width:" + 50 * widthK + "px; " +
-  "height:" + 50 * widthK + "px; " +
+  "width:" + 77 * widthK + "px; " +
+  "height:" + 77 * widthK + "px; " +
   "background-repeat: no-repeat;" +
   "background-position: center;" +
   "float: left;" +
   "left: 4%;" +
-  "top:" + 20 * widthK + "px; " +
+  "top:" + 10 * widthK + "px; " +
   "margin-right:" + 15 * widthK + "px; " +
   "background-size: 80%;" +
   "background-image: url(resources/icons/services/nologo.png);" +
