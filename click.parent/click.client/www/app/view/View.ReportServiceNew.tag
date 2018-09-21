@@ -44,7 +44,7 @@
               style="color: #ff6d65">
               -
               {(opts.amount) ? (amountTransform(opts.amount.toString())) : ("")} сум</p>
-            <p if="{cost > 0}"
+            <p if="{cost > 1}"
                class="title-text text-margin">
               {lang_amount_title+':'}
               {amount_in_int/cost}
@@ -149,20 +149,20 @@
 
     });
 
+    scope.on('update', function() {
+      if(servicesMap[scope.opts.service_id]) {
+        scope.cost = servicesMap[scope.opts.service_id][0].cost;
+        scope.lang_amount_title = servicesMap[scope.opts.service_id][0].lang_amount_title;
+        if(scope.opts.amount) scope.amount_in_int = parseInt(scope.opts.amount.replace(/\s/g,''));
+      }
+    });
+
     var servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
     var servicesParamsMapOne = (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) ? (JSON.parse(localStorage.getItem("click_client_servicesParamsMapOne"))) : (offlineServicesParamsMapOne);
     var favoritePaymentsList = JSON.parse(localStorage.getItem('favoritePaymentsList'));
     var favoritePaymentsListForApi = JSON.parse(localStorage.getItem('favoritePaymentsListForApi'));
     var sessionKey = JSON.parse(localStorage.getItem('click_client_loginInfo')).session_key;
     var phoneNumber = localStorage.getItem('click_client_phoneNumber');
-
-
-    if(servicesMap[scope.opts.service_id]) {
-      scope.cost = servicesMap[scope.opts.service_id][0].cost;
-      scope.lang_amount_title = servicesMap[scope.opts.service_id][0].lang_amount_title;
-      if(opts.amount)scope.amount_in_int = parseInt(opts.amount.replace(/\s/g,''));
-    }
-
 
     scope.isInFavorites = scope.opts.isInFavorites;
     console.log("scope.isInFavorites", scope.isInFavorites)

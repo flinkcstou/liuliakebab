@@ -93,7 +93,7 @@
             <p class="main-text text-margin">
               - {i.amount} {window.languages.Currency}
             </p>
-            <p if="{i.cost > 0}"
+            <p if="{i.cost > 1}"
                class="text-margin title-text">
               {i.lang_amount_title+':'}{i.amount_in_int/i.cost}
             </p>
@@ -255,45 +255,47 @@
         //TODO: DO CARDS
         scope: this,
         onSuccess: function (result) {
-          scope.fullBalanceCopy = null;
-          scope.fullBalance = null;
-          if (result[0][0].error == 0) {
-            if (result[1]) {
+          try {
+            scope.fullBalanceCopy = null;
+            scope.fullBalance = null;
+            if (result[0][0].error == 0) {
+              if (result[1]) {
 
-              try {
-                for (var i in result[1]) {
-                  scope.fullBalance += result[1][i].balance;
-                }
-                scope.fullBalanceCopy = Math.floor(scope.fullBalance);
-                scope.fractionalPart = window.getFractionalPart(scope.fullBalance.toString());
+                  for (var i in result[1]) {
+                    scope.fullBalance += result[1][i].balance;
+                  }
+                  scope.fullBalanceCopy = Math.floor(scope.fullBalance);
+                  scope.fractionalPart = window.getFractionalPart(scope.fullBalance.toString());
 
-                scope.fullBalanceCopy = scope.fullBalanceCopy.toFixed(0).toString();
-                scope.fullBalanceCopy = window.amountTransform(scope.fullBalanceCopy);
-                textWidthFull = contextFull.measureText(scope.fullBalanceCopy + ' ').width;
-                textWidthFractional = contextFractional.measureText(scope.fractionalPart).width;
-                textWidthCurrency = contextCurrency.measureText(window.languages.ViewReportServiceCommissionCurrency).width;
-                totalTextWidth = textWidthFull + textWidthFractional + textWidthCurrency;
+                  scope.fullBalanceCopy = scope.fullBalanceCopy.toFixed(0).toString();
+                  scope.fullBalanceCopy = window.amountTransform(scope.fullBalanceCopy);
+                  textWidthFull = contextFull.measureText(scope.fullBalanceCopy + ' ').width;
+                  textWidthFractional = contextFractional.measureText(scope.fractionalPart).width;
+                  textWidthCurrency = contextCurrency.measureText(window.languages.ViewReportServiceCommissionCurrency).width;
+                  totalTextWidth = textWidthFull + textWidthFractional + textWidthCurrency;
 
 
-                if (fullCardBalanceContainer && totalTextWidth > fullCardBalanceContainer.offsetWidth) {
-                  scaleK = fullCardBalanceContainer.offsetWidth / totalTextWidth;
-                  left_d = (scaleK - 1) * totalTextWidth / 2;
-                  fullCardBalanceScaleContainer.style.webkitTransform = 'scale(' + scaleK + ')';
-                  fullCardBalanceScaleContainer.style.left = left_d + 'px';
-                }
-              } catch (Error) {
+                  if (fullCardBalanceContainer && totalTextWidth > fullCardBalanceContainer.offsetWidth) {
+                    scaleK = fullCardBalanceContainer.offsetWidth / totalTextWidth;
+                    left_d = (scaleK - 1) * totalTextWidth / 2;
+                    fullCardBalanceScaleContainer.style.webkitTransform = 'scale(' + scaleK + ')';
+                    fullCardBalanceScaleContainer.style.left = left_d + 'px';
+                  }
 
-                console.log("VIEW INFO WRITE BALANCE", Error);
+                j++;
+
               }
-
-              j++;
-
             }
+            else {
+              scope.error_message = 'Ошибка';
+            }
+
+            scope.update();
+
+          } catch (Error) {
+
+            console.log("VIEW INFO WRITE BALANCE", Error);
           }
-          else {
-            scope.error_message = 'Ошибка';
-          }
-          scope.update();
         },
 
         onFail: function (api_status, api_status_message, data) {
