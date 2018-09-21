@@ -658,7 +658,7 @@
       }
       if (opts.paymentDataAttributes) {
         for (var i in opts.paymentDataAttributes) {
-          payment_data[opts.paymentDataAttributes[i].attribute] = opts.paymentDataAttributes[i].value;
+         if(opts.paymentDataAttributes[i]) payment_data[opts.paymentDataAttributes[i].attribute] = opts.paymentDataAttributes[i].value;
         }
       }
 

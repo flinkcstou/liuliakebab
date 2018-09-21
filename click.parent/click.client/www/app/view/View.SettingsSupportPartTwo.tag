@@ -150,7 +150,32 @@
             console.error("api_status = " + api_status + ", api_status_message = " + api_status_message);
             console.error(data);
           }
-        });
+          ,
+          onTimeOut: function () {
+            timeOutTimer = setTimeout(function () {
+              window.writeLog({
+                reason: 'Timeout',
+                method: 'send.ticket'
+              });
+              scope.errorNote = "Сервис временно недоступен";
+              scope.stepAmount = 1;
+              scope.update();
+
+              window.common.alert.show("componentAlertId", {
+                parent: scope,
+                step_amount: scope.stepAmount,
+                viewmount: true,
+                errornote: scope.errorNote,
+              });
+              window.stopSpinner();
+            }, 15000);
+            console.log('creating timeOut', timeOutTimer);
+          },
+          onEmergencyStop: function () {
+            console.log('Clearing timer emergencyStop', timeOutTimer);
+            window.clearTimeout(timeOutTimer);
+          }
+        },15000);
       }
     }
 
