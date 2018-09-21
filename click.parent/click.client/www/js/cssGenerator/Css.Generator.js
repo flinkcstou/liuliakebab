@@ -2449,7 +2449,7 @@ var css = {
   serviceButtonsNoLoader: ".service-buttons-noloader " +
   "{" +
   "position: relative;" +
-  "width:" + 100 * widthK + "px;" +
+  // "width:" + 100 * widthK + "px;" +
   "height:" + 100 * widthK + "px;" +
   "border: 0px;" +
   "float: left;" +
@@ -4160,7 +4160,7 @@ var css = {
   // "right:" + 20 * widthK + "px; " +
   "color: gray;" +
   "text-align: center;" +
-  "margin-left:" + 15 * widthK + "px; " +
+  // "margin-left:" + 15 * widthK + "px; " +
   "margin-right: auto;" +
   // "top: 104%;" +
   "width: 100%;" +
