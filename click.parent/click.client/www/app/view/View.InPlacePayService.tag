@@ -90,6 +90,9 @@
     var timeOutTimer = 0;
     var timeOutTimerTwo = 0;
     var timeOutTimerThree = 0;
+    var scrollTimer = null;
+    var scrolling = false;
+    var isServiceClick = false;
     scope.pageNumber = 1;
     scope.serviceList = [];
     var pageToReturn = "view-inplace-pay-category";
@@ -482,12 +485,18 @@
 
 
     scope.onTouchStartOfService = onTouchStartOfService = function (id) {
+      if (scrolling) {
+        isServiceClick = false;
+        return;
+      }
+      isServiceClick = true;
 
       onTouchStartY = event.changedTouches[0].pageY;
       onTouchStartX = event.changedTouches[0].pageX;
     };
 
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {
+      if(!isServiceClick) return;
 
       onTouchEndY = event.changedTouches[0].pageY;
       onTouchEndX = event.changedTouches[0].pageX;
@@ -618,6 +627,12 @@
 
 
     servicesScroll = function () {
+      scrolling = true;
+
+      window.clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(function() {
+        scrolling = false;
+      }, 66);
 
       if ((categoriesContainerId.scrollHeight - categoriesContainerId.scrollTop) == categoriesContainerId.offsetHeight && categoriesContainerId.scrollTop != 0) {
 

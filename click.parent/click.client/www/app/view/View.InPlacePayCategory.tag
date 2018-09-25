@@ -109,6 +109,9 @@
     scope.showSearchIcon = true;
     scope.pageNumber = 1;
     scope.serviceList = [];
+    var scrollTimer = null;
+    var scrolling = false;
+    var isServiceClick = false;
     scope.searchMode = false;
     var stepBack = 1;
     var searchFieldTimeout, searchFieldActive = false, searchWord;
@@ -525,6 +528,12 @@
     };
 
     servicesScroll = function () {
+      scope.scrolling = true;
+
+      window.clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(function() {
+        scope.scrolling = false;
+      }, 66);
 
       if ((categoriesContainerId.scrollHeight - categoriesContainerId.scrollTop) == categoriesContainerId.offsetHeight && categoriesContainerId.scrollTop != 0) {
 
@@ -698,12 +707,18 @@
     };
 
     scope.onTouchStartOfService = onTouchStartOfService = function (id) {
+      if (scope.scrolling) {
+        isServiceClick = false;
+        return;
+      }
+      isServiceClick = true;
 
       onTouchStartY = event.changedTouches[0].pageY;
       onTouchStartX = event.changedTouches[0].pageX;
     };
 
     scope.onTouchEndOfService = onTouchEndOfService = function (id) {
+      if(!isServiceClick) return;
 
       onTouchEndY = event.changedTouches[0].pageY;
       onTouchEndX = event.changedTouches[0].pageX;
