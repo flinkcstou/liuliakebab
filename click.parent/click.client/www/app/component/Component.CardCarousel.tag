@@ -13,7 +13,7 @@
             <p class="invoice-card-date">{invoice.time} {invoice.date}</p>
             <div class="invoice-card-transfer-sum-holder">
               <p class="invoice-card-sum">{invoice.amount}</p>
-              <mark class="invoice-card-sum-marked">{window.languages.Currency}
+              <mark class="invoice-card-sum-marked">{invoice.currency}
               </mark>
             </div>
           </div>
@@ -22,7 +22,7 @@
             <p class="invoice-card-date">{invoice.time} {invoice.date}</p>
             <div class="invoice-card-payment-sum-holder">
               <p class="invoice-card-sum">{invoice.amount}</p>
-              <mark class="invoice-card-sum-marked">{window.languages.Currency}
+              <mark class="invoice-card-sum-marked">{invoice.currency}
               </mark>
             </div>
           </div>
@@ -359,14 +359,6 @@
 
                 var arrayOfInvoice = [];
                 for (var i = 0; i < result[1].length; i++) {
-                  if (scope.servicesMap
-                    && scope.servicesMap[result[1][i].service_id]
-                    && scope.servicesMap[result[1][i].service_id][0]) {
-                    result[1][i].currency = scope.servicesMap[result[1][i].service_id][0].lang_amount_currency;
-                    console.log(scope.servicesMap[result[1][i].service_id][0]);
-                  } else {
-                    result[1][i].currency = window.languages.Currency;
-                  }
                   var invoice = result[1][i];
                   if (scope.servicesMap != null &&
                     scope.servicesMap[result[1][i].service_id] != null &&
@@ -375,7 +367,7 @@
                     invoice.rate = scope.servicesMap[result[1][i].service_id][0].rate;
                     invoice.low_ratio = scope.servicesMap[result[1][i].service_id][0].low_ratio;
                     invoice.category_id = scope.servicesMap[result[1][i].service_id][0].category_id;
-                    invoice.currency = scope.servicesMap[result[1][i].service_id][0].currency;
+                    invoice.currency = scope.servicesMap[result[1][i].service_id][0].lang_amount_currency;
                   }
                   arrayOfInvoice.push(invoice);
                 }
