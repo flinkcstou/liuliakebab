@@ -746,89 +746,93 @@
         scope: this,
 
         onSuccess: function (result) {
-          if (result[0][0].error == 0) {
-            console.log('GET SERVICE PARAMETERS BY SERVICE', JSON.parse(JSON.stringify(result)))
+          try {
+            if (result[0][0].error == 0) {
+              console.log('GET SERVICE PARAMETERS BY SERVICE', JSON.parse(JSON.stringify(result)))
 
-            if (result[4]) {
-              scope.servicesParamsMapFour = {};
-              for (var i in result[4]) {
-                if (!scope.servicesParamsMapFour[result[4][i].service_id]) {
-                  scope.servicesParamsMapFour[result[4][i].service_id] = [];
-                  scope.servicesParamsMapFour[result[4][i].service_id].push(result[4][i]);
-                }
-                else
-                  scope.servicesParamsMapFour[result[4][i].service_id].push(result[4][i]);
-              }
-            }
-            if (result[5]) {
-              scope.servicesParamsMapFive = {};
-              for (var i in result[5]) {
-                if (!scope.servicesParamsMapFive[result[5][i].service_id]) {
-                  scope.servicesParamsMapFive[result[5][i].service_id] = [];
-                  scope.servicesParamsMapFive[result[5][i].service_id].push(result[5][i]);
-                }
-                else
-                  scope.servicesParamsMapFive[result[5][i].service_id].push(result[5][i]);
-              }
-            }
-
-            fill();
-
-            localStorage.setItem("click_client_servicesParamsMapFour", JSON.stringify(scope.servicesParamsMapFour));
-            localStorage.setItem("click_client_servicesParamsMapFive", JSON.stringify(scope.servicesParamsMapFive));
-
-            function fill() {
-
-              if (scope.formType == 4 && scope.servicesParamsMapFour[scope.service.id] && scope.servicesParamsMapFive[scope.service.id]) {
-                //scope.on('mount', function () {
-                console.log(scope);
-                amountField.style.display = 'none';
-                //});
-                scope.firstLevelArray = [];
-                scope.secondLevelMap = {};
-                scope.chosenFieldNameTwo = scope.servicesParamsMapFour[scope.service.id][0].name;
-                scope.hasSecondLevel = true;
-                scope.hasFirstLevel = true;
-
-                for (var i = 0; i < scope.servicesParamsMapFour[scope.service.id].length; i++) {
-                  scope.firstLevelArray.push(scope.servicesParamsMapFour[scope.service.id][i]);
-                }
-                for (var i = 0; i < scope.servicesParamsMapFive[scope.service.id].length; i++) {
-                  if (!scope.secondLevelMap[scope.servicesParamsMapFive[scope.service.id][i].type]) {
-                    scope.secondLevelMap[scope.servicesParamsMapFive[scope.service.id][i].type] = [];
-                    scope.secondLevelMap[scope.servicesParamsMapFive[scope.service.id][i].type].push(scope.servicesParamsMapFive[scope.service.id][i]);
+              if (result[4]) {
+                scope.servicesParamsMapFour = {};
+                for (var i in result[4]) {
+                  if (!scope.servicesParamsMapFour[result[4][i].service_id]) {
+                    scope.servicesParamsMapFour[result[4][i].service_id] = [];
+                    scope.servicesParamsMapFour[result[4][i].service_id].push(result[4][i]);
                   }
-                  else {
-                    scope.secondLevelMap[scope.servicesParamsMapFive[scope.service.id][i].type].push(scope.servicesParamsMapFive[scope.service.id][i]);
-                  }
+                  else
+                    scope.servicesParamsMapFour[result[4][i].service_id].push(result[4][i]);
                 }
-
-                if (!scope.hasSecondLevel && opts.internetPackageParam) {
-                  scope.chosenFieldParamIdTwo = opts.internetPackageParam;
-                  scope.chosenFieldNameTwo = opts.firstLevelFieldName;
-                  amountForPayTransaction = opts.amountText ? opts.amountText : opts.amountWithoutSpace;
-                }
-                else if (scope.hasSecondLevel && opts.internetPackageParam && opts.firstLevelParamId) {
-                  scope.chosenFieldParamIdTwo = opts.firstLevelParamId;
-                  scope.chosenFieldNameTwo = opts.firstLevelFieldName;
-                  scope.chosenFieldParamIdThree = opts.internetPackageParam;
-                  scope.chosenFieldNameThree = opts.secondLevelFieldName;
-                  amountForPayTransaction = opts.amountText ? opts.amountText : opts.amountWithoutSpace;
-
-                } else
-                  scope.chosenFieldParamIdTwo = scope.firstLevelArray[0].type;
-
-
-                if (scope.hasSecondLevel && scope.secondLevelMap[scope.firstLevelArray[0].type]) {
-                  var chosenFirstLevelId = scope.firstLevelArray[0].type;
-                  if (scope.chosenFieldParamIdTwo)
-                    chosenFirstLevelId = scope.chosenFieldParamIdTwo;
-                  scope.secondLevelArray = scope.secondLevelMap[chosenFirstLevelId];
-                }
-                checkFieldsToActivateNext();
               }
-            }
+              if (result[5]) {
+                scope.servicesParamsMapFive = {};
+                for (var i in result[5]) {
+                  if (!scope.servicesParamsMapFive[result[5][i].service_id]) {
+                    scope.servicesParamsMapFive[result[5][i].service_id] = [];
+                    scope.servicesParamsMapFive[result[5][i].service_id].push(result[5][i]);
+                  }
+                  else
+                    scope.servicesParamsMapFive[result[5][i].service_id].push(result[5][i]);
+                }
+              }
 
+              fill();
+
+              localStorage.setItem("click_client_servicesParamsMapFour", JSON.stringify(scope.servicesParamsMapFour));
+              localStorage.setItem("click_client_servicesParamsMapFive", JSON.stringify(scope.servicesParamsMapFive));
+
+              function fill() {
+
+                if (scope.formType == 4 && scope.servicesParamsMapFour[scope.service.id] && scope.servicesParamsMapFive[scope.service.id]) {
+                  //scope.on('mount', function () {
+                  console.log(scope);
+                  amountField.style.display = 'none';
+                  //});
+                  scope.firstLevelArray = [];
+                  scope.secondLevelMap = {};
+                  scope.chosenFieldNameTwo = scope.servicesParamsMapFour[scope.service.id][0].name;
+                  scope.hasSecondLevel = true;
+                  scope.hasFirstLevel = true;
+
+                  for (var i = 0; i < scope.servicesParamsMapFour[scope.service.id].length; i++) {
+                    scope.firstLevelArray.push(scope.servicesParamsMapFour[scope.service.id][i]);
+                  }
+                  for (var i = 0; i < scope.servicesParamsMapFive[scope.service.id].length; i++) {
+                    if (!scope.secondLevelMap[scope.servicesParamsMapFive[scope.service.id][i].type]) {
+                      scope.secondLevelMap[scope.servicesParamsMapFive[scope.service.id][i].type] = [];
+                      scope.secondLevelMap[scope.servicesParamsMapFive[scope.service.id][i].type].push(scope.servicesParamsMapFive[scope.service.id][i]);
+                    }
+                    else {
+                      scope.secondLevelMap[scope.servicesParamsMapFive[scope.service.id][i].type].push(scope.servicesParamsMapFive[scope.service.id][i]);
+                    }
+                  }
+
+                  if (!scope.hasSecondLevel && opts.internetPackageParam) {
+                    scope.chosenFieldParamIdTwo = opts.internetPackageParam;
+                    scope.chosenFieldNameTwo = opts.firstLevelFieldName;
+                    amountForPayTransaction = opts.amountText ? opts.amountText : opts.amountWithoutSpace;
+                  }
+                  else if (scope.hasSecondLevel && opts.internetPackageParam && opts.firstLevelParamId) {
+                    scope.chosenFieldParamIdTwo = opts.firstLevelParamId;
+                    scope.chosenFieldNameTwo = opts.firstLevelFieldName;
+                    scope.chosenFieldParamIdThree = opts.internetPackageParam;
+                    scope.chosenFieldNameThree = opts.secondLevelFieldName;
+                    amountForPayTransaction = opts.amountText ? opts.amountText : opts.amountWithoutSpace;
+
+                  } else
+                    scope.chosenFieldParamIdTwo = scope.firstLevelArray[0].type;
+
+
+                  if (scope.hasSecondLevel && scope.secondLevelMap[scope.firstLevelArray[0].type]) {
+                    var chosenFirstLevelId = scope.firstLevelArray[0].type;
+                    if (scope.chosenFieldParamIdTwo)
+                      chosenFirstLevelId = scope.chosenFieldParamIdTwo;
+                    scope.secondLevelArray = scope.secondLevelMap[chosenFirstLevelId];
+                  }
+                  checkFieldsToActivateNext();
+                }
+              }
+
+            }
+          } catch (e) {
+            console.error("Error in View.FormTypeFour.tag", e)
           }
         },
 
