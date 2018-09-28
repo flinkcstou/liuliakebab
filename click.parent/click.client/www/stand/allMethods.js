@@ -12899,6 +12899,19 @@ window.fakedSocket.register("get.news", function (input) {
   ];
 });
 
+window.fakedSocket.register("news.view.count", function (input) {
+    return "";
+});
+
+window.fakedSocket.register("news.like", function (input) {
+  return "";
+});
+
+window.fakedSocket.register("news.unlike", function (input) {
+  return "";
+});
+
+
 window.fakedSocket.register("autopay.list", function (input) {
 
   if (input)

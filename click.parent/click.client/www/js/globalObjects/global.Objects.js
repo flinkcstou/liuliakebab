@@ -2962,3 +2962,31 @@ function doScrolling(element, to, duration) {
   });
 
 }
+
+function ClickOnScrollHandler() {
+  return {
+    lastScrollTime: Date.now(),
+    clickEventArray: {},
+    addClickEvent: function(e) {
+      this.clickEventArray[e] = false;
+    },
+    setClickEvent: function(e, bool) {
+      if (this.isUndefined(this.clickEventArray[e])) throw Error('The event is not identified:' + e);
+      if(this.isUndefined(bool)) throw Error('Value of event is not identified');
+      this.clickEventArray[e] = bool;
+    },
+    getClickEvent: function(e) {
+      if (this.isUndefined(this.clickEventArray[e])) throw Error('The event is not identified:' + e);
+      return this.clickEventArray[e];
+    },
+    resetScrollTime: function() {
+      this.lastScrollTime = Date.now();
+    },
+    stoppedScroll: function () {
+      return Date.now() - this.lastScrollTime < 66;
+    },
+    isUndefined: function(val) {
+      return typeof val == 'undefined';
+    }
+  }
+}

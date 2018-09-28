@@ -205,6 +205,8 @@
     var y = new Date().getFullYear();
     var yearChanged = false;
 
+    var clickOnScrollHandler = ClickOnScrollHandler();
+    clickOnScrollHandler.addClickEvent('payment');
 
     if (!scope.mNumber) {
       scope.mNumber = 12;
@@ -497,6 +499,7 @@
     }
 
     reportsBodyContainerScroll = function () {
+      clickOnScrollHandler.resetScrollTime();
 
       if ((reportBodyContainerId.scrollHeight - reportBodyContainerId.scrollTop) == reportBodyContainerId.offsetHeight && reportBodyContainerId.scrollTop != 0) {
 
@@ -874,6 +877,7 @@
     };
 
     paymentTouchEnd = function (paymentId) {
+      if(!clickOnScrollHandler.getClickEvent('payment')) return;
 
       document.getElementById(paymentId).style.backgroundColor = 'rgba(231,231,231,0.8)';
 
@@ -961,6 +965,11 @@
     };
 
     paymentTouchStart = function (paymentId) {
+      if (clickOnScrollHandler.stoppedScroll()) {
+        clickOnScrollHandler.setClickEvent('payment', false);
+        return;
+      }
+      clickOnScrollHandler.setClickEvent('payment', true);
       paymentTouchStartY = event.changedTouches[0].pageY;
       paymentTouchStartX = event.changedTouches[0].pageX;
       paymentTimeStart = event.timeStamp.toFixed(0);

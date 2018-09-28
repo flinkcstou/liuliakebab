@@ -168,6 +168,9 @@
     var contextCurrency;
     var timeOutTimerPayment = 0;
 
+    var clickOnScrollHandler = ClickOnScrollHandler();
+    clickOnScrollHandler.addClickEvent('operation');
+
     window.saveHistory('view-info', opts);
 
     scope.servicesMap = JSON.parse(localStorage.getItem("click_client_servicesMap"));
@@ -365,6 +368,7 @@
     };
 
     lastOperationsContainerScroll = function () {
+      clickOnScrollHandler.resetScrollTime();
 
       if ((lastOperationsContainerId.scrollHeight - lastOperationsContainerId.scrollTop) <= lastOperationsContainerId.offsetHeight && lastOperationsContainerId.scrollTop != 0) {
 
@@ -529,10 +533,17 @@
     };
 
     scope.onTouchStartOfOperation = onTouchStartOfOperation = function (paymentId) {
+      console.log(JSON.stringify(clickOnScrollHandler));
+      if (clickOnScrollHandler.stoppedScroll()) {
+        clickOnScrollHandler.setClickEvent('operation', false);
+        return;
+      }
+      clickOnScrollHandler.setClickEvent('operation', true);
       operationInfoTouchStartY = event.changedTouches[0].pageY;
     };
 
     scope.onTouchEndOfOperation = onTouchEndOfOperation = function (paymentId) {
+      if(!clickOnScrollHandler.getClickEvent('operation')) return;
 
       document.getElementById(paymentId).style.backgroundColor = 'rgba(231,231,231,0.8)';
 
