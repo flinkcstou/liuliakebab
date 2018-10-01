@@ -149,7 +149,7 @@
         sessionStorage.setItem("push_news", false)
       }
 
-      if (isUserAuthorized()) {
+      if (isUserNotAuthorized()) {
         console.log('View.News.tag.closeNewsTouchEnd()');
         mountTo('view-authorization');
         return
@@ -164,7 +164,7 @@
       scope.unmount();
     }
 
-    function isUserAuthorized() {
+    function isUserNotAuthorized() {
       const authorized = JSON.parse(localStorage.getItem('click_client_authorized'));
       const settingsBlock = JSON.parse(localStorage.getItem('settings_block'));
       const onResume = JSON.parse(localStorage.getItem('onResume'));

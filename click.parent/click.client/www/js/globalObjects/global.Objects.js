@@ -1804,6 +1804,15 @@ window.saveHistory = function (viewName, viewOpts) {
   console.error('WINDOW.SAVE HISTORY');
 };
 
+window.updateLastViewOpts = function(viewOpts) {
+  history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
+  if (history.arrayOfHistory.length != 0) {
+    history.arrayOfHistory[history.arrayOfHistory.length - 1].params = viewOpts;
+    sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+  }
+  console.error('WINDOW.updateLastViewOpts()');
+};
+
 window.savePageLogs = function (viewName) {
   pageLogs = JSON.parse(sessionStorage.getItem('page_logs'));
   if (pageLogs) {

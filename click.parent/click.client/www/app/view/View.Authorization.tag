@@ -744,6 +744,8 @@
             if (!result[1][0].error) {
               console.log("User is authorized");
 
+              onBackParams.opts = null;
+
               viewAuthorization.fingerPrintErrorCount == 0;
               localStorage.setItem('click_client_pin', pin);
               localStorage.setItem('myNumberOperatorId', result[1][0].my_service_id);

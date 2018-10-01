@@ -105,6 +105,12 @@
 
       contactPhoneNumberId.focus();
       contactPhoneNumberId.autofocus;
+
+      if(opts.contactPhoneNumber) {
+        contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(opts.contactPhoneNumber);
+        contactNameId.value = opts.contactName;
+      }
+
       if (contactPhoneNumberId.value.length != scope.numberLength) {
         nextButtonId.style.display = 'none'
       }
@@ -194,8 +200,8 @@
 
     pickContactFromNative = function () {
 
+      window.pickContactFromNativeChecker = true;
       window.plugins.PickContact.chooseContact(function (contactInfo) {
-        window.pickContactFromNativeChecker = true;
 
         setTimeout(function () {
           var phoneNumber;
@@ -220,11 +226,16 @@
           contactPhoneNumberId.value = inputVerification.telVerificationWithSpace(phone.substring(phone.length - 9, phone.length));
           if (contactPhoneNumberId.value.length != 0) {
 
+            opts.contactName = contactNameId.value;
+            opts.contactPhoneNumber = contactPhoneNumberId.value;
+            window.updateLastViewOpts(opts);
+
             checkFieldsInAddFriend();
 
           }// use time-out to fix iOS alert problem
         }, 0);
       }, function (error) {
+        window.pickContactFromNativeChecker = false;
         console.log('error', error)
       });
     };
