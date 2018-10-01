@@ -1011,7 +1011,10 @@ window.getAccount = function (checkSessionKey, firstEnter, firstPinInputValue) {
           if (settingsBlock || sessionBroken || pushNews) {
             if (history.arrayOfHistory && history.arrayOfHistory[history.arrayOfHistory.length - 1]) {
 
-              if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-news') {
+              if (history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-news'
+                    || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-pin-code'
+                    || history.arrayOfHistory[history.arrayOfHistory.length - 1].view == 'view-authorization')
+              {
                 this.riotTags.innerHTML = "<view-main-page>";
                 riot.mount("view-main-page");
               }
@@ -1811,6 +1814,15 @@ window.updateLastViewOpts = function(viewOpts) {
     sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
   }
   console.error('WINDOW.updateLastViewOpts()');
+};
+
+window.removeLastHistory = function() {
+  history.arrayOfHistory = JSON.parse(sessionStorage.getItem('history'));
+  if (history.arrayOfHistory.length != 0) {
+    history.arrayOfHistory.pop();
+    sessionStorage.setItem('history', JSON.stringify(history.arrayOfHistory));
+  }
+  console.error('WINDOW.removeLastHistory()');
 };
 
 window.savePageLogs = function (viewName) {
