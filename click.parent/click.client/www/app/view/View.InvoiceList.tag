@@ -475,6 +475,7 @@
               time: invoice.time,
               date: invoice.date,
               status: invoice.status_note,
+              currency: invoice.currency,
               description: invoice.description
             };
 
@@ -548,6 +549,7 @@
               scope.showComponentHistory = false;
               scope.showComponentPayment = true;
               scope.tags['view-payment-detail'].opts = params;
+              scope.tags['view-payment-detail'].showView();
               window.checkShowingComponent = scope.tags['view-payment-detail'];
               scope.update();
 

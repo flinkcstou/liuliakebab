@@ -56,7 +56,7 @@
   <div class="invoice-history-detail-container" if="{!opts.is_p2p}">
     <div class="invoice-history-detail-invoice-container">
       <p class="invoice-history-detail-invoice-title">{languages.ViewInvoiceHistoryDetailPaymentAmountLabel}</p>
-      <p class="invoice-history-detail-sum">{opts.amount} сум</p>
+      <p class="invoice-history-detail-sum">{opts.amount} {opts.currency}</p>
     </div>
     <div class="invoice-history-detail-invoice-container">
       <p class="invoice-history-detail-invoice-title">{languages.ViewInvoiceHistoryDetailPaymentNumberLabel}</p>

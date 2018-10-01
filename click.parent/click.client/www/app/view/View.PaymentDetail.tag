@@ -91,21 +91,25 @@
     scope.errorCode = 0;
     scope.currency = window.languages.Currency;
 
-    //Get currency for this service
-    if (localStorage.getItem("click_client_servicesMap")
-      && JSON.parse(localStorage.getItem("click_client_servicesMap"))) {
-      if (JSON.parse(localStorage.getItem("click_client_servicesMap"))[opts.service_id]) {
-        scope.currency = JSON.parse(localStorage.getItem("click_client_servicesMap"))[opts.service_id][0].lang_amount_currency;
-        console.log('currency', scope.currency);
+    scope.showView = showView = function() {
+      console.log('View.PaymentDetail.tag OPTS: ', scope.opts);
+      //Get currency for this service
+      if (localStorage.getItem("click_client_servicesMap")
+        && JSON.parse(localStorage.getItem("click_client_servicesMap"))) {
+        if (JSON.parse(localStorage.getItem("click_client_servicesMap"))[scope.opts.service_id]) {
+          scope.currency = JSON.parse(localStorage.getItem("click_client_servicesMap"))[scope.opts.service_id][0].lang_amount_currency;
+          console.log('currency', scope.currency);
+        }
       }
-    }
+    };
+    showView();
 
     var pageToReturnIfError = 'view-main-page', pageToReturnIfSuccess = 'view-main-page';
     var paymentSuccessStep = 1, paymentWaitingStep = 1;
     var timeOutTimer = 0;
     //    scope.titleName = window.languages.ViewPaymentDetailTitle + scope.opts.invoiceId;
 
-    console.log("OPTS Payment Detail", opts)
+    console.log("OPTS Payment Detail", opts);
 
     updateResultComponent = function (showResult, stepAmount, viewPage, status, text) {
       console.log("OPEN RESULT COMPONENT");
