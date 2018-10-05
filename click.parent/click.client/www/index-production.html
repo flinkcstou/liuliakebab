@@ -446,7 +446,10 @@
 
   var tempOpts;
   function onBackKeyDown() {
-
+    if(window.preventDoubleBackButton) {
+      window.preventDoubleBackButton = false;
+      return;
+    }
     console.log("onBackKeyDown", JSON.parse(sessionStorage.getItem('history')));
 
 
@@ -533,7 +536,9 @@
       window.pickContactFromNativeChecker = false;
       window.scannerCanBeAsked = false;
       componentMenu.check = false;
-      return
+      // on devices with application backbutton, onBackKeyDown listener is triggered when a plugin is closed by devices back button
+      window.preventDoubleBackButton = true;
+      return;
     }
     localStorage.setItem('onResume', true);
     console.log("onResume set true");
