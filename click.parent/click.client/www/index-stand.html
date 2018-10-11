@@ -59,6 +59,19 @@
 
 
 <script>
+  var soc = new WebSocket("wss://my.click.uz:8443");
+  soc.onopen = function () {
+    console.log('socket isOpen by NAZAR')
+  };
+  soc.onmessage = function () {
+    console.log('socket isMessage NAZAR')
+  };
+  soc.onerror = function () {
+    console.log('socket isError NAZAR')
+  };
+  soc.onclose = function () {
+    console.log('socket isClose NAZAR ')
+  };
 
   api.init();
   var scope = this;
@@ -192,6 +205,7 @@
   }
 
   var tempOpts;
+
   function onBackKeyDown() {
 
     console.log("onBackKeyDown", JSON.parse(sessionStorage.getItem('history')));

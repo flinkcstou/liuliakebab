@@ -1,8 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-packageName="air.com.ssdsoftwaresolutions.clickuz" android-versionCode="50000040"
-        id="air.com.ssdsoftwaresolutions.clickuz"
-        ios-CFBundleIdentifier="com.ssdsoftwaresolutions.clickuz"
-        version="5.4.0" xmlns="http://www.w3.org/ns/widgets">
+<widget android-packageName="air.com.ssdsoftwaresolutions.clickuz" android-versionCode="50000040" id="air.com.ssdsoftwaresolutions.clickuz" ios-CFBundleIdentifier="com.ssdsoftwaresolutions.clickuz" version="5.4.0" xmlns="http://www.w3.org/ns/widgets">
     <name>CLICK Uzbekistan</name>
     <preference name="DisallowOverscroll" value="true" />
     <preference name="Orientation" value="sensorPortrait" />
@@ -130,7 +127,6 @@
     <icon src="resources/android/icon/drawable-xhdpi-icon.png" />
     <plugin name="com.ionic.keyboard" spec="https://github.com/Telerik-Verified-Plugins/Keyboard" />
     <plugin name="cordova-plugin-android-fingerprint" spec="https://github.com/greetgo/cordova-plugin-finger-print.git#v1.1.0" />
-    <engine name="android" spec="~6.1.0" />
     <plugin name="cordova-plugin-contacts" spec="https://github.com/greetgo/cordova-plugin-contacts.git#2.3.1_fix" />
     <plugin name="phonegap-plugin-barcodescanner" spec="https://github.com/greetgo/phonegap-plugin-barcodescanner.git" />
     <plugin name="cordova-fabric-plugin" spec="^1.1.14-dev">
